@@ -1,0 +1,39 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.5 Proxy Object Internal Methods and Internal Slots > 10.5.13 [[Construct]] ( _argList_: a List of ECMAScript language values, _newTarget_: a constructor, ): either a normal completion containing an Object or a throw completion [id: sec-proxy-object-internal-methods-and-internal-slots-construct-argumentslist-newtarget]
+
+<emu-clause id="sec-proxy-object-internal-methods-and-internal-slots-construct-argumentslist-newtarget" type="internal method">
+      <h1>
+        [[Construct]] (
+          _argList_: a List of ECMAScript language values,
+          _newTarget_: a constructor,
+        ): either a normal completion containing an Object or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>a Proxy exotic object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Perform ? ValidateNonRevokedProxy(_obj_).
+        1. Let _target_ be _obj_.[[ProxyTarget]].
+        1. Assert: IsConstructor(_target_) is *true*.
+        1. Let _handler_ be _obj_.[[ProxyHandler]].
+        1. Assert: _handler_ is an Object.
+        1. Let _trap_ be ? GetMethod(_handler_, *"construct"*).
+        1. If _trap_ is *undefined*, then
+          1. Return ? Construct(_target_, _argList_, _newTarget_).
+        1. Let _argArray_ be CreateArrayFromList(_argList_).
+        1. Let _newObj_ be ? Call(_trap_, _handler_, « _target_, _argArray_, _newTarget_ »).
+        1. If _newObj_ is not an Object, throw a *TypeError* exception.
+        1. Return _newObj_.
+      </emu-alg>
+      <emu-note>
+        <p>A Proxy exotic object only has a [[Construct]] internal method if the initial value of its [[ProxyTarget]] internal slot is an object that has a [[Construct]] internal method.</p>
+      </emu-note>
+      <emu-note>
+        <p>[[Construct]] for Proxy objects enforces the following invariants:</p>
+        <ul>
+          <li>
+            The result of [[Construct]] must be an Object.
+          </li>
+        </ul>
+      </emu-note>
+    </emu-clause>

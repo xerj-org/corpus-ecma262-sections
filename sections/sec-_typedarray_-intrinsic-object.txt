@@ -1,0 +1,15 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.1 The %TypedArray% Intrinsic Object [id: sec-%typedarray%-intrinsic-object]
+
+<emu-clause id="sec-%typedarray%-intrinsic-object">
+      <h1>The %TypedArray% Intrinsic Object</h1>
+      <p>The <dfn>%TypedArray%</dfn> intrinsic object:</p>
+      <ul>
+        <li>is a constructor function object that all of the _TypedArray_ constructor objects inherit from.</li>
+        <li>along with its corresponding prototype object, provides common properties that are inherited by all _TypedArray_ constructors and their instances.</li>
+        <li>does not have a global name or appear as a property of the global object.</li>
+        <li>acts as the abstract superclass of the various _TypedArray_ constructors.</li>
+        <li>will throw an error when invoked, because it is an abstract class constructor. The _TypedArray_ constructors do not perform a `super` call to it.</li>
+      </ul>
+
+      
+    </emu-clause>

@@ -1,0 +1,79 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.3 Exports > 16.2.3.3 Static Semantics: ExportedNames ( ): a List of Strings [id: sec-static-semantics-exportednames]
+
+<emu-clause id="sec-static-semantics-exportednames" oldids="sec-module-semantics-static-semantics-exportednames,sec-exports-static-semantics-exportednames" type="sdo">
+        <h1>Static Semantics: ExportedNames ( ): a List of Strings</h1>
+        <dl class="header">
+        </dl>
+        <emu-note>
+          <p>ExportedNames are the externally visible names that a |Module| explicitly maps to one of its local name bindings.</p>
+        </emu-note>
+        <emu-grammar>ModuleItemList : ModuleItemList ModuleItem</emu-grammar>
+        <emu-alg>
+          1. Let _names1_ be the ExportedNames of |ModuleItemList|.
+          1. Let _names2_ be the ExportedNames of |ModuleItem|.
+          1. Return the list-concatenation of _names1_ and _names2_.
+        </emu-alg>
+        <emu-grammar>ModuleItem : ExportDeclaration</emu-grammar>
+        <emu-alg>
+          1. Return the ExportedNames of |ExportDeclaration|.
+        </emu-alg>
+        <emu-grammar>
+          ModuleItem :
+            ImportDeclaration
+            StatementListItem
+        </emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+        <emu-grammar>ExportDeclaration : `export` ExportFromClause FromClause WithClause? `;`</emu-grammar>
+        <emu-alg>
+          1. Return the ExportedNames of |ExportFromClause|.
+        </emu-alg>
+        <emu-grammar>ExportFromClause : `*`</emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+        <emu-grammar>ExportFromClause : `*` `as` ModuleExportName</emu-grammar>
+        <emu-alg>
+          1. Return a List whose sole element is the StringValue of |ModuleExportName|.
+        </emu-alg>
+        <emu-grammar>ExportFromClause : NamedExports</emu-grammar>
+        <emu-alg>
+          1. Return the ExportedNames of |NamedExports|.
+        </emu-alg>
+        <emu-grammar>ExportDeclaration : `export` VariableStatement</emu-grammar>
+        <emu-alg>
+          1. Return the BoundNames of |VariableStatement|.
+        </emu-alg>
+        <emu-grammar>ExportDeclaration : `export` Declaration</emu-grammar>
+        <emu-alg>
+          1. Return the BoundNames of |Declaration|.
+        </emu-alg>
+        <emu-grammar>
+          ExportDeclaration :
+            `export` `default` HoistableDeclaration
+            `export` `default` ClassDeclaration
+            `export` `default` AssignmentExpression `;`
+        </emu-grammar>
+        <emu-alg>
+          1. Return « *"default"* ».
+        </emu-alg>
+        <emu-grammar>NamedExports : `{` `}`</emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+        <emu-grammar>ExportsList : ExportsList `,` ExportSpecifier</emu-grammar>
+        <emu-alg>
+          1. Let _names1_ be the ExportedNames of |ExportsList|.
+          1. Let _names2_ be the ExportedNames of |ExportSpecifier|.
+          1. Return the list-concatenation of _names1_ and _names2_.
+        </emu-alg>
+        <emu-grammar>ExportSpecifier : ModuleExportName</emu-grammar>
+        <emu-alg>
+          1. Return a List whose sole element is the StringValue of |ModuleExportName|.
+        </emu-alg>
+        <emu-grammar>ExportSpecifier : ModuleExportName `as` ModuleExportName</emu-grammar>
+        <emu-alg>
+          1. Return a List whose sole element is the StringValue of the second |ModuleExportName|.
+        </emu-alg>
+      </emu-clause>

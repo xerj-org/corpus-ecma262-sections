@@ -1,0 +1,22 @@
+ECMA-262 > 20 Fundamental Objects > 20.2 Function Objects > 20.2.1 The Function Constructor > 20.2.1.1 Function ( ..._paramArgs_, _bodyArg_ ) [id: sec-function-p1-p2-pn-body]
+
+<emu-clause id="sec-function-p1-p2-pn-body" type="built-in function">
+        <h1>Function ( ..._paramArgs_, _bodyArg_ )</h1>
+        <p>The last argument (if any) specifies the body (executable code) of a function; any preceding arguments specify formal parameters.</p>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _ctor_ be the active function object.
+          1. If _bodyArg_ is not present, set _bodyArg_ to the empty String.
+          1. Return ? CreateDynamicFunction(_ctor_, NewTarget, ~normal~, _paramArgs_, _bodyArg_).
+        </emu-alg>
+        <emu-note>
+          <p>It is permissible but not necessary to have one argument for each formal parameter to be specified. For example, all three of the following expressions produce the same result:</p>
+          <pre><code class="javascript">
+            new Function("a", "b", "c", "return a+b+c")
+            new Function("a, b, c", "return a+b+c")
+            new Function("a,b", "c", "return a+b+c")
+          </code></pre>
+        </emu-note>
+
+        
+      </emu-clause>

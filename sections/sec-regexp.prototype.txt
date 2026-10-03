@@ -1,0 +1,7 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.5 Properties of the RegExp Constructor > 22.2.5.2 RegExp.prototype [id: sec-regexp.prototype]
+
+<emu-clause id="sec-regexp.prototype">
+        <h1>RegExp.prototype</h1>
+        <p>The initial value of `RegExp.prototype` is the RegExp prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

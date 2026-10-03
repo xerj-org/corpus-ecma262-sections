@@ -1,0 +1,15 @@
+ECMA-262 > 25 Structured Data [id: sec-structured-data]
+
+<emu-clause id="sec-structured-data">
+  <h1>Structured Data</h1>
+
+  
+
+  
+
+  
+
+  
+
+  
+</emu-clause>

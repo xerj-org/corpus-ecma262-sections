@@ -1,0 +1,17 @@
+ECMA-262 > 26 Managing Memory > 26.2 FinalizationRegistry Objects > 26.2.3 Properties of the FinalizationRegistry Prototype Object > 26.2.3.3 FinalizationRegistry.prototype.unregister ( _unregisterToken_ ) [id: sec-finalization-registry.prototype.unregister]
+
+<emu-clause id="sec-finalization-registry.prototype.unregister" type="built-in function">
+        <h1>FinalizationRegistry.prototype.unregister ( _unregisterToken_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _finalizationRegistry_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_finalizationRegistry_, [[Cells]]).
+          1. If CanBeHeldWeakly(_unregisterToken_) is *false*, throw a *TypeError* exception.
+          1. Let _removed_ be *false*.
+          1. For each Record { [[WeakRefTarget]], [[HeldValue]], [[UnregisterToken]] } _cell_ of _finalizationRegistry_.[[Cells]], do
+            1. If _cell_.[[UnregisterToken]] is not ~empty~ and SameValue(_cell_.[[UnregisterToken]], _unregisterToken_) is *true*, then
+              1. Remove _cell_ from _finalizationRegistry_.[[Cells]].
+              1. Set _removed_ to *true*.
+          1. Return _removed_.
+        </emu-alg>
+      </emu-clause>

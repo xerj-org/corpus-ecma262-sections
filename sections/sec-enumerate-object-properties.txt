@@ -1,0 +1,49 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.5 The `for`-`in`, `for`-`of`, and `for`-`await`-`of` Statements > 14.7.5.9 EnumerateObjectProperties ( _obj_: an Object, ): an iterator object [id: sec-enumerate-object-properties]
+
+<emu-clause id="sec-enumerate-object-properties" type="abstract operation">
+        <h1>
+          EnumerateObjectProperties (
+            _obj_: an Object,
+          ): an iterator object
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Return an iterator object whose `next` method iterates over all the String-valued keys of enumerable properties of _obj_. The iterator object is never directly accessible to ECMAScript code. The mechanics and order of enumerating the properties is not specified but must conform to the rules specified below.
+        </emu-alg>
+        <p>The iterator's `throw` and `return` methods are *null* and are never invoked. The iterator's `next` method processes object properties to determine whether the property key should be returned as an iterator value. Returned property keys do not include keys that are Symbols. Properties of the target object may be deleted during enumeration. A property that is deleted before it is processed by the iterator's `next` method is ignored. If new properties are added to the target object during enumeration, the newly added properties are not guaranteed to be processed in the active enumeration. A property name will be returned by the iterator's `next` method at most once in any enumeration.</p>
+        <p>Enumerating the properties of the target object includes enumerating properties of its prototype, and the prototype of the prototype, and so on, recursively; but a property of a prototype is not processed if it has the same name as a property that has already been processed by the iterator's `next` method. The values of [[Enumerable]] attributes are not considered when determining if a property of a prototype object has already been processed. The enumerable property names of prototype objects must be obtained by invoking EnumerateObjectProperties passing the prototype object as the argument. EnumerateObjectProperties must obtain the own property keys of the target object by calling its [[OwnPropertyKeys]] internal method. Property attributes of the target object must be obtained by calling its [[GetOwnProperty]] internal method.</p>
+        <p>In addition, if neither _obj_ nor any object in its prototype chain is a Proxy exotic object, TypedArray, module namespace exotic object, or implementation provided exotic object, then the iterator must behave as would the iterator given by CreateForInIterator(_obj_) until one of the following occurs:</p>
+        <ul>
+          <li>the value of the [[Prototype]] internal slot of _obj_ or an object in its prototype chain changes,</li>
+          <li>a property is removed from _obj_ or an object in its prototype chain,</li>
+          <li>a property is added to an object in _obj_'s prototype chain, or</li>
+          <li>the value of the [[Enumerable]] attribute of a property of _obj_ or an object in its prototype chain changes.</li>
+        </ul>
+
+        <emu-note>
+          <p>ECMAScript implementations are not required to implement the algorithm in <emu-xref href="#sec-%foriniteratorprototype%.next"></emu-xref> directly. They may choose any implementation whose behaviour will not deviate from that algorithm unless one of the constraints in the previous paragraph is violated.</p>
+          <p>The following is an informative definition of an ECMAScript generator function that conforms to these rules:</p>
+          <pre><code class="javascript">
+            function* EnumerateObjectProperties(obj) {
+              const visited = new Set();
+              for (const key of Reflect.ownKeys(obj)) {
+                if (typeof key === "symbol") continue;
+                const desc = Reflect.getOwnPropertyDescriptor(obj, key);
+                if (desc) {
+                  visited.add(key);
+                  if (desc.enumerable) yield key;
+                }
+              }
+              const proto = Reflect.getPrototypeOf(obj);
+              if (proto === null) return;
+              for (const protoKey of EnumerateObjectProperties(proto)) {
+                if (!visited.has(protoKey)) yield protoKey;
+              }
+            }
+          </code></pre>
+        </emu-note>
+        <emu-note>
+          The list of exotic objects for which implementations are not required to match CreateForInIterator was chosen because implementations historically differed in behaviour for those cases, and agreed in all others.
+        </emu-note>
+      </emu-clause>

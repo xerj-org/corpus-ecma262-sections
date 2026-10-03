@@ -1,0 +1,6 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.2 Object Environment Records > 9.1.1.2.3 CreateImmutableBinding ( _name_, _strict_ ) [id: sec-object-environment-records-createimmutablebinding-n-s]
+
+<emu-clause id="sec-object-environment-records-createimmutablebinding-n-s">
+          <h1>CreateImmutableBinding ( _name_, _strict_ )</h1>
+          <p>The CreateImmutableBinding concrete method of an Object Environment Record is never used within this specification.</p>
+        </emu-clause>

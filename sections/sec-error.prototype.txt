@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.2 Properties of the Error Constructor > 20.5.2.2 Error.prototype [id: sec-error.prototype]
+
+<emu-clause id="sec-error.prototype">
+        <h1>Error.prototype</h1>
+        <p>The initial value of `Error.prototype` is the Error prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

@@ -1,0 +1,13 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.5 Properties of the SharedArrayBuffer Prototype Object > 25.2.5.4 get SharedArrayBuffer.prototype.growable [id: sec-get-sharedarraybuffer.prototype.growable]
+
+<emu-clause id="sec-get-sharedarraybuffer.prototype.growable" type="built-in function">
+        <h1>get SharedArrayBuffer.prototype.growable</h1>
+        <p>`SharedArrayBuffer.prototype.growable` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_obj_, [[ArrayBufferData]]).
+          1. If IsSharedArrayBuffer(_obj_) is *false*, throw a *TypeError* exception.
+          1. If IsFixedLengthArrayBuffer(_obj_) is *false*, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

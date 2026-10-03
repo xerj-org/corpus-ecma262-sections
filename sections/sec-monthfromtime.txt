@@ -1,0 +1,30 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.10 MonthFromTime ( _tv_: a finite time value, ): an integer in the inclusive interval from 0 to 11 [id: sec-monthfromtime]
+
+<emu-clause id="sec-monthfromtime" type="abstract operation" oldids="eqn-MonthFromTime,sec-month-number">
+        <h1>
+          MonthFromTime (
+            _tv_: a finite time value,
+          ): an integer in the inclusive interval from 0 to 11
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns an integer identifying the month in which _tv_ falls. A month value of 0 specifies January; 1 specifies February; 2 specifies March; 3 specifies April; 4 specifies May; 5 specifies June; 6 specifies July; 7 specifies August; 8 specifies September; 9 specifies October; 10 specifies November; and 11 specifies December. Note that <emu-eqn>MonthFromTime(*+0*<sub>𝔽</sub>) = 0</emu-eqn>, corresponding to Thursday, 1 January 1970.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _inLeapYear_ be InLeapYear(_tv_).
+          1. Let _dayWithinYear_ be DayWithinYear(_tv_).
+          1. If _dayWithinYear_ &lt; 31, return 0.
+          1. If _dayWithinYear_ &lt; 59 + _inLeapYear_, return 1.
+          1. If _dayWithinYear_ &lt; 90 + _inLeapYear_, return 2.
+          1. If _dayWithinYear_ &lt; 120 + _inLeapYear_, return 3.
+          1. If _dayWithinYear_ &lt; 151 + _inLeapYear_, return 4.
+          1. If _dayWithinYear_ &lt; 181 + _inLeapYear_, return 5.
+          1. If _dayWithinYear_ &lt; 212 + _inLeapYear_, return 6.
+          1. If _dayWithinYear_ &lt; 243 + _inLeapYear_, return 7.
+          1. If _dayWithinYear_ &lt; 273 + _inLeapYear_, return 8.
+          1. If _dayWithinYear_ &lt; 304 + _inLeapYear_, return 9.
+          1. If _dayWithinYear_ &lt; 334 + _inLeapYear_, return 10.
+          1. Assert: _dayWithinYear_ &lt; 365 + _inLeapYear_.
+          1. Return 11.
+        </emu-alg>
+      </emu-clause>

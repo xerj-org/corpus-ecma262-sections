@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.1 Value Properties of the Math Object > 21.3.1.8 Math.SQRT2 [id: sec-math.sqrt2]
+
+<emu-clause id="sec-math.sqrt2">
+        <h1>Math.SQRT2</h1>
+        <p>The Number value for the square root of 2, which is approximately 1.4142135623730951.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

@@ -1,0 +1,25 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.4 Global Environment Records > 9.1.1.4.13 HasRestrictedGlobalProperty ( _envRecord_: a Global Environment Record, _name_: a String, ): either a normal completion containing a Boolean or a throw completion [id: sec-hasrestrictedglobalproperty]
+
+<emu-clause id="sec-hasrestrictedglobalproperty" type="abstract operation">
+          <h1>
+            HasRestrictedGlobalProperty (
+              _envRecord_: a Global Environment Record,
+              _name_: a String,
+            ): either a normal completion containing a Boolean or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It determines if the argument identifier is the name of a property of the global object that must not be shadowed by a global lexical binding.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _objRecord_ be _envRecord_.[[ObjectRecord]].
+            1. Let _globalObj_ be _objRecord_.[[BindingObject]].
+            1. Let _existingProperty_ be ? <emu-meta effects="user-code">_globalObj_.[[GetOwnProperty]](_name_)</emu-meta>.
+            1. If _existingProperty_ is *undefined*, return *false*.
+            1. If _existingProperty_.[[Configurable]] is *true*, return *false*.
+            1. Return *true*.
+          </emu-alg>
+          <emu-note>
+            <p>Properties may exist upon a global object that were directly created rather than being declared using a var or function declaration. A global lexical binding may not be created that has the same name as a non-configurable property of the global object. The global property *"undefined"* is an example of such a property.</p>
+          </emu-note>
+        </emu-clause>

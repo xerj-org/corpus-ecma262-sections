@@ -1,0 +1,10 @@
+ECMA-262 > 28 Reflection > 28.1 The Reflect Object > 28.1.9 Reflect.isExtensible ( _target_ ) [id: sec-reflect.isextensible]
+
+<emu-clause id="sec-reflect.isextensible" type="built-in function">
+      <h1>Reflect.isExtensible ( _target_ )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. If _target_ is not an Object, throw a *TypeError* exception.
+        1. Return ? <emu-meta effects="user-code">_target_.[[IsExtensible]]()</emu-meta>.
+      </emu-alg>
+    </emu-clause>

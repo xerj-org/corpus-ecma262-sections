@@ -1,0 +1,15 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.1 Declarative Environment Records > 9.1.1.1.8 HasThisBinding ( ): *false* [id: sec-declarative-environment-records-hasthisbinding]
+
+<emu-clause id="sec-declarative-environment-records-hasthisbinding" type="concrete method">
+          <h1>HasThisBinding ( ): *false*</h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>a Declarative Environment Record _envRecord_</dd>
+          </dl>
+          <emu-alg>
+            1. Return *false*.
+          </emu-alg>
+          <emu-note>
+            <p>A regular Declarative Environment Record (i.e., one that is neither a Function Environment Record nor a Module Environment Record) does not provide a `this` binding.</p>
+          </emu-note>
+        </emu-clause>

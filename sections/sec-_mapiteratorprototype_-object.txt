@@ -1,0 +1,16 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.5 Map Iterator Objects > 24.1.5.2 The %MapIteratorPrototype% Object [id: sec-%mapiteratorprototype%-object]
+
+<emu-clause id="sec-%mapiteratorprototype%-object">
+        <h1>The %MapIteratorPrototype% Object</h1>
+        <p>The <dfn>%MapIteratorPrototype%</dfn> object:</p>
+        <ul>
+          <li>has properties that are inherited by all Map Iterator objects.</li>
+          <li>is an ordinary object.</li>
+          <li>has a [[Prototype]] internal slot whose value is %Iterator.prototype%.</li>
+          <li>has the following properties:</li>
+        </ul>
+
+        
+
+        
+      </emu-clause>

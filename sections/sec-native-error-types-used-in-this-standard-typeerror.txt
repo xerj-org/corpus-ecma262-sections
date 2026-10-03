@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.5 Native Error Types Used in This Standard > 20.5.5.5 TypeError [id: sec-native-error-types-used-in-this-standard-typeerror]
+
+<emu-clause id="sec-native-error-types-used-in-this-standard-typeerror">
+        <h1>TypeError</h1>
+        <p>The TypeError constructor is <dfn>%TypeError%</dfn>.</p>
+        <p>TypeError is used to indicate an unsuccessful operation when none of the other _NativeError_ objects are an appropriate indication of the failure cause.</p>
+      </emu-clause>

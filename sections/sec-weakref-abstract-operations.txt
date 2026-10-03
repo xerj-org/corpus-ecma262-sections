@@ -1,0 +1,7 @@
+ECMA-262 > 26 Managing Memory > 26.1 WeakRef Objects > 26.1.4 WeakRef Abstract Operations [id: sec-weakref-abstract-operations]
+
+<emu-clause id="sec-weakref-abstract-operations">
+      <h1>WeakRef Abstract Operations</h1>
+
+      
+    </emu-clause>

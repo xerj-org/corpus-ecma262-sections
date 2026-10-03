@@ -1,0 +1,16 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.3 Generator Abstract Operations > 27.8.3.7 Yield ( _arg_: an ECMAScript language value, ): either a normal completion containing an ECMAScript language value or an abrupt completion [id: sec-yield]
+
+<emu-clause id="sec-yield" type="abstract operation">
+        <h1>
+          Yield (
+            _arg_: an ECMAScript language value,
+          ): either a normal completion containing an ECMAScript language value or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _genKind_ be GetGeneratorKind().
+          1. If _genKind_ is ~async~, return ? AsyncGeneratorYield(? Await(_arg_)).
+          1. Return ? GeneratorYield(CreateIteratorResultObject(_arg_, *false*)).
+        </emu-alg>
+      </emu-clause>

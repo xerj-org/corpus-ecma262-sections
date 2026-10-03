@@ -1,0 +1,19 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.3 Properties of the Object Prototype Object > 20.1.3.4 Object.prototype.propertyIsEnumerable ( _value_ ) [id: sec-object.prototype.propertyisenumerable]
+
+<emu-clause id="sec-object.prototype.propertyisenumerable" type="built-in function">
+        <h1>Object.prototype.propertyIsEnumerable ( _value_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. [id="step-propertyisenumerable-topropertykey"] Let _propertyKey_ be ? ToPropertyKey(_value_).
+          1. [id="step-propertyisenumerable-toobject"] Let _obj_ be ? ToObject(*this* value).
+          1. Let _propertyDesc_ be ? <emu-meta effects="user-code">_obj_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+          1. If _propertyDesc_ is *undefined*, return *false*.
+          1. Return _propertyDesc_.[[Enumerable]].
+        </emu-alg>
+        <emu-note>
+          <p>This method does not consider objects in the prototype chain.</p>
+        </emu-note>
+        <emu-note>
+          <p>The ordering of steps <emu-xref href="#step-propertyisenumerable-topropertykey"></emu-xref> and <emu-xref href="#step-propertyisenumerable-toobject"></emu-xref> is chosen to ensure that any exception that would have been thrown by step <emu-xref href="#step-propertyisenumerable-topropertykey"></emu-xref> in previous editions of this specification will continue to be thrown even if the *this* value is *undefined* or *null*.</p>
+        </emu-note>
+      </emu-clause>

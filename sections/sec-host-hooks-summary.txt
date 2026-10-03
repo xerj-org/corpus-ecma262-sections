@@ -1,0 +1,21 @@
+ECMA-262 > D Host Layering Points > D.1 Host Hooks [id: sec-host-hooks-summary]
+
+<emu-annex id="sec-host-hooks-summary">
+    <h1>Host Hooks</h1>
+    <p><b>HostCallJobCallback(...)</b></p>
+    <p><b>HostEnqueueFinalizationRegistryCleanupJob(...)</b></p>
+    <p><b>HostEnqueueGenericJob(...)</b></p>
+    <p><b>HostEnqueuePromiseJob(...)</b></p>
+    <p><b>HostEnqueueTimeoutJob(...)</b></p>
+    <p><b>HostEnsureCanCompileStrings(...)</b></p>
+    <p><b>HostFinalizeImportMeta(...)</b></p>
+    <p><b>HostGetImportMetaProperties(...)</b></p>
+    <p><b>HostGrowSharedArrayBuffer(...)</b></p>
+    <p><b>HostHasSourceTextAvailable(...)</b></p>
+    <p><b>HostLoadImportedModule(...)</b></p>
+    <p><b>HostGetSupportedImportAttributes(...)</b></p>
+    <p><b>HostMakeJobCallback(...)</b></p>
+    <p><b>HostPromiseRejectionTracker(...)</b></p>
+    <p><b>HostResizeArrayBuffer(...)</b></p>
+    <p><b>InitializeHostDefinedRealm(...)</b></p>
+  </emu-annex>

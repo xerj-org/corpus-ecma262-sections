@@ -1,0 +1,20 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.23 CanonicalNumericIndexString ( _arg_: a String, ): a Number or *undefined* [id: sec-canonicalnumericindexstring]
+
+<emu-clause id="sec-canonicalnumericindexstring" type="abstract operation">
+      <h1>
+        CanonicalNumericIndexString (
+          _arg_: a String,
+        ): a Number or *undefined*
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>If _arg_ is either *"-0"* or exactly matches ToString(_n_) for some Number value _n_, it returns the respective Number value. Otherwise, it returns *undefined*.</dd>
+      </dl>
+      <emu-alg>
+        1. If _arg_ is *"-0"*, return *-0*<sub>𝔽</sub>.
+        1. Let _n_ be ! ToNumber(_arg_).
+        1. If ! ToString(_n_) is _arg_, return _n_.
+        1. Return *undefined*.
+      </emu-alg>
+      <p>A <dfn variants="canonical numeric strings">canonical numeric string</dfn> is any String for which the CanonicalNumericIndexString abstract operation does not return *undefined*.</p>
+    </emu-clause>

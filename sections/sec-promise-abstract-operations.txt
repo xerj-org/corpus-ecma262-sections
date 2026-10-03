@@ -1,0 +1,23 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.1 Promise Abstract Operations [id: sec-promise-abstract-operations]
+
+<emu-clause id="sec-promise-abstract-operations">
+      <h1>Promise Abstract Operations</h1>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

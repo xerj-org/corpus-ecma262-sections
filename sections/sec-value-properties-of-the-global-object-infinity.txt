@@ -1,0 +1,7 @@
+ECMA-262 > 19 The Global Object > 19.1 Value Properties of the Global Object > 19.1.2 Infinity [id: sec-value-properties-of-the-global-object-infinity]
+
+<emu-clause id="sec-value-properties-of-the-global-object-infinity">
+      <h1>Infinity</h1>
+      <p>The initial value of the *"Infinity"* property of the global object is *+∞*<sub>𝔽</sub> (see <emu-xref href="#sec-ecmascript-language-types-number-type"></emu-xref>).</p>
+      <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+    </emu-clause>

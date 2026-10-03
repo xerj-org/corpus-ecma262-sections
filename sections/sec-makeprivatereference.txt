@@ -1,0 +1,18 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.5 The Reference Record Specification Type > 6.2.5.9 MakePrivateReference ( _baseValue_: an ECMAScript language value, _privateIdentifier_: a String, ): a Reference Record [id: sec-makeprivatereference]
+
+<emu-clause id="sec-makeprivatereference" type="abstract operation">
+        <h1>
+          MakePrivateReference (
+            _baseValue_: an ECMAScript language value,
+            _privateIdentifier_: a String,
+          ): a Reference Record
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+          1. Assert: _privateEnv_ is not *null*.
+          1. Let _privateName_ be ResolvePrivateIdentifier(_privateEnv_, _privateIdentifier_).
+          1. Return the Reference Record { [[Base]]: _baseValue_, [[ReferencedName]]: _privateName_, [[Strict]]: *true*, [[ThisValue]]: ~empty~ }.
+        </emu-alg>
+      </emu-clause>

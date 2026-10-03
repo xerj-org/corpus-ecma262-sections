@@ -1,0 +1,17 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.12 Binary Bitwise Operators > 13.12.1 Runtime Semantics: Evaluation [id: sec-binary-bitwise-operators-runtime-semantics-evaluation]
+
+<emu-clause id="sec-binary-bitwise-operators-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>BitwiseANDExpression : BitwiseANDExpression `&amp;` EqualityExpression</emu-grammar>
+      <emu-alg>
+        1. Return ? EvaluateStringOrNumericBinaryExpression(|BitwiseANDExpression|, `&amp;`, |EqualityExpression|).
+      </emu-alg>
+      <emu-grammar>BitwiseXORExpression : BitwiseXORExpression `^` BitwiseANDExpression</emu-grammar>
+      <emu-alg>
+        1. Return ? EvaluateStringOrNumericBinaryExpression(|BitwiseXORExpression|, `^`, |BitwiseANDExpression|).
+      </emu-alg>
+      <emu-grammar>BitwiseORExpression : BitwiseORExpression `|` BitwiseXORExpression</emu-grammar>
+      <emu-alg>
+        1. Return ? EvaluateStringOrNumericBinaryExpression(|BitwiseORExpression|, `|`, |BitwiseXORExpression|).
+      </emu-alg>
+    </emu-clause>

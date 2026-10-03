@@ -1,0 +1,26 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.2 Scope Analysis > 8.2.10 Static Semantics: TopLevelLexicallyDeclaredNames ( ): a List of Strings [id: sec-static-semantics-toplevellexicallydeclarednames]
+
+<emu-clause id="sec-static-semantics-toplevellexicallydeclarednames" oldids="sec-block-static-semantics-toplevellexicallydeclarednames,sec-labelled-statements-static-semantics-toplevellexicallydeclarednames" type="sdo">
+      <h1>Static Semantics: TopLevelLexicallyDeclaredNames ( ): a List of Strings</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>StatementList : StatementList StatementListItem</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the TopLevelLexicallyDeclaredNames of |StatementList|.
+        1. Let _names2_ be the TopLevelLexicallyDeclaredNames of |StatementListItem|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>StatementListItem : Statement</emu-grammar>
+      <emu-alg>
+        1. Return a new empty List.
+      </emu-alg>
+      <emu-grammar>StatementListItem : Declaration</emu-grammar>
+      <emu-alg>
+        1. If |Declaration| is <emu-grammar>Declaration : HoistableDeclaration</emu-grammar>, then
+          1. Return a new empty List.
+        1. Return the BoundNames of |Declaration|.
+      </emu-alg>
+      <emu-note>
+        <p>At the top level of a function, or script, function declarations are treated like var declarations rather than like lexical declarations.</p>
+      </emu-note>
+    </emu-clause>

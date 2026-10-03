@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.2 Properties of the Symbol Constructor > 20.4.2.16 Symbol.toPrimitive [id: sec-symbol.toprimitive]
+
+<emu-clause id="sec-symbol.toprimitive">
+        <h1>Symbol.toPrimitive</h1>
+        <p>The initial value of `Symbol.toPrimitive` is the well-known symbol %Symbol.toPrimitive% (<emu-xref href="#table-well-known-symbols"></emu-xref>).</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

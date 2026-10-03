@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.8 SuppressedError Objects > 20.5.8.2 Properties of the SuppressedError Constructor > 20.5.8.2.1 SuppressedError.prototype [id: sec-suppressederror.prototype]
+
+<emu-clause id="sec-suppressederror.prototype">
+          <h1>SuppressedError.prototype</h1>
+          <p>The initial value of `SuppressedError.prototype` is the SuppressedError prototype object.</p>
+          <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+        </emu-clause>

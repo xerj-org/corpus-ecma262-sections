@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.5 Native Error Types Used in This Standard > 20.5.5.1 EvalError [id: sec-native-error-types-used-in-this-standard-evalerror]
+
+<emu-clause id="sec-native-error-types-used-in-this-standard-evalerror">
+        <h1>EvalError</h1>
+        <p>The EvalError constructor is <dfn>%EvalError%</dfn>.</p>
+        <p>This exception is not currently used within this specification. This object remains for compatibility with previous editions of this specification.</p>
+      </emu-clause>

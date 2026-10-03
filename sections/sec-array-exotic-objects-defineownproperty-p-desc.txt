@@ -1,0 +1,34 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.2 Array Exotic Objects > 10.4.2.1 [[DefineOwnProperty]] ( _propertyKey_: a property key, _propertyDesc_: a Property Descriptor, ): either a normal completion containing a Boolean or a throw completion [id: sec-array-exotic-objects-defineownproperty-p-desc]
+
+<emu-clause id="sec-array-exotic-objects-defineownproperty-p-desc" type="internal method">
+        <h1>
+          [[DefineOwnProperty]] (
+            _propertyKey_: a property key,
+            _propertyDesc_: a Property Descriptor,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>an Array exotic object _array_</dd>
+        </dl>
+        <emu-alg>
+          1. If _propertyKey_ is *"length"*, return ? ArraySetLength(_array_, _propertyDesc_).
+          1. If _propertyKey_ is an array index, then
+            1. Let _lengthDesc_ be OrdinaryGetOwnProperty(_array_, *"length"*).
+            1. Assert: _lengthDesc_ is not *undefined*.
+            1. Assert: IsDataDescriptor(_lengthDesc_) is *true*.
+            1. Assert: _lengthDesc_.[[Configurable]] is *false*.
+            1. Let _length_ be _lengthDesc_.[[Value]].
+            1. Assert: _length_ is a non-negative integral Number.
+            1. Let _index_ be ! ToUint32(_propertyKey_).
+            1. If _index_ ≥ _length_ and _lengthDesc_.[[Writable]] is *false*, return *false*.
+            1. Let _succeeded_ be ! OrdinaryDefineOwnProperty(_array_, _propertyKey_, _propertyDesc_).
+            1. If _succeeded_ is *false*, return *false*.
+            1. If _index_ ≥ _length_, then
+              1. Set _lengthDesc_.[[Value]] to _index_ + *1*<sub>𝔽</sub>.
+              1. Set _succeeded_ to ! OrdinaryDefineOwnProperty(_array_, *"length"*, _lengthDesc_).
+              1. Assert: _succeeded_ is *true*.
+            1. Return *true*.
+          1. Return ? OrdinaryDefineOwnProperty(_array_, _propertyKey_, _propertyDesc_).
+        </emu-alg>
+      </emu-clause>

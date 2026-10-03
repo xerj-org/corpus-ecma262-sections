@@ -1,0 +1,66 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.11 Equality Operators > 13.11.1 Runtime Semantics: Evaluation [id: sec-equality-operators-runtime-semantics-evaluation]
+
+<emu-clause id="sec-equality-operators-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>EqualityExpression : EqualityExpression `==` RelationalExpression</emu-grammar>
+      <emu-alg>
+        1. Let _leftRef_ be ? Evaluation of |EqualityExpression|.
+        1. Let _leftValue_ be ? GetValue(_leftRef_).
+        1. Let _rightRef_ be ? Evaluation of |RelationalExpression|.
+        1. Let _rightValue_ be ? GetValue(_rightRef_).
+        1. Return ? IsLooselyEqual(_rightValue_, _leftValue_).
+      </emu-alg>
+      <emu-grammar>EqualityExpression : EqualityExpression `!=` RelationalExpression</emu-grammar>
+      <emu-alg>
+        1. Let _leftRef_ be ? Evaluation of |EqualityExpression|.
+        1. Let _leftValue_ be ? GetValue(_leftRef_).
+        1. Let _rightRef_ be ? Evaluation of |RelationalExpression|.
+        1. Let _rightValue_ be ? GetValue(_rightRef_).
+        1. Let _result_ be ? IsLooselyEqual(_rightValue_, _leftValue_).
+        1. If _result_ is *true*, return *false*.
+        1. Return *true*.
+      </emu-alg>
+      <emu-grammar>EqualityExpression : EqualityExpression `===` RelationalExpression</emu-grammar>
+      <emu-alg>
+        1. Let _leftRef_ be ? Evaluation of |EqualityExpression|.
+        1. Let _leftValue_ be ? GetValue(_leftRef_).
+        1. Let _rightRef_ be ? Evaluation of |RelationalExpression|.
+        1. Let _rightValue_ be ? GetValue(_rightRef_).
+        1. Return IsStrictlyEqual(_rightValue_, _leftValue_).
+      </emu-alg>
+      <emu-grammar>EqualityExpression : EqualityExpression `!==` RelationalExpression</emu-grammar>
+      <emu-alg>
+        1. Let _leftRef_ be ? Evaluation of |EqualityExpression|.
+        1. Let _leftValue_ be ? GetValue(_leftRef_).
+        1. Let _rightRef_ be ? Evaluation of |RelationalExpression|.
+        1. Let _rightValue_ be ? GetValue(_rightRef_).
+        1. Let _result_ be IsStrictlyEqual(_rightValue_, _leftValue_).
+        1. If _result_ is *true*, return *false*.
+        1. Return *true*.
+      </emu-alg>
+      <emu-note>
+        <p>The equality operators maintain the following invariants:</p>
+        <ul>
+          <li>
+            `A != B` is equivalent to `!(A == B)`.
+          </li>
+          <li>
+            `A == B` is equivalent to `B == A`, except in the order of evaluation of `A` and `B`.
+          </li>
+        </ul>
+      </emu-note>
+      <emu-note>
+        <p>The equality operator is not always transitive. For example, there might be two distinct String objects, each representing the same String value; each String object would be considered equal to the String value by the `==` operator, but the two String objects would not be equal to each other. For example:</p>
+        <ul>
+          <li>
+            `new String("a") == "a"` and `"a" == new String("a")` are both *true*.
+          </li>
+          <li>
+            `new String("a") == new String("a")` is *false*.
+          </li>
+        </ul>
+      </emu-note>
+      <emu-note>
+        <p>Comparison of Strings uses a simple equality test on sequences of code unit values. There is no attempt to use the more complex, semantically oriented definitions of character or string equality and collating order defined in the Unicode specification. Therefore Strings values that are canonically equal according to the Unicode Standard could test as unequal. In effect this algorithm assumes that both Strings are already in normalized form.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,14 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.3 Properties of the Object Prototype Object > 20.1.3.2 Object.prototype.hasOwnProperty ( _value_ ) [id: sec-object.prototype.hasownproperty]
+
+<emu-clause id="sec-object.prototype.hasownproperty" type="built-in function">
+        <h1>Object.prototype.hasOwnProperty ( _value_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. [id="step-hasownproperty-topropertykey"] Let _propertyKey_ be ? ToPropertyKey(_value_).
+          1. [id="step-hasownproperty-toobject"] Let _obj_ be ? ToObject(*this* value).
+          1. Return ? HasOwnProperty(_obj_, _propertyKey_).
+        </emu-alg>
+        <emu-note>
+          <p>The ordering of steps <emu-xref href="#step-hasownproperty-topropertykey"></emu-xref> and <emu-xref href="#step-hasownproperty-toobject"></emu-xref> is chosen to ensure that any exception that would have been thrown by step <emu-xref href="#step-hasownproperty-topropertykey"></emu-xref> in previous editions of this specification will continue to be thrown even if the *this* value is *undefined* or *null*.</p>
+        </emu-note>
+      </emu-clause>

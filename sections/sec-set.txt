@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.31 Set ( . . . ) [id: sec-set]
+
+<emu-clause id="sec-set">
+      <h1>Set ( . . . )</h1>
+      <p>See <emu-xref href="#sec-set-constructor"></emu-xref>.</p>
+    </emu-clause>

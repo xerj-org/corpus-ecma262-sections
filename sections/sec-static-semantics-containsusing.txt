@@ -1,0 +1,23 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.6 Miscellaneous > 8.6.6 Static Semantics: ContainsUsing ( ): a Boolean [id: sec-static-semantics-containsusing]
+
+<emu-clause id="sec-static-semantics-containsusing" type="sdo">
+      <h1>Static Semantics: ContainsUsing ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>StatementList : StatementList StatementListItem</emu-grammar>
+      <emu-alg>
+        1. If ContainsUsing of the derived |StatementList| is *true*, return *true*.
+        1. If ContainsUsing of |StatementListItem| is *true*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>StatementListItem : Statement</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>StatementListItem : Declaration</emu-grammar>
+      <emu-alg>
+        1. If IsUsingDeclaration of |Declaration| is *true*, return *true*.
+        1. If IsAwaitUsingDeclaration of |Declaration| is *true*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>

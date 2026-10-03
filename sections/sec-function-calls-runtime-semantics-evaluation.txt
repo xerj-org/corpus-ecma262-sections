@@ -1,0 +1,32 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.6 Function Calls > 13.3.6.1 Runtime Semantics: Evaluation [id: sec-function-calls-runtime-semantics-evaluation]
+
+<emu-clause id="sec-function-calls-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>CallExpression : CoverCallExpressionAndAsyncArrowHead</emu-grammar>
+        <emu-alg>
+          1. Let _expr_ be the |CallMemberExpression| that is covered by |CoverCallExpressionAndAsyncArrowHead|.
+          1. Let _memberExpr_ be the |MemberExpression| of _expr_.
+          1. Let _args_ be the |Arguments| of _expr_.
+          1. Let _ref_ be ? Evaluation of _memberExpr_.
+          1. Let _func_ be ? GetValue(_ref_).
+          1. If _ref_ is a Reference Record, IsPropertyReference(_ref_) is *false*, and _ref_.[[ReferencedName]] is *"eval"*, then
+            1. If SameValue(_func_, %eval%) is *true*, then
+              1. Let _argList_ be ? ArgumentListEvaluation of _args_.
+              1. If _argList_ has no elements, return *undefined*.
+              1. Let _evalArg_ be the first element of _argList_.
+              1. If IsStrict(this |CallExpression|) is *true*, let _strictCaller_ be *true*; else let _strictCaller_ be *false*.
+              1. [id="step-callexpression-evaluation-direct-eval"] Return ? PerformEval(_evalArg_, _strictCaller_, *true*).
+          1. Let _thisCall_ be this |CallExpression|.
+          1. Let _tailCall_ be IsInTailPosition(_thisCall_).
+          1. Return ? EvaluateCall(_func_, _ref_, _args_, _tailCall_).
+        </emu-alg>
+        <p>A |CallExpression| evaluation that executes step <emu-xref href="#step-callexpression-evaluation-direct-eval"></emu-xref> is a <dfn variants="direct evals">direct eval</dfn>.</p>
+        <emu-grammar>CallExpression : CallExpression Arguments</emu-grammar>
+        <emu-alg>
+          1. Let _ref_ be ? Evaluation of |CallExpression|.
+          1. Let _func_ be ? GetValue(_ref_).
+          1. Let _thisCall_ be this |CallExpression|.
+          1. Let _tailCall_ be IsInTailPosition(_thisCall_).
+          1. Return ? EvaluateCall(_func_, _ref_, |Arguments|, _tailCall_).
+        </emu-alg>
+      </emu-clause>

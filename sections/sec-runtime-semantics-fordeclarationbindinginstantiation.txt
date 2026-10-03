@@ -1,0 +1,30 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.5 The `for`-`in`, `for`-`of`, and `for`-`await`-`of` Statements > 14.7.5.4 Runtime Semantics: ForDeclarationBindingInstantiation ( _envRecord_: a Declarative Environment Record, ): ~unused~ [id: sec-runtime-semantics-fordeclarationbindinginstantiation]
+
+<emu-clause id="sec-runtime-semantics-fordeclarationbindinginstantiation" oldids="sec-runtime-semantics-bindinginstantiation" type="sdo">
+        <h1>
+          Runtime Semantics: ForDeclarationBindingInstantiation (
+            _envRecord_: a Declarative Environment Record,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>ForDeclaration : LetOrConst ForBinding</emu-grammar>
+        <emu-alg>
+          1. For each element _name_ of the BoundNames of |ForBinding|, do
+            1. If IsConstantDeclaration of |LetOrConst| is *true*, then
+              1. Perform ! _envRecord_.CreateImmutableBinding(_name_, *true*).
+            1. Else,
+              1. Perform ! _envRecord_.CreateMutableBinding(_name_, *false*).
+          1. Return ~unused~.
+        </emu-alg>
+        <emu-grammar>
+          ForDeclaration :
+            `using` ForBinding
+            `await` `using` ForBinding
+        </emu-grammar>
+        <emu-alg>
+          1. For each element _name_ of the BoundNames of |ForBinding|, do
+            1. Perform ! _envRecord_.CreateImmutableBinding(_name_, *true*).
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

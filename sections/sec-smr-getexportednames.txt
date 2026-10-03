@@ -1,0 +1,18 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.8 Synthetic Module Records > 16.2.1.8.4 Implementation of Module Record Abstract Methods > 16.2.1.8.4.2 GetExportedNames ( optional _exportStarSet_: a List of Source Text Module Records, ): a List of Strings [id: sec-smr-getexportednames]
+
+<emu-clause id="sec-smr-getexportednames" type="concrete method">
+            <h1>
+              GetExportedNames (
+                optional _exportStarSet_: a List of Source Text Module Records,
+              ): a List of Strings
+            </h1>
+            <dl class="header">
+              <dt>for</dt>
+              <dd>a Synthetic Module Record _module_</dd>
+            </dl>
+
+            <emu-alg>
+              1. NOTE: This implementation of GetExportedNames does not use _exportStarSet_.
+              1. Return _module_.[[ExportNames]].
+            </emu-alg>
+          </emu-clause>

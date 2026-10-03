@@ -1,0 +1,17 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.4 The %AsyncIteratorPrototype% Object [id: sec-asynciteratorprototype]
+
+<emu-clause id="sec-asynciteratorprototype">
+      <h1>The %AsyncIteratorPrototype% Object</h1>
+      <p>The <dfn>%AsyncIteratorPrototype%</dfn> object:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Object.prototype%.</li>
+        <li>is an ordinary object.</li>
+      </ul>
+      <emu-note>
+        <p>All objects defined in this specification that implement the async iterator interface also inherit from %AsyncIteratorPrototype%. ECMAScript code may also define objects that inherit from %AsyncIteratorPrototype%. The %AsyncIteratorPrototype% object provides a place where additional methods that are applicable to all async iterator objects may be added.</p>
+      </emu-note>
+
+      
+
+      
+    </emu-clause>

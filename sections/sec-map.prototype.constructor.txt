@@ -1,0 +1,6 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.3 Properties of the Map Prototype Object > 24.1.3.2 Map.prototype.constructor [id: sec-map.prototype.constructor]
+
+<emu-clause id="sec-map.prototype.constructor">
+        <h1>Map.prototype.constructor</h1>
+        <p>The initial value of `Map.prototype.constructor` is %Map%.</p>
+      </emu-clause>

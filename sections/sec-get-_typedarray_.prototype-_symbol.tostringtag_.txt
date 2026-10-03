@@ -1,0 +1,16 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.38 get %TypedArray%.prototype [ %Symbol.toStringTag% ] [id: sec-get-%typedarray%.prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-get-%typedarray%.prototype-@@tostringtag" id="sec-get-%typedarray%.prototype-%symbol.tostringtag%" type="built-in function">
+        <h1>get %TypedArray%.prototype [ %Symbol.toStringTag% ]</h1>
+        <p>%TypedArray%`.prototype[%Symbol.toStringTag%]` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. If _obj_ is not an Object, return *undefined*.
+          1. If _obj_ does not have a [[TypedArrayName]] internal slot, return *undefined*.
+          1. Let _name_ be _obj_.[[TypedArrayName]].
+          1. Assert: _name_ is a String.
+          1. Return _name_.
+        </emu-alg>
+        <p>This property has the attributes { [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+        <p>The initial value of the *"name"* property of this function is *"get [Symbol.toStringTag]"*.</p>
+      </emu-clause>

@@ -1,0 +1,10 @@
+ECMA-262 > D Host Layering Points > D.2 Host-defined Fields [id: sec-host-defined-fields-summary]
+
+<emu-annex id="sec-host-defined-fields-summary">
+    <h1>Host-defined Fields</h1>
+    <p>[[HostDefined]] on Realm Records: See <emu-xref href="#table-realm-record-fields"></emu-xref>.</p>
+    <p>[[HostDefined]] on Script Records: See <emu-xref href="#table-script-records"></emu-xref>.</p>
+    <p>[[HostDefined]] on Module Records: See <emu-xref href="#table-module-record-fields"></emu-xref>.</p>
+    <p>[[HostDefined]] on JobCallback Records: See <emu-xref href="#table-jobcallback-records"></emu-xref>.</p>
+    <p>[[IsHTMLDDA]]: See <emu-xref href="#sec-IsHTMLDDA-internal-slot"></emu-xref>.</p>
+  </emu-annex>

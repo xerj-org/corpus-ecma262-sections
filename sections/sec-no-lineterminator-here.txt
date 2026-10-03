@@ -1,0 +1,12 @@
+ECMA-262 > 5 Notational Conventions > 5.1 Syntactic and Lexical Grammars > 5.1.5 Grammar Notation > 5.1.5.8 [no |LineTerminator| here] [id: sec-no-lineterminator-here]
+
+<emu-clause id="sec-no-lineterminator-here">
+        <h1>[no |LineTerminator| here]</h1>
+        <p>If the phrase “[no |LineTerminator| here]” appears in the right-hand side of a production of the syntactic grammar, it indicates that the production is <em>a restricted production</em>: it may not be used if a |LineTerminator| occurs in the input stream at the indicated position. For example, the production:</p>
+        <emu-grammar type="definition" example>
+          ThrowStatement :
+            `throw` [no LineTerminator here] Expression `;`
+        </emu-grammar>
+        <p>indicates that the production may not be used if a |LineTerminator| occurs in the script between the `throw` token and the |Expression|.</p>
+        <p>Unless the presence of a |LineTerminator| is forbidden by a restricted production, any number of occurrences of |LineTerminator| may appear between any two consecutive tokens in the stream of input elements without affecting the syntactic acceptability of the script.</p>
+      </emu-clause>

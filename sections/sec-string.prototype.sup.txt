@@ -1,0 +1,10 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties > B.2.2 Additional Properties of the String.prototype Object > B.2.2.14 String.prototype.sup ( ) [id: sec-string.prototype.sup]
+
+<emu-annex id="sec-string.prototype.sup" type="built-in function">
+        <h1>String.prototype.sup ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _string_ be the *this* value.
+          1. Return ? CreateHTML(_string_, *"sup"*, *""*, *""*).
+        </emu-alg>
+      </emu-annex>

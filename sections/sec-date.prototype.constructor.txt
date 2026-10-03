@@ -1,0 +1,6 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.4 Properties of the Date Prototype Object > 21.4.4.1 Date.prototype.constructor [id: sec-date.prototype.constructor]
+
+<emu-clause id="sec-date.prototype.constructor">
+        <h1>Date.prototype.constructor</h1>
+        <p>The initial value of `Date.prototype.constructor` is %Date%.</p>
+      </emu-clause>

@@ -1,0 +1,15 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects [id: sec-symbol-objects]
+
+<emu-clause id="sec-symbol-objects">
+    <h1>Symbol Objects</h1>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

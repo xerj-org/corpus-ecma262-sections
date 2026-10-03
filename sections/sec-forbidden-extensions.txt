@@ -1,0 +1,42 @@
+ECMA-262 > 17 Error Handling and Language Extensions > 17.1 Forbidden Extensions [id: sec-forbidden-extensions]
+
+<emu-clause id="sec-forbidden-extensions">
+    <h1>Forbidden Extensions</h1>
+    <p>An implementation must not extend this specification in the following ways:</p>
+    <ul>
+      <li>
+        ECMAScript function objects defined using syntactic constructors in strict mode code must not be created with own properties named *"caller"* or *"arguments"*. Such own properties also must not be created for function objects defined using an |ArrowFunction|, |MethodDefinition|, |GeneratorDeclaration|, |GeneratorExpression|, |AsyncGeneratorDeclaration|, |AsyncGeneratorExpression|, |ClassDeclaration|, |ClassExpression|, |AsyncFunctionDeclaration|, |AsyncFunctionExpression|, or |AsyncArrowFunction| regardless of whether the definition is contained in strict mode code. Built-in functions, strict functions created using the Function constructor, generator functions created using the Generator constructor, async functions created using the AsyncFunction constructor, and functions created using the `bind` method also must not be created with such own properties.
+      </li>
+      <li>
+        If an implementation extends any function object with an own property named *"caller"* the value of that property, as observed using [[Get]] or [[GetOwnProperty]], must not be a strict function object. If it is an accessor property, the function that is the value of the property's [[Getter]] attribute must never return a strict function when called.
+      </li>
+      <li>
+        Neither mapped nor unmapped arguments objects may be created with an own property named *"caller"*.
+      </li>
+      <li>
+        The behaviour of built-in methods which are specified in ECMA-402, such as those named `toLocaleString`, must not be extended except as specified in ECMA-402.
+      </li>
+      <li>
+        The RegExp pattern grammars in <emu-xref href="#sec-patterns"></emu-xref> and <emu-xref href="#sec-regular-expressions-patterns"></emu-xref> must not be extended to recognize any of the source characters A-Z or a-z as |IdentityEscape[+UnicodeMode]| when the <sub>[UnicodeMode]</sub> grammar parameter is present.
+      </li>
+      <li>
+        The Syntactic Grammar must not be extended in any manner that allows the token `:` to immediately follow source text that is matched by the |BindingIdentifier| nonterminal symbol.
+      </li>
+      <li>
+        When processing strict mode code, an implementation must not relax the early error rules of <emu-xref href="#sec-numeric-literals-early-errors"></emu-xref>.
+      </li>
+      <li>
+        |TemplateEscapeSequence| must not be extended to include |LegacyOctalEscapeSequence| or |NonOctalDecimalEscapeSequence| as defined in <emu-xref href="#sec-literals-string-literals"></emu-xref>.
+      </li>
+      <li>
+        When processing strict mode code, the extensions defined in <emu-xref href="#sec-labelled-function-declarations"></emu-xref>, <emu-xref href="#sec-block-level-function-declarations-web-legacy-compatibility-semantics"></emu-xref>, <emu-xref href="#sec-functiondeclarations-in-ifstatement-statement-clauses"></emu-xref>, and <emu-xref href="#sec-initializers-in-forin-statement-heads"></emu-xref> must not be supported.
+      </li>
+      <li>
+        When parsing for the |Module| goal symbol, the lexical grammar extensions defined in <emu-xref href="#sec-html-like-comments"></emu-xref> must not be supported.
+      </li>
+      <!-- The following is so that in the future we can potentially add new arguments or support ArgumentList. -->
+      <li>
+        |ImportCall| must not be extended.
+      </li>
+    </ul>
+  </emu-clause>

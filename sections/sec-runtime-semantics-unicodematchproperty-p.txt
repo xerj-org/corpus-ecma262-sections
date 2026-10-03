@@ -1,0 +1,32 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.9 Runtime Semantics: CompileToCharSet ( _regexpRecord_: a RegExp Record, ): a CharSet > 22.2.2.9.7 UnicodeMatchProperty ( _regexpRecord_: a RegExp Record, _p_: ECMAScript source text, ): a Unicode property name [id: sec-runtime-semantics-unicodematchproperty-p]
+
+<emu-clause id="sec-runtime-semantics-unicodematchproperty-p" type="abstract operation">
+          <h1>
+            UnicodeMatchProperty (
+              _regexpRecord_: a RegExp Record,
+              _p_: ECMAScript source text,
+            ): a <emu-not-ref>Unicode property name</emu-not-ref>
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _regexpRecord_.[[UnicodeSets]] is *true* and _p_ is a <emu-not-ref>Unicode property name</emu-not-ref> listed in the “<emu-not-ref>Property name</emu-not-ref>” column of <emu-xref href="#table-binary-unicode-properties-of-strings"></emu-xref>, then
+              1. Return the List of Unicode code points _p_.
+            1. Assert: _p_ is a <emu-not-ref>Unicode property name</emu-not-ref> or property alias listed in the “<emu-not-ref>Property name and aliases</emu-not-ref>” column of <emu-xref href="#table-nonbinary-unicode-properties"></emu-xref> or <emu-xref href="#table-binary-unicode-properties"></emu-xref>.
+            1. Let _c_ be the canonical <emu-not-ref>property name</emu-not-ref> of _p_ as given in the “<emu-not-ref>Canonical property name</emu-not-ref>” column of the corresponding row.
+            1. Return the List of Unicode code points _c_.
+          </emu-alg>
+          <p>Implementations must support the <emu-not-ref>Unicode property names</emu-not-ref> and aliases listed in <emu-xref href="#table-nonbinary-unicode-properties"></emu-xref>, <emu-xref href="#table-binary-unicode-properties"></emu-xref>, and <emu-xref href="#table-binary-unicode-properties-of-strings"></emu-xref>. To ensure interoperability, implementations must not support any other <emu-not-ref>property names</emu-not-ref> or aliases.</p>
+          <emu-note>
+            <p>For example, `Script_Extensions` (<emu-not-ref>property name</emu-not-ref>) and `scx` (property alias) are valid, but `script_extensions` or `Scx` aren't.</p>
+          </emu-note>
+          <emu-note>
+            <p>The listed properties form a superset of what <a href="https://unicode.org/reports/tr18/#RL1.2">UTS18 RL1.2</a> requires.</p>
+          </emu-note>
+          <emu-note>
+            <p>The spellings of entries in these tables (including casing) match the spellings used in the file <a href="https://unicode.org/Public/UCD/latest/ucd/PropertyAliases.txt"><code>PropertyAliases.txt</code></a> in the Unicode Character Database. The precise spellings in that file are <a href="https://www.unicode.org/policies/stability_policy.html#Alias_Stability">guaranteed to be stable</a>.</p>
+          </emu-note>
+          <emu-import href="table-nonbinary-unicode-properties.html"></emu-import>
+          <emu-import href="table-binary-unicode-properties.html"></emu-import>
+          <emu-import href="table-binary-unicode-properties-of-strings.html"></emu-import>
+        </emu-clause>

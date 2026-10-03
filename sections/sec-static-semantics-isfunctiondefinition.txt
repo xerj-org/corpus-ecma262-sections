@@ -1,0 +1,142 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.4 Function Name Inference > 8.4.2 Static Semantics: IsFunctionDefinition ( ): a Boolean [id: sec-static-semantics-isfunctiondefinition]
+
+<emu-clause id="sec-static-semantics-isfunctiondefinition" oldids="sec-semantics-static-semantics-isfunctiondefinition,sec-grouping-operator-static-semantics-isfunctiondefinition,sec-static-semantics-static-semantics-isfunctiondefinition,sec-update-expressions-static-semantics-isfunctiondefinition,sec-unary-operators-static-semantics-isfunctiondefinition,sec-exp-operator-static-semantics-isfunctiondefinition,sec-multiplicative-operators-static-semantics-isfunctiondefinition,sec-additive-operators-static-semantics-isfunctiondefinition,sec-bitwise-shift-operators-static-semantics-isfunctiondefinition,sec-relational-operators-static-semantics-isfunctiondefinition,sec-equality-operators-static-semantics-isfunctiondefinition,sec-binary-bitwise-operators-static-semantics-isfunctiondefinition,sec-binary-logical-operators-static-semantics-isfunctiondefinition,sec-conditional-operator-static-semantics-isfunctiondefinition,sec-assignment-operators-static-semantics-isfunctiondefinition,sec-comma-operator-static-semantics-isfunctiondefinition,sec-function-definitions-static-semantics-isfunctiondefinition,sec-generator-function-definitions-static-semantics-isfunctiondefinition,sec-async-generator-function-definitions-static-semantics-isfunctiondefinition,sec-class-definitions-static-semantics-isfunctiondefinition,sec-async-function-definitions-static-semantics-IsFunctionDefinition" type="sdo">
+      <h1>Static Semantics: IsFunctionDefinition ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>PrimaryExpression : CoverParenthesizedExpressionAndArrowParameterList</emu-grammar>
+      <emu-alg>
+        1. Let _expr_ be the |ParenthesizedExpression| that is covered by |CoverParenthesizedExpressionAndArrowParameterList|.
+        1. Return IsFunctionDefinition of _expr_.
+      </emu-alg>
+      <emu-grammar>
+        PrimaryExpression :
+          `this`
+          IdentifierReference
+          Literal
+          ArrayLiteral
+          ObjectLiteral
+          RegularExpressionLiteral
+          TemplateLiteral
+
+        MemberExpression :
+          MemberExpression `[` Expression `]`
+          MemberExpression `.` IdentifierName
+          MemberExpression TemplateLiteral
+          SuperProperty
+          MetaProperty
+          `new` MemberExpression Arguments
+          MemberExpression `.` PrivateIdentifier
+
+        NewExpression :
+          `new` NewExpression
+
+        LeftHandSideExpression :
+          CallExpression
+          OptionalExpression
+
+        UpdateExpression :
+          LeftHandSideExpression `++`
+          LeftHandSideExpression `--`
+          `++` UnaryExpression
+          `--` UnaryExpression
+
+        UnaryExpression :
+          `delete` UnaryExpression
+          `void` UnaryExpression
+          `typeof` UnaryExpression
+          `+` UnaryExpression
+          `-` UnaryExpression
+          `~` UnaryExpression
+          `!` UnaryExpression
+          CoverAwaitExpressionAndAwaitUsingDeclarationHead
+
+        ExponentiationExpression :
+          UpdateExpression `**` ExponentiationExpression
+
+        MultiplicativeExpression :
+          MultiplicativeExpression MultiplicativeOperator ExponentiationExpression
+
+        AdditiveExpression :
+          AdditiveExpression `+` MultiplicativeExpression
+          AdditiveExpression `-` MultiplicativeExpression
+
+        ShiftExpression :
+          ShiftExpression `&lt;&lt;` AdditiveExpression
+          ShiftExpression `&gt;&gt;` AdditiveExpression
+          ShiftExpression `&gt;&gt;&gt;` AdditiveExpression
+
+        RelationalExpression :
+          RelationalExpression `&lt;` ShiftExpression
+          RelationalExpression `&gt;` ShiftExpression
+          RelationalExpression `&lt;=` ShiftExpression
+          RelationalExpression `&gt;=` ShiftExpression
+          RelationalExpression `instanceof` ShiftExpression
+          RelationalExpression `in` ShiftExpression
+          PrivateIdentifier `in` ShiftExpression
+
+        EqualityExpression :
+          EqualityExpression `==` RelationalExpression
+          EqualityExpression `!=` RelationalExpression
+          EqualityExpression `===` RelationalExpression
+          EqualityExpression `!==` RelationalExpression
+
+        BitwiseANDExpression :
+          BitwiseANDExpression `&amp;` EqualityExpression
+
+        BitwiseXORExpression :
+          BitwiseXORExpression `^` BitwiseANDExpression
+
+        BitwiseORExpression :
+          BitwiseORExpression `|` BitwiseXORExpression
+
+        LogicalANDExpression :
+          LogicalANDExpression `&amp;&amp;` BitwiseORExpression
+
+        LogicalORExpression :
+          LogicalORExpression `||` LogicalANDExpression
+
+        CoalesceExpression :
+          CoalesceExpressionHead `??` BitwiseORExpression
+
+        ConditionalExpression :
+          ShortCircuitExpression `?` AssignmentExpression `:` AssignmentExpression
+
+        AssignmentExpression :
+          YieldExpression
+          LeftHandSideExpression `=` AssignmentExpression
+          LeftHandSideExpression AssignmentOperator AssignmentExpression
+          LeftHandSideExpression `&amp;&amp;=` AssignmentExpression
+          LeftHandSideExpression `||=` AssignmentExpression
+          LeftHandSideExpression `??=` AssignmentExpression
+
+        Expression :
+          Expression `,` AssignmentExpression
+      </emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        AssignmentExpression :
+          ArrowFunction
+          AsyncArrowFunction
+
+        FunctionExpression :
+          `function` BindingIdentifier? `(` FormalParameters `)` `{` FunctionBody `}`
+
+        GeneratorExpression :
+          `function` `*` BindingIdentifier? `(` FormalParameters `)` `{` GeneratorBody `}`
+
+        AsyncGeneratorExpression :
+          `async` `function` `*` BindingIdentifier? `(` FormalParameters `)` `{` AsyncGeneratorBody `}`
+
+        AsyncFunctionExpression :
+          `async` `function` BindingIdentifier? `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+
+        ClassExpression :
+          `class` BindingIdentifier? ClassTail
+      </emu-grammar>
+      <emu-alg>
+        1. Return *true*.
+      </emu-alg>
+    </emu-clause>

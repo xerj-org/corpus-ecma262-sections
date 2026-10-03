@@ -1,0 +1,29 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.4 Properties of the Date Prototype Object > 21.4.4.41 Date.prototype.toString ( ) > 21.4.4.41.3 TimeZoneString ( _tv_: an integral Number, ): a String [id: sec-timezoneestring]
+
+<emu-clause id="sec-timezoneestring" type="abstract operation">
+          <h1>
+            TimeZoneString (
+              _tv_: an integral Number,
+            ): a String
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _systemTimeZoneIdentifier_ be SystemTimeZoneIdentifier().
+            1. If IsTimeZoneOffsetString(_systemTimeZoneIdentifier_) is *true*, then
+              1. Let _offsetNanoseconds_ be ParseTimeZoneOffsetString(_systemTimeZoneIdentifier_).
+            1. Else,
+              1. Let _offsetNanoseconds_ be GetNamedTimeZoneOffsetNanoseconds(_systemTimeZoneIdentifier_, ℝ(_tv_) × NanosecondsPerMillisecond).
+            1. Let _offsetMilliseconds_ be truncate(_offsetNanoseconds_ / NanosecondsPerMillisecond).
+            1. If _offsetMilliseconds_ ≥ 0, then
+              1. Let _offsetSign_ be *"+"*.
+              1. Let _absOffsetMilliseconds_ be _offsetMilliseconds_.
+            1. Else,
+              1. Let _offsetSign_ be *"-"*.
+              1. Let _absOffsetMilliseconds_ be -_offsetMilliseconds_.
+            1. Let _offsetMinute_ be ToZeroPaddedDecimalString(MinuteFromTime(𝔽(_absOffsetMilliseconds_)), 2).
+            1. Let _offsetHour_ be ToZeroPaddedDecimalString(HourFromTime(𝔽(_absOffsetMilliseconds_)), 2).
+            1. Let _timeZoneName_ be an implementation-defined string that is either the empty String or the string-concatenation of the code unit 0x0020 (SPACE), the code unit 0x0028 (LEFT PARENTHESIS), an implementation-defined time zone name, and the code unit 0x0029 (RIGHT PARENTHESIS).
+            1. Return the string-concatenation of _offsetSign_, _offsetHour_, _offsetMinute_, and _timeZoneName_.
+          </emu-alg>
+        </emu-clause>

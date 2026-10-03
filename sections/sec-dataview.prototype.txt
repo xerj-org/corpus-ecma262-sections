@@ -1,0 +1,7 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.3 Properties of the DataView Constructor > 25.3.3.1 DataView.prototype [id: sec-dataview.prototype]
+
+<emu-clause id="sec-dataview.prototype">
+        <h1>DataView.prototype</h1>
+        <p>The initial value of `DataView.prototype` is the DataView prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

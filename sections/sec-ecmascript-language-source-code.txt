@@ -1,0 +1,9 @@
+ECMA-262 > 11 ECMAScript Language: Source Text [id: sec-ecmascript-language-source-code]
+
+<emu-clause id="sec-ecmascript-language-source-code">
+  <h1>ECMAScript Language: Source Text</h1>
+
+  
+
+  
+</emu-clause>

@@ -1,0 +1,25 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.2 Object Environment Records > 9.1.1.2.2 CreateMutableBinding ( _name_: a String, _deletable_: a Boolean, ): either a normal completion containing ~unused~ or a throw completion [id: sec-object-environment-records-createmutablebinding-n-d]
+
+<emu-clause id="sec-object-environment-records-createmutablebinding-n-d" type="concrete method">
+          <h1>
+            CreateMutableBinding (
+              _name_: a String,
+              _deletable_: a Boolean,
+            ): either a normal completion containing ~unused~ or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>an Object Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It creates in an Environment Record's associated binding object a property whose name is _name_ and initializes it to the value *undefined*. If _deletable_ is *true*, the new property's [[Configurable]] attribute is set to *true*; otherwise it is set to *false*.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _bindingObj_ be _envRecord_.[[BindingObject]].
+            1. Perform ? DefinePropertyOrThrow(_bindingObj_, _name_, PropertyDescriptor { [[Value]]: *undefined*, [[Writable]]: *true*, [[Enumerable]]: *true*, [[Configurable]]: _deletable_ }).
+            1. Return ~unused~.
+          </emu-alg>
+          <emu-note>
+            <p>Normally _envRecord_ will not have a binding for _name_ but if it does, the semantics of DefinePropertyOrThrow may result in an existing binding being replaced or shadowed or cause an abrupt completion to be returned.</p>
+          </emu-note>
+        </emu-clause>

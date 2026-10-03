@@ -1,0 +1,34 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.2 Resource Management > 27.2.1 Common Resource Management Interfaces > 27.2.1.2 The AsyncDisposable Interface [id: sec-asyncdisposable-interface]
+
+<emu-clause id="sec-asyncdisposable-interface">
+        <h1>The AsyncDisposable Interface</h1>
+        <p>The <dfn>AsyncDisposable</dfn> interface includes the properties described in <emu-xref href="#table-asyncdisposable-interface-required-properties"></emu-xref>:</p>
+        <emu-table id="table-asyncdisposable-interface-required-properties" caption="AsyncDisposable Interface Required Properties">
+          <table>
+            <tr>
+              <th>
+                Property
+              </th>
+              <th>
+                Value
+              </th>
+              <th>
+                Requirements
+              </th>
+            </tr>
+            <tr>
+              <td>
+                `%Symbol.asyncDispose%`
+              </td>
+              <td>
+                a function object that returns a promise
+              </td>
+              <td>
+                <p>Invoking this method notifies the AsyncDisposable object that the caller does not intend to continue to use this object. This method should perform any necessary logic to perform explicit clean-up of the resource including, but not limited to, file system handles, streams, host objects, etc. When the promise returned by this method is rejected, it typically means that the resource could not be explicitly freed. An AsyncDisposable object is not considered “disposed” until the resulting Promise has been fulfilled.</p>
+                <p>Invoking this method more than once on the same object should avoid repeating clean-up logic against the already-disposed resource and should not throw an exception or return a rejected promise, even if an exception was thrown or a rejected promise was returned on the first invocation. However, this requirement is not enforced.</p>
+                <p>When using an AsyncDisposable object with an `await using` declaration, the resource will be automatically disposed when the |Block| or |Module| immediately containing the declaration has been evaluated.</p>
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

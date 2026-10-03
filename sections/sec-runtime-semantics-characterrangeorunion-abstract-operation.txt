@@ -1,0 +1,20 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.1 Additional Syntax > B.1.2 Regular Expressions Patterns > B.1.2.8 Runtime Semantics: CompileToCharSet > B.1.2.8.1 CharacterRangeOrUnion ( _regexpRecord_: a RegExp Record, _charSet_: a CharSet, _otherSet_: a CharSet, ): a CharSet [id: sec-runtime-semantics-characterrangeorunion-abstract-operation]
+
+<emu-annex id="sec-runtime-semantics-characterrangeorunion-abstract-operation" type="abstract operation">
+          <h1>
+            CharacterRangeOrUnion (
+              _regexpRecord_: a RegExp Record,
+              _charSet_: a CharSet,
+              _otherSet_: a CharSet,
+            ): a CharSet
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If HasEitherUnicodeFlag(_regexpRecord_) is *false*, then
+              1. If _charSet_ does not contain exactly one character or _otherSet_ does not contain exactly one character, then
+                1. Let _remainingSet_ be the CharSet containing the single character `-` U+002D (HYPHEN-MINUS).
+                1. Return the union of CharSets _charSet_, _otherSet_ and _remainingSet_.
+            1. Return CharacterRange(_charSet_, _otherSet_).
+          </emu-alg>
+        </emu-annex>

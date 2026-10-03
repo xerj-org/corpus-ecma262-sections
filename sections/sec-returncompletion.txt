@@ -1,0 +1,14 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.4 The Completion Record Specification Type > 6.2.4.3 ReturnCompletion ( _value_: an ECMAScript language value, ): a return completion [id: sec-returncompletion]
+
+<emu-clause id="sec-returncompletion" type="abstract operation">
+        <h1>
+          ReturnCompletion (
+            _value_: an ECMAScript language value,
+          ): a return completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Return Completion Record { [[Type]]: ~return~, [[Value]]: _value_, [[Target]]: ~empty~ }.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,31 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.4 The `for` Statement > 14.7.4.3 ForBodyEvaluation ( _test_: an |Expression| Parse Node or ~empty~, _increment_: an |Expression| Parse Node or ~empty~, _stmt_: a |Statement| Parse Node, _perIterationBindings_: a List of Strings, _labelSet_: a List of Strings, ): either a normal completion containing an ECMAScript language value or an abrupt completion [id: sec-forbodyevaluation]
+
+<emu-clause id="sec-forbodyevaluation" type="abstract operation">
+        <h1>
+          ForBodyEvaluation (
+            _test_: an |Expression| Parse Node or ~empty~,
+            _increment_: an |Expression| Parse Node or ~empty~,
+            _stmt_: a |Statement| Parse Node,
+            _perIterationBindings_: a List of Strings,
+            _labelSet_: a List of Strings,
+          ): either a normal completion containing an ECMAScript language value or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _iterationResult_ be *undefined*.
+          1. Perform ? CreatePerIterationEnvironment(_perIterationBindings_).
+          1. Repeat,
+            1. If _test_ is not ~empty~, then
+              1. Let _testRef_ be ? Evaluation of _test_.
+              1. Let _testValue_ be ? GetValue(_testRef_).
+              1. If ToBoolean(_testValue_) is *false*, return _iterationResult_.
+            1. Let _result_ be Completion(Evaluation of _stmt_).
+            1. If LoopContinues(_result_, _labelSet_) is *false*, return ? UpdateEmpty(_result_, _iterationResult_).
+            1. If _result_.[[Value]] is not ~empty~, set _iterationResult_ to _result_.[[Value]].
+            1. Perform ? CreatePerIterationEnvironment(_perIterationBindings_).
+            1. If _increment_ is not ~empty~, then
+              1. Let _incrementRef_ be ? Evaluation of _increment_.
+              1. Perform ? GetValue(_incrementRef_).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,22 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.3 Literals > 13.2.3.1 Runtime Semantics: Evaluation [id: sec-literals-runtime-semantics-evaluation]
+
+<emu-clause id="sec-literals-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>Literal : NullLiteral</emu-grammar>
+        <emu-alg>
+          1. Return *null*.
+        </emu-alg>
+        <emu-grammar>Literal : BooleanLiteral</emu-grammar>
+        <emu-alg>
+          1. If |BooleanLiteral| is the token `false`, return *false*.
+          1. If |BooleanLiteral| is the token `true`, return *true*.
+        </emu-alg>
+        <emu-grammar>Literal : NumericLiteral</emu-grammar>
+        <emu-alg>
+          1. Return the NumericValue of |NumericLiteral| as defined in <emu-xref href="#sec-literals-numeric-literals"></emu-xref>.
+        </emu-alg>
+        <emu-grammar>Literal : StringLiteral</emu-grammar>
+        <emu-alg>
+          1. Return the SV of |StringLiteral| as defined in <emu-xref href="#sec-static-semantics-sv"></emu-xref>.
+        </emu-alg>
+      </emu-clause>

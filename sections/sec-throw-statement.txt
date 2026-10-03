@@ -1,0 +1,12 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.14 The `throw` Statement [id: sec-throw-statement]
+
+<emu-clause id="sec-throw-statement">
+    <h1>The `throw` Statement</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      ThrowStatement[Yield, Await] :
+        `throw` [no LineTerminator here] Expression[+In, ?Yield, ?Await] `;`
+    </emu-grammar>
+
+    
+  </emu-clause>

@@ -1,0 +1,26 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.3 Object.defineProperties ( _obj_, _properties_ ) > 20.1.2.3.1 ObjectDefineProperties ( _obj_: an Object, _properties_: an ECMAScript language value, ): either a normal completion containing an Object or a throw completion [id: sec-objectdefineproperties]
+
+<emu-clause id="sec-objectdefineproperties" type="abstract operation">
+          <h1>
+            ObjectDefineProperties (
+              _obj_: an Object,
+              _properties_: an ECMAScript language value,
+            ): either a normal completion containing an Object or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Set _properties_ to ? ToObject(_properties_).
+            1. Let _keys_ be ? <emu-meta effects="user-code">_properties_.[[OwnPropertyKeys]]()</emu-meta>.
+            1. Let _propertyDescs_ be a new empty List.
+            1. For each element _nextKey_ of _keys_, do
+              1. Let _currentPropertyDesc_ be ? <emu-meta effects="user-code">_properties_.[[GetOwnProperty]](_nextKey_)</emu-meta>.
+              1. If _currentPropertyDesc_ is not *undefined* and _currentPropertyDesc_.[[Enumerable]] is *true*, then
+                1. Let _propertyDescObj_ be ? Get(_properties_, _nextKey_).
+                1. Let _propertyDesc_ be ? ToPropertyDescriptor(_propertyDescObj_).
+                1. Append the Record { [[Key]]: _nextKey_, [[Descriptor]]: _propertyDesc_ } to _propertyDescs_.
+            1. For each element _property_ of _propertyDescs_, do
+              1. Perform ? DefinePropertyOrThrow(_obj_, _property_.[[Key]], _property_.[[Descriptor]]).
+            1. Return _obj_.
+          </emu-alg>
+        </emu-clause>

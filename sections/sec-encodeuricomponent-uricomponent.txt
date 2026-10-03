@@ -1,0 +1,13 @@
+ECMA-262 > 19 The Global Object > 19.2 Function Properties of the Global Object > 19.2.6 URI Handling Functions > 19.2.6.4 encodeURIComponent ( _uriComponent_ ) [id: sec-encodeuricomponent-uricomponent]
+
+<emu-clause id="sec-encodeuricomponent-uricomponent" type="built-in function">
+        <h1>encodeURIComponent ( _uriComponent_ )</h1>
+        <p>This function computes a new version of a UTF-16 encoded (<emu-xref href="#sec-ecmascript-language-types-string-type"></emu-xref>) URI in which each instance of certain code points is replaced by one, two, three, or four escape sequences representing the UTF-8 encoding of the code point.</p>
+        <p>It is the <dfn>%encodeURIComponent%</dfn> intrinsic object.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _componentString_ be ? ToString(_uriComponent_).
+          1. Let _extraUnescaped_ be the empty String.
+          1. Return ? Encode(_componentString_, _extraUnescaped_).
+        </emu-alg>
+      </emu-clause>

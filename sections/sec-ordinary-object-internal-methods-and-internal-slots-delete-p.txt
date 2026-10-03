@@ -1,0 +1,18 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.10 [[Delete]] ( _propertyKey_: a property key, ): either a normal completion containing a Boolean or a throw completion [id: sec-ordinary-object-internal-methods-and-internal-slots-delete-p]
+
+<emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-delete-p" type="internal method">
+      <h1>
+        [[Delete]] (
+          _propertyKey_: a property key,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>an ordinary object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Return ? OrdinaryDelete(_obj_, _propertyKey_).
+      </emu-alg>
+
+      
+    </emu-clause>

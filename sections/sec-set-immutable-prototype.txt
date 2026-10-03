@@ -1,0 +1,17 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.7 Immutable Prototype Exotic Objects > 10.4.7.2 SetImmutablePrototype ( _obj_: an Object, _proto_: an Object or *null*, ): either a normal completion containing a Boolean or a throw completion [id: sec-set-immutable-prototype]
+
+<emu-clause id="sec-set-immutable-prototype" type="abstract operation">
+        <h1>
+          SetImmutablePrototype (
+            _obj_: an Object,
+            _proto_: an Object or *null*,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _current_ be ? <emu-meta effects="user-code">_obj_.[[GetPrototypeOf]]()</emu-meta>.
+          1. If SameValue(_proto_, _current_) is *true*, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,44 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.2 ECMAScript Function Objects > 10.2.3 OrdinaryFunctionCreate ( _proto_: an Object, _sourceText_: a sequence of Unicode code points, _paramList_: a Parse Node, _body_: a Parse Node, _thisMode_: ~lexical-this~ or ~non-lexical-this~, _envRecord_: an Environment Record, _privateEnv_: a PrivateEnvironment Record or *null*, ): an ECMAScript function object [id: sec-ordinaryfunctioncreate]
+
+<emu-clause id="sec-ordinaryfunctioncreate" type="abstract operation" oldids="sec-functionallocate,sec-functioninitialize,sec-functioncreate,sec-generatorfunctioncreate,sec-asyncgeneratorfunctioncreate,sec-async-functions-abstract-operations-async-function-create">
+      <h1>
+        OrdinaryFunctionCreate (
+          _proto_: an Object,
+          _sourceText_: a sequence of Unicode code points,
+          _paramList_: a Parse Node,
+          _body_: a Parse Node,
+          _thisMode_: ~lexical-this~ or ~non-lexical-this~,
+          _envRecord_: an Environment Record,
+          _privateEnv_: a PrivateEnvironment Record or *null*,
+        ): an ECMAScript function object
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to specify the runtime creation of a new function with a default [[Call]] internal method and no [[Construct]] internal method (although one may be subsequently added by an operation such as MakeConstructor). _sourceText_ is the source text of the syntactic definition of the function to be created.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _internalSlotsList_ be the internal slots listed in <emu-xref href="#table-internal-slots-of-ecmascript-function-objects"></emu-xref>.
+        1. Let _func_ be OrdinaryObjectCreate(_proto_, _internalSlotsList_).
+        1. Set _func_.[[Call]] to the definition specified in <emu-xref href="#sec-ecmascript-function-objects-call-thisargument-argumentslist"></emu-xref>.
+        1. Set _func_.[[SourceText]] to _sourceText_.
+        1. Set _func_.[[FormalParameters]] to _paramList_.
+        1. Set _func_.[[ECMAScriptCode]] to _body_.
+        1. Let _strict_ be IsStrict(_body_).
+        1. Set _func_.[[Strict]] to _strict_.
+        1. If _thisMode_ is ~lexical-this~, set _func_.[[ThisMode]] to ~lexical~.
+        1. Else if _strict_ is *true*, set _func_.[[ThisMode]] to ~strict~.
+        1. Else, set _func_.[[ThisMode]] to ~global~.
+        1. Set _func_.[[IsClassConstructor]] to *false*.
+        1. Set _func_.[[Environment]] to _envRecord_.
+        1. Set _func_.[[PrivateEnvironment]] to _privateEnv_.
+        1. Set _func_.[[ScriptOrModule]] to GetActiveScriptOrModule().
+        1. Set _func_.[[Realm]] to the current Realm Record.
+        1. Set _func_.[[HomeObject]] to *undefined*.
+        1. Set _func_.[[Fields]] to a new empty List.
+        1. Set _func_.[[PrivateMethods]] to a new empty List.
+        1. Set _func_.[[ClassFieldInitializerName]] to ~empty~.
+        1. Let _length_ be the ExpectedArgumentCount of _paramList_.
+        1. Perform SetFunctionLength(_func_, _length_).
+        1. Return _func_.
+      </emu-alg>
+    </emu-clause>

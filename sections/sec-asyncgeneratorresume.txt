@@ -1,0 +1,19 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.9 AsyncGenerator Objects > 27.9.3 AsyncGenerator Abstract Operations > 27.9.3.6 AsyncGeneratorResume ( _gen_: an AsyncGenerator, _completion_: a Completion Record, ): ~unused~ [id: sec-asyncgeneratorresume]
+
+<emu-clause id="sec-asyncgeneratorresume" type="abstract operation">
+        <h1>
+          AsyncGeneratorResume (
+            _gen_: an AsyncGenerator,
+            _completion_: a Completion Record,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: _gen_.[[AsyncGeneratorState]] is either ~suspended-start~ or ~suspended-yield~.
+          1. Let _genContext_ be _gen_.[[AsyncGeneratorContext]].
+          1. Set _gen_.[[AsyncGeneratorState]] to ~executing~.
+          1. Perform ! RunSuspendedContext(_genContext_, _completion_).
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

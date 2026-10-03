@@ -1,0 +1,259 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects [id: sec-typedarray-objects]
+
+<emu-clause id="sec-typedarray-objects">
+    <h1>TypedArray Objects</h1>
+    <p>A _TypedArray_ presents an array-like view of an underlying binary data buffer (<emu-xref href="#sec-arraybuffer-objects"></emu-xref>). A <dfn variants="TypedArray element types">TypedArray element type</dfn> is the underlying binary scalar data type that all elements of a _TypedArray_ instance have. There is a distinct _TypedArray_ constructor, listed in <emu-xref href="#table-the-typedarray-constructors"></emu-xref>, for each of the supported element types. Each constructor in <emu-xref href="#table-the-typedarray-constructors"></emu-xref> has a corresponding distinct prototype object.</p>
+    <emu-table id="table-the-typedarray-constructors" caption="The TypedArray Constructors" oldids="table-49">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Constructor Name and Intrinsic
+            </th>
+            <th>
+              Element Type
+            </th>
+            <th>
+              Element Size
+            </th>
+            <th>
+              Conversion Operation
+            </th>
+            <th>
+              Description
+            </th>
+          </tr>
+        </thead>
+        <tr>
+          <td>
+            Int8Array<br>
+            <dfn>%Int8Array%</dfn>
+          </td>
+          <td>
+            ~int8~
+          </td>
+          <td>
+            1
+          </td>
+          <td>
+            ToInt8
+          </td>
+          <td>
+            8-bit two's complement signed integer
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Uint8Array<br>
+            <dfn>%Uint8Array%</dfn>
+          </td>
+          <td>
+            ~uint8~
+          </td>
+          <td>
+            1
+          </td>
+          <td>
+            ToUint8
+          </td>
+          <td>
+            8-bit unsigned integer
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Uint8ClampedArray<br>
+            <dfn>%Uint8ClampedArray%</dfn>
+          </td>
+          <td>
+            ~uint8clamped~
+          </td>
+          <td>
+            1
+          </td>
+          <td>
+            ToUint8Clamp
+          </td>
+          <td>
+            8-bit unsigned integer (clamped conversion)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Int16Array<br>
+            <dfn>%Int16Array%</dfn>
+          </td>
+          <td>
+            ~int16~
+          </td>
+          <td>
+            2
+          </td>
+          <td>
+            ToInt16
+          </td>
+          <td>
+            16-bit two's complement signed integer
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Uint16Array<br>
+            <dfn>%Uint16Array%</dfn>
+          </td>
+          <td>
+            ~uint16~
+          </td>
+          <td>
+            2
+          </td>
+          <td>
+            ToUint16
+          </td>
+          <td>
+            16-bit unsigned integer
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Int32Array<br>
+            <dfn>%Int32Array%</dfn>
+          </td>
+          <td>
+            ~int32~
+          </td>
+          <td>
+            4
+          </td>
+          <td>
+            ToInt32
+          </td>
+          <td>
+            32-bit two's complement signed integer
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Uint32Array<br>
+            <dfn>%Uint32Array%</dfn>
+          </td>
+          <td>
+            ~uint32~
+          </td>
+          <td>
+            4
+          </td>
+          <td>
+            ToUint32
+          </td>
+          <td>
+            32-bit unsigned integer
+          </td>
+        </tr>
+        <tr>
+          <td>
+            BigInt64Array<br>
+            <dfn>%BigInt64Array%</dfn>
+          </td>
+          <td>
+            ~bigint64~
+          </td>
+          <td>
+            8
+          </td>
+          <td>
+            ToBigInt64
+          </td>
+          <td>
+            64-bit two's complement signed integer
+          </td>
+        </tr>
+        <tr>
+          <td>
+            BigUint64Array<br>
+            <dfn>%BigUint64Array%</dfn>
+          </td>
+          <td>
+            ~biguint64~
+          </td>
+          <td>
+            8
+          </td>
+          <td>
+            ToBigUint64
+          </td>
+          <td>
+            64-bit unsigned integer
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Float16Array<br>
+            <dfn>%Float16Array%</dfn>
+          </td>
+          <td>
+            ~float16~
+          </td>
+          <td>
+            2
+          </td>
+          <td>
+          </td>
+          <td>
+            16-bit IEEE floating point
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Float32Array<br>
+            <dfn>%Float32Array%</dfn>
+          </td>
+          <td>
+            ~float32~
+          </td>
+          <td>
+            4
+          </td>
+          <td>
+          </td>
+          <td>
+            32-bit IEEE floating point
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Float64Array<br>
+            <dfn>%Float64Array%</dfn>
+          </td>
+          <td>
+            ~float64~
+          </td>
+          <td>
+            8
+          </td>
+          <td>
+          </td>
+          <td>
+            64-bit IEEE floating point
+          </td>
+        </tr>
+      </table>
+    </emu-table>
+    <p>In the definitions below, references to _TypedArray_ should be replaced with the appropriate constructor name from the above table.</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

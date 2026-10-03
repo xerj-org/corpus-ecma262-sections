@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.2 Function Properties of the Math Object > 21.3.2.28 Math.random ( ) [id: sec-math.random]
+
+<emu-clause id="sec-math.random" type="built-in function">
+        <h1>Math.random ( )</h1>
+        <p>This function returns a Number value with positive sign, greater than or equal to *+0*<sub>𝔽</sub> but strictly less than *1*<sub>𝔽</sub>, chosen randomly or pseudo randomly with approximately uniform distribution over that range, using an implementation-defined algorithm or strategy.</p>
+        <p>Each `Math.random` function created for distinct realms must produce a distinct sequence of values from successive calls.</p>
+      </emu-clause>

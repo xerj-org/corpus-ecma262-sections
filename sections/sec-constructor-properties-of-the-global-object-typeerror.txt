@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.37 TypeError ( . . . ) [id: sec-constructor-properties-of-the-global-object-typeerror]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-typeerror">
+      <h1>TypeError ( . . . )</h1>
+      <p>See <emu-xref href="#sec-native-error-types-used-in-this-standard-typeerror"></emu-xref>.</p>
+    </emu-clause>

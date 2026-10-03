@@ -1,0 +1,11 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.10 AsyncFunction Objects > 27.10.5 Async Functions Abstract Operations [id: sec-async-functions-abstract-operations]
+
+<emu-clause id="sec-async-functions-abstract-operations">
+      <h1>Async Functions Abstract Operations</h1>
+
+      
+
+      
+
+      
+    </emu-clause>

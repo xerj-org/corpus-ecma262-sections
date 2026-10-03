@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.23 Map ( . . . ) [id: sec-map]
+
+<emu-clause id="sec-map">
+      <h1>Map ( . . . )</h1>
+      <p>See <emu-xref href="#sec-map-constructor"></emu-xref>.</p>
+    </emu-clause>

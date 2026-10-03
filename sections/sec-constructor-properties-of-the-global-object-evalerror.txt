@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.13 EvalError ( . . . ) [id: sec-constructor-properties-of-the-global-object-evalerror]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-evalerror">
+      <h1>EvalError ( . . . )</h1>
+      <p>See <emu-xref href="#sec-native-error-types-used-in-this-standard-evalerror"></emu-xref>.</p>
+    </emu-clause>

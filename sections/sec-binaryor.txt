@@ -1,0 +1,16 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.2 The BigInt Type > 6.1.6.2.15 BinaryOr ( _x_: 0 or 1, _y_: 0 or 1, ): 0 or 1 [id: sec-binaryor]
+
+<emu-clause id="sec-binaryor" type="abstract operation">
+          <h1>
+            BinaryOr (
+              _x_: 0 or 1,
+              _y_: 0 or 1,
+            ): 0 or 1
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _x_ = 1 or _y_ = 1, return 1.
+            1. Return 0.
+          </emu-alg>
+        </emu-clause>

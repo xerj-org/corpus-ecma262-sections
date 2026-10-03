@@ -1,0 +1,19 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object > 25.5.3 JSON.rawJSON ( _text_ ) [id: sec-json.rawjson]
+
+<emu-clause id="sec-json.rawjson" type="built-in function">
+      <h1>JSON.rawJSON ( _text_ )</h1>
+      <p>This function returns an object representing raw JSON text of a string, number, boolean, or null value.</p>
+      <emu-alg>
+        1. Let _jsonString_ be ? ToString(_text_).
+        1. If _jsonString_ is the empty String, throw a *SyntaxError* exception.
+        1. If the first code unit of _jsonString_ is not either an ASCII lowercase letter code unit (0x0061 through 0x007A, inclusive), an ASCII digit code unit (0x0030 through 0x0039, inclusive), 0x0022 (QUOTATION MARK), or 0x002D (HYPHEN-MINUS), throw a *SyntaxError* exception.
+        1. If the last code unit of _jsonString_ is not either an ASCII lowercase letter code unit (0x0061 through 0x007A, inclusive), an ASCII digit code unit (0x0030 through 0x0039, inclusive), or 0x0022 (QUOTATION MARK), throw a *SyntaxError* exception.
+        1. Let _parseResult_ be ? ParseJSON(_jsonString_).
+        1. Assert: _parseResult_.[[Value]] is either a String, a Number, a Boolean, or *null*.
+        1. Let _internalSlotsList_ be « [[IsRawJSON]] ».
+        1. Let _obj_ be OrdinaryObjectCreate(*null*, _internalSlotsList_).
+        1. Perform ! CreateDataPropertyOrThrow(_obj_, *"rawJSON"*, _jsonString_).
+        1. Perform ! SetIntegrityLevel(_obj_, ~frozen~).
+        1. Return _obj_.
+      </emu-alg>
+    </emu-clause>

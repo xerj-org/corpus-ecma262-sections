@@ -1,0 +1,71 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.3 Properties of the Array Prototype Object > 23.1.3.31 Array.prototype.splice ( _start_, _deleteCount_, ..._items_ ) [id: sec-array.prototype.splice]
+
+<emu-clause id="sec-array.prototype.splice" type="built-in function">
+        <h1>Array.prototype.splice ( _start_, _deleteCount_, ..._items_ )</h1>
+        <emu-note>
+          <p>This method deletes the _deleteCount_ elements of the array starting at integer index _start_ and replaces them with the elements of _items_. It returns an Array containing the deleted elements (if any).</p>
+        </emu-note>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be ? ToObject(*this* value).
+          1. Let _length_ be ? LengthOfArrayLike(_obj_).
+          1. Let _actualStart_ be ? ToClampedIndex(_start_, _length_).
+          1. Let _itemCount_ be the number of elements in _items_.
+          1. If _start_ is not present, then
+            1. Let _actualDeleteCount_ be 0.
+          1. Else if _deleteCount_ is not present, then
+            1. Let _actualDeleteCount_ be _length_ - _actualStart_.
+            1. Assert: _actualDeleteCount_ ≥ 0.
+          1. Else,
+            1. Let _dc_ be ? ToIntegerOrInfinity(_deleteCount_).
+            1. Let _actualDeleteCount_ be the result of clamping _dc_ between 0 and _length_ - _actualStart_.
+          1. If _length_ + _itemCount_ - _actualDeleteCount_ > 2<sup>53</sup> - 1, throw a *TypeError* exception.
+          1. Let _deletedArray_ be ? ArraySpeciesCreate(_obj_, _actualDeleteCount_).
+          1. Let _k_ be 0.
+          1. Repeat, while _k_ &lt; _actualDeleteCount_,
+            1. Let _from_ be ! ToString(𝔽(_actualStart_ + _k_)).
+            1. If ? HasProperty(_obj_, _from_) is *true*, then
+              1. Let _fromValue_ be ? Get(_obj_, _from_).
+              1. Perform ? CreateDataPropertyOrThrow(_deletedArray_, ! ToString(𝔽(_k_)), _fromValue_).
+            1. Set _k_ to _k_ + 1.
+          1. [id="step-array-proto-splice-set-length"] Perform ? Set(_deletedArray_, *"length"*, 𝔽(_actualDeleteCount_), *true*).
+          1. If _itemCount_ &lt; _actualDeleteCount_, then
+            1. Set _k_ to _actualStart_.
+            1. Repeat, while _k_ &lt; (_length_ - _actualDeleteCount_),
+              1. Let _from_ be ! ToString(𝔽(_k_ + _actualDeleteCount_)).
+              1. Let _to_ be ! ToString(𝔽(_k_ + _itemCount_)).
+              1. If ? HasProperty(_obj_, _from_) is *true*, then
+                1. Let _fromValue_ be ? Get(_obj_, _from_).
+                1. Perform ? Set(_obj_, _to_, _fromValue_, *true*).
+              1. Else,
+                1. Perform ? DeletePropertyOrThrow(_obj_, _to_).
+              1. Set _k_ to _k_ + 1.
+            1. Set _k_ to _length_.
+            1. Repeat, while _k_ > (_length_ - _actualDeleteCount_ + _itemCount_),
+              1. Perform ? DeletePropertyOrThrow(_obj_, ! ToString(𝔽(_k_ - 1))).
+              1. Set _k_ to _k_ - 1.
+          1. Else if _itemCount_ > _actualDeleteCount_, then
+            1. Set _k_ to (_length_ - _actualDeleteCount_).
+            1. Repeat, while _k_ > _actualStart_,
+              1. Let _from_ be ! ToString(𝔽(_k_ + _actualDeleteCount_ - 1)).
+              1. Let _to_ be ! ToString(𝔽(_k_ + _itemCount_ - 1)).
+              1. If ? HasProperty(_obj_, _from_) is *true*, then
+                1. Let _fromValue_ be ? Get(_obj_, _from_).
+                1. Perform ? Set(_obj_, _to_, _fromValue_, *true*).
+              1. Else,
+                1. Perform ? DeletePropertyOrThrow(_obj_, _to_).
+              1. Set _k_ to _k_ - 1.
+          1. Set _k_ to _actualStart_.
+          1. For each element _item_ of _items_, do
+            1. Perform ? Set(_obj_, ! ToString(𝔽(_k_)), _item_, *true*).
+            1. Set _k_ to _k_ + 1.
+          1. [id="step-array-proto-splice-set-length-2"] Perform ? Set(_obj_, *"length"*, 𝔽(_length_ - _actualDeleteCount_ + _itemCount_), *true*).
+          1. Return _deletedArray_.
+        </emu-alg>
+        <emu-note>
+          <p>The explicit setting of the *"length"* property in steps <emu-xref href="#step-array-proto-splice-set-length"></emu-xref> and <emu-xref href="#step-array-proto-splice-set-length-2"></emu-xref> is intended to ensure the lengths are correct even when the objects are not built-in Arrays.</p>
+        </emu-note>
+        <emu-note>
+          <p>This method is intentionally generic; it does not require that its *this* value be an Array. Therefore it can be transferred to other kinds of objects for use as a method.</p>
+        </emu-note>
+      </emu-clause>

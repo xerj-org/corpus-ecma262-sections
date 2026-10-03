@@ -1,0 +1,17 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.4 AsyncDisposableStack Objects > 27.4.3 Properties of the AsyncDisposableStack Prototype Object > 27.4.3.6 AsyncDisposableStack.prototype.move ( ) [id: sec-asyncdisposablestack.prototype.move]
+
+<emu-clause id="sec-asyncdisposablestack.prototype.move" type="built-in function">
+        <h1>AsyncDisposableStack.prototype.move ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _asyncDisposableStack_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_asyncDisposableStack_, [[AsyncDisposableState]]).
+          1. If _asyncDisposableStack_.[[AsyncDisposableState]] is ~disposed~, throw a *ReferenceError* exception.
+          1. Let _newAsyncDisposableStack_ be ? OrdinaryCreateFromConstructor(%AsyncDisposableStack%, *"%AsyncDisposableStack.prototype%"*, « [[AsyncDisposableState]], [[DisposableResourceStack]] »).
+          1. Set _newAsyncDisposableStack_.[[AsyncDisposableState]] to ~pending~.
+          1. Set _newAsyncDisposableStack_.[[DisposableResourceStack]] to _asyncDisposableStack_.[[DisposableResourceStack]].
+          1. Set _asyncDisposableStack_.[[DisposableResourceStack]] to a new empty List.
+          1. Set _asyncDisposableStack_.[[AsyncDisposableState]] to ~disposed~.
+          1. Return _newAsyncDisposableStack_.
+        </emu-alg>
+      </emu-clause>

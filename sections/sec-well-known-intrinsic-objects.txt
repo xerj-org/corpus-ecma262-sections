@@ -1,0 +1,835 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.7 The Object Type > 6.1.7.4 Well-Known Intrinsic Objects [id: sec-well-known-intrinsic-objects]
+
+<emu-clause id="sec-well-known-intrinsic-objects">
+        <h1>Well-Known Intrinsic Objects</h1>
+        <p>Well-known intrinsics are built-in objects that are explicitly referenced by the algorithms of this specification and which usually have realm-specific identities. Unless otherwise specified each intrinsic object actually corresponds to a set of similar objects, one per realm.</p>
+        <p>Within this specification a reference such as %name% means the intrinsic object, associated with the current realm, corresponding to the name. A reference such as %name.a.b% means, as if the *"b"* property of the value of the *"a"* property of the intrinsic object %name% was accessed prior to any ECMAScript code being evaluated. Determination of the current realm and its intrinsics is described in <emu-xref href="#sec-execution-contexts"></emu-xref>. The well-known intrinsics are listed in <emu-xref href="#table-well-known-intrinsic-objects"></emu-xref>.</p>
+        <emu-table id="table-well-known-intrinsic-objects" caption="Well-Known Intrinsic Objects" oldids="table-7">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Intrinsic Name
+                </th>
+                <th>
+                  Global Name
+                </th>
+                <th>
+                  ECMAScript Language Association
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                %AggregateError%
+              </td>
+              <td>
+                *"AggregateError"*
+              </td>
+              <td>
+                The `AggregateError` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-aggregate-error-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Array%
+              </td>
+              <td>
+                *"Array"*
+              </td>
+              <td>
+                The `Array` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-array-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %ArrayBuffer%
+              </td>
+              <td>
+                *"ArrayBuffer"*
+              </td>
+              <td>
+                The `ArrayBuffer` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-arraybuffer-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %ArrayIteratorPrototype%
+              </td>
+              <td>
+              </td>
+              <td>
+                The prototype of Array Iterator objects (<emu-xref href="#sec-array-iterator-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %AsyncDisposableStack%
+              </td>
+              <td>
+                *"AsyncDisposableStack"*
+              </td>
+              <td>
+                The `AsyncDisposableStack` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-asyncdisposablestack-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %AsyncFromSyncIteratorPrototype%
+              </td>
+              <td>
+              </td>
+              <td>
+                The prototype of Async-from-Sync Iterator objects (<emu-xref href="#sec-async-from-sync-iterator-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %AsyncFunction%
+              </td>
+              <td>
+              </td>
+              <td>
+                The <emu-not-ref>constructor</emu-not-ref> of async function objects (<emu-xref href="#sec-async-function-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %AsyncGeneratorFunction%
+              </td>
+              <td>
+              </td>
+              <td>
+                The <emu-not-ref>constructor</emu-not-ref> of async generator function objects (<emu-xref href="#sec-asyncgeneratorfunction-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %AsyncGeneratorPrototype%
+              </td>
+              <td>
+              </td>
+              <td>
+                The prototype of async generator objects (<emu-xref href="#sec-asyncgenerator-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %AsyncIteratorPrototype%
+              </td>
+              <td>
+              </td>
+              <td>
+                An object that all standard built-in async iterator objects indirectly inherit from
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Atomics%
+              </td>
+              <td>
+                *"Atomics"*
+              </td>
+              <td>
+                The `Atomics` object (<emu-xref href="#sec-atomics-object"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %BigInt%
+              </td>
+              <td>
+                *"BigInt"*
+              </td>
+              <td>
+                The `BigInt` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-bigint-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %BigInt64Array%
+              </td>
+              <td>
+                *"BigInt64Array"*
+              </td>
+              <td>
+                The `BigInt64Array` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-typedarray-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %BigUint64Array%
+              </td>
+              <td>
+                *"BigUint64Array"*
+              </td>
+              <td>
+                The `BigUint64Array` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-typedarray-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Boolean%
+              </td>
+              <td>
+                *"Boolean"*
+              </td>
+              <td>
+                The `Boolean` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-boolean-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %DataView%
+              </td>
+              <td>
+                *"DataView"*
+              </td>
+              <td>
+                The `DataView` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-dataview-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Date%
+              </td>
+              <td>
+                *"Date"*
+              </td>
+              <td>
+                The `Date` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-date-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %decodeURI%
+              </td>
+              <td>
+                *"decodeURI"*
+              </td>
+              <td>
+                The `decodeURI` function (<emu-xref href="#sec-decodeuri-encodeduri"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %decodeURIComponent%
+              </td>
+              <td>
+                *"decodeURIComponent"*
+              </td>
+              <td>
+                The `decodeURIComponent` function (<emu-xref href="#sec-decodeuricomponent-encodeduricomponent"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %DisposableStack%
+              </td>
+              <td>
+                *"DisposableStack"*
+              </td>
+              <td>
+                The `DisposableStack` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-disposablestack-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %encodeURI%
+              </td>
+              <td>
+                *"encodeURI"*
+              </td>
+              <td>
+                The `encodeURI` function (<emu-xref href="#sec-encodeuri-uri"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %encodeURIComponent%
+              </td>
+              <td>
+                *"encodeURIComponent"*
+              </td>
+              <td>
+                The `encodeURIComponent` function (<emu-xref href="#sec-encodeuricomponent-uricomponent"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Error%
+              </td>
+              <td>
+                *"Error"*
+              </td>
+              <td>
+                The `Error` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-error-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %eval%
+              </td>
+              <td>
+                *"eval"*
+              </td>
+              <td>
+                The `eval` function (<emu-xref href="#sec-eval-x"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %EvalError%
+              </td>
+              <td>
+                *"EvalError"*
+              </td>
+              <td>
+                The `EvalError` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-native-error-types-used-in-this-standard-evalerror"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %FinalizationRegistry%
+              </td>
+              <td>
+                *"FinalizationRegistry"*
+              </td>
+              <td>
+                The `FinalizationRegistry` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-finalization-registry-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Float16Array%
+              </td>
+              <td>
+                *"Float16Array"*
+              </td>
+              <td>
+                The `Float16Array` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-typedarray-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Float32Array%
+              </td>
+              <td>
+                *"Float32Array"*
+              </td>
+              <td>
+                The `Float32Array` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-typedarray-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Float64Array%
+              </td>
+              <td>
+                *"Float64Array"*
+              </td>
+              <td>
+                The `Float64Array` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-typedarray-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %ForInIteratorPrototype%
+              </td>
+              <td>
+              </td>
+              <td>
+                The prototype of For-In Iterator objects (<emu-xref href="#sec-for-in-iterator-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Function%
+              </td>
+              <td>
+                *"Function"*
+              </td>
+              <td>
+                The `Function` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-function-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %GeneratorFunction%
+              </td>
+              <td>
+              </td>
+              <td>
+                The <emu-not-ref>constructor</emu-not-ref> of generator function objects (<emu-xref href="#sec-generatorfunction-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %GeneratorPrototype%
+              </td>
+              <td>
+              </td>
+              <td>
+                The prototype of generator objects (<emu-xref href="#sec-generator-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Int8Array%
+              </td>
+              <td>
+                *"Int8Array"*
+              </td>
+              <td>
+                The `Int8Array` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-typedarray-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Int16Array%
+              </td>
+              <td>
+                *"Int16Array"*
+              </td>
+              <td>
+                The `Int16Array` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-typedarray-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Int32Array%
+              </td>
+              <td>
+                *"Int32Array"*
+              </td>
+              <td>
+                The `Int32Array` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-typedarray-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %isFinite%
+              </td>
+              <td>
+                *"isFinite"*
+              </td>
+              <td>
+                The `isFinite` function (<emu-xref href="#sec-isfinite-number"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %isNaN%
+              </td>
+              <td>
+                *"isNaN"*
+              </td>
+              <td>
+                The `isNaN` function (<emu-xref href="#sec-isnan-number"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Iterator%
+              </td>
+              <td>
+                *"Iterator"*
+              </td>
+              <td>
+                The `Iterator` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-iterator-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %IteratorHelperPrototype%
+              </td>
+              <td>
+              </td>
+              <td>
+                The prototype of Iterator Helper objects (<emu-xref href="#sec-%iteratorhelperprototype%-object"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %JSON%
+              </td>
+              <td>
+                *"JSON"*
+              </td>
+              <td>
+                The `JSON` object (<emu-xref href="#sec-json-object"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Map%
+              </td>
+              <td>
+                *"Map"*
+              </td>
+              <td>
+                The `Map` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-map-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %MapIteratorPrototype%
+              </td>
+              <td>
+              </td>
+              <td>
+                The prototype of Map Iterator objects (<emu-xref href="#sec-map-iterator-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Math%
+              </td>
+              <td>
+                *"Math"*
+              </td>
+              <td>
+                The `Math` object (<emu-xref href="#sec-math-object"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Number%
+              </td>
+              <td>
+                *"Number"*
+              </td>
+              <td>
+                The `Number` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-number-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Object%
+              </td>
+              <td>
+                *"Object"*
+              </td>
+              <td>
+                The `Object` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-object-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %parseFloat%
+              </td>
+              <td>
+                *"parseFloat"*
+              </td>
+              <td>
+                The `parseFloat` function (<emu-xref href="#sec-parsefloat-string"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %parseInt%
+              </td>
+              <td>
+                *"parseInt"*
+              </td>
+              <td>
+                The `parseInt` function (<emu-xref href="#sec-parseint-string-radix"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Promise%
+              </td>
+              <td>
+                *"Promise"*
+              </td>
+              <td>
+                The `Promise` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-promise-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Proxy%
+              </td>
+              <td>
+                *"Proxy"*
+              </td>
+              <td>
+                The `Proxy` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-proxy-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %RangeError%
+              </td>
+              <td>
+                *"RangeError"*
+              </td>
+              <td>
+                The `RangeError` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-native-error-types-used-in-this-standard-rangeerror"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %ReferenceError%
+              </td>
+              <td>
+                *"ReferenceError"*
+              </td>
+              <td>
+                The `ReferenceError` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-native-error-types-used-in-this-standard-referenceerror"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Reflect%
+              </td>
+              <td>
+                *"Reflect"*
+              </td>
+              <td>
+                The `Reflect` object (<emu-xref href="#sec-reflect-object"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %RegExp%
+              </td>
+              <td>
+                *"RegExp"*
+              </td>
+              <td>
+                The `RegExp` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-regexp-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %RegExpStringIteratorPrototype%
+              </td>
+              <td>
+              </td>
+              <td>
+                The prototype of RegExp String Iterator objects (<emu-xref href="#sec-regexp-string-iterator-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Set%
+              </td>
+              <td>
+                *"Set"*
+              </td>
+              <td>
+                The `Set` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-set-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %SetIteratorPrototype%
+              </td>
+              <td>
+              </td>
+              <td>
+                The prototype of Set Iterator objects (<emu-xref href="#sec-set-iterator-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %SharedArrayBuffer%
+              </td>
+              <td>
+                *"SharedArrayBuffer"*
+              </td>
+              <td>
+                The `SharedArrayBuffer` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-sharedarraybuffer-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %String%
+              </td>
+              <td>
+                *"String"*
+              </td>
+              <td>
+                The `String` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-string-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %StringIteratorPrototype%
+              </td>
+              <td>
+              </td>
+              <td>
+                The prototype of String Iterator objects (<emu-xref href="#sec-string-iterator-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %SuppressedError%
+              </td>
+              <td>
+                *"SuppressedError"*
+              </td>
+              <td>
+                The `SuppressedError` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-suppressederror-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Symbol%
+              </td>
+              <td>
+                *"Symbol"*
+              </td>
+              <td>
+                The `Symbol` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-symbol-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %SyntaxError%
+              </td>
+              <td>
+                *"SyntaxError"*
+              </td>
+              <td>
+                The `SyntaxError` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-native-error-types-used-in-this-standard-syntaxerror"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %ThrowTypeError%
+              </td>
+              <td>
+              </td>
+              <td>
+                A function object that unconditionally throws a new instance of %TypeError%
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %TypedArray%
+              </td>
+              <td>
+              </td>
+              <td>
+                The super class of all typed Array <emu-not-ref>constructors</emu-not-ref> (<emu-xref href="#sec-%typedarray%-intrinsic-object"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %TypeError%
+              </td>
+              <td>
+                *"TypeError"*
+              </td>
+              <td>
+                The `TypeError` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-native-error-types-used-in-this-standard-typeerror"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Uint8Array%
+              </td>
+              <td>
+                *"Uint8Array"*
+              </td>
+              <td>
+                The `Uint8Array` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-typedarray-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Uint8ClampedArray%
+              </td>
+              <td>
+                *"Uint8ClampedArray"*
+              </td>
+              <td>
+                The `Uint8ClampedArray` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-typedarray-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Uint16Array%
+              </td>
+              <td>
+                *"Uint16Array"*
+              </td>
+              <td>
+                The `Uint16Array` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-typedarray-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %Uint32Array%
+              </td>
+              <td>
+                *"Uint32Array"*
+              </td>
+              <td>
+                The `Uint32Array` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-typedarray-objects"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %URIError%
+              </td>
+              <td>
+                *"URIError"*
+              </td>
+              <td>
+                The `URIError` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-native-error-types-used-in-this-standard-urierror"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %WeakMap%
+              </td>
+              <td>
+                *"WeakMap"*
+              </td>
+              <td>
+                The `WeakMap` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-weakmap-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %WeakRef%
+              </td>
+              <td>
+                *"WeakRef"*
+              </td>
+              <td>
+                The `WeakRef` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-weak-ref-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %WeakSet%
+              </td>
+              <td>
+                *"WeakSet"*
+              </td>
+              <td>
+                The `WeakSet` <emu-not-ref>constructor</emu-not-ref> (<emu-xref href="#sec-weakset-constructor"></emu-xref>)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                %WrapForValidIteratorPrototype%
+              </td>
+              <td>
+              </td>
+              <td>
+                The prototype of wrapped iterator objects returned by `Iterator.from` (<emu-xref href="#sec-%wrapforvaliditeratorprototype%-object"></emu-xref>)
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+        <emu-note>
+          <p>Additional entries in <emu-xref href="#table-additional-well-known-intrinsic-objects"></emu-xref>.</p>
+        </emu-note>
+      </emu-clause>

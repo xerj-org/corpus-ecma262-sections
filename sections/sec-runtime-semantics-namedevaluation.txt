@@ -1,0 +1,58 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.4 Function Name Inference > 8.4.5 Runtime Semantics: NamedEvaluation ( _name_: a property key or a Private Name, ): either a normal completion containing a function object or an abrupt completion [id: sec-runtime-semantics-namedevaluation]
+
+<emu-clause id="sec-runtime-semantics-namedevaluation" oldids="sec-grouping-operator-runtime-semantics-namedevaluation,sec-function-definitions-runtime-semantics-namedevaluation,sec-arrow-function-definitions-runtime-semantics-namedevaluation,sec-generator-function-definitions-runtime-semantics-namedevaluation,sec-asyncgenerator-definitions-namedevaluation,sec-class-definitions-runtime-semantics-namedevaluation,sec-async-function-definitions-runtime-semantics-namedevaluation,sec-async-arrow-function-definitions-runtime-semantics-namedevaluation" type="sdo">
+      <h1>
+        Runtime Semantics: NamedEvaluation (
+          _name_: a property key or a Private Name,
+        ): either a normal completion containing a function object or an abrupt completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>PrimaryExpression : CoverParenthesizedExpressionAndArrowParameterList</emu-grammar>
+      <emu-alg>
+        1. Let _expr_ be the |ParenthesizedExpression| that is covered by |CoverParenthesizedExpressionAndArrowParameterList|.
+        1. Return ? NamedEvaluation of _expr_ with argument _name_.
+      </emu-alg>
+      <emu-grammar>ParenthesizedExpression : `(` Expression `)`</emu-grammar>
+      <emu-alg>
+        1. Assert: IsAnonymousFunctionDefinition(|Expression|) is *true*.
+        1. Return ? NamedEvaluation of |Expression| with argument _name_.
+      </emu-alg>
+      <emu-grammar>FunctionExpression : `function` `(` FormalParameters `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return InstantiateOrdinaryFunctionExpression of |FunctionExpression| with argument _name_.
+      </emu-alg>
+      <emu-grammar>GeneratorExpression : `function` `*` `(` FormalParameters `)` `{` GeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return InstantiateGeneratorFunctionExpression of |GeneratorExpression| with argument _name_.
+      </emu-alg>
+      <emu-grammar>
+        AsyncGeneratorExpression : `async` `function` `*` `(` FormalParameters `)` `{` AsyncGeneratorBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return InstantiateAsyncGeneratorFunctionExpression of |AsyncGeneratorExpression| with argument _name_.
+      </emu-alg>
+      <emu-grammar>
+        AsyncFunctionExpression : `async` `function` `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return InstantiateAsyncFunctionExpression of |AsyncFunctionExpression| with argument _name_.
+      </emu-alg>
+      <emu-grammar>ArrowFunction : ArrowParameters `=>` ConciseBody</emu-grammar>
+      <emu-alg>
+        1. Return InstantiateArrowFunctionExpression of |ArrowFunction| with argument _name_.
+      </emu-alg>
+      <emu-grammar>
+        AsyncArrowFunction :
+          `async` AsyncArrowBindingIdentifier `=>` AsyncConciseBody
+          CoverCallExpressionAndAsyncArrowHead `=>` AsyncConciseBody
+      </emu-grammar>
+      <emu-alg>
+        1. Return InstantiateAsyncArrowFunctionExpression of |AsyncArrowFunction| with argument _name_.
+      </emu-alg>
+      <emu-grammar>ClassExpression : `class` ClassTail</emu-grammar>
+      <emu-alg>
+        1. Let _sourceText_ be the source text matched by |ClassExpression|.
+        1. Return ? ClassDefinitionEvaluation of |ClassTail| with arguments *undefined*, _name_, and _sourceText_.
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,23 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.5 ToIntegerOrInfinity ( _arg_: an ECMAScript language value, ): either a normal completion containing either an integer, +∞, or -∞, or a throw completion [id: sec-tointegerorinfinity]
+
+<emu-clause id="sec-tointegerorinfinity" type="abstract operation" oldids="sec-tointeger">
+      <h1>
+        ToIntegerOrInfinity (
+          _arg_: an ECMAScript language value,
+        ): either a normal completion containing either an integer, +&infin;, or -&infin;, or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It converts _arg_ to an integer representing its Number value with fractional part truncated, or to +∞ or -∞ when that Number value is infinite.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _number_ be ? ToNumber(_arg_).
+        1. If _number_ is one of *NaN*, *+0*<sub>𝔽</sub>, or *-0*<sub>𝔽</sub>, return 0.
+        1. If _number_ is *+∞*<sub>𝔽</sub>, return +∞.
+        1. If _number_ is *-∞*<sub>𝔽</sub>, return -∞.
+        1. Return truncate(ℝ(_number_)).
+      </emu-alg>
+      <emu-note>
+        𝔽(ToIntegerOrInfinity(_x_)) never returns *-0*<sub>𝔽</sub> for any value of _x_. The truncation of the fractional part is performed after converting _x_ to a mathematical value.
+      </emu-note>
+    </emu-clause>

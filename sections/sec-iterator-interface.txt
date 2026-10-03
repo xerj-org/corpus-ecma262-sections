@@ -1,0 +1,79 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.1 Common Iteration Interfaces > 27.1.1.2 The Iterator Interface [id: sec-iterator-interface]
+
+<emu-clause id="sec-iterator-interface">
+        <h1>The Iterator Interface</h1>
+        <p>An object that implements the <dfn variants="iterator object,iterator objects,iterator,iterators">iterator interface</dfn> must include the property in <emu-xref href="#table-iterator-interface-required-properties"></emu-xref>. Such objects may also implement the properties in <emu-xref href="#table-iterator-interface-optional-properties"></emu-xref>.</p>
+        <emu-table id="table-iterator-interface-required-properties" caption="Iterator Interface Required Properties" oldids="table-53">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Property
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Requirements
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                *"next"*
+              </td>
+              <td>
+                a function that returns an IteratorResult object
+              </td>
+              <td>
+                The returned object must conform to the IteratorResult interface. If a previous call to the `next` method of an iterator has returned an IteratorResult object whose *"done"* property is *true*, then all subsequent calls to the `next` method of that object should also return an IteratorResult object whose *"done"* property is *true*. However, this requirement is not enforced.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+        <emu-note>
+          <p>Arguments may be passed to the `next` function but their interpretation and validity is dependent upon the target iterator. The for-of statement and other common users of iterators do not pass any arguments, so iterator objects that expect to be used in such a manner must be prepared to deal with being called with no arguments.</p>
+        </emu-note>
+        <emu-table id="table-iterator-interface-optional-properties" caption="Iterator Interface Optional Properties" oldids="table-54">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Property
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Requirements
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                *"return"*
+              </td>
+              <td>
+                a function that returns an IteratorResult object
+              </td>
+              <td>
+                The returned object must conform to the IteratorResult interface. Invoking this method notifies the iterator object that the caller does not intend to make any more `next` method calls to the iterator. The returned IteratorResult object will typically have a *"done"* property whose value is *true*, and a *"value"* property with the value passed as the argument of the `return` method. However, this requirement is not enforced.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                *"throw"*
+              </td>
+              <td>
+                a function that returns an IteratorResult object
+              </td>
+              <td>
+                The returned object must conform to the IteratorResult interface. Invoking this method notifies the iterator object that the caller has detected an error condition. The argument may be used to identify the error condition and typically will be an exception object. A typical response is to `throw` the value passed as the argument. If the method does not `throw`, the returned IteratorResult object will typically have a *"done"* property whose value is *true*.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+        <emu-note>
+          <p>Typically callers of these methods should check for their existence before invoking them. Certain ECMAScript language features including `for`-`of`, `yield*`, and array destructuring call these methods after performing an existence check. Most ECMAScript library functions that accept iterable objects as arguments also conditionally call them.</p>
+        </emu-note>
+      </emu-clause>

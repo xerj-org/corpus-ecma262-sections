@@ -1,0 +1,10 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals > 12.9.1 Null Literals [id: sec-null-literals]
+
+<emu-clause id="sec-null-literals">
+      <h1>Null Literals</h1>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        NullLiteral ::
+          `null`
+      </emu-grammar>
+    </emu-clause>

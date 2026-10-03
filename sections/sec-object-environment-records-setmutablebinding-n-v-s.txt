@@ -1,0 +1,25 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.2 Object Environment Records > 9.1.1.2.5 SetMutableBinding ( _name_: a String, _value_: an ECMAScript language value, _strict_: a Boolean, ): either a normal completion containing ~unused~ or a throw completion [id: sec-object-environment-records-setmutablebinding-n-v-s]
+
+<emu-clause id="sec-object-environment-records-setmutablebinding-n-v-s" type="concrete method">
+          <h1>
+            SetMutableBinding (
+              _name_: a String,
+              _value_: an ECMAScript language value,
+              _strict_: a Boolean,
+            ): either a normal completion containing ~unused~ or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>an Object Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It attempts to set the value of the Environment Record's associated binding object's property whose name is _name_ to the value _value_. A property named _name_ normally already exists but if it does not or is not currently writable, error handling is determined by _strict_.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _bindingObj_ be _envRecord_.[[BindingObject]].
+            1. Let _stillExists_ be ? HasProperty(_bindingObj_, _name_).
+            1. If _stillExists_ is *false* and _strict_ is *true*, throw a *ReferenceError* exception.
+            1. Perform ? Set(_bindingObj_, _name_, _value_, _strict_).
+            1. Return ~unused~.
+          </emu-alg>
+        </emu-clause>

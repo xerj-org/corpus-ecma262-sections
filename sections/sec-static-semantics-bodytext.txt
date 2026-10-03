@@ -1,0 +1,11 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals > 12.9.5 Regular Expression Literals > 12.9.5.1 Static Semantics: BodyText ( ): source text [id: sec-static-semantics-bodytext]
+
+<emu-clause id="sec-static-semantics-bodytext" type="sdo">
+        <h1>Static Semantics: BodyText ( ): source text</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>RegularExpressionLiteral :: `/` RegularExpressionBody `/` RegularExpressionFlags</emu-grammar>
+        <emu-alg>
+          1. Return the source text that was recognized as |RegularExpressionBody|.
+        </emu-alg>
+      </emu-clause>

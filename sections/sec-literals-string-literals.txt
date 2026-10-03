@@ -1,0 +1,100 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals > 12.9.4 String Literals [id: sec-literals-string-literals]
+
+<emu-clause id="sec-literals-string-literals" oldids="sec-additional-syntax-string-literals">
+      <h1>String Literals</h1>
+      <emu-note>
+        <p>A string literal is 0 or more Unicode code points enclosed in single or double quotes. Unicode code points may also be represented by an escape sequence. All code points may appear literally in a string literal except for the closing quote code points, U+005C (REVERSE SOLIDUS), U+000D (CARRIAGE RETURN), and U+000A (LINE FEED). Any code points may appear in the form of an escape sequence. String literals evaluate to ECMAScript String values. When generating these String values Unicode code points are UTF-16 encoded as defined in <emu-xref href="#sec-utf16encodecodepoint"></emu-xref>. Code points belonging to the Basic Multilingual Plane are encoded as a single code unit element of the string. All other code points are encoded as two code unit elements of the string.</p>
+      </emu-note>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        StringLiteral ::
+          `"` DoubleStringCharacters? `"`
+          `'` SingleStringCharacters? `'`
+
+        DoubleStringCharacters ::
+          DoubleStringCharacter DoubleStringCharacters?
+
+        SingleStringCharacters ::
+          SingleStringCharacter SingleStringCharacters?
+
+        DoubleStringCharacter ::
+          SourceCharacter but not one of `"` or `\` or LineTerminator
+          &lt;LS&gt;
+          &lt;PS&gt;
+          `\` EscapeSequence
+          LineContinuation
+
+        SingleStringCharacter ::
+          SourceCharacter but not one of `'` or `\` or LineTerminator
+          &lt;LS&gt;
+          &lt;PS&gt;
+          `\` EscapeSequence
+          LineContinuation
+
+        LineContinuation ::
+          `\` LineTerminatorSequence
+
+        EscapeSequence ::
+          CharacterEscapeSequence
+          `0` [lookahead &notin; DecimalDigit]
+          LegacyOctalEscapeSequence
+          NonOctalDecimalEscapeSequence
+          HexEscapeSequence
+          UnicodeEscapeSequence
+
+        CharacterEscapeSequence ::
+          SingleEscapeCharacter
+          NonEscapeCharacter
+
+        SingleEscapeCharacter :: one of
+          `'` `"` `\` `b` `f` `n` `r` `t` `v`
+
+        NonEscapeCharacter ::
+          SourceCharacter but not one of EscapeCharacter or LineTerminator
+
+        EscapeCharacter ::
+          SingleEscapeCharacter
+          DecimalDigit
+          `x`
+          `u`
+
+        LegacyOctalEscapeSequence ::
+          `0` [lookahead &isin; { `8`, `9` }]
+          NonZeroOctalDigit [lookahead &notin; OctalDigit]
+          ZeroToThree OctalDigit [lookahead &notin; OctalDigit]
+          FourToSeven OctalDigit
+          ZeroToThree OctalDigit OctalDigit
+
+        NonZeroOctalDigit ::
+          OctalDigit but not `0`
+
+        ZeroToThree :: one of
+          `0` `1` `2` `3`
+
+        FourToSeven :: one of
+          `4` `5` `6` `7`
+
+        NonOctalDecimalEscapeSequence :: one of
+          `8` `9`
+
+        HexEscapeSequence ::
+          `x` HexDigit HexDigit
+
+        UnicodeEscapeSequence ::
+          `u` Hex4Digits
+          `u{` CodePoint `}`
+
+        Hex4Digits ::
+          HexDigit HexDigit HexDigit HexDigit
+      </emu-grammar>
+      <p>The definition of the nonterminal |HexDigit| is given in <emu-xref href="#sec-literals-numeric-literals"></emu-xref>. |SourceCharacter| is defined in <emu-xref href="#sec-source-text"></emu-xref>.</p>
+      <emu-note>
+        <p>&lt;LF> and &lt;CR> cannot appear in a string literal, except as part of a |LineContinuation| to produce the empty code points sequence. The proper way to include either in the String value of a string literal is to use an escape sequence such as `\\n` or `\\u000A`.</p>
+      </emu-note>
+
+      
+
+      
+
+      
+    </emu-clause>

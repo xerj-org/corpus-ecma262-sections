@@ -1,0 +1,30 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.2 ECMAScript Function Objects > 10.2.5 MakeConstructor ( _func_: an ECMAScript function object or a built-in function object, optional _writableProto_: a Boolean, optional _proto_: an Object, ): ~unused~ [id: sec-makeconstructor]
+
+<emu-clause id="sec-makeconstructor" type="abstract operation">
+      <h1>
+        MakeConstructor (
+          _func_: an ECMAScript function object or a built-in function object,
+          optional _writableProto_: a Boolean,
+          optional _proto_: an Object,
+        ): ~unused~
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It converts _func_ into a constructor.</dd>
+      </dl>
+      <emu-alg>
+        1. If _func_ is an ECMAScript function object, then
+          1. Assert: IsConstructor(_func_) is *false*.
+          1. Assert: _func_ is an extensible object that does not have a *"prototype"* own property.
+          1. Set _func_.[[Construct]] to the definition specified in <emu-xref href="#sec-ecmascript-function-objects-construct-argumentslist-newtarget"></emu-xref>.
+        1. Else,
+          1. Set _func_.[[Construct]] to the definition specified in <emu-xref href="#sec-built-in-function-objects-construct-argumentslist-newtarget"></emu-xref>.
+        1. Set _func_.[[ConstructorKind]] to ~base~.
+        1. If _writableProto_ is not present, set _writableProto_ to *true*.
+        1. If _proto_ is not present, then
+          1. Set _proto_ to OrdinaryObjectCreate(%Object.prototype%).
+          1. Perform ! DefinePropertyOrThrow(_proto_, *"constructor"*, PropertyDescriptor { [[Value]]: _func_, [[Writable]]: _writableProto_, [[Enumerable]]: *false*, [[Configurable]]: *true* }).
+        1. Perform ! DefinePropertyOrThrow(_func_, *"prototype"*, PropertyDescriptor { [[Value]]: _proto_, [[Writable]]: _writableProto_, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

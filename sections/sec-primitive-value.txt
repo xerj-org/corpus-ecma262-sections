@@ -1,0 +1,9 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.5 primitive value [id: sec-primitive-value]
+
+<emu-clause id="sec-primitive-value">
+      <h1>primitive value</h1>
+      <p>member of one of the types Undefined, Null, Boolean, Number, BigInt, Symbol, or String as defined in clause <emu-xref href="#sec-ecmascript-data-types-and-values"></emu-xref></p>
+      <emu-note>
+        <p>A primitive value is a datum that is represented directly at the lowest level of the language implementation.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,33 @@
+ECMA-262 > 7 Abstract Operations > 7.2 Testing and Comparison Operations [id: sec-testing-and-comparison-operations]
+
+<emu-clause id="sec-testing-and-comparison-operations">
+    <h1>Testing and Comparison Operations</h1>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

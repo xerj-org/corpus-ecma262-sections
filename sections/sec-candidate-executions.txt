@@ -1,0 +1,29 @@
+ECMA-262 > 29 Memory Model > 29.4 Candidate Executions [id: sec-candidate-executions]
+
+<emu-clause id="sec-candidate-executions">
+    <h1>Candidate Executions</h1>
+    <p>A <dfn variants="candidate executions">candidate execution</dfn> of the evaluation of an agent cluster is a Record with the following fields.</p>
+    <emu-table id="table-candidate-execution-records" caption="Candidate Execution Record Fields">
+      <table>
+        <thead>
+          <tr>
+            <th>Field Name</th>
+            <th>Value</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tr>
+          <td>[[EventsRecords]]</td>
+          <td>a List of Agent Events Records</td>
+          <td>Maps an agent to Lists of Memory events appended during the evaluation.</td>
+        </tr>
+        <tr>
+          <td>[[ChosenValues]]</td>
+          <td>a List of Chosen Value Records</td>
+          <td>Maps ReadSharedMemory or ReadModifyWriteSharedMemory events to the List of byte values chosen during the evaluation.</td>
+        </tr>
+      </table>
+    </emu-table>
+
+    <p>An <dfn variants="empty candidate executions">empty candidate execution</dfn> is a candidate execution Record whose fields are empty Lists.</p>
+  </emu-clause>

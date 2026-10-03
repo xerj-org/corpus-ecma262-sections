@@ -1,0 +1,47 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.5 The _TypedArray_ Constructors > 23.2.5.1 _TypedArray_ ( ..._args_ ) [id: sec-typedarray]
+
+<emu-clause id="sec-typedarray" oldids="sec-typedarray-length,sec-typedarray-object" type="built-in function">
+        <h1>_TypedArray_ ( ..._args_ )</h1>
+        <p>Each _TypedArray_ constructor performs the following steps when called:</p>
+        <emu-alg>
+          1. If NewTarget is *undefined*, throw a *TypeError* exception.
+          1. Let _ctorName_ be the String value of the Constructor Name value specified in <emu-xref href="#table-the-typedarray-constructors"></emu-xref> for this <var>TypedArray</var> constructor.
+          1. Let _proto_ be <code>"%<var>TypedArray</var>.prototype%"</code>.
+          1. Let _numberOfArgs_ be the number of elements in _args_.
+          1. If _numberOfArgs_ = 0, return ? AllocateTypedArray(_ctorName_, NewTarget, _proto_, 0).
+          1. Let _firstArg_ be _args_[0].
+          1. If _firstArg_ is an Object, then
+            1. Let _obj_ be ? AllocateTypedArray(_ctorName_, NewTarget, _proto_).
+            1. If _firstArg_ has a [[TypedArrayName]] internal slot, then
+              1. Perform ? InitializeTypedArrayFromTypedArray(_obj_, _firstArg_).
+            1. Else if _firstArg_ has an [[ArrayBufferData]] internal slot, then
+              1. If _numberOfArgs_ > 1, let _byteOffset_ be _args_[1]; else let _byteOffset_ be *undefined*.
+              1. If _numberOfArgs_ > 2, let _length_ be _args_[2]; else let _length_ be *undefined*.
+              1. Perform ? InitializeTypedArrayFromArrayBuffer(_obj_, _firstArg_, _byteOffset_, _length_).
+            1. Else,
+              1. Assert: _firstArg_ is an Object and _firstArg_ does not have either a [[TypedArrayName]] or an [[ArrayBufferData]] internal slot.
+              1. Let _usingIterator_ be ? GetMethod(_firstArg_, %Symbol.iterator%).
+              1. If _usingIterator_ is not *undefined*, then
+                1. Let _values_ be ? IteratorToList(? GetIteratorFromMethod(_firstArg_, _usingIterator_)).
+                1. Perform ? InitializeTypedArrayFromList(_obj_, _values_).
+              1. Else,
+                1. NOTE: _firstArg_ is not an iterable object, so assume it is already an array-like object.
+                1. Perform ? InitializeTypedArrayFromArrayLike(_obj_, _firstArg_).
+            1. Return _obj_.
+          1. Assert: _firstArg_ is not an Object.
+          1. Let _elementLength_ be ? ToIndex(_firstArg_).
+          1. Return ? AllocateTypedArray(_ctorName_, NewTarget, _proto_, _elementLength_).
+        </emu-alg>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+      </emu-clause>

@@ -1,0 +1,24 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.7 CreateNonEnumerableDataPropertyOrThrow ( _obj_: an Object, _propertyKey_: a property key, _value_: an ECMAScript language value, ): ~unused~ [id: sec-createnonenumerabledatapropertyorthrow]
+
+<emu-clause id="sec-createnonenumerabledatapropertyorthrow" type="abstract operation">
+      <h1>
+        CreateNonEnumerableDataPropertyOrThrow (
+          _obj_: an Object,
+          _propertyKey_: a property key,
+          _value_: an ECMAScript language value,
+        ): ~unused~
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to create a new non-enumerable own property of an ordinary object.</dd>
+      </dl>
+      <emu-alg>
+        1. Assert: _obj_ is an ordinary, extensible object with no non-configurable properties.
+        1. Let _newDesc_ be the PropertyDescriptor { [[Value]]: _value_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.
+        1. Perform ! DefinePropertyOrThrow(_obj_, _propertyKey_, _newDesc_).
+        1. Return ~unused~.
+      </emu-alg>
+      <emu-note>
+        <p>This abstract operation creates a property whose attributes are set to the same defaults used for properties created by the ECMAScript language assignment operator except it is not enumerable. Normally, the property will not already exist. If it does exist, DefinePropertyOrThrow is guaranteed to complete normally.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,38 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.2 Scope Analysis > 8.2.13 Static Semantics: TopLevelVarScopedDeclarations ( ): a List of Parse Nodes [id: sec-static-semantics-toplevelvarscopeddeclarations]
+
+<emu-clause id="sec-static-semantics-toplevelvarscopeddeclarations" oldids="sec-block-static-semantics-toplevelvarscopeddeclarations,sec-labelled-statements-static-semantics-toplevelvarscopeddeclarations" type="sdo">
+      <h1>Static Semantics: TopLevelVarScopedDeclarations ( ): a List of Parse Nodes</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>StatementList : StatementList StatementListItem</emu-grammar>
+      <emu-alg>
+        1. Let _decls1_ be the TopLevelVarScopedDeclarations of |StatementList|.
+        1. Let _decls2_ be the TopLevelVarScopedDeclarations of |StatementListItem|.
+        1. Return the list-concatenation of _decls1_ and _decls2_.
+      </emu-alg>
+      <emu-grammar>StatementListItem : Statement</emu-grammar>
+      <emu-alg>
+        1. If |Statement| is <emu-grammar>Statement : LabelledStatement</emu-grammar>, return the TopLevelVarScopedDeclarations of |Statement|.
+        1. Return the VarScopedDeclarations of |Statement|.
+      </emu-alg>
+      <emu-grammar>StatementListItem : Declaration</emu-grammar>
+      <emu-alg>
+        1. If |Declaration| is <emu-grammar>Declaration : HoistableDeclaration</emu-grammar>, then
+          1. Let _decl_ be the DeclarationPart of |HoistableDeclaration|.
+          1. Return « _decl_ ».
+        1. Return a new empty List.
+      </emu-alg>
+      <emu-grammar>LabelledStatement : LabelIdentifier `:` LabelledItem</emu-grammar>
+      <emu-alg>
+        1. Return the TopLevelVarScopedDeclarations of |LabelledItem|.
+      </emu-alg>
+      <emu-grammar>LabelledItem : Statement</emu-grammar>
+      <emu-alg>
+        1. If |Statement| is <emu-grammar>Statement : LabelledStatement</emu-grammar>, return the TopLevelVarScopedDeclarations of |Statement|.
+        1. Return the VarScopedDeclarations of |Statement|.
+      </emu-alg>
+      <emu-grammar>LabelledItem : FunctionDeclaration</emu-grammar>
+      <emu-alg>
+        1. Return « |FunctionDeclaration| ».
+      </emu-alg>
+    </emu-clause>

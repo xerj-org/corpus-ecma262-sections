@@ -1,0 +1,14 @@
+ECMA-262 > 7 Abstract Operations > 7.4 Operations on Iterator Objects > 7.4.7 IteratorComplete ( _iteratorResult_: an Object, ): either a normal completion containing a Boolean or a throw completion [id: sec-iteratorcomplete]
+
+<emu-clause id="sec-iteratorcomplete" type="abstract operation">
+      <h1>
+        IteratorComplete (
+          _iteratorResult_: an Object,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Return ToBoolean(? Get(_iteratorResult_, *"done"*)).
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.2 Object Environment Records > 9.1.1.2.9 GetThisBinding ( ) [id: sec-object-environment-records-getthisbinding]
+
+<emu-clause id="sec-object-environment-records-getthisbinding">
+          <h1>GetThisBinding ( )</h1>
+          <p>The GetThisBinding concrete method of an Object Environment Record is never used within this specification.</p>
+        </emu-clause>

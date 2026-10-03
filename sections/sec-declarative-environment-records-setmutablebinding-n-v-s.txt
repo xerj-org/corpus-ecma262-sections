@@ -1,0 +1,38 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.1 Declarative Environment Records > 9.1.1.1.5 SetMutableBinding ( _name_: a String, _value_: an ECMAScript language value, _strict_: a Boolean, ): either a normal completion containing ~unused~ or a throw completion [id: sec-declarative-environment-records-setmutablebinding-n-v-s]
+
+<emu-clause id="sec-declarative-environment-records-setmutablebinding-n-v-s" type="concrete method">
+          <h1>
+            SetMutableBinding (
+              _name_: a String,
+              _value_: an ECMAScript language value,
+              _strict_: a Boolean,
+            ): either a normal completion containing ~unused~ or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>a Declarative Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It attempts to change the bound value of the current binding of the identifier whose name is _name_ to the value _value_. A binding for _name_ normally already exists, but in rare cases it may not. If the binding is an immutable binding, a *TypeError* is thrown if _strict_ is *true*.</dd>
+          </dl>
+          <emu-alg>
+            1. [id="step-setmutablebinding-missing-binding"] If _envRecord_ does not have a binding for _name_, then
+              1. If _strict_ is *true*, throw a *ReferenceError* exception.
+              1. Perform ! _envRecord_.CreateMutableBinding(_name_, *true*).
+              1. Perform ! _envRecord_.InitializeBinding(_name_, _value_).
+              1. Return ~unused~.
+            1. If the binding for _name_ in _envRecord_ is a strict binding, set _strict_ to *true*.
+            1. If the binding for _name_ in _envRecord_ has not yet been initialized, then
+              1. Throw a *ReferenceError* exception.
+            1. Else if the binding for _name_ in _envRecord_ is a mutable binding, then
+              1. Change its bound value to _value_.
+            1. Else,
+              1. Assert: This is an attempt to change the value of an immutable binding.
+              1. If _strict_ is *true*, throw a *TypeError* exception.
+            1. Return ~unused~.
+          </emu-alg>
+          <emu-note>
+            <p>An example of ECMAScript code that results in a missing binding at step <emu-xref href="#step-setmutablebinding-missing-binding"></emu-xref> is:</p>
+            <pre><code class="javascript">function f() { eval("var x; x = (delete x, 0);"); }</code></pre>
+          </emu-note>
+        </emu-clause>

@@ -1,0 +1,57 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.4 ToNumber ( _arg_: an ECMAScript language value, ): either a normal completion containing a Number or a throw completion > 7.1.4.1 ToNumber Applied to the String Type > 7.1.4.1.2 Runtime Semantics: StringNumericValue ( ): a Number [id: sec-runtime-semantics-stringnumericvalue]
+
+<emu-clause id="sec-runtime-semantics-stringnumericvalue" type="sdo" oldids="sec-runtime-semantics-mv-s">
+          <h1>Runtime Semantics: StringNumericValue ( ): a Number</h1>
+          <dl class="header">
+          </dl>
+          <emu-note>
+            <p>The conversion of a |StringNumericLiteral| to a Number value is similar overall to the determination of the NumericValue of a |NumericLiteral| (see <emu-xref href="#sec-literals-numeric-literals"></emu-xref>), but some of the details are different.</p>
+          </emu-note>
+          <emu-grammar>StringNumericLiteral ::: StrWhiteSpace?</emu-grammar>
+          <emu-alg>
+            1. Return *+0*<sub>𝔽</sub>.
+          </emu-alg>
+          <emu-grammar>StringNumericLiteral ::: StrWhiteSpace? StrNumericLiteral StrWhiteSpace?</emu-grammar>
+          <emu-alg>
+            1. Return the StringNumericValue of |StrNumericLiteral|.
+          </emu-alg>
+          <emu-grammar>StrNumericLiteral ::: NonDecimalIntegerLiteral</emu-grammar>
+          <emu-alg>
+            1. Return 𝔽(MV of |NonDecimalIntegerLiteral|).
+          </emu-alg>
+          <emu-grammar>StrDecimalLiteral ::: `-` StrUnsignedDecimalLiteral</emu-grammar>
+          <emu-alg>
+            1. Let _a_ be the StringNumericValue of |StrUnsignedDecimalLiteral|.
+            1. If _a_ is *+0*<sub>𝔽</sub>, return *-0*<sub>𝔽</sub>.
+            1. Return -_a_.
+          </emu-alg>
+          <emu-grammar>StrUnsignedDecimalLiteral ::: `Infinity`</emu-grammar>
+          <emu-alg>
+            1. Return *+∞*<sub>𝔽</sub>.
+          </emu-alg>
+          <emu-grammar>StrUnsignedDecimalLiteral ::: DecimalDigits `.` DecimalDigits? ExponentPart?</emu-grammar>
+          <emu-alg>
+            1. Let _a_ be the MV of the first |DecimalDigits|.
+            1. If the second |DecimalDigits| is present, then
+              1. Let _b_ be the MV of the second |DecimalDigits|.
+              1. Let _n_ be the number of code points in the second |DecimalDigits|.
+            1. Else,
+              1. Let _b_ be 0.
+              1. Let _n_ be 0.
+            1. If |ExponentPart| is present, let _e_ be the MV of |ExponentPart|; else let _e_ be 0.
+            1. Return RoundMVResult((_a_ + (_b_ × 10<sup>-_n_</sup>)) × 10<sup>_e_</sup>).
+          </emu-alg>
+          <emu-grammar>StrUnsignedDecimalLiteral ::: `.` DecimalDigits ExponentPart?</emu-grammar>
+          <emu-alg>
+            1. Let _b_ be the MV of |DecimalDigits|.
+            1. If |ExponentPart| is present, let _e_ be the MV of |ExponentPart|; else let _e_ be 0.
+            1. Let _n_ be the number of code points in |DecimalDigits|.
+            1. Return RoundMVResult(_b_ × 10<sup>_e_ - _n_</sup>).
+          </emu-alg>
+          <emu-grammar>StrUnsignedDecimalLiteral ::: DecimalDigits ExponentPart?</emu-grammar>
+          <emu-alg>
+            1. Let _a_ be the MV of |DecimalDigits|.
+            1. If |ExponentPart| is present, let _e_ be the MV of |ExponentPart|; else let _e_ be 0.
+            1. Return RoundMVResult(_a_ × 10<sup>_e_</sup>).
+          </emu-alg>
+        </emu-clause>

@@ -1,0 +1,7 @@
+ECMA-262 > 28 Reflection > 28.3 Module Namespace Objects > 28.3.1 %Symbol.toStringTag% [id: sec-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-@@tostringtag" id="sec-%symbol.tostringtag%">
+      <h1>%Symbol.toStringTag%</h1>
+      <p>The initial value of the %Symbol.toStringTag% property is the String value *"Module"*.</p>
+      <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+    </emu-clause>

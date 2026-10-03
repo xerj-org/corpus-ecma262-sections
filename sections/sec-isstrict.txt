@@ -1,0 +1,15 @@
+ECMA-262 > 11 ECMAScript Language: Source Text > 11.2 Types of Source Code > 11.2.2 Strict Mode Code > 11.2.2.1 Static Semantics: IsStrict ( _parseNode_: a Parse Node, ): a Boolean [id: sec-isstrict]
+
+<emu-clause id="sec-isstrict" type="abstract operation">
+        <h1>
+          Static Semantics: IsStrict (
+            _parseNode_: a Parse Node,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If the source text matched by _parseNode_ is strict mode code, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

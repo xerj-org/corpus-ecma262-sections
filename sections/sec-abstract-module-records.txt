@@ -1,0 +1,156 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.5 Abstract Module Records [id: sec-abstract-module-records]
+
+<emu-clause id="sec-abstract-module-records">
+        <h1>Abstract Module Records</h1>
+        <p>A <dfn variants="Module Records">Module Record</dfn> encapsulates structural information about the imports and exports of a single module. This information is used to link the imports and exports of sets of connected modules. A Module Record includes four fields that are only used when evaluating a module.</p>
+        <p>For specification purposes Module Records are values of the Record specification type and can be thought of as existing in a simple object-oriented hierarchy where Module Record is an abstract class with both abstract and concrete subclasses. This specification defines the abstract subclass named Cyclic Module Record and its concrete subclass named Source Text Module Record. Other specifications and implementations may define additional Module Record subclasses corresponding to alternative module definition facilities that they defined.</p>
+        <p>Module Record defines the fields listed in <emu-xref href="#table-module-record-fields"></emu-xref>. All Module Definition subclasses include at least those fields. Module Record also defines the abstract method list in <emu-xref href="#table-abstract-methods-of-module-records"></emu-xref>. All Module definition subclasses must provide concrete implementations of these abstract methods.</p>
+        <emu-table id="table-module-record-fields" caption="Module Record Fields" oldids="table-36">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Field Name
+                </th>
+                <th>
+                  Value Type
+                </th>
+                <th>
+                  Meaning
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                [[Realm]]
+              </td>
+              <td>
+                a Realm Record
+              </td>
+              <td>
+                The Realm within which this module was created.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Environment]]
+              </td>
+              <td>
+                a Module Environment Record or ~empty~
+              </td>
+              <td>
+                The Environment Record containing the top level bindings for this module. This field is set when the module is linked.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Namespace]]
+              </td>
+              <td>
+                an Object or ~empty~
+              </td>
+              <td>
+                The Module Namespace Object (<emu-xref href="#sec-module-namespace-objects"></emu-xref>) if one has been created for this module.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[HostDefined]]
+              </td>
+              <td>
+                anything (default value is *undefined*)
+              </td>
+              <td>
+                Field reserved for use by host environments that need to associate additional information with a module.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+        <emu-table id="table-abstract-methods-of-module-records" type="abstract methods" of="Module Records" oldids="table-37">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Method
+                </th>
+                <th>
+                  Purpose
+                </th>
+                <th>
+                  Definitions
+                </th>
+              </tr>
+            </thead>
+            <tr id="abstract-loadrequestedmodules">
+              <td>
+                LoadRequestedModules (
+                  optional _hostDefined_: anything,
+                ): a Promise
+              </td>
+              <td>
+                <p>It prepares the module for linking by recursively loading all its dependencies.</p>
+              </td>
+              <td>
+                Within this specification it has definitions in the following types; hosts may provide additional types with their own definitions:
+                <emu-concrete-method-dfns for="LoadRequestedModules"></emu-concrete-method-dfns>
+              </td>
+            </tr>
+            <tr id="abstract-getexportednames">
+              <td>
+                GetExportedNames (
+                  optional _exportStarSet_: a List of Source Text Module Records,
+                ): a List of Strings
+              </td>
+              <td>
+                <p>It returns a list of all names that are either directly or indirectly exported from this module.</p>
+                <p>LoadRequestedModules must have completed successfully prior to invoking this method.</p>
+              </td>
+              <td>
+                Within this specification it has definitions in the following types; hosts may provide additional types with their own definitions:
+                <emu-concrete-method-dfns for="GetExportedNames"></emu-concrete-method-dfns>
+              </td>
+            </tr>
+            <tr id="abstract-resolveexport">
+              <td>
+                ResolveExport (
+                  _exportName_: a String,
+                  optional _resolveSet_: a List of Records with fields [[Module]] (a Module Record) and [[ExportName]] (a String),
+                ): a ResolvedBinding Record, *null*, or ~ambiguous~
+              </td>
+              <td>
+                <p>It returns the binding of a name exported by this module. Bindings are represented by a <dfn id="resolvedbinding-record" variants="ResolvedBinding Records">ResolvedBinding Record</dfn>, of the form { [[Module]]: Module Record, [[BindingName]]: String | ~namespace~ }. If the export is a Module Namespace Object without a direct binding in any module, [[BindingName]] will be set to ~namespace~. It returns *null* if the name cannot be resolved, or ~ambiguous~ if multiple bindings were found.</p>
+                <p>Each time this operation is called with a specific _exportName_, _resolveSet_ pair as arguments it must return the same result.</p>
+                <p>LoadRequestedModules must have completed successfully prior to invoking this method.</p>
+              </td>
+              <td>
+                Within this specification it has definitions in the following types; hosts may provide additional types with their own definitions:
+                <emu-concrete-method-dfns for="ResolveExport"></emu-concrete-method-dfns>
+              </td>
+            </tr>
+            <tr id="abstract-link">
+              <td>Link ( ): either a normal completion containing ~unused~ or a throw completion</td>
+              <td>
+                <p>It prepares the module for evaluation by transitively resolving all module dependencies and creating a Module Environment Record.</p>
+                <p>LoadRequestedModules must have completed successfully prior to invoking this method.</p>
+              </td>
+              <td>
+                Within this specification it has definitions in the following types; hosts may provide additional types with their own definitions:
+                <emu-concrete-method-dfns for="Link"></emu-concrete-method-dfns>
+              </td>
+            </tr>
+            <tr id="abstract-evaluate">
+              <td>Evaluate ( ): a Promise</td>
+              <td>
+                <p>It returns a promise for the evaluation of this module and its dependencies, resolving on successful evaluation or if it has already been evaluated successfully, and rejecting for an evaluation error or if it has already been evaluated unsuccessfully. If the promise is rejected, hosts are expected to handle the promise rejection and rethrow the evaluation error. Unless this module is a Cyclic Module Record, the returned promise must be already settled.</p>
+                <p>Link must have completed successfully prior to invoking this method.</p>
+              </td>
+              <td>
+                Within this specification it has definitions in the following types; hosts may provide additional types with their own definitions:
+                <emu-concrete-method-dfns for="Evaluate"></emu-concrete-method-dfns>
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+
+        
+      </emu-clause>

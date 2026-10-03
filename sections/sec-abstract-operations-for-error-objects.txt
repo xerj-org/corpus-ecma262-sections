@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.9 Abstract Operations for Error Objects [id: sec-abstract-operations-for-error-objects]
+
+<emu-clause id="sec-abstract-operations-for-error-objects">
+      <h1>Abstract Operations for Error Objects</h1>
+
+      
+    </emu-clause>

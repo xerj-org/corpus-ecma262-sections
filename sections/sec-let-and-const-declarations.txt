@@ -1,0 +1,50 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.3 Declarations and the Variable Statement > 14.3.1 Let, Const, Using, and Await Using Declarations [id: sec-let-and-const-declarations]
+
+<emu-clause id="sec-let-and-const-declarations">
+      <h1>Let, Const, Using, and Await Using Declarations</h1>
+      <emu-note>
+        <p>`let`, `const`, `using`, and `await using` declarations define variables that are scoped to the running execution context's LexicalEnvironment. The variables are created when their containing Environment Record is instantiated but may not be accessed in any way until the variable's |LexicalBinding| is evaluated. A variable defined by a |LexicalBinding| with an |Initializer| is assigned the value of its |Initializer|'s |AssignmentExpression| when the |LexicalBinding| is evaluated, not when the variable is created. If a |LexicalBinding| in a `let` declaration does not have an |Initializer| the variable is assigned the value *undefined* when the |LexicalBinding| is evaluated.</p>
+      </emu-note>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        LexicalDeclaration[In, Yield, Await] :
+          LetOrConst BindingList[?In, ?Yield, ?Await, +Pattern] `;`
+          UsingDeclaration[?In, ?Yield, ?Await]
+          [+Await] AwaitUsingDeclaration[?In, ?Yield]
+
+        LetOrConst :
+          `let`
+          `const`
+
+        UsingDeclaration[In, Yield, Await] :
+          `using` [no LineTerminator here] BindingList[?In, ?Yield, ?Await, ~Pattern] `;`
+
+        AwaitUsingDeclaration[In, Yield] :
+          CoverAwaitExpressionAndAwaitUsingDeclarationHead[?Yield] [no LineTerminator here] BindingList[?In, ?Yield, +Await, ~Pattern] `;`
+
+        BindingList[In, Yield, Await, Pattern] :
+          LexicalBinding[?In, ?Yield, ?Await, ?Pattern]
+          BindingList[?In, ?Yield, ?Await, ?Pattern] `,` LexicalBinding[?In, ?Yield, ?Await, ?Pattern]
+
+        LexicalBinding[In, Yield, Await, Pattern] :
+          BindingIdentifier[?Yield, ?Await] Initializer[?In, ?Yield, ?Await]?
+          [+Pattern] BindingPattern[?Yield, ?Await] Initializer[?In, ?Yield, ?Await]
+      </emu-grammar>
+
+      <h2>Supplemental Syntax</h2>
+      <p>
+        When processing an instance of the production<br>
+        <emu-grammar>AwaitUsingDeclaration : CoverAwaitExpressionAndAwaitUsingDeclarationHead BindingList `;`</emu-grammar><br>
+        the interpretation of |CoverAwaitExpressionAndAwaitUsingDeclarationHead| is refined using the following grammar:
+      </p>
+      <emu-grammar type="definition">
+        AwaitUsingDeclarationHead :
+          `await` [no LineTerminator here] `using`
+      </emu-grammar>
+
+      
+
+      
+
+      
+    </emu-clause>

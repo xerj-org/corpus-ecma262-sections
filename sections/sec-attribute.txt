@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.40 attribute [id: sec-attribute]
+
+<emu-clause id="sec-attribute">
+      <h1>attribute</h1>
+      <p>internal value that defines some characteristic of a property</p>
+    </emu-clause>

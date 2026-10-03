@@ -1,0 +1,25 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.9 Runtime Semantics: CompileToCharSet ( _regexpRecord_: a RegExp Record, ): a CharSet > 22.2.2.9.8 UnicodeMatchPropertyValue ( _p_: ECMAScript source text, _v_: ECMAScript source text, ): a Unicode property value [id: sec-runtime-semantics-unicodematchpropertyvalue-p-v]
+
+<emu-clause id="sec-runtime-semantics-unicodematchpropertyvalue-p-v" type="abstract operation">
+          <h1>
+            UnicodeMatchPropertyValue (
+              _p_: ECMAScript source text,
+              _v_: ECMAScript source text,
+            ): a Unicode property value
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Assert: _p_ is a canonical, unaliased <emu-not-ref>Unicode property name</emu-not-ref> listed in the “<emu-not-ref>Canonical property name</emu-not-ref>” column of <emu-xref href="#table-nonbinary-unicode-properties"></emu-xref>.
+            1. Assert: _v_ is a property value or property value alias for the Unicode property _p_ listed in <a href="https://unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt"><code>PropertyValueAliases.txt</code></a>.
+            1. Let _value_ be the canonical property value of _v_ as given in the “Canonical property value” column of the corresponding row.
+            1. Return the List of Unicode code points _value_.
+          </emu-alg>
+          <p>Implementations must support the Unicode property values and property value aliases listed in <a href="https://unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt"><code>PropertyValueAliases.txt</code></a> for the properties listed in <emu-xref href="#table-nonbinary-unicode-properties"></emu-xref>. To ensure interoperability, implementations must not support any other property values or property value aliases.</p>
+          <emu-note>
+            <p>For example, `Xpeo` and `Old_Persian` are valid `Script_Extensions` values, but `xpeo` and `Old Persian` aren't.</p>
+          </emu-note>
+          <emu-note>
+            <p>This algorithm differs from <a href="https://unicode.org/reports/tr44/#Matching_Symbolic">the matching rules for symbolic values listed in UAX44</a>: case, <emu-xref href="#sec-white-space">white space</emu-xref>, U+002D (HYPHEN-MINUS), and U+005F (LOW LINE) are not ignored, and the `Is` prefix is not supported.</p>
+          </emu-note>
+        </emu-clause>

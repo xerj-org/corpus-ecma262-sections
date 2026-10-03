@@ -1,0 +1,20 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.1 Patterns > 22.2.1.9 Static Semantics: GroupSpecifiersThatMatch ( _thisGroupName_: a |GroupName| Parse Node, ): a List of |GroupSpecifier| Parse Nodes [id: sec-groupspecifiersthatmatch]
+
+<emu-clause id="sec-groupspecifiersthatmatch" type="abstract operation">
+        <h1>
+          Static Semantics: GroupSpecifiersThatMatch (
+            _thisGroupName_: a |GroupName| Parse Node,
+          ): a List of |GroupSpecifier| Parse Nodes
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _name_ be the CapturingGroupName of _thisGroupName_.
+          1. Let _pattern_ be the |Pattern| containing _thisGroupName_.
+          1. Let _result_ be a new empty List.
+          1. For each |GroupSpecifier| _groupSpecifier_ that _pattern_ contains, do
+            1. If the CapturingGroupName of _groupSpecifier_ is _name_, then
+              1. Append _groupSpecifier_ to _result_.
+          1. Return _result_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,27 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.11 TypedArrayCreate ( _proto_: an Object, ): a TypedArray [id: sec-typedarraycreate]
+
+<emu-clause id="sec-typedarraycreate" oldids="sec-integerindexedobjectcreate" type="abstract operation">
+        <h1>
+          TypedArrayCreate (
+            _proto_: an Object,
+          ): a TypedArray
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to specify the creation of new TypedArrays.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _internalSlotsList_ be « [[Prototype]], [[Extensible]], [[ViewedArrayBuffer]], [[TypedArrayName]], [[ContentType]], [[ByteLength]], [[ByteOffset]], [[ArrayLength]] ».
+          1. Let _ta_ be MakeBasicObject(_internalSlotsList_).
+          1. Set _ta_.[[PreventExtensions]] as specified in <emu-xref href="#sec-typedarray-preventextensions"></emu-xref>.
+          1. Set _ta_.[[GetOwnProperty]] as specified in <emu-xref href="#sec-typedarray-getownproperty"></emu-xref>.
+          1. Set _ta_.[[HasProperty]] as specified in <emu-xref href="#sec-typedarray-hasproperty"></emu-xref>.
+          1. Set _ta_.[[DefineOwnProperty]] as specified in <emu-xref href="#sec-typedarray-defineownproperty"></emu-xref>.
+          1. Set _ta_.[[Get]] as specified in <emu-xref href="#sec-typedarray-get"></emu-xref>.
+          1. Set _ta_.[[Set]] as specified in <emu-xref href="#sec-typedarray-set"></emu-xref>.
+          1. Set _ta_.[[Delete]] as specified in <emu-xref href="#sec-typedarray-delete"></emu-xref>.
+          1. Set _ta_.[[OwnPropertyKeys]] as specified in <emu-xref href="#sec-typedarray-ownpropertykeys"></emu-xref>.
+          1. Set _ta_.[[Prototype]] to _proto_.
+          1. Return _ta_.
+        </emu-alg>
+      </emu-clause>

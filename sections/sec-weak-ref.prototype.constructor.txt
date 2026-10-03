@@ -1,0 +1,7 @@
+ECMA-262 > 26 Managing Memory > 26.1 WeakRef Objects > 26.1.3 Properties of the WeakRef Prototype Object > 26.1.3.1 WeakRef.prototype.constructor [id: sec-weak-ref.prototype.constructor]
+
+<emu-clause id="sec-weak-ref.prototype.constructor" normative-optional>
+        <h1>WeakRef.prototype.constructor</h1>
+
+        <p>The initial value of `WeakRef.prototype.constructor` is %WeakRef%.</p>
+      </emu-clause>

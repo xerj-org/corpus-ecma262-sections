@@ -1,0 +1,11 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.6 Properties of the RegExp Prototype Object > 22.2.6.3 get RegExp.prototype.dotAll [id: sec-get-regexp.prototype.dotAll]
+
+<emu-clause id="sec-get-regexp.prototype.dotAll" type="built-in function">
+        <h1>get RegExp.prototype.dotAll</h1>
+        <p>`RegExp.prototype.dotAll` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _regexp_ be the *this* value.
+          1. Let _codeUnit_ be the code unit 0x0073 (LATIN SMALL LETTER S).
+          1. Return ? RegExpHasFlag(_regexp_, _codeUnit_).
+        </emu-alg>
+      </emu-clause>

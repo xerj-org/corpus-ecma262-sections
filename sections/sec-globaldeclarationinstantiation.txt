@@ -1,0 +1,92 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.1 Scripts > 16.1.7 GlobalDeclarationInstantiation ( _script_: a |Script| Parse Node, _envRecord_: a Global Environment Record, ): either a normal completion containing ~unused~ or a throw completion [id: sec-globaldeclarationinstantiation]
+
+<emu-clause id="sec-globaldeclarationinstantiation" type="abstract operation" oldids="sec-web-compat-globaldeclarationinstantiation">
+      <h1>
+        GlobalDeclarationInstantiation (
+          _script_: a |Script| Parse Node,
+          _envRecord_: a Global Environment Record,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>_script_ is the |Script| for which the execution context is being established. _envRecord_ is the global environment in which bindings are to be created.</dd>
+      </dl>
+      <emu-note>
+        <p>When an execution context is established for evaluating scripts, declarations are instantiated in the current global environment. Each global binding declared in the code is instantiated.</p>
+      </emu-note>
+      <p>It performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _lexicalNames_ be the LexicallyDeclaredNames of _script_.
+        1. Let _variableNames_ be the VarDeclaredNames of _script_.
+        1. For each element _name_ of _lexicalNames_, do
+          1. If HasLexicalDeclaration(_envRecord_, _name_) is *true*, throw a *SyntaxError* exception.
+          1. Let _hasRestrictedGlobal_ be ? HasRestrictedGlobalProperty(_envRecord_, _name_).
+          1. NOTE: Global `var` and `function` bindings (except those that are introduced by non-strict direct eval) are non-configurable and are therefore restricted global properties.
+          1. If _hasRestrictedGlobal_ is *true*, throw a *SyntaxError* exception.
+        1. For each element _name_ of _variableNames_, do
+          1. If HasLexicalDeclaration(_envRecord_, _name_) is *true*, throw a *SyntaxError* exception.
+        1. Let _variableDecls_ be the VarScopedDeclarations of _script_.
+        1. Let _funcsToInitialize_ be a new empty List.
+        1. Let _declaredFuncNames_ be a new empty List.
+        1. For each element _variableDecl_ of _variableDecls_, in reverse List order, do
+          1. If _variableDecl_ is not either a |VariableDeclaration|, a |ForBinding|, or a |BindingIdentifier|, then
+            1. Assert: _variableDecl_ is either a |FunctionDeclaration|, a |GeneratorDeclaration|, an |AsyncFunctionDeclaration|, or an |AsyncGeneratorDeclaration|.
+            1. NOTE: If there are multiple function declarations for the same name, the last declaration is used.
+            1. Let _funcName_ be the sole element of the BoundNames of _variableDecl_.
+            1. If _declaredFuncNames_ does not contain _funcName_, then
+              1. Let _funcDefinable_ be ? CanDeclareGlobalFunction(_envRecord_, _funcName_).
+              1. If _funcDefinable_ is *false*, throw a *TypeError* exception.
+              1. Append _funcName_ to _declaredFuncNames_.
+              1. Insert _variableDecl_ as the first element of _funcsToInitialize_.
+        1. Let _declaredVariableNames_ be a new empty List.
+        1. For each element _variableDecl_ of _variableDecls_, do
+          1. If _variableDecl_ is either a |VariableDeclaration|, a |ForBinding|, or a |BindingIdentifier|, then
+            1. For each String _name_ of the BoundNames of _variableDecl_, do
+              1. If _declaredFuncNames_ does not contain _name_, then
+                1. Let _variableDefinable_ be ? CanDeclareGlobalVar(_envRecord_, _name_).
+                1. If _variableDefinable_ is *false*, throw a *TypeError* exception.
+                1. If _declaredVariableNames_ does not contain _name_, then
+                  1. Append _name_ to _declaredVariableNames_.
+        1. NOTE: No abnormal terminations occur after this algorithm step if the global object is an ordinary object. However, if the global object is a Proxy exotic object it may exhibit behaviours that cause abnormal terminations in some of the following steps.
+        1. [id="step-globaldeclarationinstantiation-web-compat-insertion-point", normative-optional] If the host is a web browser or otherwise supports <emu-xref href="#sec-block-level-function-declarations-web-legacy-compatibility-semantics" title></emu-xref>, then
+          1. Let _strict_ be ScriptIsStrict of _script_.
+          1. If _strict_ is *false*, then
+            1. Let _declaredFuncOrVariableNames_ be the list-concatenation of _declaredFuncNames_ and _declaredVariableNames_.
+            1. For each |FunctionDeclaration| _funcDecl_ that is directly contained in the |StatementList| of any |Block|, |CaseClause|, or |DefaultClause| _x_ such that _script_ Contains _x_ is *true*, do
+              1. Let _funcName_ be the StringValue of the |BindingIdentifier| of _funcDecl_.
+              1. If replacing the |FunctionDeclaration| _funcDecl_ with a |VariableStatement| that has _funcName_ as a |BindingIdentifier| would not produce any Early Errors for _script_, then
+                1. If HasLexicalDeclaration(_envRecord_, _funcName_) is *false*, then
+                  1. Let _funcDefinable_ be ? CanDeclareGlobalVar(_envRecord_, _funcName_).
+                  1. If _funcDefinable_ is *true*, then
+                    1. NOTE: A var binding for _funcName_ is only instantiated here if it is neither a VarDeclaredName nor the name of another |FunctionDeclaration|.
+                    1. If _declaredFuncOrVariableNames_ does not contain _funcName_, then
+                      1. Perform ? CreateGlobalVarBinding(_envRecord_, _funcName_, *false*).
+                      1. Append _funcName_ to _declaredFuncOrVariableNames_.
+                    1. [id="step-globaldeclarationinstantiation-alt-funcdecl-eval"] When the |FunctionDeclaration| _funcDecl_ is evaluated, perform the following steps in place of the |FunctionDeclaration| Evaluation algorithm provided in <emu-xref href="#sec-function-definitions-runtime-semantics-evaluation"></emu-xref>:
+                      1. Let _globalEnv_ be the running execution context's VariableEnvironment.
+                      1. Let _blockEnv_ be the running execution context's LexicalEnvironment.
+                      1. Let _funcObj_ be ! _blockEnv_.GetBindingValue(_funcName_, *false*).
+                      1. Perform ? <emu-meta effects="user-code">_globalEnv_.SetMutableBinding(_funcName_, _funcObj_, *false*)</emu-meta>.
+                      1. Return ~unused~.
+        1. Let _lexicalDecls_ be the LexicallyScopedDeclarations of _script_.
+        1. Let _privateEnv_ be *null*.
+        1. For each element _lexicalDecl_ of _lexicalDecls_, do
+          1. NOTE: Lexically declared names are only instantiated here but not initialized.
+          1. For each element _name_ of the BoundNames of _lexicalDecl_, do
+            1. If IsConstantDeclaration of _lexicalDecl_ is *true*, then
+              1. Perform ? <emu-meta effects="user-code">_envRecord_.CreateImmutableBinding(_name_, *true*)</emu-meta>.
+            1. Else,
+              1. Perform ? <emu-meta effects="user-code">_envRecord_.CreateMutableBinding(_name_, *false*)</emu-meta>.
+        1. For each Parse Node _funcDecl_ of _funcsToInitialize_, do
+          1. Let _funcName_ be the sole element of the BoundNames of _funcDecl_.
+          1. Let _funcObj_ be InstantiateFunctionObject of _funcDecl_ with arguments _envRecord_ and _privateEnv_.
+          1. Perform ? <emu-meta effects="user-code">CreateGlobalFunctionBinding(_envRecord_, _funcName_, _funcObj_, *false*)</emu-meta>.
+        1. For each String _variableName_ of _declaredVariableNames_, do
+          1. Perform ? <emu-meta effects="user-code">CreateGlobalVarBinding(_envRecord_, _variableName_, *false*)</emu-meta>.
+        1. Return ~unused~.
+      </emu-alg>
+      <emu-note>
+        <p>Early errors specified in <emu-xref href="#sec-scripts-static-semantics-early-errors"></emu-xref> prevent name conflicts between function/var declarations and let/const/class declarations as well as redeclaration of let/const/class bindings for declaration contained within a single |Script|. However, such conflicts and redeclarations that span more than one |Script| are detected as runtime errors during GlobalDeclarationInstantiation. If any such errors are detected, no bindings are instantiated for the script. However, if the global object is defined using Proxy exotic objects then the runtime tests for conflicting declarations may be unreliable resulting in an abrupt completion and some global declarations not being instantiated. If this occurs, the code for the |Script| is not evaluated.</p>
+        <p>Unlike explicit var or function declarations, properties that are directly created on the global object result in global bindings that may be shadowed by let/const/class declarations.</p>
+      </emu-note>
+    </emu-clause>

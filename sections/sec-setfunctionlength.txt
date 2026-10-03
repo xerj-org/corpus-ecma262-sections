@@ -1,0 +1,19 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.2 ECMAScript Function Objects > 10.2.10 SetFunctionLength ( _func_: a function object, _length_: a non-negative integer or +∞, ): ~unused~ [id: sec-setfunctionlength]
+
+<emu-clause id="sec-setfunctionlength" type="abstract operation">
+      <h1>
+        SetFunctionLength (
+          _func_: a function object,
+          _length_: a non-negative integer or +&infin;,
+        ): ~unused~
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It adds a *"length"* property to _func_.</dd>
+      </dl>
+      <emu-alg>
+        1. Assert: _func_ is an extensible object that does not have a *"length"* own property.
+        1. Perform ! DefinePropertyOrThrow(_func_, *"length"*, PropertyDescriptor { [[Value]]: 𝔽(_length_), [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }).
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

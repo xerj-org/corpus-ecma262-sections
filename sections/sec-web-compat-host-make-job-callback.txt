@@ -1,0 +1,6 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.3 Other Additional Features > B.3.7 Non-default behaviour in HostMakeJobCallback [id: sec-web-compat-host-make-job-callback]
+
+<emu-annex id="sec-web-compat-host-make-job-callback">
+      <h1>Non-default behaviour in HostMakeJobCallback</h1>
+      <p>The HostMakeJobCallback abstract operation allows hosts which are web browsers to specify non-default behaviour.</p>
+    </emu-annex>

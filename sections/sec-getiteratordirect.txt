@@ -1,0 +1,16 @@
+ECMA-262 > 7 Abstract Operations > 7.4 Operations on Iterator Objects > 7.4.2 GetIteratorDirect ( _obj_: an Object, ): either a normal completion containing an Iterator Record or a throw completion [id: sec-getiteratordirect]
+
+<emu-clause id="sec-getiteratordirect" type="abstract operation">
+      <h1>
+        GetIteratorDirect (
+          _obj_: an Object,
+        ): either a normal completion containing an Iterator Record or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _nextMethod_ be ? Get(_obj_, *"next"*).
+        1. Let _iteratorRecord_ be the Iterator Record { [[Iterator]]: _obj_, [[NextMethod]]: _nextMethod_, [[Done]]: *false* }.
+        1. Return _iteratorRecord_.
+      </emu-alg>
+    </emu-clause>

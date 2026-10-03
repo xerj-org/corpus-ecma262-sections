@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.2 Properties of the Number Constructor > 21.1.2.14 Number.POSITIVE_INFINITY [id: sec-number.positive_infinity]
+
+<emu-clause id="sec-number.positive_infinity">
+        <h1>Number.POSITIVE_INFINITY</h1>
+        <p>The value of `Number.POSITIVE_INFINITY` is *+∞*<sub>𝔽</sub>.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

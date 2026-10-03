@@ -1,0 +1,14 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.4 The Completion Record Specification Type > 6.2.4.2 ThrowCompletion ( _value_: an ECMAScript language value, ): a throw completion [id: sec-throwcompletion]
+
+<emu-clause id="sec-throwcompletion" type="abstract operation">
+        <h1>
+          ThrowCompletion (
+            _value_: an ECMAScript language value,
+          ): a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Return Completion Record { [[Type]]: ~throw~, [[Value]]: _value_, [[Target]]: ~empty~ }.
+        </emu-alg>
+      </emu-clause>

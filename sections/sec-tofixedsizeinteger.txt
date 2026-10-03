@@ -1,0 +1,25 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.7 ToFixedSizeInteger ( _int_: an integer, +∞, or -∞, _signed_: ~unsigned~ or ~signed~, _bitWidth_: a positive integer, ): an integer [id: sec-tofixedsizeinteger]
+
+<emu-clause id="sec-tofixedsizeinteger" type="abstract operation">
+      <h1>
+        ToFixedSizeInteger (
+          _int_: an integer, +∞, or -∞,
+          _signed_: ~unsigned~ or ~signed~,
+          _bitWidth_: a positive integer,
+        ): an integer
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It maps _int_ to one of 2<sup>_bitWidth_</sup> integers in the inclusive interval from 0 to 2<sup>_bitWidth_</sup> - 1 (if _signed_ is ~unsigned~) or -2<sup>_bitWidth_ - 1</sup> to 2<sup>_bitWidth_ - 1</sup> - 1 (if _signed_ is ~signed~).</dd>
+      </dl>
+      <emu-alg>
+        1. If _int_ = +∞ or _int_ = -∞, return 0.
+        1. Let _fixedInt_ be _int_ modulo 2<sup>_bitWidth_</sup>.
+        1. NOTE: The following step does not change the two's complement representation of _fixedInt_.
+        1. If _signed_ is ~signed~ and _fixedInt_ ≥ 2<sup>_bitWidth_ - 1</sup>, set _fixedInt_ to _fixedInt_ - 2<sup>_bitWidth_</sup>.
+        1. Return _fixedInt_.
+      </emu-alg>
+      <emu-note>
+        <p>ToFixedSizeInteger is idempotent: for any ECMAScript language value _x_, ToFixedSizeInteger(ToFixedSizeInteger(_x_, _signed_, _bitWidth_), _signed_, _bitWidth_) is the same as ToFixedSizeInteger(_x_, _signed_, _bitWidth_). In fact, because +∞ and -∞ are mapped to 0, this invariant even survives inversion of _signed_ (e.g., ToFixedSizeInteger(ToFixedSizeInteger(_x_, ~signed~, 32), ~unsigned~, 32) is the same as ToFixedSizeInteger(_x_, ~unsigned~, 32)).</p>
+      </emu-note>
+    </emu-clause>

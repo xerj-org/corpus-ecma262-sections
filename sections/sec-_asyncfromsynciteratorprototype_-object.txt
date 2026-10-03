@@ -1,0 +1,19 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.5 Async-from-Sync Iterator Objects > 27.1.5.2 The %AsyncFromSyncIteratorPrototype% Object [id: sec-%asyncfromsynciteratorprototype%-object]
+
+<emu-clause id="sec-%asyncfromsynciteratorprototype%-object">
+        <h1>The %AsyncFromSyncIteratorPrototype% Object</h1>
+        <p>The <dfn>%AsyncFromSyncIteratorPrototype%</dfn> object:</p>
+        <ul>
+          <li>has properties that are inherited by all Async-from-Sync Iterator objects.</li>
+          <li>is an ordinary object.</li>
+          <li>has a [[Prototype]] internal slot whose value is %AsyncIteratorPrototype%.</li>
+          <li>is never directly accessible to ECMAScript code.</li>
+          <li>has the following properties:</li>
+        </ul>
+
+        
+
+        
+
+        
+      </emu-clause>

@@ -1,0 +1,10 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.3 Properties of the Object Prototype Object > 20.1.3.8 Object.prototype.__proto__ [id: sec-object.prototype.__proto__]
+
+<emu-clause id="sec-object.prototype.__proto__" legacy normative-optional>
+        <h1>Object.prototype.__proto__</h1>
+        <p>`Object.prototype.__proto__` is an accessor property with attributes { [[Enumerable]]: *false*, [[Configurable]]: *true* }. The [[Getter]] and [[Setter]] attributes are defined as follows:</p>
+
+        
+
+        
+      </emu-clause>

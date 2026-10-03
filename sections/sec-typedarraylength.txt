@@ -1,0 +1,22 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.13 TypedArrayLength ( _taRecord_: a TypedArray With Buffer Witness Record, ): a non-negative integer [id: sec-typedarraylength]
+
+<emu-clause id="sec-typedarraylength" oldids="sec-integerindexedobjectlength" type="abstract operation">
+        <h1>
+          TypedArrayLength (
+            _taRecord_: a TypedArray With Buffer Witness Record,
+          ): a non-negative integer
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: IsTypedArrayOutOfBounds(_taRecord_) is *false*.
+          1. Let _obj_ be _taRecord_.[[Object]].
+          1. If _obj_.[[ArrayLength]] is not ~auto~, return _obj_.[[ArrayLength]].
+          1. Assert: IsFixedLengthArrayBuffer(_obj_.[[ViewedArrayBuffer]]) is *false*.
+          1. Let _byteOffset_ be _obj_.[[ByteOffset]].
+          1. Let _elementSize_ be TypedArrayElementSize(_obj_).
+          1. Let _byteLength_ be _taRecord_.[[CachedBufferByteLength]].
+          1. Assert: _byteLength_ is not ~detached~.
+          1. Return floor((_byteLength_ - _byteOffset_) / _elementSize_).
+        </emu-alg>
+      </emu-clause>

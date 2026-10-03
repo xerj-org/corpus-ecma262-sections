@@ -1,0 +1,13 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.2 Function Properties of the Math Object > 21.3.2.20 Math.imul ( _x_, _y_ ) [id: sec-math.imul]
+
+<emu-clause id="sec-math.imul" type="built-in function">
+        <h1>Math.imul ( _x_, _y_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _a_ be ℝ(? ToUint32(_x_)).
+          1. Let _b_ be ℝ(? ToUint32(_y_)).
+          1. Let _product_ be (_a_ × _b_) modulo 2<sup>32</sup>.
+          1. If _product_ ≥ 2<sup>31</sup>, return 𝔽(_product_ - 2<sup>32</sup>).
+          1. Return 𝔽(_product_).
+        </emu-alg>
+      </emu-clause>

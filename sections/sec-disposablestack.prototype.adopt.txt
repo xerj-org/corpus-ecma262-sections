@@ -1,0 +1,17 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.3 DisposableStack Objects > 27.3.3 Properties of the DisposableStack Prototype Object > 27.3.3.1 DisposableStack.prototype.adopt ( _value_, _onDispose_ ) [id: sec-disposablestack.prototype.adopt]
+
+<emu-clause id="sec-disposablestack.prototype.adopt" type="built-in function">
+        <h1>DisposableStack.prototype.adopt ( _value_, _onDispose_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _disposableStack_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_disposableStack_, [[DisposableState]]).
+          1. If _disposableStack_.[[DisposableState]] is ~disposed~, throw a *ReferenceError* exception.
+          1. If IsCallable(_onDispose_) is *false*, throw a *TypeError* exception.
+          1. Let _closure_ be a new Abstract Closure with no parameters that captures _value_ and _onDispose_ and performs the following steps when called:
+            1. Return ? Call(_onDispose_, *undefined*, « _value_ »).
+          1. Let _func_ be CreateBuiltinFunction(_closure_, 0, *""*, « »).
+          1. Perform ? AddDisposableResource(_disposableStack_.[[DisposableResourceStack]], *undefined*, ~sync-dispose~, _func_).
+          1. Return _value_.
+        </emu-alg>
+      </emu-clause>

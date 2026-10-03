@@ -1,0 +1,36 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.2 Property Accessors [id: sec-property-accessors]
+
+<emu-clause id="sec-property-accessors">
+      <h1>Property Accessors</h1>
+      <emu-note>
+        <p>Properties are accessed by name, using either the dot notation:</p>
+        <div class="rhs">
+          |MemberExpression| `.` |IdentifierName|<br>
+          |CallExpression| `.` |IdentifierName|
+        </div>
+        <p>or the bracket notation:</p>
+        <div class="rhs">
+          |MemberExpression| `[` |Expression| `]`<br>
+          |CallExpression| `[` |Expression| `]`
+        </div>
+        <p>The dot notation is explained by the following syntactic conversion:</p>
+        <div class="rhs">
+          |MemberExpression| `.` |IdentifierName|
+        </div>
+        <p>is identical in its behaviour to</p>
+        <div class="rhs">
+          |MemberExpression| `[` &lt;<i>identifier-name-string</i>> `]`
+        </div>
+        <p>and similarly</p>
+        <div class="rhs">
+          |CallExpression| `.` |IdentifierName|
+        </div>
+        <p>is identical in its behaviour to</p>
+        <div class="rhs">
+          |CallExpression| `[` &lt;<i>identifier-name-string</i>> `]`
+        </div>
+        <p>where &lt;<i>identifier-name-string</i>> is the StringValue of |IdentifierName|.</p>
+      </emu-note>
+
+      
+    </emu-clause>

@@ -1,0 +1,7 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.3 DisposableStack Objects > 27.3.2 Properties of the DisposableStack Constructor > 27.3.2.1 DisposableStack.prototype [id: sec-disposablestack.prototype]
+
+<emu-clause id="sec-disposablestack.prototype">
+        <h1>DisposableStack.prototype</h1>
+        <p>The initial value of `DisposableStack.prototype` is the DisposableStack prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

@@ -1,0 +1,28 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.7 Abstract Operations for RegExp Matching > 22.2.7.5 Match Records [id: sec-match-records]
+
+<emu-clause id="sec-match-records">
+        <h1>Match Records</h1>
+        <p>A <dfn variants="Match Records">Match Record</dfn> is a Record used to encapsulate the start and end indices of a regular expression match or capture.</p>
+        <p>Match Records have the fields listed in <emu-xref href="#table-match-record"></emu-xref>.</p>
+        <emu-table id="table-match-record" caption="Match Record Fields">
+          <table>
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Value</th>
+                <th>Meaning</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>[[StartIndex]]</td>
+              <td>a non-negative integer</td>
+              <td>The number of code units from the start of a string at which the match begins (inclusive).</td>
+            </tr>
+            <tr>
+              <td>[[EndIndex]]</td>
+              <td>an integer ≥ [[StartIndex]]</td>
+              <td>The number of code units from the start of a string at which the match ends (exclusive).</td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

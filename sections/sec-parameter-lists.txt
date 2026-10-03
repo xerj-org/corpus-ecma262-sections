@@ -1,0 +1,37 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.1 Parameter Lists [id: sec-parameter-lists]
+
+<emu-clause id="sec-parameter-lists">
+    <h1>Parameter Lists</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      UniqueFormalParameters[Yield, Await] :
+        FormalParameters[?Yield, ?Await]
+
+      FormalParameters[Yield, Await] :
+        [empty]
+        FunctionRestParameter[?Yield, ?Await]
+        FormalParameterList[?Yield, ?Await]
+        FormalParameterList[?Yield, ?Await] `,`
+        FormalParameterList[?Yield, ?Await] `,` FunctionRestParameter[?Yield, ?Await]
+
+      FormalParameterList[Yield, Await] :
+        FormalParameter[?Yield, ?Await]
+        FormalParameterList[?Yield, ?Await] `,` FormalParameter[?Yield, ?Await]
+
+      FunctionRestParameter[Yield, Await] :
+        BindingRestElement[?Yield, ?Await]
+
+      FormalParameter[Yield, Await] :
+        BindingElement[?Yield, ?Await]
+    </emu-grammar>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

@@ -1,0 +1,20 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.3 Properties of the Error Prototype Object [id: sec-properties-of-the-error-prototype-object]
+
+<emu-clause id="sec-properties-of-the-error-prototype-object">
+      <h1>Properties of the Error Prototype Object</h1>
+      <p>The <dfn>Error prototype object</dfn>:</p>
+      <ul>
+        <li>is <dfn>%Error.prototype%</dfn>.</li>
+        <li>is an ordinary object.</li>
+        <li>is not an Error instance and does not have an [[ErrorData]] internal slot.</li>
+        <li>has a [[Prototype]] internal slot whose value is %Object.prototype%.</li>
+      </ul>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

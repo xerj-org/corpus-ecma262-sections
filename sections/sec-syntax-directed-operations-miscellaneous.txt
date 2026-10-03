@@ -1,0 +1,18 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.6 Miscellaneous [id: sec-syntax-directed-operations-miscellaneous]
+
+<emu-clause id="sec-syntax-directed-operations-miscellaneous">
+    <h1>Miscellaneous</h1>
+    <p>These operations are used in multiple places throughout the specification.</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

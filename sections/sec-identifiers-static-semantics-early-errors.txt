@@ -1,0 +1,81 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.1 Identifiers > 13.1.1 Static Semantics: Early Errors [id: sec-identifiers-static-semantics-early-errors]
+
+<emu-clause id="sec-identifiers-static-semantics-early-errors">
+      <h1>Static Semantics: Early Errors</h1>
+      <emu-grammar>BindingIdentifier : Identifier</emu-grammar>
+      <ul>
+        <li>
+          It is a Syntax Error if IsStrict(this production) is *true* and the StringValue of |Identifier| is either *"arguments"* or *"eval"*.
+        </li>
+      </ul>
+      <emu-grammar>
+        IdentifierReference : `yield`
+
+        BindingIdentifier : `yield`
+
+        LabelIdentifier : `yield`
+      </emu-grammar>
+      <ul>
+        <li>
+          It is a Syntax Error if IsStrict(this production) is *true*.
+        </li>
+      </ul>
+      <emu-grammar>
+        IdentifierReference : `await`
+
+        BindingIdentifier : `await`
+
+        LabelIdentifier : `await`
+      </emu-grammar>
+      <ul>
+        <li>
+          It is a Syntax Error if the goal symbol of the syntactic grammar is |Module|.
+        </li>
+      </ul>
+      <emu-grammar>
+        BindingIdentifier[Yield, Await] : `yield`
+      </emu-grammar>
+      <ul>
+        <li>
+          It is a Syntax Error if this production has a <sub>[Yield]</sub> parameter.
+        </li>
+      </ul>
+      <emu-grammar>
+        BindingIdentifier[Yield, Await] : `await`
+      </emu-grammar>
+      <ul>
+        <li>
+          It is a Syntax Error if this production has an <sub>[Await]</sub> parameter.
+        </li>
+      </ul>
+      <emu-grammar>
+        IdentifierReference[Yield, Await] : Identifier
+
+        BindingIdentifier[Yield, Await] : Identifier
+
+        LabelIdentifier[Yield, Await] : Identifier
+      </emu-grammar>
+      <ul>
+        <li>
+          It is a Syntax Error if this production has a <sub>[Yield]</sub> parameter and the StringValue of |Identifier| is *"yield"*.
+        </li>
+        <li>
+          It is a Syntax Error if this production has an <sub>[Await]</sub> parameter and the StringValue of |Identifier| is *"await"*.
+        </li>
+      </ul>
+      <emu-grammar>Identifier : IdentifierName but not ReservedWord</emu-grammar>
+      <ul>
+        <li>
+          It is a Syntax Error if IsStrict(this phrase) is *true* and the StringValue of |IdentifierName| is one of *"implements"*, *"interface"*, *"let"*, *"package"*, *"private"*, *"protected"*, *"public"*, *"static"*, or *"yield"*.
+        </li>
+        <li>
+          It is a Syntax Error if the goal symbol of the syntactic grammar is |Module| and the StringValue of |IdentifierName| is *"await"*.
+        </li>
+        <li>
+          It is a Syntax Error if the StringValue of |IdentifierName| is the StringValue of any |ReservedWord| except for `yield` or `await`.
+        </li>
+      </ul>
+      <emu-note>
+        <p>The StringValue of |IdentifierName| normalizes any Unicode escape sequences in |IdentifierName| hence such escapes cannot be used to write an |Identifier| whose code point sequence is the same as a |ReservedWord|.</p>
+      </emu-note>
+    </emu-clause>

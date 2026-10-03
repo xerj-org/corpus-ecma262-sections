@@ -1,0 +1,36 @@
+ECMA-262 > 5 Notational Conventions > 5.2 Algorithm Conventions > 5.2.4 Runtime Semantics > 5.2.4.4 Implicit Normal Completion [id: sec-implicit-normal-completion]
+
+<emu-clause id="sec-implicit-normal-completion" oldids="sec-implicit-completion-values">
+        <h1>Implicit Normal Completion</h1>
+        <p>In algorithms within abstract operations which are declared to return a Completion Record, and within all built-in functions, the returned value is first passed to NormalCompletion, and the result is used instead. This rule does not apply within the Completion algorithm or when the value being returned is clearly marked as a Completion Record in that step; these cases are:</p>
+        <ul>
+          <li>when the result of applying Completion, NormalCompletion, ThrowCompletion, or ReturnCompletion is directly returned</li>
+          <li>when the result of constructing a Completion Record is directly returned</li>
+        </ul>
+        <p>It is an editorial error if a Completion Record is returned from such an abstract operation through any other means. For example, within these abstract operations,</p>
+        <emu-alg example>
+          1. Return *true*.
+        </emu-alg>
+        <p>means the same things as any of</p>
+        <emu-alg example>
+          1. Return NormalCompletion(*true*).
+        </emu-alg>
+        <p>or</p>
+        <emu-alg example>
+          1. Let _completion_ be NormalCompletion(*true*).
+          1. Return Completion(_completion_).
+        </emu-alg>
+        <p>or</p>
+        <emu-alg example>
+          1. Return Completion Record { [[Type]]: ~normal~, [[Value]]: *true*, [[Target]]: ~empty~ }.
+        </emu-alg>
+        <p>Note that, through <emu-xref href="#sec-shorthands-for-unwrapping-completion-records">the ? shorthand expansion</emu-xref>, the following example is allowed, as within the expanded steps, the result of applying Completion is returned directly in the abrupt case and the implicit NormalCompletion application occurs after unwrapping in the normal case.</p>
+        <emu-alg example>
+          1. Return ? _completion_.
+        </emu-alg>
+        <p>The following example would be an editorial error because a Completion Record is being returned without being annotated in that step.</p>
+        <emu-alg example>
+          1. Let _completion_ be NormalCompletion(*true*).
+          1. Return _completion_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,15 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.4 Properties of the DataView Prototype Object > 25.3.4.2 get DataView.prototype.byteLength [id: sec-get-dataview.prototype.bytelength]
+
+<emu-clause id="sec-get-dataview.prototype.bytelength" type="built-in function">
+        <h1>get DataView.prototype.byteLength</h1>
+        <p>`DataView.prototype.byteLength` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_obj_, [[DataView]]).
+          1. Assert: _obj_ has a [[ViewedArrayBuffer]] internal slot.
+          1. Let _viewRecord_ be MakeDataViewWithBufferWitnessRecord(_obj_, ~seq-cst~).
+          1. If IsViewOutOfBounds(_viewRecord_) is *true*, throw a *TypeError* exception.
+          1. Let _size_ be GetViewByteLength(_viewRecord_).
+          1. Return 𝔽(_size_).
+        </emu-alg>
+      </emu-clause>

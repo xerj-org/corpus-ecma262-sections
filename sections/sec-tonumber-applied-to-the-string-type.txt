@@ -1,0 +1,67 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.4 ToNumber ( _arg_: an ECMAScript language value, ): either a normal completion containing a Number or a throw completion > 7.1.4.1 ToNumber Applied to the String Type [id: sec-tonumber-applied-to-the-string-type]
+
+<emu-clause id="sec-tonumber-applied-to-the-string-type">
+        <h1>ToNumber Applied to the String Type</h1>
+        <p>The abstract operation StringToNumber specifies how to convert a String value to a Number value, using the following grammar.</p>
+        <h2>Syntax</h2>
+        <emu-grammar type="definition">
+          StringNumericLiteral :::
+            StrWhiteSpace?
+            StrWhiteSpace? StrNumericLiteral StrWhiteSpace?
+
+          StrWhiteSpace :::
+            StrWhiteSpaceChar StrWhiteSpace?
+
+          StrWhiteSpaceChar :::
+            WhiteSpace
+            LineTerminator
+
+          StrNumericLiteral :::
+            StrDecimalLiteral
+            NonDecimalIntegerLiteral[~Sep]
+
+          StrDecimalLiteral :::
+            StrUnsignedDecimalLiteral
+            `+` StrUnsignedDecimalLiteral
+            `-` StrUnsignedDecimalLiteral
+
+          StrUnsignedDecimalLiteral :::
+            `Infinity`
+            DecimalDigits[~Sep] `.` DecimalDigits[~Sep]? ExponentPart[~Sep]?
+            `.` DecimalDigits[~Sep] ExponentPart[~Sep]?
+            DecimalDigits[~Sep] ExponentPart[~Sep]?
+        </emu-grammar>
+        <p>All grammar symbols not explicitly defined above have the definitions used in the Lexical Grammar for numeric literals (<emu-xref href="#sec-literals-numeric-literals"></emu-xref>)</p>
+        <emu-note>
+          <p>Some differences should be noted between the syntax of a |StringNumericLiteral| and a |NumericLiteral|:</p>
+          <ul>
+            <li>
+              A |StringNumericLiteral| may include leading and/or trailing white space and/or line terminators.
+            </li>
+            <li>
+              A |StringNumericLiteral| that is decimal may have any number of leading `0` digits.
+            </li>
+            <li>
+              A |StringNumericLiteral| that is decimal may include a `+` or `-` to indicate its sign.
+            </li>
+            <li>
+              A |StringNumericLiteral| that is empty or contains only white space is converted to *+0*<sub>𝔽</sub>.
+            </li>
+            <li>
+              `Infinity` and `-Infinity` are recognized as a |StringNumericLiteral| but not as a |NumericLiteral|.
+            </li>
+            <li>
+              A |StringNumericLiteral| cannot include a |BigIntLiteralSuffix|.
+            </li>
+            <li>
+              A |StringNumericLiteral| cannot include a |NumericLiteralSeparator|.
+            </li>
+          </ul>
+        </emu-note>
+
+        
+
+        
+
+        
+      </emu-clause>

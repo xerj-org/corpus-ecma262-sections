@@ -1,0 +1,15 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.16 The `debugger` Statement > 14.16.1 Runtime Semantics: Evaluation [id: sec-debugger-statement-runtime-semantics-evaluation]
+
+<emu-clause id="sec-debugger-statement-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-note>
+        <p>Evaluating a |DebuggerStatement| may allow an implementation to cause a breakpoint when run under a debugger. If a debugger is not present or active this statement has no observable effect.</p>
+      </emu-note>
+      <emu-grammar>DebuggerStatement : `debugger` `;`</emu-grammar>
+      <emu-alg>
+        1. If an implementation-defined debugging facility is available and enabled, then
+          1. Perform an implementation-defined debugging action.
+          1. Return a new implementation-defined Completion Record.
+        1. Return ~empty~.
+      </emu-alg>
+    </emu-clause>

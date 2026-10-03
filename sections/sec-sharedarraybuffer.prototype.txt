@@ -1,0 +1,7 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.4 Properties of the SharedArrayBuffer Constructor > 25.2.4.1 SharedArrayBuffer.prototype [id: sec-sharedarraybuffer.prototype]
+
+<emu-clause id="sec-sharedarraybuffer.prototype">
+        <h1>SharedArrayBuffer.prototype</h1>
+        <p>The initial value of `SharedArrayBuffer.prototype` is the SharedArrayBuffer prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

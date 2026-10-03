@@ -1,0 +1,34 @@
+ECMA-262 > 29 Memory Model > 29.6 Relations of Candidate Executions > 29.6.5 synchronizes-with [id: sec-synchronizes-with]
+
+<emu-clause id="sec-synchronizes-with">
+      <h1>synchronizes-with</h1>
+      <p>For a candidate execution _execution_, its <dfn>synchronizes-with</dfn> Relation is the least Relation on Memory events that satisfies the following.</p>
+      <ul>
+        <li>
+          For events _readEvent_ and _writeEvent_, _writeEvent_ synchronizes-with _readEvent_ in _execution_ if _readEvent_ reads-from _writeEvent_ in _execution_, _readEvent_.[[Order]] is ~seq-cst~, _writeEvent_.[[Order]] is ~seq-cst~, and _readEvent_ and _writeEvent_ have equal memory ranges.
+        </li>
+        <li>
+          For each element _eventsRecord_ of _execution_.[[EventsRecords]], the following is true.
+          <ul>
+            <li>For events _eventA_ and _eventB_, _eventA_ synchronizes-with _eventB_ in _execution_ if _eventsRecord_.[[AgentSynchronizesWith]] contains (_eventA_, _eventB_).</li>
+          </ul>
+        </li>
+        <li>For events _eventA_ and _eventB_, _eventA_ synchronizes-with _eventB_ in _execution_ if _eventA_ host-synchronizes-with _eventB_ in _execution_.</li>
+      </ul>
+
+      <emu-note>
+        <p>Owing to convention in memory model literature, in a candidate execution _execution_, write events synchronizes-with read events, instead of read events synchronizes-with write events.</p>
+      </emu-note>
+
+      <emu-note>
+        <p>In a candidate execution _execution_, ~init~ events do not participate in this Relation and are instead constrained directly by happens-before.</p>
+      </emu-note>
+
+      <emu-note>
+        <p>In a candidate execution _execution_, not all ~seq-cst~ events related by reads-from are related by synchronizes-with. Only events that also have equal memory ranges are related by synchronizes-with.</p>
+      </emu-note>
+
+      <emu-note>
+        <p>For Shared Data Block events _readEvent_ and _writeEvent_ in a candidate execution _execution_ such that _writeEvent_ synchronizes-with _readEvent_, _readEvent_ may reads-from other writes than _writeEvent_.</p>
+      </emu-note>
+    </emu-clause>

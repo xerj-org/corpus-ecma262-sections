@@ -1,0 +1,21 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.20 Invoke ( _value_: an ECMAScript language value, _propertyKey_: a property key, optional _argList_: a List of ECMAScript language values, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-invoke]
+
+<emu-clause id="sec-invoke" type="abstract operation">
+      <h1>
+        Invoke (
+          _value_: an ECMAScript language value,
+          _propertyKey_: a property key,
+          optional _argList_: a List of ECMAScript language values,
+        ): either a normal completion containing an ECMAScript language value or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to call a method property of an ECMAScript language value. _value_ serves as both the lookup point for the property and the *this* value of the call. _argList_ is the list of arguments values passed to the method. If _argList_ is not present, a new empty List is used as its value.</dd>
+      </dl>
+
+      <emu-alg>
+        1. If _argList_ is not present, set _argList_ to a new empty List.
+        1. Let _func_ be ? GetV(_value_, _propertyKey_).
+        1. Return ? Call(_func_, _value_, _argList_).
+      </emu-alg>
+    </emu-clause>

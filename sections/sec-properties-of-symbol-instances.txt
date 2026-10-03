@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.4 Properties of Symbol Instances [id: sec-properties-of-symbol-instances]
+
+<emu-clause id="sec-properties-of-symbol-instances">
+      <h1>Properties of Symbol Instances</h1>
+      <p>Symbol instances are ordinary objects that inherit properties from the Symbol prototype object. Symbol instances have a [[SymbolData]] internal slot. The [[SymbolData]] internal slot is the Symbol value represented by this Symbol object.</p>
+    </emu-clause>

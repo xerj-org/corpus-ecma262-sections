@@ -1,0 +1,6 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.34 %TypedArray%.prototype.toString ( ) [id: sec-%typedarray%.prototype.tostring]
+
+<emu-clause id="sec-%typedarray%.prototype.tostring" type="built-in function">
+        <h1>%TypedArray%.prototype.toString ( )</h1>
+        <p>The initial value of the *"toString"* property is %Array.prototype.toString%, defined in <emu-xref href="#sec-array.prototype.tostring"></emu-xref>.</p>
+      </emu-clause>

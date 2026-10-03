@@ -1,0 +1,29 @@
+ECMA-262 > 11 ECMAScript Language: Source Text > 11.2 Types of Source Code > 11.2.2 Strict Mode Code [id: sec-strict-mode-code]
+
+<emu-clause id="sec-strict-mode-code">
+      <h1>Strict Mode Code</h1>
+      <p>An ECMAScript syntactic unit may be processed using either unrestricted or strict mode syntax and semantics (<emu-xref href="#sec-strict-variant-of-ecmascript"></emu-xref>). Code is interpreted as <dfn>strict mode code</dfn> in the following situations:</p>
+      <ul>
+        <li>
+          Global code is strict mode code if it begins with a Directive Prologue that contains a Use Strict Directive.
+        </li>
+        <li>
+          Module code is always strict mode code.
+        </li>
+        <li>
+          All parts of a |ClassDeclaration| or a |ClassExpression| are strict mode code.
+        </li>
+        <li>
+          Eval code is strict mode code if it begins with a Directive Prologue that contains a Use Strict Directive or if the call to `eval` is a direct eval that is contained in strict mode code.
+        </li>
+        <li>
+          Function code is strict mode code if the associated |FunctionDeclaration|, |FunctionExpression|, |GeneratorDeclaration|, |GeneratorExpression|, |AsyncFunctionDeclaration|, |AsyncFunctionExpression|, |AsyncGeneratorDeclaration|, |AsyncGeneratorExpression|, |MethodDefinition|, |ArrowFunction|, or |AsyncArrowFunction| is contained in strict mode code or if the code that produces the value of the function's [[ECMAScriptCode]] internal slot begins with a Directive Prologue that contains a Use Strict Directive.
+        </li>
+        <li>
+          Function code that is supplied as the arguments to the built-in Function, Generator, AsyncFunction, and AsyncGenerator constructors is strict mode code if the last argument is a String that when processed is a |FunctionBody| that begins with a Directive Prologue that contains a Use Strict Directive.
+        </li>
+      </ul>
+      <p>ECMAScript code that is not strict mode code is called <dfn id="non-strict-code">non-strict code</dfn>.</p>
+
+      
+    </emu-clause>

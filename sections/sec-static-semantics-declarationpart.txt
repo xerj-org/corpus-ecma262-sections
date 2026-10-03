@@ -1,0 +1,31 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.2 Scope Analysis > 8.2.2 Static Semantics: DeclarationPart ( ): a Parse Node [id: sec-static-semantics-declarationpart]
+
+<emu-clause id="sec-static-semantics-declarationpart" type="sdo">
+      <h1>Static Semantics: DeclarationPart ( ): a Parse Node</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>HoistableDeclaration : FunctionDeclaration</emu-grammar>
+      <emu-alg>
+        1. Return |FunctionDeclaration|.
+      </emu-alg>
+      <emu-grammar>HoistableDeclaration : GeneratorDeclaration</emu-grammar>
+      <emu-alg>
+        1. Return |GeneratorDeclaration|.
+      </emu-alg>
+      <emu-grammar>HoistableDeclaration : AsyncFunctionDeclaration</emu-grammar>
+      <emu-alg>
+        1. Return |AsyncFunctionDeclaration|.
+      </emu-alg>
+      <emu-grammar>HoistableDeclaration : AsyncGeneratorDeclaration</emu-grammar>
+      <emu-alg>
+        1. Return |AsyncGeneratorDeclaration|.
+      </emu-alg>
+      <emu-grammar>Declaration : ClassDeclaration</emu-grammar>
+      <emu-alg>
+        1. Return |ClassDeclaration|.
+      </emu-alg>
+      <emu-grammar>Declaration : LexicalDeclaration</emu-grammar>
+      <emu-alg>
+        1. Return |LexicalDeclaration|.
+      </emu-alg>
+    </emu-clause>

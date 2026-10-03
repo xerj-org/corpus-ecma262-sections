@@ -1,0 +1,17 @@
+ECMA-262 > 29 Memory Model > 29.5 Abstract Operations for the Memory Model > 29.5.5 ValueOfReadEvent ( _execution_: a candidate execution, _readEvent_: a ReadSharedMemory or ReadModifyWriteSharedMemory event, ): a List of byte values [id: sec-valueofreadevent]
+
+<emu-clause id="sec-valueofreadevent" type="abstract operation">
+      <h1>
+        ValueOfReadEvent (
+          _execution_: a candidate execution,
+          _readEvent_: a ReadSharedMemory or ReadModifyWriteSharedMemory event,
+        ): a List of byte values
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _writes_ be reads-bytes-from(_readEvent_) in _execution_.
+        1. Assert: _writes_ is a List of WriteSharedMemory or ReadModifyWriteSharedMemory events with length equal to _readEvent_.[[ElementSize]].
+        1. Return ComposeWriteEventBytes(_execution_, _readEvent_.[[ByteIndex]], _writes_).
+      </emu-alg>
+    </emu-clause>

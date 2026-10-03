@@ -1,0 +1,84 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.15 Assignment Operators > 13.15.3 ApplyStringOrNumericBinaryOperator ( _leftValue_: an ECMAScript language value, _opText_: `**`, `*`, `/`, `%`, `+`, `-`, `<<`, `>>`, `>>>`, `&`, `^`, or `|`, _rightValue_: an ECMAScript language value, ): either a normal completion containing either a String, a BigInt, or a Number, or a throw completion [id: sec-applystringornumericbinaryoperator]
+
+<emu-clause id="sec-applystringornumericbinaryoperator" type="abstract operation">
+      <h1>
+        ApplyStringOrNumericBinaryOperator (
+          _leftValue_: an ECMAScript language value,
+          _opText_: `**`, `*`, `/`, `%`, `+`, `-`, `&lt;&lt;`, `&gt;&gt;`, `&gt;&gt;&gt;`, `&amp;`, `^`, or `|`,
+          _rightValue_: an ECMAScript language value,
+        ): either a normal completion containing either a String, a BigInt, or a Number, or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If _opText_ is `+`, then
+          1. [id="step-binary-op-toprimitive-lval"] Let _leftPrimitive_ be ? ToPrimitive(_leftValue_).
+          1. [id="step-binary-op-toprimitive-rval"] Let _rightPrimitive_ be ? ToPrimitive(_rightValue_).
+          1. [id="step-binary-op-string-check"] If _leftPrimitive_ is a String or _rightPrimitive_ is a String, then
+            1. Let _leftString_ be ? ToString(_leftPrimitive_).
+            1. Let _rightString_ be ? ToString(_rightPrimitive_).
+            1. Return the string-concatenation of _leftString_ and _rightString_.
+          1. Set _leftValue_ to _leftPrimitive_.
+          1. Set _rightValue_ to _rightPrimitive_.
+        1. NOTE: At this point, it must be a numeric operation.
+        1. Let _leftNumber_ be ? ToNumeric(_leftValue_).
+        1. Let _rightNumber_ be ? ToNumeric(_rightValue_).
+        1. If SameType(_leftNumber_, _rightNumber_) is *false*, throw a *TypeError* exception.
+        1. If _leftNumber_ is a BigInt, then
+          1. If _opText_ is `**`, return ? BigInt::exponentiate(_leftNumber_, _rightNumber_).
+          1. If _opText_ is `/`, return ? BigInt::divide(_leftNumber_, _rightNumber_).
+          1. If _opText_ is `%`, return ? BigInt::remainder(_leftNumber_, _rightNumber_).
+          1. If _opText_ is `>>>`, return ? BigInt::unsignedRightShift(_leftNumber_, _rightNumber_).
+          1. Let _operation_ be the abstract operation associated with _opText_ in the following table:
+            <figure>
+              <!-- emu-format ignore -->
+              <table class="lightweight-table">
+                <thead>
+                  <tr><th> _opText_   </th><th> _operation_              </th></tr>
+                </thead>
+                <tbody>
+                  <tr><td> `*`        </td><td> BigInt::multiply         </td></tr>
+                  <tr><td> `+`        </td><td> BigInt::add              </td></tr>
+                  <tr><td> `-`        </td><td> BigInt::subtract         </td></tr>
+                  <tr><td> `&lt;&lt;` </td><td> BigInt::leftShift        </td></tr>
+                  <tr><td> `&gt;&gt;` </td><td> BigInt::signedRightShift </td></tr>
+                  <tr><td> `&amp;`    </td><td> BigInt::bitwiseAND       </td></tr>
+                  <tr><td> `^`        </td><td> BigInt::bitwiseXOR       </td></tr>
+                  <tr><td> `|`        </td><td> BigInt::bitwiseOR        </td></tr>
+                </tbody>
+              </table>
+            </figure>
+        1. Else,
+          1. Assert: _leftNumber_ is a Number.
+          1. Let _operation_ be the abstract operation associated with _opText_ in the following table:
+            <figure>
+              <!-- emu-format ignore -->
+              <table class="lightweight-table">
+                <thead>
+                  <tr><th> _opText_       </th><th> _operation_                </th></tr>
+                </thead>
+                <tbody>
+                  <tr><td> `**`           </td><td> Number::exponentiate       </td></tr>
+                  <tr><td> `*`            </td><td> Number::multiply           </td></tr>
+                  <tr><td> `/`            </td><td> Number::divide             </td></tr>
+                  <tr><td> `%`            </td><td> Number::remainder          </td></tr>
+                  <tr><td> `+`            </td><td> Number::add                </td></tr>
+                  <tr><td> `-`            </td><td> Number::subtract           </td></tr>
+                  <tr><td> `&lt;&lt;`     </td><td> Number::leftShift          </td></tr>
+                  <tr><td> `&gt;&gt;`     </td><td> Number::signedRightShift   </td></tr>
+                  <tr><td> `&gt;&gt;&gt;` </td><td> Number::unsignedRightShift </td></tr>
+                  <tr><td> `&amp;`        </td><td> Number::bitwiseAND         </td></tr>
+                  <tr><td> `^`            </td><td> Number::bitwiseXOR         </td></tr>
+                  <tr><td> `|`            </td><td> Number::bitwiseOR          </td></tr>
+                </tbody>
+              </table>
+            </figure>
+        1. Return _operation_(_leftNumber_, _rightNumber_).
+      </emu-alg>
+      <emu-note>
+        <p>No hint is provided in the calls to ToPrimitive in steps <emu-xref href="#step-binary-op-toprimitive-lval"></emu-xref> and <emu-xref href="#step-binary-op-toprimitive-rval"></emu-xref>. All standard objects except Dates handle the absence of a hint as if ~number~ were given; Dates handle the absence of a hint as if ~string~ were given. Exotic objects may handle the absence of a hint in some other manner.</p>
+      </emu-note>
+      <emu-note>
+        <p>Step <emu-xref href="#step-binary-op-string-check"></emu-xref> differs from step <emu-xref href="#step-arc-string-check"></emu-xref> of the IsLessThan algorithm, by using the logical-or operation instead of the logical-and operation.</p>
+      </emu-note>
+    </emu-clause>

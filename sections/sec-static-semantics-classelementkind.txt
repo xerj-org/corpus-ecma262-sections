@@ -1,0 +1,29 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.7 Class Definitions > 15.7.2 Static Semantics: ClassElementKind ( ): ~constructor-method~, ~non-constructor-method~, or ~empty~ [id: sec-static-semantics-classelementkind]
+
+<emu-clause id="sec-static-semantics-classelementkind" type="sdo">
+      <h1>Static Semantics: ClassElementKind ( ): ~constructor-method~, ~non-constructor-method~, or ~empty~</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>ClassElement : MethodDefinition</emu-grammar>
+      <emu-alg>
+        1. If the PropName of |MethodDefinition| is *"constructor"*, return ~constructor-method~.
+        1. Return ~non-constructor-method~.
+      </emu-alg>
+      <emu-grammar>
+        ClassElement :
+          `static` MethodDefinition
+          FieldDefinition `;`
+          `static` FieldDefinition `;`
+      </emu-grammar>
+      <emu-alg>
+        1. Return ~non-constructor-method~.
+      </emu-alg>
+      <emu-grammar>ClassElement : ClassStaticBlock</emu-grammar>
+      <emu-alg>
+        1. Return ~non-constructor-method~.
+      </emu-alg>
+      <emu-grammar>ClassElement : `;`</emu-grammar>
+      <emu-alg>
+        1. Return ~empty~.
+      </emu-alg>
+    </emu-clause>

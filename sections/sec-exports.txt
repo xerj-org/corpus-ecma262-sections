@@ -1,0 +1,47 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.3 Exports [id: sec-exports]
+
+<emu-clause id="sec-exports">
+      <h1>Exports</h1>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        ExportDeclaration :
+          `export` ExportFromClause FromClause WithClause? `;`
+          `export` NamedExports `;`
+          `export` VariableStatement[~Yield, +Await]
+          `export` [lookahead &notin; { `using`, `await` }] Declaration[~Yield, +Await]
+          `export` `default` HoistableDeclaration[~Yield, +Await, +Default]
+          `export` `default` ClassDeclaration[~Yield, +Await, +Default]
+          `export` `default` [lookahead &notin; { `function`, `async` [no LineTerminator here] `function`, `class` }] AssignmentExpression[+In, ~Yield, +Await] `;`
+
+        ExportFromClause :
+          `*`
+          `*` `as` ModuleExportName
+          NamedExports
+
+        NamedExports :
+          `{` `}`
+          `{` ExportsList `,`? `}`
+
+        ExportsList :
+          ExportSpecifier
+          ExportsList `,` ExportSpecifier
+
+        ExportSpecifier :
+          ModuleExportName
+          ModuleExportName `as` ModuleExportName
+      </emu-grammar>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

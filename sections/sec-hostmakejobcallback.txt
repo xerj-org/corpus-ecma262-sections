@@ -1,0 +1,23 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.5 Jobs and Host Operations to Enqueue Jobs > 9.5.2 HostMakeJobCallback ( _callback_: a function object, ): a JobCallback Record [id: sec-hostmakejobcallback]
+
+<emu-clause id="sec-hostmakejobcallback" type="host-defined abstract operation">
+      <h1>
+        HostMakeJobCallback (
+          _callback_: a function object,
+        ): a JobCallback Record
+      </h1>
+      <dl class="header">
+      </dl>
+      <p>An implementation of HostMakeJobCallback must conform to the following requirements:</p>
+      <ul>
+        <li>It must return a JobCallback Record whose [[Callback]] field is _callback_.</li>
+      </ul>
+      <p>The default implementation of HostMakeJobCallback performs the following steps when called:</p>
+      <emu-alg>
+        1. Return the JobCallback Record { [[Callback]]: _callback_, [[HostDefined]]: ~empty~ }.
+      </emu-alg>
+      <p>ECMAScript hosts that are not web browsers must use the default implementation of HostMakeJobCallback.</p>
+      <emu-note>
+        <p>This is called at the time that the callback is passed to the function that is responsible for its being eventually scheduled and run. For example, `promise.then(thenAction)` calls MakeJobCallback on `thenAction` at the time of invoking `Promise.prototype.then`, not at the time of scheduling the reaction Job.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,20 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.6 Module Namespace Exotic Objects > 10.4.6.10 [[Delete]] ( _propertyKey_: a property key, ): a normal completion containing a Boolean [id: sec-module-namespace-exotic-objects-delete-p]
+
+<emu-clause id="sec-module-namespace-exotic-objects-delete-p" type="internal method">
+        <h1>
+          [[Delete]] (
+            _propertyKey_: a property key,
+          ): a normal completion containing a Boolean
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a module namespace exotic object _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. If _propertyKey_ is a Symbol, then
+            1. Return ! OrdinaryDelete(_obj_, _propertyKey_).
+          1. Let _exports_ be _obj_.[[Exports]].
+          1. If _exports_ contains _propertyKey_, return *false*.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

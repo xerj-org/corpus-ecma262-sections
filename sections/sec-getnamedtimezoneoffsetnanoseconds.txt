@@ -1,0 +1,21 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.21 GetNamedTimeZoneOffsetNanoseconds ( _timeZoneIdentifier_: a String, _epochNanoseconds_: an epoch nanoseconds count, ): an integer [id: sec-getnamedtimezoneoffsetnanoseconds]
+
+<emu-clause id="sec-getnamedtimezoneoffsetnanoseconds" oldids="sec-local-time-zone-adjustment" type="implementation-defined abstract operation">
+        <h1>
+          GetNamedTimeZoneOffsetNanoseconds (
+            _timeZoneIdentifier_: a String,
+            _epochNanoseconds_: an epoch nanoseconds count,
+          ): an integer
+        </h1>
+        <dl class="header">
+        </dl>
+        <p>The returned integer represents the offset from UTC, in nanoseconds, of the named time zone identified by _timeZoneIdentifier_, at the instant corresponding with the epoch nanoseconds count _epochNanoseconds_.</p>
+        <p>The default implementation of GetNamedTimeZoneOffsetNanoseconds, to be used for ECMAScript implementations that do not include local political rules for any time zones, performs the following steps when called:</p>
+        <emu-alg>
+          1. Assert: _timeZoneIdentifier_ is *"UTC"*.
+          1. Return 0.
+        </emu-alg>
+        <emu-note>
+          <p>Time zone offset values may be positive or negative.</p>
+        </emu-note>
+      </emu-clause>

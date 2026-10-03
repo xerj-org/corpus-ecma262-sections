@@ -1,0 +1,14 @@
+ECMA-262 > 21 Numbers and Dates > 21.2 BigInt Objects > 21.2.1 The BigInt Constructor > 21.2.1.1 BigInt ( _value_ ) [id: sec-bigint-constructor-number-value]
+
+<emu-clause id="sec-bigint-constructor-number-value" type="built-in function">
+        <h1>BigInt ( _value_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If NewTarget is not *undefined*, throw a *TypeError* exception.
+          1. Let _primitive_ be ? ToPrimitive(_value_, ~number~).
+          1. If _primitive_ is a Number, return ? NumberToBigInt(_primitive_).
+          1. Return ? <emu-meta suppress-effects="user-code">ToBigInt(_primitive_)</emu-meta>.
+        </emu-alg>
+
+        
+      </emu-clause>

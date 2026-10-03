@@ -1,0 +1,23 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.11 SuspendThisAgent ( _waiterList_: a WaiterList Record, _waiterRecord_: a Waiter Record, ): ~unused~ [id: sec-suspendthisagent]
+
+<emu-clause id="sec-suspendthisagent" type="abstract operation" oldids="sec-suspend,sec-suspendagent">
+        <h1>
+          SuspendThisAgent (
+            _waiterList_: a WaiterList Record,
+            _waiterRecord_: a Waiter Record,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: The surrounding agent is in the critical section for _waiterList_.
+          1. Assert: _waiterList_.[[Waiters]] contains _waiterRecord_.
+          1. Let _thisAgent_ be AgentSignifier().
+          1. Assert: _waiterRecord_.[[AgentSignifier]] is _thisAgent_.
+          1. Assert: _waiterRecord_.[[PromiseCapability]] is ~blocking~.
+          1. Assert: AgentCanSuspend() is *true*.
+          1. Perform LeaveCriticalSection(_waiterList_) and suspend the surrounding agent until the time is _waiterRecord_.[[TimeoutTime]], performing the combined operation in such a way that a notification that arrives after the critical section is exited but before the suspension takes effect is not lost. The surrounding agent can only wake from suspension due to a timeout or due to another agent calling NotifyWaiter with arguments _waiterList_ and _thisAgent_ (i.e. via a call to `Atomics.notify`).
+          1. Perform EnterCriticalSection(_waiterList_).
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

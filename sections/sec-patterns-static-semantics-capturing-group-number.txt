@@ -1,0 +1,20 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.1 Patterns > 22.2.1.5 Static Semantics: CapturingGroupNumber ( ): a positive integer [id: sec-patterns-static-semantics-capturing-group-number]
+
+<emu-clause id="sec-patterns-static-semantics-capturing-group-number" type="sdo">
+        <h1>Static Semantics: CapturingGroupNumber ( ): a positive integer</h1>
+        <dl class="header">
+        </dl>
+        <emu-note>
+          <p>This section is amended in <emu-xref href="#sec-patterns-static-semantics-early-errors-annexb"></emu-xref>.</p>
+        </emu-note>
+        <emu-grammar>DecimalEscape :: NonZeroDigit</emu-grammar>
+        <emu-alg>
+          1. Return the MV of |NonZeroDigit|.
+        </emu-alg>
+        <emu-grammar>DecimalEscape :: NonZeroDigit DecimalDigits</emu-grammar>
+        <emu-alg>
+          1. Let _n_ be the number of code points in |DecimalDigits|.
+          1. Return (the MV of |NonZeroDigit| × 10<sup>_n_</sup> plus the MV of |DecimalDigits|).
+        </emu-alg>
+        <p>The definitions of “the MV of |NonZeroDigit|” and “the MV of |DecimalDigits|” are in <emu-xref href="#sec-literals-numeric-literals"></emu-xref>.</p>
+      </emu-clause>

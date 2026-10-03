@@ -1,0 +1,22 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.5 The `new` Operator > 13.3.5.1 Runtime Semantics: Evaluation > 13.3.5.1.1 EvaluateNew ( _constructExpr_: a |NewExpression| Parse Node or a |MemberExpression| Parse Node, _argumentsNode_: ~empty~ or an |Arguments| Parse Node, ): either a normal completion containing an Object or an abrupt completion [id: sec-evaluatenew]
+
+<emu-clause id="sec-evaluatenew" type="abstract operation">
+          <h1>
+            EvaluateNew (
+              _constructExpr_: a |NewExpression| Parse Node or a |MemberExpression| Parse Node,
+              _argumentsNode_: ~empty~ or an |Arguments| Parse Node,
+            ): either a normal completion containing an Object or an abrupt completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _ref_ be ? Evaluation of _constructExpr_.
+            1. Let _ctor_ be ? GetValue(_ref_).
+            1. If _argumentsNode_ is ~empty~, then
+              1. Let _argList_ be a new empty List.
+            1. Else,
+              1. Let _argList_ be ? ArgumentListEvaluation of _argumentsNode_.
+            1. If IsConstructor(_ctor_) is *false*, throw a *TypeError* exception.
+            1. Return ? Construct(_ctor_, _argList_).
+          </emu-alg>
+        </emu-clause>

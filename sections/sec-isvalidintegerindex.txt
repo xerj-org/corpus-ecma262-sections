@@ -1,0 +1,23 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.16 IsValidIntegerIndex ( _obj_: a TypedArray, _index_: a Number, ): a Boolean [id: sec-isvalidintegerindex]
+
+<emu-clause id="sec-isvalidintegerindex" type="abstract operation">
+        <h1>
+          IsValidIntegerIndex (
+            _obj_: a TypedArray,
+            _index_: a Number,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If IsDetachedBuffer(_obj_.[[ViewedArrayBuffer]]) is *true*, return *false*.
+          1. If _index_ is not an integral Number, return *false*.
+          1. If _index_ is *-0*<sub>𝔽</sub> or _index_ &lt; *-0*<sub>𝔽</sub>, return *false*.
+          1. Let _taRecord_ be MakeTypedArrayWithBufferWitnessRecord(_obj_, ~unordered~).
+          1. NOTE: Bounds checking is not a synchronizing operation when _obj_'s backing buffer is a growable SharedArrayBuffer.
+          1. If IsTypedArrayOutOfBounds(_taRecord_) is *true*, return *false*.
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. If ℝ(_index_) ≥ _length_, return *false*.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

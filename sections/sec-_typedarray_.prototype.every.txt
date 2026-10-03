@@ -1,0 +1,21 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.8 %TypedArray%.prototype.every ( _callback_ [ , _thisArg_ ] ) [id: sec-%typedarray%.prototype.every]
+
+<emu-clause id="sec-%typedarray%.prototype.every" type="built-in function">
+        <h1>%TypedArray%.prototype.every ( _callback_ [ , _thisArg_ ] )</h1>
+        <p>The interpretation and use of the arguments of this method are the same as for `Array.prototype.every` as defined in <emu-xref href="#sec-array.prototype.every"></emu-xref>.</p>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Let _taRecord_ be ? ValidateTypedArray(_obj_, ~seq-cst~).
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. If IsCallable(_callback_) is *false*, throw a *TypeError* exception.
+          1. Let _k_ be 0.
+          1. Repeat, while _k_ &lt; _length_,
+            1. Let _kValue_ be TypedArrayGetElement(_obj_, 𝔽(_k_)).
+            1. Let _testResult_ be ToBoolean(? Call(_callback_, _thisArg_, « _kValue_, 𝔽(_k_), _obj_ »)).
+            1. If _testResult_ is *false*, return *false*.
+            1. Set _k_ to _k_ + 1.
+          1. Return *true*.
+        </emu-alg>
+        <p>This method is not generic. The *this* value must be an object with a [[TypedArrayName]] internal slot.</p>
+      </emu-clause>

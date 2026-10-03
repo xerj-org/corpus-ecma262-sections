@@ -1,0 +1,40 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.5 Proxy Object Internal Methods and Internal Slots > 10.5.2 [[SetPrototypeOf]] ( _proto_: an Object or *null*, ): either a normal completion containing a Boolean or a throw completion [id: sec-proxy-object-internal-methods-and-internal-slots-setprototypeof-v]
+
+<emu-clause id="sec-proxy-object-internal-methods-and-internal-slots-setprototypeof-v" type="internal method">
+      <h1>
+        [[SetPrototypeOf]] (
+          _proto_: an Object or *null*,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>a Proxy exotic object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Perform ? ValidateNonRevokedProxy(_obj_).
+        1. Let _target_ be _obj_.[[ProxyTarget]].
+        1. Let _handler_ be _obj_.[[ProxyHandler]].
+        1. Assert: _handler_ is an Object.
+        1. Let _trap_ be ? GetMethod(_handler_, *"setPrototypeOf"*).
+        1. If _trap_ is *undefined*, then
+          1. Return ? <emu-meta effects="user-code">_target_.[[SetPrototypeOf]](_proto_)</emu-meta>.
+        1. Let _boolTrapResult_ be ToBoolean(? Call(_trap_, _handler_, « _target_, _proto_ »)).
+        1. If _boolTrapResult_ is *false*, return *false*.
+        1. Let _extensibleTarget_ be ? IsExtensible(_target_).
+        1. If _extensibleTarget_ is *true*, return *true*.
+        1. Let _targetProto_ be ? <emu-meta effects="user-code">_target_.[[GetPrototypeOf]]()</emu-meta>.
+        1. If SameValue(_proto_, _targetProto_) is *false*, throw a *TypeError* exception.
+        1. Return *true*.
+      </emu-alg>
+      <emu-note>
+        <p>[[SetPrototypeOf]] for Proxy objects enforces the following invariants:</p>
+        <ul>
+          <li>
+            The result of [[SetPrototypeOf]] is a Boolean value.
+          </li>
+          <li>
+            If the target object is not extensible, the argument value must be the same as the result of [[GetPrototypeOf]] applied to target object.
+          </li>
+        </ul>
+      </emu-note>
+    </emu-clause>

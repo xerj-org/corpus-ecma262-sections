@@ -1,0 +1,58 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor [id: sec-properties-of-the-object-constructor]
+
+<emu-clause id="sec-properties-of-the-object-constructor">
+      <h1>Properties of the Object Constructor</h1>
+      <p>The Object constructor:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li>has the following additional properties:</li>
+      </ul>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

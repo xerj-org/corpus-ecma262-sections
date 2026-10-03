@@ -1,0 +1,25 @@
+ECMA-262 > 7 Abstract Operations > 7.5 Operations on Disposable Objects > 7.5.2 AddDisposableResource ( _disposableResourceStack_: a List of DisposableResource Records, _value_: an ECMAScript language value, _kind_: ~sync-dispose~ or ~async-dispose~, optional _method_: a function object, ): either a normal completion containing ~unused~ or a throw completion [id: sec-adddisposableresource]
+
+<emu-clause id="sec-adddisposableresource" type="abstract operation">
+      <h1>
+        AddDisposableResource (
+          _disposableResourceStack_: a List of DisposableResource Records,
+          _value_: an ECMAScript language value,
+          _kind_: ~sync-dispose~ or ~async-dispose~,
+          optional _method_: a function object,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If _method_ is present, then
+          1. Assert: _value_ is *undefined*.
+          1. Let _resource_ be ? CreateDisposableResource(*undefined*, _kind_, _method_).
+        1. Else,
+          1. If _value_ is either *null* or *undefined* and _kind_ is ~sync-dispose~, return ~unused~.
+          1. NOTE: When _value_ is either *null* or *undefined* and _kind_ is ~async-dispose~, we record that the resource was evaluated to ensure we will still perform an Await when resources are later disposed.
+          1. Let _resource_ be ? CreateDisposableResource(_value_, _kind_).
+        1. Append _resource_ to _disposableResourceStack_.
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

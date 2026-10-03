@@ -1,0 +1,15 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.5 The `for`-`in`, `for`-`of`, and `for`-`await`-`of` Statements > 14.7.5.10 For-In Iterator Objects > 14.7.5.10.2 The %ForInIteratorPrototype% Object [id: sec-%foriniteratorprototype%-object]
+
+<emu-clause id="sec-%foriniteratorprototype%-object">
+          <h1>The %ForInIteratorPrototype% Object</h1>
+          <p>The <dfn>%ForInIteratorPrototype%</dfn> object:</p>
+          <ul>
+            <li>has properties that are inherited by all For-In Iterator objects.</li>
+            <li>is an ordinary object.</li>
+            <li>has a [[Prototype]] internal slot whose value is %Iterator.prototype%.</li>
+            <li>is never directly accessible to ECMAScript code.</li>
+            <li>has the following properties:</li>
+          </ul>
+
+          
+        </emu-clause>

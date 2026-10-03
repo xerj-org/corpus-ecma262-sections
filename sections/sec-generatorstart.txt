@@ -1,0 +1,43 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.3 Generator Abstract Operations > 27.8.3.1 GeneratorStart ( _gen_: a Generator, _genBody_: a |FunctionBody| Parse Node or an Abstract Closure with no parameters, ): ~unused~ [id: sec-generatorstart]
+
+<emu-clause id="sec-generatorstart" type="abstract operation">
+        <h1>
+          GeneratorStart (
+            _gen_: a Generator,
+            _genBody_: a |FunctionBody| Parse Node or an Abstract Closure with no parameters,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: _gen_.[[GeneratorState]] is ~suspended-start~.
+          1. Let _genContext_ be the running execution context.
+          1. Set the Generator component of _genContext_ to _gen_.
+          1. Let _closure_ be a new Abstract Closure with no parameters that captures _genBody_ and performs the following steps when called:
+            1. Let _acGenContext_ be the running execution context.
+            1. Let _acGen_ be the Generator component of _acGenContext_.
+            1. If _genBody_ is a Parse Node, then
+              1. Let _result_ be Completion(Evaluation of _genBody_).
+            1. Else,
+              1. Assert: _genBody_ is an Abstract Closure with no parameters.
+              1. Let _result_ be Completion(_genBody_()).
+            1. Assert: If we return here, the generator either threw an exception or performed either an implicit or explicit return.
+            1. Remove _acGenContext_ from the execution context stack and restore the execution context that is at the top of the execution context stack as the running execution context.
+            1. Set _acGen_.[[GeneratorState]] to ~completed~.
+            1. NOTE: Once a generator enters the ~completed~ state it never leaves it and its associated execution context is never resumed. Any execution state associated with _acGen_ can be discarded at this point.
+            1. If _result_ is a throw completion, then
+              1. Let _resumption_ be _result_.
+            1. Else,
+              1. If _result_ is a normal completion, then
+                1. Let _resultValue_ be *undefined*.
+              1. Else if _result_ is a return completion, then
+                1. Let _resultValue_ be _result_.[[Value]].
+              1. Let _resumption_ be NormalCompletion(CreateIteratorResultObject(_resultValue_, *true*)).
+            1. Let _callerContext_ be the running execution context.
+            1. Resume _callerContext_, passing _resumption_.
+            1. Assert: This step is never reached.
+          1. Set the code evaluation state of _genContext_ such that when evaluation is resumed for that execution context, _closure_ will be called with no arguments.
+          1. Set _gen_.[[GeneratorContext]] to _genContext_.
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

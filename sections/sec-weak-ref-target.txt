@@ -1,0 +1,14 @@
+ECMA-262 > 26 Managing Memory > 26.1 WeakRef Objects > 26.1.1 The WeakRef Constructor > 26.1.1.1 WeakRef ( _target_ ) [id: sec-weak-ref-target]
+
+<emu-clause id="sec-weak-ref-target" type="built-in function">
+        <h1>WeakRef ( _target_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If NewTarget is *undefined*, throw a *TypeError* exception.
+          1. If CanBeHeldWeakly(_target_) is *false*, throw a *TypeError* exception.
+          1. Let _weakRef_ be ? OrdinaryCreateFromConstructor(NewTarget, *"%WeakRef.prototype%"*, « [[WeakRefTarget]] »).
+          1. Perform AddToKeptObjects(_target_).
+          1. Set _weakRef_.[[WeakRefTarget]] to _target_.
+          1. Return _weakRef_.
+        </emu-alg>
+      </emu-clause>

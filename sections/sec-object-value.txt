@@ -1,0 +1,12 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.1 The Object Constructor > 20.1.1.1 Object ( _value_ ) [id: sec-object-value]
+
+<emu-clause id="sec-object-value" type="built-in function">
+        <h1>Object ( _value_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If NewTarget is neither *undefined* nor the active function object, then
+            1. Return ? OrdinaryCreateFromConstructor(NewTarget, *"%Object.prototype%"*).
+          1. If _value_ is either *undefined* or *null*, return OrdinaryObjectCreate(%Object.prototype%).
+          1. Return ! ToObject(_value_).
+        </emu-alg>
+      </emu-clause>

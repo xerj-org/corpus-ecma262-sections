@@ -1,0 +1,21 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.11 Tagged Templates > 13.3.11.1 Runtime Semantics: Evaluation [id: sec-tagged-templates-runtime-semantics-evaluation]
+
+<emu-clause id="sec-tagged-templates-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>MemberExpression : MemberExpression TemplateLiteral</emu-grammar>
+        <emu-alg>
+          1. Let _tagRef_ be ? Evaluation of |MemberExpression|.
+          1. Let _tagFunc_ be ? GetValue(_tagRef_).
+          1. Let _thisCall_ be this |MemberExpression|.
+          1. Let _tailCall_ be IsInTailPosition(_thisCall_).
+          1. Return ? EvaluateCall(_tagFunc_, _tagRef_, |TemplateLiteral|, _tailCall_).
+        </emu-alg>
+        <emu-grammar>CallExpression : CallExpression TemplateLiteral</emu-grammar>
+        <emu-alg>
+          1. Let _tagRef_ be ? Evaluation of |CallExpression|.
+          1. Let _tagFunc_ be ? GetValue(_tagRef_).
+          1. Let _thisCall_ be this |CallExpression|.
+          1. Let _tailCall_ be IsInTailPosition(_thisCall_).
+          1. Return ? EvaluateCall(_tagFunc_, _tagRef_, |TemplateLiteral|, _tailCall_).
+        </emu-alg>
+      </emu-clause>

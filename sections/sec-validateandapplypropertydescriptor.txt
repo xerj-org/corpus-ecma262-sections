@@ -1,0 +1,53 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.6 [[DefineOwnProperty]] ( _propertyKey_: a property key, _propertyDesc_: a Property Descriptor, ): either a normal completion containing a Boolean or a throw completion > 10.1.6.3 ValidateAndApplyPropertyDescriptor ( _obj_: an Object or *undefined*, _propertyKey_: a property key, _extensible_: a Boolean, _propertyDesc_: a Property Descriptor, _current_: a Property Descriptor or *undefined*, ): a Boolean [id: sec-validateandapplypropertydescriptor]
+
+<emu-clause id="sec-validateandapplypropertydescriptor" type="abstract operation">
+        <h1>
+          ValidateAndApplyPropertyDescriptor (
+            _obj_: an Object or *undefined*,
+            _propertyKey_: a property key,
+            _extensible_: a Boolean,
+            _propertyDesc_: a Property Descriptor,
+            _current_: a Property Descriptor or *undefined*,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns *true* if and only if _propertyDesc_ can be applied as the property of an object with specified _extensibility_ and current property _current_ while upholding <emu-xref href="#sec-invariants-of-the-essential-internal-methods">invariants</emu-xref>. When such application is possible and _obj_ is not *undefined*, it is performed for the property named _propertyKey_ (which is created if necessary).</dd>
+        </dl>
+        <emu-alg>
+          1. Assert: _propertyKey_ is a property key.
+          1. If _current_ is *undefined*, then
+            1. If _extensible_ is *false*, return *false*.
+            1. If _obj_ is *undefined*, return *true*.
+            1. If IsAccessorDescriptor(_propertyDesc_) is *true*, then
+              1. Create an own accessor property named _propertyKey_ of object _obj_ whose [[Getter]], [[Setter]], [[Enumerable]], and [[Configurable]] attributes are set to the value of the corresponding field in _propertyDesc_ if _propertyDesc_ has that field, or to the attribute's <emu-xref href="#table-object-property-attributes">default value</emu-xref> otherwise.
+            1. Else,
+              1. Create an own data property named _propertyKey_ of object _obj_ whose [[Value]], [[Writable]], [[Enumerable]], and [[Configurable]] attributes are set to the value of the corresponding field in _propertyDesc_ if _propertyDesc_ has that field, or to the attribute's <emu-xref href="#table-object-property-attributes">default value</emu-xref> otherwise.
+            1. Return *true*.
+          1. Assert: _current_ is a fully populated Property Descriptor.
+          1. If _propertyDesc_ does not have any fields, return *true*.
+          1. If _current_.[[Configurable]] is *false*, then
+            1. If _propertyDesc_ has a [[Configurable]] field and _propertyDesc_.[[Configurable]] is *true*, return *false*.
+            1. If _propertyDesc_ has an [[Enumerable]] field and _propertyDesc_.[[Enumerable]] is not _current_.[[Enumerable]], return *false*.
+            1. If IsGenericDescriptor(_propertyDesc_) is *false* and IsAccessorDescriptor(_propertyDesc_) is not IsAccessorDescriptor(_current_), return *false*.
+            1. If IsAccessorDescriptor(_current_) is *true*, then
+              1. If _propertyDesc_ has a [[Getter]] field and SameValue(_propertyDesc_.[[Getter]], _current_.[[Getter]]) is *false*, return *false*.
+              1. If _propertyDesc_ has a [[Setter]] field and SameValue(_propertyDesc_.[[Setter]], _current_.[[Setter]]) is *false*, return *false*.
+            1. Else if _current_.[[Writable]] is *false*, then
+              1. If _propertyDesc_ has a [[Writable]] field and _propertyDesc_.[[Writable]] is *true*, return *false*.
+              1. NOTE: SameValue returns *true* for *NaN* values which may be distinguishable by other means. Returning here ensures that any existing property of _obj_ remains unmodified.
+              1. If _propertyDesc_ has a [[Value]] field, return SameValue(_propertyDesc_.[[Value]], _current_.[[Value]]).
+          1. If _obj_ is not *undefined*, then
+            1. If IsDataDescriptor(_current_) is *true* and IsAccessorDescriptor(_propertyDesc_) is *true*, then
+              1. If _propertyDesc_ has a [[Configurable]] field, let _configurable_ be _propertyDesc_.[[Configurable]]; else let _configurable_ be _current_.[[Configurable]].
+              1. If _propertyDesc_ has an [[Enumerable]] field, let _enumerable_ be _propertyDesc_.[[Enumerable]]; else let _enumerable_ be _current_.[[Enumerable]].
+              1. Replace the property named _propertyKey_ of object _obj_ with an accessor property whose [[Configurable]] and [[Enumerable]] attributes are set to _configurable_ and _enumerable_, respectively, and whose [[Getter]] and [[Setter]] attributes are set to the value of the corresponding field in _propertyDesc_ if _propertyDesc_ has that field, or to the attribute's <emu-xref href="#table-object-property-attributes">default value</emu-xref> otherwise.
+            1. Else if IsAccessorDescriptor(_current_) is *true* and IsDataDescriptor(_propertyDesc_) is *true*, then
+              1. If _propertyDesc_ has a [[Configurable]] field, let _configurable_ be _propertyDesc_.[[Configurable]]; else let _configurable_ be _current_.[[Configurable]].
+              1. If _propertyDesc_ has an [[Enumerable]] field, let _enumerable_ be _propertyDesc_.[[Enumerable]]; else let _enumerable_ be _current_.[[Enumerable]].
+              1. Replace the property named _propertyKey_ of object _obj_ with a data property whose [[Configurable]] and [[Enumerable]] attributes are set to _configurable_ and _enumerable_, respectively, and whose [[Value]] and [[Writable]] attributes are set to the value of the corresponding field in _propertyDesc_ if _propertyDesc_ has that field, or to the attribute's <emu-xref href="#table-object-property-attributes">default value</emu-xref> otherwise.
+            1. Else,
+              1. For each field name _fieldName_ of _propertyDesc_, set the attribute named _fieldName_ of the property named _propertyKey_ of object _obj_ to the value of _propertyDesc_'s _fieldName_ field.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

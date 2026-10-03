@@ -1,0 +1,13 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.6 Properties of the ArrayBuffer Prototype Object > 25.1.6.5 get ArrayBuffer.prototype.resizable [id: sec-get-arraybuffer.prototype.resizable]
+
+<emu-clause id="sec-get-arraybuffer.prototype.resizable" type="built-in function">
+        <h1>get ArrayBuffer.prototype.resizable</h1>
+        <p>`ArrayBuffer.prototype.resizable` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_obj_, [[ArrayBufferData]]).
+          1. If IsSharedArrayBuffer(_obj_) is *true*, throw a *TypeError* exception.
+          1. If IsFixedLengthArrayBuffer(_obj_) is *false*, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

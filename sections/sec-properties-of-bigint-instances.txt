@@ -1,0 +1,6 @@
+ECMA-262 > 21 Numbers and Dates > 21.2 BigInt Objects > 21.2.4 Properties of BigInt Instances [id: sec-properties-of-bigint-instances]
+
+<emu-clause id="sec-properties-of-bigint-instances">
+      <h1>Properties of BigInt Instances</h1>
+      <p>BigInt instances are ordinary objects that inherit properties from the BigInt prototype object. BigInt instances also have a [[BigIntData]] internal slot. The [[BigIntData]] internal slot is the BigInt value represented by this BigInt object.</p>
+    </emu-clause>

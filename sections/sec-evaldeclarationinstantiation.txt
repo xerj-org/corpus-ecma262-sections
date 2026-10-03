@@ -1,0 +1,138 @@
+ECMA-262 > 19 The Global Object > 19.2 Function Properties of the Global Object > 19.2.1 eval ( _source_ ) > 19.2.1.3 EvalDeclarationInstantiation ( _body_: a |ScriptBody| Parse Node, _variableEnv_: an Environment Record, _lexicalEnv_: a Declarative Environment Record, _privateEnv_: a PrivateEnvironment Record or *null*, _strict_: a Boolean, ): either a normal completion containing ~unused~ or a throw completion [id: sec-evaldeclarationinstantiation]
+
+<emu-clause id="sec-evaldeclarationinstantiation" type="abstract operation" oldids="sec-web-compat-evaldeclarationinstantiation">
+        <h1>
+          EvalDeclarationInstantiation (
+            _body_: a |ScriptBody| Parse Node,
+            _variableEnv_: an Environment Record,
+            _lexicalEnv_: a Declarative Environment Record,
+            _privateEnv_: a PrivateEnvironment Record or *null*,
+            _strict_: a Boolean,
+          ): either a normal completion containing ~unused~ or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _variableNames_ be the VarDeclaredNames of _body_.
+          1. Let _variableDecls_ be the VarScopedDeclarations of _body_.
+          1. If _strict_ is *false*, then
+            1. If _variableEnv_ is a Global Environment Record, then
+              1. For each element _name_ of _variableNames_, do
+                1. If HasLexicalDeclaration(_variableEnv_, _name_) is *true*, throw a *SyntaxError* exception.
+                1. NOTE: `eval` will not create a global var declaration that would be shadowed by a global lexical declaration.
+            1. Let _thisEnv_ be _lexicalEnv_.
+            1. Assert: The following loop will terminate.
+            1. Repeat, while _thisEnv_ and _variableEnv_ are not the same Environment Record,
+              1. If _thisEnv_ is not an Object Environment Record, then
+                1. NOTE: The environment of with statements cannot contain any lexical declaration so it doesn't need to be checked for var/let hoisting conflicts.
+                1. For each element _name_ of _variableNames_, do
+                  1. If ! _thisEnv_.HasBinding(_name_) is *true*, then
+                    1. [id="step-evaldeclarationinstantiation-throw-duplicate-binding", normative-optional] If the host is a web browser or otherwise supports <emu-xref href="#sec-variablestatements-in-catch-blocks" title></emu-xref>, then
+                      1. If _thisEnv_ is not the Environment Record for a |Catch| clause, throw a *SyntaxError* exception.
+                    1. Else,
+                      1. Throw a *SyntaxError* exception.
+                  1. NOTE: A direct eval will not hoist var declaration over a like-named lexical declaration.
+              1. Set _thisEnv_ to _thisEnv_.[[OuterEnv]].
+          1. Let _privateIdentifiers_ be a new empty List.
+          1. Let _pointer_ be _privateEnv_.
+          1. Repeat, while _pointer_ is not *null*,
+            1. For each Private Name _binding_ of _pointer_.[[Names]], do
+              1. If _privateIdentifiers_ does not contain _binding_.[[Description]], append _binding_.[[Description]] to _privateIdentifiers_.
+            1. Set _pointer_ to _pointer_.[[OuterPrivateEnvironment]].
+          1. If AllPrivateIdentifiersValid of _body_ with argument _privateIdentifiers_ is *false*, throw a *SyntaxError* exception.
+          1. Let _funcsToInitialize_ be a new empty List.
+          1. Let _declaredFuncNames_ be a new empty List.
+          1. For each element _variableDecl_ of _variableDecls_, in reverse List order, do
+            1. If _variableDecl_ is not either a |VariableDeclaration|, a |ForBinding|, or a |BindingIdentifier|, then
+              1. Assert: _variableDecl_ is either a |FunctionDeclaration|, a |GeneratorDeclaration|, an |AsyncFunctionDeclaration|, or an |AsyncGeneratorDeclaration|.
+              1. NOTE: If there are multiple function declarations for the same name, the last declaration is used.
+              1. Let _funcName_ be the sole element of the BoundNames of _variableDecl_.
+              1. If _declaredFuncNames_ does not contain _funcName_, then
+                1. If _variableEnv_ is a Global Environment Record, then
+                  1. Let _funcDefinable_ be ? CanDeclareGlobalFunction(_variableEnv_, _funcName_).
+                  1. If _funcDefinable_ is *false*, throw a *TypeError* exception.
+                1. Append _funcName_ to _declaredFuncNames_.
+                1. Insert _variableDecl_ as the first element of _funcsToInitialize_.
+          1. Let _declaredVariableNames_ be a new empty List.
+          1. For each element _variableDecl_ of _variableDecls_, do
+            1. If _variableDecl_ is either a |VariableDeclaration|, a |ForBinding|, or a |BindingIdentifier|, then
+              1. For each String _name_ of the BoundNames of _variableDecl_, do
+                1. If _declaredFuncNames_ does not contain _name_, then
+                  1. If _variableEnv_ is a Global Environment Record, then
+                    1. Let _variableDefinable_ be ? CanDeclareGlobalVar(_variableEnv_, _name_).
+                    1. If _variableDefinable_ is *false*, throw a *TypeError* exception.
+                  1. If _declaredVariableNames_ does not contain _name_, then
+                    1. Append _name_ to _declaredVariableNames_.
+          1. [id="step-evaldeclarationinstantiation-web-compat-insertion-point", normative-optional] If _strict_ is *false* and the host is a web browser or otherwise supports <emu-xref href="#sec-block-level-function-declarations-web-legacy-compatibility-semantics" title></emu-xref>, then
+            1. Let _declaredFuncOrVariableNames_ be the list-concatenation of _declaredFuncNames_ and _declaredVariableNames_.
+            1. For each |FunctionDeclaration| _funcDecl_ that is directly contained in the |StatementList| of any |Block|, |CaseClause|, or |DefaultClause| _x_ such that _body_ Contains _x_ is *true*, do
+              1. Let _funcName_ be the StringValue of the |BindingIdentifier| of _funcDecl_.
+              1. If replacing the |FunctionDeclaration| _funcDecl_ with a |VariableStatement| that has _funcName_ as a |BindingIdentifier| would not produce any Early Errors for _body_, then
+                1. Let _bindingExists_ be *false*.
+                1. Set _thisEnv_ to _lexicalEnv_.
+                1. Assert: The following loop will terminate.
+                1. Repeat, while _thisEnv_ is not _variableEnv_,
+                  1. If _thisEnv_ is not an Object Environment Record, then
+                    1. If ! _thisEnv_.HasBinding(_funcName_) is *true*, then
+                      1. [id="step-evaldeclarationinstantiation-web-compat-bindingexists", normative-optional] If the host is a web browser or otherwise supports <emu-xref href="#sec-variablestatements-in-catch-blocks" title></emu-xref>, then
+                        1. If _thisEnv_ is not the Environment Record for a |Catch| clause, set _bindingExists_ to *true*.
+                      1. Else,
+                        1. Set _bindingExists_ to *true*.
+                  1. Set _thisEnv_ to _thisEnv_.[[OuterEnv]].
+                1. If _bindingExists_ is *false* and _variableEnv_ is a Global Environment Record, then
+                  1. If HasLexicalDeclaration(_variableEnv_, _funcName_) is *false*, then
+                    1. Let _funcDefinable_ be ? CanDeclareGlobalVar(_variableEnv_, _funcName_).
+                  1. Else,
+                    1. Let _funcDefinable_ be *false*.
+                1. Else,
+                  1. Let _funcDefinable_ be *true*.
+                1. If _bindingExists_ is *false* and _funcDefinable_ is *true*, then
+                  1. If _declaredFuncOrVariableNames_ does not contain _funcName_, then
+                    1. If _variableEnv_ is a Global Environment Record, then
+                      1. Perform ? CreateGlobalVarBinding(_variableEnv_, _funcName_, *true*).
+                    1. Else,
+                      1. Set _bindingExists_ to ! _variableEnv_.HasBinding(_funcName_).
+                      1. If _bindingExists_ is *false*, then
+                        1. Perform ! _variableEnv_.CreateMutableBinding(_funcName_, *true*).
+                        1. Perform ! _variableEnv_.InitializeBinding(_funcName_, *undefined*).
+                    1. Append _funcName_ to _declaredFuncOrVariableNames_.
+                  1. [id="step-evaldeclarationinstantiation-alt-funcdecl-eval"] When the |FunctionDeclaration| _funcDecl_ is evaluated, perform the following steps in place of the |FunctionDeclaration| Evaluation algorithm provided in <emu-xref href="#sec-function-definitions-runtime-semantics-evaluation"></emu-xref>:
+                    1. Let _globalEnv_ be the running execution context's VariableEnvironment.
+                    1. Let _blockEnv_ be the running execution context's LexicalEnvironment.
+                    1. Let _funcObj_ be ! _blockEnv_.GetBindingValue(_funcName_, *false*).
+                    1. Perform ? <emu-meta effects="user-code">_globalEnv_.SetMutableBinding(_funcName_, _funcObj_, *false*)</emu-meta>.
+                    1. Return ~unused~.
+          1. [id="step-evaldeclarationinstantiation-post-validation"] NOTE: No abnormal terminations occur after this algorithm step unless _variableEnv_ is a Global Environment Record and the global object is a Proxy exotic object.
+          1. Let _lexicalDecls_ be the LexicallyScopedDeclarations of _body_.
+          1. For each element _lexicalDecl_ of _lexicalDecls_, do
+            1. NOTE: Lexically declared names are only instantiated here but not initialized.
+            1. For each element _name_ of the BoundNames of _lexicalDecl_, do
+              1. If IsConstantDeclaration of _lexicalDecl_ is *true*, then
+                1. Perform ? _lexicalEnv_.CreateImmutableBinding(_name_, *true*).
+              1. Else,
+                1. Perform ? _lexicalEnv_.CreateMutableBinding(_name_, *false*).
+          1. For each Parse Node _funcDecl_ of _funcsToInitialize_, do
+            1. Let _funcName_ be the sole element of the BoundNames of _funcDecl_.
+            1. Let _funcObj_ be InstantiateFunctionObject of _funcDecl_ with arguments _lexicalEnv_ and _privateEnv_.
+            1. If _variableEnv_ is a Global Environment Record, then
+              1. Perform ? CreateGlobalFunctionBinding(_variableEnv_, _funcName_, _funcObj_, *true*).
+            1. Else,
+              1. Let _bindingExists_ be ! _variableEnv_.HasBinding(_funcName_).
+              1. If _bindingExists_ is *false*, then
+                1. NOTE: The following invocation cannot return an abrupt completion because of the validation preceding step <emu-xref href="#step-evaldeclarationinstantiation-post-validation"></emu-xref>.
+                1. Perform ! _variableEnv_.CreateMutableBinding(_funcName_, *true*).
+                1. Perform ! _variableEnv_.InitializeBinding(_funcName_, _funcObj_).
+              1. Else,
+                1. Perform ! _variableEnv_.SetMutableBinding(_funcName_, _funcObj_, *false*).
+          1. For each String _variableName_ of _declaredVariableNames_, do
+            1. If _variableEnv_ is a Global Environment Record, then
+              1. Perform ? CreateGlobalVarBinding(_variableEnv_, _variableName_, *true*).
+            1. Else,
+              1. Let _bindingExists_ be ! _variableEnv_.HasBinding(_variableName_).
+              1. If _bindingExists_ is *false*, then
+                1. NOTE: The following invocation cannot return an abrupt completion because of the validation preceding step <emu-xref href="#step-evaldeclarationinstantiation-post-validation"></emu-xref>.
+                1. Perform ! _variableEnv_.CreateMutableBinding(_variableName_, *true*).
+                1. Perform ! _variableEnv_.InitializeBinding(_variableName_, *undefined*).
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

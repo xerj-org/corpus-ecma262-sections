@@ -1,0 +1,20 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.10 MakeTypedArrayWithBufferWitnessRecord ( _obj_: a TypedArray, _order_: ~seq-cst~ or ~unordered~, ): a TypedArray With Buffer Witness Record [id: sec-maketypedarraywithbufferwitnessrecord]
+
+<emu-clause id="sec-maketypedarraywithbufferwitnessrecord" oldids="sec-makeintegerindexedobjectwithbufferwitnessrecord" type="abstract operation">
+        <h1>
+          MakeTypedArrayWithBufferWitnessRecord (
+            _obj_: a TypedArray,
+            _order_: ~seq-cst~ or ~unordered~,
+          ): a TypedArray With Buffer Witness Record
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _buffer_ be _obj_.[[ViewedArrayBuffer]].
+          1. If IsDetachedBuffer(_buffer_) is *true*, then
+            1. Let _byteLength_ be ~detached~.
+          1. Else,
+            1. Let _byteLength_ be ArrayBufferByteLength(_buffer_, _order_).
+          1. Return the TypedArray With Buffer Witness Record { [[Object]]: _obj_, [[CachedBufferByteLength]]: _byteLength_ }.
+        </emu-alg>
+      </emu-clause>

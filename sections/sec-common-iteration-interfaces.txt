@@ -1,0 +1,16 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.1 Common Iteration Interfaces [id: sec-common-iteration-interfaces]
+
+<emu-clause id="sec-common-iteration-interfaces">
+      <h1>Common Iteration Interfaces</h1>
+      <p>An interface is a set of property keys whose associated values match a specific specification. Any object that provides all the properties as described by an interface's specification <em>conforms</em> to that interface. An interface is not represented by a distinct object. There may be many separately implemented objects that conform to any interface. An individual object may conform to multiple interfaces.</p>
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

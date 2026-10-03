@@ -1,0 +1,45 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.2 Properties of the %TypedArray% Intrinsic Object > 23.2.2.1 %TypedArray%.from ( _source_ [ , _mapper_ [ , _thisArg_ ] ] ) [id: sec-%typedarray%.from]
+
+<emu-clause id="sec-%typedarray%.from" type="built-in function">
+        <h1>%TypedArray%.from ( _source_ [ , _mapper_ [ , _thisArg_ ] ] )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _ctor_ be the *this* value.
+          1. If IsConstructor(_ctor_) is *false*, throw a *TypeError* exception.
+          1. If _mapper_ is *undefined*, then
+            1. Let _mapping_ be *false*.
+          1. Else,
+            1. If IsCallable(_mapper_) is *false*, throw a *TypeError* exception.
+            1. Let _mapping_ be *true*.
+          1. Let _usingIterator_ be ? GetMethod(_source_, %Symbol.iterator%).
+          1. If _usingIterator_ is not *undefined*, then
+            1. Let _values_ be ? IteratorToList(? GetIteratorFromMethod(_source_, _usingIterator_)).
+            1. Let _length_ be the number of elements in _values_.
+            1. Let _targetObj_ be ? TypedArrayCreateFromConstructor(_ctor_, « 𝔽(_length_) »).
+            1. Let _k_ be 0.
+            1. Repeat, while _k_ &lt; _length_,
+              1. Let _kValue_ be _values_[_k_].
+              1. If _mapping_ is *true*, then
+                1. Let _mappedValue_ be ? Call(_mapper_, _thisArg_, « _kValue_, 𝔽(_k_) »).
+              1. Else,
+                1. Let _mappedValue_ be _kValue_.
+              1. Perform ? TypedArraySetElement(_targetObj_, 𝔽(_k_), _mappedValue_).
+              1. Set _k_ to _k_ + 1.
+            1. Return _targetObj_.
+          1. NOTE: _source_ is not an iterable object, so assume it is already an array-like object.
+          1. Let _arrayLike_ be ! ToObject(_source_).
+          1. Let _length_ be ? LengthOfArrayLike(_arrayLike_).
+          1. Let _targetObj_ be ? TypedArrayCreateFromConstructor(_ctor_, « 𝔽(_length_) »).
+          1. Let _k_ be 0.
+          1. Repeat, while _k_ &lt; _length_,
+            1. Let _propertyKey_ be ! ToString(𝔽(_k_)).
+            1. Let _kValue_ be ? Get(_arrayLike_, _propertyKey_).
+            1. If _mapping_ is *true*, then
+              1. Let _mappedValue_ be ? Call(_mapper_, _thisArg_, « _kValue_, 𝔽(_k_) »).
+            1. Else,
+              1. Let _mappedValue_ be _kValue_.
+            1. Perform ? TypedArraySetElement(_targetObj_, 𝔽(_k_), _mappedValue_).
+            1. Set _k_ to _k_ + 1.
+          1. Return _targetObj_.
+        </emu-alg>
+      </emu-clause>

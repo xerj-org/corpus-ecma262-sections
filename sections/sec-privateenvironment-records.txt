@@ -1,0 +1,48 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.2 PrivateEnvironment Records [id: sec-privateenvironment-records]
+
+<emu-clause id="sec-privateenvironment-records">
+    <h1>PrivateEnvironment Records</h1>
+    <p>A <dfn id="privateenvironment-record" variants="PrivateEnvironment Records">PrivateEnvironment Record</dfn> is a specification mechanism used to track Private Names based upon the lexical nesting structure of |ClassDeclaration|s and |ClassExpression|s in ECMAScript code. They are similar to, but distinct from, Environment Records. Each PrivateEnvironment Record is associated with a |ClassDeclaration| or |ClassExpression|. Each time such a class is evaluated, a new PrivateEnvironment Record is created to record the Private Names declared by that class.</p>
+    <p>Each PrivateEnvironment Record has the fields defined in <emu-xref href="#table-privateenvironment-records"></emu-xref>.</p>
+    <emu-table id="table-privateenvironment-records" caption="PrivateEnvironment Record Fields">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Field Name
+            </th>
+            <th>
+              Value Type
+            </th>
+            <th>
+              Meaning
+            </th>
+          </tr>
+        </thead>
+        <tr>
+          <td>
+            [[OuterPrivateEnvironment]]
+          </td>
+          <td>
+            a PrivateEnvironment Record or *null*
+          </td>
+          <td>
+            The PrivateEnvironment Record of the nearest containing class. *null* if the class with which this PrivateEnvironment Record is associated is not contained in any other class.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[Names]]
+          </td>
+          <td>
+            a List of Private Names
+          </td>
+          <td>
+            The Private Names declared by this class.
+          </td>
+        </tr>
+      </table>
+    </emu-table>
+
+    
+  </emu-clause>

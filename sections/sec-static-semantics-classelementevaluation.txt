@@ -1,0 +1,41 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.7 Class Definitions > 15.7.13 Runtime Semantics: ClassElementEvaluation ( _obj_: an Object, ): either a normal completion containing either a ClassFieldDefinition Record, a ClassStaticBlockDefinition Record, a PrivateElement, or ~empty~, or an abrupt completion [id: sec-static-semantics-classelementevaluation]
+
+<emu-clause id="sec-static-semantics-classelementevaluation" type="sdo">
+      <h1>
+        Runtime Semantics: ClassElementEvaluation (
+          _obj_: an Object,
+        ): either a normal completion containing either a ClassFieldDefinition Record, a ClassStaticBlockDefinition Record, a PrivateElement, or ~empty~, or an abrupt completion
+      </h1>
+      <dl class="header">
+      </dl>
+
+      <emu-grammar>
+        ClassElement :
+          FieldDefinition `;`
+          `static` FieldDefinition `;`
+      </emu-grammar>
+      <emu-alg>
+        1. Return ? ClassFieldDefinitionEvaluation of |FieldDefinition| with argument _obj_.
+      </emu-alg>
+
+      <emu-grammar>
+        ClassElement :
+          MethodDefinition
+          `static` MethodDefinition
+      </emu-grammar>
+      <emu-alg>
+        1. Return ? MethodDefinitionEvaluation of |MethodDefinition| with arguments _obj_ and *false*.
+      </emu-alg>
+
+      <emu-grammar>ClassElement : ClassStaticBlock</emu-grammar>
+      <emu-alg>
+        1. Return the ClassStaticBlockDefinitionEvaluation of |ClassStaticBlock| with argument _obj_.
+      </emu-alg>
+
+      <emu-grammar>
+        ClassElement : `;`
+      </emu-grammar>
+      <emu-alg>
+        1. Return ~empty~.
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,26 @@
+ECMA-262 > 19 The Global Object > 19.2 Function Properties of the Global Object > 19.2.6 URI Handling Functions [id: sec-uri-handling-functions]
+
+<emu-clause id="sec-uri-handling-functions" oldids="sec-uri-syntax-and-semantics">
+      <h1>URI Handling Functions</h1>
+      <p>Uniform Resource Identifiers, or URIs, are Strings that identify resources (e.g. web pages or files) and transport protocols by which to access them (e.g. HTTP or FTP) on the Internet. The ECMAScript language itself does not provide any support for using URIs except for functions that encode and decode URIs as described in this section. `encodeURI` and `decodeURI` are intended to work with complete URIs; they assume that any reserved characters are intended to have special meaning (e.g., as delimiters) and so are not encoded. `encodeURIComponent` and `decodeURIComponent` are intended to work with the individual components of a URI; they assume that any reserved characters represent text and must be encoded to avoid special meaning when the component is part of a complete URI.</p>
+      <emu-note>
+        <p>The set of reserved characters is based upon RFC 2396 and does not reflect changes introduced by the more recent RFC 3986.</p>
+      </emu-note>
+      <emu-note>
+        <p>Many implementations of ECMAScript provide additional functions and methods that manipulate web pages; these functions are beyond the scope of this standard.</p>
+      </emu-note>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

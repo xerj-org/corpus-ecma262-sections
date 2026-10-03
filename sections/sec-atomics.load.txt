@@ -1,0 +1,13 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.9 Atomics.load ( _ta_, _index_ ) [id: sec-atomics.load]
+
+<emu-clause id="sec-atomics.load" oldids="sec-atomicload" type="built-in function">
+      <h1>Atomics.load ( _ta_, _index_ )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _byteIndexInBuffer_ be ? ValidateAtomicAccessOnIntegerTypedArray(_ta_, _index_).
+        1. Perform ? RevalidateAtomicAccess(_ta_, _byteIndexInBuffer_).
+        1. Let _buffer_ be _ta_.[[ViewedArrayBuffer]].
+        1. Let _elementType_ be TypedArrayElementType(_ta_).
+        1. Return GetValueFromBuffer(_buffer_, _byteIndexInBuffer_, _elementType_, *true*, ~seq-cst~).
+      </emu-alg>
+    </emu-clause>

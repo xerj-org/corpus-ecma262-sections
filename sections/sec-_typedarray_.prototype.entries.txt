@@ -1,0 +1,11 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.7 %TypedArray%.prototype.entries ( ) [id: sec-%typedarray%.prototype.entries]
+
+<emu-clause id="sec-%typedarray%.prototype.entries" type="built-in function">
+        <h1>%TypedArray%.prototype.entries ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? ValidateTypedArray(_obj_, ~seq-cst~).
+          1. Return CreateArrayIterator(_obj_, ~key+value~).
+        </emu-alg>
+      </emu-clause>

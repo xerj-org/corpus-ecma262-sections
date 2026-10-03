@@ -1,0 +1,40 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.2 Scope Analysis > 8.2.12 Static Semantics: TopLevelVarDeclaredNames ( ): a List of Strings [id: sec-static-semantics-toplevelvardeclarednames]
+
+<emu-clause id="sec-static-semantics-toplevelvardeclarednames" oldids="sec-block-static-semantics-toplevelvardeclarednames,sec-labelled-statements-static-semantics-toplevelvardeclarednames" type="sdo">
+      <h1>Static Semantics: TopLevelVarDeclaredNames ( ): a List of Strings</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>StatementList : StatementList StatementListItem</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the TopLevelVarDeclaredNames of |StatementList|.
+        1. Let _names2_ be the TopLevelVarDeclaredNames of |StatementListItem|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>StatementListItem : Declaration</emu-grammar>
+      <emu-alg>
+        1. If |Declaration| is <emu-grammar>Declaration : HoistableDeclaration</emu-grammar>, then
+          1. Return the BoundNames of |HoistableDeclaration|.
+        1. Return a new empty List.
+      </emu-alg>
+      <emu-grammar>StatementListItem : Statement</emu-grammar>
+      <emu-alg>
+        1. If |Statement| is <emu-grammar>Statement : LabelledStatement</emu-grammar>, return the TopLevelVarDeclaredNames of |Statement|.
+        1. Return the VarDeclaredNames of |Statement|.
+      </emu-alg>
+      <emu-note>
+        <p>At the top level of a function or script, inner function declarations are treated like var declarations.</p>
+      </emu-note>
+      <emu-grammar>LabelledStatement : LabelIdentifier `:` LabelledItem</emu-grammar>
+      <emu-alg>
+        1. Return the TopLevelVarDeclaredNames of |LabelledItem|.
+      </emu-alg>
+      <emu-grammar>LabelledItem : Statement</emu-grammar>
+      <emu-alg>
+        1. If |Statement| is <emu-grammar>Statement : LabelledStatement</emu-grammar>, return the TopLevelVarDeclaredNames of |Statement|.
+        1. Return the VarDeclaredNames of |Statement|.
+      </emu-alg>
+      <emu-grammar>LabelledItem : FunctionDeclaration</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |FunctionDeclaration|.
+      </emu-alg>
+    </emu-clause>

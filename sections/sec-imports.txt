@@ -1,0 +1,65 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.2 Imports [id: sec-imports]
+
+<emu-clause id="sec-imports">
+      <h1>Imports</h1>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        ImportDeclaration :
+          `import` ImportClause FromClause WithClause? `;`
+          `import` ModuleSpecifier WithClause? `;`
+
+        ImportClause :
+          ImportedDefaultBinding
+          NameSpaceImport
+          NamedImports
+          ImportedDefaultBinding `,` NameSpaceImport
+          ImportedDefaultBinding `,` NamedImports
+
+        ImportedDefaultBinding :
+          ImportedBinding
+
+        NameSpaceImport :
+          `*` `as` ImportedBinding
+
+        NamedImports :
+          `{` `}`
+          `{` ImportsList `,`? `}`
+
+        FromClause :
+          `from` ModuleSpecifier
+
+        ImportsList :
+          ImportSpecifier
+          ImportsList `,` ImportSpecifier
+
+        ImportSpecifier :
+          ImportedBinding
+          ModuleExportName `as` ImportedBinding
+
+        ModuleSpecifier :
+          StringLiteral
+
+        ImportedBinding :
+          BindingIdentifier[~Yield, +Await]
+
+        WithClause :
+          `with` `{` `}`
+          `with` `{` WithEntries `,`? `}`
+
+        WithEntries :
+          AttributeKey `:` StringLiteral
+          AttributeKey `:` StringLiteral `,` WithEntries
+
+        AttributeKey :
+          IdentifierName
+          StringLiteral
+      </emu-grammar>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

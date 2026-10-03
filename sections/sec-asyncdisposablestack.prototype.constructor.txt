@@ -1,0 +1,6 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.4 AsyncDisposableStack Objects > 27.4.3 Properties of the AsyncDisposableStack Prototype Object > 27.4.3.2 AsyncDisposableStack.prototype.constructor [id: sec-asyncdisposablestack.prototype.constructor]
+
+<emu-clause id="sec-asyncdisposablestack.prototype.constructor">
+        <h1>AsyncDisposableStack.prototype.constructor</h1>
+        <p>The initial value of `AsyncDisposableStack.prototype.constructor` is %AsyncDisposableStack%.</p>
+      </emu-clause>

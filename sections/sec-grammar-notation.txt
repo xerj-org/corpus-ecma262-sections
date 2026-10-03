@@ -1,0 +1,25 @@
+ECMA-262 > 5 Notational Conventions > 5.1 Syntactic and Lexical Grammars > 5.1.5 Grammar Notation [id: sec-grammar-notation]
+
+<emu-clause id="sec-grammar-notation" namespace="grammar-notation">
+      <h1>Grammar Notation</h1>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

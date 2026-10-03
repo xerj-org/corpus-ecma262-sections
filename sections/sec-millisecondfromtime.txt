@@ -1,0 +1,16 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.16 MillisecondFromTime ( _tv_: a finite time value, ): an integer in the inclusive interval from 0 to 999 [id: sec-millisecondfromtime]
+
+<emu-clause id="sec-millisecondfromtime" type="abstract operation" oldids="sec-msfromtime,eqn-msFromTime,sec-millisecfromtime">
+        <h1>
+          MillisecondFromTime (
+            _tv_: a finite time value,
+          ): an integer in the inclusive interval from 0 to 999
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns the millisecond of the second in which _tv_ falls.</dd>
+        </dl>
+        <emu-alg>
+          1. Return ℝ(_tv_) modulo MillisecondsPerSecond.
+        </emu-alg>
+      </emu-clause>

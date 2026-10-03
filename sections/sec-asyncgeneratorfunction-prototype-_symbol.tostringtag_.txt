@@ -1,0 +1,7 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.7 AsyncGeneratorFunction Objects > 27.7.3 Properties of the AsyncGeneratorFunction Prototype Object > 27.7.3.3 AsyncGeneratorFunction.prototype [ %Symbol.toStringTag% ] [id: sec-asyncgeneratorfunction-prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-asyncgeneratorfunction-prototype-tostringtag" id="sec-asyncgeneratorfunction-prototype-%symbol.tostringtag%">
+        <h1>AsyncGeneratorFunction.prototype [ %Symbol.toStringTag% ]</h1>
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"AsyncGeneratorFunction"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

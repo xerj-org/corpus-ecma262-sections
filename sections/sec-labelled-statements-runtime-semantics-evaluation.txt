@@ -1,0 +1,9 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.13 Labelled Statements > 14.13.3 Runtime Semantics: Evaluation [id: sec-labelled-statements-runtime-semantics-evaluation]
+
+<emu-clause id="sec-labelled-statements-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>LabelledStatement : LabelIdentifier `:` LabelledItem</emu-grammar>
+      <emu-alg>
+        1. Return ? LabelledEvaluation of this |LabelledStatement| with argument « ».
+      </emu-alg>
+    </emu-clause>

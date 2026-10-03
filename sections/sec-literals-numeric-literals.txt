@@ -1,0 +1,126 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals > 12.9.3 Numeric Literals [id: sec-literals-numeric-literals]
+
+<emu-clause id="sec-literals-numeric-literals" oldids="sec-additional-syntax-numeric-literals">
+      <h1>Numeric Literals</h1>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        NumericLiteralSeparator ::
+          `_`
+
+        NumericLiteral ::
+          DecimalLiteral
+          DecimalBigIntegerLiteral
+          NonDecimalIntegerLiteral[+Sep]
+          NonDecimalIntegerLiteral[+Sep] BigIntLiteralSuffix
+          LegacyOctalIntegerLiteral
+
+        DecimalBigIntegerLiteral ::
+          `0` BigIntLiteralSuffix
+          NonZeroDigit DecimalDigits[+Sep]? BigIntLiteralSuffix
+          NonZeroDigit NumericLiteralSeparator DecimalDigits[+Sep] BigIntLiteralSuffix
+
+        NonDecimalIntegerLiteral[Sep] ::
+          BinaryIntegerLiteral[?Sep]
+          OctalIntegerLiteral[?Sep]
+          HexIntegerLiteral[?Sep]
+
+        BigIntLiteralSuffix ::
+          `n`
+
+        DecimalLiteral ::
+          DecimalIntegerLiteral `.` DecimalDigits[+Sep]? ExponentPart[+Sep]?
+          `.` DecimalDigits[+Sep] ExponentPart[+Sep]?
+          DecimalIntegerLiteral ExponentPart[+Sep]?
+
+        DecimalIntegerLiteral ::
+          `0`
+          NonZeroDigit
+          NonZeroDigit NumericLiteralSeparator? DecimalDigits[+Sep]
+          NonOctalDecimalIntegerLiteral
+
+        DecimalDigits[Sep] ::
+          DecimalDigit
+          DecimalDigits[?Sep] DecimalDigit
+          [+Sep] DecimalDigits[+Sep] NumericLiteralSeparator DecimalDigit
+
+        DecimalDigit :: one of
+          `0` `1` `2` `3` `4` `5` `6` `7` `8` `9`
+
+        NonZeroDigit :: one of
+          `1` `2` `3` `4` `5` `6` `7` `8` `9`
+
+        ExponentPart[Sep] ::
+          ExponentIndicator SignedInteger[?Sep]
+
+        ExponentIndicator :: one of
+          `e` `E`
+
+        SignedInteger[Sep] ::
+          DecimalDigits[?Sep]
+          `+` DecimalDigits[?Sep]
+          `-` DecimalDigits[?Sep]
+
+        BinaryIntegerLiteral[Sep] ::
+          `0b` BinaryDigits[?Sep]
+          `0B` BinaryDigits[?Sep]
+
+        BinaryDigits[Sep] ::
+          BinaryDigit
+          BinaryDigits[?Sep] BinaryDigit
+          [+Sep] BinaryDigits[+Sep] NumericLiteralSeparator BinaryDigit
+
+        BinaryDigit :: one of
+          `0` `1`
+
+        OctalIntegerLiteral[Sep] ::
+          `0o` OctalDigits[?Sep]
+          `0O` OctalDigits[?Sep]
+
+        OctalDigits[Sep] ::
+          OctalDigit
+          OctalDigits[?Sep] OctalDigit
+          [+Sep] OctalDigits[+Sep] NumericLiteralSeparator OctalDigit
+
+        LegacyOctalIntegerLiteral ::
+          `0` OctalDigit
+          LegacyOctalIntegerLiteral OctalDigit
+
+        NonOctalDecimalIntegerLiteral ::
+          `0` NonOctalDigit
+          LegacyOctalLikeDecimalIntegerLiteral NonOctalDigit
+          NonOctalDecimalIntegerLiteral DecimalDigit
+
+        LegacyOctalLikeDecimalIntegerLiteral ::
+          `0` OctalDigit
+          LegacyOctalLikeDecimalIntegerLiteral OctalDigit
+
+        OctalDigit :: one of
+          `0` `1` `2` `3` `4` `5` `6` `7`
+
+        NonOctalDigit :: one of
+          `8` `9`
+
+        HexIntegerLiteral[Sep] ::
+          `0x` HexDigits[?Sep]
+          `0X` HexDigits[?Sep]
+
+        HexDigits[Sep] ::
+          HexDigit
+          HexDigits[?Sep] HexDigit
+          [+Sep] HexDigits[+Sep] NumericLiteralSeparator HexDigit
+
+        // emu-format ignore
+        HexDigit :: one of
+          `0` `1` `2` `3` `4` `5` `6` `7` `8` `9` `a` `b` `c` `d` `e` `f` `A` `B` `C` `D` `E` `F`
+      </emu-grammar>
+      <p>The |SourceCharacter| immediately following a |NumericLiteral| must not be an |IdentifierStart| or |DecimalDigit|.</p>
+      <emu-note>
+        <p>For example: `3in` is an error and not the two input elements `3` and `in`.</p>
+      </emu-note>
+
+      
+
+      
+
+      
+    </emu-clause>

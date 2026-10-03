@@ -1,0 +1,29 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.1 Statement Semantics > 14.1.1 Runtime Semantics: Evaluation [id: sec-statement-semantics-runtime-semantics-evaluation]
+
+<emu-clause id="sec-statement-semantics-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>
+        HoistableDeclaration :
+          GeneratorDeclaration
+          AsyncFunctionDeclaration
+          AsyncGeneratorDeclaration
+      </emu-grammar>
+      <emu-alg>
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-grammar>
+        HoistableDeclaration : FunctionDeclaration
+      </emu-grammar>
+      <emu-alg>
+        1. Return ? Evaluation of |FunctionDeclaration|.
+      </emu-alg>
+      <emu-grammar>
+        BreakableStatement :
+          IterationStatement
+          SwitchStatement
+      </emu-grammar>
+      <emu-alg>
+        1. Let _newLabelSet_ be a new empty List.
+        1. Return ? LabelledEvaluation of this |BreakableStatement| with argument _newLabelSet_.
+      </emu-alg>
+    </emu-clause>

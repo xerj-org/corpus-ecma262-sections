@@ -1,0 +1,40 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.3 Declarations and the Variable Statement > 14.3.2 Variable Statement > 14.3.2.1 Runtime Semantics: Evaluation [id: sec-variable-statement-runtime-semantics-evaluation]
+
+<emu-clause id="sec-variable-statement-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>VariableStatement : `var` VariableDeclarationList `;`</emu-grammar>
+        <emu-alg>
+          1. Perform ? Evaluation of |VariableDeclarationList|.
+          1. Return ~empty~.
+        </emu-alg>
+        <emu-grammar>VariableDeclarationList : VariableDeclarationList `,` VariableDeclaration</emu-grammar>
+        <emu-alg>
+          1. Perform ? Evaluation of |VariableDeclarationList|.
+          1. Return ? Evaluation of |VariableDeclaration|.
+        </emu-alg>
+        <emu-grammar>VariableDeclaration : BindingIdentifier</emu-grammar>
+        <emu-alg>
+          1. Return ~empty~.
+        </emu-alg>
+        <emu-grammar>VariableDeclaration : BindingIdentifier Initializer</emu-grammar>
+        <emu-alg>
+          1. Let _name_ be the StringValue of |BindingIdentifier|.
+          1. Let _lhs_ be ? ResolveBinding(_name_).
+          1. If IsAnonymousFunctionDefinition(|Initializer|) is *true*, then
+            1. Let _value_ be ? NamedEvaluation of |Initializer| with argument _name_.
+          1. Else,
+            1. Let _rhs_ be ? Evaluation of |Initializer|.
+            1. Let _value_ be ? GetValue(_rhs_).
+          1. [id="step-vardecllist-evaluation-putvalue"] Perform ? PutValue(_lhs_, _value_).
+          1. Return ~empty~.
+        </emu-alg>
+        <emu-note>
+          <p>If a |VariableDeclaration| is nested within a with statement and the |BindingIdentifier| in the |VariableDeclaration| is the same as a property name of the binding object of the with statement's Object Environment Record, then step <emu-xref href="#step-vardecllist-evaluation-putvalue"></emu-xref> will assign _value_ to the property instead of assigning to the VariableEnvironment binding of the |Identifier|.</p>
+        </emu-note>
+        <emu-grammar>VariableDeclaration : BindingPattern Initializer</emu-grammar>
+        <emu-alg>
+          1. Let _rhs_ be ? Evaluation of |Initializer|.
+          1. Let _rightValue_ be ? GetValue(_rhs_).
+          1. Return ? BindingInitialization of |BindingPattern| with arguments _rightValue_ and *undefined*.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,14 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.6 Exponentiation Operator [id: sec-exp-operator]
+
+<emu-clause id="sec-exp-operator">
+    <h1>Exponentiation Operator</h1>
+    <h2>Syntax</h2>
+
+    <emu-grammar type="definition">
+      ExponentiationExpression[Yield, Await] :
+        UnaryExpression[?Yield, ?Await]
+        UpdateExpression[?Yield, ?Await] `**` ExponentiationExpression[?Yield, ?Await]
+    </emu-grammar>
+
+    
+  </emu-clause>

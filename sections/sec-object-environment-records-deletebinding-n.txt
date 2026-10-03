@@ -1,0 +1,20 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.2 Object Environment Records > 9.1.1.2.7 DeleteBinding ( _name_: a String, ): either a normal completion containing a Boolean or a throw completion [id: sec-object-environment-records-deletebinding-n]
+
+<emu-clause id="sec-object-environment-records-deletebinding-n" type="concrete method">
+          <h1>
+            DeleteBinding (
+              _name_: a String,
+            ): either a normal completion containing a Boolean or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>an Object Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It can only delete bindings that correspond to properties of the environment object whose [[Configurable]] attribute have the value *true*.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _bindingObj_ be _envRecord_.[[BindingObject]].
+            1. Return ? <emu-meta effects="user-code">_bindingObj_.[[Delete]](_name_)</emu-meta>.
+          </emu-alg>
+        </emu-clause>

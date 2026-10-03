@@ -1,0 +1,15 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.3 Properties of the Array Prototype Object > 23.1.3.36 Array.prototype.toString ( ) [id: sec-array.prototype.tostring]
+
+<emu-clause id="sec-array.prototype.tostring" type="built-in function">
+        <h1>Array.prototype.toString ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _array_ be ? ToObject(*this* value).
+          1. Let _func_ be ? Get(_array_, *"join"*).
+          1. If IsCallable(_func_) is *false*, set _func_ to the intrinsic function %Object.prototype.toString%.
+          1. Return ? Call(_func_, _array_).
+        </emu-alg>
+        <emu-note>
+          <p>This method is intentionally generic; it does not require that its *this* value be an Array. Therefore it can be transferred to other kinds of objects for use as a method.</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,49 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.5 Jobs and Host Operations to Enqueue Jobs > 9.5.1 JobCallback Records [id: sec-jobcallback-records]
+
+<emu-clause id="sec-jobcallback-records">
+      <h1>JobCallback Records</h1>
+      <p>A <dfn variants="JobCallback Records">JobCallback Record</dfn> is a Record used to store a function object and a host-defined value. Function objects that are invoked via a Job enqueued by the host may have additional host-defined context. To propagate the state, Job Abstract Closures should not capture and call function objects directly. Instead, use HostMakeJobCallback and HostCallJobCallback.</p>
+      <emu-note>
+        <p>The WHATWG HTML specification (<a href="https://html.spec.whatwg.org/">https://html.spec.whatwg.org/</a>), for example, uses the host-defined value to propagate the incumbent settings object for Promise callbacks.</p>
+      </emu-note>
+      <p>JobCallback Records have the fields listed in <emu-xref href="#table-jobcallback-records"></emu-xref>.</p>
+      <emu-table id="table-jobcallback-records" caption="JobCallback Record Fields">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              [[Callback]]
+            </td>
+            <td>
+              a function object
+            </td>
+            <td>
+              The function to invoke when the Job is invoked.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[HostDefined]]
+            </td>
+            <td>
+              anything (default value is ~empty~)
+            </td>
+            <td>
+              Field reserved for use by hosts.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+    </emu-clause>

@@ -1,0 +1,16 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.9 Object.getOwnPropertyDescriptors ( _obj_ ) [id: sec-object.getownpropertydescriptors]
+
+<emu-clause id="sec-object.getownpropertydescriptors" type="built-in function">
+        <h1>Object.getOwnPropertyDescriptors ( _obj_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _coerced_ be ? ToObject(_obj_).
+          1. Let _ownKeys_ be ? <emu-meta effects="user-code">_coerced_.[[OwnPropertyKeys]]()</emu-meta>.
+          1. Let _descs_ be OrdinaryObjectCreate(%Object.prototype%).
+          1. For each element _key_ of _ownKeys_, do
+            1. Let _propertyDesc_ be ? <emu-meta effects="user-code">_coerced_.[[GetOwnProperty]](_key_)</emu-meta>.
+            1. Let _propertyDescObj_ be FromPropertyDescriptor(_propertyDesc_).
+            1. If _propertyDescObj_ is not *undefined*, perform ! CreateDataPropertyOrThrow(_descs_, _key_, _propertyDescObj_).
+          1. Return _descs_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,69 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.2 Object Environment Records [id: sec-object-environment-records]
+
+<emu-clause id="sec-object-environment-records">
+        <h1>Object Environment Records</h1>
+        <p>Each <dfn variants="Object Environment Records">Object Environment Record</dfn> is associated with an object called its <em>binding object</em>. An Object Environment Record binds the set of string identifier names that directly correspond to the property names of its binding object. Property keys that are not strings in the form of an |IdentifierName| are not included in the set of bound identifiers. Both own and inherited properties are included in the set regardless of the setting of their [[Enumerable]] attribute. Because properties can be dynamically added and deleted from objects, the set of identifiers bound by an Object Environment Record may potentially change as a side-effect of any operation that adds or deletes properties. Any bindings that are created as a result of such a side-effect are considered to be a mutable binding even if the Writable attribute of the corresponding property is *false*. Immutable bindings do not exist for Object Environment Records.</p>
+        <p>Object Environment Records created for `with` statements (<emu-xref href="#sec-with-statement"></emu-xref>) can provide their binding object as an implicit *this* value for use in function calls. The capability is controlled by a Boolean [[IsWithEnvironment]] field.</p>
+        <p>Object Environment Records have the additional state fields listed in <emu-xref href="#table-additional-fields-of-object-environment-records"></emu-xref>.</p>
+        <emu-table id="table-additional-fields-of-object-environment-records" caption="Additional Fields of Object Environment Records">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Field Name
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Meaning
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                [[BindingObject]]
+              </td>
+              <td>
+                an Object
+              </td>
+              <td>
+                The binding object of this Environment Record.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[IsWithEnvironment]]
+              </td>
+              <td>
+                a Boolean
+              </td>
+              <td>
+                Indicates whether this Environment Record is created for a `with` statement.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+      </emu-clause>

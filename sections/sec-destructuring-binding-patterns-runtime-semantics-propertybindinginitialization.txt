@@ -1,0 +1,34 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.3 Declarations and the Variable Statement > 14.3.3 Destructuring Binding Patterns > 14.3.3.1 Runtime Semantics: PropertyBindingInitialization ( _value_: an ECMAScript language value, _envRecord_: an Environment Record or *undefined*, ): either a normal completion containing a List of property keys or an abrupt completion [id: sec-destructuring-binding-patterns-runtime-semantics-propertybindinginitialization]
+
+<emu-clause id="sec-destructuring-binding-patterns-runtime-semantics-propertybindinginitialization" type="sdo">
+        <h1>
+          Runtime Semantics: PropertyBindingInitialization (
+            _value_: an ECMAScript language value,
+            _envRecord_: an Environment Record or *undefined*,
+          ): either a normal completion containing a List of property keys or an abrupt completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It collects a list of all bound property names.</dd>
+        </dl>
+        <emu-grammar>BindingPropertyList : BindingPropertyList `,` BindingProperty</emu-grammar>
+        <emu-alg>
+          1. Let _boundNames_ be ? PropertyBindingInitialization of |BindingPropertyList| with arguments _value_ and _envRecord_.
+          1. Let _nextNames_ be ? PropertyBindingInitialization of |BindingProperty| with arguments _value_ and _envRecord_.
+          1. Return the list-concatenation of _boundNames_ and _nextNames_.
+        </emu-alg>
+
+        <emu-grammar>BindingProperty : SingleNameBinding</emu-grammar>
+        <emu-alg>
+          1. Let _name_ be the sole element of the BoundNames of |SingleNameBinding|.
+          1. Perform ? KeyedBindingInitialization of |SingleNameBinding| with arguments _value_, _envRecord_, and _name_.
+          1. Return « _name_ ».
+        </emu-alg>
+
+        <emu-grammar>BindingProperty : PropertyName `:` BindingElement</emu-grammar>
+        <emu-alg>
+          1. Let _propertyKey_ be ? Evaluation of |PropertyName|.
+          1. Perform ? KeyedBindingInitialization of |BindingElement| with arguments _value_, _envRecord_, and _propertyKey_.
+          1. Return « _propertyKey_ ».
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,35 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.6 Runtime Semantics: CompileQuantifierPrefix ( ): a Record with fields [[Min]] (a non-negative integer) and [[Max]] (a non-negative integer or +∞) [id: sec-compilequantifierprefix]
+
+<emu-clause id="sec-compilequantifierprefix" type="sdo">
+        <h1>Runtime Semantics: CompileQuantifierPrefix ( ): a Record with fields [[Min]] (a non-negative integer) and [[Max]] (a non-negative integer or +&infin;)</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>QuantifierPrefix :: `*`</emu-grammar>
+        <emu-alg>
+          1. Return the Record { [[Min]]: 0, [[Max]]: +∞ }.
+        </emu-alg>
+        <emu-grammar>QuantifierPrefix :: `+`</emu-grammar>
+        <emu-alg>
+          1. Return the Record { [[Min]]: 1, [[Max]]: +∞ }.
+        </emu-alg>
+        <emu-grammar>QuantifierPrefix :: `?`</emu-grammar>
+        <emu-alg>
+          1. Return the Record { [[Min]]: 0, [[Max]]: 1 }.
+        </emu-alg>
+        <emu-grammar>QuantifierPrefix :: `{` DecimalDigits `}`</emu-grammar>
+        <emu-alg>
+          1. Let _i_ be the MV of |DecimalDigits| (see <emu-xref href="#sec-literals-numeric-literals"></emu-xref>).
+          1. Return the Record { [[Min]]: _i_, [[Max]]: _i_ }.
+        </emu-alg>
+        <emu-grammar>QuantifierPrefix :: `{` DecimalDigits `,}`</emu-grammar>
+        <emu-alg>
+          1. Let _i_ be the MV of |DecimalDigits|.
+          1. Return the Record { [[Min]]: _i_, [[Max]]: +∞ }.
+        </emu-alg>
+        <emu-grammar>QuantifierPrefix :: `{` DecimalDigits `,` DecimalDigits `}`</emu-grammar>
+        <emu-alg>
+          1. Let _i_ be the MV of the first |DecimalDigits|.
+          1. Let _j_ be the MV of the second |DecimalDigits|.
+          1. Return the Record { [[Min]]: _i_, [[Max]]: _j_ }.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.2 Properties of the Symbol Constructor > 20.4.2.9 Symbol.match [id: sec-symbol.match]
+
+<emu-clause id="sec-symbol.match">
+        <h1>Symbol.match</h1>
+        <p>The initial value of `Symbol.match` is the well-known symbol %Symbol.match% (<emu-xref href="#table-well-known-symbols"></emu-xref>).</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

@@ -1,0 +1,17 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.26 PrivateElementFind ( _obj_: an Object, _privateName_: a Private Name, ): a PrivateElement or ~empty~ [id: sec-privateelementfind]
+
+<emu-clause id="sec-privateelementfind" type="abstract operation">
+      <h1>
+        PrivateElementFind (
+          _obj_: an Object,
+          _privateName_: a Private Name,
+        ): a PrivateElement or ~empty~
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If _obj_.[[PrivateElements]] contains a PrivateElement _entry_ such that _entry_.[[Key]] is _privateName_, then
+          1. Return _entry_.
+        1. Return ~empty~.
+      </emu-alg>
+    </emu-clause>

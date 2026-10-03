@@ -1,0 +1,24 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.3 Abstract Operations for Uint8Array Objects > 23.3.3.2 GetUint8ArrayBytes ( _ta_: a Uint8Array, ): either a normal completion containing a List of byte values or a throw completion [id: sec-getuint8arraybytes]
+
+<emu-clause id="sec-getuint8arraybytes" type="abstract operation">
+        <h1>
+          GetUint8ArrayBytes (
+            _ta_: a Uint8Array,
+          ): either a normal completion containing a List of byte values or a throw completion
+        </h1>
+        <dl class="header"></dl>
+        <emu-alg>
+          1. Let _buffer_ be _ta_.[[ViewedArrayBuffer]].
+          1. Let _taRecord_ be ? ValidateTypedArrayBounds(_ta_, ~seq-cst~).
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. Let _byteOffset_ be _ta_.[[ByteOffset]].
+          1. Let _bytes_ be a new empty List.
+          1. Let _index_ be 0.
+          1. Repeat, while _index_ &lt; _length_,
+            1. Let _byteIndex_ be _byteOffset_ + _index_.
+            1. Let _byte_ be ℝ(GetValueFromBuffer(_buffer_, _byteIndex_, ~uint8~, *true*, ~unordered~)).
+            1. Append _byte_ to _bytes_.
+            1. Set _index_ to _index_ + 1.
+          1. Return _bytes_.
+        </emu-alg>
+      </emu-clause>

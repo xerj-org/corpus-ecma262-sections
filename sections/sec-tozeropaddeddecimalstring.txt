@@ -1,0 +1,16 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.3 Properties of the String Prototype Object > 22.1.3.17 String.prototype.padStart ( _maxLength_ [ , _fillString_ ] ) > 22.1.3.17.3 ToZeroPaddedDecimalString ( _n_: a non-negative integer, _minLength_: a non-negative integer, ): a String [id: sec-tozeropaddeddecimalstring]
+
+<emu-clause id="sec-tozeropaddeddecimalstring" type="abstract operation">
+          <h1>
+            ToZeroPaddedDecimalString (
+              _n_: a non-negative integer,
+              _minLength_: a non-negative integer,
+            ): a String
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _string_ be the String representation of _n_, formatted as a decimal number.
+            1. Return StringPad(_string_, _minLength_, *"0"*, ~start~).
+          </emu-alg>
+        </emu-clause>

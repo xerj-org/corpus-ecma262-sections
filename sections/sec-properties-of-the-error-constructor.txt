@@ -1,0 +1,14 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.2 Properties of the Error Constructor [id: sec-properties-of-the-error-constructor]
+
+<emu-clause id="sec-properties-of-the-error-constructor">
+      <h1>Properties of the Error Constructor</h1>
+      <p>The Error constructor:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+
+      
+    </emu-clause>

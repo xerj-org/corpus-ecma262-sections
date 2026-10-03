@@ -1,0 +1,6 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.10 AsyncFunction Objects > 27.10.4 AsyncFunction Instances > 27.10.4.1 length [id: sec-async-function-instances-length]
+
+<emu-clause id="sec-async-function-instances-length">
+        <h1>length</h1>
+        <p>The specification for the *"length"* property of Function instances given in <emu-xref href="#sec-function-instances-length"></emu-xref> also applies to AsyncFunction instances.</p>
+      </emu-clause>

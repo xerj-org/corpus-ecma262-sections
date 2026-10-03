@@ -1,0 +1,7 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.6 Set Iterator Objects > 24.2.6.2 The %SetIteratorPrototype% Object > 24.2.6.2.2 %SetIteratorPrototype% [ %Symbol.toStringTag% ] [id: sec-%setiteratorprototype%-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-%setiteratorprototype%-@@tostringtag" id="sec-%setiteratorprototype%-%symbol.tostringtag%">
+          <h1>%SetIteratorPrototype% [ %Symbol.toStringTag% ]</h1>
+          <p>The initial value of the %Symbol.toStringTag% property is the String value *"Set Iterator"*.</p>
+          <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+        </emu-clause>

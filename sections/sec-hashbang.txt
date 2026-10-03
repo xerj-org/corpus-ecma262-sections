@@ -1,0 +1,13 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.5 Hashbang Comments [id: sec-hashbang]
+
+<emu-clause id="sec-hashbang">
+    <h1>Hashbang Comments</h1>
+
+    <p>Hashbang Comments are location-sensitive and like other types of comments are discarded from the stream of input elements for the syntactic grammar.</p>
+
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      HashbangComment ::
+        `#!` SingleLineCommentChars?
+    </emu-grammar>
+  </emu-clause>

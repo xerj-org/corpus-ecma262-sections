@@ -1,0 +1,25 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.4 Properties of the Date Prototype Object > 21.4.4.32 Date.prototype.setUTCMinutes ( _minute_ [ , _second_ [ , _millisecond_ ] ] ) [id: sec-date.prototype.setutcminutes]
+
+<emu-clause id="sec-date.prototype.setutcminutes" type="built-in function">
+        <h1>Date.prototype.setUTCMinutes ( _minute_ [ , _second_ [ , _millisecond_ ] ] )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _dateObj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_dateObj_, [[DateValue]]).
+          1. Let _tv_ be _dateObj_.[[DateValue]].
+          1. Let _minuteNumber_ be ? ToNumber(_minute_).
+          1. If _second_ is present, let _secondNumber_ be ? ToNumber(_second_).
+          1. If _millisecond_ is present, let _millisecondNumber_ be ? ToNumber(_millisecond_).
+          1. If _tv_ is *NaN*, return *NaN*.
+          1. If _second_ is not present, let _secondNumber_ be 𝔽(SecondFromTime(_tv_)).
+          1. If _millisecond_ is not present, let _millisecondNumber_ be 𝔽(MillisecondFromTime(_tv_)).
+          1. Let _date_ be MakeDate(𝔽(Day(_tv_)), MakeTime(𝔽(HourFromTime(_tv_)), _minuteNumber_, _secondNumber_, _millisecondNumber_)).
+          1. Let _v_ be TimeClip(_date_).
+          1. Set _dateObj_.[[DateValue]] to _v_.
+          1. Return _v_.
+        </emu-alg>
+        <p>The *"length"* property of this method is *3*<sub>𝔽</sub>.</p>
+        <emu-note>
+          <p>If _second_ is not present, this method behaves as if _second_ was present with the value `getUTCSeconds()`. If _millisecond_ is not present, it behaves as if _millisecond_ was present with the value return by `getUTCMilliseconds()`.</p>
+        </emu-note>
+      </emu-clause>

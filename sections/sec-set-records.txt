@@ -1,0 +1,66 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.1 Abstract Operations For Set Objects > 24.2.1.1 Set Records [id: sec-set-records]
+
+<emu-clause id="sec-set-records">
+        <h1>Set Records</h1>
+        <p>A <dfn variants="Set Records">Set Record</dfn> is a Record used to encapsulate the interface of a Set or similar object.</p>
+        <p>Set Records have the fields listed in <emu-xref href="#table-set-record-fields"></emu-xref>.</p>
+        <emu-table id="table-set-record-fields" caption="Set Record Fields">
+          <table>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+            <tr>
+              <td>
+                [[SetObject]]
+              </td>
+              <td>
+                an Object
+              </td>
+              <td>
+                the Set or similar object.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Size]]
+              </td>
+              <td>
+                a non-negative integer or +∞
+              </td>
+              <td>
+                The reported size of the object.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Has]]
+              </td>
+              <td>
+                a function object
+              </td>
+              <td>
+                The `has` method of the object.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Keys]]
+              </td>
+              <td>
+                a function object
+              </td>
+              <td>
+                The `keys` method of the object.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

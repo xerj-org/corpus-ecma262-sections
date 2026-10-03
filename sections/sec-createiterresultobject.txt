@@ -1,0 +1,20 @@
+ECMA-262 > 7 Abstract Operations > 7.4 Operations on Iterator Objects > 7.4.17 CreateIteratorResultObject ( _value_: an ECMAScript language value, _done_: a Boolean, ): an Object that conforms to the IteratorResult interface [id: sec-createiterresultobject]
+
+<emu-clause id="sec-createiterresultobject" type="abstract operation">
+      <h1>
+        CreateIteratorResultObject (
+          _value_: an ECMAScript language value,
+          _done_: a Boolean,
+        ): an Object that conforms to the IteratorResult interface
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It creates an object that conforms to the IteratorResult interface.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _obj_ be OrdinaryObjectCreate(%Object.prototype%).
+        1. Perform ! CreateDataPropertyOrThrow(_obj_, *"value"*, _value_).
+        1. Perform ! CreateDataPropertyOrThrow(_obj_, *"done"*, _done_).
+        1. Return _obj_.
+      </emu-alg>
+    </emu-clause>

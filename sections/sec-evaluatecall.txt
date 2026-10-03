@@ -1,0 +1,30 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.6 Function Calls > 13.3.6.2 EvaluateCall ( _func_: an ECMAScript language value, _thisValueRef_: an ECMAScript language value or a Reference Record, _argumentListNode_: a Parse Node, _tailPosition_: a Boolean, ): either a normal completion containing an ECMAScript language value or an abrupt completion [id: sec-evaluatecall]
+
+<emu-clause id="sec-evaluatecall" type="abstract operation" oldids="sec-evaluatedirectcall">
+        <h1>
+          EvaluateCall (
+            _func_: an ECMAScript language value,
+            _thisValueRef_: an ECMAScript language value or a Reference Record,
+            _argumentListNode_: a Parse Node,
+            _tailPosition_: a Boolean,
+          ): either a normal completion containing an ECMAScript language value or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _thisValueRef_ is a Reference Record, then
+            1. If IsPropertyReference(_thisValueRef_) is *true*, then
+              1. Let _thisValue_ be GetThisValue(_thisValueRef_).
+            1. Else,
+              1. Let _refEnv_ be _thisValueRef_.[[Base]].
+              1. Assert: _refEnv_ is an Environment Record.
+              1. Let _thisValue_ be _refEnv_.WithBaseObject().
+          1. Else,
+            1. Let _thisValue_ be *undefined*.
+          1. Let _argList_ be ? ArgumentListEvaluation of _argumentListNode_.
+          1. If _func_ is not an Object, throw a *TypeError* exception.
+          1. If IsCallable(_func_) is *false*, throw a *TypeError* exception.
+          1. If _tailPosition_ is *true*, perform PrepareForTailCall().
+          1. Return ? Call(_func_, _thisValue_, _argList_).
+        </emu-alg>
+      </emu-clause>

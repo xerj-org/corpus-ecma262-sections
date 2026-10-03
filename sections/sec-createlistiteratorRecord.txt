@@ -1,0 +1,24 @@
+ECMA-262 > 7 Abstract Operations > 7.4 Operations on Iterator Objects > 7.4.18 CreateListIteratorRecord ( _list_: a List of ECMAScript language values, ): an Iterator Record [id: sec-createlistiteratorRecord]
+
+<emu-clause id="sec-createlistiteratorRecord" type="abstract operation" oldids="sec-createlistiterator,sec-listiteratornext-functions,sec-listiterator-next">
+      <h1>
+        CreateListIteratorRecord (
+          _list_: a List of ECMAScript language values,
+        ): an Iterator Record
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It creates an Iterator Record whose [[NextMethod]] returns the successive elements of _list_.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _closure_ be a new Abstract Closure with no parameters that captures _list_ and performs the following steps when called:
+          1. For each element _value_ of _list_, do
+            1. Perform ? GeneratorYield(CreateIteratorResultObject(_value_, *false*)).
+          1. Return NormalCompletion(*undefined*).
+        1. Let _iterator_ be CreateIteratorFromClosure(_closure_, ~empty~, %Iterator.prototype%).
+        1. Return the Iterator Record { [[Iterator]]: _iterator_, [[NextMethod]]: %GeneratorPrototype.next%, [[Done]]: *false* }.
+      </emu-alg>
+      <emu-note>
+        <p>The list iterator object is never directly accessible to ECMAScript code.</p>
+      </emu-note>
+    </emu-clause>

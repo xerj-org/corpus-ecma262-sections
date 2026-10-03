@@ -1,0 +1,15 @@
+ECMA-262 > 7 Abstract Operations > 7.4 Operations on Iterator Objects > 7.4.16 IfAbruptCloseAsyncIterator ( _value_, _iteratorRecord_ ) [id: sec-ifabruptcloseasynciterator]
+
+<emu-clause id="sec-ifabruptcloseasynciterator" aoid="IfAbruptCloseAsyncIterator">
+      <h1>IfAbruptCloseAsyncIterator ( _value_, _iteratorRecord_ )</h1>
+      <p>IfAbruptCloseAsyncIterator is a shorthand for a sequence of algorithm steps that use an Iterator Record. An algorithm step of the form:</p>
+      <emu-alg>
+        1. IfAbruptCloseAsyncIterator(_value_, _iteratorRecord_).
+      </emu-alg>
+      <p>means the same thing as:</p>
+      <emu-alg>
+        1. Assert: _value_ is a Completion Record.
+        1. If _value_ is an abrupt completion, return ? AsyncIteratorClose(_iteratorRecord_, _value_).
+        1. Set _value_ to ! _value_.
+      </emu-alg>
+    </emu-clause>

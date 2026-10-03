@@ -1,0 +1,8 @@
+ECMA-262 > 29 Memory Model > 29.10 Data Race Freedom [id: sec-data-race-freedom]
+
+<emu-clause id="sec-data-race-freedom">
+    <h1>Data Race Freedom</h1>
+    <p>An execution _execution_ is <dfn>data race free</dfn> if there are no two events in SharedDataBlockEventSet(_execution_) that are in a data race.</p>
+    <p>A program is data race free if all its executions are data race free.</p>
+    <p>The memory model guarantees sequential consistency of all events for data race free programs.</p>
+  </emu-clause>

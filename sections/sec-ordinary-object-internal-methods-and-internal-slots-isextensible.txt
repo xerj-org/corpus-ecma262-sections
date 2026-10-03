@@ -1,0 +1,14 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.3 [[IsExtensible]] ( ): a normal completion containing a Boolean [id: sec-ordinary-object-internal-methods-and-internal-slots-isextensible]
+
+<emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-isextensible" type="internal method">
+      <h1>[[IsExtensible]] ( ): a normal completion containing a Boolean</h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>an ordinary object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Return OrdinaryIsExtensible(_obj_).
+      </emu-alg>
+
+      
+    </emu-clause>

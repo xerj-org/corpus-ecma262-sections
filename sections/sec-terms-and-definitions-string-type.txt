@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.21 String type [id: sec-terms-and-definitions-string-type]
+
+<emu-clause id="sec-terms-and-definitions-string-type">
+      <h1>String type</h1>
+      <p>set of all possible String values</p>
+    </emu-clause>

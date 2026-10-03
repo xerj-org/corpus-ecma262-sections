@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.2 Properties of the Symbol Constructor > 20.4.2.14 Symbol.species [id: sec-symbol.species]
+
+<emu-clause id="sec-symbol.species">
+        <h1>Symbol.species</h1>
+        <p>The initial value of `Symbol.species` is the well-known symbol %Symbol.species% (<emu-xref href="#table-well-known-symbols"></emu-xref>).</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

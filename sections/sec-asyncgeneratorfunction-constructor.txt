@@ -1,0 +1,14 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.7 AsyncGeneratorFunction Objects > 27.7.1 The AsyncGeneratorFunction Constructor [id: sec-asyncgeneratorfunction-constructor]
+
+<emu-clause id="sec-asyncgeneratorfunction-constructor">
+      <h1>The AsyncGeneratorFunction Constructor</h1>
+      <p>The AsyncGeneratorFunction constructor:</p>
+      <ul>
+        <li>is <dfn>%AsyncGeneratorFunction%</dfn>.</li>
+        <li>is a subclass of `Function`.</li>
+        <li>creates and initializes a new AsyncGeneratorFunction when called as a function rather than as a constructor. Thus the function call `AsyncGeneratorFunction (...)` is equivalent to the object creation expression `new AsyncGeneratorFunction (...)` with the same arguments.</li>
+        <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified AsyncGeneratorFunction behaviour must include a `super` call to the AsyncGeneratorFunction constructor to create and initialize subclass instances with the internal slots necessary for built-in AsyncGeneratorFunction behaviour. All ECMAScript syntactic forms for defining async generator function objects create direct instances of AsyncGeneratorFunction. There is no syntactic means to create instances of AsyncGeneratorFunction subclasses.</li>
+      </ul>
+
+      
+    </emu-clause>

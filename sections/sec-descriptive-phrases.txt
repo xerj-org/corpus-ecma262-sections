@@ -1,0 +1,10 @@
+ECMA-262 > 5 Notational Conventions > 5.1 Syntactic and Lexical Grammars > 5.1.5 Grammar Notation > 5.1.5.10 Descriptive Phrases [id: sec-descriptive-phrases]
+
+<emu-clause id="sec-descriptive-phrases">
+        <h1>Descriptive Phrases</h1>
+        <p>Finally, a few nonterminal symbols are described by a descriptive phrase in sans-serif type in cases where it would be impractical to list all the alternatives:</p>
+        <emu-grammar type="definition" example>
+          SourceCharacter ::
+            &gt; any Unicode code point
+        </emu-grammar>
+      </emu-clause>

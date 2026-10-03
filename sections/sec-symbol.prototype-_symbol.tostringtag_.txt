@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.3 Properties of the Symbol Prototype Object > 20.4.3.6 Symbol.prototype [ %Symbol.toStringTag% ] [id: sec-symbol.prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-symbol.prototype-@@tostringtag" id="sec-symbol.prototype-%symbol.tostringtag%">
+        <h1>Symbol.prototype [ %Symbol.toStringTag% ]</h1>
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"Symbol"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

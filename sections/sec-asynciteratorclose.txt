@@ -1,0 +1,28 @@
+ECMA-262 > 7 Abstract Operations > 7.4 Operations on Iterator Objects > 7.4.15 AsyncIteratorClose ( _iteratorRecord_: an Iterator Record, _completion_: a Completion Record, ): a Completion Record [id: sec-asynciteratorclose]
+
+<emu-clause id="sec-asynciteratorclose" type="abstract operation">
+      <h1>
+        AsyncIteratorClose (
+          _iteratorRecord_: an Iterator Record,
+          _completion_: a Completion Record,
+        ): a Completion Record
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to notify an async iterator that it should perform any actions it would normally perform when it has reached its completed state.</dd>
+      </dl>
+      <emu-alg>
+        1. Assert: _iteratorRecord_.[[Iterator]] is an Object.
+        1. Let _iterator_ be _iteratorRecord_.[[Iterator]].
+        1. Let _innerResult_ be Completion(GetMethod(_iterator_, *"return"*)).
+        1. If _innerResult_ is a normal completion, then
+          1. Let _return_ be _innerResult_.[[Value]].
+          1. If _return_ is *undefined*, return ? _completion_.
+          1. Set _innerResult_ to Completion(Call(_return_, _iterator_)).
+          1. If _innerResult_ is a normal completion, set _innerResult_ to Completion(Await(_innerResult_.[[Value]])).
+        1. If _completion_ is a throw completion, return ? _completion_.
+        1. If _innerResult_ is a throw completion, return ? _innerResult_.
+        1. If _innerResult_.[[Value]] is not an Object, throw a *TypeError* exception.
+        1. Return ? _completion_.
+      </emu-alg>
+    </emu-clause>

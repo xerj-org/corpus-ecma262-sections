@@ -1,0 +1,20 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.4 Properties of the Date Prototype Object > 21.4.4.43 Date.prototype.toUTCString ( ) [id: sec-date.prototype.toutcstring]
+
+<emu-clause id="sec-date.prototype.toutcstring" type="built-in function">
+        <h1>Date.prototype.toUTCString ( )</h1>
+        <p>This method returns a String value representing the instant in time corresponding to the *this* value. The format of the String is based upon <code>HTTP-date</code> from RFC 7231, generalized to support the full range of times supported by ECMAScript Dates.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _dateObj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_dateObj_, [[DateValue]]).
+          1. Let _tv_ be _dateObj_.[[DateValue]].
+          1. If _tv_ is *NaN*, return *"Invalid Date"*.
+          1. Let _weekday_ be the Name of the entry in <emu-xref href="#sec-todatestring-day-names"></emu-xref> whose WeekDay Index = WeekDay(_tv_).
+          1. Let _month_ be the Name of the entry in <emu-xref href="#sec-todatestring-month-names"></emu-xref> whose Month Index = MonthFromTime(_tv_).
+          1. Let _day_ be ToZeroPaddedDecimalString(DateFromTime(_tv_), 2).
+          1. Let _yv_ be YearFromTime(_tv_).
+          1. If _yv_ ≥ 0, let _yearSign_ be the empty String; else let _yearSign_ be *"-"*.
+          1. Let _paddedYear_ be ToZeroPaddedDecimalString(abs(_yv_), 4).
+          1. Return the string-concatenation of _weekday_, *","*, the code unit 0x0020 (SPACE), _day_, the code unit 0x0020 (SPACE), _month_, the code unit 0x0020 (SPACE), _yearSign_, _paddedYear_, the code unit 0x0020 (SPACE), and TimeString(_tv_).
+        </emu-alg>
+      </emu-clause>

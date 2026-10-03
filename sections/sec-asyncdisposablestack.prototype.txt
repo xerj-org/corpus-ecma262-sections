@@ -1,0 +1,7 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.4 AsyncDisposableStack Objects > 27.4.2 Properties of the AsyncDisposableStack Constructor > 27.4.2.1 AsyncDisposableStack.prototype [id: sec-asyncdisposablestack.prototype]
+
+<emu-clause id="sec-asyncdisposablestack.prototype">
+        <h1>AsyncDisposableStack.prototype</h1>
+        <p>The initial value of `AsyncDisposableStack.prototype` is the AsyncDisposableStack prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

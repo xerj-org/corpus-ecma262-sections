@@ -1,0 +1,16 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.10 AsyncFunction Objects [id: sec-async-function-objects]
+
+<emu-clause id="sec-async-function-objects">
+    <h1>AsyncFunction Objects</h1>
+    <p>AsyncFunctions are functions that are usually created by evaluating |AsyncFunctionDeclaration|s, |AsyncFunctionExpression|s, |AsyncMethod|s, and |AsyncArrowFunction|s. They may also be created by calling the %AsyncFunction% intrinsic.</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

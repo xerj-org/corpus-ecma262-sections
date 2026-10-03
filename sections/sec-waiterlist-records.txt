@@ -1,0 +1,49 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.2 WaiterList Records [id: sec-waiterlist-records]
+
+<emu-clause id="sec-waiterlist-records" oldids="sec-waiterlist-objects">
+      <h1>WaiterList Records</h1>
+      <p>A <dfn variants="WaiterList Records">WaiterList Record</dfn> is used to explain waiting and notification of agents via `Atomics.wait`, `Atomics.waitAsync`, and `Atomics.notify`.</p>
+      <p>A WaiterList Record has fields listed in <emu-xref href="#table-waiterlistrecord"></emu-xref>.</p>
+      <emu-table id="table-waiterlistrecord" caption="WaiterList Record Fields">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              [[Waiters]]
+            </td>
+            <td>
+              a List of Waiter Records
+            </td>
+            <td>
+              The calls to `Atomics.wait` or `Atomics.waitAsync` that are waiting on the location with which this WaiterList is associated.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[MostRecentLeaveEvent]]
+            </td>
+            <td>
+              a Synchronize event or ~empty~
+            </td>
+            <td>
+              The event of the most recent leaving of its critical section, or ~empty~ if its critical section has never been entered.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+      <p>There can be multiple Waiter Records in a WaiterList with the same agent signifier.</p>
+      <p>The agent cluster has a store of WaiterList Records; the store is indexed by (_block_, _i_), where _block_ is a Shared Data Block and _i_ a byte offset into the memory of _block_. WaiterList Records are agent-independent: a lookup in the store of WaiterList Records by (_block_, _i_) will result in the same WaiterList Record in any agent in the agent cluster.</p>
+      <p>Each WaiterList Record has a <dfn variants="critical sections">critical section</dfn> that controls exclusive access to that WaiterList Record during evaluation. Only a single agent may enter a WaiterList Record's critical section at one time. Entering and leaving a WaiterList Record's critical section is controlled by the abstract operations EnterCriticalSection and LeaveCriticalSection. Operations on a WaiterList Record—adding and removing waiting agents, traversing the list of agents, suspending and notifying agents on the list, setting and retrieving the Synchronize event—may only be performed by agents that have entered the WaiterList Record's critical section.</p>
+    </emu-clause>

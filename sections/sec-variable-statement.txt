@@ -1,0 +1,23 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.3 Declarations and the Variable Statement > 14.3.2 Variable Statement [id: sec-variable-statement]
+
+<emu-clause id="sec-variable-statement">
+      <h1>Variable Statement</h1>
+      <emu-note>
+        <p>A `var` statement declares variables that are scoped to the running execution context's VariableEnvironment. Var variables are created when their containing Environment Record is instantiated and are initialized to *undefined* when created. Within the scope of any VariableEnvironment a common |BindingIdentifier| may appear in more than one |VariableDeclaration| but those declarations collectively define only one variable. A variable defined by a |VariableDeclaration| with an |Initializer| is assigned the value of its |Initializer|'s |AssignmentExpression| when the |VariableDeclaration| is executed, not when the variable is created.</p>
+      </emu-note>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        VariableStatement[Yield, Await] :
+          `var` VariableDeclarationList[+In, ?Yield, ?Await] `;`
+
+        VariableDeclarationList[In, Yield, Await] :
+          VariableDeclaration[?In, ?Yield, ?Await]
+          VariableDeclarationList[?In, ?Yield, ?Await] `,` VariableDeclaration[?In, ?Yield, ?Await]
+
+        VariableDeclaration[In, Yield, Await] :
+          BindingIdentifier[?Yield, ?Await] Initializer[?In, ?Yield, ?Await]?
+          BindingPattern[?Yield, ?Await] Initializer[?In, ?Yield, ?Await]
+      </emu-grammar>
+
+      
+    </emu-clause>

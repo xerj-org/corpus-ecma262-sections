@@ -1,0 +1,16 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.10 AsyncFunction Objects > 27.10.3 Properties of the AsyncFunction Prototype Object [id: sec-async-function-prototype-properties]
+
+<emu-clause id="sec-async-function-prototype-properties">
+      <h1>Properties of the AsyncFunction Prototype Object</h1>
+      <p>The <dfn>AsyncFunction prototype object</dfn>:</p>
+      <ul>
+        <li>is <dfn>%AsyncFunction.prototype%</dfn>.</li>
+        <li>is an ordinary object.</li>
+        <li>is not a function object and does not have an [[ECMAScriptCode]] internal slot or any other of the internal slots listed in <emu-xref href="#table-internal-slots-of-ecmascript-function-objects"></emu-xref>.</li>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+      </ul>
+
+      
+
+      
+    </emu-clause>

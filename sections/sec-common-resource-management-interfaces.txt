@@ -1,0 +1,9 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.2 Resource Management > 27.2.1 Common Resource Management Interfaces [id: sec-common-resource-management-interfaces]
+
+<emu-clause id="sec-common-resource-management-interfaces">
+      <h1>Common Resource Management Interfaces</h1>
+
+      
+
+      
+    </emu-clause>

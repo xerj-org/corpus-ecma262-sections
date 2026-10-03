@@ -1,0 +1,15 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.2 Properties of the String Constructor > 22.1.2.1 String.fromCharCode ( ..._codeUnits_ ) [id: sec-string.fromcharcode]
+
+<emu-clause id="sec-string.fromcharcode" type="built-in function">
+        <h1>String.fromCharCode ( ..._codeUnits_ )</h1>
+        <p>This function may be called with any number of arguments which form the rest parameter _codeUnits_.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _result_ be the empty String.
+          1. For each element _next_ of _codeUnits_, do
+            1. Let _nextCU_ be the code unit whose numeric value is ℝ(? ToUint16(_next_)).
+            1. Set _result_ to the string-concatenation of _result_ and _nextCU_.
+          1. Return _result_.
+        </emu-alg>
+        <p>The *"length"* property of this function is *1*<sub>𝔽</sub>.</p>
+      </emu-clause>

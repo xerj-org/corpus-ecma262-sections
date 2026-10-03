@@ -1,0 +1,25 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.3 String Exotic Objects > 10.4.3.4 StringCreate ( _value_: a String, _proto_: an Object, ): a String exotic object [id: sec-stringcreate]
+
+<emu-clause id="sec-stringcreate" type="abstract operation">
+        <h1>
+          StringCreate (
+            _value_: a String,
+            _proto_: an Object,
+          ): a String exotic object
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to specify the creation of new String exotic objects.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _string_ be MakeBasicObject(« [[Prototype]], [[Extensible]], [[StringData]] »).
+          1. Set _string_.[[Prototype]] to _proto_.
+          1. Set _string_.[[StringData]] to _value_.
+          1. Set _string_.[[GetOwnProperty]] as specified in <emu-xref href="#sec-string-exotic-objects-getownproperty-p"></emu-xref>.
+          1. Set _string_.[[DefineOwnProperty]] as specified in <emu-xref href="#sec-string-exotic-objects-defineownproperty-p-desc"></emu-xref>.
+          1. Set _string_.[[OwnPropertyKeys]] as specified in <emu-xref href="#sec-string-exotic-objects-ownpropertykeys"></emu-xref>.
+          1. Let _length_ be the length of _value_.
+          1. Perform ! DefinePropertyOrThrow(_string_, *"length"*, PropertyDescriptor { [[Value]]: 𝔽(_length_), [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+          1. Return _string_.
+        </emu-alg>
+      </emu-clause>

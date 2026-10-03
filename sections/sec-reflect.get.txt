@@ -1,0 +1,13 @@
+ECMA-262 > 28 Reflection > 28.1 The Reflect Object > 28.1.5 Reflect.get ( _target_, _key_ [ , _receiver_ ] ) [id: sec-reflect.get]
+
+<emu-clause id="sec-reflect.get" type="built-in function">
+      <h1>Reflect.get ( _target_, _key_ [ , _receiver_ ] )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. If _target_ is not an Object, throw a *TypeError* exception.
+        1. Let _propertyKey_ be ? ToPropertyKey(_key_).
+        1. If _receiver_ is not present, then
+          1. Set _receiver_ to _target_.
+        1. Return ? <emu-meta effects="user-code">_target_.[[Get]](_propertyKey_, _receiver_)</emu-meta>.
+      </emu-alg>
+    </emu-clause>

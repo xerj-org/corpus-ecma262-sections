@@ -1,0 +1,32 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.15 The `try` Statement [id: sec-try-statement]
+
+<emu-clause id="sec-try-statement">
+    <h1>The `try` Statement</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      TryStatement[Yield, Await, Return] :
+        `try` Block[?Yield, ?Await, ?Return] Catch[?Yield, ?Await, ?Return]
+        `try` Block[?Yield, ?Await, ?Return] Finally[?Yield, ?Await, ?Return]
+        `try` Block[?Yield, ?Await, ?Return] Catch[?Yield, ?Await, ?Return] Finally[?Yield, ?Await, ?Return]
+
+      Catch[Yield, Await, Return] :
+        `catch` `(` CatchParameter[?Yield, ?Await] `)` Block[?Yield, ?Await, ?Return]
+        `catch` Block[?Yield, ?Await, ?Return]
+
+      Finally[Yield, Await, Return] :
+        `finally` Block[?Yield, ?Await, ?Return]
+
+      CatchParameter[Yield, Await] :
+        BindingIdentifier[?Yield, ?Await]
+        BindingPattern[?Yield, ?Await]
+    </emu-grammar>
+    <emu-note>
+      <p>The `try` statement encloses a block of code in which an exceptional condition can occur, such as a runtime error or a `throw` statement. The `catch` clause provides the exception-handling code. When a catch clause catches an exception, its |CatchParameter| is bound to that exception.</p>
+    </emu-note>
+
+    
+
+    
+
+    
+  </emu-clause>

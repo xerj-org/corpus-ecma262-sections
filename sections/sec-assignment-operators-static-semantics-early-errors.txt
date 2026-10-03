@@ -1,0 +1,34 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.15 Assignment Operators > 13.15.1 Static Semantics: Early Errors [id: sec-assignment-operators-static-semantics-early-errors]
+
+<emu-clause id="sec-assignment-operators-static-semantics-early-errors">
+      <h1>Static Semantics: Early Errors</h1>
+      <emu-grammar>AssignmentExpression : LeftHandSideExpression `=` AssignmentExpression</emu-grammar>
+      <ul>
+        <li>
+          If |LeftHandSideExpression| is either an |ObjectLiteral| or an |ArrayLiteral|, |LeftHandSideExpression| must cover an |AssignmentPattern|.
+        </li>
+        <li>
+          If |LeftHandSideExpression| is neither an |ObjectLiteral| nor an |ArrayLiteral|, it is a Syntax Error if the AssignmentTargetType of |LeftHandSideExpression| is ~invalid~.
+        </li>
+      </ul>
+      <emu-grammar>
+        AssignmentExpression :
+          LeftHandSideExpression AssignmentOperator AssignmentExpression
+      </emu-grammar>
+      <ul>
+        <li>
+          It is a Syntax Error if the AssignmentTargetType of |LeftHandSideExpression| is ~invalid~.
+        </li>
+      </ul>
+      <emu-grammar>
+        AssignmentExpression :
+          LeftHandSideExpression `&amp;&amp;=` AssignmentExpression
+          LeftHandSideExpression `||=` AssignmentExpression
+          LeftHandSideExpression `??=` AssignmentExpression
+      </emu-grammar>
+      <ul>
+        <li>
+          It is a Syntax Error if the AssignmentTargetType of |LeftHandSideExpression| is not ~simple~.
+        </li>
+      </ul>
+    </emu-clause>

@@ -1,0 +1,24 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.3 Properties of the Symbol Prototype Object [id: sec-properties-of-the-symbol-prototype-object]
+
+<emu-clause id="sec-properties-of-the-symbol-prototype-object">
+      <h1>Properties of the Symbol Prototype Object</h1>
+      <p>The <dfn>Symbol prototype object</dfn>:</p>
+      <ul>
+        <li>is <dfn>%Symbol.prototype%</dfn>.</li>
+        <li>is an ordinary object.</li>
+        <li>is not a Symbol instance and does not have a [[SymbolData]] internal slot.</li>
+        <li>has a [[Prototype]] internal slot whose value is %Object.prototype%.</li>
+      </ul>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

@@ -1,0 +1,31 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.9 AsyncGenerator Objects > 27.9.3 AsyncGenerator Abstract Operations > 27.9.3.8 AsyncGeneratorYield ( _arg_: an ECMAScript language value, ): either a normal completion containing an ECMAScript language value or an abrupt completion [id: sec-asyncgeneratoryield]
+
+<emu-clause id="sec-asyncgeneratoryield" type="abstract operation">
+        <h1>
+          AsyncGeneratorYield (
+            _arg_: an ECMAScript language value,
+          ): either a normal completion containing an ECMAScript language value or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _genContext_ be the running execution context.
+          1. Assert: _genContext_ is the execution context of a generator.
+          1. Let _gen_ be the value of the Generator component of _genContext_.
+          1. Assert: GetGeneratorKind() is ~async~.
+          1. Let _completion_ be NormalCompletion(_arg_).
+          1. Assert: The execution context stack has at least two elements.
+          1. Let _previousContext_ be the second to top element of the execution context stack.
+          1. Let _previousRealm_ be _previousContext_'s Realm.
+          1. Perform AsyncGeneratorCompleteStep(_gen_, _completion_, *false*, _previousRealm_).
+          1. Let _queue_ be _gen_.[[AsyncGeneratorQueue]].
+          1. If _queue_ is not empty, then
+            1. NOTE: Execution continues without suspending the generator.
+            1. Let _toYield_ be the first element of _queue_.
+            1. Let _resumptionValue_ be Completion(_toYield_.[[Completion]]).
+            1. Return ? AsyncGeneratorUnwrapYieldResumption(_resumptionValue_).
+          1. Set _gen_.[[AsyncGeneratorState]] to ~suspended-yield~.
+          1. Let _resumptionValue_ be Completion(RunCallerContext(*undefined*)).
+          1. Return ? AsyncGeneratorUnwrapYieldResumption(_resumptionValue_).
+        </emu-alg>
+      </emu-clause>

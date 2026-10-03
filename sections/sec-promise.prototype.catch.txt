@@ -1,0 +1,10 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.5 Properties of the Promise Prototype Object > 27.5.5.1 Promise.prototype.catch ( _onRejected_ ) [id: sec-promise.prototype.catch]
+
+<emu-clause id="sec-promise.prototype.catch" type="built-in function">
+        <h1>Promise.prototype.catch ( _onRejected_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _promise_ be the *this* value.
+          1. Return ? Invoke(_promise_, *"then"*, « *undefined*, _onRejected_ »).
+        </emu-alg>
+      </emu-clause>

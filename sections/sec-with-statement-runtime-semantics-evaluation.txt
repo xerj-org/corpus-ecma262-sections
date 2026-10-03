@@ -1,0 +1,19 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.11 The `with` Statement > 14.11.2 Runtime Semantics: Evaluation [id: sec-with-statement-runtime-semantics-evaluation]
+
+<emu-clause id="sec-with-statement-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>WithStatement : `with` `(` Expression `)` Statement</emu-grammar>
+      <emu-alg>
+        1. Let _value_ be ? Evaluation of |Expression|.
+        1. Let _obj_ be ? ToObject(? GetValue(_value_)).
+        1. Let _oldEnv_ be the running execution context's LexicalEnvironment.
+        1. Let _newEnv_ be NewObjectEnvironment(_obj_, *true*, _oldEnv_).
+        1. Set the running execution context's LexicalEnvironment to _newEnv_.
+        1. Let _stmtCompletion_ be Completion(Evaluation of |Statement|).
+        1. Set the running execution context's LexicalEnvironment to _oldEnv_.
+        1. Return ? UpdateEmpty(_stmtCompletion_, *undefined*).
+      </emu-alg>
+      <emu-note>
+        <p>No matter how control leaves the embedded |Statement|, whether normally or by some form of abrupt completion or exception, the LexicalEnvironment is always restored to its former state.</p>
+      </emu-note>
+    </emu-clause>

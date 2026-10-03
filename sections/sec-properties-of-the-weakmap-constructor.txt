@@ -1,0 +1,12 @@
+ECMA-262 > 24 Keyed Collections > 24.3 WeakMap Objects > 24.3.2 Properties of the WeakMap Constructor [id: sec-properties-of-the-weakmap-constructor]
+
+<emu-clause id="sec-properties-of-the-weakmap-constructor">
+      <h1>Properties of the WeakMap Constructor</h1>
+      <p>The WeakMap constructor:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+    </emu-clause>

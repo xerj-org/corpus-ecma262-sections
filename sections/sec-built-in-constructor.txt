@@ -1,0 +1,9 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.36 built-in constructor [id: sec-built-in-constructor]
+
+<emu-clause id="sec-built-in-constructor">
+      <h1>built-in constructor</h1>
+      <p>built-in function that is a constructor</p>
+      <emu-note>
+        <p>Examples of built-in constructors include `Object` and `Function`. A host or implementation may provide additional built-in constructors that are not described in this specification.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,14 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.2 Properties of the Number Constructor > 21.1.2.4 Number.isNaN ( _number_ ) [id: sec-number.isnan]
+
+<emu-clause id="sec-number.isnan" type="built-in function">
+        <h1>Number.isNaN ( _number_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If _number_ is not a Number, return *false*.
+          1. If _number_ is *NaN*, return *true*.
+          1. Return *false*.
+        </emu-alg>
+        <emu-note>
+          <p>This function differs from the global isNaN function (<emu-xref href="#sec-isnan-number"></emu-xref>) in that it does not convert its argument to a Number before determining whether it is *NaN*.</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,14 @@
+ECMA-262 > 26 Managing Memory > 26.2 FinalizationRegistry Objects > 26.2.2 Properties of the FinalizationRegistry Constructor [id: sec-properties-of-the-finalization-registry-constructor]
+
+<emu-clause id="sec-properties-of-the-finalization-registry-constructor">
+      <h1>Properties of the FinalizationRegistry Constructor</h1>
+      <p>The FinalizationRegistry constructor:</p>
+      <ul>
+        <li>
+          has a [[Prototype]] internal slot whose value is %Function.prototype%.
+        </li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+    </emu-clause>

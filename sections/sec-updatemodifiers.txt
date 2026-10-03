@@ -1,0 +1,29 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.7 Runtime Semantics: CompileAtom ( _regexpRecord_: a RegExp Record, _direction_: ~forward~ or ~backward~, ): a Matcher > 22.2.2.7.4 UpdateModifiers ( _regexpRecord_: a RegExp Record, _add_: a String, _remove_: a String, ): a RegExp Record [id: sec-updatemodifiers]
+
+<emu-clause id="sec-updatemodifiers" type="abstract operation">
+          <h1>
+            UpdateModifiers (
+              _regexpRecord_: a RegExp Record,
+              _add_: a String,
+              _remove_: a String,
+            ): a RegExp Record
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Assert: _add_ and _remove_ have no elements in common.
+            1. Let _ignoreCase_ be _regexpRecord_.[[IgnoreCase]].
+            1. Let _multiline_ be _regexpRecord_.[[Multiline]].
+            1. Let _dotAll_ be _regexpRecord_.[[DotAll]].
+            1. Let _unicode_ be _regexpRecord_.[[Unicode]].
+            1. Let _unicodeSets_ be _regexpRecord_.[[UnicodeSets]].
+            1. Let _capturingGroupsCount_ be _regexpRecord_.[[CapturingGroupsCount]].
+            1. If _remove_ contains *"i"*, set _ignoreCase_ to *false*.
+            1. Else if _add_ contains *"i"*, set _ignoreCase_ to *true*.
+            1. If _remove_ contains *"m"*, set _multiline_ to *false*.
+            1. Else if _add_ contains *"m"*, set _multiline_ to *true*.
+            1. If _remove_ contains *"s"*, set _dotAll_ to *false*.
+            1. Else if _add_ contains *"s"*, set _dotAll_ to *true*.
+            1. Return the RegExp Record { [[IgnoreCase]]: _ignoreCase_, [[Multiline]]: _multiline_, [[DotAll]]: _dotAll_, [[Unicode]]: _unicode_, [[UnicodeSets]]: _unicodeSets_, [[CapturingGroupsCount]]: _capturingGroupsCount_ }.
+          </emu-alg>
+        </emu-clause>

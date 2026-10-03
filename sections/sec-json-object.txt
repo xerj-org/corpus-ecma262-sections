@@ -1,0 +1,26 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object [id: sec-json-object]
+
+<emu-clause id="sec-json-object">
+    <h1>The JSON Object</h1>
+    <p>The JSON object:</p>
+    <ul>
+      <li>is <dfn>%JSON%</dfn>.</li>
+      <li>is the initial value of the *"JSON"* property of the global object.</li>
+      <li>is an ordinary object.</li>
+      <li>contains two functions, `parse` and `stringify`, that are used to parse and construct JSON texts.</li>
+      <li>has a [[Prototype]] internal slot whose value is %Object.prototype%.</li>
+      <li>does not have a [[Construct]] internal method; it cannot be used as a constructor with the `new` operator.</li>
+      <li>does not have a [[Call]] internal method; it cannot be invoked as a function.</li>
+    </ul>
+    <p>The JSON Data Interchange Format is defined in ECMA-404. The JSON interchange format used in this specification is exactly that described by ECMA-404. Conforming implementations of `JSON.parse` and `JSON.stringify` must support the exact interchange format described in ECMA-404 without any deletions or extensions to the format.</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

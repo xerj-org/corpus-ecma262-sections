@@ -1,0 +1,14 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.1 [[PreventExtensions]] ( ): a normal completion containing a Boolean [id: sec-typedarray-preventextensions]
+
+<emu-clause id="sec-typedarray-preventextensions" type="internal method">
+        <h1>[[PreventExtensions]] ( ): a normal completion containing a Boolean</h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a TypedArray _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. NOTE: The extensibility-related invariants specified in <emu-xref href="#sec-invariants-of-the-essential-internal-methods"></emu-xref> do not allow this method to return *true* when _obj_ can gain (or lose and then regain) properties, which might occur for properties with integer index names when its underlying buffer is resized.
+          1. If IsTypedArrayFixedLength(_obj_) is *false*, return *false*.
+          1. Return OrdinaryPreventExtensions(_obj_).
+        </emu-alg>
+      </emu-clause>

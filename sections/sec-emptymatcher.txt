@@ -1,0 +1,13 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.3 Runtime Semantics: CompileSubpattern ( _regexpRecord_: a RegExp Record, _direction_: ~forward~ or ~backward~, ): a Matcher > 22.2.2.3.2 EmptyMatcher ( ): a Matcher [id: sec-emptymatcher]
+
+<emu-clause id="sec-emptymatcher" type="abstract operation">
+          <h1>EmptyMatcher ( ): a Matcher</h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Return a new Matcher with parameters (_matchState_, _continue_) that captures nothing and performs the following steps when called:
+              1. Assert: _matchState_ is a MatchState.
+              1. Assert: _continue_ is a MatcherContinuation.
+              1. Return _continue_(_matchState_).
+          </emu-alg>
+        </emu-clause>

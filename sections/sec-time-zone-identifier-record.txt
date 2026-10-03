@@ -1,0 +1,31 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.22 Time Zone Identifier Record [id: sec-time-zone-identifier-record]
+
+<emu-clause id="sec-time-zone-identifier-record">
+        <h1>Time Zone Identifier Record</h1>
+        <p>A <dfn variants="Time Zone Identifier Records">Time Zone Identifier Record</dfn> is a Record used to describe an available named time zone identifier and its corresponding primary time zone identifier.</p>
+        <p>Time Zone Identifier Records have the fields listed in <emu-xref href="#table-time-zone-identifier-record-fields"></emu-xref>.</p>
+        <emu-table id="table-time-zone-identifier-record-fields" caption="Time Zone Identifier Record Fields">
+          <table>
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Value</th>
+                <th>Meaning</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>[[Identifier]]</td>
+              <td>a String</td>
+              <td>An available named time zone identifier that is supported by the implementation.</td>
+            </tr>
+            <tr>
+              <td>[[PrimaryIdentifier]]</td>
+              <td>a String</td>
+              <td>The primary time zone identifier that [[Identifier]] resolves to.</td>
+            </tr>
+          </table>
+        </emu-table>
+        <emu-note>
+          <p>If [[Identifier]] is a primary time zone identifier, then [[Identifier]] is [[PrimaryIdentifier]].</p>
+        </emu-note>
+      </emu-clause>

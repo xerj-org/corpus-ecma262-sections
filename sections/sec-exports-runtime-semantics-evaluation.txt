@@ -1,0 +1,45 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.3 Exports > 16.2.3.7 Runtime Semantics: Evaluation [id: sec-exports-runtime-semantics-evaluation]
+
+<emu-clause id="sec-exports-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>
+          ExportDeclaration :
+            `export` ExportFromClause FromClause WithClause? `;`
+            `export` NamedExports `;`
+        </emu-grammar>
+        <emu-alg>
+          1. Return ~empty~.
+        </emu-alg>
+        <emu-grammar>ExportDeclaration : `export` VariableStatement</emu-grammar>
+        <emu-alg>
+          1. Return ? Evaluation of |VariableStatement|.
+        </emu-alg>
+        <emu-grammar>ExportDeclaration : `export` Declaration</emu-grammar>
+        <emu-alg>
+          1. Return ? Evaluation of |Declaration|.
+        </emu-alg>
+        <emu-grammar>ExportDeclaration : `export` `default` HoistableDeclaration</emu-grammar>
+        <emu-alg>
+          1. Return ? Evaluation of |HoistableDeclaration|.
+        </emu-alg>
+        <emu-grammar>ExportDeclaration : `export` `default` ClassDeclaration</emu-grammar>
+        <emu-alg>
+          1. Let _value_ be ? BindingClassDeclarationEvaluation of |ClassDeclaration|.
+          1. Let _className_ be the sole element of the BoundNames of |ClassDeclaration|.
+          1. If _className_ is *"\*default\*"*, then
+            1. Let _envRecord_ be the running execution context's LexicalEnvironment.
+            1. Perform ? InitializeBoundName(*"\*default\*"*, _value_, _envRecord_).
+          1. Return ~empty~.
+        </emu-alg>
+        <emu-grammar>ExportDeclaration : `export` `default` AssignmentExpression `;`</emu-grammar>
+        <emu-alg>
+          1. If IsAnonymousFunctionDefinition(|AssignmentExpression|) is *true*, then
+            1. Let _value_ be ? NamedEvaluation of |AssignmentExpression| with argument *"default"*.
+          1. Else,
+            1. Let _rhs_ be ? Evaluation of |AssignmentExpression|.
+            1. Let _value_ be ? GetValue(_rhs_).
+          1. Let _envRecord_ be the running execution context's LexicalEnvironment.
+          1. Perform ? InitializeBoundName(*"\*default\*"*, _value_, _envRecord_).
+          1. Return ~empty~.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,11 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.1 The %GeneratorPrototype% Object > 27.8.1.4 %GeneratorPrototype%.throw ( _exception_ ) [id: sec-generator.prototype.throw]
+
+<emu-clause id="sec-generator.prototype.throw" type="built-in function">
+        <h1>%GeneratorPrototype%.throw ( _exception_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _gen_ be the *this* value.
+          1. Let _completion_ be ThrowCompletion(_exception_).
+          1. Return ? GeneratorResumeAbrupt(_gen_, _completion_, ~empty~).
+        </emu-alg>
+      </emu-clause>

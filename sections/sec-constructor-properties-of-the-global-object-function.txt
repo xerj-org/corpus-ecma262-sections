@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.18 Function ( . . . ) [id: sec-constructor-properties-of-the-global-object-function]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-function">
+      <h1>Function ( . . . )</h1>
+      <p>See <emu-xref href="#sec-function-constructor"></emu-xref>.</p>
+    </emu-clause>

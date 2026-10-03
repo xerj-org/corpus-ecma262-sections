@@ -1,0 +1,13 @@
+ECMA-262 > A Grammar Summary > A.7 Time Zone Offset String Format [id: sec-time-zone-offset-string-format]
+
+<emu-annex id="sec-time-zone-offset-string-format">
+    <h1>Time Zone Offset String Format</h1>
+    <emu-prodref name="UTCOffset"></emu-prodref>
+    <emu-prodref name="ASCIISign"></emu-prodref>
+    <emu-prodref name="Hour"></emu-prodref>
+    <emu-prodref name="HourSubcomponents"></emu-prodref>
+    <emu-prodref name="TimeSeparator"></emu-prodref>
+    <emu-prodref name="MinuteSecond"></emu-prodref>
+    <emu-prodref name="TemporalDecimalFraction"></emu-prodref>
+    <emu-prodref name="TemporalDecimalSeparator"></emu-prodref>
+  </emu-annex>

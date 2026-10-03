@@ -1,0 +1,10 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.15 Atomics.wait ( _ta_, _index_, _value_, _timeout_ ) [id: sec-atomics.wait]
+
+<emu-clause id="sec-atomics.wait" type="built-in function">
+      <h1>Atomics.wait ( _ta_, _index_, _value_, _timeout_ )</h1>
+      <p>This function puts the surrounding agent in a wait queue and suspends it until notified or until the wait times out, returning a String differentiating those cases.</p>
+      <p>It performs the following steps when called:</p>
+      <emu-alg>
+        1. Return ? DoWait(~sync~, _ta_, _index_, _value_, _timeout_).
+      </emu-alg>
+    </emu-clause>

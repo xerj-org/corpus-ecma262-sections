@@ -1,0 +1,89 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.3 Line Terminators [id: sec-line-terminators]
+
+<emu-clause id="sec-line-terminators">
+    <h1>Line Terminators</h1>
+    <p>Like white space code points, line terminator code points are used to improve source text readability and to separate tokens (indivisible lexical units) from each other. However, unlike white space code points, line terminators have some influence over the behaviour of the syntactic grammar. In general, line terminators may occur between any two tokens, but there are a few places where they are forbidden by the syntactic grammar. Line terminators also affect the process of automatic semicolon insertion (<emu-xref href="#sec-automatic-semicolon-insertion"></emu-xref>). A line terminator cannot occur within any token except a |StringLiteral|, |Template|, or |TemplateSubstitutionTail|. &lt;LF> and &lt;CR> line terminators cannot occur within a |StringLiteral| token except as part of a |LineContinuation|.</p>
+    <p>A line terminator can occur within a |MultiLineComment| but cannot occur within a |SingleLineComment|.</p>
+    <p>Line terminators are included in the set of white space code points that are matched by the `\\s` class in regular expressions.</p>
+    <p>The ECMAScript line terminator code points are listed in <emu-xref href="#table-line-terminator-code-points"></emu-xref>.</p>
+    <emu-table id="table-line-terminator-code-points" caption="Line Terminator Code Points" oldids="table-33">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Code Point
+            </th>
+            <th>
+              Unicode Name
+            </th>
+            <th>
+              Abbreviation
+            </th>
+          </tr>
+        </thead>
+        <tr>
+          <td>
+            `U+000A`
+          </td>
+          <td>
+            LINE FEED (LF)
+          </td>
+          <td>
+            &lt;LF>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            `U+000D`
+          </td>
+          <td>
+            CARRIAGE RETURN (CR)
+          </td>
+          <td>
+            &lt;CR>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            `U+2028`
+          </td>
+          <td>
+            LINE SEPARATOR
+          </td>
+          <td>
+            &lt;LS>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            `U+2029`
+          </td>
+          <td>
+            PARAGRAPH SEPARATOR
+          </td>
+          <td>
+            &lt;PS>
+          </td>
+        </tr>
+      </table>
+    </emu-table>
+    <p>Only the Unicode code points in <emu-xref href="#table-line-terminator-code-points"></emu-xref> are treated as line terminators. Other new line or line breaking Unicode code points are not treated as line terminators but are treated as white space if they meet the requirements listed in <emu-xref href="#table-white-space-code-points"></emu-xref>.</p>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      LineTerminator ::
+        &lt;LF&gt;
+        &lt;CR&gt;
+        &lt;LS&gt;
+        &lt;PS&gt;
+
+      LineTerminatorSequence ::
+        &lt;LF&gt;
+        &lt;CR&gt; [lookahead != &lt;LF&gt;]
+        &lt;LS&gt;
+        &lt;PS&gt;
+        &lt;CR&gt; &lt;LF&gt;
+    </emu-grammar>
+    <emu-note>
+      <p>The production <emu-grammar>LineTerminatorSequence :: &lt;CR&gt; &lt;LF&gt;</emu-grammar> matches a sequence of code points that should collectively operate as a single line terminator, such as when reporting line numbers in diagnostics.</p>
+    </emu-note>
+  </emu-clause>

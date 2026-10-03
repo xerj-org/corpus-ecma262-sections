@@ -1,0 +1,18 @@
+ECMA-262 > 8 Syntax-Directed Operations [id: sec-syntax-directed-operations]
+
+<emu-clause id="sec-syntax-directed-operations">
+  <h1>Syntax-Directed Operations</h1>
+  <p>In addition to those defined in this section, specialized syntax-directed operations are defined throughout this specification.</p>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</emu-clause>

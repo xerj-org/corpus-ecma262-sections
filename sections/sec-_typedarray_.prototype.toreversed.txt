@@ -1,0 +1,19 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.32 %TypedArray%.prototype.toReversed ( ) [id: sec-%typedarray%.prototype.toreversed]
+
+<emu-clause id="sec-%typedarray%.prototype.toreversed" type="built-in function">
+        <h1>%TypedArray%.prototype.toReversed ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Let _taRecord_ be ? ValidateTypedArray(_obj_, ~seq-cst~).
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. Let _resultArray_ be ? TypedArrayCreateSameType(_obj_, _length_).
+          1. Let _k_ be 0.
+          1. Repeat, while _k_ &lt; _length_,
+            1. Let _from_ be _length_ - _k_ - 1.
+            1. Let _fromValue_ be TypedArrayGetElement(_obj_, 𝔽(_from_)).
+            1. Perform ! TypedArraySetElement(_resultArray_, 𝔽(_k_), _fromValue_).
+            1. Set _k_ to _k_ + 1.
+          1. Return _resultArray_.
+        </emu-alg>
+      </emu-clause>

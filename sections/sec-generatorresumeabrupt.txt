@@ -1,0 +1,28 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.3 Generator Abstract Operations > 27.8.3.4 GeneratorResumeAbrupt ( _gen_: an ECMAScript language value, _abruptCompletion_: a return completion or a throw completion, _genBrand_: a String or ~empty~, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-generatorresumeabrupt]
+
+<emu-clause id="sec-generatorresumeabrupt" type="abstract operation">
+        <h1>
+          GeneratorResumeAbrupt (
+            _gen_: an ECMAScript language value,
+            _abruptCompletion_: a return completion or a throw completion,
+            _genBrand_: a String or ~empty~,
+          ): either a normal completion containing an ECMAScript language value or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _state_ be ? GeneratorValidate(_gen_, _genBrand_).
+          1. If _state_ is ~suspended-start~, then
+            1. Set _gen_.[[GeneratorState]] to ~completed~.
+            1. NOTE: Once a generator enters the ~completed~ state it never leaves it and its associated execution context is never resumed. Any execution state associated with _gen_ can be discarded at this point.
+            1. Set _state_ to ~completed~.
+          1. If _state_ is ~completed~, then
+            1. If _abruptCompletion_ is a return completion, then
+              1. Return CreateIteratorResultObject(_abruptCompletion_.[[Value]], *true*).
+            1. Return ? _abruptCompletion_.
+          1. Assert: _state_ is ~suspended-yield~.
+          1. Let _genContext_ be _gen_.[[GeneratorContext]].
+          1. Set _gen_.[[GeneratorState]] to ~executing~.
+          1. Return ? RunSuspendedContext(_genContext_, _abruptCompletion_).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,16 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.2 Properties of the Map Constructor [id: sec-properties-of-the-map-constructor]
+
+<emu-clause id="sec-properties-of-the-map-constructor">
+      <h1>Properties of the Map Constructor</h1>
+      <p>The Map constructor:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+
+      
+
+      
+    </emu-clause>

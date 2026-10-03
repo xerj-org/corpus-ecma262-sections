@@ -1,0 +1,6 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.7 AsyncGeneratorFunction Objects > 27.7.4 AsyncGeneratorFunction Instances > 27.7.4.2 name [id: sec-asyncgeneratorfunction-instance-name]
+
+<emu-clause id="sec-asyncgeneratorfunction-instance-name">
+        <h1>name</h1>
+        <p>The specification for the *"name"* property of Function instances given in <emu-xref href="#sec-function-instances-name"></emu-xref> also applies to AsyncGeneratorFunction instances.</p>
+      </emu-clause>

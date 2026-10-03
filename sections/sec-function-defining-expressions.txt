@@ -1,0 +1,10 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.6 Function Defining Expressions [id: sec-function-defining-expressions]
+
+<emu-clause id="sec-function-defining-expressions">
+      <h1>Function Defining Expressions</h1>
+      <p>See <emu-xref href="#sec-function-definitions"></emu-xref> for <emu-grammar>PrimaryExpression : FunctionExpression</emu-grammar>.</p>
+      <p>See <emu-xref href="#sec-generator-function-definitions"></emu-xref> for <emu-grammar>PrimaryExpression : GeneratorExpression</emu-grammar>.</p>
+      <p>See <emu-xref href="#sec-class-definitions"></emu-xref> for <emu-grammar>PrimaryExpression : ClassExpression</emu-grammar>.</p>
+      <p>See <emu-xref href="#sec-async-function-definitions"></emu-xref> for <emu-grammar>PrimaryExpression : AsyncFunctionExpression</emu-grammar>.</p>
+      <p>See <emu-xref href="#sec-async-generator-function-definitions"></emu-xref> for <emu-grammar>PrimaryExpression : AsyncGeneratorExpression</emu-grammar>.</p>
+    </emu-clause>

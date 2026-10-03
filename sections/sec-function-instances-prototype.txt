@@ -1,0 +1,10 @@
+ECMA-262 > 20 Fundamental Objects > 20.2 Function Objects > 20.2.4 Function Instances > 20.2.4.3 prototype [id: sec-function-instances-prototype]
+
+<emu-clause id="sec-function-instances-prototype">
+        <h1>prototype</h1>
+        <p>Function instances that can be used as a constructor have a *"prototype"* property. Whenever such a Function instance is created another ordinary object is also created and is the initial value of the function's *"prototype"* property. Unless otherwise specified, the value of the *"prototype"* property is used to initialize the [[Prototype]] internal slot of the object created when that function is invoked as a constructor.</p>
+        <p>This property has the attributes { [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+        <emu-note>
+          <p>Function objects created using `Function.prototype.bind`, or by evaluating a |MethodDefinition| (that is not a |GeneratorMethod| or |AsyncGeneratorMethod|) or an |ArrowFunction| do not have a *"prototype"* property.</p>
+        </emu-note>
+      </emu-clause>

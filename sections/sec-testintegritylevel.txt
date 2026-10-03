@@ -1,0 +1,27 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.16 TestIntegrityLevel ( _obj_: an Object, _level_: ~sealed~ or ~frozen~, ): either a normal completion containing a Boolean or a throw completion [id: sec-testintegritylevel]
+
+<emu-clause id="sec-testintegritylevel" type="abstract operation">
+      <h1>
+        TestIntegrityLevel (
+          _obj_: an Object,
+          _level_: ~sealed~ or ~frozen~,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to determine if the set of own properties of an object are fixed.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _extensible_ be ? IsExtensible(_obj_).
+        1. If _extensible_ is *true*, return *false*.
+        1. NOTE: If the object is extensible, none of its properties are examined.
+        1. Let _keys_ be ? _obj_.[[OwnPropertyKeys]]().
+        1. For each element _key_ of _keys_, do
+          1. Let _currentDesc_ be ? <emu-meta effects="user-code">_obj_.[[GetOwnProperty]](_key_)</emu-meta>.
+          1. If _currentDesc_ is not *undefined*, then
+            1. If _currentDesc_.[[Configurable]] is *true*, return *false*.
+            1. If _level_ is ~frozen~ and IsDataDescriptor(_currentDesc_) is *true*, then
+              1. If _currentDesc_.[[Writable]] is *true*, return *false*.
+        1. Return *true*.
+      </emu-alg>
+    </emu-clause>

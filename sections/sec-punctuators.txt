@@ -1,0 +1,38 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.8 Punctuators [id: sec-punctuators]
+
+<emu-clause id="sec-punctuators">
+    <h1>Punctuators</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      Punctuator ::
+        OptionalChainingPunctuator
+        OtherPunctuator
+
+      OptionalChainingPunctuator ::
+        `?.` [lookahead &notin; DecimalDigit]
+
+      // emu-format ignore
+      OtherPunctuator :: one of
+        `{` `(` `)` `[` `]`
+        `.` `...` `;` `,`
+        `&lt;` `&gt;` `&lt;=` `&gt;=`
+        `==` `!=` `===` `!==`
+        `+` `-` `*` `%` `**`
+        `++` `--`
+        `&lt;&lt;` `&gt;&gt;` `&gt;&gt;&gt;`
+        `&amp;` `|` `^`
+        `!` `~`
+        `&amp;&amp;` `||` `??`
+        `?` `:`
+        `=` `+=` `-=` `*=` `%=` `**=` `&lt;&lt;=` `&gt;&gt;=` `&gt;&gt;&gt;=` `&amp;=` `|=` `^=`
+        `&amp;&amp;=` `||=` `??=`
+        `=&gt;`
+
+      DivPunctuator ::
+        `/`
+        `/=`
+
+      RightBracePunctuator ::
+        `}`
+    </emu-grammar>
+  </emu-clause>

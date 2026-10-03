@@ -1,0 +1,33 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.6 Module Namespace Exotic Objects > 10.4.6.8 [[Get]] ( _propertyKey_: a property key, _receiver_: an ECMAScript language value, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-module-namespace-exotic-objects-get-p-receiver]
+
+<emu-clause id="sec-module-namespace-exotic-objects-get-p-receiver" type="internal method">
+        <h1>
+          [[Get]] (
+            _propertyKey_: a property key,
+            _receiver_: an ECMAScript language value,
+          ): either a normal completion containing an ECMAScript language value or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a module namespace exotic object _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. If _propertyKey_ is a Symbol, then
+            1. Return ! OrdinaryGet(_obj_, _propertyKey_, _receiver_).
+          1. Let _exports_ be _obj_.[[Exports]].
+          1. If _exports_ does not contain _propertyKey_, return *undefined*.
+          1. Let _module_ be _obj_.[[Module]].
+          1. Let _binding_ be _module_.ResolveExport(_propertyKey_).
+          1. Assert: _binding_ is a ResolvedBinding Record.
+          1. Let _targetModule_ be _binding_.[[Module]].
+          1. Assert: _targetModule_ is not *undefined*.
+          1. If _binding_.[[BindingName]] is ~namespace~, then
+            1. Return GetModuleNamespace(_targetModule_).
+          1. Let _targetEnv_ be _targetModule_.[[Environment]].
+          1. If _targetEnv_ is ~empty~, throw a *ReferenceError* exception.
+          1. Return ? _targetEnv_.GetBindingValue(_binding_.[[BindingName]], *true*).
+        </emu-alg>
+        <emu-note>
+          <p>ResolveExport is side-effect free. Each time this operation is called with a specific _exportName_, _resolveSet_ pair as arguments it must return the same result. An implementation might choose to pre-compute or cache the ResolveExport results for the [[Exports]] of each module namespace exotic object.</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,16 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.4 Properties of the Date Prototype Object > 21.4.4.41 Date.prototype.toString ( ) > 21.4.4.41.4 ToDateString ( _tv_: an integral Number or *NaN*, ): a String [id: sec-todatestring]
+
+<emu-clause id="sec-todatestring" type="abstract operation">
+          <h1>
+            ToDateString (
+              _tv_: an integral Number or *NaN*,
+            ): a String
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _tv_ is *NaN*, return *"Invalid Date"*.
+            1. Let _localTime_ be LocalTime(_tv_).
+            1. Return the string-concatenation of DateString(_localTime_), the code unit 0x0020 (SPACE), TimeString(_localTime_), and TimeZoneString(_tv_).
+          </emu-alg>
+        </emu-clause>

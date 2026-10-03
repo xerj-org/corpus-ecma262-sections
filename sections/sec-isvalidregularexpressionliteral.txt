@@ -1,0 +1,27 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.7 Regular Expression Literals > 13.2.7.2 Static Semantics: IsValidRegularExpressionLiteral ( _literal_: a |RegularExpressionLiteral| Parse Node, ): a Boolean [id: sec-isvalidregularexpressionliteral]
+
+<emu-clause id="sec-isvalidregularexpressionliteral" type="abstract operation">
+        <h1>
+          Static Semantics: IsValidRegularExpressionLiteral (
+            _literal_: a |RegularExpressionLiteral| Parse Node,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It determines if its argument is a valid regular expression literal.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _flags_ be the FlagText of _literal_.
+          1. If _flags_ contains any code points other than `d`, `g`, `i`, `m`, `s`, `u`, `v`, or `y`, return *false*.
+          1. If _flags_ contains any code point more than once, return *false*.
+          1. If _flags_ contains `u`, let _u_ be *true*; else let _u_ be *false*.
+          1. If _flags_ contains `v`, let _v_ be *true*; else let _v_ be *false*.
+          1. Let _patternText_ be the BodyText of _literal_.
+          1. If _u_ is *false* and _v_ is *false*, then
+            1. Let _stringValue_ be CodePointsToString(_patternText_).
+            1. Set _patternText_ to the sequence of code points resulting from interpreting each of the 16-bit elements of _stringValue_ as a Unicode BMP code point. UTF-16 decoding is not applied to the elements.
+          1. Let _parseResult_ be ParsePattern(_patternText_, _u_, _v_).
+          1. If _parseResult_ is a Parse Node, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,16 @@
+ECMA-262 > 7 Abstract Operations > 7.2 Testing and Comparison Operations > 7.2.5 IsExtensible ( _obj_: an Object, ): either a normal completion containing a Boolean or a throw completion [id: sec-isextensible-o]
+
+<emu-clause id="sec-isextensible-o" type="abstract operation">
+      <h1>
+        IsExtensible (
+          _obj_: an Object,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to determine whether additional properties can be added to _obj_.</dd>
+      </dl>
+      <emu-alg>
+        1. Return ? <emu-meta effects="user-code">_obj_.[[IsExtensible]]()</emu-meta>.
+      </emu-alg>
+    </emu-clause>

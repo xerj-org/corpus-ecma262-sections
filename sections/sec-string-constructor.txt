@@ -1,0 +1,15 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.1 The String Constructor [id: sec-string-constructor]
+
+<emu-clause id="sec-string-constructor">
+      <h1>The String Constructor</h1>
+      <p>The String constructor:</p>
+      <ul>
+        <li>is <dfn>%String%</dfn>.</li>
+        <li>is the initial value of the *"String"* property of the global object.</li>
+        <li>creates and initializes a new String object when called as a constructor.</li>
+        <li>performs a type conversion when called as a function rather than as a constructor.</li>
+        <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified String behaviour must include a `super` call to the String constructor to create and initialize the subclass instance with a [[StringData]] internal slot.</li>
+      </ul>
+
+      
+    </emu-clause>

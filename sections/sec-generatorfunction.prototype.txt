@@ -1,0 +1,7 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.6 GeneratorFunction Objects > 27.6.2 Properties of the GeneratorFunction Constructor > 27.6.2.1 GeneratorFunction.prototype [id: sec-generatorfunction.prototype]
+
+<emu-clause id="sec-generatorfunction.prototype">
+        <h1>GeneratorFunction.prototype</h1>
+        <p>The initial value of `GeneratorFunction.prototype` is the GeneratorFunction prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

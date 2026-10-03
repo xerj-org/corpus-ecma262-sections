@@ -1,0 +1,23 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.6 CreateDataPropertyOrThrow ( _obj_: an Object, _propertyKey_: a property key, _value_: an ECMAScript language value, ): either a normal completion containing ~unused~ or a throw completion [id: sec-createdatapropertyorthrow]
+
+<emu-clause id="sec-createdatapropertyorthrow" type="abstract operation">
+      <h1>
+        CreateDataPropertyOrThrow (
+          _obj_: an Object,
+          _propertyKey_: a property key,
+          _value_: an ECMAScript language value,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to create a new own property of an object. It throws a *TypeError* exception if the requested property update cannot be performed.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _success_ be ? CreateDataProperty(_obj_, _propertyKey_, _value_).
+        1. If _success_ is *false*, throw a *TypeError* exception.
+        1. Return ~unused~.
+      </emu-alg>
+      <emu-note>
+        <p>This abstract operation creates a property whose attributes are set to the same defaults used for properties created by the ECMAScript language assignment operator. Normally, the property will not already exist. If it does exist and is not configurable or if _obj_ is not extensible, [[DefineOwnProperty]] will return *false* causing this operation to throw a *TypeError* exception.</p>
+      </emu-note>
+    </emu-clause>

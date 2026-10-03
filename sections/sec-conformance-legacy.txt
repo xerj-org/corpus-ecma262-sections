@@ -1,0 +1,6 @@
+ECMA-262 > 2 Conformance > 2.2 Example Legacy Clause Heading [id: sec-conformance-legacy]
+
+<emu-clause id="sec-conformance-legacy" example legacy>
+    <h1>Example Legacy Clause Heading</h1>
+    <p>Example clause contents.</p>
+  </emu-clause>

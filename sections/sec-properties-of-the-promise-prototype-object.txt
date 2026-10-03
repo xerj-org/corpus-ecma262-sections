@@ -1,0 +1,22 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.5 Properties of the Promise Prototype Object [id: sec-properties-of-the-promise-prototype-object]
+
+<emu-clause id="sec-properties-of-the-promise-prototype-object">
+      <h1>Properties of the Promise Prototype Object</h1>
+      <p>The <dfn>Promise prototype object</dfn>:</p>
+      <ul>
+        <li>is <dfn>%Promise.prototype%</dfn>.</li>
+        <li>has a [[Prototype]] internal slot whose value is %Object.prototype%.</li>
+        <li>is an ordinary object.</li>
+        <li>does not have a [[PromiseState]] internal slot or any of the other internal slots of Promise instances.</li>
+      </ul>
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

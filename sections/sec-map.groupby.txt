@@ -1,0 +1,20 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.2 Properties of the Map Constructor > 24.1.2.1 Map.groupBy ( _items_, _callback_ ) [id: sec-map.groupby]
+
+<emu-clause id="sec-map.groupby" type="built-in function">
+        <h1>Map.groupBy ( _items_, _callback_ )</h1>
+        <emu-note>
+          <p>_callback_ should be a function that accepts two arguments. `groupBy` calls _callback_ once for each element in _items_, in ascending order, and constructs a new Map. Each value returned by _callback_ is used as a key in the Map. For each such key, the result Map has an entry whose key is that key and whose value is an array containing all the elements for which _callback_ returned that key.</p>
+          <p>_callback_ is called with two arguments: the value of the element and the index of the element.</p>
+          <p>The return value of `groupBy` is a Map.</p>
+        </emu-note>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _groups_ be ? GroupBy(_items_, _callback_, ~collection~).
+          1. Let _map_ be ! Construct(%Map%).
+          1. For each Record { [[Key]], [[Elements]] } _group_ of _groups_, do
+            1. Let _elements_ be CreateArrayFromList(_group_.[[Elements]]).
+            1. Let _entry_ be the Record { [[Key]]: _group_.[[Key]], [[Value]]: _elements_ }.
+            1. Append _entry_ to _map_.[[MapData]].
+          1. Return _map_.
+        </emu-alg>
+      </emu-clause>

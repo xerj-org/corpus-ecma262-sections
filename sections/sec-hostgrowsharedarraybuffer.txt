@@ -1,0 +1,26 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.2 Abstract Operations for SharedArrayBuffer Objects > 25.2.2.4 HostGrowSharedArrayBuffer ( _buffer_: a SharedArrayBuffer, _newByteLength_: a non-negative integer, ): either a normal completion containing either ~handled~ or ~unhandled~, or a throw completion [id: sec-hostgrowsharedarraybuffer]
+
+<emu-clause id="sec-hostgrowsharedarraybuffer" type="host-defined abstract operation">
+        <h1>
+          HostGrowSharedArrayBuffer (
+            _buffer_: a SharedArrayBuffer,
+            _newByteLength_: a non-negative integer,
+          ): either a normal completion containing either ~handled~ or ~unhandled~, or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It gives the host an opportunity to perform implementation-defined growing of _buffer_. If the host chooses not to handle growing of _buffer_, it may return ~unhandled~ for the default behaviour.</dd>
+        </dl>
+        <p>The implementation of HostGrowSharedArrayBuffer must conform to the following requirements:</p>
+        <ul>
+          <li>If the abstract operation does not complete normally with ~unhandled~, and _newByteLength_ &lt; the current byte length of the _buffer_ or _newByteLength_ > _buffer_.[[ArrayBufferMaxByteLength]], throw a *RangeError* exception.</li>
+          <li>Let _agentRecord_ be the Agent Record of the surrounding agent. Let _isLittleEndian_ be _agentRecord_.[[LittleEndian]]. If the abstract operation completes normally with ~handled~, a WriteSharedMemory or ReadModifyWriteSharedMemory event whose [[Order]] is ~seq-cst~, [[Payload]] is NumericToRawBytes(~biguint64~, _newByteLength_, _isLittleEndian_), [[Block]] is _buffer_.[[ArrayBufferByteLengthData]], [[ByteIndex]] is 0, and [[ElementSize]] is 8 is added to the surrounding agent's candidate execution such that racing calls to <emu-xref href="#sec-sharedarraybuffer.prototype.grow" title></emu-xref> are not “lost”, i.e. silently do nothing.</li>
+        </ul>
+
+        <emu-note>
+          <p>The second requirement above is intentionally vague about how or when the current byte length of _buffer_ is read. Because the byte length must be updated via an atomic read-modify-write operation on the underlying hardware, architectures that use load-link/store-conditional or load-exclusive/store-exclusive instruction pairs may wish to keep the paired instructions close in the instruction stream. As such, <emu-xref href="#sec-sharedarraybuffer.prototype.grow" title></emu-xref> itself does not perform bounds checking on _newByteLength_ before calling HostGrowSharedArrayBuffer, nor is there a requirement on when the current byte length is read.</p>
+          <p>This is in contrast with HostResizeArrayBuffer, which is guaranteed that 0 ≤ _newByteLength_ ≤ _buffer_.[[ArrayBufferMaxByteLength]].</p>
+        </emu-note>
+
+        <p>The default implementation of HostGrowSharedArrayBuffer is to return NormalCompletion(~unhandled~).</p>
+      </emu-clause>

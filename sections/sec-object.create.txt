@@ -1,0 +1,14 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.2 Object.create ( _proto_, _properties_ ) [id: sec-object.create]
+
+<emu-clause id="sec-object.create" type="built-in function">
+        <h1>Object.create ( _proto_, _properties_ )</h1>
+        <p>This function creates a new object with a specified prototype.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. If _proto_ is not an Object and _proto_ is not *null*, throw a *TypeError* exception.
+          1. Let _obj_ be OrdinaryObjectCreate(_proto_).
+          1. If _properties_ is not *undefined*, then
+            1. Return ? ObjectDefineProperties(_obj_, _properties_).
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

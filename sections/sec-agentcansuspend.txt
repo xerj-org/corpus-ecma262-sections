@@ -1,0 +1,14 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.6 Agents > 9.6.2 AgentCanSuspend ( ): a Boolean [id: sec-agentcansuspend]
+
+<emu-clause id="sec-agentcansuspend" type="abstract operation">
+      <h1>AgentCanSuspend ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _agentRecord_ be the Agent Record of the surrounding agent.
+        1. Return _agentRecord_.[[CanBlock]].
+      </emu-alg>
+      <emu-note>
+        <p>In some environments it may not be reasonable for a given agent to suspend. For example, in a web browser environment, it may be reasonable to disallow suspending a document's main event handling thread, while still allowing workers' event handling threads to suspend.</p>
+      </emu-note>
+    </emu-clause>

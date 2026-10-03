@@ -1,0 +1,13 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.3 Properties of the Object Prototype Object > 20.1.3.9 Legacy Object.prototype Accessor Methods [id: sec-object.prototype-legacy-accessor-methods]
+
+<emu-clause id="sec-object.prototype-legacy-accessor-methods" legacy normative-optional>
+        <h1>Legacy Object.prototype Accessor Methods</h1>
+
+        
+
+        
+
+        
+
+        
+      </emu-clause>

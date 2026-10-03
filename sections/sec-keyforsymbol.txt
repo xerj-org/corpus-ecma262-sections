@@ -1,0 +1,21 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.5 Abstract Operations for Symbols > 20.4.5.2 KeyForSymbol ( _symbol_: a Symbol, ): a String or *undefined* [id: sec-keyforsymbol]
+
+<emu-clause id="sec-keyforsymbol" type="abstract operation">
+        <h1>
+          KeyForSymbol (
+            _symbol_: a Symbol,
+          ): a String or *undefined*
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>If _symbol_ is in the surrounding agent's [[GlobalSymbolRegistry]] List, the String used to register _symbol_ will be returned.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _agentRecord_ be the Agent Record of the surrounding agent.
+          1. Let _globalSymbolRegistry_ be _agentRecord_.[[GlobalSymbolRegistry]].
+          1. For each element _element_ of _globalSymbolRegistry_, do
+            1. If SameValue(_element_.[[Symbol]], _symbol_) is *true*, return _element_.[[Key]].
+          1. Assert: _globalSymbolRegistry_ does not currently contain an entry for _symbol_.
+          1. Return *undefined*.
+        </emu-alg>
+      </emu-clause>

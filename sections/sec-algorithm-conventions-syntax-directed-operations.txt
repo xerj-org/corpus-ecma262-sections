@@ -1,0 +1,25 @@
+ECMA-262 > 5 Notational Conventions > 5.2 Algorithm Conventions > 5.2.3 Syntax-Directed Operations [id: sec-algorithm-conventions-syntax-directed-operations]
+
+<emu-clause id="sec-algorithm-conventions-syntax-directed-operations">
+      <h1>Syntax-Directed Operations</h1>
+      <p>A <dfn variants="syntax-directed operations">syntax-directed operation</dfn> is a named operation whose definition consists of algorithms, each of which is associated with one or more productions from one of the ECMAScript grammars. A production that has multiple alternative definitions will typically have a distinct algorithm for each alternative. When an algorithm is associated with a grammar production, it may reference the terminal and nonterminal symbols of the production alternative as if they were parameters of the algorithm. When used in this manner, nonterminal symbols refer to the actual alternative definition that is matched when parsing the source text. The <dfn oldids="sec-static-semantics-sourcetext">source text matched by</dfn> a grammar production or Parse Node derived from it is the portion of the source text that starts at the beginning of the first terminal that participated in the match and ends at the end of the last terminal that participated in the match.</p>
+      <p>When an algorithm is associated with a production alternative, the alternative is typically shown without any “[ ]” grammar annotations. Such annotations should only affect the syntactic recognition of the alternative and have no effect on the associated semantics for the alternative.</p>
+      <p>Syntax-directed operations are invoked with a parse node and, optionally, other parameters by using the conventions on steps <emu-xref href="#step-sdo-invocation-example-1"></emu-xref>, <emu-xref href="#step-sdo-invocation-example-2"></emu-xref>, and <emu-xref href="#step-sdo-invocation-example-3"></emu-xref> in the following algorithm:</p>
+      <emu-alg example>
+        1. [id="step-sdo-invocation-example-1"] Let _status_ be SyntaxDirectedOperation of |SomeNonTerminal|.
+        1. Let _someParseNode_ be the parse of some source text.
+        1. [id="step-sdo-invocation-example-2"] Perform SyntaxDirectedOperation of _someParseNode_.
+        1. [id="step-sdo-invocation-example-3"] Perform SyntaxDirectedOperation of _someParseNode_ with argument *"value"*.
+      </emu-alg>
+      <p>Unless explicitly specified otherwise, all chain productions have an implicit definition for every operation that might be applied to that production's left-hand side nonterminal. The implicit definition simply reapplies the same operation with the same parameters, if any, to the chain production's sole right-hand side nonterminal and then returns the result. For example, assume that some algorithm has a step of the form: “Return Evaluation of |Block|” and that there is a production:</p>
+      <emu-grammar example>
+        Block :
+          `{` StatementList `}`
+      </emu-grammar>
+      <p>but the Evaluation operation does not associate an algorithm with that production. In that case, the Evaluation operation implicitly includes an association of the form:</p>
+      <p><b>Runtime Semantics: Evaluation</b></p>
+      <emu-grammar example>Block : `{` StatementList `}`</emu-grammar>
+      <emu-alg example>
+        1. Return Evaluation of |StatementList|.
+      </emu-alg>
+    </emu-clause>

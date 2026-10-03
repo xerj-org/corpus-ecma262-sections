@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.4 Other Properties of the Global Object > 19.4.3 Math [id: sec-math]
+
+<emu-clause id="sec-math">
+      <h1>Math</h1>
+      <p>See <emu-xref href="#sec-math-object"></emu-xref>.</p>
+    </emu-clause>

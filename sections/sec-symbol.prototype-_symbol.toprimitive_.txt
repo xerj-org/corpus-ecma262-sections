@@ -1,0 +1,15 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.3 Properties of the Symbol Prototype Object > 20.4.3.5 Symbol.prototype [ %Symbol.toPrimitive% ] ( _hint_ ) [id: sec-symbol.prototype-%symbol.toprimitive%]
+
+<emu-clause oldids="sec-symbol.prototype-@@toprimitive" id="sec-symbol.prototype-%symbol.toprimitive%" type="built-in function">
+        <h1>Symbol.prototype [ %Symbol.toPrimitive% ] ( _hint_ )</h1>
+        <p>This method is called by ECMAScript language operators to convert a Symbol object to a primitive value.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Return ? ThisSymbolValue(*this* value).
+        </emu-alg>
+        <emu-note>
+          <p>The argument is ignored.</p>
+        </emu-note>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+        <p>The value of the *"name"* property of this method is *"[Symbol.toPrimitive]"*.</p>
+      </emu-clause>

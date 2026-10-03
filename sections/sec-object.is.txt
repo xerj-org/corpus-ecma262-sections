@@ -1,0 +1,9 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.15 Object.is ( _value1_, _value2_ ) [id: sec-object.is]
+
+<emu-clause id="sec-object.is" type="built-in function">
+        <h1>Object.is ( _value1_, _value2_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Return SameValue(_value1_, _value2_).
+        </emu-alg>
+      </emu-clause>

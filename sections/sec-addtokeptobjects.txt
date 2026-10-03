@@ -1,0 +1,19 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.11 AddToKeptObjects ( _value_: an Object or a Symbol, ): ~unused~ [id: sec-addtokeptobjects]
+
+<emu-clause id="sec-addtokeptobjects" type="abstract operation">
+    <h1>
+      AddToKeptObjects (
+        _value_: an Object or a Symbol,
+      ): ~unused~
+    </h1>
+    <dl class="header">
+    </dl>
+    <emu-alg>
+      1. Let _agentRecord_ be the surrounding agent's Agent Record.
+      1. Append _value_ to _agentRecord_.[[KeptAlive]].
+      1. Return ~unused~.
+    </emu-alg>
+    <emu-note>
+      When the abstract operation AddToKeptObjects is called with a target object or symbol, it adds the target to a list that will point strongly at the target until ClearKeptObjects is called.
+    </emu-note>
+  </emu-clause>

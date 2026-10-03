@@ -1,0 +1,21 @@
+ECMA-262 > 5 Notational Conventions > 5.2 Algorithm Conventions > 5.2.4 Runtime Semantics > 5.2.4.2 Throw [id: sec-throw-an-exception]
+
+<emu-clause id="sec-throw-an-exception">
+        <h1>Throw</h1>
+        <p>In algorithm steps, the word “throw” is shorthand for returning the result of calling ThrowCompletion. For example,</p>
+        <emu-alg example>
+          1. If _result_.[[Error]] is not ~none~, throw _result_.[[Error]].
+        </emu-alg>
+        <p>is equivalent to</p>
+        <emu-alg example>
+          1. If _result_.[[Error]] is not ~none~, return ThrowCompletion(_result_.[[Error]]).
+        </emu-alg>
+        <p>Algorithm steps that say to throw an exception of a particular type construct an exception of that type to be thrown. For example,</p>
+        <emu-alg example>
+          1. Throw a *TypeError* exception.
+        </emu-alg>
+        <p>is equivalent to</p>
+        <emu-alg example>
+          1. Return ThrowCompletion(a newly created *TypeError* object).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,73 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.6 Properties of the RegExp Prototype Object > 22.2.6.14 RegExp.prototype [ %Symbol.split% ] ( _string_, _limit_ ) [id: sec-regexp.prototype-%symbol.split%]
+
+<emu-clause oldids="sec-regexp.prototype-@@split" id="sec-regexp.prototype-%symbol.split%" type="built-in function">
+        <h1>RegExp.prototype [ %Symbol.split% ] ( _string_, _limit_ )</h1>
+        <emu-note>
+          <p>This method returns an Array into which substrings of the result of converting _string_ to a String have been stored. The substrings are determined by searching from left to right for matches of the *this* value regular expression; these occurrences are not part of any String in the returned array, but serve to divide up the String value.</p>
+          <p>The *this* value may be an empty regular expression or a regular expression that can match an empty String. In this case, the regular expression does not match the empty <emu-not-ref>substring</emu-not-ref> at the beginning or end of the input String, nor does it match the empty <emu-not-ref>substring</emu-not-ref> at the end of the previous separator match. (For example, if the regular expression matches the empty String, the String is split up into individual code unit elements; the length of the result array equals the length of the String, and each <emu-not-ref>substring</emu-not-ref> contains one code unit.) Only the first match at a given index of the String is considered, even if backtracking could yield a non-empty <emu-not-ref>substring</emu-not-ref> match at that index. (For example, `/a*?/[Symbol.split]("ab")` evaluates to the array `["a", "b"]`, while `/a*/[Symbol.split]("ab")` evaluates to the array `["","b"]`.)</p>
+          <p>If _string_ is (or converts to) the empty String, the result depends on whether the regular expression can match the empty String. If it can, the result array contains no elements. Otherwise, the result array contains one element, which is the empty String.</p>
+          <p>If the regular expression contains capturing parentheses, then each time _separator_ is matched the results (including any *undefined* results) of the capturing parentheses are spliced into the output array. For example,</p>
+          <pre><code class="javascript">/&lt;(\/)?([^&lt;&gt;]+)&gt;/[Symbol.split]("A&lt;B&gt;bold&lt;/B&gt;and&lt;CODE&gt;coded&lt;/CODE&gt;")</code></pre>
+          <p>evaluates to the array</p>
+          <pre><code class="javascript">["A", undefined, "B", "bold", "/", "B", "and", undefined, "CODE", "coded", "/", "CODE", ""]</code></pre>
+          <p>If _limit_ is not *undefined*, then the output array is truncated so that it contains no more than _limit_ elements.</p>
+        </emu-note>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _regexp_ be the *this* value.
+          1. If _regexp_ is not an Object, throw a *TypeError* exception.
+          1. Set _string_ to ? ToString(_string_).
+          1. Let _speciesCtor_ be ? SpeciesConstructor(_regexp_, %RegExp%).
+          1. Let _flags_ be ? ToString(? Get(_regexp_, *"flags"*)).
+          1. If _flags_ contains *"u"* or _flags_ contains *"v"*, let _unicodeMatching_ be *true*.
+          1. Else, let _unicodeMatching_ be *false*.
+          1. If _flags_ contains *"y"*, let _newFlags_ be _flags_.
+          1. Else, let _newFlags_ be the string-concatenation of _flags_ and *"y"*.
+          1. Let _splitter_ be ? Construct(_speciesCtor_, « _regexp_, _newFlags_ »).
+          1. Let _array_ be ! ArrayCreate(0).
+          1. Let _lengthA_ be 0.
+          1. If _limit_ is *undefined*, let _lim_ be 2<sup>32</sup> - 1; else let _lim_ be ℝ(? ToUint32(_limit_)).
+          1. If _lim_ = 0, return _array_.
+          1. If _string_ is the empty String, then
+            1. Let _matchResult_ be ? RegExpExec(_splitter_, _string_).
+            1. If _matchResult_ is not *null*, return _array_.
+            1. Perform ! CreateDataPropertyOrThrow(_array_, *"0"*, _string_).
+            1. Return _array_.
+          1. Let _size_ be the length of _string_.
+          1. Let _lastMatchEnd_ be 0.
+          1. Let _searchIndex_ be _lastMatchEnd_.
+          1. Repeat, while _searchIndex_ &lt; _size_,
+            1. Perform ? Set(_splitter_, *"lastIndex"*, 𝔽(_searchIndex_), *true*).
+            1. Let _matchResult_ be ? RegExpExec(_splitter_, _string_).
+            1. If _matchResult_ is *null*, then
+              1. Set _searchIndex_ to AdvanceStringIndex(_string_, _searchIndex_, _unicodeMatching_).
+            1. Else,
+              1. Let _matchEnd_ be ℝ(? ToLength(? Get(_splitter_, *"lastIndex"*))).
+              1. Set _matchEnd_ to min(_matchEnd_, _size_).
+              1. If _matchEnd_ = _lastMatchEnd_, then
+                1. Set _searchIndex_ to AdvanceStringIndex(_string_, _searchIndex_, _unicodeMatching_).
+              1. Else,
+                1. Let _substring_ be the substring of _string_ from _lastMatchEnd_ to _searchIndex_.
+                1. Perform ! CreateDataPropertyOrThrow(_array_, ! ToString(𝔽(_lengthA_)), _substring_).
+                1. Set _lengthA_ to _lengthA_ + 1.
+                1. If _lengthA_ = _lim_, return _array_.
+                1. Set _lastMatchEnd_ to _matchEnd_.
+                1. Let _numberOfCaptures_ be ? LengthOfArrayLike(_matchResult_).
+                1. Set _numberOfCaptures_ to max(_numberOfCaptures_ - 1, 0).
+                1. Let _captureIndex_ be 1.
+                1. Repeat, while _captureIndex_ ≤ _numberOfCaptures_,
+                  1. Let _nextCapture_ be ? Get(_matchResult_, ! ToString(𝔽(_captureIndex_))).
+                  1. Perform ! CreateDataPropertyOrThrow(_array_, ! ToString(𝔽(_lengthA_)), _nextCapture_).
+                  1. Set _captureIndex_ to _captureIndex_ + 1.
+                  1. Set _lengthA_ to _lengthA_ + 1.
+                  1. If _lengthA_ = _lim_, return _array_.
+                1. Set _searchIndex_ to _lastMatchEnd_.
+          1. Let _substring_ be the substring of _string_ from _lastMatchEnd_ to _size_.
+          1. Perform ! CreateDataPropertyOrThrow(_array_, ! ToString(𝔽(_lengthA_)), _substring_).
+          1. Return _array_.
+        </emu-alg>
+        <p>The value of the *"name"* property of this method is *"[Symbol.split]"*.</p>
+        <emu-note>
+          <p>This method ignores the value of the *"global"* and *"sticky"* properties of this RegExp object.</p>
+        </emu-note>
+      </emu-clause>

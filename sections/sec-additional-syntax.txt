@@ -1,0 +1,9 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.1 Additional Syntax [id: sec-additional-syntax]
+
+<emu-annex id="sec-additional-syntax">
+    <h1>Additional Syntax</h1>
+
+    
+
+    
+  </emu-annex>

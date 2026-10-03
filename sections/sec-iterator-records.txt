@@ -1,0 +1,57 @@
+ECMA-262 > 7 Abstract Operations > 7.4 Operations on Iterator Objects > 7.4.1 Iterator Records [id: sec-iterator-records]
+
+<emu-clause id="sec-iterator-records">
+      <h1>Iterator Records</h1>
+      <p>An <dfn variants="Iterator Records">Iterator Record</dfn> is a Record used to encapsulate an iterator or async iterator along with the `next` method.</p>
+      <p>Iterator Records have the fields listed in <emu-xref href="#table-iterator-record-fields"></emu-xref>.</p>
+      <emu-table id="table-iterator-record-fields" caption="Iterator Record Fields">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              [[Iterator]]
+            </td>
+            <td>
+              an Object
+            </td>
+            <td>
+              An object that conforms to the iterator interface or the async iterator interface.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[NextMethod]]
+            </td>
+            <td>
+              an ECMAScript language value
+            </td>
+            <td>
+              The `next` method of the [[Iterator]] object.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[Done]]
+            </td>
+            <td>
+              a Boolean
+            </td>
+            <td>
+              Whether the iterator has completed or been closed.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+    </emu-clause>

@@ -1,0 +1,15 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.5 Properties of the Promise Prototype Object > 27.5.5.4 Promise.prototype.then ( _onFulfilled_, _onRejected_ ) [id: sec-promise.prototype.then]
+
+<emu-clause id="sec-promise.prototype.then" type="built-in function">
+        <h1>Promise.prototype.then ( _onFulfilled_, _onRejected_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _promise_ be the *this* value.
+          1. If IsPromise(_promise_) is *false*, throw a *TypeError* exception.
+          1. Let _ctor_ be ? SpeciesConstructor(_promise_, %Promise%).
+          1. Let _resultCapability_ be ? NewPromiseCapability(_ctor_).
+          1. Return PerformPromiseThen(_promise_, _onFulfilled_, _onRejected_, _resultCapability_).
+        </emu-alg>
+
+        
+      </emu-clause>

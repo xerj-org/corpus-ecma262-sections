@@ -1,0 +1,24 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.2 Object Environment Records > 9.1.1.2.4 InitializeBinding ( _name_: a String, _value_: an ECMAScript language value, ): either a normal completion containing ~unused~ or a throw completion [id: sec-object-environment-records-initializebinding-n-v]
+
+<emu-clause id="sec-object-environment-records-initializebinding-n-v" type="concrete method">
+          <h1>
+            InitializeBinding (
+              _name_: a String,
+              _value_: an ECMAScript language value,
+            ): either a normal completion containing ~unused~ or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>an Object Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It is used to set the bound value of the current binding of the identifier whose name is _name_ to the value _value_.</dd>
+          </dl>
+          <emu-alg>
+            1. Perform ? <emu-meta effects="user-code">_envRecord_.SetMutableBinding(_name_, _value_, *false*)</emu-meta>.
+            1. Return ~unused~.
+          </emu-alg>
+          <emu-note>
+            <p>In this specification, all uses of CreateMutableBinding for Object Environment Records are immediately followed by a call to InitializeBinding for the same name. Hence, this specification does not explicitly track the initialization state of bindings in Object Environment Records.</p>
+          </emu-note>
+        </emu-clause>

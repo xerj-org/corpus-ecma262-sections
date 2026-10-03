@@ -1,0 +1,10 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.4 Properties of the DataView Prototype Object > 25.3.4.5 DataView.prototype.getBigInt64 ( _byteOffset_ [ , _littleEndian_ ] ) [id: sec-dataview.prototype.getbigint64]
+
+<emu-clause id="sec-dataview.prototype.getbigint64" type="built-in function">
+        <h1>DataView.prototype.getBigInt64 ( _byteOffset_ [ , _littleEndian_ ] )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _view_ be the *this* value.
+          1. Return ? GetViewValue(_view_, _byteOffset_, _littleEndian_, ~bigint64~).
+        </emu-alg>
+      </emu-clause>

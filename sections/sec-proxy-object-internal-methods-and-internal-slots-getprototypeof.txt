@@ -1,0 +1,36 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.5 Proxy Object Internal Methods and Internal Slots > 10.5.1 [[GetPrototypeOf]] ( ): either a normal completion containing either an Object or *null*, or a throw completion [id: sec-proxy-object-internal-methods-and-internal-slots-getprototypeof]
+
+<emu-clause id="sec-proxy-object-internal-methods-and-internal-slots-getprototypeof" type="internal method">
+      <h1>[[GetPrototypeOf]] ( ): either a normal completion containing either an Object or *null*, or a throw completion</h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>a Proxy exotic object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Perform ? ValidateNonRevokedProxy(_obj_).
+        1. Let _target_ be _obj_.[[ProxyTarget]].
+        1. Let _handler_ be _obj_.[[ProxyHandler]].
+        1. Assert: _handler_ is an Object.
+        1. Let _trap_ be ? GetMethod(_handler_, *"getPrototypeOf"*).
+        1. If _trap_ is *undefined*, then
+          1. Return ? <emu-meta effects="user-code">_target_.[[GetPrototypeOf]]()</emu-meta>.
+        1. Let _handlerProto_ be ? Call(_trap_, _handler_, « _target_ »).
+        1. If _handlerProto_ is not an Object and _handlerProto_ is not *null*, throw a *TypeError* exception.
+        1. Let _extensibleTarget_ be ? IsExtensible(_target_).
+        1. If _extensibleTarget_ is *true*, return _handlerProto_.
+        1. Let _targetProto_ be ? <emu-meta effects="user-code">_target_.[[GetPrototypeOf]]()</emu-meta>.
+        1. If SameValue(_handlerProto_, _targetProto_) is *false*, throw a *TypeError* exception.
+        1. Return _handlerProto_.
+      </emu-alg>
+      <emu-note>
+        <p>[[GetPrototypeOf]] for Proxy objects enforces the following invariants:</p>
+        <ul>
+          <li>
+            The result of [[GetPrototypeOf]] must be either an Object or *null*.
+          </li>
+          <li>
+            If the target object is not extensible, [[GetPrototypeOf]] applied to the Proxy object must return the same value as [[GetPrototypeOf]] applied to the Proxy object's target object.
+          </li>
+        </ul>
+      </emu-note>
+    </emu-clause>

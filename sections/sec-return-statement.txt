@@ -1,0 +1,16 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.10 The `return` Statement [id: sec-return-statement]
+
+<emu-clause id="sec-return-statement">
+    <h1>The `return` Statement</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      ReturnStatement[Yield, Await] :
+        `return` `;`
+        `return` [no LineTerminator here] Expression[+In, ?Yield, ?Await] `;`
+    </emu-grammar>
+    <emu-note>
+      <p>A `return` statement causes a function to cease execution and, in most cases, returns a value to the caller. If |Expression| is omitted, the return value is *undefined*. Otherwise, the return value is the value of |Expression|. A `return` statement may not actually return a value to the caller depending on surrounding context. For example, in a `try` block, a `return` statement's Completion Record may be replaced with another Completion Record during evaluation of the `finally` block.</p>
+    </emu-note>
+
+    
+  </emu-clause>

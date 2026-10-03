@@ -1,0 +1,23 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.1 Additional Properties of the Uint8Array Constructor > 23.3.1.1 Uint8Array.fromBase64 ( _string_ [ , _options_ ] ) [id: sec-uint8array.frombase64]
+
+<emu-clause id="sec-uint8array.frombase64" type="built-in function">
+        <h1>Uint8Array.fromBase64 ( _string_ [ , _options_ ] )</h1>
+        <emu-alg>
+          1. If _string_ is not a String, throw a *TypeError* exception.
+          1. Let _optionsObj_ be ? GetOptionsObject(_options_).
+          1. Let _alphabet_ be ? Get(_optionsObj_, *"alphabet"*).
+          1. If _alphabet_ is *undefined*, set _alphabet_ to *"base64"*.
+          1. If _alphabet_ is neither *"base64"* nor *"base64url"*, throw a *TypeError* exception.
+          1. Let _lastChunkHandling_ be ? Get(_optionsObj_, *"lastChunkHandling"*).
+          1. If _lastChunkHandling_ is *undefined*, set _lastChunkHandling_ to *"loose"*.
+          1. If _lastChunkHandling_ is not one of *"loose"*, *"strict"*, or *"stop-before-partial"*, throw a *TypeError* exception.
+          1. Let _result_ be FromBase64(_string_, _alphabet_, _lastChunkHandling_).
+          1. If _result_.[[Error]] is not ~none~, then
+            1. Throw _result_.[[Error]].
+          1. Let _resultLength_ be the number of elements in _result_.[[Bytes]].
+          1. Let _ta_ be ? <emu-meta suppress-effects="user-code">AllocateTypedArray(*"Uint8Array"*, %Uint8Array%, *"%Uint8Array.prototype%"*, _resultLength_)</emu-meta>.
+          1. Assert: _ta_.[[ViewedArrayBuffer]].[[ArrayBufferByteLength]] is the number of elements in _result_.[[Bytes]].
+          1. Set the value at each index of _ta_.[[ViewedArrayBuffer]].[[ArrayBufferData]] to the value at the corresponding index of _result_.[[Bytes]].
+          1. Return _ta_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,53 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.1 Identifiers > 13.1.2 Static Semantics: StringValue ( ): a String [id: sec-static-semantics-stringvalue]
+
+<emu-clause id="sec-static-semantics-stringvalue" oldids="sec-identifiers-static-semantics-stringvalue,sec-identifier-names-static-semantics-stringvalue" type="sdo">
+      <h1>Static Semantics: StringValue ( ): a String</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>
+        IdentifierName ::
+          IdentifierStart
+          IdentifierName IdentifierPart
+      </emu-grammar>
+      <emu-alg>
+        1. Let _nameUnescaped_ be the IdentifierCodePoints of |IdentifierName|.
+        1. Return CodePointsToString(_nameUnescaped_).
+      </emu-alg>
+      <emu-grammar>
+        IdentifierReference : `yield`
+
+        BindingIdentifier : `yield`
+
+        LabelIdentifier : `yield`
+      </emu-grammar>
+      <emu-alg>
+        1. Return *"yield"*.
+      </emu-alg>
+      <emu-grammar>
+        IdentifierReference : `await`
+
+        BindingIdentifier : `await`
+
+        LabelIdentifier : `await`
+      </emu-grammar>
+      <emu-alg>
+        1. Return *"await"*.
+      </emu-alg>
+      <emu-grammar>Identifier : IdentifierName but not ReservedWord</emu-grammar>
+      <emu-alg>
+        1. Return the StringValue of |IdentifierName|.
+      </emu-alg>
+      <emu-grammar>
+        PrivateIdentifier ::
+          `#` IdentifierName
+      </emu-grammar>
+      <emu-alg>
+        1. Return the string-concatenation of 0x0023 (NUMBER SIGN) and the StringValue of |IdentifierName|.
+      </emu-alg>
+      <emu-grammar>
+        ModuleExportName : StringLiteral
+      </emu-grammar>
+      <emu-alg>
+        1. Return the SV of |StringLiteral|.
+      </emu-alg>
+    </emu-clause>

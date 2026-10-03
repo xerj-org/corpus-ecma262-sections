@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.2 BigInt Objects > 21.2.2 Properties of the BigInt Constructor > 21.2.2.3 BigInt.prototype [id: sec-bigint.prototype]
+
+<emu-clause id="sec-bigint.prototype">
+        <h1>BigInt.prototype</h1>
+        <p>The initial value of `BigInt.prototype` is the BigInt prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

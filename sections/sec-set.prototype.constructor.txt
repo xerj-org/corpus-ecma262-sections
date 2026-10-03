@@ -1,0 +1,6 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.4 Properties of the Set Prototype Object > 24.2.4.3 Set.prototype.constructor [id: sec-set.prototype.constructor]
+
+<emu-clause id="sec-set.prototype.constructor">
+        <h1>Set.prototype.constructor</h1>
+        <p>The initial value of `Set.prototype.constructor` is %Set%.</p>
+      </emu-clause>

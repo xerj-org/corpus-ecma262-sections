@@ -1,0 +1,28 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.8 Template Literals > 13.2.8.5 Runtime Semantics: SubstitutionEvaluation ( ): either a normal completion containing a List of ECMAScript language values or an abrupt completion [id: sec-runtime-semantics-substitutionevaluation]
+
+<emu-clause id="sec-runtime-semantics-substitutionevaluation" type="sdo">
+        <h1>Runtime Semantics: SubstitutionEvaluation ( ): either a normal completion containing a List of ECMAScript language values or an abrupt completion</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>TemplateSpans : TemplateTail</emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+        <emu-grammar>TemplateSpans : TemplateMiddleList TemplateTail</emu-grammar>
+        <emu-alg>
+          1. Return ? SubstitutionEvaluation of |TemplateMiddleList|.
+        </emu-alg>
+        <emu-grammar>TemplateMiddleList : TemplateMiddle Expression</emu-grammar>
+        <emu-alg>
+          1. Let _subRef_ be ? Evaluation of |Expression|.
+          1. Let _sub_ be ? GetValue(_subRef_).
+          1. Return « _sub_ ».
+        </emu-alg>
+        <emu-grammar>TemplateMiddleList : TemplateMiddleList TemplateMiddle Expression</emu-grammar>
+        <emu-alg>
+          1. Let _preceding_ be ? SubstitutionEvaluation of |TemplateMiddleList|.
+          1. Let _nextRef_ be ? Evaluation of |Expression|.
+          1. Let _next_ be ? GetValue(_nextRef_).
+          1. Return the list-concatenation of _preceding_ and « _next_ ».
+        </emu-alg>
+      </emu-clause>

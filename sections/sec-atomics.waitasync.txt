@@ -1,0 +1,10 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.16 Atomics.waitAsync ( _ta_, _index_, _value_, _timeout_ ) [id: sec-atomics.waitasync]
+
+<emu-clause id="sec-atomics.waitasync" type="built-in function">
+      <h1>Atomics.waitAsync ( _ta_, _index_, _value_, _timeout_ )</h1>
+      <p>This function returns a Promise that is resolved when the calling agent is notified or the timeout is reached.</p>
+      <p>It performs the following steps when called:</p>
+      <emu-alg>
+        1. Return ? DoWait(~async~, _ta_, _index_, _value_, _timeout_).
+      </emu-alg>
+    </emu-clause>

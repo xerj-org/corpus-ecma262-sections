@@ -1,0 +1,6 @@
+ECMA-262 > 24 Keyed Collections > 24.4 WeakSet Objects > 24.4.3 Properties of the WeakSet Prototype Object > 24.4.3.2 WeakSet.prototype.constructor [id: sec-weakset.prototype.constructor]
+
+<emu-clause id="sec-weakset.prototype.constructor">
+        <h1>WeakSet.prototype.constructor</h1>
+        <p>The initial value of `WeakSet.prototype.constructor` is %WeakSet%.</p>
+      </emu-clause>

@@ -1,0 +1,20 @@
+ECMA-262 > 29 Memory Model > 29.7 Properties of Valid Executions > 29.7.3 Tear Free Reads [id: sec-tear-free-aligned-reads]
+
+<emu-clause id="sec-tear-free-aligned-reads">
+      <h1>Tear Free Reads</h1>
+      <p>A candidate execution _execution_ has tear free reads if the following algorithm returns *true*.</p>
+      <emu-alg>
+        1. For each ReadSharedMemory or ReadModifyWriteSharedMemory event _readEvent_ of SharedDataBlockEventSet(_execution_), do
+          1. If _readEvent_.[[NoTear]] is *true*, then
+            1. Assert: The remainder of dividing _readEvent_.[[ByteIndex]] by _readEvent_.[[ElementSize]] is 0.
+            1. For each Memory event _writeEvent_ such that _readEvent_ reads-from _writeEvent_ in _execution_ and _writeEvent_.[[NoTear]] is *true*, do
+              1. If _readEvent_ and _writeEvent_ have equal memory ranges and there exists a Memory event _value_ such that _value_ and _writeEvent_ have equal memory ranges, _value_.[[NoTear]] is *true*, _writeEvent_ and _value_ are not the same Shared Data Block event, and _readEvent_ reads-from _value_ in _execution_, then
+                1. Return *false*.
+        1. Return *true*.
+      </emu-alg>
+
+      <emu-note>
+        <p>A Shared Data Block event's [[NoTear]] field is *true* when that event was introduced via accessing an integer TypedArray, and *false* when introduced via accessing a floating point TypedArray or DataView.</p>
+        <p>Intuitively, this requirement says when a memory range is accessed in an aligned fashion via an integer TypedArray, a single write event on that range must “win” when in a data race with other write events with equal ranges. More precisely, this requirement says an aligned read event cannot read a value composed of bytes from multiple, different write events all with equal ranges. It is possible, however, for an aligned read event to read from multiple write events with overlapping ranges.</p>
+      </emu-note>
+    </emu-clause>

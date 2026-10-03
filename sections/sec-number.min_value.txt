@@ -1,0 +1,8 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.2 Properties of the Number Constructor > 21.1.2.9 Number.MIN_VALUE [id: sec-number.min_value]
+
+<emu-clause id="sec-number.min_value">
+        <h1>Number.MIN_VALUE</h1>
+        <p>The value of `Number.MIN_VALUE` is the smallest positive value of the Number type, which is approximately <emu-eqn>5 × 10<sup>-324</sup></emu-eqn>.</p>
+        <p>In the IEEE 754-2019 double precision binary representation, the smallest possible value is a denormalized number. If an implementation does not support denormalized values, the value of `Number.MIN_VALUE` must be the smallest non-zero positive value that can actually be represented by the implementation.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

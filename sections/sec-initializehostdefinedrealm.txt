@@ -1,0 +1,31 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.3 Realms > 9.3.1 InitializeHostDefinedRealm ( ): either a normal completion containing ~unused~ or a throw completion [id: sec-initializehostdefinedrealm]
+
+<emu-clause id="sec-initializehostdefinedrealm" type="abstract operation" oldids="sec-createrealm,sec-setrealmglobalobject">
+      <h1>InitializeHostDefinedRealm ( ): either a normal completion containing ~unused~ or a throw completion</h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _realm_ be a new Realm Record.
+        1. Perform CreateIntrinsics(_realm_).
+        1. Set _realm_.[[AgentSignifier]] to AgentSignifier().
+        1. Set _realm_.[[TemplateMap]] to a new empty List.
+        1. Let _newContext_ be a new execution context.
+        1. Set the Function of _newContext_ to *null*.
+        1. Set the Realm of _newContext_ to _realm_.
+        1. Set the ScriptOrModule of _newContext_ to *null*.
+        1. Push _newContext_ onto the execution context stack; _newContext_ is now the running execution context.
+        1. If the host requires use of a specific object to serve as _realm_'s global object, then
+          1. Let _global_ be such an object created in a host-defined manner.
+        1. Else,
+          1. Let _global_ be OrdinaryObjectCreate(_realm_.[[Intrinsics]].[[%Object.prototype%]]).
+        1. If the host requires that the `this` binding in _realm_'s global scope return an object other than the global object, then
+          1. Let _thisValue_ be such an object created in a host-defined manner.
+        1. Else,
+          1. Let _thisValue_ be _global_.
+        1. Set _realm_.[[GlobalObject]] to _global_.
+        1. Set _realm_.[[GlobalEnv]] to NewGlobalEnvironment(_global_, _thisValue_).
+        1. Perform ? SetDefaultGlobalBindings(_realm_).
+        1. Create any host-defined global object properties on _global_.
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

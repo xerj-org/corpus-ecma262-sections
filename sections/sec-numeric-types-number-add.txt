@@ -1,0 +1,27 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.1 The Number Type > 6.1.6.1.7 Number::add ( _x_: a Number, _y_: a Number, ): a Number [id: sec-numeric-types-number-add]
+
+<emu-clause id="sec-numeric-types-number-add" type="numeric method" oldids="sec-applying-the-additive-operators-to-numbers">
+          <h1>
+            Number::add (
+              _x_: a Number,
+              _y_: a Number,
+            ): a Number
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It performs addition according to the rules of IEEE 754-2019 binary double-precision arithmetic, producing the sum of its arguments.</dd>
+          </dl>
+          <emu-alg>
+            1. If _x_ is *NaN* or _y_ is *NaN*, return *NaN*.
+            1. If _x_ is *+∞*<sub>𝔽</sub> and _y_ is *-∞*<sub>𝔽</sub>, return *NaN*.
+            1. If _x_ is *-∞*<sub>𝔽</sub> and _y_ is *+∞*<sub>𝔽</sub>, return *NaN*.
+            1. If _x_ is either *+∞*<sub>𝔽</sub> or *-∞*<sub>𝔽</sub>, return _x_.
+            1. If _y_ is either *+∞*<sub>𝔽</sub> or *-∞*<sub>𝔽</sub>, return _y_.
+            1. Assert: _x_ and _y_ are finite Numbers.
+            1. If _x_ is *-0*<sub>𝔽</sub> and _y_ is *-0*<sub>𝔽</sub>, return *-0*<sub>𝔽</sub>.
+            1. Return 𝔽(ℝ(_x_) + ℝ(_y_)).
+          </emu-alg>
+          <emu-note>
+            <p>Finite-precision addition is commutative, but not always associative.</p>
+          </emu-note>
+        </emu-clause>

@@ -1,0 +1,29 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.2 Promise Jobs > 27.5.2.2 NewPromiseResolveThenableJob ( _promiseToResolve_: a Promise, _thenable_: an Object, _then_: a JobCallback Record, ): a Record with fields [[Job]] (a Job Abstract Closure) and [[Realm]] (a Realm Record) [id: sec-newpromiseresolvethenablejob]
+
+<emu-clause id="sec-newpromiseresolvethenablejob" type="abstract operation" oldids="sec-promiseresolvethenablejob">
+        <h1>
+          NewPromiseResolveThenableJob (
+            _promiseToResolve_: a Promise,
+            _thenable_: an Object,
+            _then_: a JobCallback Record,
+          ): a Record with fields [[Job]] (a Job Abstract Closure) and [[Realm]] (a Realm Record)
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _job_ be a new Job Abstract Closure with no parameters that captures _promiseToResolve_, _thenable_, and _then_ and performs the following steps when called:
+            1. Let _resolvingFuncs_ be CreateResolvingFunctions(_promiseToResolve_).
+            1. Let _thenCallResult_ be Completion(HostCallJobCallback(_then_, _thenable_, « _resolvingFuncs_.[[Resolve]], _resolvingFuncs_.[[Reject]] »)).
+            1. If _thenCallResult_ is an abrupt completion, then
+              1. Return ? Call(_resolvingFuncs_.[[Reject]], *undefined*, « _thenCallResult_.[[Value]] »).
+            1. Return ! _thenCallResult_.
+          1. Let _getThenRealmResult_ be Completion(GetFunctionRealm(_then_.[[Callback]])).
+          1. If _getThenRealmResult_ is a normal completion, let _thenRealm_ be _getThenRealmResult_.[[Value]].
+          1. Else, let _thenRealm_ be the current Realm Record.
+          1. NOTE: _thenRealm_ is never *null*. When _then_.[[Callback]] is a revoked Proxy and no code runs, _thenRealm_ is used to create error objects.
+          1. Return the Record { [[Job]]: _job_, [[Realm]]: _thenRealm_ }.
+        </emu-alg>
+        <emu-note>
+          <p>This Job uses the supplied thenable and its `then` method to resolve the given promise. This process must take place as a Job to ensure that the evaluation of the `then` method occurs after evaluation of any surrounding code has completed.</p>
+        </emu-note>
+      </emu-clause>

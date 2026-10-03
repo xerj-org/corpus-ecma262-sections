@@ -1,0 +1,51 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.3 Declarations and the Variable Statement > 14.3.1 Let, Const, Using, and Await Using Declarations > 14.3.1.3 Runtime Semantics: BindingEvaluation ( _kind_: ~normal~, ~sync-dispose~, or ~async-dispose~, ): either a normal completion containing ~unused~ or an abrupt completion [id: sec-bindingevaluation]
+
+<emu-clause id="sec-bindingevaluation" type="sdo">
+        <h1>
+          Runtime Semantics: BindingEvaluation (
+            _kind_: ~normal~, ~sync-dispose~, or ~async-dispose~,
+          ): either a normal completion containing ~unused~ or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>BindingList : BindingList `,` LexicalBinding</emu-grammar>
+        <emu-alg>
+          1. Perform ? BindingEvaluation of the derived |BindingList| with argument _kind_.
+          1. Return ? BindingEvaluation of |LexicalBinding| with argument _kind_.
+        </emu-alg>
+        <emu-grammar>LexicalBinding : BindingIdentifier</emu-grammar>
+        <emu-alg>
+          1. Assert: _kind_ is ~normal~.
+          1. Let _lhs_ be ! ResolveBinding(StringValue of |BindingIdentifier|).
+          1. Perform ! InitializeReferencedBinding(_lhs_, *undefined*).
+          1. Return ~unused~.
+        </emu-alg>
+        <emu-note>
+          <p>A static semantics rule ensures that this form of |LexicalBinding| never occurs in a `const`, `using`, or `await using` declaration.</p>
+        </emu-note>
+        <emu-grammar>LexicalBinding : BindingIdentifier Initializer</emu-grammar>
+        <emu-alg>
+          1. Let _name_ be the StringValue of |BindingIdentifier|.
+          1. Let _lhs_ be ! ResolveBinding(_name_).
+          1. If IsAnonymousFunctionDefinition(|Initializer|) is *true*, then
+            1. Let _value_ be ? NamedEvaluation of |Initializer| with argument _name_.
+          1. Else,
+            1. Let _rhs_ be ? Evaluation of |Initializer|.
+            1. Let _value_ be ? GetValue(_rhs_).
+          1. If _kind_ is not ~normal~, then
+            1. Assert: IsUnresolvableReference(_lhs_) is *false*.
+            1. Let _base_ be _lhs_.[[Base]].
+            1. Assert: _base_ is a Declarative Environment Record.
+            1. Perform ? AddDisposableResource(_base_.[[DisposableResourceStack]], _value_, _kind_).
+          1. Perform ? InitializeReferencedBinding(_lhs_, _value_).
+          1. Return ~unused~.
+        </emu-alg>
+        <emu-grammar>LexicalBinding : BindingPattern Initializer</emu-grammar>
+        <emu-alg>
+          1. Assert: _kind_ is ~normal~.
+          1. Let _rhs_ be ? Evaluation of |Initializer|.
+          1. Let _value_ be ? GetValue(_rhs_).
+          1. Let _envRecord_ be the running execution context's LexicalEnvironment.
+          1. Return ? BindingInitialization of |BindingPattern| with arguments _value_ and _envRecord_.
+        </emu-alg>
+      </emu-clause>

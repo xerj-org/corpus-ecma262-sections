@@ -1,0 +1,37 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.7 Class Definitions > 15.7.16 Runtime Semantics: Evaluation [id: sec-class-definitions-runtime-semantics-evaluation]
+
+<emu-clause id="sec-class-definitions-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>ClassDeclaration : `class` BindingIdentifier ClassTail</emu-grammar>
+      <emu-alg>
+        1. Perform ? BindingClassDeclarationEvaluation of this |ClassDeclaration|.
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-note>
+        <p><emu-grammar>ClassDeclaration : `class` ClassTail</emu-grammar> only occurs as part of an |ExportDeclaration| and is never directly evaluated.</p>
+      </emu-note>
+      <emu-grammar>ClassExpression : `class` ClassTail</emu-grammar>
+      <emu-alg>
+        1. Let _sourceText_ be the source text matched by |ClassExpression|.
+        1. Return ? ClassDefinitionEvaluation of |ClassTail| with arguments *undefined*, the empty String, and _sourceText_.
+      </emu-alg>
+      <emu-grammar>ClassExpression : `class` BindingIdentifier ClassTail</emu-grammar>
+      <emu-alg>
+        1. Let _className_ be the StringValue of |BindingIdentifier|.
+        1. Let _sourceText_ be the source text matched by |ClassExpression|.
+        1. Return ? ClassDefinitionEvaluation of |ClassTail| with arguments _className_, _className_, and _sourceText_.
+      </emu-alg>
+      <emu-grammar>ClassElementName : PrivateIdentifier</emu-grammar>
+      <emu-alg>
+        1. Let _privateIdentifier_ be the StringValue of |PrivateIdentifier|.
+        1. Let _privateEnvRecord_ be the running execution context's PrivateEnvironment.
+        1. Let _names_ be _privateEnvRecord_.[[Names]].
+        1. Assert: Exactly one element of _names_ is a Private Name whose [[Description]] is _privateIdentifier_.
+        1. Let _privateName_ be the Private Name in _names_ whose [[Description]] is _privateIdentifier_.
+        1. Return _privateName_.
+      </emu-alg>
+      <emu-grammar>ClassStaticBlockStatementList : [empty]</emu-grammar>
+      <emu-alg>
+        1. Return *undefined*.
+      </emu-alg>
+    </emu-clause>

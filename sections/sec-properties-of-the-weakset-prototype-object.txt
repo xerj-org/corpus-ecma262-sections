@@ -1,0 +1,22 @@
+ECMA-262 > 24 Keyed Collections > 24.4 WeakSet Objects > 24.4.3 Properties of the WeakSet Prototype Object [id: sec-properties-of-the-weakset-prototype-object]
+
+<emu-clause id="sec-properties-of-the-weakset-prototype-object">
+      <h1>Properties of the WeakSet Prototype Object</h1>
+      <p>The <dfn>WeakSet prototype object</dfn>:</p>
+      <ul>
+        <li>is <dfn>%WeakSet.prototype%</dfn>.</li>
+        <li>has a [[Prototype]] internal slot whose value is %Object.prototype%.</li>
+        <li>is an ordinary object.</li>
+        <li>does not have a [[WeakSetData]] internal slot.</li>
+      </ul>
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

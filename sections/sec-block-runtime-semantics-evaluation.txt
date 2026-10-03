@@ -1,0 +1,37 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.2 Block > 14.2.2 Runtime Semantics: Evaluation [id: sec-block-runtime-semantics-evaluation]
+
+<emu-clause id="sec-block-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>Block : `{` `}`</emu-grammar>
+      <emu-alg>
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-grammar>Block : `{` StatementList `}`</emu-grammar>
+      <emu-alg>
+        1. Let _oldEnv_ be the running execution context's LexicalEnvironment.
+        1. Let _blockEnv_ be NewDeclarativeEnvironment(_oldEnv_).
+        1. Perform BlockDeclarationInstantiation(|StatementList|, _blockEnv_).
+        1. Set the running execution context's LexicalEnvironment to _blockEnv_.
+        1. Let _blockValue_ be Completion(Evaluation of |StatementList|).
+        1. Set _blockValue_ to Completion(DisposeResources(_blockEnv_.[[DisposableResourceStack]], _blockValue_)).
+        1. Set the running execution context's LexicalEnvironment to _oldEnv_.
+        1. Return ? _blockValue_.
+      </emu-alg>
+      <emu-note>
+        <p>No matter how control leaves the |Block| the LexicalEnvironment is always restored to its former state.</p>
+      </emu-note>
+      <emu-grammar>StatementList : StatementList StatementListItem</emu-grammar>
+      <emu-alg>
+        1. Let _sl_ be ? Evaluation of |StatementList|.
+        1. Let _s_ be Completion(Evaluation of |StatementListItem|).
+        1. Return ? UpdateEmpty(_s_, _sl_).
+      </emu-alg>
+      <emu-note>
+        <p>The value of a |StatementList| is the value of the last value-producing item in the |StatementList|. For example, the following calls to the `eval` function all return the value 1:</p>
+        <pre><code class="javascript">
+          eval("1;;;;;")
+          eval("1;{}")
+          eval("1;var a;")
+        </code></pre>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,24 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.4 Execution Contexts > 9.4.2 ResolveBinding ( _name_: a String, optional _envRecord_: an Environment Record or *undefined*, ): either a normal completion containing a Reference Record or a throw completion [id: sec-resolvebinding]
+
+<emu-clause id="sec-resolvebinding" type="abstract operation">
+      <h1>
+        ResolveBinding (
+          _name_: a String,
+          optional _envRecord_: an Environment Record or *undefined*,
+        ): either a normal completion containing a Reference Record or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to determine the binding of _name_. _envRecord_ can be used to explicitly provide the Environment Record that is to be searched for the binding.</dd>
+      </dl>
+      <emu-alg>
+        1. If _envRecord_ is not present or _envRecord_ is *undefined*, then
+          1. Set _envRecord_ to the running execution context's LexicalEnvironment.
+        1. Assert: _envRecord_ is an Environment Record.
+        1. Let _strict_ be IsStrict(the syntactic production that is being evaluated).
+        1. Return ? GetIdentifierReference(_envRecord_, _name_, _strict_).
+      </emu-alg>
+      <emu-note>
+        <p>The result of ResolveBinding is always a Reference Record whose [[ReferencedName]] field is _name_.</p>
+      </emu-note>
+    </emu-clause>

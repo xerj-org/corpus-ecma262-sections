@@ -1,0 +1,15 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.1 The Number Type > 6.1.6.1.18 Number::bitwiseXOR ( _x_: a Number, _y_: a Number, ): an integral Number [id: sec-numeric-types-number-bitwiseXOR]
+
+<emu-clause id="sec-numeric-types-number-bitwiseXOR" type="numeric method">
+          <h1>
+            Number::bitwiseXOR (
+              _x_: a Number,
+              _y_: a Number,
+            ): an integral Number
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Return NumberBitwiseOp(`^`, _x_, _y_).
+          </emu-alg>
+        </emu-clause>

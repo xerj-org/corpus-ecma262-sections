@@ -1,0 +1,20 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.10 RemoveWaiters ( _waiterList_: a WaiterList Record, _count_: a non-negative integer or +∞, ): a List of Waiter Records [id: sec-removewaiters]
+
+<emu-clause id="sec-removewaiters" type="abstract operation">
+        <h1>
+          RemoveWaiters (
+            _waiterList_: a WaiterList Record,
+            _count_: a non-negative integer or +&infin;,
+          ): a List of Waiter Records
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: The surrounding agent is in the critical section for _waiterList_.
+          1. Let _length_ be the number of elements in _waiterList_.[[Waiters]].
+          1. Set _count_ to min(_count_, _length_).
+          1. Let _waiters_ be a List whose elements are the first _count_ elements of _waiterList_.[[Waiters]].
+          1. Remove the first _count_ elements of _waiterList_.[[Waiters]].
+          1. Return _waiters_.
+        </emu-alg>
+      </emu-clause>

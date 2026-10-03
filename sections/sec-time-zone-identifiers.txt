@@ -1,0 +1,27 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.19 Time Zone Identifiers [id: sec-time-zone-identifiers]
+
+<emu-clause id="sec-time-zone-identifiers">
+        <h1>Time Zone Identifiers</h1>
+
+        <p>
+          Time zones in ECMAScript are represented by <dfn variants="time zone identifier">time zone identifiers</dfn>, which are Strings composed entirely of code units in the inclusive interval from 0x0000 to 0x007F.
+          Time zones supported by an ECMAScript implementation may be <dfn variants="available named time zone">available named time zones</dfn>, represented by the [[Identifier]] field of the Time Zone Identifier Records returned by AvailableNamedTimeZoneIdentifiers, or <dfn variants="offset time zone">offset time zones</dfn>, represented by Strings for which IsTimeZoneOffsetString returns *true*.
+        </p>
+        <p>
+          A <dfn variants="primary time zone identifiers">primary time zone identifier</dfn> is the preferred identifier for an available named time zone.
+          A <dfn variants="non-primary time zone identifiers">non-primary time zone identifier</dfn> is an identifier for an available named time zone that is not a primary time zone identifier.
+          An <dfn variants="available named time zone identifiers">available named time zone identifier</dfn> is either a primary time zone identifier or a non-primary time zone identifier.
+          Each available named time zone identifier is associated with exactly one available named time zone.
+          Each available named time zone is associated with exactly one primary time zone identifier and zero or more non-primary time zone identifiers.
+        </p>
+        <p>
+          ECMAScript implementations must support an available named time zone with the identifier *"UTC"*, which must be the primary time zone identifier for the UTC time zone.
+          In addition, implementations may support any number of other available named time zones.
+        </p>
+        <p>
+          Implementations that follow the requirements for time zones as described in the ECMA-402 Internationalization API specification are called <dfn>time zone aware</dfn>.
+          Time zone aware implementations must support available named time zones corresponding to the “Zone” and “<emu-not-ref>Link</emu-not-ref>” names of the <a href="https://www.iana.org/time-zones">IANA Time Zone Database</a>, and only such names.
+          In time zone aware implementations, a primary time zone identifier is a “Zone” name, and a non-primary time zone identifier is a “<emu-not-ref>Link</emu-not-ref>” name, respectively, in the IANA Time Zone Database except as specifically overridden by AvailableNamedTimeZoneIdentifiers as specified in ECMA-402.
+          Implementations that do not support the entire IANA Time Zone Database are still recommended to use IANA Time Zone Database names as identifiers to represent time zones.
+        </p>
+      </emu-clause>

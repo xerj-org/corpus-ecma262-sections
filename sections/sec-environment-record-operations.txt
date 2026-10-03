@@ -1,0 +1,18 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.2 Environment Record Operations [id: sec-environment-record-operations]
+
+<emu-clause id="sec-environment-record-operations" oldids="sec-lexical-environment-operations">
+      <h1>Environment Record Operations</h1>
+      <p>The following abstract operations are used in this specification to operate upon Environment Records:</p>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

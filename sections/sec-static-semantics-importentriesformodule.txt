@@ -1,0 +1,58 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.2 Imports > 16.2.2.3 Static Semantics: ImportEntriesForModule ( _module_: a ModuleRequest Record, ): a List of ImportEntry Records [id: sec-static-semantics-importentriesformodule]
+
+<emu-clause id="sec-static-semantics-importentriesformodule" type="sdo">
+        <h1>
+          Static Semantics: ImportEntriesForModule (
+            _module_: a ModuleRequest Record,
+          ): a List of ImportEntry Records
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>ImportClause : ImportedDefaultBinding `,` NameSpaceImport</emu-grammar>
+        <emu-alg>
+          1. Let _entries1_ be the ImportEntriesForModule of |ImportedDefaultBinding| with argument _module_.
+          1. Let _entries2_ be the ImportEntriesForModule of |NameSpaceImport| with argument _module_.
+          1. Return the list-concatenation of _entries1_ and _entries2_.
+        </emu-alg>
+        <emu-grammar>ImportClause : ImportedDefaultBinding `,` NamedImports</emu-grammar>
+        <emu-alg>
+          1. Let _entries1_ be the ImportEntriesForModule of |ImportedDefaultBinding| with argument _module_.
+          1. Let _entries2_ be the ImportEntriesForModule of |NamedImports| with argument _module_.
+          1. Return the list-concatenation of _entries1_ and _entries2_.
+        </emu-alg>
+        <emu-grammar>ImportedDefaultBinding : ImportedBinding</emu-grammar>
+        <emu-alg>
+          1. Let _localName_ be the sole element of the BoundNames of |ImportedBinding|.
+          1. Let _defaultEntry_ be the ImportEntry Record { [[ModuleRequest]]: _module_, [[ImportName]]: *"default"*, [[LocalName]]: _localName_ }.
+          1. Return « _defaultEntry_ ».
+        </emu-alg>
+        <emu-grammar>NameSpaceImport : `*` `as` ImportedBinding</emu-grammar>
+        <emu-alg>
+          1. Let _localName_ be the StringValue of |ImportedBinding|.
+          1. Let _entry_ be the ImportEntry Record { [[ModuleRequest]]: _module_, [[ImportName]]: ~namespace~, [[LocalName]]: _localName_ }.
+          1. Return « _entry_ ».
+        </emu-alg>
+        <emu-grammar>NamedImports : `{` `}`</emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+        <emu-grammar>ImportsList : ImportsList `,` ImportSpecifier</emu-grammar>
+        <emu-alg>
+          1. Let _specs1_ be the ImportEntriesForModule of |ImportsList| with argument _module_.
+          1. Let _specs2_ be the ImportEntriesForModule of |ImportSpecifier| with argument _module_.
+          1. Return the list-concatenation of _specs1_ and _specs2_.
+        </emu-alg>
+        <emu-grammar>ImportSpecifier : ImportedBinding</emu-grammar>
+        <emu-alg>
+          1. Let _localName_ be the sole element of the BoundNames of |ImportedBinding|.
+          1. Let _entry_ be the ImportEntry Record { [[ModuleRequest]]: _module_, [[ImportName]]: _localName_, [[LocalName]]: _localName_ }.
+          1. Return « _entry_ ».
+        </emu-alg>
+        <emu-grammar>ImportSpecifier : ModuleExportName `as` ImportedBinding</emu-grammar>
+        <emu-alg>
+          1. Let _importName_ be the StringValue of |ModuleExportName|.
+          1. Let _localName_ be the StringValue of |ImportedBinding|.
+          1. Let _entry_ be the ImportEntry Record { [[ModuleRequest]]: _module_, [[ImportName]]: _importName_, [[LocalName]]: _localName_ }.
+          1. Return « _entry_ ».
+        </emu-alg>
+      </emu-clause>

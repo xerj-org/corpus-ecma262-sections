@@ -1,0 +1,48 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.2 The BigInt Type [id: sec-ecmascript-language-types-bigint-type]
+
+<emu-clause id="sec-ecmascript-language-types-bigint-type">
+        <h1>The BigInt Type</h1>
+        <p>The <dfn variants="is a BigInt,is not a BigInt">BigInt type</dfn> represents an integer value. The value may be any size and is not limited to a particular bit-width. Generally, where not otherwise noted, operations are designed to return exact mathematically-based answers. For binary operations, BigInts act as two's complement binary strings, with negative numbers treated as having bits set infinitely to the left.</p>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+      </emu-clause>

@@ -1,0 +1,24 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.3 String Exotic Objects > 10.4.3.5 StringGetOwnProperty ( _string_: a String exotic object, _propertyKey_: a property key, ): a Property Descriptor or *undefined* [id: sec-stringgetownproperty]
+
+<emu-clause id="sec-stringgetownproperty" type="abstract operation">
+        <h1>
+          StringGetOwnProperty (
+            _string_: a String exotic object,
+            _propertyKey_: a property key,
+          ): a Property Descriptor or *undefined*
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _propertyKey_ is not a String, return *undefined*.
+          1. Let _numericIndex_ be CanonicalNumericIndexString(_propertyKey_).
+          1. If _numericIndex_ is not an integral Number, return *undefined*.
+          1. If _numericIndex_ is *-0*<sub>𝔽</sub> or _numericIndex_ &lt; *-0*<sub>𝔽</sub>, return *undefined*.
+          1. Let _stringData_ be _string_.[[StringData]].
+          1. Assert: _stringData_ is a String.
+          1. Let _length_ be the length of _stringData_.
+          1. If ℝ(_numericIndex_) ≥ _length_, return *undefined*.
+          1. Let _resultString_ be the substring of _stringData_ from ℝ(_numericIndex_) to ℝ(_numericIndex_) + 1.
+          1. Return the PropertyDescriptor { [[Value]]: _resultString_, [[Writable]]: *false*, [[Enumerable]]: *true*, [[Configurable]]: *false* }.
+        </emu-alg>
+      </emu-clause>

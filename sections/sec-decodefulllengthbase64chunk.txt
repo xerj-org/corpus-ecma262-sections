@@ -1,0 +1,16 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.3 Abstract Operations for Uint8Array Objects > 23.3.3.6 DecodeFullLengthBase64Chunk ( _chunk_: a String of length 4, ): a List of byte values of length 3 [id: sec-decodefulllengthbase64chunk]
+
+<emu-clause id="sec-decodefulllengthbase64chunk" type="abstract operation">
+        <h1>
+          DecodeFullLengthBase64Chunk (
+            _chunk_: a String of length 4,
+          ): a List of byte values of length 3
+        </h1>
+        <dl class="header">
+        </dl>
+        <p>The <dfn id="standard-base64-alphabet">standard base64 alphabet</dfn> is *"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"*, i.e., the String whose elements are the code units corresponding to every letter and number in the Unicode Basic Latin block along with *"+"* and *"/"*.</p>
+        <emu-alg>
+          1. Let _byteSequence_ be the unique sequence of 3 bytes resulting from decoding _chunk_ as base64 (i.e., the sequence such that applying the base64 encoding specified in section 4 of <a href="https://rfc-editor.org/info/rfc4648">RFC 4648</a> to _byteSequence_ would produce _chunk_).
+          1. Return a List whose elements are the elements of _byteSequence_, in order.
+        </emu-alg>
+      </emu-clause>

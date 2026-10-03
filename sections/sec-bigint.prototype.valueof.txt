@@ -1,0 +1,10 @@
+ECMA-262 > 21 Numbers and Dates > 21.2 BigInt Objects > 21.2.3 Properties of the BigInt Prototype Object > 21.2.3.4 BigInt.prototype.valueOf ( ) [id: sec-bigint.prototype.valueof]
+
+<emu-clause id="sec-bigint.prototype.valueof" type="built-in function">
+        <h1>BigInt.prototype.valueOf ( )</h1>
+        <emu-alg>
+          1. Return ? ThisBigIntValue(*this* value).
+        </emu-alg>
+
+        
+      </emu-clause>

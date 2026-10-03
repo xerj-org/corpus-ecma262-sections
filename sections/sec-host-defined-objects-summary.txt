@@ -1,0 +1,6 @@
+ECMA-262 > D Host Layering Points > D.3 Host-defined Objects [id: sec-host-defined-objects-summary]
+
+<emu-annex id="sec-host-defined-objects-summary">
+    <h1>Host-defined Objects</h1>
+    <p>The global object: See clause <emu-xref href="#sec-global-object"></emu-xref>.</p>
+  </emu-annex>

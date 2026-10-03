@@ -1,0 +1,14 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.4 AsyncDisposableStack Objects > 27.4.3 Properties of the AsyncDisposableStack Prototype Object > 27.4.3.3 AsyncDisposableStack.prototype.defer ( _onDisposeAsync_ ) [id: sec-asyncdisposablestack.prototype.defer]
+
+<emu-clause id="sec-asyncdisposablestack.prototype.defer" type="built-in function">
+        <h1>AsyncDisposableStack.prototype.defer ( _onDisposeAsync_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _asyncDisposableStack_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_asyncDisposableStack_, [[AsyncDisposableState]]).
+          1. If _asyncDisposableStack_.[[AsyncDisposableState]] is ~disposed~, throw a *ReferenceError* exception.
+          1. If IsCallable(_onDisposeAsync_) is *false*, throw a *TypeError* exception.
+          1. Perform ? AddDisposableResource(_asyncDisposableStack_.[[DisposableResourceStack]], *undefined*, ~async-dispose~, _onDisposeAsync_).
+          1. Return *undefined*.
+        </emu-alg>
+      </emu-clause>

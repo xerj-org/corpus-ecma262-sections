@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.24 Number type [id: sec-terms-and-definitions-number-type]
+
+<emu-clause id="sec-terms-and-definitions-number-type">
+      <h1>Number type</h1>
+      <p>set of all possible Number values including *NaN* (“not a number”), *+∞*<sub>𝔽</sub> (positive infinity), and *-∞*<sub>𝔽</sub> (negative infinity)</p>
+    </emu-clause>

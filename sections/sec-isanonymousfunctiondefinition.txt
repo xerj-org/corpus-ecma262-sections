@@ -1,0 +1,19 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.4 Function Name Inference > 8.4.3 Static Semantics: IsAnonymousFunctionDefinition ( _expr_: an |AssignmentExpression| Parse Node, an |Initializer| Parse Node, or an |Expression| Parse Node, ): a Boolean [id: sec-isanonymousfunctiondefinition]
+
+<emu-clause id="sec-isanonymousfunctiondefinition" type="abstract operation">
+      <h1>
+        Static Semantics: IsAnonymousFunctionDefinition (
+          _expr_: an |AssignmentExpression| Parse Node, an |Initializer| Parse Node, or an |Expression| Parse Node,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It determines if its argument is a function definition that does not bind a name.</dd>
+      </dl>
+      <emu-alg>
+        1. If IsFunctionDefinition of _expr_ is *false*, return *false*.
+        1. Let _hasName_ be HasName of _expr_.
+        1. If _hasName_ is *true*, return *false*.
+        1. Return *true*.
+      </emu-alg>
+    </emu-clause>

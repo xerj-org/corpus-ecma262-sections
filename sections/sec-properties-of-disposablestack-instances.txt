@@ -1,0 +1,43 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.3 DisposableStack Objects > 27.3.4 Properties of DisposableStack Instances [id: sec-properties-of-disposablestack-instances]
+
+<emu-clause id="sec-properties-of-disposablestack-instances">
+      <h1>Properties of DisposableStack Instances</h1>
+      <p>DisposableStack instances are ordinary objects that inherit properties from the DisposableStack prototype object (the intrinsic %DisposableStack.prototype%). DisposableStack instances are initially created with internal slots described in <emu-xref href="#table-internal-slots-of-disposablestack-instances"></emu-xref>.</p>
+      <emu-table id="table-internal-slots-of-disposablestack-instances" caption="Internal Slots of DisposableStack Instances">
+        <table>
+          <tr>
+            <th>
+              Internal Slot
+            </th>
+            <th>
+              Type
+            </th>
+            <th>
+              Description
+            </th>
+          </tr>
+          <tr>
+            <td>
+              [[DisposableState]]
+            </td>
+            <td>
+              ~pending~ or ~disposed~
+            </td>
+            <td>
+              Governs how a disposable stack will react to incoming calls to its `%Symbol.dispose%` method.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[DisposableResourceStack]]
+            </td>
+            <td>
+              a List of DisposableResource Records
+            </td>
+            <td>
+              Resources to be disposed when the disposable stack is disposed. Resources are added in the order they are initialized, and are disposed in reverse order.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+    </emu-clause>

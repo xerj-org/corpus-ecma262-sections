@@ -1,0 +1,9 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.2 Properties of the Array Constructor > 23.1.2.3 Array.isArray ( _arg_ ) [id: sec-array.isarray]
+
+<emu-clause id="sec-array.isarray" type="built-in function">
+        <h1>Array.isArray ( _arg_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Return ? IsArray(_arg_).
+        </emu-alg>
+      </emu-clause>

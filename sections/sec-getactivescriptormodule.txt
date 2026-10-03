@@ -1,0 +1,16 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.4 Execution Contexts > 9.4.1 GetActiveScriptOrModule ( ): a Script Record, a Module Record, or *null* [id: sec-getactivescriptormodule]
+
+<emu-clause id="sec-getactivescriptormodule" type="abstract operation">
+      <h1>GetActiveScriptOrModule ( ): a Script Record, a Module Record, or *null*</h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to determine the running script or module, based on the running execution context.</dd>
+      </dl>
+
+      <emu-alg>
+        1. If the execution context stack is empty, return *null*.
+        1. Let _executionContext_ be the topmost execution context on the execution context stack whose ScriptOrModule component is not *null*.
+        1. If no such execution context exists, return *null*.
+        1. Return _executionContext_'s ScriptOrModule.
+      </emu-alg>
+    </emu-clause>

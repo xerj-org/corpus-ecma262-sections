@@ -1,0 +1,26 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.5 Jobs and Host Operations to Enqueue Jobs > 9.5.3 HostCallJobCallback ( _jobCallback_: a JobCallback Record, _thisValue_: an ECMAScript language value, _argList_: a List of ECMAScript language values, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-hostcalljobcallback]
+
+<emu-clause id="sec-hostcalljobcallback" type="host-defined abstract operation">
+      <h1>
+        HostCallJobCallback (
+          _jobCallback_: a JobCallback Record,
+          _thisValue_: an ECMAScript language value,
+          _argList_: a List of ECMAScript language values,
+        ): either a normal completion containing an ECMAScript language value or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <p>An implementation of HostCallJobCallback must conform to the following requirements:</p>
+      <ul>
+        <li>It must perform and return the result of Call(_jobCallback_.[[Callback]], _thisValue_, _argList_).</li>
+      </ul>
+      <emu-note>
+        <p>This requirement means that hosts cannot change the [[Call]] behaviour of function objects defined in this specification.</p>
+      </emu-note>
+      <p>The default implementation of HostCallJobCallback performs the following steps when called:</p>
+      <emu-alg>
+        1. Assert: IsCallable(_jobCallback_.[[Callback]]) is *true*.
+        1. Return ? Call(_jobCallback_.[[Callback]], _thisValue_, _argList_).
+      </emu-alg>
+      <p>ECMAScript hosts that are not web browsers must use the default implementation of HostCallJobCallback.</p>
+    </emu-clause>

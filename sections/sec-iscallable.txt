@@ -1,0 +1,18 @@
+ECMA-262 > 7 Abstract Operations > 7.2 Testing and Comparison Operations > 7.2.3 IsCallable ( _arg_: an ECMAScript language value, ): a Boolean [id: sec-iscallable]
+
+<emu-clause id="sec-iscallable" type="abstract operation">
+      <h1>
+        IsCallable (
+          _arg_: an ECMAScript language value,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It determines if _arg_ is a callable function with a [[Call]] internal method.</dd>
+      </dl>
+      <emu-alg>
+        1. If _arg_ is not an Object, return *false*.
+        1. If _arg_ has a [[Call]] internal method, return *true*.
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>

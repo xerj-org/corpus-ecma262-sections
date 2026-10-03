@@ -1,0 +1,30 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.5 The `for`-`in`, `for`-`of`, and `for`-`await`-`of` Statements > 14.7.5.10 For-In Iterator Objects > 14.7.5.10.2 The %ForInIteratorPrototype% Object > 14.7.5.10.2.1 %ForInIteratorPrototype%.next ( ) [id: sec-%foriniteratorprototype%.next]
+
+<emu-clause id="sec-%foriniteratorprototype%.next" type="built-in function">
+            <h1>%ForInIteratorPrototype%.next ( )</h1>
+            <emu-alg>
+              1. Let _iterator_ be the *this* value.
+              1. Assert: _iterator_ is an Object.
+              1. Assert: _iterator_ has all of the internal slots of a For-In Iterator instance (<emu-xref href="#sec-properties-of-for-in-iterator-instances"></emu-xref>).
+              1. Let _obj_ be _iterator_.[[Object]].
+              1. Repeat,
+                1. If _iterator_.[[ObjectWasVisited]] is *false*, then
+                  1. Let _keys_ be ? <emu-meta effects="user-code">_obj_.[[OwnPropertyKeys]]()</emu-meta>.
+                  1. For each element _key_ of _keys_, do
+                    1. If _key_ is a String, then
+                      1. Append _key_ to _iterator_.[[RemainingKeys]].
+                  1. Set _iterator_.[[ObjectWasVisited]] to *true*.
+                1. Repeat, while _iterator_.[[RemainingKeys]] is not empty,
+                  1. Let _key_ be the first element of _iterator_.[[RemainingKeys]].
+                  1. Remove the first element from _iterator_.[[RemainingKeys]].
+                  1. If _iterator_.[[VisitedKeys]] does not contain _key_, then
+                    1. Let _propertyDesc_ be ? <emu-meta effects="user-code">_obj_.[[GetOwnProperty]](_key_)</emu-meta>.
+                    1. If _propertyDesc_ is not *undefined*, then
+                      1. Append _key_ to _iterator_.[[VisitedKeys]].
+                      1. If _propertyDesc_.[[Enumerable]] is *true*, return CreateIteratorResultObject(_key_, *false*).
+                1. Set _obj_ to ? <emu-meta effects="user-code">_obj_.[[GetPrototypeOf]]()</emu-meta>.
+                1. Set _iterator_.[[Object]] to _obj_.
+                1. Set _iterator_.[[ObjectWasVisited]] to *false*.
+                1. If _obj_ is *null*, return CreateIteratorResultObject(*undefined*, *true*).
+            </emu-alg>
+          </emu-clause>

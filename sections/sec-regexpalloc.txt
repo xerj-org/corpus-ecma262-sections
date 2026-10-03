@@ -1,0 +1,16 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.3 Abstract Operations for RegExp Creation > 22.2.3.2 RegExpAlloc ( _newTarget_: a constructor, ): either a normal completion containing an Object or a throw completion [id: sec-regexpalloc]
+
+<emu-clause id="sec-regexpalloc" type="abstract operation">
+        <h1>
+          RegExpAlloc (
+            _newTarget_: a constructor,
+          ): either a normal completion containing an Object or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _obj_ be ? OrdinaryCreateFromConstructor(_newTarget_, *"%RegExp.prototype%"*, « [[OriginalSource]], [[OriginalFlags]], [[RegExpRecord]], [[RegExpMatcher]] »).
+          1. Perform ! DefinePropertyOrThrow(_obj_, *"lastIndex"*, PropertyDescriptor { [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

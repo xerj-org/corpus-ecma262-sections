@@ -1,0 +1,33 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.1 The Map Constructor > 24.1.1.2 AddEntriesFromIterable ( _target_: an Object, _iterable_: an ECMAScript language value, but not *undefined* or *null*, _adder_: a function object, ): either a normal completion containing an Object or a throw completion [id: sec-add-entries-from-iterable]
+
+<emu-clause id="sec-add-entries-from-iterable" type="abstract operation">
+        <h1>
+          AddEntriesFromIterable (
+            _target_: an Object,
+            _iterable_: an ECMAScript language value, but not *undefined* or *null*,
+            _adder_: a function object,
+          ): either a normal completion containing an Object or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>_adder_ will be invoked, with _target_ as the receiver.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _iteratorRecord_ be ? GetIterator(_iterable_, ~sync~).
+          1. Repeat,
+            1. Let _next_ be ? IteratorStepValue(_iteratorRecord_).
+            1. If _next_ is ~done~, return _target_.
+            1. If _next_ is not an Object, then
+              1. Let _error_ be ThrowCompletion(a newly created *TypeError* object).
+              1. Return ? IteratorClose(_iteratorRecord_, _error_).
+            1. Let _key_ be Completion(Get(_next_, *"0"*)).
+            1. IfAbruptCloseIterator(_key_, _iteratorRecord_).
+            1. Let _value_ be Completion(Get(_next_, *"1"*)).
+            1. IfAbruptCloseIterator(_value_, _iteratorRecord_).
+            1. Let _status_ be Completion(Call(_adder_, _target_, « _key_, _value_ »)).
+            1. IfAbruptCloseIterator(_status_, _iteratorRecord_).
+        </emu-alg>
+        <emu-note>
+          <p>The parameter _iterable_ is expected to be an object that implements a %Symbol.iterator% method that returns an iterator object that produces a two element array-like object whose first element is a value that will be used as a Map key and whose second element is the value to associate with that key.</p>
+        </emu-note>
+      </emu-clause>

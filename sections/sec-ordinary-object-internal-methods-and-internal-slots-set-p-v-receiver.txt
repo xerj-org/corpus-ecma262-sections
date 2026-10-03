@@ -1,0 +1,22 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.9 [[Set]] ( _propertyKey_: a property key, _value_: an ECMAScript language value, _receiver_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion [id: sec-ordinary-object-internal-methods-and-internal-slots-set-p-v-receiver]
+
+<emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-set-p-v-receiver" type="internal method">
+      <h1>
+        [[Set]] (
+          _propertyKey_: a property key,
+          _value_: an ECMAScript language value,
+          _receiver_: an ECMAScript language value,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>an ordinary object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Return ? OrdinarySet(_obj_, _propertyKey_, _value_, _receiver_).
+      </emu-alg>
+
+      
+
+      
+    </emu-clause>

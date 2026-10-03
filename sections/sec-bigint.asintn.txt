@@ -1,0 +1,13 @@
+ECMA-262 > 21 Numbers and Dates > 21.2 BigInt Objects > 21.2.2 Properties of the BigInt Constructor > 21.2.2.1 BigInt.asIntN ( _bits_, _bigint_ ) [id: sec-bigint.asintn]
+
+<emu-clause id="sec-bigint.asintn" type="built-in function">
+        <h1>BigInt.asIntN ( _bits_, _bigint_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Set _bits_ to ? ToIndex(_bits_).
+          1. Set _bigint_ to ? ToBigInt(_bigint_).
+          1. Let _remainder_ be ℝ(_bigint_) modulo 2<sup>_bits_</sup>.
+          1. If _remainder_ ≥ 2<sup>_bits_ - 1</sup>, return ℤ(_remainder_ - 2<sup>_bits_</sup>).
+          1. Return ℤ(_remainder_).
+        </emu-alg>
+      </emu-clause>

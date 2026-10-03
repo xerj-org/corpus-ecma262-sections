@@ -1,0 +1,16 @@
+ECMA-262 > 26 Managing Memory > 26.2 FinalizationRegistry Objects > 26.2.1 The FinalizationRegistry Constructor > 26.2.1.1 FinalizationRegistry ( _cleanupCallback_ ) [id: sec-finalization-registry-cleanup-callback]
+
+<emu-clause id="sec-finalization-registry-cleanup-callback" type="built-in function">
+        <h1>FinalizationRegistry ( _cleanupCallback_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If NewTarget is *undefined*, throw a *TypeError* exception.
+          1. If IsCallable(_cleanupCallback_) is *false*, throw a *TypeError* exception.
+          1. Let _finalizationRegistry_ be ? OrdinaryCreateFromConstructor(NewTarget, *"%FinalizationRegistry.prototype%"*, « [[Realm]], [[CleanupCallback]], [[Cells]] »).
+          1. Let _activeFunc_ be the active function object.
+          1. Set _finalizationRegistry_.[[Realm]] to _activeFunc_.[[Realm]].
+          1. Set _finalizationRegistry_.[[CleanupCallback]] to HostMakeJobCallback(_cleanupCallback_).
+          1. Set _finalizationRegistry_.[[Cells]] to a new empty List.
+          1. Return _finalizationRegistry_.
+        </emu-alg>
+      </emu-clause>

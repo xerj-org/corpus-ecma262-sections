@@ -1,0 +1,28 @@
+ECMA-262 > 24 Keyed Collections > 24.3 WeakMap Objects > 24.3.3 Properties of the WeakMap Prototype Object [id: sec-properties-of-the-weakmap-prototype-object]
+
+<emu-clause id="sec-properties-of-the-weakmap-prototype-object">
+      <h1>Properties of the WeakMap Prototype Object</h1>
+      <p>The <dfn>WeakMap prototype object</dfn>:</p>
+      <ul>
+        <li>is <dfn>%WeakMap.prototype%</dfn>.</li>
+        <li>has a [[Prototype]] internal slot whose value is %Object.prototype%.</li>
+        <li>is an ordinary object.</li>
+        <li>does not have a [[WeakMapData]] internal slot.</li>
+      </ul>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

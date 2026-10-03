@@ -1,0 +1,20 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.3 Runtime Semantics: CompileSubpattern ( _regexpRecord_: a RegExp Record, _direction_: ~forward~ or ~backward~, ): a Matcher > 22.2.2.3.3 MatchTwoAlternatives ( _m1_: a Matcher, _m2_: a Matcher, ): a Matcher [id: sec-matchtwoalternatives]
+
+<emu-clause id="sec-matchtwoalternatives" type="abstract operation">
+          <h1>
+            MatchTwoAlternatives (
+              _m1_: a Matcher,
+              _m2_: a Matcher,
+            ): a Matcher
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Return a new Matcher with parameters (_matchState_, _continue_) that captures _m1_ and _m2_ and performs the following steps when called:
+              1. Assert: _matchState_ is a MatchState.
+              1. Assert: _continue_ is a MatcherContinuation.
+              1. Let _result_ be _m1_(_matchState_, _continue_).
+              1. If _result_ is not ~failure~, return _result_.
+              1. Return _m2_(_matchState_, _continue_).
+          </emu-alg>
+        </emu-clause>

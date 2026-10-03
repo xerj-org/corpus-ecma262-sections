@@ -1,0 +1,6 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.2 Properties of the Number Constructor > 21.1.2.12 Number.parseFloat ( _string_ ) [id: sec-number.parsefloat]
+
+<emu-clause id="sec-number.parsefloat" type="built-in function">
+        <h1>Number.parseFloat ( _string_ )</h1>
+        <p>The initial value of the *"parseFloat"* property is %parseFloat%.</p>
+      </emu-clause>

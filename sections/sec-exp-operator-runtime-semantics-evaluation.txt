@@ -1,0 +1,11 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.6 Exponentiation Operator > 13.6.1 Runtime Semantics: Evaluation [id: sec-exp-operator-runtime-semantics-evaluation]
+
+<emu-clause id="sec-exp-operator-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>
+        ExponentiationExpression : UpdateExpression `**` ExponentiationExpression
+      </emu-grammar>
+      <emu-alg>
+        1. Return ? EvaluateStringOrNumericBinaryExpression(|UpdateExpression|, `**`, |ExponentiationExpression|).
+      </emu-alg>
+    </emu-clause>

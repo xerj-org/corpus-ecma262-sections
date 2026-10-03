@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.7 AggregateError Objects > 20.5.7.3 Properties of the AggregateError Prototype Object > 20.5.7.3.3 AggregateError.prototype.name [id: sec-aggregate-error.prototype.name]
+
+<emu-clause id="sec-aggregate-error.prototype.name">
+          <h1>AggregateError.prototype.name</h1>
+          <p>The initial value of `AggregateError.prototype.name` is *"AggregateError"*.</p>
+        </emu-clause>

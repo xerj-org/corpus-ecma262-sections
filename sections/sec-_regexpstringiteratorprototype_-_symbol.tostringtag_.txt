@@ -1,0 +1,7 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.9 RegExp String Iterator Objects > 22.2.9.2 The %RegExpStringIteratorPrototype% Object > 22.2.9.2.2 %RegExpStringIteratorPrototype% [ %Symbol.toStringTag% ] [id: sec-%regexpstringiteratorprototype%-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-%regexpstringiteratorprototype%-@@tostringtag" id="sec-%regexpstringiteratorprototype%-%symbol.tostringtag%">
+          <h1>%RegExpStringIteratorPrototype% [ %Symbol.toStringTag% ]</h1>
+          <p>The initial value of the %Symbol.toStringTag% property is the String value *"RegExp String Iterator"*.</p>
+          <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+        </emu-clause>

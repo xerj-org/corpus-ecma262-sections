@@ -1,0 +1,12 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.4 AsyncDisposableStack Objects > 27.4.3 Properties of the AsyncDisposableStack Prototype Object > 27.4.3.5 get AsyncDisposableStack.prototype.disposed [id: sec-get-asyncdisposablestack.prototype.disposed]
+
+<emu-clause id="sec-get-asyncdisposablestack.prototype.disposed" type="built-in function">
+        <h1>get AsyncDisposableStack.prototype.disposed</h1>
+        <p>`AsyncDisposableStack.prototype.disposed` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _asyncDisposableStack_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_asyncDisposableStack_, [[AsyncDisposableState]]).
+          1. If _asyncDisposableStack_.[[AsyncDisposableState]] is ~disposed~, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

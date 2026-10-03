@@ -1,0 +1,15 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.4 AsyncDisposableStack Objects [id: sec-asyncdisposablestack-objects]
+
+<emu-clause id="sec-asyncdisposablestack-objects">
+    <h1>AsyncDisposableStack Objects</h1>
+    <p>An AsyncDisposableStack is an object that can be used to contain one or more resources that should be asynchronously disposed together.</p>
+    <p>Any AsyncDisposableStack object is in one of two mutually exclusive states: <em>disposed</em> or <em>pending</em>. An async-disposable stack `d` is pending if and only if neither `d.disposeAsync()` nor `d.move()` has been invoked for `d`.</p>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

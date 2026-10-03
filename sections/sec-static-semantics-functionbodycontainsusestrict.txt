@@ -1,0 +1,12 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.2 Function Definitions > 15.2.2 Static Semantics: FunctionBodyContainsUseStrict ( ): a Boolean [id: sec-static-semantics-functionbodycontainsusestrict]
+
+<emu-clause id="sec-static-semantics-functionbodycontainsusestrict" oldids="sec-function-definitions-static-semantics-containsusestrict" type="sdo">
+      <h1>Static Semantics: FunctionBodyContainsUseStrict ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>FunctionBody : FunctionStatementList</emu-grammar>
+      <emu-alg>
+        1. If the Directive Prologue of |FunctionBody| contains a Use Strict Directive, return *true*.
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>

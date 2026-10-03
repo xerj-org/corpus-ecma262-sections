@@ -1,0 +1,21 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.3 Generator Abstract Operations > 27.8.3.3 GeneratorResume ( _gen_: an ECMAScript language value, _value_: an ECMAScript language value or ~empty~, _genBrand_: a String or ~empty~, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-generatorresume]
+
+<emu-clause id="sec-generatorresume" type="abstract operation">
+        <h1>
+          GeneratorResume (
+            _gen_: an ECMAScript language value,
+            _value_: an ECMAScript language value or ~empty~,
+            _genBrand_: a String or ~empty~,
+          ): either a normal completion containing an ECMAScript language value or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _state_ be ? GeneratorValidate(_gen_, _genBrand_).
+          1. If _state_ is ~completed~, return CreateIteratorResultObject(*undefined*, *true*).
+          1. Assert: _state_ is either ~suspended-start~ or ~suspended-yield~.
+          1. Let _genContext_ be _gen_.[[GeneratorContext]].
+          1. Set _gen_.[[GeneratorState]] to ~executing~.
+          1. Return ? RunSuspendedContext(_genContext_, NormalCompletion(_value_)).
+        </emu-alg>
+      </emu-clause>

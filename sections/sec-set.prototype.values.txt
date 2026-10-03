@@ -1,0 +1,10 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.4 Properties of the Set Prototype Object > 24.2.4.17 Set.prototype.values ( ) [id: sec-set.prototype.values]
+
+<emu-clause id="sec-set.prototype.values" type="built-in function">
+        <h1>Set.prototype.values ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _set_ be the *this* value.
+          1. Return ? CreateSetIterator(_set_, ~value~).
+        </emu-alg>
+      </emu-clause>

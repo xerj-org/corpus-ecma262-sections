@@ -1,0 +1,17 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.3 Properties of the Object Prototype Object > 20.1.3.3 Object.prototype.isPrototypeOf ( _value_ ) [id: sec-object.prototype.isprototypeof]
+
+<emu-clause id="sec-object.prototype.isprototypeof" type="built-in function">
+        <h1>Object.prototype.isPrototypeOf ( _value_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. [id="step-isprototypeof-check-object"] If _value_ is not an Object, return *false*.
+          1. [id="step-isprototypeof-toobject"] Let _obj_ be ? ToObject(*this* value).
+          1. Repeat,
+            1. Set _value_ to ? <emu-meta effects="user-code">_value_.[[GetPrototypeOf]]()</emu-meta>.
+            1. If _value_ is *null*, return *false*.
+            1. If SameValue(_obj_, _value_) is *true*, return *true*.
+        </emu-alg>
+        <emu-note>
+          <p>The ordering of steps <emu-xref href="#step-isprototypeof-check-object"></emu-xref> and <emu-xref href="#step-isprototypeof-toobject"></emu-xref> preserves the behaviour specified by previous editions of this specification for the case where _value_ is not an object and the *this* value is *undefined* or *null*.</p>
+        </emu-note>
+      </emu-clause>

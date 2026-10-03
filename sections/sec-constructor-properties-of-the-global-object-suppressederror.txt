@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.34 SuppressedError ( . . . ) [id: sec-constructor-properties-of-the-global-object-suppressederror]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-suppressederror">
+      <h1>SuppressedError ( . . . )</h1>
+      <p>See <emu-xref href="#sec-suppressederror-constructor"></emu-xref>.</p>
+    </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.2 Function Objects > 20.2.4 Function Instances > 20.2.4.1 length [id: sec-function-instances-length]
+
+<emu-clause id="sec-function-instances-length">
+        <h1>length</h1>
+        <p>The value of the *"length"* property is an integral Number that indicates the typical number of arguments expected by the function. However, the language permits the function to be invoked with some other number of arguments. The behaviour of a function when invoked on a number of arguments other than the number specified by its *"length"* property depends on the function. This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

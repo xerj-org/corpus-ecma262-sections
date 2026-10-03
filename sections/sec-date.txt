@@ -1,0 +1,41 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.2 The Date Constructor > 21.4.2.1 Date ( ..._values_ ) [id: sec-date]
+
+<emu-clause id="sec-date" oldids="sec-date-constructor-date,sec-date-value,sec-date-year-month-date-hours-minutes-seconds-ms" type="built-in function">
+        <h1>Date ( ..._values_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If NewTarget is *undefined*, then
+            1. Let _now_ be the time value (UTC) identifying the current time.
+            1. Return ToDateString(_now_).
+          1. Let _numberOfArgs_ be the number of elements in _values_.
+          1. If _numberOfArgs_ = 0, then
+            1. Let _dv_ be the time value (UTC) identifying the current time.
+          1. Else if _numberOfArgs_ = 1, then
+            1. Let _value_ be _values_[0].
+            1. If _value_ is an Object and _value_ has a [[DateValue]] internal slot, then
+              1. Let _tv_ be _value_.[[DateValue]].
+            1. Else,
+              1. Let _primitive_ be ? ToPrimitive(_value_).
+              1. If _primitive_ is a String, then
+                1. Assert: The next step never returns an abrupt completion because _primitive_ is a String.
+                1. Let _tv_ be the result of parsing _primitive_ as a date, in exactly the same manner as for the `parse` method (<emu-xref href="#sec-date.parse"></emu-xref>).
+              1. Else,
+                1. Let _tv_ be ? ToNumber(_primitive_).
+            1. Let _dv_ be TimeClip(_tv_).
+          1. Else,
+            1. Assert: _numberOfArgs_ ≥ 2.
+            1. Let _yearNumber_ be ? ToNumber(_values_[0]).
+            1. Let _monthNumber_ be ? ToNumber(_values_[1]).
+            1. If _numberOfArgs_ > 2, let _dayNumber_ be ? ToNumber(_values_[2]); else let _dayNumber_ be *1*<sub>𝔽</sub>.
+            1. If _numberOfArgs_ > 3, let _hourNumber_ be ? ToNumber(_values_[3]); else let _hourNumber_ be *+0*<sub>𝔽</sub>.
+            1. If _numberOfArgs_ > 4, let _minuteNumber_ be ? ToNumber(_values_[4]); else let _minuteNumber_ be *+0*<sub>𝔽</sub>.
+            1. If _numberOfArgs_ > 5, let _secondNumber_ be ? ToNumber(_values_[5]); else let _secondNumber_ be *+0*<sub>𝔽</sub>.
+            1. If _numberOfArgs_ > 6, let _millisecondNumber_ be ? ToNumber(_values_[6]); else let _millisecondNumber_ be *+0*<sub>𝔽</sub>.
+            1. Set _yearNumber_ to MakeFullYear(_yearNumber_).
+            1. Let _finalDate_ be MakeDate(MakeDay(_yearNumber_, _monthNumber_, _dayNumber_), MakeTime(_hourNumber_, _minuteNumber_, _secondNumber_, _millisecondNumber_)).
+            1. Let _dv_ be TimeClip(UTC(_finalDate_)).
+          1. Let _obj_ be ? OrdinaryCreateFromConstructor(NewTarget, *"%Date.prototype%"*, « [[DateValue]] »).
+          1. Set _obj_.[[DateValue]] to _dv_.
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

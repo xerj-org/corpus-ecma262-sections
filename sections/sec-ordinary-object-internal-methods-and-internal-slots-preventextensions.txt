@@ -1,0 +1,14 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.4 [[PreventExtensions]] ( ): a normal completion containing *true* [id: sec-ordinary-object-internal-methods-and-internal-slots-preventextensions]
+
+<emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-preventextensions" type="internal method">
+      <h1>[[PreventExtensions]] ( ): a normal completion containing *true*</h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>an ordinary object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Return OrdinaryPreventExtensions(_obj_).
+      </emu-alg>
+
+      
+    </emu-clause>

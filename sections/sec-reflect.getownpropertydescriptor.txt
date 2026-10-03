@@ -1,0 +1,12 @@
+ECMA-262 > 28 Reflection > 28.1 The Reflect Object > 28.1.6 Reflect.getOwnPropertyDescriptor ( _target_, _key_ ) [id: sec-reflect.getownpropertydescriptor]
+
+<emu-clause id="sec-reflect.getownpropertydescriptor" type="built-in function">
+      <h1>Reflect.getOwnPropertyDescriptor ( _target_, _key_ )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. If _target_ is not an Object, throw a *TypeError* exception.
+        1. Let _propertyKey_ be ? ToPropertyKey(_key_).
+        1. Let _propertyDesc_ be ? <emu-meta effects="user-code">_target_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+        1. Return FromPropertyDescriptor(_propertyDesc_).
+      </emu-alg>
+    </emu-clause>

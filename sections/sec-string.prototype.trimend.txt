@@ -1,0 +1,14 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.3 Properties of the String Prototype Object > 22.1.3.33 String.prototype.trimEnd ( ) [id: sec-string.prototype.trimend]
+
+<emu-clause id="sec-string.prototype.trimend" type="built-in function">
+        <h1>String.prototype.trimEnd ( )</h1>
+        <p>This method interprets a String value as a sequence of UTF-16 encoded code points, as described in <emu-xref href="#sec-ecmascript-language-types-string-type"></emu-xref>.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _string_ be the *this* value.
+          1. Return ? TrimString(_string_, ~end~).
+        </emu-alg>
+        <emu-note>
+          <p>This method is intentionally generic; it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.</p>
+        </emu-note>
+      </emu-clause>

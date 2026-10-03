@@ -1,0 +1,9 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.5 Module Environment Records > 9.1.1.5.2 DeleteBinding ( _name_ ) [id: sec-module-environment-records-deletebinding-n]
+
+<emu-clause id="sec-module-environment-records-deletebinding-n">
+          <h1>DeleteBinding ( _name_ )</h1>
+          <p>The DeleteBinding concrete method of a Module Environment Record is never used within this specification.</p>
+          <emu-note>
+            <p>Module Environment Records are only used within strict code and an early error rule prevents the delete operator, in strict code, from being applied to a Reference Record that would resolve to a Module Environment Record binding. See <emu-xref href="#sec-delete-operator-static-semantics-early-errors"></emu-xref>.</p>
+          </emu-note>
+        </emu-clause>

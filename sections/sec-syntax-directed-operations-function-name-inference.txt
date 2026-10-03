@@ -1,0 +1,15 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.4 Function Name Inference [id: sec-syntax-directed-operations-function-name-inference]
+
+<emu-clause id="sec-syntax-directed-operations-function-name-inference">
+    <h1>Function Name Inference</h1>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

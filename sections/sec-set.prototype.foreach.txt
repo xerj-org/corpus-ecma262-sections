@@ -1,0 +1,30 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.4 Properties of the Set Prototype Object > 24.2.4.7 Set.prototype.forEach ( _callback_ [ , _thisArg_ ] ) [id: sec-set.prototype.foreach]
+
+<emu-clause id="sec-set.prototype.foreach" type="built-in function">
+        <h1>Set.prototype.forEach ( _callback_ [ , _thisArg_ ] )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _set_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_set_, [[SetData]]).
+          1. If IsCallable(_callback_) is *false*, throw a *TypeError* exception.
+          1. Let _entries_ be _set_.[[SetData]].
+          1. Let _entriesCount_ be the number of elements in _entries_.
+          1. Let _index_ be 0.
+          1. Repeat, while _index_ &lt; _entriesCount_,
+            1. Let _entry_ be _entries_[_index_].
+            1. Set _index_ to _index_ + 1.
+            1. If _entry_ is not ~empty~, then
+              1. Perform ? Call(_callback_, _thisArg_, « _entry_, _entry_, _set_ »).
+              1. NOTE: The number of elements in _entries_ may have increased during execution of _callback_.
+              1. Set _entriesCount_ to the number of elements in _entries_.
+          1. Return *undefined*.
+        </emu-alg>
+        <emu-note>
+          <p>_callback_ should be a function that accepts three arguments. `forEach` calls _callback_ once for each value present in the Set object, in value insertion order. _callback_ is called only for values of the Set which actually exist; it is not called for keys that have been deleted from the set.</p>
+          <p>If a _thisArg_ parameter is provided, it will be used as the *this* value for each invocation of _callback_. If it is not provided, *undefined* is used instead.</p>
+          <p>_callback_ is called with three arguments: the first two arguments are a value contained in the Set. The same value is passed for both arguments. The Set object being traversed is passed as the third argument.</p>
+          <p>The _callback_ is called with three arguments to be consistent with the call back functions used by `forEach` methods for Map and Array. For Sets, each item value is considered to be both the key and the value.</p>
+          <p>`forEach` does not directly mutate the object on which it is called but the object may be mutated by the calls to _callback_.</p>
+          <p>Each value is normally visited only once. However, a value will be revisited if it is deleted after it has been visited and then re-added before the `forEach` call completes. Values that are deleted after the call to `forEach` begins and before being visited are not visited unless the value is added again before the `forEach` call completes. New values added after the call to `forEach` begins are visited.</p>
+        </emu-note>
+      </emu-clause>

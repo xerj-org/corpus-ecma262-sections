@@ -1,0 +1,15 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.2 The DataView Constructor [id: sec-dataview-constructor]
+
+<emu-clause id="sec-dataview-constructor">
+      <h1>The DataView Constructor</h1>
+      <p>The DataView constructor:</p>
+      <ul>
+        <li>is <dfn>%DataView%</dfn>.</li>
+        <li>is the initial value of the *"DataView"* property of the global object.</li>
+        <li>creates and initializes a new DataView when called as a constructor.</li>
+        <li>is not intended to be called as a function and will throw an exception when called in that manner.</li>
+        <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified DataView behaviour must include a `super` call to the DataView constructor to create and initialize subclass instances with the internal state necessary to support the built-in methods of `DataView.prototype`.</li>
+      </ul>
+
+      
+    </emu-clause>

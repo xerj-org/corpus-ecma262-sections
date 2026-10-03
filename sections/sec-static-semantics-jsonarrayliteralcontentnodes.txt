@@ -1,0 +1,41 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object > 25.5.2 JSON.parse ( _text_ [ , _reviver_ ] ) > 25.5.2.6 Static Semantics: JSONArrayLiteralContentNodes ( ): a List of Parse Nodes [id: sec-static-semantics-jsonarrayliteralcontentnodes]
+
+<emu-clause id="sec-static-semantics-jsonarrayliteralcontentnodes" type="sdo">
+        <h1>Static Semantics: JSONArrayLiteralContentNodes ( ): a List of Parse Nodes</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>
+          ArrayLiteral :
+            `[` Elision? `]`
+            `[` ElementList `]`
+            `[` ElementList `,` Elision? `]`
+        </emu-grammar>
+        <emu-alg>
+          1. Assert: |Elision| is not present.
+          1. If |ElementList| is not present, return a new empty List.
+          1. Return the JSONArrayLiteralContentNodes of |ElementList|.
+        </emu-alg>
+
+        <emu-grammar>ElementList : Elision? AssignmentExpression</emu-grammar>
+        <emu-alg>
+          1. Assert: |Elision| is not present.
+          1. Return « |AssignmentExpression| ».
+        </emu-alg>
+
+        <emu-grammar>ElementList : ElementList `,` Elision? AssignmentExpression</emu-grammar>
+        <emu-alg>
+          1. Assert: |Elision| is not present.
+          1. Let _elements_ be the JSONArrayLiteralContentNodes of the derived |ElementList|.
+          1. Return the list-concatenation of _elements_ and « |AssignmentExpression| ».
+        </emu-alg>
+
+        <emu-grammar>
+          ElementList :
+            Elision? SpreadElement
+            ElementList `,` Elision? SpreadElement
+        </emu-grammar>
+        <emu-alg>
+          1. NOTE: JSON text as specified in ECMA-404 does not include |SpreadElement|.
+          1. Assert: This step is never reached.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,16 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties > B.2.3 Additional Properties of the Date.prototype Object > B.2.3.1 Date.prototype.getYear ( ) [id: sec-date.prototype.getyear]
+
+<emu-annex id="sec-date.prototype.getyear" type="built-in function">
+        <h1>Date.prototype.getYear ( )</h1>
+        <emu-note>
+          <p>The `getFullYear` method is preferred for nearly all purposes, because it avoids the “year 2000 problem.”</p>
+        </emu-note>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _dateObj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_dateObj_, [[DateValue]]).
+          1. Let _tv_ be _dateObj_.[[DateValue]].
+          1. If _tv_ is *NaN*, return *NaN*.
+          1. Return 𝔽(YearFromTime(LocalTime(_tv_))) - *1900*<sub>𝔽</sub>.
+        </emu-alg>
+      </emu-annex>

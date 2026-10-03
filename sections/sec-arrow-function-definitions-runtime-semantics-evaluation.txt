@@ -1,0 +1,15 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.3 Arrow Function Definitions > 15.3.5 Runtime Semantics: Evaluation [id: sec-arrow-function-definitions-runtime-semantics-evaluation]
+
+<emu-clause id="sec-arrow-function-definitions-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>ArrowFunction : ArrowParameters `=>` ConciseBody</emu-grammar>
+      <emu-alg>
+        1. Return InstantiateArrowFunctionExpression of |ArrowFunction|.
+      </emu-alg>
+      <emu-grammar>ExpressionBody : AssignmentExpression</emu-grammar>
+      <emu-alg>
+        1. Let _exprRef_ be ? Evaluation of |AssignmentExpression|.
+        1. Let _exprValue_ be ? GetValue(_exprRef_).
+        1. Return ReturnCompletion(_exprValue_).
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.8 Properties of RegExp Instances > 22.2.8.1 lastIndex [id: sec-lastindex]
+
+<emu-clause id="sec-lastindex">
+        <h1>lastIndex</h1>
+        <p>The value of the *"lastIndex"* property specifies the String index at which to start the next match. It is coerced to an integral Number when used (see <emu-xref href="#sec-regexpbuiltinexec"></emu-xref>). This property shall have the attributes { [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

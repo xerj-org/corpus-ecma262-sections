@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.27 NaN [id: sec-terms-and-definitions-nan]
+
+<emu-clause id="sec-terms-and-definitions-nan">
+      <h1>NaN</h1>
+      <p>Number value that is an IEEE 754-2019 NaN (“not a number”) value</p>
+    </emu-clause>

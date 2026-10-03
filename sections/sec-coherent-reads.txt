@@ -1,0 +1,18 @@
+ECMA-262 > 29 Memory Model > 29.7 Properties of Valid Executions > 29.7.2 Coherent Reads [id: sec-coherent-reads]
+
+<emu-clause id="sec-coherent-reads">
+      <h1>Coherent Reads</h1>
+      <p>A candidate execution _execution_ has coherent reads if the following algorithm returns *true*.</p>
+      <emu-alg>
+        1. For each ReadSharedMemory or ReadModifyWriteSharedMemory event _readEvent_ of SharedDataBlockEventSet(_execution_), do
+          1. Let _writes_ be reads-bytes-from(_readEvent_) in _execution_.
+          1. Let _byteLocation_ be _readEvent_.[[ByteIndex]].
+          1. For each element _writeEvent_ of _writes_, do
+            1. If _readEvent_ happens-before _writeEvent_ in _execution_, then
+              1. Return *false*.
+            1. If there exists a WriteSharedMemory or ReadModifyWriteSharedMemory event _value_ that has _byteLocation_ in its memory range such that _writeEvent_ happens-before _value_ in _execution_ and _value_ happens-before _readEvent_ in _execution_, then
+              1. Return *false*.
+            1. Set _byteLocation_ to _byteLocation_ + 1.
+        1. Return *true*.
+      </emu-alg>
+    </emu-clause>

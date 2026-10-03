@@ -1,0 +1,42 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.5 The _TypedArray_ Constructors > 23.2.5.1 _TypedArray_ ( ..._args_ ) > 23.2.5.1.2 InitializeTypedArrayFromTypedArray ( _obj_: a TypedArray, _sourceArray_: a TypedArray, ): either a normal completion containing ~unused~ or a throw completion [id: sec-initializetypedarrayfromtypedarray]
+
+<emu-clause id="sec-initializetypedarrayfromtypedarray" type="abstract operation" oldids="sec-typedarray-typedarray">
+          <h1>
+            InitializeTypedArrayFromTypedArray (
+              _obj_: a TypedArray,
+              _sourceArray_: a TypedArray,
+            ): either a normal completion containing ~unused~ or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _sourceData_ be _sourceArray_.[[ViewedArrayBuffer]].
+            1. Let _elementType_ be TypedArrayElementType(_obj_).
+            1. Let _elementSize_ be TypedArrayElementSize(_obj_).
+            1. Let _sourceType_ be TypedArrayElementType(_sourceArray_).
+            1. Let _sourceElementSize_ be TypedArrayElementSize(_sourceArray_).
+            1. Let _sourceByteOffset_ be _sourceArray_.[[ByteOffset]].
+            1. Let _sourceRecord_ be ? ValidateTypedArrayBounds(_sourceArray_, ~seq-cst~).
+            1. Let _elementLength_ be TypedArrayLength(_sourceRecord_).
+            1. Let _byteLength_ be _elementSize_ × _elementLength_.
+            1. If _elementType_ is _sourceType_, then
+              1. Let _data_ be ? CloneArrayBuffer(_sourceData_, _sourceByteOffset_, _byteLength_).
+            1. Else,
+              1. Let _data_ be ? <emu-meta suppress-effects="user-code">AllocateArrayBuffer(%ArrayBuffer%, _byteLength_)</emu-meta>.
+              1. If _sourceArray_.[[ContentType]] is not _obj_.[[ContentType]], throw a *TypeError* exception.
+              1. Let _sourceByteIndex_ be _sourceByteOffset_.
+              1. Let _targetByteIndex_ be 0.
+              1. Let _count_ be _elementLength_.
+              1. Repeat, while _count_ > 0,
+                1. Let _value_ be GetValueFromBuffer(_sourceData_, _sourceByteIndex_, _sourceType_, *true*, ~unordered~).
+                1. Perform SetValueInBuffer(_data_, _targetByteIndex_, _elementType_, _value_, *true*, ~unordered~).
+                1. Set _sourceByteIndex_ to _sourceByteIndex_ + _sourceElementSize_.
+                1. Set _targetByteIndex_ to _targetByteIndex_ + _elementSize_.
+                1. Set _count_ to _count_ - 1.
+            1. Set _obj_.[[ViewedArrayBuffer]] to _data_.
+            1. Set _obj_.[[ByteLength]] to _byteLength_.
+            1. Set _obj_.[[ByteOffset]] to 0.
+            1. Set _obj_.[[ArrayLength]] to _elementLength_.
+            1. Return ~unused~.
+          </emu-alg>
+        </emu-clause>

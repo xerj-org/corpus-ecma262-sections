@@ -1,0 +1,13 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.2 Abstract Operations for SharedArrayBuffer Objects [id: sec-abstract-operations-for-sharedarraybuffer-objects]
+
+<emu-clause id="sec-abstract-operations-for-sharedarraybuffer-objects">
+      <h1>Abstract Operations for SharedArrayBuffer Objects</h1>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

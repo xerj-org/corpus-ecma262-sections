@@ -1,0 +1,8 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.5 Map Iterator Objects > 24.1.5.2 The %MapIteratorPrototype% Object > 24.1.5.2.1 %MapIteratorPrototype%.next ( ) [id: sec-%mapiteratorprototype%.next]
+
+<emu-clause id="sec-%mapiteratorprototype%.next" type="built-in function">
+          <h1>%MapIteratorPrototype%.next ( )</h1>
+          <emu-alg>
+            1. Return ? <emu-meta suppress-effects="user-code">GeneratorResume(*this* value, ~empty~, *"%MapIteratorPrototype%"*)</emu-meta>.
+          </emu-alg>
+        </emu-clause>

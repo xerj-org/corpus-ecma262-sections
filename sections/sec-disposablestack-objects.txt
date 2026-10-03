@@ -1,0 +1,15 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.3 DisposableStack Objects [id: sec-disposablestack-objects]
+
+<emu-clause id="sec-disposablestack-objects">
+    <h1>DisposableStack Objects</h1>
+    <p>A DisposableStack is an object that can be used to contain one or more resources that should be disposed together.</p>
+    <p>Any DisposableStack object is in one of two mutually exclusive states: <em>disposed</em> or <em>pending</em>. A disposable stack `d` is pending if and only if neither `d.dispose()` nor `d.move()` has been invoked for `d`.</p>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

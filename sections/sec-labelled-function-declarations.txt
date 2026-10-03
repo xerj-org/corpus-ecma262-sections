@@ -1,0 +1,9 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.3 Other Additional Features > B.3.1 Labelled Function Declarations [id: sec-labelled-function-declarations]
+
+<emu-annex id="sec-labelled-function-declarations">
+      <h1>Labelled Function Declarations</h1>
+      <p>Prior to ECMAScript 2015, the specification of |LabelledStatement| did not allow for the association of a statement label with a |FunctionDeclaration|. However, a labelled |FunctionDeclaration| was an allowable extension for non-strict code and most browser-hosted ECMAScript implementations supported that extension. In ECMAScript 2015 and later, the grammar production for |LabelledStatement| permits use of |FunctionDeclaration| as a |LabelledItem| but <emu-xref href="#sec-labelled-statements-static-semantics-early-errors"></emu-xref> includes an Early Error rule that produces a Syntax Error if that occurs. That rule is then modified to suppress the Syntax Error in non-strict code if the host supports this feature.</p>
+      <emu-note>
+        <p>The early error rules for |WithStatement|, |IfStatement|, and |IterationStatement| prevent these statements from containing a labelled |FunctionDeclaration| in non-strict code.</p>
+      </emu-note>
+    </emu-annex>

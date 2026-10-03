@@ -1,0 +1,46 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.27 %TypedArray%.prototype.slice ( _start_, _end_ ) [id: sec-%typedarray%.prototype.slice]
+
+<emu-clause id="sec-%typedarray%.prototype.slice" type="built-in function">
+        <h1>%TypedArray%.prototype.slice ( _start_, _end_ )</h1>
+        <p>The interpretation and use of the arguments of this method are the same as for `Array.prototype.slice` as defined in <emu-xref href="#sec-array.prototype.slice"></emu-xref>.</p>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Let _taRecord_ be ? ValidateTypedArray(_obj_, ~seq-cst~).
+          1. Let _sourceArrayLength_ be TypedArrayLength(_taRecord_).
+          1. Let _startIndex_ be ? ToClampedIndex(_start_, _sourceArrayLength_).
+          1. If _end_ is *undefined*, let _endIndex_ be _sourceArrayLength_; else let _endIndex_ be ? ToClampedIndex(_end_, _sourceArrayLength_).
+          1. Let _countBytes_ be max(_endIndex_ - _startIndex_, 0).
+          1. Let _resultArray_ be ? TypedArraySpeciesCreate(_obj_, « 𝔽(_countBytes_) »).
+          1. If _countBytes_ > 0, then
+            1. Set _taRecord_ to ? ValidateTypedArrayBounds(_obj_, ~seq-cst~).
+            1. Set _endIndex_ to min(_endIndex_, TypedArrayLength(_taRecord_)).
+            1. Set _countBytes_ to max(_endIndex_ - _startIndex_, 0).
+            1. Let _sourceType_ be TypedArrayElementType(_obj_).
+            1. Let _targetType_ be TypedArrayElementType(_resultArray_).
+            1. If _sourceType_ is _targetType_, then
+              1. NOTE: The transfer must be performed in a manner that preserves the bit-level encoding of the source data.
+              1. Let _sourceBuffer_ be _obj_.[[ViewedArrayBuffer]].
+              1. Let _targetBuffer_ be _resultArray_.[[ViewedArrayBuffer]].
+              1. Let _elementSize_ be TypedArrayElementSize(_obj_).
+              1. Let _sourceByteOffset_ be _obj_.[[ByteOffset]].
+              1. Let _sourceByteIndex_ be (_startIndex_ × _elementSize_) + _sourceByteOffset_.
+              1. Let _targetByteIndex_ be _resultArray_.[[ByteOffset]].
+              1. Let _endByteIndex_ be _targetByteIndex_ + (_countBytes_ × _elementSize_).
+              1. Repeat, while _targetByteIndex_ &lt; _endByteIndex_,
+                1. Let _value_ be GetValueFromBuffer(_sourceBuffer_, _sourceByteIndex_, ~uint8~, *true*, ~unordered~).
+                1. Perform SetValueInBuffer(_targetBuffer_, _targetByteIndex_, ~uint8~, _value_, *true*, ~unordered~).
+                1. Set _sourceByteIndex_ to _sourceByteIndex_ + 1.
+                1. Set _targetByteIndex_ to _targetByteIndex_ + 1.
+            1. Else,
+              1. Let _n_ be 0.
+              1. Let _k_ be _startIndex_.
+              1. Repeat, while _k_ &lt; _endIndex_,
+                1. Let _kValue_ be TypedArrayGetElement(_obj_, 𝔽(_k_)).
+                1. Perform ! TypedArraySetElement(_resultArray_, 𝔽(_n_), _kValue_).
+                1. Set _k_ to _k_ + 1.
+                1. Set _n_ to _n_ + 1.
+          1. Return _resultArray_.
+        </emu-alg>
+        <p>This method is not generic. The *this* value must be an object with a [[TypedArrayName]] internal slot.</p>
+      </emu-clause>

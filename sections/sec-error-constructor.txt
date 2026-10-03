@@ -1,0 +1,14 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.1 The Error Constructor [id: sec-error-constructor]
+
+<emu-clause id="sec-error-constructor">
+      <h1>The Error Constructor</h1>
+      <p>The Error constructor:</p>
+      <ul>
+        <li>is <dfn>%Error%</dfn>.</li>
+        <li>is the initial value of the *"Error"* property of the global object.</li>
+        <li>creates and initializes a new Error object when called as a function rather than as a constructor. Thus the function call `Error(…)` is equivalent to the object creation expression `new Error(…)` with the same arguments.</li>
+        <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified Error behaviour must include a `super` call to the Error constructor to create and initialize subclass instances with an [[ErrorData]] internal slot.</li>
+      </ul>
+
+      
+    </emu-clause>

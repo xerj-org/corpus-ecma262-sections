@@ -1,0 +1,41 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.9 Processing Model of WeakRef and FinalizationRegistry Targets > 9.9.2 Liveness [id: sec-liveness]
+
+<emu-clause id="sec-liveness">
+      <h1>Liveness</h1>
+
+      <p>For some set of objects and/or symbols _objSet_ a <dfn>hypothetical WeakRef-oblivious</dfn> execution with respect to _objSet_ is an execution whereby the abstract operation WeakRefDeref of a WeakRef whose referent is an element of _objSet_ always returns *undefined*.</p>
+
+      <emu-note>
+        WeakRef-obliviousness, together with liveness, capture two notions. One, that a WeakRef itself does not keep its referent alive. Two, that cycles in liveness does not imply that a value is live. To be concrete, if determining _v_'s liveness depends on determining the liveness of a WeakRef referent, _r_, _r_'s liveness cannot assume _v_'s liveness, which would be circular reasoning.
+      </emu-note>
+      <emu-note>
+        WeakRef-obliviousness is defined on sets of objects or symbols instead of individual values to account for cycles. If it were defined on individual values, then a WeakRef referent in a cycle will be considered live even though its identity is only observed via other WeakRef referents in the cycle.
+      </emu-note>
+      <emu-note>
+        Colloquially, we say that an individual object or symbol is live if every set containing it is live.
+      </emu-note>
+
+      <p>At any point during evaluation, a set of objects and/or symbols _objSet_ is considered <dfn>live</dfn> if either of the following conditions is met:</p>
+
+      <ul>
+        <li>
+          Any element in _objSet_ is included in any agent's [[KeptAlive]] List.
+        </li>
+        <li>
+          There exists a valid future hypothetical WeakRef-oblivious execution with respect to _objSet_ that observes the identity of any value in _objSet_.
+        </li>
+      </ul>
+      <emu-note>
+        The second condition above intends to capture the intuition that a value is live if its identity is observable via non-WeakRef means. A value's identity may be observed by observing a strict equality comparison or observing the value being used as key in a Map.
+      </emu-note>
+      <emu-note>
+        <p>Presence of an object or a symbol in a field, an internal slot, or a property does not imply that the value is live. For example if the value in question is never passed back to the program, then it cannot be observed.</p>
+
+        <p>This is the case for keys in a WeakMap, members of a WeakSet, as well as the [[WeakRefTarget]] and [[UnregisterToken]] fields of a FinalizationRegistry Cell record.</p>
+
+        <p>The above definition implies that, if a key in a WeakMap is not live, then its corresponding value is not necessarily live either.</p>
+      </emu-note>
+      <emu-note>
+        Liveness is the lower bound for guaranteeing which WeakRefs engines must not empty. Liveness as defined here is undecidable. In practice, engines use conservative approximations such as reachability. There is expected to be significant implementation leeway.
+      </emu-note>
+    </emu-clause>

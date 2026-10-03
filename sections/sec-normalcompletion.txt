@@ -1,0 +1,16 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.4 The Completion Record Specification Type > 6.2.4.1 NormalCompletion ( _value_: any value except a Completion Record, ): a normal completion [id: sec-normalcompletion]
+
+<emu-clause id="sec-normalcompletion" type="abstract operation">
+        <h1>
+          NormalCompletion (
+            _value_: any value except a Completion Record,
+          ): a normal completion
+        </h1>
+        <dl class="header">
+          <dt>skip return checks</dt>
+          <dd>true</dd>
+        </dl>
+        <emu-alg>
+          1. Return Completion Record { [[Type]]: ~normal~, [[Value]]: _value_, [[Target]]: ~empty~ }.
+        </emu-alg>
+      </emu-clause>

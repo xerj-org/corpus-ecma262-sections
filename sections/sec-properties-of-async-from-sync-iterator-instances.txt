@@ -1,0 +1,34 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.5 Async-from-Sync Iterator Objects > 27.1.5.3 Properties of Async-from-Sync Iterator Instances [id: sec-properties-of-async-from-sync-iterator-instances]
+
+<emu-clause id="sec-properties-of-async-from-sync-iterator-instances">
+        <h1>Properties of Async-from-Sync Iterator Instances</h1>
+        <p>Async-from-Sync Iterator instances are ordinary objects that inherit properties from the %AsyncFromSyncIteratorPrototype% intrinsic object. Async-from-Sync Iterator instances are initially created with the internal slots listed in <emu-xref href="#table-async-from-sync-iterator-internal-slots"></emu-xref>.</p>
+        <emu-table id="table-async-from-sync-iterator-internal-slots" caption="Internal Slots of Async-from-Sync Iterator Instances">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Internal Slot
+                </th>
+                <th>
+                  Type
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                [[SyncIteratorRecord]]
+              </td>
+              <td>
+                an Iterator Record
+              </td>
+              <td>
+                Represents the original synchronous iterator which is being adapted.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

@@ -1,0 +1,14 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.3 Properties of the Set Constructor [id: sec-properties-of-the-set-constructor]
+
+<emu-clause id="sec-properties-of-the-set-constructor">
+      <h1>Properties of the Set Constructor</h1>
+      <p>The Set constructor:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+
+      
+    </emu-clause>

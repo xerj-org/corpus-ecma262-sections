@@ -1,0 +1,38 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.9 Optional Chains > 13.3.9.1 Runtime Semantics: Evaluation [id: sec-optional-chaining-evaluation]
+
+<emu-clause id="sec-optional-chaining-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>
+          OptionalExpression :
+            MemberExpression OptionalChain
+        </emu-grammar>
+        <emu-alg>
+          1. Let _baseRef_ be ? Evaluation of |MemberExpression|.
+          1. Let _baseValue_ be ? GetValue(_baseRef_).
+          1. If _baseValue_ is either *undefined* or *null*, then
+            1. Return *undefined*.
+          1. Return ? ChainEvaluation of |OptionalChain| with arguments _baseValue_ and _baseRef_.
+        </emu-alg>
+        <emu-grammar>
+          OptionalExpression :
+            CallExpression OptionalChain
+        </emu-grammar>
+        <emu-alg>
+          1. Let _baseRef_ be ? Evaluation of |CallExpression|.
+          1. Let _baseValue_ be ? GetValue(_baseRef_).
+          1. If _baseValue_ is either *undefined* or *null*, then
+            1. Return *undefined*.
+          1. Return ? ChainEvaluation of |OptionalChain| with arguments _baseValue_ and _baseRef_.
+        </emu-alg>
+        <emu-grammar>
+          OptionalExpression :
+            OptionalExpression OptionalChain
+        </emu-grammar>
+        <emu-alg>
+          1. Let _baseRef_ be ? Evaluation of |OptionalExpression|.
+          1. Let _baseValue_ be ? GetValue(_baseRef_).
+          1. If _baseValue_ is either *undefined* or *null*, then
+            1. Return *undefined*.
+          1. Return ? ChainEvaluation of |OptionalChain| with arguments _baseValue_ and _baseRef_.
+        </emu-alg>
+      </emu-clause>

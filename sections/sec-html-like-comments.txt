@@ -1,0 +1,63 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.1 Additional Syntax > B.1.1 HTML-like Comments [id: sec-html-like-comments]
+
+<emu-annex id="sec-html-like-comments">
+      <h1>HTML-like Comments</h1>
+      <p>The syntax and semantics of <emu-xref href="#sec-comments"></emu-xref> is extended as follows except that this extension is not allowed when parsing source text using the goal symbol |Module|:</p>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        InputElementHashbangOrRegExp ::
+          WhiteSpace
+          LineTerminator
+          Comment
+          CommonToken
+          HashbangComment
+          RegularExpressionLiteral
+          HTMLCloseComment
+
+        Comment ::
+          MultiLineComment
+          SingleLineComment
+          SingleLineHTMLOpenComment
+          SingleLineHTMLCloseComment
+          SingleLineDelimitedComment
+
+        MultiLineComment ::
+          `/*` FirstCommentLine? LineTerminator MultiLineCommentChars? `*/` HTMLCloseComment?
+
+        FirstCommentLine ::
+          SingleLineDelimitedCommentChars
+
+        SingleLineHTMLOpenComment ::
+          `&lt;!--` SingleLineCommentChars?
+
+        SingleLineHTMLCloseComment ::
+          LineTerminatorSequence HTMLCloseComment
+
+        SingleLineDelimitedComment ::
+          `/*` SingleLineDelimitedCommentChars? `*/`
+
+        HTMLCloseComment ::
+          WhiteSpaceSequence? SingleLineDelimitedCommentSequence? `--&gt;` SingleLineCommentChars?
+
+        SingleLineDelimitedCommentChars ::
+          SingleLineNotAsteriskChar SingleLineDelimitedCommentChars?
+          `*` SingleLinePostAsteriskCommentChars?
+
+        SingleLineNotAsteriskChar ::
+          SourceCharacter but not one of `*` or LineTerminator
+
+        SingleLinePostAsteriskCommentChars ::
+          SingleLineNotForwardSlashOrAsteriskChar SingleLineDelimitedCommentChars?
+          `*` SingleLinePostAsteriskCommentChars?
+
+        SingleLineNotForwardSlashOrAsteriskChar ::
+          SourceCharacter but not one of `/` or `*` or LineTerminator
+
+        WhiteSpaceSequence ::
+          WhiteSpace WhiteSpaceSequence?
+
+        SingleLineDelimitedCommentSequence ::
+          SingleLineDelimitedComment WhiteSpaceSequence? SingleLineDelimitedCommentSequence?
+      </emu-grammar>
+      <p>Similar to a |MultiLineComment| that contains a line terminator code point, a |SingleLineHTMLCloseComment| is considered to be a |LineTerminator| for purposes of parsing by the syntactic grammar.</p>
+    </emu-annex>

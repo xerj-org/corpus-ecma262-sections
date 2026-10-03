@@ -1,0 +1,13 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.16 StringToBigInt ( _string_: a String, ): a BigInt or *undefined* > 7.1.16.2 Runtime Semantics: MV [id: sec-runtime-semantics-mv-for-stringintegerliteral]
+
+<emu-clause id="sec-runtime-semantics-mv-for-stringintegerliteral">
+        <h1>Runtime Semantics: MV</h1>
+        <ul>
+          <li>
+            The MV of <emu-grammar>StringIntegerLiteral ::: StrWhiteSpace?</emu-grammar> is 0.
+          </li>
+          <li>
+            The MV of <emu-grammar>StringIntegerLiteral ::: StrWhiteSpace? StrIntegerLiteral StrWhiteSpace?</emu-grammar> is the MV of |StrIntegerLiteral|.
+          </li>
+        </ul>
+      </emu-clause>

@@ -1,0 +1,14 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.3 Properties of the String Prototype Object > 22.1.3.1 String.prototype.at ( _index_ ) [id: sec-string.prototype.at]
+
+<emu-clause id="sec-string.prototype.at" type="built-in function">
+        <h1>String.prototype.at ( _index_ )</h1>
+        <emu-alg>
+          1. Let _thisValue_ be the *this* value.
+          1. Perform ? RequireObjectCoercible(_thisValue_).
+          1. Let _string_ be ? ToString(_thisValue_).
+          1. Let _length_ be the length of _string_.
+          1. Let _k_ be ? ToAbsoluteIndex(_index_, _length_).
+          1. If _k_ &lt; 0 or _k_ ≥ _length_, return *undefined*.
+          1. Return the substring of _string_ from _k_ to _k_ + 1.
+        </emu-alg>
+      </emu-clause>

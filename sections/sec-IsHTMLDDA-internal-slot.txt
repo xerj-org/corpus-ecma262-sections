@@ -1,0 +1,15 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.3 Other Additional Features > B.3.6 The [[IsHTMLDDA]] Internal Slot [id: sec-IsHTMLDDA-internal-slot]
+
+<emu-annex id="sec-IsHTMLDDA-internal-slot">
+      <h1>The [[IsHTMLDDA]] Internal Slot</h1>
+      <p>An <dfn>[[IsHTMLDDA]] internal slot</dfn> may exist on host-defined objects. Objects with an [[IsHTMLDDA]] internal slot behave like *undefined* in the <emu-xref href="#sec-toboolean">ToBoolean</emu-xref> and IsLooselyEqual abstract operations and when used as an operand for the <emu-xref href="#sec-typeof-operator">`typeof` operator</emu-xref>.</p>
+      <emu-note>
+        <p>Objects with an [[IsHTMLDDA]] internal slot are never created by this specification. However, the <a href="https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all"><code>document.all</code> object</a> in web browsers is a host-defined exotic object with this slot that exists for web compatibility purposes. There are no other known examples of this type of object and implementations should not create any with the exception of `document.all`.</p>
+      </emu-note>
+      <p>This feature involves special semantics at the following points:</p>
+      <ul>
+        <li>step <emu-xref href="#step-to-boolean-web-compat-insertion-point"></emu-xref> in ToBoolean</li>
+        <li>step <emu-xref href="#step-abstract-equality-comparison-web-compat-insertion-point"></emu-xref> in IsLooselyEqual</li>
+        <li>step <emu-xref href="#step-typeof-web-compat-insertion-point"></emu-xref> in the evaluation semantics for `typeof`</li>
+      </ul>
+    </emu-annex>

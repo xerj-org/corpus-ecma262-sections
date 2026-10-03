@@ -1,0 +1,7 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.4 Properties of the Set Prototype Object > 24.2.4.19 Set.prototype [ %Symbol.toStringTag% ] [id: sec-set.prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-set.prototype-@@tostringtag" id="sec-set.prototype-%symbol.tostringtag%">
+        <h1>Set.prototype [ %Symbol.toStringTag% ]</h1>
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"Set"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

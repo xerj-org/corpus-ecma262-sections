@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.16 Float32Array ( . . . ) [id: sec-float32array]
+
+<emu-clause id="sec-float32array">
+      <h1>Float32Array ( . . . )</h1>
+      <p>See <emu-xref href="#sec-typedarray-constructors"></emu-xref>.</p>
+    </emu-clause>

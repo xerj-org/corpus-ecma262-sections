@@ -1,0 +1,464 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types [id: sec-numeric-types]
+
+<emu-clause id="sec-numeric-types">
+      <h1>Numeric Types</h1>
+      <p>ECMAScript has two built-in numeric types: Number and BigInt. The following abstract operations are defined over these numeric types. The “Result” column shows the return type, along with an indication if it is possible for some invocations of the operation to return an abrupt completion.</p>
+      <emu-table id="table-numeric-type-ops" caption="Numeric Type Operations">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Operation
+              </th>
+              <th>
+                Example source
+              </th>
+              <th>
+                Invoked by the Evaluation semantics of ...
+              </th>
+              <th>
+                Result
+              </th>
+            </tr>
+          </thead>
+
+          <tr>
+            <td>
+              Number::unaryMinus
+            </td>
+            <td rowspan="2">
+              `-x`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-unary-minus-operator" title></emu-xref>
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::unaryMinus
+            </td>
+            <td>
+              BigInt
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::bitwiseNOT
+            </td>
+            <td rowspan="2">
+              `~x`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-bitwise-not-operator" title></emu-xref>
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::bitwiseNOT
+            </td>
+            <td>
+              BigInt
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::exponentiate
+            </td>
+            <td rowspan="2">
+              `x&nbsp;**&nbsp;y`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-exp-operator" title></emu-xref>
+              and <emu-xref href="#sec-math.pow" title></emu-xref>
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::exponentiate
+            </td>
+            <td>
+              either a normal completion containing a BigInt or a throw completion
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::multiply
+            </td>
+            <td rowspan="2">
+              `x&nbsp;*&nbsp;y`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-multiplicative-operators" title></emu-xref>
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::multiply
+            </td>
+            <td>
+              BigInt
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::divide
+            </td>
+            <td rowspan="2">
+              `x&nbsp;/&nbsp;y`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-multiplicative-operators" title></emu-xref>
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::divide
+            </td>
+            <td>
+              either a normal completion containing a BigInt or a throw completion
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::remainder
+            </td>
+            <td rowspan="2">
+              `x&nbsp;%&nbsp;y`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-multiplicative-operators" title></emu-xref>
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::remainder
+            </td>
+            <td>
+              either a normal completion containing a BigInt or a throw completion
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::add
+            </td>
+            <td rowspan="2">
+              `x ++`<br>
+              `++ x`<br>
+              `x&nbsp;+&nbsp;y`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-postfix-increment-operator" title></emu-xref>,
+              <emu-xref href="#sec-prefix-increment-operator" title></emu-xref>,
+              and <emu-xref href="#sec-addition-operator-plus" title></emu-xref>
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::add
+            </td>
+            <td>
+              BigInt
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::subtract
+            </td>
+            <td rowspan="2">
+              `x --`<br>
+              `-- x`<br>
+              `x&nbsp;-&nbsp;y`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-postfix-decrement-operator" title></emu-xref>,
+              <emu-xref href="#sec-prefix-decrement-operator" title></emu-xref>,
+              and <emu-xref href="#sec-subtraction-operator-minus" title></emu-xref>
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::subtract
+            </td>
+            <td>
+              BigInt
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::leftShift
+            </td>
+            <td rowspan="2">
+              `x&nbsp;&lt;&lt;&nbsp;y`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-left-shift-operator" title></emu-xref>
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::leftShift
+            </td>
+            <td>
+              BigInt
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::signedRightShift
+            </td>
+            <td rowspan="2">
+              `x&nbsp;>>&nbsp;y`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-signed-right-shift-operator" title></emu-xref>
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::signedRightShift
+            </td>
+            <td>
+              BigInt
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::unsignedRightShift
+            </td>
+            <td rowspan="2">
+              `x&nbsp;>>>&nbsp;y`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-unsigned-right-shift-operator" title></emu-xref>
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::unsignedRightShift
+            </td>
+            <td>
+              a throw completion
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::lessThan
+            </td>
+            <td rowspan="2">
+              `x&nbsp;&lt;&nbsp;y`<br>
+              `x&nbsp;>&nbsp;y`<br>
+              `x&nbsp;&lt;=&nbsp;y`<br>
+              `x&nbsp;>=&nbsp;y`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-relational-operators" title></emu-xref>,
+              via <emu-xref href="#sec-islessthan" title></emu-xref>
+            </td>
+            <td>
+              Boolean or *undefined* (for unordered inputs)
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              BigInt::lessThan
+            </td>
+            <td>
+              Boolean
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::equal
+            </td>
+            <td rowspan="2">
+              `x&nbsp;==&nbsp;y`<br>
+              `x&nbsp;!=&nbsp;y`<br>
+              `x&nbsp;===&nbsp;y`<br>
+              `x&nbsp;!==&nbsp;y`
+            </td>
+            <td rowspan="2">
+              <emu-xref href="#sec-equality-operators" title></emu-xref>,
+              via <emu-xref href="#sec-isstrictlyequal" title></emu-xref>
+            </td>
+            <td rowspan="2">
+              Boolean
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::equal
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::sameValue
+            </td>
+            <td>
+              `Object.is(x, y)`
+            </td>
+            <td>
+              Object internal methods,
+              via <emu-xref href="#sec-samevalue" title></emu-xref>,
+              to test exact value equality
+            </td>
+            <td>
+              Boolean
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::sameValueZero
+            </td>
+            <td>
+              `[x].includes(y)`
+            </td>
+            <td>
+              via <emu-xref href="#sec-samevaluezero" title></emu-xref>,
+              to test value equality, ignoring the difference between *+0*<sub>𝔽</sub> and *-0*<sub>𝔽</sub>, as in Array, Map, and Set methods
+            </td>
+            <td>
+              Boolean
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::bitwiseAND
+            </td>
+            <td rowspan="2">
+              `x&nbsp;&amp;&nbsp;y`
+            </td>
+            <td rowspan="6">
+              <emu-xref href="#sec-binary-bitwise-operators" title></emu-xref>
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::bitwiseAND
+            </td>
+            <td>
+              BigInt
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::bitwiseXOR
+            </td>
+            <td rowspan="2">
+              `x&nbsp;^&nbsp;y`
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::bitwiseXOR
+            </td>
+            <td>
+              BigInt
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::bitwiseOR
+            </td>
+            <td rowspan="2">
+              `x&nbsp;|&nbsp;y`
+            </td>
+            <td>
+              Number
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::bitwiseOR
+            </td>
+            <td>
+              BigInt
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Number::toString
+            </td>
+            <td rowspan="2">
+              `String(x)`
+            </td>
+            <td rowspan="2">
+              Many expressions and built-in functions, via <emu-xref href="#sec-tostring" title></emu-xref>
+            </td>
+            <td rowspan="2">
+              String
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BigInt::toString
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+      <p>Because the numeric types are in general not convertible without loss of precision or truncation, the ECMAScript language provides no implicit conversion among these types. Programmers must explicitly call `Number` and `BigInt` functions to convert among types when calling a function which requires another type.</p>
+      <emu-note>
+        <p>The first and subsequent editions of ECMAScript have provided, for certain operators, implicit numeric conversions that could lose precision or truncate. These legacy implicit conversions are maintained for backward compatibility, but not provided for BigInt in order to minimize opportunity for programmer error, and to leave open the option of generalized <em>value types</em> in a future edition.</p>
+      </emu-note>
+
+      
+
+      
+    </emu-clause>

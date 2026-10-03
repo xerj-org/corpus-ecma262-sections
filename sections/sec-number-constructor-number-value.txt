@@ -1,0 +1,18 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.1 The Number Constructor > 21.1.1.1 Number ( _value_ ) [id: sec-number-constructor-number-value]
+
+<emu-clause id="sec-number-constructor-number-value" type="built-in function">
+        <h1>Number ( _value_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If _value_ is present, then
+            1. Let _primitive_ be ? ToNumeric(_value_).
+            1. If _primitive_ is a BigInt, let _n_ be 𝔽(ℝ(_primitive_)).
+            1. Else, let _n_ be _primitive_.
+          1. Else,
+            1. Let _n_ be *+0*<sub>𝔽</sub>.
+          1. If NewTarget is *undefined*, return _n_.
+          1. Let _obj_ be ? OrdinaryCreateFromConstructor(NewTarget, *"%Number.prototype%"*, « [[NumberData]] »).
+          1. Set _obj_.[[NumberData]] to _n_.
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

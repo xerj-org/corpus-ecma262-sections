@@ -1,0 +1,19 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects [id: sec-set-objects]
+
+<emu-clause id="sec-set-objects">
+    <h1>Set Objects</h1>
+    <p><dfn variants="Set object">Set objects</dfn> are collections of ECMAScript language values. A Set may contain each distinct value at most once. Distinct values are discriminated using the semantics of the SameValueZero comparison algorithm.</p>
+    <p>Set objects must be implemented using either hash tables or other mechanisms that, on average, provide access times that are sublinear on the number of elements in the collection. The data structure used in this specification is only intended to describe the required observable semantics of Set objects. It is not intended to be a viable implementation model.</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

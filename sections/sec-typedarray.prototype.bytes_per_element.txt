@@ -1,0 +1,7 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.7 Properties of the _TypedArray_ Prototype Objects > 23.2.7.1 _TypedArray_.prototype.BYTES_PER_ELEMENT [id: sec-typedarray.prototype.bytes_per_element]
+
+<emu-clause id="sec-typedarray.prototype.bytes_per_element">
+        <h1>_TypedArray_.prototype.BYTES_PER_ELEMENT</h1>
+        <p>The value of _TypedArray_`.prototype.BYTES_PER_ELEMENT` is the Element Size value specified in <emu-xref href="#table-the-typedarray-constructors"></emu-xref> for _TypedArray_.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

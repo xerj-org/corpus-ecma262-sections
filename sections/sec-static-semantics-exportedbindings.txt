@@ -1,0 +1,67 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.3 Exports > 16.2.3.2 Static Semantics: ExportedBindings ( ): a List of Strings [id: sec-static-semantics-exportedbindings]
+
+<emu-clause id="sec-static-semantics-exportedbindings" oldids="sec-module-semantics-static-semantics-exportedbindings,sec-exports-static-semantics-exportedbindings" type="sdo">
+        <h1>Static Semantics: ExportedBindings ( ): a List of Strings</h1>
+        <dl class="header">
+        </dl>
+        <emu-note>
+          <p>ExportedBindings are the locally bound names that are explicitly associated with a |Module|'s ExportedNames.</p>
+        </emu-note>
+        <emu-grammar>ModuleItemList : ModuleItemList ModuleItem</emu-grammar>
+        <emu-alg>
+          1. Let _names1_ be the ExportedBindings of |ModuleItemList|.
+          1. Let _names2_ be the ExportedBindings of |ModuleItem|.
+          1. Return the list-concatenation of _names1_ and _names2_.
+        </emu-alg>
+        <emu-grammar>
+          ModuleItem :
+            ImportDeclaration
+            StatementListItem
+        </emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+        <emu-grammar>ExportDeclaration : `export` ExportFromClause FromClause WithClause? `;`</emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+        <emu-grammar>ExportDeclaration : `export` NamedExports `;`</emu-grammar>
+        <emu-alg>
+          1. Return the ExportedBindings of |NamedExports|.
+        </emu-alg>
+        <emu-grammar>ExportDeclaration : `export` VariableStatement</emu-grammar>
+        <emu-alg>
+          1. Return the BoundNames of |VariableStatement|.
+        </emu-alg>
+        <emu-grammar>ExportDeclaration : `export` Declaration</emu-grammar>
+        <emu-alg>
+          1. Return the BoundNames of |Declaration|.
+        </emu-alg>
+        <emu-grammar>
+          ExportDeclaration :
+            `export` `default` HoistableDeclaration
+            `export` `default` ClassDeclaration
+            `export` `default` AssignmentExpression `;`
+        </emu-grammar>
+        <emu-alg>
+          1. Return the BoundNames of this |ExportDeclaration|.
+        </emu-alg>
+        <emu-grammar>NamedExports : `{` `}`</emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+        <emu-grammar>ExportsList : ExportsList `,` ExportSpecifier</emu-grammar>
+        <emu-alg>
+          1. Let _names1_ be the ExportedBindings of |ExportsList|.
+          1. Let _names2_ be the ExportedBindings of |ExportSpecifier|.
+          1. Return the list-concatenation of _names1_ and _names2_.
+        </emu-alg>
+        <emu-grammar>ExportSpecifier : ModuleExportName</emu-grammar>
+        <emu-alg>
+          1. Return a List whose sole element is the StringValue of |ModuleExportName|.
+        </emu-alg>
+        <emu-grammar>ExportSpecifier : ModuleExportName `as` ModuleExportName</emu-grammar>
+        <emu-alg>
+          1. Return a List whose sole element is the StringValue of the first |ModuleExportName|.
+        </emu-alg>
+      </emu-clause>

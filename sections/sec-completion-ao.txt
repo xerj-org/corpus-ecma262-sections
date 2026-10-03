@@ -1,0 +1,19 @@
+ECMA-262 > 5 Notational Conventions > 5.2 Algorithm Conventions > 5.2.4 Runtime Semantics > 5.2.4.1 Completion ( _completionRecord_: a Completion Record, ): a Completion Record [id: sec-completion-ao]
+
+<emu-clause id="sec-completion-ao" type="abstract operation">
+        <h1>
+          Completion (
+            _completionRecord_: a Completion Record,
+          ): a Completion Record
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to emphasize that a Completion Record is being returned.</dd>
+          <dt>skip return checks</dt>
+          <dd>true</dd>
+        </dl>
+        <emu-alg>
+          1. Assert: _completionRecord_ is a Completion Record.
+          1. Return _completionRecord_.
+        </emu-alg>
+      </emu-clause>

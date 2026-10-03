@@ -1,0 +1,18 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.1 Patterns > 22.2.1.11 Static Semantics: RegExpIdentifierCodePoints ( ): a List of code points [id: sec-regexpidentifiercodepoints]
+
+<emu-clause id="sec-regexpidentifiercodepoints" type="sdo">
+        <h1>Static Semantics: RegExpIdentifierCodePoints ( ): a List of code points</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>RegExpIdentifierName :: RegExpIdentifierStart</emu-grammar>
+        <emu-alg>
+          1. Let _codePoint_ be the RegExpIdentifierCodePoint of |RegExpIdentifierStart|.
+          1. Return « _codePoint_ ».
+        </emu-alg>
+        <emu-grammar>RegExpIdentifierName :: RegExpIdentifierName RegExpIdentifierPart</emu-grammar>
+        <emu-alg>
+          1. Let _codePoints_ be the RegExpIdentifierCodePoints of the derived |RegExpIdentifierName|.
+          1. Let _codePoint_ be the RegExpIdentifierCodePoint of |RegExpIdentifierPart|.
+          1. Return the list-concatenation of _codePoints_ and « _codePoint_ ».
+        </emu-alg>
+      </emu-clause>

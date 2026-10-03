@@ -1,0 +1,35 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.5 The Reference Record Specification Type > 6.2.5.6 PutValue ( _refRecord_: a Reference Record or an ECMAScript language value, _value_: an ECMAScript language value, ): either a normal completion containing ~unused~ or an abrupt completion [id: sec-putvalue]
+
+<emu-clause id="sec-putvalue" type="abstract operation">
+        <h1>
+          PutValue (
+            _refRecord_: a Reference Record or an ECMAScript language value,
+            _value_: an ECMAScript language value,
+          ): either a normal completion containing ~unused~ or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _refRecord_ is not a Reference Record, throw a *ReferenceError* exception.
+          1. If IsUnresolvableReference(_refRecord_) is *true*, then
+            1. If _refRecord_.[[Strict]] is *true*, throw a *ReferenceError* exception.
+            1. Let _globalObj_ be GetGlobalObject().
+            1. Perform ? Set(_globalObj_, _refRecord_.[[ReferencedName]], _value_, *false*).
+            1. Return ~unused~.
+          1. If IsPropertyReference(_refRecord_) is *true*, then
+            1. [id="step-putvalue-toobject"] Let _baseObj_ be ? ToObject(_refRecord_.[[Base]]).
+            1. If IsPrivateReference(_refRecord_) is *true*, then
+              1. Return ? PrivateSet(_baseObj_, _refRecord_.[[ReferencedName]], _value_).
+            1. If _refRecord_.[[ReferencedName]] is not a property key, then
+              1. Set _refRecord_.[[ReferencedName]] to ? ToPropertyKey(_refRecord_.[[ReferencedName]]).
+            1. Let _succeeded_ be ? <emu-meta effects="user-code">_baseObj_.[[Set]](_refRecord_.[[ReferencedName]], _value_, GetThisValue(_refRecord_))</emu-meta>.
+            1. If _succeeded_ is *false* and _refRecord_.[[Strict]] is *true*, throw a *TypeError* exception.
+            1. Return ~unused~.
+          1. Let _base_ be _refRecord_.[[Base]].
+          1. Assert: _base_ is an Environment Record.
+          1. Return ? <emu-meta effects="user-code">_base_.SetMutableBinding(_refRecord_.[[ReferencedName]], _value_, _refRecord_.[[Strict]])</emu-meta> (see <emu-xref href="#sec-environment-records"></emu-xref>).
+        </emu-alg>
+        <emu-note>
+          <p>The object that may be created in step <emu-xref href="#step-putvalue-toobject"></emu-xref> is not accessible outside of the above abstract operation and the ordinary object [[Set]] internal method. An implementation might choose to avoid the actual creation of that object.</p>
+        </emu-note>
+      </emu-clause>

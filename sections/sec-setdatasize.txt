@@ -1,0 +1,17 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.1 Abstract Operations For Set Objects > 24.2.1.5 SetDataSize ( _setData_: a List of either ECMAScript language values or ~empty~, ): a non-negative integer [id: sec-setdatasize]
+
+<emu-clause id="sec-setdatasize" type="abstract operation">
+        <h1>
+          SetDataSize (
+            _setData_: a List of either ECMAScript language values or ~empty~,
+          ): a non-negative integer
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _count_ be 0.
+          1. For each element _element_ of _setData_, do
+            1. If _element_ is not ~empty~, set _count_ to _count_ + 1.
+          1. Return _count_.
+        </emu-alg>
+      </emu-clause>

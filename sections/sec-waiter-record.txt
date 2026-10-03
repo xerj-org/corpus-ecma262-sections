@@ -1,0 +1,68 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.1 Waiter Record [id: sec-waiter-record]
+
+<emu-clause id="sec-waiter-record">
+      <h1>Waiter Record</h1>
+      <p>A <dfn variants="Waiter Records">Waiter Record</dfn> is a Record used to denote a particular call to `Atomics.wait` or `Atomics.waitAsync`.</p>
+      <p>A Waiter Record has fields listed in <emu-xref href="#table-waiterrecord"></emu-xref>.</p>
+      <emu-table id="table-waiterrecord" caption="Waiter Record Fields">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              [[AgentSignifier]]
+            </td>
+            <td>
+              an agent signifier
+            </td>
+            <td>
+              The agent that called `Atomics.wait` or `Atomics.waitAsync`.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[PromiseCapability]]
+            </td>
+            <td>
+              a PromiseCapability Record or ~blocking~
+            </td>
+            <td>
+              If denoting a call to `Atomics.waitAsync`, the resulting promise, otherwise ~blocking~.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[TimeoutTime]]
+            </td>
+            <td>
+              a non-negative extended mathematical value
+            </td>
+            <td>
+              The earliest time by which timeout may be triggered; computed using time values.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[Result]]
+            </td>
+            <td>
+              *"ok"* or *"timed-out"*
+            </td>
+            <td>
+              The return value of the call.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+    </emu-clause>

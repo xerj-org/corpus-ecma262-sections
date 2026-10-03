@@ -1,0 +1,16 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.6 Agents > 9.6.3 IncrementModuleAsyncEvaluationCount ( ): a non-negative integer [id: sec-IncrementModuleAsyncEvaluationCount]
+
+<emu-clause id="sec-IncrementModuleAsyncEvaluationCount" type="abstract operation">
+      <h1>IncrementModuleAsyncEvaluationCount ( ): a non-negative integer</h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _agentRecord_ be the Agent Record of the surrounding agent.
+        1. Let _count_ be _agentRecord_.[[ModuleAsyncEvaluationCount]].
+        1. Set _agentRecord_.[[ModuleAsyncEvaluationCount]] to _count_ + 1.
+        1. Return _count_.
+      </emu-alg>
+      <emu-note>
+        <p>This value is only used to keep track of the relative evaluation order between pending modules. An implementation may unobservably reset [[ModuleAsyncEvaluationCount]] to 0 whenever there are no pending modules.</p>
+      </emu-note>
+    </emu-clause>

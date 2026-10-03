@@ -1,0 +1,7 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.5 Unary Operators > 13.5.7 Logical NOT Operator ( `!` ) [id: sec-logical-not-operator]
+
+<emu-clause id="sec-logical-not-operator">
+      <h1>Logical NOT Operator ( `!` )</h1>
+
+      
+    </emu-clause>

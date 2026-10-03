@@ -1,0 +1,6 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.3 DisposableStack Objects > 27.3.3 Properties of the DisposableStack Prototype Object > 27.3.3.2 DisposableStack.prototype.constructor [id: sec-disposablestack.prototype.constructor]
+
+<emu-clause id="sec-disposablestack.prototype.constructor">
+        <h1>DisposableStack.prototype.constructor</h1>
+        <p>The initial value of `DisposableStack.prototype.constructor` is %DisposableStack%.</p>
+      </emu-clause>

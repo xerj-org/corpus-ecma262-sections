@@ -1,0 +1,11 @@
+ECMA-262 > 11 ECMAScript Language: Source Text > 11.2 Types of Source Code > 11.2.1 Directive Prologues and the Use Strict Directive [id: sec-directive-prologues-and-the-use-strict-directive]
+
+<emu-clause id="sec-directive-prologues-and-the-use-strict-directive">
+      <h1>Directive Prologues and the Use Strict Directive</h1>
+      <p>A <dfn id="directive-prologue" variants="Directive Prologues">Directive Prologue</dfn> is the longest sequence of |ExpressionStatement|s occurring as the initial |StatementListItem|s or |ModuleItem|s of a |FunctionBody|, a |ScriptBody|, or a |ModuleBody| and where each |ExpressionStatement| in the sequence consists entirely of a |StringLiteral| token followed by a semicolon. The semicolon may appear explicitly or may be inserted by automatic semicolon insertion (<emu-xref href="#sec-automatic-semicolon-insertion"></emu-xref>). A Directive Prologue may be an empty sequence.</p>
+      <p>A <dfn id="use-strict-directive" variants="Use Strict Directives">Use Strict Directive</dfn> is an |ExpressionStatement| in a Directive Prologue whose |StringLiteral| is either of the exact code point sequences `"use strict"` or `'use strict'`. A Use Strict Directive may not contain an |EscapeSequence| or |LineContinuation|.</p>
+      <p>A Directive Prologue may contain more than one Use Strict Directive. However, an implementation may issue a warning if this occurs.</p>
+      <emu-note>
+        <p>The |ExpressionStatement|s of a Directive Prologue are evaluated normally during evaluation of the containing production. Implementations may define implementation specific meanings for |ExpressionStatement|s which are not a Use Strict Directive and which occur in a Directive Prologue. If an appropriate notification mechanism exists, an implementation should issue a warning if it encounters in a Directive Prologue an |ExpressionStatement| that is not a Use Strict Directive and which does not have a meaning defined by the implementation.</p>
+      </emu-note>
+    </emu-clause>

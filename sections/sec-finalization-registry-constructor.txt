@@ -1,0 +1,23 @@
+ECMA-262 > 26 Managing Memory > 26.2 FinalizationRegistry Objects > 26.2.1 The FinalizationRegistry Constructor [id: sec-finalization-registry-constructor]
+
+<emu-clause id="sec-finalization-registry-constructor">
+      <h1>The FinalizationRegistry Constructor</h1>
+      <p>The <dfn variants="FinalizationRegistrys">FinalizationRegistry</dfn> constructor:</p>
+      <ul>
+        <li>is <dfn>%FinalizationRegistry%</dfn>.</li>
+        <li>
+          is the initial value of the *"FinalizationRegistry"* property of the global object.
+        </li>
+        <li>
+          creates and initializes a new FinalizationRegistry when called as a constructor.
+        </li>
+        <li>
+          is not intended to be called as a function and will throw an exception when called in that manner.
+        </li>
+        <li>
+          may be used as the value in an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified `FinalizationRegistry` behaviour must include a `super` call to the `FinalizationRegistry` constructor to create and initialize the subclass instance with the internal state necessary to support the built-in methods of `FinalizationRegistry.prototype`.
+        </li>
+      </ul>
+
+      
+    </emu-clause>

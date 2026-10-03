@@ -1,0 +1,9 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.37 property [id: sec-property]
+
+<emu-clause id="sec-property">
+      <h1>property</h1>
+      <p>part of an object that associates a key (either a String value or a Symbol value) and a value</p>
+      <emu-note>
+        <p>Depending upon the form of the property the value may be represented either directly as a data value (a primitive value, an object, or a function object) or indirectly by a pair of accessor functions.</p>
+      </emu-note>
+    </emu-clause>

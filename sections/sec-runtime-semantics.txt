@@ -1,0 +1,14 @@
+ECMA-262 > 5 Notational Conventions > 5.2 Algorithm Conventions > 5.2.4 Runtime Semantics [id: sec-runtime-semantics]
+
+<emu-clause id="sec-runtime-semantics">
+      <h1>Runtime Semantics</h1>
+      <p>Algorithms which specify semantics that must be called at runtime are called <dfn>runtime semantics</dfn>. Runtime semantics are defined by abstract operations or syntax-directed operations.</p>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

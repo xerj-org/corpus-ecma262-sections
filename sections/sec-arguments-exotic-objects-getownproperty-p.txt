@@ -1,0 +1,22 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.4 Arguments Exotic Objects > 10.4.4.1 [[GetOwnProperty]] ( _propertyKey_: a property key, ): a normal completion containing either a Property Descriptor or *undefined* [id: sec-arguments-exotic-objects-getownproperty-p]
+
+<emu-clause id="sec-arguments-exotic-objects-getownproperty-p" type="internal method">
+        <h1>
+          [[GetOwnProperty]] (
+            _propertyKey_: a property key,
+          ): a normal completion containing either a Property Descriptor or *undefined*
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>an arguments exotic object _args_</dd>
+        </dl>
+        <emu-alg>
+          1. Let _propertyDesc_ be OrdinaryGetOwnProperty(_args_, _propertyKey_).
+          1. If _propertyDesc_ is *undefined*, return *undefined*.
+          1. Let _map_ be _args_.[[ParameterMap]].
+          1. Let _isMapped_ be ! HasOwnProperty(_map_, _propertyKey_).
+          1. If _isMapped_ is *true*, then
+            1. Set _propertyDesc_.[[Value]] to ! Get(_map_, _propertyKey_).
+          1. Return _propertyDesc_.
+        </emu-alg>
+      </emu-clause>

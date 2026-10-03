@@ -1,0 +1,32 @@
+ECMA-262 > 29 Memory Model [id: sec-memory-model]
+
+<emu-clause id="sec-memory-model">
+  <h1>Memory Model</h1>
+  <p>The memory consistency model, or <dfn>memory model</dfn>, specifies the possible orderings of Shared Data Block events, arising via accessing TypedArray instances backed by a SharedArrayBuffer and via methods on the Atomics object. When the program has no data races (defined below), the ordering of events appears as sequentially consistent, i.e., as an interleaving of actions from each agent. When the program has data races, shared memory operations may appear sequentially inconsistent. For example, programs may exhibit causality-violating behaviour and other astonishments. These astonishments arise from compiler transforms and the design of CPUs (e.g., out-of-order execution and speculation). The memory model defines both the precise conditions under which a program exhibits sequentially consistent behaviour as well as the possible values read from data races. To wit, there is no undefined behaviour.</p>
+  <p>The memory model is defined as relational constraints on Memory events introduced by abstract operations on SharedArrayBuffer or by methods on the Atomics object during an evaluation.</p>
+  <emu-note>
+    <p>This section provides an axiomatic model on Memory events introduced by the abstract operations on SharedArrayBuffers. It bears stressing that the model is not expressible algorithmically, unlike the rest of this specification. The nondeterministic introduction of events by abstract operations is the interface between the operational semantics of ECMAScript evaluation and the axiomatic semantics of the memory model. The semantics of these events is defined by considering graphs of all events in an evaluation. These are neither Static Semantics nor Runtime Semantics. There is no demonstrated algorithmic implementation, but instead a set of constraints that determine if a particular event graph is allowed or disallowed.</p>
+  </emu-note>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</emu-clause>

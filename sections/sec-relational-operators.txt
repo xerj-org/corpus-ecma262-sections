@@ -1,0 +1,27 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.10 Relational Operators [id: sec-relational-operators]
+
+<emu-clause id="sec-relational-operators">
+    <h1>Relational Operators</h1>
+    <emu-note>
+      <p>The result of evaluating a relational operator is always of type Boolean, reflecting whether the relationship named by the operator holds between its two operands.</p>
+    </emu-note>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      RelationalExpression[In, Yield, Await] :
+        ShiftExpression[?Yield, ?Await]
+        RelationalExpression[?In, ?Yield, ?Await] `&lt;` ShiftExpression[?Yield, ?Await]
+        RelationalExpression[?In, ?Yield, ?Await] `&gt;` ShiftExpression[?Yield, ?Await]
+        RelationalExpression[?In, ?Yield, ?Await] `&lt;=` ShiftExpression[?Yield, ?Await]
+        RelationalExpression[?In, ?Yield, ?Await] `&gt;=` ShiftExpression[?Yield, ?Await]
+        RelationalExpression[?In, ?Yield, ?Await] `instanceof` ShiftExpression[?Yield, ?Await]
+        [+In] RelationalExpression[+In, ?Yield, ?Await] `in` ShiftExpression[?Yield, ?Await]
+        [+In] PrivateIdentifier `in` ShiftExpression[?Yield, ?Await]
+    </emu-grammar>
+    <emu-note>
+      <p>The <sub>[In]</sub> grammar parameter is needed to avoid confusing the `in` operator in a relational expression with the `in` operator in a `for` statement.</p>
+    </emu-note>
+
+    
+
+    
+  </emu-clause>

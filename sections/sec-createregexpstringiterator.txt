@@ -1,0 +1,23 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.9 RegExp String Iterator Objects > 22.2.9.1 CreateRegExpStringIterator ( _regexp_: an Object, _string_: a String, _global_: a Boolean, _fullUnicode_: a Boolean, ): an Object [id: sec-createregexpstringiterator]
+
+<emu-clause id="sec-createregexpstringiterator" type="abstract operation">
+        <h1>
+          CreateRegExpStringIterator (
+            _regexp_: an Object,
+            _string_: a String,
+            _global_: a Boolean,
+            _fullUnicode_: a Boolean,
+          ): an Object
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _iterator_ be OrdinaryObjectCreate(%RegExpStringIteratorPrototype%, « [[IteratingRegExp]], [[IteratedString]], [[Global]], [[Unicode]], [[Done]] »).
+          1. Set _iterator_.[[IteratingRegExp]] to _regexp_.
+          1. Set _iterator_.[[IteratedString]] to _string_.
+          1. Set _iterator_.[[Global]] to _global_.
+          1. Set _iterator_.[[Unicode]] to _fullUnicode_.
+          1. Set _iterator_.[[Done]] to *false*.
+          1. Return _iterator_.
+        </emu-alg>
+      </emu-clause>

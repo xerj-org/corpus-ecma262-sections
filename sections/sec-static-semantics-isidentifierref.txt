@@ -1,0 +1,45 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.4 Function Name Inference > 8.4.4 Static Semantics: IsIdentifierRef ( ): a Boolean [id: sec-static-semantics-isidentifierref]
+
+<emu-clause id="sec-static-semantics-isidentifierref" oldids="sec-semantics-static-semantics-isidentifierref,sec-static-semantics-static-semantics-isidentifierref" type="sdo">
+      <h1>Static Semantics: IsIdentifierRef ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>PrimaryExpression : IdentifierReference</emu-grammar>
+      <emu-alg>
+        1. Return *true*.
+      </emu-alg>
+      <emu-grammar>
+        PrimaryExpression :
+          `this`
+          Literal
+          ArrayLiteral
+          ObjectLiteral
+          FunctionExpression
+          ClassExpression
+          GeneratorExpression
+          AsyncFunctionExpression
+          AsyncGeneratorExpression
+          RegularExpressionLiteral
+          TemplateLiteral
+          CoverParenthesizedExpressionAndArrowParameterList
+
+        MemberExpression :
+          MemberExpression `[` Expression `]`
+          MemberExpression `.` IdentifierName
+          MemberExpression TemplateLiteral
+          SuperProperty
+          MetaProperty
+          `new` MemberExpression Arguments
+          MemberExpression `.` PrivateIdentifier
+
+        NewExpression :
+          `new` NewExpression
+
+        LeftHandSideExpression :
+          CallExpression
+          OptionalExpression
+      </emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>

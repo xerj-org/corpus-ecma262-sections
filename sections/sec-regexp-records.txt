@@ -1,0 +1,48 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.1 Notation > 22.2.2.1.1 RegExp Records [id: sec-regexp-records]
+
+<emu-clause id="sec-regexp-records">
+          <h1>RegExp Records</h1>
+          <p>A <dfn variants="RegExp Records">RegExp Record</dfn> is a Record used to store information about a RegExp that is needed during compilation and possibly during matching.</p>
+          <p>It has the following fields:</p>
+          <emu-table id="table-regexp-record-fields" caption="RegExp Record Fields">
+            <table>
+              <thead>
+                <tr>
+                  <th>Field Name</th>
+                  <th>Value</th>
+                  <th>Meaning</th>
+                </tr>
+              </thead>
+              <tr>
+                <td>[[IgnoreCase]]</td>
+                <td>a Boolean</td>
+                <td>indicates whether *"i"* appears in the RegExp's flags</td>
+              </tr>
+              <tr>
+                <td>[[Multiline]]</td>
+                <td>a Boolean</td>
+                <td>indicates whether *"m"* appears in the RegExp's flags</td>
+              </tr>
+              <tr>
+                <td>[[DotAll]]</td>
+                <td>a Boolean</td>
+                <td>indicates whether *"s"* appears in the RegExp's flags</td>
+              </tr>
+              <tr>
+                <td>[[Unicode]]</td>
+                <td>a Boolean</td>
+                <td>indicates whether *"u"* appears in the RegExp's flags</td>
+              </tr>
+              <tr>
+                <td>[[UnicodeSets]]</td>
+                <td>a Boolean</td>
+                <td>indicates whether *"v"* appears in the RegExp's flags</td>
+              </tr>
+              <tr>
+                <td>[[CapturingGroupsCount]]</td>
+                <td>a non-negative integer</td>
+                <td>the number of left-capturing parentheses in the RegExp's pattern</td>
+              </tr>
+            </table>
+          </emu-table>
+        </emu-clause>

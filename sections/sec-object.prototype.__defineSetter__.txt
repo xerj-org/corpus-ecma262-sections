@@ -1,0 +1,14 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.3 Properties of the Object Prototype Object > 20.1.3.9 Legacy Object.prototype Accessor Methods > 20.1.3.9.2 Object.prototype.__defineSetter__ ( _key_, _setter_ ) [id: sec-object.prototype.__defineSetter__]
+
+<emu-clause id="sec-object.prototype.__defineSetter__" type="built-in function">
+          <h1>Object.prototype.__defineSetter__ ( _key_, _setter_ )</h1>
+          <p>This method performs the following steps when called:</p>
+          <emu-alg>
+            1. Let _obj_ be ? ToObject(*this* value).
+            1. If IsCallable(_setter_) is *false*, throw a *TypeError* exception.
+            1. Let _propertyDesc_ be PropertyDescriptor { [[Setter]]: _setter_, [[Enumerable]]: *true*, [[Configurable]]: *true* }.
+            1. Let _propertyKey_ be ? ToPropertyKey(_key_).
+            1. Perform ? DefinePropertyOrThrow(_obj_, _propertyKey_, _propertyDesc_).
+            1. Return *undefined*.
+          </emu-alg>
+        </emu-clause>

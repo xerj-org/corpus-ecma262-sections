@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.6 _NativeError_ Object Structure > 20.5.6.3 Properties of the _NativeError_ Prototype Objects > 20.5.6.3.2 _NativeError_.prototype.message [id: sec-nativeerror.prototype.message]
+
+<emu-clause id="sec-nativeerror.prototype.message">
+          <h1>_NativeError_.prototype.message</h1>
+          <p>The initial value of the *"message"* property of the prototype for a given _NativeError_ constructor is the empty String.</p>
+        </emu-clause>

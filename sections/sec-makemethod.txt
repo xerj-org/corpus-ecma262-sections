@@ -1,0 +1,19 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.2 ECMAScript Function Objects > 10.2.7 MakeMethod ( _func_: an ECMAScript function object, _homeObj_: an Object, ): ~unused~ [id: sec-makemethod]
+
+<emu-clause id="sec-makemethod" type="abstract operation">
+      <h1>
+        MakeMethod (
+          _func_: an ECMAScript function object,
+          _homeObj_: an Object,
+        ): ~unused~
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It configures _func_ as a method.</dd>
+      </dl>
+      <emu-alg>
+        1. Assert: _homeObj_ is an ordinary object.
+        1. Set _func_.[[HomeObject]] to _homeObj_.
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

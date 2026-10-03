@@ -1,0 +1,11 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.4 Properties of the DataView Prototype Object > 25.3.4.24 DataView.prototype.setUint8 ( _byteOffset_, _value_ ) [id: sec-dataview.prototype.setuint8]
+
+<emu-clause id="sec-dataview.prototype.setuint8" type="built-in function">
+        <h1>DataView.prototype.setUint8 ( _byteOffset_, _value_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _view_ be the *this* value.
+          1. Perform ? SetViewValue(_view_, _byteOffset_, *true*, ~uint8~, _value_).
+          1. Return *undefined*.
+        </emu-alg>
+      </emu-clause>

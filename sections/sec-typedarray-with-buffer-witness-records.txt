@@ -1,0 +1,46 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.9 TypedArray With Buffer Witness Records [id: sec-typedarray-with-buffer-witness-records]
+
+<emu-clause id="sec-typedarray-with-buffer-witness-records" oldids="sec-integer-indexed-object-with-buffer-witness-records">
+        <h1>TypedArray With Buffer Witness Records</h1>
+        <p>An <dfn variants="TypedArray With Buffer Witness Records">TypedArray With Buffer Witness Record</dfn> is a Record used to encapsulate a TypedArray along with a cached byte length of the viewed buffer. It is used to help ensure there is a single ReadSharedMemory event of the byte length data block when the viewed buffer is a growable SharedArrayBuffer.</p>
+        <p>TypedArray With Buffer Witness Records have the fields listed in <emu-xref href="#table-typedarray-with-buffer-witness-record-fields"></emu-xref>.</p>
+        <emu-table id="table-typedarray-with-buffer-witness-record-fields" oldids="table-integer-indexed-object-with-buffer-witness-record-fields" caption="TypedArray With Buffer Witness Record Fields">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Field Name
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Meaning
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                [[Object]]
+              </td>
+              <td>
+                a TypedArray
+              </td>
+              <td>
+                The TypedArray whose buffer's byte length is loaded.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[CachedBufferByteLength]]
+              </td>
+              <td>
+                a non-negative integer or ~detached~
+              </td>
+              <td>
+                The byte length of the object's [[ViewedArrayBuffer]] when the Record was created.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

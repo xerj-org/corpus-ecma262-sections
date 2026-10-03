@@ -1,0 +1,23 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.1 Value Properties of the Math Object [id: sec-value-properties-of-the-math-object]
+
+<emu-clause id="sec-value-properties-of-the-math-object">
+      <h1>Value Properties of the Math Object</h1>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

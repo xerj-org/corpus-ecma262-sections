@@ -1,0 +1,70 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals > 12.9.6 Template Literal Lexical Components [id: sec-template-literal-lexical-components]
+
+<emu-clause id="sec-template-literal-lexical-components">
+      <h1>Template Literal Lexical Components</h1>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        Template ::
+          NoSubstitutionTemplate
+          TemplateHead
+
+        NoSubstitutionTemplate ::
+          ``` TemplateCharacters? ```
+
+        TemplateHead ::
+          ``` TemplateCharacters? `${`
+
+        TemplateSubstitutionTail ::
+          TemplateMiddle
+          TemplateTail
+
+        TemplateMiddle ::
+          `}` TemplateCharacters? `${`
+
+        TemplateTail ::
+          `}` TemplateCharacters? ```
+
+        TemplateCharacters ::
+          TemplateCharacter TemplateCharacters?
+
+        TemplateCharacter ::
+          `$` [lookahead != `{`]
+          `\` TemplateEscapeSequence
+          `\` NotEscapeSequence
+          LineContinuation
+          LineTerminatorSequence
+          SourceCharacter but not one of ``` or `\` or `$` or LineTerminator
+
+        TemplateEscapeSequence ::
+          CharacterEscapeSequence
+          `0` [lookahead &notin; DecimalDigit]
+          HexEscapeSequence
+          UnicodeEscapeSequence
+
+        NotEscapeSequence ::
+          `0` DecimalDigit
+          DecimalDigit but not `0`
+          `x` [lookahead &notin; HexDigit]
+          `x` HexDigit [lookahead &notin; HexDigit]
+          `u` [lookahead &notin; HexDigit] [lookahead != `{`]
+          `u` HexDigit [lookahead &notin; HexDigit]
+          `u` HexDigit HexDigit [lookahead &notin; HexDigit]
+          `u` HexDigit HexDigit HexDigit [lookahead &notin; HexDigit]
+          `u` `{` [lookahead &notin; HexDigit]
+          `u` `{` NotCodePoint [lookahead &notin; HexDigit]
+          `u` `{` CodePoint [lookahead &notin; HexDigit] [lookahead != `}`]
+
+        NotCodePoint ::
+          HexDigits[~Sep] [> but only if the MV of |HexDigits| > 0x10FFFF]
+
+        CodePoint ::
+          HexDigits[~Sep] [> but only if the MV of |HexDigits| &le; 0x10FFFF]
+      </emu-grammar>
+      <emu-note>
+        <p>|TemplateSubstitutionTail| is used by the |InputElementTemplateTail| alternative lexical goal.</p>
+      </emu-note>
+
+      
+
+      
+    </emu-clause>

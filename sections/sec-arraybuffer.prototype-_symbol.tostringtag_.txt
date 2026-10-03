@@ -1,0 +1,7 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.6 Properties of the ArrayBuffer Prototype Object > 25.1.6.10 ArrayBuffer.prototype [ %Symbol.toStringTag% ] [id: sec-arraybuffer.prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-arraybuffer.prototype-@@tostringtag" id="sec-arraybuffer.prototype-%symbol.tostringtag%">
+        <h1>ArrayBuffer.prototype [ %Symbol.toStringTag% ]</h1>
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"ArrayBuffer"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

@@ -1,0 +1,21 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.12 AllImportAttributesSupported ( _attrs_: a List of ImportAttribute Records, ): a Boolean [id: sec-AllImportAttributesSupported]
+
+<emu-clause id="sec-AllImportAttributesSupported" type="abstract operation">
+        <h1>
+          AllImportAttributesSupported (
+            _attrs_: a List of ImportAttribute Records,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd></dd>
+        </dl>
+        <emu-alg>
+          1. Let _supported_ be HostGetSupportedImportAttributes().
+          1. For each ImportAttribute Record _attr_ of _attrs_, do
+            1. If _supported_ does not contain _attr_.[[Key]], return *false*.
+          1. Return *true*.
+        </emu-alg>
+
+        
+      </emu-clause>

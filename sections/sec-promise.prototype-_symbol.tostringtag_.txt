@@ -1,0 +1,7 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.5 Properties of the Promise Prototype Object > 27.5.5.5 Promise.prototype [ %Symbol.toStringTag% ] [id: sec-promise.prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-promise.prototype-@@tostringtag" id="sec-promise.prototype-%symbol.tostringtag%">
+        <h1>Promise.prototype [ %Symbol.toStringTag% ]</h1>
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"Promise"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

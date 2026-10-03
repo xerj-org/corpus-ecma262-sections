@@ -1,0 +1,11 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.3 Declarations and the Variable Statement [id: sec-declarations-and-the-variable-statement]
+
+<emu-clause id="sec-declarations-and-the-variable-statement">
+    <h1>Declarations and the Variable Statement</h1>
+
+    
+
+    
+
+    
+  </emu-clause>

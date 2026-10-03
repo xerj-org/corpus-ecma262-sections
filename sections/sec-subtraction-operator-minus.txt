@@ -1,0 +1,10 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.8 Additive Operators > 13.8.2 The Subtraction Operator ( `-` ) [id: sec-subtraction-operator-minus]
+
+<emu-clause id="sec-subtraction-operator-minus">
+      <h1>The Subtraction Operator ( `-` )</h1>
+      <emu-note>
+        <p>The `-` operator performs subtraction, producing the difference of its operands.</p>
+      </emu-note>
+
+      
+    </emu-clause>

@@ -1,0 +1,64 @@
+ECMA-262 > A Grammar Summary > A.4 Functions and Classes [id: sec-functions-and-classes]
+
+<emu-annex id="sec-functions-and-classes">
+    <h1>Functions and Classes</h1>
+    <emu-prodref name="UniqueFormalParameters"></emu-prodref>
+    <emu-prodref name="FormalParameters"></emu-prodref>
+    <emu-prodref name="FormalParameterList"></emu-prodref>
+    <emu-prodref name="FunctionRestParameter"></emu-prodref>
+    <emu-prodref name="FormalParameter"></emu-prodref>
+    <emu-prodref name="FunctionDeclaration"></emu-prodref>
+    <emu-prodref name="FunctionExpression"></emu-prodref>
+    <emu-prodref name="FunctionBody"></emu-prodref>
+    <emu-prodref name="FunctionStatementList"></emu-prodref>
+    <emu-prodref name="ArrowFunction"></emu-prodref>
+    <emu-prodref name="ArrowParameters"></emu-prodref>
+    <emu-prodref name="ConciseBody"></emu-prodref>
+    <emu-prodref name="ExpressionBody"></emu-prodref>
+    <p>
+      When processing an instance of the production<br>
+      <emu-prodref name="ArrowParameters" a="parencover"></emu-prodref><br>
+      the interpretation of |CoverParenthesizedExpressionAndArrowParameterList| is refined using the following grammar:
+    </p>
+    <emu-prodref name="ArrowFormalParameters"></emu-prodref>
+    <p>&nbsp;</p>
+    <emu-prodref name="AsyncArrowFunction"></emu-prodref>
+    <emu-prodref name="AsyncConciseBody"></emu-prodref>
+    <emu-prodref name="AsyncArrowBindingIdentifier"></emu-prodref>
+    <emu-prodref name="CoverCallExpressionAndAsyncArrowHead"></emu-prodref>
+    <p>
+      When processing an instance of the production<br>
+      <emu-prodref name="AsyncArrowFunction" a="callcover"></emu-prodref><br>
+      the interpretation of |CoverCallExpressionAndAsyncArrowHead| is refined using the following grammar:
+    </p>
+    <emu-prodref name="AsyncArrowHead"></emu-prodref>
+    <p>&nbsp;</p>
+    <emu-prodref name="MethodDefinition"></emu-prodref>
+    <emu-prodref name="PropertySetParameterList"></emu-prodref>
+    <emu-prodref name="GeneratorDeclaration"></emu-prodref>
+    <emu-prodref name="GeneratorExpression"></emu-prodref>
+    <emu-prodref name="GeneratorMethod"></emu-prodref>
+    <emu-prodref name="GeneratorBody"></emu-prodref>
+    <emu-prodref name="YieldExpression"></emu-prodref>
+    <emu-prodref name="AsyncGeneratorDeclaration"></emu-prodref>
+    <emu-prodref name="AsyncGeneratorExpression"></emu-prodref>
+    <emu-prodref name="AsyncGeneratorMethod"></emu-prodref>
+    <emu-prodref name="AsyncGeneratorBody"></emu-prodref>
+    <emu-prodref name="AsyncFunctionDeclaration"></emu-prodref>
+    <emu-prodref name="AsyncFunctionExpression"></emu-prodref>
+    <emu-prodref name="AsyncMethod"></emu-prodref>
+    <emu-prodref name="AsyncFunctionBody"></emu-prodref>
+    <emu-prodref name="AwaitExpression"></emu-prodref>
+    <emu-prodref name="ClassDeclaration"></emu-prodref>
+    <emu-prodref name="ClassExpression"></emu-prodref>
+    <emu-prodref name="ClassTail"></emu-prodref>
+    <emu-prodref name="ClassHeritage"></emu-prodref>
+    <emu-prodref name="ClassBody"></emu-prodref>
+    <emu-prodref name="ClassElementList"></emu-prodref>
+    <emu-prodref name="ClassElement"></emu-prodref>
+    <emu-prodref name="FieldDefinition"></emu-prodref>
+    <emu-prodref name="ClassElementName"></emu-prodref>
+    <emu-prodref name="ClassStaticBlock"></emu-prodref>
+    <emu-prodref name="ClassStaticBlockBody"></emu-prodref>
+    <emu-prodref name="ClassStaticBlockStatementList"></emu-prodref>
+  </emu-annex>

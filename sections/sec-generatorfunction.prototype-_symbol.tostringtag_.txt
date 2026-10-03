@@ -1,0 +1,7 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.6 GeneratorFunction Objects > 27.6.3 Properties of the GeneratorFunction Prototype Object > 27.6.3.3 GeneratorFunction.prototype [ %Symbol.toStringTag% ] [id: sec-generatorfunction.prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-generatorfunction.prototype-@@tostringtag" id="sec-generatorfunction.prototype-%symbol.tostringtag%">
+        <h1>GeneratorFunction.prototype [ %Symbol.toStringTag% ]</h1>
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"GeneratorFunction"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

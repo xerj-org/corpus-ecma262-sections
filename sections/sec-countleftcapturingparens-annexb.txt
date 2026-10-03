@@ -1,0 +1,6 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.1 Additional Syntax > B.1.2 Regular Expressions Patterns > B.1.2.2 Static Semantics: CountLeftCapturingParensWithin and CountLeftCapturingParensBefore [id: sec-countleftcapturingparens-annexb]
+
+<emu-annex id="sec-countleftcapturingparens-annexb">
+        <h1>Static Semantics: CountLeftCapturingParensWithin and CountLeftCapturingParensBefore</h1>
+        <p>In the definitions of CountLeftCapturingParensWithin and CountLeftCapturingParensBefore, references to “<emu-grammar>Atom :: `(` GroupSpecifier? Disjunction `)`</emu-grammar> ” are to be interpreted as meaning “<emu-grammar>Atom :: `(` GroupSpecifier? Disjunction `)`</emu-grammar> ” or “<emu-grammar>ExtendedAtom :: `(` GroupSpecifier? Disjunction `)`</emu-grammar> ”.</p>
+      </emu-annex>

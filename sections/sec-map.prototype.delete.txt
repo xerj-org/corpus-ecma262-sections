@@ -1,0 +1,20 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.3 Properties of the Map Prototype Object > 24.1.3.3 Map.prototype.delete ( _key_ ) [id: sec-map.prototype.delete]
+
+<emu-clause id="sec-map.prototype.delete" type="built-in function">
+        <h1>Map.prototype.delete ( _key_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _map_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_map_, [[MapData]]).
+          1. Set _key_ to CanonicalizeKeyedCollectionKey(_key_).
+          1. For each Record { [[Key]], [[Value]] } _entry_ of _map_.[[MapData]], do
+            1. If _entry_.[[Key]] is not ~empty~ and SameValue(_entry_.[[Key]], _key_) is *true*, then
+              1. Set _entry_.[[Key]] to ~empty~.
+              1. Set _entry_.[[Value]] to ~empty~.
+              1. Return *true*.
+          1. Return *false*.
+        </emu-alg>
+        <emu-note>
+          <p>The value ~empty~ is used as a specification device to indicate that an entry has been deleted. Actual implementations may take other actions such as physically removing the entry from internal data structures.</p>
+        </emu-note>
+      </emu-clause>

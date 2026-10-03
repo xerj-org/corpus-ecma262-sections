@@ -1,0 +1,21 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.4 Execution Contexts > 9.4.3 GetThisEnvironment ( ): an Environment Record [id: sec-getthisenvironment]
+
+<emu-clause id="sec-getthisenvironment" type="abstract operation">
+      <h1>GetThisEnvironment ( ): an Environment Record</h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It finds the Environment Record that currently supplies the binding of the keyword `this`.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _envRecord_ be the running execution context's LexicalEnvironment.
+        1. [id="step-getthisenvironment-loop"] Repeat,
+          1. Let _exists_ be _envRecord_.HasThisBinding().
+          1. If _exists_ is *true*, return _envRecord_.
+          1. Let _outer_ be _envRecord_.[[OuterEnv]].
+          1. Assert: _outer_ is not *null*.
+          1. Set _envRecord_ to _outer_.
+      </emu-alg>
+      <emu-note>
+        <p>The loop in step <emu-xref href="#step-getthisenvironment-loop"></emu-xref> will always terminate because the list of environments always ends with the global environment which has a `this` binding.</p>
+      </emu-note>
+    </emu-clause>

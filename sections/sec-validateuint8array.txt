@@ -1,0 +1,15 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.3 Abstract Operations for Uint8Array Objects > 23.3.3.1 ValidateUint8Array ( _ta_: an ECMAScript language value, ): either a normal completion containing ~unused~ or a throw completion [id: sec-validateuint8array]
+
+<emu-clause id="sec-validateuint8array" type="abstract operation">
+        <h1>
+          ValidateUint8Array (
+            _ta_: an ECMAScript language value,
+          ): either a normal completion containing ~unused~ or a throw completion
+        </h1>
+        <dl class="header"></dl>
+        <emu-alg>
+          1. Perform ? RequireInternalSlot(_ta_, [[TypedArrayName]]).
+          1. If _ta_.[[TypedArrayName]] is not *"Uint8Array"*, throw a *TypeError* exception.
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,7 @@
+ECMA-262 > 19 The Global Object > 19.1 Value Properties of the Global Object > 19.1.1 globalThis [id: sec-globalthis]
+
+<emu-clause id="sec-globalthis">
+      <h1>globalThis</h1>
+      <p>The initial value of the *"globalThis"* property of the global object in a Realm Record _realm_ is _realm_.[[GlobalEnv]].[[GlobalThisValue]].</p>
+      <p>This property has the attributes { [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+    </emu-clause>

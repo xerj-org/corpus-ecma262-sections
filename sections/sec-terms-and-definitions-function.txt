@@ -1,0 +1,9 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.34 function [id: sec-terms-and-definitions-function]
+
+<emu-clause id="sec-terms-and-definitions-function">
+      <h1>function</h1>
+      <p>member of the Object type that may be invoked as a subroutine</p>
+      <emu-note>
+        <p>In addition to its properties, a function contains executable code and state that determine how it behaves when invoked. A function's code may or may not be written in ECMAScript.</p>
+      </emu-note>
+    </emu-clause>

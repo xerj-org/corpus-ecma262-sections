@@ -1,0 +1,28 @@
+ECMA-262 > 26 Managing Memory > 26.1 WeakRef Objects > 26.1.3 Properties of the WeakRef Prototype Object > 26.1.3.2 WeakRef.prototype.deref ( ) [id: sec-weak-ref.prototype.deref]
+
+<emu-clause id="sec-weak-ref.prototype.deref" type="built-in function">
+        <h1>WeakRef.prototype.deref ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _weakRef_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_weakRef_, [[WeakRefTarget]]).
+          1. Return WeakRefDeref(_weakRef_).
+        </emu-alg>
+
+        <emu-note>
+          <p>If the WeakRef returns a _target_ value that is not *undefined*, then this _target_ value should not be garbage collected until the current execution of ECMAScript code has completed. The AddToKeptObjects operation makes sure read consistency is maintained.</p>
+
+          <pre><code class="javascript">
+            let target = { foo() {} };
+            let weakRef = new WeakRef(target);
+
+            // ... later ...
+
+            if (weakRef.deref()) {
+              weakRef.deref().foo();
+            }
+          </code></pre>
+
+          <p>In the above example, if the first deref does not evaluate to *undefined* then the second deref cannot either.</p>
+        </emu-note>
+      </emu-clause>

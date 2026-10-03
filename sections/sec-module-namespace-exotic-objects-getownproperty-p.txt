@@ -1,0 +1,20 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.6 Module Namespace Exotic Objects > 10.4.6.5 [[GetOwnProperty]] ( _propertyKey_: a property key, ): either a normal completion containing either a Property Descriptor or *undefined*, or a throw completion [id: sec-module-namespace-exotic-objects-getownproperty-p]
+
+<emu-clause id="sec-module-namespace-exotic-objects-getownproperty-p" type="internal method">
+        <h1>
+          [[GetOwnProperty]] (
+            _propertyKey_: a property key,
+          ): either a normal completion containing either a Property Descriptor or *undefined*, or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a module namespace exotic object _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. If _propertyKey_ is a Symbol, return OrdinaryGetOwnProperty(_obj_, _propertyKey_).
+          1. Let _exports_ be _obj_.[[Exports]].
+          1. If _exports_ does not contain _propertyKey_, return *undefined*.
+          1. Let _value_ be ? _obj_.[[Get]](_propertyKey_, _obj_).
+          1. Return PropertyDescriptor { [[Value]]: _value_, [[Writable]]: *true*, [[Enumerable]]: *true*, [[Configurable]]: *false* }.
+        </emu-alg>
+      </emu-clause>

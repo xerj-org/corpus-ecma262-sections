@@ -1,0 +1,19 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.1 Additional Syntax > B.1.2 Regular Expressions Patterns > B.1.2.7 Runtime Semantics: CompileAtom [id: sec-compileatom-annexb]
+
+<emu-annex id="sec-compileatom-annexb">
+        <h1>Runtime Semantics: CompileAtom</h1>
+        <p>The semantics of CompileAtom with arguments _regexpRecord_ and _direction_ is extended as follows:</p>
+        <p>Rules for the |Atom| productions except for <emu-grammar>Atom :: PatternCharacter</emu-grammar> are also used for the |ExtendedAtom| productions, but with |ExtendedAtom| substituted for |Atom|.</p>
+        <p>The following rules are also added:</p>
+        <emu-grammar>ExtendedAtom :: `\` [lookahead == `c`]</emu-grammar>
+        <emu-alg>
+          1. Let _charSet_ be the CharSet containing the single character `\\` U+005C (REVERSE SOLIDUS).
+          1. Return CharacterSetMatcher(_regexpRecord_, _charSet_, *false*, _direction_).
+        </emu-alg>
+        <emu-grammar>ExtendedAtom :: ExtendedPatternCharacter</emu-grammar>
+        <emu-alg>
+          1. Let _char_ be the character represented by |ExtendedPatternCharacter|.
+          1. Let _charSet_ be a one-element CharSet containing the character _char_.
+          1. Return CharacterSetMatcher(_regexpRecord_, _charSet_, *false*, _direction_).
+        </emu-alg>
+      </emu-annex>

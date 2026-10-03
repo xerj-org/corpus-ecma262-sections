@@ -1,0 +1,15 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.10 Import Calls > 13.3.10.1 Runtime Semantics: Evaluation [id: sec-import-call-runtime-semantics-evaluation]
+
+<emu-clause id="sec-import-call-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+
+        <emu-grammar>ImportCall : `import` `(` AssignmentExpression `,`? `)`</emu-grammar>
+        <emu-alg>
+          1. Return ? EvaluateImportCall(|AssignmentExpression|).
+        </emu-alg>
+
+        <emu-grammar>ImportCall : `import` `(` AssignmentExpression `,` AssignmentExpression `,`? `)`</emu-grammar>
+        <emu-alg>
+          1. Return ? EvaluateImportCall(the first |AssignmentExpression|, the second |AssignmentExpression|).
+        </emu-alg>
+      </emu-clause>

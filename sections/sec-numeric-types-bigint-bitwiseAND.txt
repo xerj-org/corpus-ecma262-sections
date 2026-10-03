@@ -1,0 +1,15 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.2 The BigInt Type > 6.1.6.2.18 BigInt::bitwiseAND ( _x_: a BigInt, _y_: a BigInt, ): a BigInt [id: sec-numeric-types-bigint-bitwiseAND]
+
+<emu-clause id="sec-numeric-types-bigint-bitwiseAND" type="numeric method">
+          <h1>
+            BigInt::bitwiseAND (
+              _x_: a BigInt,
+              _y_: a BigInt,
+            ): a BigInt
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Return BigIntBitwiseOp(`&amp;`, _x_, _y_).
+          </emu-alg>
+        </emu-clause>

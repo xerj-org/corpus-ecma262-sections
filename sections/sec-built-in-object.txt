@@ -1,0 +1,9 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.12 built-in object [id: sec-built-in-object]
+
+<emu-clause id="sec-built-in-object">
+      <h1>built-in object</h1>
+      <p>object specified and supplied by an ECMAScript implementation</p>
+      <emu-note>
+        <p>Standard built-in objects are defined in this specification. An ECMAScript implementation may specify and supply additional kinds of built-in objects.</p>
+      </emu-note>
+    </emu-clause>

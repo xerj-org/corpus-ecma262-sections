@@ -1,0 +1,45 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.33 Time Zone Offset String Format > 21.4.1.33.2 ParseTimeZoneOffsetString ( _offsetString_: a String, ): an integer [id: sec-parsetimezoneoffsetstring]
+
+<emu-clause id="sec-parsetimezoneoffsetstring" type="abstract operation">
+          <h1>
+            ParseTimeZoneOffsetString (
+              _offsetString_: a String,
+            ): an integer
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>The return value is the UTC offset, as a number of nanoseconds, that corresponds to the String _offsetString_.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _parseResult_ be ParseText(_offsetString_, |UTCOffset|).
+            1. Assert: _parseResult_ is not a List of errors.
+            1. Assert: _parseResult_ contains a |ASCIISign| Parse Node.
+            1. Let _parsedSign_ be the source text matched by the |ASCIISign| Parse Node contained within _parseResult_.
+            1. If _parsedSign_ is the single code point U+002D (HYPHEN-MINUS), then
+              1. Let _sign_ be -1.
+            1. Else,
+              1. Let _sign_ be 1.
+            1. NOTE: Applications of StringToNumber below do not lose precision, since each of the parsed values is guaranteed to be a sufficiently short string of decimal digits.
+            1. Assert: _parseResult_ contains an |Hour| Parse Node.
+            1. Let _parsedHours_ be the source text matched by the |Hour| Parse Node contained within _parseResult_.
+            1. Let _hours_ be ℝ(StringToNumber(CodePointsToString(_parsedHours_))).
+            1. If _parseResult_ does not contain a |MinuteSecond| Parse Node, then
+              1. Let _minutes_ be 0.
+            1. Else,
+              1. Let _parsedMinutes_ be the source text matched by the first |MinuteSecond| Parse Node contained within _parseResult_.
+              1. Let _minutes_ be ℝ(StringToNumber(CodePointsToString(_parsedMinutes_))).
+            1. If _parseResult_ does not contain two |MinuteSecond| Parse Nodes, then
+              1. Let _seconds_ be 0.
+            1. Else,
+              1. Let _parsedSeconds_ be the source text matched by the second |MinuteSecond| Parse Node contained within _parseResult_.
+              1. Let _seconds_ be ℝ(StringToNumber(CodePointsToString(_parsedSeconds_))).
+            1. If _parseResult_ does not contain a |TemporalDecimalFraction| Parse Node, then
+              1. Let _nanoseconds_ be 0.
+            1. Else,
+              1. Let _parsedFraction_ be the source text matched by the |TemporalDecimalFraction| Parse Node contained within _parseResult_.
+              1. Let _fraction_ be the string-concatenation of CodePointsToString(_parsedFraction_) and *"000000000"*.
+              1. Let _nanosecondsString_ be the substring of _fraction_ from 1 to 10.
+              1. Let _nanoseconds_ be ℝ(StringToNumber(_nanosecondsString_)).
+            1. Return _sign_ × (((_hours_ × MinutesPerHour + _minutes_) × SecondsPerMinute + _seconds_) × NanosecondsPerSecond + _nanoseconds_).
+          </emu-alg>
+        </emu-clause>

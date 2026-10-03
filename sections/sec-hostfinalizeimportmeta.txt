@@ -1,0 +1,18 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.12 Meta Properties > 13.3.12.1 Runtime Semantics: Evaluation > 13.3.12.1.2 HostFinalizeImportMeta ( _importMeta_: an Object, _moduleRecord_: a Module Record, ): ~unused~ [id: sec-hostfinalizeimportmeta]
+
+<emu-clause id="sec-hostfinalizeimportmeta" type="host-defined abstract operation">
+          <h1>
+            HostFinalizeImportMeta (
+              _importMeta_: an Object,
+              _moduleRecord_: a Module Record,
+            ): ~unused~
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It allows hosts to perform any extraordinary operations to prepare the object returned from `import.meta`.</dd>
+          </dl>
+
+          <p>Most hosts will be able to simply define HostGetImportMetaProperties, and leave HostFinalizeImportMeta with its default behaviour. However, HostFinalizeImportMeta provides an “escape hatch” for hosts which need to directly manipulate the object before it is exposed to ECMAScript code.</p>
+
+          <p>The default implementation of HostFinalizeImportMeta is to return ~unused~.</p>
+        </emu-clause>

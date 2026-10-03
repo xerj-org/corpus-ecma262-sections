@@ -1,0 +1,31 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.2 Scope Analysis [id: sec-syntax-directed-operations-scope-analysis]
+
+<emu-clause id="sec-syntax-directed-operations-scope-analysis">
+    <h1>Scope Analysis</h1>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

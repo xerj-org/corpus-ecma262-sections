@@ -1,0 +1,14 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.3 The `while` Statement > 14.7.3.1 Static Semantics: Early Errors [id: sec-while-statement-static-semantics-early-errors]
+
+<emu-clause id="sec-while-statement-static-semantics-early-errors">
+        <h1>Static Semantics: Early Errors</h1>
+        <emu-grammar>WhileStatement : `while` `(` Expression `)` Statement</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if IsLabelledFunction(|Statement|) is *true*.
+          </li>
+        </ul>
+        <emu-note>
+          <p>It is only necessary to apply this rule if the extension specified in <emu-xref href="#sec-labelled-function-declarations"></emu-xref> is implemented.</p>
+        </emu-note>
+      </emu-clause>

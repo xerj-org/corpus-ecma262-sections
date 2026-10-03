@@ -1,0 +1,46 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.1 Abstract Operations For DataView Objects > 25.3.1.1 DataView With Buffer Witness Records [id: sec-dataview-with-buffer-witness-records]
+
+<emu-clause id="sec-dataview-with-buffer-witness-records">
+        <h1>DataView With Buffer Witness Records</h1>
+        <p>A <dfn variants="DataView With Buffer Witness Records">DataView With Buffer Witness Record</dfn> is a Record used to encapsulate a DataView along with a cached byte length of the viewed buffer. It is used to help ensure there is a single ReadSharedMemory event of the byte length data block when the viewed buffer is a growable SharedArrayBuffer.</p>
+        <p>DataView With Buffer Witness Records have the fields listed in <emu-xref href="#table-dataview-with-buffer-witness-record-fields"></emu-xref>.</p>
+        <emu-table id="table-dataview-with-buffer-witness-record-fields" caption="DataView With Buffer Witness Record Fields">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Field Name
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Meaning
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                [[Object]]
+              </td>
+              <td>
+                a DataView
+              </td>
+              <td>
+                The DataView object whose buffer's byte length is loaded.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[CachedBufferByteLength]]
+              </td>
+              <td>
+                a non-negative integer or ~detached~
+              </td>
+              <td>
+                The byte length of the object's [[ViewedArrayBuffer]] when the Record was created.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

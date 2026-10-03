@@ -1,0 +1,41 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object > 25.5.2 JSON.parse ( _text_ [ , _reviver_ ] ) > 25.5.2.2 JSON Parse Record [id: sec-json-parse-record]
+
+<emu-clause id="sec-json-parse-record">
+        <h1>JSON Parse Record</h1>
+        <p>A <dfn variants="JSON Parse Records">JSON Parse Record</dfn> is a Record used to describe the initial state of a value parsed from JSON text.</p>
+        <p>JSON Parse Records have the fields listed in <emu-xref href="#table-json-parse-record"></emu-xref>.</p>
+        <emu-table id="table-json-parse-record" caption="JSON Parse Record Fields">
+          <table>
+            <tr>
+              <th>Field Name</th>
+              <th>Value</th>
+              <th>Meaning</th>
+            </tr>
+            <tr>
+              <td>[[ParseNode]]</td>
+              <td>a Parse Node</td>
+              <td>The context Parse Node.</td>
+            </tr>
+            <tr>
+              <td>[[Key]]</td>
+              <td>a property name</td>
+              <td>The property name with which [[Value]] is associated.</td>
+            </tr>
+            <tr>
+              <td>[[Value]]</td>
+              <td>an ECMAScript language value</td>
+              <td>The value produced by evaluation of [[ParseNode]].</td>
+            </tr>
+            <tr>
+              <td>[[Elements]]</td>
+              <td>a List of JSON Parse Records</td>
+              <td>If [[Value]] is an Array, this contains the JSON Parse Records corresponding with the elements of [[Value]]. Otherwise, this is an empty List.</td>
+            </tr>
+            <tr>
+              <td>[[Entries]]</td>
+              <td>a List of JSON Parse Records</td>
+              <td>If [[Value]] is a non-Array Object, this contains the JSON Parse Records corresponding with the entries of [[Value]]. Otherwise, this is an empty List.</td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

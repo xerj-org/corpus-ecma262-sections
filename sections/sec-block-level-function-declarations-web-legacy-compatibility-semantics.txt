@@ -1,0 +1,72 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.3 Other Additional Features > B.3.2 Block-Level Function Declarations Web Legacy Compatibility Semantics [id: sec-block-level-function-declarations-web-legacy-compatibility-semantics]
+
+<emu-annex id="sec-block-level-function-declarations-web-legacy-compatibility-semantics">
+      <h1>Block-Level Function Declarations Web Legacy Compatibility Semantics</h1>
+      <p>Prior to ECMAScript 2015, the ECMAScript specification did not define the occurrence of a |FunctionDeclaration| as an element of a |Block| statement's |StatementList|. However, support for that form of |FunctionDeclaration| was an allowable extension and most browser-hosted ECMAScript implementations permitted them. Unfortunately, the semantics of such declarations differ among those implementations. Because of these semantic differences, existing web ECMAScript source text that uses |Block| level function declarations is only portable among browser implementations if the usage only depends upon the semantic intersection of all of the browser implementations for such declarations. The following are the use cases that fall within that intersection semantics:</p>
+      <ol>
+        <li>
+          <p>A function is declared and only referenced within a single block.</p>
+          <ul>
+            <li>
+              One or more |FunctionDeclaration|s whose |BindingIdentifier| is the name _f_ occur within the function code of an enclosing function _g_ and that declaration is nested within a |Block|.
+            </li>
+            <li>
+              No other declaration of _f_ that is not a `var` declaration occurs within the function code of _g_.
+            </li>
+            <li>
+              All occurrences of _f_ as an |IdentifierReference| are within the |StatementList| of the |Block| containing the declaration of _f_.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p>A function is declared and possibly used within a single |Block| but also referenced by an inner function definition that is not contained within that same |Block|.</p>
+          <ul>
+            <li>
+              One or more |FunctionDeclaration|s whose |BindingIdentifier| is the name _f_ occur within the function code of an enclosing function _g_ and that declaration is nested within a |Block|.
+            </li>
+            <li>
+              No other declaration of _f_ that is not a `var` declaration occurs within the function code of _g_.
+            </li>
+            <li>
+              There may be occurrences of _f_ as an |IdentifierReference| within the |StatementList| of the |Block| containing the declaration of _f_.
+            </li>
+            <li>
+              There is at least one occurrence of _f_ as an |IdentifierReference| within another function _h_ that is nested within _g_ and no other declaration of _f_ shadows the references to _f_ from within _h_.
+            </li>
+            <li>
+              All invocations of _h_ occur after the declaration of _f_ has been evaluated.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p>A function is declared and possibly used within a single block but also referenced within subsequent blocks.</p>
+          <ul>
+            <li>
+              One or more |FunctionDeclaration| whose |BindingIdentifier| is the name _f_ occur within the function code of an enclosing function _g_ and that declaration is nested within a |Block|.
+            </li>
+            <li>
+              No other declaration of _f_ that is not a `var` declaration occurs within the function code of _g_.
+            </li>
+            <li>
+              There may be occurrences of _f_ as an |IdentifierReference| within the |StatementList| of the |Block| containing the declaration of _f_.
+            </li>
+            <li>
+              There is at least one occurrence of _f_ as an |IdentifierReference| within the function code of _g_ that lexically follows the |Block| containing the declaration of _f_.
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <p>The first use case is interoperable with the semantics of |Block| level function declarations provided by ECMAScript 2015. Any pre-existing ECMAScript source text that employs that use case will operate using the Block level function declarations semantics defined by clauses <emu-xref href="#sec-ordinary-and-exotic-objects-behaviours"></emu-xref>, <emu-xref href="#sec-ecmascript-language-statements-and-declarations"></emu-xref>, and <emu-xref href="#sec-ecmascript-language-functions-and-classes"></emu-xref>.</p>
+      <p>ECMAScript 2015 interoperability for the second and third use cases requires the following extensions to the clause <emu-xref href="#sec-ordinary-and-exotic-objects-behaviours"></emu-xref>, clause <emu-xref href="#sec-ecmascript-language-functions-and-classes"></emu-xref>, clause <emu-xref href="#sec-eval-x"></emu-xref> and clause <emu-xref href="#sec-globaldeclarationinstantiation"></emu-xref> semantics.</p>
+      <p>If an ECMAScript implementation has a mechanism for reporting diagnostic warning messages, a warning should be produced when code contains a |FunctionDeclaration| for which these compatibility semantics are applied and introduce observable differences from non-compatibility semantics. For example, if a var binding is not introduced because its introduction would create an early error, a warning message should not be produced.</p>
+      <p>This feature involves special semantics at the following points:</p>
+      <ul>
+        <li>one of the early error rules for <emu-grammar>Block : `{` StatementList `}`</emu-grammar> in <emu-xref href="#sec-block-static-semantics-early-errors"></emu-xref></li>
+        <li>one of the early error rules for <emu-grammar>SwitchStatement : `switch` `(` Expression `)` CaseBlock</emu-grammar> in <emu-xref href="#sec-switch-statement-static-semantics-early-errors"></emu-xref></li>
+        <li>step <emu-xref href="#step-functiondeclarationinstantiation-web-compat-insertion-point"></emu-xref> in FunctionDeclarationInstantiation</li>
+        <li>step <emu-xref href="#step-blockdeclarationinstantiation-createmutablebinding"></emu-xref> in BlockDeclarationInstantiation</li>
+        <li>step <emu-xref href="#step-blockdeclarationinstantiation-initializebinding"></emu-xref> in BlockDeclarationInstantiation</li>
+        <li>step <emu-xref href="#step-globaldeclarationinstantiation-web-compat-insertion-point"></emu-xref> in GlobalDeclarationInstantiation</li>
+        <li>step <emu-xref href="#step-evaldeclarationinstantiation-web-compat-insertion-point"></emu-xref> in EvalDeclarationInstantiation</li>
+      </ul>
+    </emu-annex>

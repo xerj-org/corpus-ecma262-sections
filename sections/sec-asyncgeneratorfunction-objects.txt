@@ -1,0 +1,14 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.7 AsyncGeneratorFunction Objects [id: sec-asyncgeneratorfunction-objects]
+
+<emu-clause id="sec-asyncgeneratorfunction-objects">
+    <h1>AsyncGeneratorFunction Objects</h1>
+    <p>AsyncGeneratorFunctions are functions that are usually created by evaluating |AsyncGeneratorDeclaration|, |AsyncGeneratorExpression|, and |AsyncGeneratorMethod| syntactic productions. They may also be created by calling the %AsyncGeneratorFunction% intrinsic.</p>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

@@ -1,0 +1,35 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.13 The ClassStaticBlockDefinition Record Specification Type [id: sec-classstaticblockdefinition-record-specification-type]
+
+<emu-clause id="sec-classstaticblockdefinition-record-specification-type">
+      <h1>The ClassStaticBlockDefinition Record Specification Type</h1>
+      <p>A <dfn variants="ClassStaticBlockDefinition Records">ClassStaticBlockDefinition Record</dfn> is a Record used to encapsulate the executable code for a class static initialization block.</p>
+      <p>ClassStaticBlockDefinition Records have the fields listed in <emu-xref href="#table-classstaticblockdefinition-record-fields"></emu-xref>.</p>
+      <emu-table id="table-classstaticblockdefinition-record-fields" caption="ClassStaticBlockDefinition Record Fields">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              [[BodyFunction]]
+            </td>
+            <td>
+              an ECMAScript function object
+            </td>
+            <td>
+              The function object to be called during static initialization of a class.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+    </emu-clause>

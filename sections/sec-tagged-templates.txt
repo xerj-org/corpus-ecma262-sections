@@ -1,0 +1,10 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.11 Tagged Templates [id: sec-tagged-templates]
+
+<emu-clause id="sec-tagged-templates">
+      <h1>Tagged Templates</h1>
+      <emu-note>
+        <p>A tagged template is a function call where the arguments of the call are derived from a |TemplateLiteral| (<emu-xref href="#sec-template-literals"></emu-xref>). The actual arguments include a template object (<emu-xref href="#sec-gettemplateobject"></emu-xref>) and the values produced by evaluating the expressions embedded within the |TemplateLiteral|.</p>
+      </emu-note>
+
+      
+    </emu-clause>

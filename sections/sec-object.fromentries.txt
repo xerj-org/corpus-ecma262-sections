@@ -1,0 +1,20 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.7 Object.fromEntries ( _iterable_ ) [id: sec-object.fromentries]
+
+<emu-clause id="sec-object.fromentries" oldids="sec-create-data-property-on-object-functions" type="built-in function">
+        <h1>Object.fromEntries ( _iterable_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Perform ? RequireObjectCoercible(_iterable_).
+          1. Let _obj_ be OrdinaryObjectCreate(%Object.prototype%).
+          1. Assert: _obj_ is an extensible ordinary object with no own properties.
+          1. Let _closure_ be a new Abstract Closure with parameters (_key_, _value_) that captures _obj_ and performs the following steps when called:
+            1. Let _propertyKey_ be ? ToPropertyKey(_key_).
+            1. Perform ! CreateDataPropertyOrThrow(_obj_, _propertyKey_, _value_).
+            1. Return NormalCompletion(*undefined*).
+          1. Let _adder_ be CreateBuiltinFunction(_closure_, 2, *""*, « »).
+          1. Return ? AddEntriesFromIterable(_obj_, _iterable_, _adder_).
+        </emu-alg>
+        <emu-note>
+          The function created for _adder_ is never directly accessible to ECMAScript code.
+        </emu-note>
+      </emu-clause>

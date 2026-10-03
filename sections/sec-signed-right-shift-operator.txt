@@ -1,0 +1,10 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.9 Bitwise Shift Operators > 13.9.2 The Signed Right Shift Operator ( `>>` ) [id: sec-signed-right-shift-operator]
+
+<emu-clause id="sec-signed-right-shift-operator">
+      <h1>The Signed Right Shift Operator ( `>>` )</h1>
+      <emu-note>
+        <p>Performs a sign-filling bitwise right shift operation on the left operand by the amount specified by the right operand.</p>
+      </emu-note>
+
+      
+    </emu-clause>

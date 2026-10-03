@@ -1,0 +1,42 @@
+ECMA-262 > 5 Notational Conventions > 5.2 Algorithm Conventions > 5.2.4 Runtime Semantics > 5.2.4.3 Shorthands for Unwrapping Completion Records [id: sec-shorthands-for-unwrapping-completion-records]
+
+<emu-clause id="sec-shorthands-for-unwrapping-completion-records" oldids="sec-returnifabrupt,sec-returnifabrupt-shorthands">
+        <h1>Shorthands for Unwrapping Completion Records</h1>
+        <p>Prefix “?” and “!” are used as shorthands which unwrap Completion Records. “?” is used to propagate an abrupt completion to the caller, or otherwise to unwrap a normal completion. “!” is used to assert that a Completion Record is normal and unwrap it. Formally, the step</p>
+        <emu-alg example>
+          1. Let _result_ be ? _record_.
+        </emu-alg>
+        <p>is equivalent to</p>
+        <emu-alg example>
+          1. Assert: _record_ is a Completion Record.
+          1. If _record_ is an abrupt completion, return _record_.
+          1. Let _result_ be _record_.[[Value]].
+        </emu-alg>
+        <p>Likewise, the step</p>
+        <emu-alg example>
+          1. Let _result_ be ! _record_.
+        </emu-alg>
+        <p>is equivalent to</p>
+        <emu-alg example>
+          1. Assert: _record_ is a normal completion.
+          1. Let _result_ be _record_.[[Value]].
+        </emu-alg>
+        <p>When “?” or “!” is used in any other context, first apply the rewrite given in <emu-xref href="#sec-evaluation-order" title></emu-xref> until this rule can be applied, then apply this rule. For example, the step</p>
+        <emu-alg example>
+          1. Perform AO(? Other()).
+        </emu-alg>
+        <p>can be rewritten to</p>
+        <emu-alg example>
+          1. Let _tmp1_ be Other().
+          1. Let _tmp2_ be ? _tmp1_.
+          1. Perform AO(_tmp2_).
+        </emu-alg>
+        <p>which in turn expands to</p>
+        <emu-alg example>
+          1. Let _tmp1_ be Other().
+          1. Assert: _tmp1_ is a Completion Record.
+          1. If _tmp1_ is an abrupt completion, return _tmp1_.
+          1. Let _tmp2_ be _tmp1_.[[Value]].
+          1. Perform AO(_tmp2_).
+        </emu-alg>
+      </emu-clause>

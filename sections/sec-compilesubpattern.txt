@@ -1,0 +1,82 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.3 Runtime Semantics: CompileSubpattern ( _regexpRecord_: a RegExp Record, _direction_: ~forward~ or ~backward~, ): a Matcher [id: sec-compilesubpattern]
+
+<emu-clause id="sec-compilesubpattern" type="sdo" oldids="sec-disjunction,sec-alternative,sec-term">
+        <h1>
+          Runtime Semantics: CompileSubpattern (
+            _regexpRecord_: a RegExp Record,
+            _direction_: ~forward~ or ~backward~,
+          ): a Matcher
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-note>
+          <p>This section is amended in <emu-xref href="#sec-compilesubpattern-annexb"></emu-xref>.</p>
+        </emu-note>
+
+        <!-- Disjunction -->
+        <emu-grammar>Disjunction :: Alternative `|` Disjunction</emu-grammar>
+        <emu-alg>
+          1. Let _m1_ be CompileSubpattern of |Alternative| with arguments _regexpRecord_ and _direction_.
+          1. Let _m2_ be CompileSubpattern of |Disjunction| with arguments _regexpRecord_ and _direction_.
+          1. Return MatchTwoAlternatives(_m1_, _m2_).
+        </emu-alg>
+        <emu-note>
+          <p>The `|` regular expression operator separates two alternatives. The pattern first tries to match the left |Alternative| (followed by the sequel of the regular expression); if it fails, it tries to match the right |Disjunction| (followed by the sequel of the regular expression). If the left |Alternative|, the right |Disjunction|, and the sequel all have choice points, all choices in the sequel are tried before moving on to the next choice in the left |Alternative|. If choices in the left |Alternative| are exhausted, the right |Disjunction| is tried instead of the left |Alternative|. Any capturing parentheses inside a portion of the pattern skipped by `|` produce *undefined* values instead of Strings. Thus, for example,</p>
+          <pre><code class="javascript">/a|ab/.exec("abc")</code></pre>
+          <p>returns the result *"a"* and not *"ab"*. Moreover,</p>
+          <pre><code class="javascript">/((a)|(ab))((c)|(bc))/.exec("abc")</code></pre>
+          <p>returns the array</p>
+          <pre><code class="javascript">["abc", "a", "a", undefined, "bc", undefined, "bc"]</code></pre>
+          <p>and not</p>
+          <pre><code class="javascript">["abc", "ab", undefined, "ab", "c", "c", undefined]</code></pre>
+          <p>The order in which the two alternatives are tried is independent of the value of _direction_.</p>
+        </emu-note>
+
+        <!-- Alternative -->
+        <emu-grammar>Alternative :: [empty]</emu-grammar>
+        <emu-alg>
+          1. Return EmptyMatcher().
+        </emu-alg>
+        <emu-grammar>Alternative :: Alternative Term</emu-grammar>
+        <emu-alg>
+          1. Let _m1_ be CompileSubpattern of |Alternative| with arguments _regexpRecord_ and _direction_.
+          1. Let _m2_ be CompileSubpattern of |Term| with arguments _regexpRecord_ and _direction_.
+          1. Return MatchSequence(_m1_, _m2_, _direction_).
+        </emu-alg>
+        <emu-note>
+          <p>Consecutive |Term|s try to simultaneously match consecutive portions of _input_. When _direction_ is ~forward~, if the left |Alternative|, the right |Term|, and the sequel of the regular expression all have choice points, all choices in the sequel are tried before moving on to the next choice in the right |Term|, and all choices in the right |Term| are tried before moving on to the next choice in the left |Alternative|. When _direction_ is ~backward~, the evaluation order of |Alternative| and |Term| are reversed.</p>
+        </emu-note>
+
+        <!-- Term -->
+        <emu-grammar>Term :: Assertion</emu-grammar>
+        <emu-alg>
+          1. Return CompileAssertion of |Assertion| with argument _regexpRecord_.
+        </emu-alg>
+        <emu-note>
+          <p>The resulting Matcher is independent of _direction_.</p>
+        </emu-note>
+        <emu-grammar>Term :: Atom</emu-grammar>
+        <emu-alg>
+          1. Return CompileAtom of |Atom| with arguments _regexpRecord_ and _direction_.
+        </emu-alg>
+        <emu-grammar>Term :: Atom Quantifier</emu-grammar>
+        <emu-alg>
+          1. Let _m_ be CompileAtom of |Atom| with arguments _regexpRecord_ and _direction_.
+          1. Let _q_ be CompileQuantifier of |Quantifier|.
+          1. Assert: _q_.[[Min]] ≤ _q_.[[Max]].
+          1. Let _parenIndex_ be CountLeftCapturingParensBefore(|Term|).
+          1. Let _parenCount_ be CountLeftCapturingParensWithin(|Atom|).
+          1. Return a new Matcher with parameters (_x_, _c_) that captures _m_, _q_, _parenIndex_, and _parenCount_ and performs the following steps when called:
+            1. Assert: _x_ is a MatchState.
+            1. Assert: _c_ is a MatcherContinuation.
+            1. Return RepeatMatcher(_m_, _q_.[[Min]], _q_.[[Max]], _q_.[[Greedy]], _x_, _c_, _parenIndex_, _parenCount_).
+        </emu-alg>
+
+        
+
+        
+
+        
+
+        
+      </emu-clause>

@@ -1,0 +1,13 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.3 Abstract Operations for RegExp Creation [id: sec-abstract-operations-for-regexp-creation]
+
+<emu-clause id="sec-abstract-operations-for-regexp-creation" oldids="sec-abstract-operations-for-the-regexp-constructor">
+      <h1>Abstract Operations for RegExp Creation</h1>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

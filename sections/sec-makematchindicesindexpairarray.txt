@@ -1,0 +1,40 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.7 Abstract Operations for RegExp Matching > 22.2.7.8 MakeMatchIndicesIndexPairArray ( _string_: a String, _indices_: a List of either Match Records or *undefined*, _groupNames_: a List of either Strings or *undefined*, _hasGroups_: a Boolean, ): an Array [id: sec-makematchindicesindexpairarray]
+
+<emu-clause id="sec-makematchindicesindexpairarray" type="abstract operation">
+        <h1>
+          MakeMatchIndicesIndexPairArray (
+            _string_: a String,
+            _indices_: a List of either Match Records or *undefined*,
+            _groupNames_: a List of either Strings or *undefined*,
+            _hasGroups_: a Boolean,
+          ): an Array
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _n_ be the number of elements in _indices_.
+          1. Assert: _n_ &lt; 2<sup>32</sup> - 1.
+          1. Assert: _groupNames_ has _n_ - 1 elements.
+          1. NOTE: The _groupNames_ List contains elements aligned with the _indices_ List starting at _indices_[1].
+          1. Let _array_ be ! ArrayCreate(_n_).
+          1. If _hasGroups_ is *true*, then
+            1. Let _groups_ be OrdinaryObjectCreate(*null*).
+          1. Else,
+            1. Let _groups_ be *undefined*.
+          1. Perform ! CreateDataPropertyOrThrow(_array_, *"groups"*, _groups_).
+          1. For each integer _i_ such that 0 ≤ _i_ &lt; _n_, in ascending order, do
+            1. Let _matchIndices_ be _indices_[_i_].
+            1. If _matchIndices_ is not *undefined*, then
+              1. Let _matchIndexPair_ be GetMatchIndexPair(_string_, _matchIndices_).
+            1. Else,
+              1. Let _matchIndexPair_ be *undefined*.
+            1. Perform ! CreateDataPropertyOrThrow(_array_, ! ToString(𝔽(_i_)), _matchIndexPair_).
+            1. If _i_ > 0, then
+              1. Let _name_ be _groupNames_[_i_ - 1].
+              1. If _name_ is not *undefined*, then
+                1. Assert: _groups_ is not *undefined*.
+                1. NOTE: If there are multiple groups named _name_, _groups_ may already have an _name_ property at this point. However, because _groups_ is an ordinary object whose properties are all writable data properties, the call to CreateDataPropertyOrThrow is nevertheless guaranteed to succeed.
+                1. Perform ! CreateDataPropertyOrThrow(_groups_, _name_, _matchIndexPair_).
+          1. Return _array_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,66 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.1 Bound Function Exotic Objects [id: sec-bound-function-exotic-objects]
+
+<emu-clause id="sec-bound-function-exotic-objects">
+      <h1>Bound Function Exotic Objects</h1>
+      <p>A bound function exotic object is an exotic object that wraps another function object. A bound function exotic object is callable (it has a [[Call]] internal method and may have a [[Construct]] internal method). Calling a bound function exotic object generally results in a call of its wrapped function.</p>
+
+      <p>An object is a <dfn id="bound-function-exotic-object" variants="bound function exotic objects">bound function exotic object</dfn> if its [[Call]] and (if applicable) [[Construct]] internal methods use the following implementations, and its other essential internal methods use the definitions found in <emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots"></emu-xref>. These methods are installed in BoundFunctionCreate.</p>
+
+      <p>Bound function exotic objects do not have the internal slots of ECMAScript function objects listed in <emu-xref href="#table-internal-slots-of-ecmascript-function-objects"></emu-xref>. Instead they have the internal slots listed in <emu-xref href="#table-internal-slots-of-bound-function-exotic-objects"></emu-xref>, in addition to [[Prototype]] and [[Extensible]].</p>
+      <emu-table id="table-internal-slots-of-bound-function-exotic-objects" caption="Internal Slots of Bound Function Exotic Objects" oldids="table-28">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Internal Slot
+              </th>
+              <th>
+                Type
+              </th>
+              <th>
+                Description
+              </th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              [[BoundTargetFunction]]
+            </td>
+            <td>
+              a callable Object
+            </td>
+            <td>
+              The wrapped function object.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[BoundThis]]
+            </td>
+            <td>
+              an ECMAScript language value
+            </td>
+            <td>
+              The value that is always passed as the *this* value when calling the wrapped function.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[BoundArguments]]
+            </td>
+            <td>
+              a List of ECMAScript language values
+            </td>
+            <td>
+              A list of values whose elements are used as the first arguments to any call to the wrapped function.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+
+      
+
+      
+
+      
+    </emu-clause>

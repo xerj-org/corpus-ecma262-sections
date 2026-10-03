@@ -1,0 +1,12 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.4 Properties of the Set Prototype Object > 24.2.4.14 get Set.prototype.size [id: sec-get-set.prototype.size]
+
+<emu-clause id="sec-get-set.prototype.size" type="built-in function">
+        <h1>get Set.prototype.size</h1>
+        <p>`Set.prototype.size` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _set_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_set_, [[SetData]]).
+          1. Let _size_ be SetDataSize(_set_.[[SetData]]).
+          1. Return 𝔽(_size_).
+        </emu-alg>
+      </emu-clause>

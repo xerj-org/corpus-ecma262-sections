@@ -1,0 +1,8 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.5 String Iterator Objects > 22.1.5.1 The %StringIteratorPrototype% Object > 22.1.5.1.1 %StringIteratorPrototype%.next ( ) [id: sec-%stringiteratorprototype%.next]
+
+<emu-clause id="sec-%stringiteratorprototype%.next" type="built-in function">
+          <h1>%StringIteratorPrototype%.next ( )</h1>
+          <emu-alg>
+            1. Return ? <emu-meta suppress-effects="user-code">GeneratorResume(*this* value, ~empty~, *"%StringIteratorPrototype%"*)</emu-meta>.
+          </emu-alg>
+        </emu-clause>

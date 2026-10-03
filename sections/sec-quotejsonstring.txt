@@ -1,0 +1,120 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object > 25.5.4 JSON.stringify ( _value_ [ , _replacer_ [ , _space_ ] ] ) > 25.5.4.3 QuoteJSONString ( _value_: a String, ): a String [id: sec-quotejsonstring]
+
+<emu-clause id="sec-quotejsonstring" type="abstract operation">
+        <h1>
+          QuoteJSONString (
+            _value_: a String,
+          ): a String
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It wraps _value_ in 0x0022 (QUOTATION MARK) code units and escapes certain other code units within it. This operation interprets _value_ as a sequence of UTF-16 encoded code points, as described in <emu-xref href="#sec-ecmascript-language-types-string-type"></emu-xref>.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _product_ be the String value consisting solely of the code unit 0x0022 (QUOTATION MARK).
+          1. For each code point _codePoint_ of StringToCodePoints(_value_), do
+            1. If _codePoint_ is listed in the “Code Point” column of <emu-xref href="#table-json-single-character-escapes"></emu-xref>, then
+              1. Set _product_ to the string-concatenation of _product_ and the escape sequence for _codePoint_ as specified in the “Escape Sequence” column of the corresponding row.
+            1. Else if _codePoint_ has a numeric value less than 0x0020 (SPACE) or _codePoint_ has the same numeric value as a leading surrogate or trailing surrogate, then
+              1. Let _unit_ be the code unit whose numeric value is the numeric value of _codePoint_.
+              1. Set _product_ to the string-concatenation of _product_ and UnicodeEscape(_unit_).
+            1. Else,
+              1. Set _product_ to the string-concatenation of _product_ and UTF16EncodeCodePoint(_codePoint_).
+          1. Set _product_ to the string-concatenation of _product_ and the code unit 0x0022 (QUOTATION MARK).
+          1. Return _product_.
+        </emu-alg>
+        <emu-table id="table-json-single-character-escapes" caption="JSON Single Character Escape Sequences">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Code Point
+                </th>
+                <th>
+                  Unicode Character Name
+                </th>
+                <th>
+                  Escape Sequence
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                U+0008
+              </td>
+              <td>
+                BACKSPACE
+              </td>
+              <td>
+                `\\b`
+              </td>
+            </tr>
+            <tr>
+              <td>
+                U+0009
+              </td>
+              <td>
+                CHARACTER TABULATION
+              </td>
+              <td>
+                `\\t`
+              </td>
+            </tr>
+            <tr>
+              <td>
+                U+000A
+              </td>
+              <td>
+                LINE FEED (LF)
+              </td>
+              <td>
+                `\\n`
+              </td>
+            </tr>
+            <tr>
+              <td>
+                U+000C
+              </td>
+              <td>
+                FORM FEED (FF)
+              </td>
+              <td>
+                `\\f`
+              </td>
+            </tr>
+            <tr>
+              <td>
+                U+000D
+              </td>
+              <td>
+                CARRIAGE RETURN (CR)
+              </td>
+              <td>
+                `\\r`
+              </td>
+            </tr>
+            <tr>
+              <td>
+                U+0022
+              </td>
+              <td>
+                QUOTATION MARK
+              </td>
+              <td>
+                `\\"`
+              </td>
+            </tr>
+            <tr>
+              <td>
+                U+005C
+              </td>
+              <td>
+                REVERSE SOLIDUS
+              </td>
+              <td>
+                `\\\\`
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

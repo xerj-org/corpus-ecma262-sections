@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.27 Proxy ( . . . ) [id: sec-constructor-properties-of-the-global-object-proxy]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-proxy">
+      <h1>Proxy ( . . . )</h1>
+      <p>See <emu-xref href="#sec-proxy-constructor"></emu-xref>.</p>
+    </emu-clause>

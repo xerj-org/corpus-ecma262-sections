@@ -1,0 +1,90 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.4 Method Definitions > 15.4.5 Runtime Semantics: MethodDefinitionEvaluation ( _obj_: an Object, _enumerable_: a Boolean, ): either a normal completion containing either a PrivateElement or ~empty~, or an abrupt completion [id: sec-runtime-semantics-methoddefinitionevaluation]
+
+<emu-clause id="sec-runtime-semantics-methoddefinitionevaluation" oldids="sec-method-definitions-runtime-semantics-propertydefinitionevaluation,sec-generator-function-definitions-runtime-semantics-propertydefinitionevaluation,sec-asyncgenerator-definitions-propertydefinitionevaluation,sec-async-function-definitions-PropertyDefinitionEvaluation" type="sdo">
+      <h1>
+        Runtime Semantics: MethodDefinitionEvaluation (
+          _obj_: an Object,
+          _enumerable_: a Boolean,
+        ): either a normal completion containing either a PrivateElement or ~empty~, or an abrupt completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>MethodDefinition : ClassElementName `(` UniqueFormalParameters `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Let _methodDef_ be ? DefineMethod of |MethodDefinition| with argument _obj_.
+        1. Perform SetFunctionName(_methodDef_.[[Closure]], _methodDef_.[[Key]]).
+        1. Return ? DefineMethodProperty(_obj_, _methodDef_.[[Key]], _methodDef_.[[Closure]], _enumerable_).
+      </emu-alg>
+      <emu-grammar>MethodDefinition : `get` ClassElementName `(` `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Let _propertyKey_ be ? Evaluation of |ClassElementName|.
+        1. Let _envRecord_ be the running execution context's LexicalEnvironment.
+        1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+        1. Let _sourceText_ be the source text matched by |MethodDefinition|.
+        1. Let _formalParamList_ be an instance of the production <emu-grammar>FormalParameters : [empty]</emu-grammar>.
+        1. Let _closure_ be OrdinaryFunctionCreate(%Function.prototype%, _sourceText_, _formalParamList_, |FunctionBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform MakeMethod(_closure_, _obj_).
+        1. Perform SetFunctionName(_closure_, _propertyKey_, *"get"*).
+        1. If _propertyKey_ is a Private Name, then
+          1. Return PrivateElement { [[Key]]: _propertyKey_, [[Kind]]: ~accessor~, [[Getter]]: _closure_, [[Setter]]: *undefined* }.
+        1. Let _propertyDesc_ be the PropertyDescriptor { [[Getter]]: _closure_, [[Enumerable]]: _enumerable_, [[Configurable]]: *true* }.
+        1. Perform ? DefinePropertyOrThrow(_obj_, _propertyKey_, _propertyDesc_).
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-grammar>MethodDefinition : `set` ClassElementName `(` PropertySetParameterList `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Let _propertyKey_ be ? Evaluation of |ClassElementName|.
+        1. Let _envRecord_ be the running execution context's LexicalEnvironment.
+        1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+        1. Let _sourceText_ be the source text matched by |MethodDefinition|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%Function.prototype%, _sourceText_, |PropertySetParameterList|, |FunctionBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform MakeMethod(_closure_, _obj_).
+        1. Perform SetFunctionName(_closure_, _propertyKey_, *"set"*).
+        1. If _propertyKey_ is a Private Name, then
+          1. Return PrivateElement { [[Key]]: _propertyKey_, [[Kind]]: ~accessor~, [[Getter]]: *undefined*, [[Setter]]: _closure_ }.
+        1. Let _propertyDesc_ be the PropertyDescriptor { [[Setter]]: _closure_, [[Enumerable]]: _enumerable_, [[Configurable]]: *true* }.
+        1. Perform ? DefinePropertyOrThrow(_obj_, _propertyKey_, _propertyDesc_).
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-grammar>GeneratorMethod : `*` ClassElementName `(` UniqueFormalParameters `)` `{` GeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. Let _propertyKey_ be ? Evaluation of |ClassElementName|.
+        1. Let _envRecord_ be the running execution context's LexicalEnvironment.
+        1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+        1. Let _sourceText_ be the source text matched by |GeneratorMethod|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%GeneratorFunction.prototype%, _sourceText_, |UniqueFormalParameters|, |GeneratorBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform MakeMethod(_closure_, _obj_).
+        1. Perform SetFunctionName(_closure_, _propertyKey_).
+        1. Let _proto_ be OrdinaryObjectCreate(%GeneratorPrototype%).
+        1. Perform ! DefinePropertyOrThrow(_closure_, *"prototype"*, PropertyDescriptor { [[Value]]: _proto_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+        1. Return ? DefineMethodProperty(_obj_, _propertyKey_, _closure_, _enumerable_).
+      </emu-alg>
+      <emu-grammar>
+        AsyncGeneratorMethod : `async` `*` ClassElementName `(` UniqueFormalParameters `)` `{` AsyncGeneratorBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Let _propertyKey_ be ? Evaluation of |ClassElementName|.
+        1. Let _envRecord_ be the running execution context's LexicalEnvironment.
+        1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+        1. Let _sourceText_ be the source text matched by |AsyncGeneratorMethod|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%AsyncGeneratorFunction.prototype%, _sourceText_, |UniqueFormalParameters|, |AsyncGeneratorBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform MakeMethod(_closure_, _obj_).
+        1. Perform SetFunctionName(_closure_, _propertyKey_).
+        1. Let _proto_ be OrdinaryObjectCreate(%AsyncGeneratorPrototype%).
+        1. Perform ! DefinePropertyOrThrow(_closure_, *"prototype"*, PropertyDescriptor { [[Value]]: _proto_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+        1. Return ? DefineMethodProperty(_obj_, _propertyKey_, _closure_, _enumerable_).
+      </emu-alg>
+      <emu-grammar>
+        AsyncMethod : `async` ClassElementName `(` UniqueFormalParameters `)` `{` AsyncFunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Let _propertyKey_ be ? Evaluation of |ClassElementName|.
+        1. Let _envRecord_ be the LexicalEnvironment of the running execution context.
+        1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+        1. Let _sourceText_ be the source text matched by |AsyncMethod|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%AsyncFunction.prototype%, _sourceText_, |UniqueFormalParameters|, |AsyncFunctionBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform MakeMethod(_closure_, _obj_).
+        1. Perform SetFunctionName(_closure_, _propertyKey_).
+        1. Return ? DefineMethodProperty(_obj_, _propertyKey_, _closure_, _enumerable_).
+      </emu-alg>
+    </emu-clause>

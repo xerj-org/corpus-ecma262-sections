@@ -1,0 +1,11 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.6 Async Generator Function Definitions > 15.6.5 Runtime Semantics: Evaluation [id: sec-asyncgenerator-definitions-evaluation]
+
+<emu-clause id="sec-asyncgenerator-definitions-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>
+        AsyncGeneratorExpression : `async` `function` `*` BindingIdentifier? `(` FormalParameters `)` `{` AsyncGeneratorBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return InstantiateAsyncGeneratorFunctionExpression of |AsyncGeneratorExpression|.
+      </emu-alg>
+    </emu-clause>

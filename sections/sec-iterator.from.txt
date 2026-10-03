@@ -1,0 +1,16 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.3 Iterator Objects > 27.1.3.2 Properties of the Iterator Constructor > 27.1.3.2.2 Iterator.from ( _obj_ ) [id: sec-iterator.from]
+
+<emu-clause id="sec-iterator.from" type="built-in function">
+          <h1>Iterator.from ( _obj_ )</h1>
+          <emu-alg>
+            1. Let _iteratorRecord_ be ? GetIteratorFlattenable(_obj_, ~iterate-string-primitives~).
+            1. Let _hasInstance_ be ? OrdinaryHasInstance(%Iterator%, _iteratorRecord_.[[Iterator]]).
+            1. If _hasInstance_ is *true*, then
+              1. Return _iteratorRecord_.[[Iterator]].
+            1. Let _wrapper_ be OrdinaryObjectCreate(%WrapForValidIteratorPrototype%, « [[Iterated]] »).
+            1. Set _wrapper_.[[Iterated]] to _iteratorRecord_.
+            1. Return _wrapper_.
+          </emu-alg>
+
+          
+        </emu-clause>

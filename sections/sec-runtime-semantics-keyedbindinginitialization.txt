@@ -1,0 +1,38 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.3 Declarations and the Variable Statement > 14.3.3 Destructuring Binding Patterns > 14.3.3.3 Runtime Semantics: KeyedBindingInitialization ( _value_: an ECMAScript language value, _envRecord_: an Environment Record or *undefined*, _propertyName_: a property key, ): either a normal completion containing ~unused~ or an abrupt completion [id: sec-runtime-semantics-keyedbindinginitialization]
+
+<emu-clause id="sec-runtime-semantics-keyedbindinginitialization" type="sdo">
+        <h1>
+          Runtime Semantics: KeyedBindingInitialization (
+            _value_: an ECMAScript language value,
+            _envRecord_: an Environment Record or *undefined*,
+            _propertyName_: a property key,
+          ): either a normal completion containing ~unused~ or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-note>
+          <p>When *undefined* is passed for _envRecord_ it indicates that a PutValue operation should be used to assign the initialization value. This is the case for formal parameter lists of non-strict functions. In that case the formal parameter bindings are preinitialized in order to deal with the possibility of multiple parameters with the same name.</p>
+        </emu-note>
+        <emu-grammar>BindingElement : BindingPattern Initializer?</emu-grammar>
+        <emu-alg>
+          1. Set _value_ to ? GetV(_value_, _propertyName_).
+          1. If |Initializer| is present and _value_ is *undefined*, then
+            1. Let _defaultValue_ be ? Evaluation of |Initializer|.
+            1. Set _value_ to ? GetValue(_defaultValue_).
+          1. Return ? BindingInitialization of |BindingPattern| with arguments _value_ and _envRecord_.
+        </emu-alg>
+        <emu-grammar>SingleNameBinding : BindingIdentifier Initializer?</emu-grammar>
+        <emu-alg>
+          1. Let _name_ be the StringValue of |BindingIdentifier|.
+          1. Let _lhs_ be ? ResolveBinding(_name_, _envRecord_).
+          1. Set _value_ to ? GetV(_value_, _propertyName_).
+          1. If |Initializer| is present and _value_ is *undefined*, then
+            1. If IsAnonymousFunctionDefinition(|Initializer|) is *true*, then
+              1. Set _value_ to ? NamedEvaluation of |Initializer| with argument _name_.
+            1. Else,
+              1. Let _defaultValue_ be ? Evaluation of |Initializer|.
+              1. Set _value_ to ? GetValue(_defaultValue_).
+          1. If _envRecord_ is *undefined*, return ? PutValue(_lhs_, _value_).
+          1. Return ? InitializeReferencedBinding(_lhs_, _value_).
+        </emu-alg>
+      </emu-clause>

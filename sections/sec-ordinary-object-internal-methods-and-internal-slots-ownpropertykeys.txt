@@ -1,0 +1,14 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.11 [[OwnPropertyKeys]] ( ): a normal completion containing a List of property keys [id: sec-ordinary-object-internal-methods-and-internal-slots-ownpropertykeys]
+
+<emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-ownpropertykeys" type="internal method">
+      <h1>[[OwnPropertyKeys]] ( ): a normal completion containing a List of property keys</h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>an ordinary object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Return OrdinaryOwnPropertyKeys(_obj_).
+      </emu-alg>
+
+      
+    </emu-clause>

@@ -1,0 +1,19 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.4 Abstract Operations for TypedArray Objects > 23.2.4.5 ValidateTypedArrayBounds ( _ta_: a TypedArray, _order_: ~seq-cst~ or ~unordered~, ): either a normal completion containing a TypedArray With Buffer Witness Record or a throw completion [id: sec-validatetypedarraybounds]
+
+<emu-clause id="sec-validatetypedarraybounds" type="abstract operation">
+        <h1>
+          ValidateTypedArrayBounds (
+            _ta_: a TypedArray,
+            _order_: ~seq-cst~ or ~unordered~,
+          ): either a normal completion containing a TypedArray With Buffer Witness Record or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It validates that _ta_ does not exceed the bounds of its backing buffer.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _taRecord_ be MakeTypedArrayWithBufferWitnessRecord(_ta_, _order_).
+          1. If IsTypedArrayOutOfBounds(_taRecord_) is *true*, throw a *TypeError* exception.
+          1. Return _taRecord_.
+        </emu-alg>
+      </emu-clause>

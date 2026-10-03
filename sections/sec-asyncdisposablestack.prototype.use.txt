@@ -1,0 +1,13 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.4 AsyncDisposableStack Objects > 27.4.3 Properties of the AsyncDisposableStack Prototype Object > 27.4.3.7 AsyncDisposableStack.prototype.use ( _value_ ) [id: sec-asyncdisposablestack.prototype.use]
+
+<emu-clause id="sec-asyncdisposablestack.prototype.use" type="built-in function">
+        <h1>AsyncDisposableStack.prototype.use ( _value_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _asyncDisposableStack_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_asyncDisposableStack_, [[AsyncDisposableState]]).
+          1. If _asyncDisposableStack_.[[AsyncDisposableState]] is ~disposed~, throw a *ReferenceError* exception.
+          1. Perform ? AddDisposableResource(_asyncDisposableStack_.[[DisposableResourceStack]], _value_, ~async-dispose~).
+          1. Return _value_.
+        </emu-alg>
+      </emu-clause>

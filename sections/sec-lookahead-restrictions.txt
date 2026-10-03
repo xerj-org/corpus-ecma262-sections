@@ -1,0 +1,24 @@
+ECMA-262 > 5 Notational Conventions > 5.1 Syntactic and Lexical Grammars > 5.1.5 Grammar Notation > 5.1.5.7 Lookahead Restrictions [id: sec-lookahead-restrictions]
+
+<emu-clause id="sec-lookahead-restrictions">
+        <h1>Lookahead Restrictions</h1>
+        <p>If the phrase “[lookahead = _seq_]” appears in the right-hand side of a production, it indicates that the production may only be used if the token sequence _seq_ is a prefix of the immediately following input token sequence. Similarly, “[lookahead ∈ _set_]”, where _set_ is a finite non-empty set of token sequences, indicates that the production may only be used if some element of _set_ is a prefix of the immediately following token sequence. For convenience, the set can also be written as a nonterminal, in which case it represents the set of all token sequences to which that nonterminal could expand. It is considered an editorial error if the nonterminal could expand to infinitely many distinct token sequences.</p>
+        <p>These conditions may be negated. “[lookahead ≠ _seq_]” indicates that the containing production may only be used if _seq_ is <em>not</em> a prefix of the immediately following input token sequence, and “[lookahead ∉ _set_]” indicates that the production may only be used if <em>no</em> element of _set_ is a prefix of the immediately following token sequence.</p>
+        <p>As an example, given the definitions:</p>
+        <emu-grammar type="definition" example>
+          DecimalDigit :: one of
+            `0` `1` `2` `3` `4` `5` `6` `7` `8` `9`
+
+          DecimalDigits ::
+            DecimalDigit
+            DecimalDigits DecimalDigit
+        </emu-grammar>
+        <p>the definition:</p>
+        <emu-grammar type="definition" example>
+          LookaheadExample ::
+            `n` [lookahead &notin; { `1`, `3`, `5`, `7`, `9` }] DecimalDigits
+            DecimalDigit [lookahead &notin; DecimalDigit]
+        </emu-grammar>
+        <p>matches either the letter `n` followed by one or more decimal digits the first of which is even, or a decimal digit not followed by another decimal digit.</p>
+        <p>Note that when these phrases are used in the syntactic grammar, it may not be possible to unambiguously identify the immediately following token sequence because determining later tokens requires knowing which lexical goal symbol to use at later positions. As such, when these are used in the syntactic grammar, it is considered an editorial error for a token sequence _seq_ to appear in a lookahead restriction (including as part of a set of sequences) if the choices of lexical goal symbols to use could change whether or not _seq_ would be a prefix of the resulting token sequence.</p>
+      </emu-clause>

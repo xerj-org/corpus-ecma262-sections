@@ -1,0 +1,15 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.9 Runtime Semantics: CompileToCharSet ( _regexpRecord_: a RegExp Record, ): a CharSet > 22.2.2.9.2 HasEitherUnicodeFlag ( _regexpRecord_: a RegExp Record, ): a Boolean [id: sec-runtime-semantics-haseitherunicodeflag-abstract-operation]
+
+<emu-clause id="sec-runtime-semantics-haseitherunicodeflag-abstract-operation" type="abstract operation">
+          <h1>
+            HasEitherUnicodeFlag (
+              _regexpRecord_: a RegExp Record,
+            ): a Boolean
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _regexpRecord_.[[Unicode]] is *true* or _regexpRecord_.[[UnicodeSets]] is *true*, return *true*.
+            1. Return *false*.
+          </emu-alg>
+        </emu-clause>

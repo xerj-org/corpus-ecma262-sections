@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.4 Other Properties of the Global Object > 19.4.2 JSON [id: sec-json]
+
+<emu-clause id="sec-json">
+      <h1>JSON</h1>
+      <p>See <emu-xref href="#sec-json-object"></emu-xref>.</p>
+    </emu-clause>

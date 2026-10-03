@@ -1,0 +1,9 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.5 Properties of DataView Instances [id: sec-properties-of-dataview-instances]
+
+<emu-clause id="sec-properties-of-dataview-instances">
+      <h1>Properties of DataView Instances</h1>
+      <p>DataView instances are ordinary objects that inherit properties from the DataView prototype object. DataView instances each have [[DataView]], [[ViewedArrayBuffer]], [[ByteLength]], and [[ByteOffset]] internal slots.</p>
+      <emu-note>
+        <p>The value of the [[DataView]] internal slot is not used within this specification. The simple presence of that internal slot is used within the specification to identify objects created using the DataView constructor.</p>
+      </emu-note>
+    </emu-clause>

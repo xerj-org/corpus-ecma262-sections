@@ -1,0 +1,23 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.25 %TypedArray%.prototype.reverse ( ) [id: sec-%typedarray%.prototype.reverse]
+
+<emu-clause id="sec-%typedarray%.prototype.reverse" type="built-in function">
+        <h1>%TypedArray%.prototype.reverse ( )</h1>
+        <p>The interpretation and use of the arguments of this method are the same as for `Array.prototype.reverse` as defined in <emu-xref href="#sec-array.prototype.reverse"></emu-xref>.</p>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Let _taRecord_ be ? ValidateTypedArray(_obj_, ~seq-cst~).
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. Let _middle_ be floor(_length_ / 2).
+          1. Let _lower_ be 0.
+          1. Repeat, while _lower_ ≠ _middle_,
+            1. Let _upper_ be _length_ - _lower_ - 1.
+            1. Let _lowerValue_ be TypedArrayGetElement(_obj_, 𝔽(_lower_)).
+            1. Let _upperValue_ be TypedArrayGetElement(_obj_, 𝔽(_upper_)).
+            1. Perform ! TypedArraySetElement(_obj_, 𝔽(_lower_), _upperValue_).
+            1. Perform ! TypedArraySetElement(_obj_, 𝔽(_upper_), _lowerValue_).
+            1. Set _lower_ to _lower_ + 1.
+          1. Return _obj_.
+        </emu-alg>
+        <p>This method is not generic. The *this* value must be an object with a [[TypedArrayName]] internal slot.</p>
+      </emu-clause>

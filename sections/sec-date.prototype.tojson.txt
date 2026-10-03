@@ -1,0 +1,19 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.4 Properties of the Date Prototype Object > 21.4.4.37 Date.prototype.toJSON ( _key_ ) [id: sec-date.prototype.tojson]
+
+<emu-clause id="sec-date.prototype.tojson" type="built-in function">
+        <h1>Date.prototype.toJSON ( _key_ )</h1>
+        <p>This method provides a String representation of a Date for use by `JSON.stringify` (<emu-xref href="#sec-json.stringify"></emu-xref>).</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be ? ToObject(*this* value).
+          1. Let _tv_ be ? ToPrimitive(_obj_, ~number~).
+          1. If _tv_ is a Number and _tv_ is not a finite Number, return *null*.
+          1. Return ? Invoke(_obj_, *"toISOString"*).
+        </emu-alg>
+        <emu-note>
+          <p>The argument is ignored.</p>
+        </emu-note>
+        <emu-note>
+          <p>This method is intentionally generic; it does not require that its *this* value be a Date. Therefore, it can be transferred to other kinds of objects for use as a method. However, it does require that any such object have a `toISOString` method.</p>
+        </emu-note>
+      </emu-clause>

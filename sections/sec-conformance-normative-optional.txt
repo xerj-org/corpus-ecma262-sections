@@ -1,0 +1,6 @@
+ECMA-262 > 2 Conformance > 2.1 Example Normative Optional Clause Heading [id: sec-conformance-normative-optional]
+
+<emu-clause id="sec-conformance-normative-optional" oldids="sec-conformance.normative-optional" example normative-optional>
+    <h1>Example Normative Optional Clause Heading</h1>
+    <p>Example clause contents.</p>
+  </emu-clause>

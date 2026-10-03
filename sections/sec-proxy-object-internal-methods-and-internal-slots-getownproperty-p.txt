@@ -1,0 +1,66 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.5 Proxy Object Internal Methods and Internal Slots > 10.5.5 [[GetOwnProperty]] ( _propertyKey_: a property key, ): either a normal completion containing either a Property Descriptor or *undefined*, or a throw completion [id: sec-proxy-object-internal-methods-and-internal-slots-getownproperty-p]
+
+<emu-clause id="sec-proxy-object-internal-methods-and-internal-slots-getownproperty-p" type="internal method">
+      <h1>
+        [[GetOwnProperty]] (
+          _propertyKey_: a property key,
+        ): either a normal completion containing either a Property Descriptor or *undefined*, or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>a Proxy exotic object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Perform ? ValidateNonRevokedProxy(_obj_).
+        1. Let _target_ be _obj_.[[ProxyTarget]].
+        1. Let _handler_ be _obj_.[[ProxyHandler]].
+        1. Assert: _handler_ is an Object.
+        1. Let _trap_ be ? GetMethod(_handler_, *"getOwnPropertyDescriptor"*).
+        1. If _trap_ is *undefined*, then
+          1. Return ? <emu-meta effects="user-code">_target_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+        1. Let _trapResultObj_ be ? Call(_trap_, _handler_, « _target_, _propertyKey_ »).
+        1. If _trapResultObj_ is not an Object and _trapResultObj_ is not *undefined*, throw a *TypeError* exception.
+        1. Let _targetDesc_ be ? <emu-meta effects="user-code">_target_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+        1. If _trapResultObj_ is *undefined*, then
+          1. If _targetDesc_ is *undefined*, return *undefined*.
+          1. If _targetDesc_.[[Configurable]] is *false*, throw a *TypeError* exception.
+          1. Let _extensibleTarget_ be ? IsExtensible(_target_).
+          1. If _extensibleTarget_ is *false*, throw a *TypeError* exception.
+          1. Return *undefined*.
+        1. Let _extensibleTarget_ be ? IsExtensible(_target_).
+        1. Let _resultDesc_ be ? ToPropertyDescriptor(_trapResultObj_).
+        1. Perform CompletePropertyDescriptor(_resultDesc_).
+        1. Let _valid_ be IsCompatiblePropertyDescriptor(_extensibleTarget_, _resultDesc_, _targetDesc_).
+        1. If _valid_ is *false*, throw a *TypeError* exception.
+        1. If _resultDesc_.[[Configurable]] is *false*, then
+          1. If _targetDesc_ is *undefined* or _targetDesc_.[[Configurable]] is *true*, then
+            1. Throw a *TypeError* exception.
+          1. If _resultDesc_ has a [[Writable]] field and _resultDesc_.[[Writable]] is *false*, then
+            1. Assert: _targetDesc_ has a [[Writable]] field.
+            1. If _targetDesc_.[[Writable]] is *true*, throw a *TypeError* exception.
+        1. Return _resultDesc_.
+      </emu-alg>
+      <emu-note>
+        <p>[[GetOwnProperty]] for Proxy objects enforces the following invariants:</p>
+        <ul>
+          <li>
+            The result of [[GetOwnProperty]] must be either a Property Descriptor or *undefined*.
+          </li>
+          <li>
+            A property cannot be reported as non-existent, if it exists as a non-configurable own property of the target object.
+          </li>
+          <li>
+            A property cannot be reported as non-existent, if it exists as an own property of a non-extensible target object.
+          </li>
+          <li>
+            A property cannot be reported as existent, if it does not exist as an own property of the target object and the target object is not extensible.
+          </li>
+          <li>
+            A property cannot be reported as non-configurable, unless it exists as a non-configurable own property of the target object.
+          </li>
+          <li>
+            A property cannot be reported as both non-configurable and non-writable, unless it exists as a non-configurable, non-writable own property of the target object.
+          </li>
+        </ul>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,22 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.1 Object.assign ( _target_, ..._sources_ ) [id: sec-object.assign]
+
+<emu-clause id="sec-object.assign" type="built-in function">
+        <h1>Object.assign ( _target_, ..._sources_ )</h1>
+        <p>This function copies the values of all of the enumerable own properties from one or more source objects to a _target_ object.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _targetObj_ be ? ToObject(_target_).
+          1. If only one argument was passed, return _targetObj_.
+          1. For each element _nextSource_ of _sources_, do
+            1. If _nextSource_ is neither *undefined* nor *null*, then
+              1. Let _from_ be ! ToObject(_nextSource_).
+              1. Let _keys_ be ? <emu-meta effects="user-code">_from_.[[OwnPropertyKeys]]()</emu-meta>.
+              1. For each element _nextKey_ of _keys_, do
+                1. Let _propertyDesc_ be ? <emu-meta effects="user-code">_from_.[[GetOwnProperty]](_nextKey_)</emu-meta>.
+                1. If _propertyDesc_ is not *undefined* and _propertyDesc_.[[Enumerable]] is *true*, then
+                  1. Let _propertyValue_ be ? Get(_from_, _nextKey_).
+                  1. Perform ? Set(_targetObj_, _nextKey_, _propertyValue_, *true*).
+          1. Return _targetObj_.
+        </emu-alg>
+        <p>The *"length"* property of this function is *2*<sub>𝔽</sub>.</p>
+      </emu-clause>

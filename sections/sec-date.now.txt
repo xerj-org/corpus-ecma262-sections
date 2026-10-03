@@ -1,0 +1,6 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.3 Properties of the Date Constructor > 21.4.3.1 Date.now ( ) [id: sec-date.now]
+
+<emu-clause id="sec-date.now" type="built-in function">
+        <h1>Date.now ( )</h1>
+        <p>This function returns the time value designating the UTC date and time of the occurrence of the call to it.</p>
+      </emu-clause>

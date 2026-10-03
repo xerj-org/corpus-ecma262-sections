@@ -1,0 +1,42 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.3 Properties of the Map Prototype Object [id: sec-properties-of-the-map-prototype-object]
+
+<emu-clause id="sec-properties-of-the-map-prototype-object">
+      <h1>Properties of the Map Prototype Object</h1>
+      <p>The <dfn>Map prototype object</dfn>:</p>
+      <ul>
+        <li>is <dfn>%Map.prototype%</dfn>.</li>
+        <li>has a [[Prototype]] internal slot whose value is %Object.prototype%.</li>
+        <li>is an ordinary object.</li>
+        <li>does not have a [[MapData]] internal slot.</li>
+      </ul>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

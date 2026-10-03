@@ -1,0 +1,27 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.5 Proxy Object Internal Methods and Internal Slots > 10.5.15 ProxyCreate ( _target_: an ECMAScript language value, _handler_: an ECMAScript language value, ): either a normal completion containing a Proxy exotic object or a throw completion [id: sec-proxycreate]
+
+<emu-clause id="sec-proxycreate" type="abstract operation">
+      <h1>
+        ProxyCreate (
+          _target_: an ECMAScript language value,
+          _handler_: an ECMAScript language value,
+        ): either a normal completion containing a Proxy exotic object or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to specify the creation of new Proxy objects.</dd>
+      </dl>
+      <emu-alg>
+        1. If _target_ is not an Object, throw a *TypeError* exception.
+        1. If _handler_ is not an Object, throw a *TypeError* exception.
+        1. Let _proxy_ be MakeBasicObject(« [[ProxyHandler]], [[ProxyTarget]] »).
+        1. Set _proxy_'s essential internal methods, except for [[Call]] and [[Construct]], to the definitions specified in <emu-xref href="#sec-proxy-object-internal-methods-and-internal-slots"></emu-xref>.
+        1. If IsCallable(_target_) is *true*, then
+          1. Set _proxy_.[[Call]] as specified in <emu-xref href="#sec-proxy-object-internal-methods-and-internal-slots-call-thisargument-argumentslist"></emu-xref>.
+          1. If IsConstructor(_target_) is *true*, then
+            1. Set _proxy_.[[Construct]] as specified in <emu-xref href="#sec-proxy-object-internal-methods-and-internal-slots-construct-argumentslist-newtarget"></emu-xref>.
+        1. Set _proxy_.[[ProxyTarget]] to _target_.
+        1. Set _proxy_.[[ProxyHandler]] to _handler_.
+        1. Return _proxy_.
+      </emu-alg>
+    </emu-clause>

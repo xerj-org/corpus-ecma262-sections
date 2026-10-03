@@ -1,0 +1,15 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.13 %TypedArray%.prototype.findLast ( _predicate_ [ , _thisArg_ ] ) [id: sec-%typedarray%.prototype.findlast]
+
+<emu-clause id="sec-%typedarray%.prototype.findlast" type="built-in function">
+        <h1>%TypedArray%.prototype.findLast ( _predicate_ [ , _thisArg_ ] )</h1>
+        <p>The interpretation and use of the arguments of this method are the same as for `Array.prototype.findLast` as defined in <emu-xref href="#sec-array.prototype.findlast"></emu-xref>.</p>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Let _taRecord_ be ? ValidateTypedArray(_obj_, ~seq-cst~).
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. Let _findRecord_ be ? FindViaPredicate(_obj_, _length_, ~descending~, _predicate_, _thisArg_).
+          1. Return _findRecord_.[[Value]].
+        </emu-alg>
+        <p>This method is not generic. The *this* value must be an object with a [[TypedArrayName]] internal slot.</p>
+      </emu-clause>

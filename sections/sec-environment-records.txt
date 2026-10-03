@@ -1,0 +1,12 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records [id: sec-environment-records]
+
+<emu-clause id="sec-environment-records" oldids="sec-lexical-environments">
+    <h1>Environment Records</h1>
+    <p><dfn variants="Environment Records">Environment Record</dfn> is a specification type used to define the association of |Identifier|s to specific variables and functions, based upon the lexical nesting structure of ECMAScript code. Usually an Environment Record is associated with some specific syntactic structure of ECMAScript code such as a |FunctionDeclaration|, a |BlockStatement|, or a |Catch| clause of a |TryStatement|. Each time such code is evaluated, a new Environment Record is created to record the identifier bindings that are created by that code.</p>
+    <p>Every Environment Record has an [[OuterEnv]] field, which is either *null* or a reference to an outer Environment Record. This is used to model the logical nesting of Environment Records. The outer reference of an (inner) Environment Record is a reference to the Environment Record that logically surrounds the inner Environment Record. An outer Environment Record may, of course, have its own outer Environment Record. An Environment Record may serve as the outer environment for multiple inner Environment Records. For example, if a |FunctionDeclaration| contains two nested |FunctionDeclaration|s then the Environment Records of each of the nested functions will have as their outer Environment Record the Environment Record of the current evaluation of the surrounding function.</p>
+    <p>Environment Records are purely specification mechanisms and need not correspond to any specific artefact of an ECMAScript implementation. It is impossible for an ECMAScript program to directly access or manipulate such values.</p>
+
+    
+
+    
+  </emu-clause>

@@ -1,0 +1,10 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.4 Properties of the SharedArrayBuffer Constructor > 25.2.4.2 get SharedArrayBuffer [ %Symbol.species% ] [id: sec-sharedarraybuffer-%symbol.species%]
+
+<emu-clause oldids="sec-sharedarraybuffer-@@species" id="sec-sharedarraybuffer-%symbol.species%" type="built-in function">
+        <h1>get SharedArrayBuffer [ %Symbol.species% ]</h1>
+        <p>`SharedArrayBuffer[%Symbol.species%]` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Return the *this* value.
+        </emu-alg>
+        <p>The value of the *"name"* property of this function is *"get [Symbol.species]"*.</p>
+      </emu-clause>

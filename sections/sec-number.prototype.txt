@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.2 Properties of the Number Constructor > 21.1.2.15 Number.prototype [id: sec-number.prototype]
+
+<emu-clause id="sec-number.prototype">
+        <h1>Number.prototype</h1>
+        <p>The initial value of `Number.prototype` is the Number prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

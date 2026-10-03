@@ -1,0 +1,16 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.1 Abstract Operations For Set Objects > 24.2.1.3 SetDataHas ( _setData_: a List of either ECMAScript language values or ~empty~, _value_: an ECMAScript language value, ): a Boolean [id: sec-setdatahas]
+
+<emu-clause id="sec-setdatahas" type="abstract operation">
+        <h1>
+          SetDataHas (
+            _setData_: a List of either ECMAScript language values or ~empty~,
+            _value_: an ECMAScript language value,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If SetDataIndex(_setData_, _value_) is ~not-found~, return *false*.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

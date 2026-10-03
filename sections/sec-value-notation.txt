@@ -1,0 +1,6 @@
+ECMA-262 > 5 Notational Conventions > 5.2 Algorithm Conventions > 5.2.7 Value Notation [id: sec-value-notation]
+
+<emu-clause id="sec-value-notation">
+      <h1>Value Notation</h1>
+      <p>In this specification, ECMAScript language values are displayed in *bold*. Examples include *null*, *true*, or *"hello"*. These are distinguished from ECMAScript source text such as `Function.prototype.apply` or `let n = 42;`.</p>
+    </emu-clause>

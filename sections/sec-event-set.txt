@@ -1,0 +1,18 @@
+ECMA-262 > 29 Memory Model > 29.5 Abstract Operations for the Memory Model > 29.5.1 EventSet ( _execution_: a candidate execution, ): a Set of Memory events [id: sec-event-set]
+
+<emu-clause id="sec-event-set" type="abstract operation">
+      <h1>
+        EventSet (
+          _execution_: a candidate execution,
+        ): a Set of Memory events
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _events_ be an empty Set.
+        1. For each Agent Events Record _eventsRecord_ of _execution_.[[EventsRecords]], do
+          1. For each Memory event _event_ of _eventsRecord_.[[EventList]], do
+            1. Add _event_ to _events_.
+        1. Return _events_.
+      </emu-alg>
+    </emu-clause>

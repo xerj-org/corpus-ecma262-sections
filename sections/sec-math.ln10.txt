@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.1 Value Properties of the Math Object > 21.3.1.2 Math.LN10 [id: sec-math.ln10]
+
+<emu-clause id="sec-math.ln10">
+        <h1>Math.LN10</h1>
+        <p>The Number value for the natural logarithm of 10, which is approximately 2.302585092994046.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

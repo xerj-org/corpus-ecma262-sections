@@ -1,0 +1,16 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.4 Properties of the Set Prototype Object > 24.2.4.1 Set.prototype.add ( _value_ ) [id: sec-set.prototype.add]
+
+<emu-clause id="sec-set.prototype.add" type="built-in function">
+        <h1>Set.prototype.add ( _value_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _set_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_set_, [[SetData]]).
+          1. Set _value_ to CanonicalizeKeyedCollectionKey(_value_).
+          1. For each element _entry_ of _set_.[[SetData]], do
+            1. If _entry_ is not ~empty~ and SameValue(_entry_, _value_) is *true*, then
+              1. Return _set_.
+          1. Append _value_ to _set_.[[SetData]].
+          1. Return _set_.
+        </emu-alg>
+      </emu-clause>

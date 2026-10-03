@@ -1,0 +1,22 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.2 Environment Record Operations > 9.1.2.5 NewGlobalEnvironment ( _obj_: an Object, _thisValue_: an Object, ): a Global Environment Record [id: sec-newglobalenvironment]
+
+<emu-clause id="sec-newglobalenvironment" type="abstract operation">
+        <h1>
+          NewGlobalEnvironment (
+            _obj_: an Object,
+            _thisValue_: an Object,
+          ): a Global Environment Record
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _objRecord_ be NewObjectEnvironment(_obj_, *false*, *null*).
+          1. Let _declRecord_ be NewDeclarativeEnvironment(*null*).
+          1. Let _envRecord_ be a new Global Environment Record.
+          1. Set _envRecord_.[[ObjectRecord]] to _objRecord_.
+          1. Set _envRecord_.[[GlobalThisValue]] to _thisValue_.
+          1. Set _envRecord_.[[DeclarativeRecord]] to _declRecord_.
+          1. Set _envRecord_.[[OuterEnv]] to *null*.
+          1. Return _envRecord_.
+        </emu-alg>
+      </emu-clause>

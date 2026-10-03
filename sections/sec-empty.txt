@@ -1,0 +1,6 @@
+ECMA-262 > 5 Notational Conventions > 5.1 Syntactic and Lexical Grammars > 5.1.5 Grammar Notation > 5.1.5.6 [empty] [id: sec-empty]
+
+<emu-clause id="sec-empty">
+        <h1>[empty]</h1>
+        <p>If the phrase “[empty]” appears as the right-hand side of a production, it indicates that the production's right-hand side contains no terminals or nonterminals.</p>
+      </emu-clause>

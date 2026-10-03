@@ -1,0 +1,8 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.2 Fixed-length and Resizable ArrayBuffer Objects [id: sec-fixed-length-and-resizable-arraybuffer-objects]
+
+<emu-clause id="sec-fixed-length-and-resizable-arraybuffer-objects">
+      <h1>Fixed-length and Resizable ArrayBuffer Objects</h1>
+      <p>A <dfn>fixed-length ArrayBuffer</dfn> is an ArrayBuffer whose byte length cannot change after creation.</p>
+      <p>A <dfn>resizable ArrayBuffer</dfn> is an ArrayBuffer whose byte length may change after creation via calls to <emu-xref href="#sec-arraybuffer.prototype.resize" title></emu-xref>.</p>
+      <p>The kind of ArrayBuffer object that is created depends on the arguments passed to <emu-xref href="#sec-arraybuffer-length" title></emu-xref>.</p>
+    </emu-clause>

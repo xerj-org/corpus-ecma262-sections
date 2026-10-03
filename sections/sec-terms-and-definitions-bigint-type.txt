@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.29 BigInt type [id: sec-terms-and-definitions-bigint-type]
+
+<emu-clause id="sec-terms-and-definitions-bigint-type">
+      <h1>BigInt type</h1>
+      <p>set of all possible BigInt values</p>
+    </emu-clause>

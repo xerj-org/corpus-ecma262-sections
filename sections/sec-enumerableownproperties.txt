@@ -1,0 +1,31 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.23 EnumerableOwnProperties ( _obj_: an Object, _kind_: ~key~, ~value~, or ~key+value~, ): either a normal completion containing a List of ECMAScript language values or a throw completion [id: sec-enumerableownproperties]
+
+<emu-clause id="sec-enumerableownproperties" type="abstract operation" oldids="sec-enumerableownpropertynames">
+      <h1>
+        EnumerableOwnProperties (
+          _obj_: an Object,
+          _kind_: ~key~, ~value~, or ~key+value~,
+        ): either a normal completion containing a List of ECMAScript language values or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _ownKeys_ be ? <emu-meta effects="user-code">_obj_.[[OwnPropertyKeys]]()</emu-meta>.
+        1. Let _results_ be a new empty List.
+        1. For each element _key_ of _ownKeys_, do
+          1. If _key_ is a String, then
+            1. Let _propertyDesc_ be ? <emu-meta effects="user-code">_obj_.[[GetOwnProperty]](_key_)</emu-meta>.
+            1. If _propertyDesc_ is not *undefined* and _propertyDesc_.[[Enumerable]] is *true*, then
+              1. If _kind_ is ~key~, then
+                1. Append _key_ to _results_.
+              1. Else,
+                1. Let _value_ be ? Get(_obj_, _key_).
+                1. If _kind_ is ~value~, then
+                  1. Append _value_ to _results_.
+                1. Else,
+                  1. Assert: _kind_ is ~key+value~.
+                  1. Let _entry_ be CreateArrayFromList(« _key_, _value_ »).
+                  1. Append _entry_ to _results_.
+        1. Return _results_.
+      </emu-alg>
+    </emu-clause>

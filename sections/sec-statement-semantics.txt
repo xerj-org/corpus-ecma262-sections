@@ -1,0 +1,7 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.1 Statement Semantics [id: sec-statement-semantics]
+
+<emu-clause id="sec-statement-semantics">
+    <h1>Statement Semantics</h1>
+
+    
+  </emu-clause>

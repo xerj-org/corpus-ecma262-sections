@@ -1,0 +1,15 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.5 The Reference Record Specification Type > 6.2.5.4 IsPrivateReference ( _refRecord_: a Reference Record, ): a Boolean [id: sec-isprivatereference]
+
+<emu-clause id="sec-isprivatereference" type="abstract operation">
+        <h1>
+          IsPrivateReference (
+            _refRecord_: a Reference Record,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _refRecord_.[[ReferencedName]] is a Private Name, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

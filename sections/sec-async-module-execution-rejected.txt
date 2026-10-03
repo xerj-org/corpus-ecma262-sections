@@ -1,0 +1,30 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.6 Cyclic Module Records > 16.2.1.6.1 Implementation of Module Record Abstract Methods > 16.2.1.6.1.3 Evaluate ( ): a Promise > 16.2.1.6.1.3.5 AsyncModuleExecutionRejected ( _module_: a Cyclic Module Record, _error_: an ECMAScript language value, ): ~unused~ [id: sec-async-module-execution-rejected]
+
+<emu-clause id="sec-async-module-execution-rejected" type="abstract operation">
+              <h1>
+                AsyncModuleExecutionRejected (
+                  _module_: a Cyclic Module Record,
+                  _error_: an ECMAScript language value,
+                ): ~unused~
+              </h1>
+              <dl class="header">
+              </dl>
+              <emu-alg>
+                1. If _module_.[[Status]] is ~evaluated~, then
+                  1. Assert: _module_.[[EvaluationError]] is not ~empty~.
+                  1. Return ~unused~.
+                1. Assert: _module_.[[Status]] is ~evaluating-async~.
+                1. Assert: _module_.[[AsyncEvaluationOrder]] is an integer.
+                1. Assert: _module_.[[EvaluationError]] is ~empty~.
+                1. Set _module_.[[EvaluationError]] to ThrowCompletion(_error_).
+                1. Set _module_.[[Status]] to ~evaluated~.
+                1. Set _module_.[[AsyncEvaluationOrder]] to ~done~.
+                1. NOTE: _module_.[[AsyncEvaluationOrder]] is set to ~done~ for symmetry with AsyncModuleExecutionFulfilled. In InnerModuleEvaluation, the value of a module's [[AsyncEvaluationOrder]] internal slot is unused when its [[EvaluationError]] internal slot is not ~empty~.
+                1. If _module_.[[TopLevelCapability]] is not ~empty~, then
+                  1. Assert: _module_.[[CycleRoot]] and _module_ are the same Module Record.
+                  1. Perform ! Call(_module_.[[TopLevelCapability]].[[Reject]], *undefined*, « _error_ »).
+                1. For each Cyclic Module Record _ancestorModule_ of _module_.[[AsyncParentModules]], do
+                  1. Perform AsyncModuleExecutionRejected(_ancestorModule_, _error_).
+                1. Return ~unused~.
+              </emu-alg>
+            </emu-clause>

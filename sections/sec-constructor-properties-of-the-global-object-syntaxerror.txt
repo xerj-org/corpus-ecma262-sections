@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.36 SyntaxError ( . . . ) [id: sec-constructor-properties-of-the-global-object-syntaxerror]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-syntaxerror">
+      <h1>SyntaxError ( . . . )</h1>
+      <p>See <emu-xref href="#sec-native-error-types-used-in-this-standard-syntaxerror"></emu-xref>.</p>
+    </emu-clause>

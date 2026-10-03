@@ -1,0 +1,13 @@
+ECMA-262 > 28 Reflection > 28.2 Proxy Objects > 28.2.2 Properties of the Proxy Constructor [id: sec-properties-of-the-proxy-constructor]
+
+<emu-clause id="sec-properties-of-the-proxy-constructor">
+      <h1>Properties of the Proxy Constructor</h1>
+      <p>The Proxy constructor:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li>does not have a *"prototype"* property because Proxy objects do not have a [[Prototype]] internal slot that requires initialization.</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+    </emu-clause>

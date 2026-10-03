@@ -1,0 +1,18 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.4 Update Expressions > 13.4.3 Postfix Decrement Operator > 13.4.3.1 Runtime Semantics: Evaluation [id: sec-postfix-decrement-operator-runtime-semantics-evaluation]
+
+<emu-clause id="sec-postfix-decrement-operator-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>UpdateExpression : LeftHandSideExpression `--`</emu-grammar>
+        <emu-alg>
+          1. Let _lhs_ be ? Evaluation of |LeftHandSideExpression|.
+          1. If the AssignmentTargetType of |LeftHandSideExpression| is ~web-compat~, throw a *ReferenceError* exception.
+          1. Let _oldValue_ be ? ToNumeric(? GetValue(_lhs_)).
+          1. If _oldValue_ is a Number, then
+            1. Let _newValue_ be Number::subtract(_oldValue_, *1*<sub>𝔽</sub>).
+          1. Else,
+            1. Assert: _oldValue_ is a BigInt.
+            1. Let _newValue_ be BigInt::subtract(_oldValue_, *1*<sub>ℤ</sub>).
+          1. Perform ? PutValue(_lhs_, _newValue_).
+          1. Return _oldValue_.
+        </emu-alg>
+      </emu-clause>

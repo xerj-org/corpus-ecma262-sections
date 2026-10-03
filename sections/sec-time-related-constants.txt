@@ -1,0 +1,19 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.2 Time-related Constants [id: sec-time-related-constants]
+
+<emu-clause id="sec-time-related-constants">
+        <h1>Time-related Constants</h1>
+        <p>These constants are referenced by algorithms in the following sections.</p>
+        <emu-eqn id="eqn-HoursPerDay" aoid="HoursPerDay">HoursPerDay = 24</emu-eqn>
+        <emu-eqn id="eqn-MinutesPerHour" aoid="MinutesPerHour">MinutesPerHour = 60</emu-eqn>
+        <emu-eqn id="eqn-SecondsPerMinute" aoid="SecondsPerMinute">SecondsPerMinute = 60</emu-eqn>
+        <emu-eqn id="eqn-MillisecondsPerSecond" oldids="eqn-msPerSecond" aoid="MillisecondsPerSecond">MillisecondsPerSecond = 1000</emu-eqn>
+        <emu-eqn id="eqn-MillisecondsPerMinute" oldids="eqn-msPerMinute" aoid="MillisecondsPerMinute">MillisecondsPerMinute = 60000 = MillisecondsPerSecond × SecondsPerMinute</emu-eqn>
+        <emu-eqn id="eqn-MillisecondsPerHour" oldids="eqn-msPerHour" aoid="MillisecondsPerHour">MillisecondsPerHour = 3600000 = MillisecondsPerMinute × MinutesPerHour</emu-eqn>
+        <emu-eqn id="eqn-MillisecondsPerDay" oldids="eqn-msPerDay" aoid="MillisecondsPerDay">MillisecondsPerDay = 86400000 = MillisecondsPerHour × HoursPerDay</emu-eqn>
+        <emu-eqn id="eqn-NanosecondsPerDay" aoid="NanosecondsPerDay">NanosecondsPerDay = 10<sup>6</sup> × MillisecondsPerDay = 8.64 × 10<sup>13</sup></emu-eqn>
+        <emu-eqn id="eqn-NanosecondsPerSecond" oldids="eqn-nsPerSecond" aoid="NanosecondsPerSecond">NanosecondsPerSecond = 10<sup>6</sup> × MillisecondsPerSecond = 10<sup>9</sup></emu-eqn>
+        <emu-eqn id="eqn-NanosecondsPerMillisecond" oldids="eqn-nsPerMillisecond" aoid="NanosecondsPerMillisecond">NanosecondsPerMillisecond = 10<sup>6</sup></emu-eqn>
+        <emu-eqn id="eqn-NanosecondsPerMicrosecond" oldids="eqn-nsPerMicrosecond" aoid="NanosecondsPerMicrosecond">NanosecondsPerMicrosecond = 10<sup>3</sup></emu-eqn>
+        <emu-eqn id="eqn-MaxEpochNanoseconds" aoid="MaxEpochNanoseconds">MaxEpochNanoseconds = 10<sup>8</sup> × NanosecondsPerDay = 8.64 × 10<sup>21</sup></emu-eqn>
+        <emu-eqn id="eqn-MinEpochNanoseconds" aoid="MinEpochNanoseconds">MinEpochNanoseconds = -MaxEpochNanoseconds = -8.64 × 10<sup>21</sup></emu-eqn>
+      </emu-clause>

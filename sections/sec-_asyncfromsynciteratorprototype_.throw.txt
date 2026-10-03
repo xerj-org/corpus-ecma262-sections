@@ -1,0 +1,34 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.5 Async-from-Sync Iterator Objects > 27.1.5.2 The %AsyncFromSyncIteratorPrototype% Object > 27.1.5.2.3 %AsyncFromSyncIteratorPrototype%.throw ( [ _value_ ] ) [id: sec-%asyncfromsynciteratorprototype%.throw]
+
+<emu-clause id="sec-%asyncfromsynciteratorprototype%.throw" type="built-in function">
+          <h1>%AsyncFromSyncIteratorPrototype%.throw ( [ _value_ ] )</h1>
+          <emu-note>In this specification, _value_ is always provided, but is left optional for consistency with <emu-xref title href="#sec-%asyncfromsynciteratorprototype%.return"></emu-xref>.</emu-note>
+
+          <emu-alg>
+            1. Let _obj_ be the *this* value.
+            1. Assert: _obj_ is an Object that has a [[SyncIteratorRecord]] internal slot.
+            1. Let _promiseCapability_ be ! NewPromiseCapability(%Promise%).
+            1. Let _syncIteratorRecord_ be _obj_.[[SyncIteratorRecord]].
+            1. Let _syncIterator_ be _syncIteratorRecord_.[[Iterator]].
+            1. Let _throw_ be Completion(GetMethod(_syncIterator_, *"throw"*)).
+            1. IfAbruptRejectPromise(_throw_, _promiseCapability_).
+            1. If _throw_ is *undefined*, then
+              1. NOTE: If _syncIterator_ does not have a `throw` method, close it to give it a chance to clean up before we reject the capability.
+              1. Let _closeCompletion_ be NormalCompletion(~empty~).
+              1. Let _result_ be Completion(IteratorClose(_syncIteratorRecord_, _closeCompletion_)).
+              1. IfAbruptRejectPromise(_result_, _promiseCapability_).
+              1. NOTE: The next step throws a *TypeError* to indicate that there was a protocol violation: _syncIterator_ does not have a `throw` method.
+              1. NOTE: If closing _syncIterator_ does not throw then the result of that operation is ignored, even if it yields a rejected promise.
+              1. Perform ! Call(_promiseCapability_.[[Reject]], *undefined*, « a newly created *TypeError* object »).
+              1. Return _promiseCapability_.[[Promise]].
+            1. If _value_ is present, then
+              1. Let _result_ be Completion(Call(_throw_, _syncIterator_, « _value_ »)).
+            1. Else,
+              1. Let _result_ be Completion(Call(_throw_, _syncIterator_)).
+            1. IfAbruptRejectPromise(_result_, _promiseCapability_).
+            1. If _result_ is not an Object, then
+              1. Perform ! Call(_promiseCapability_.[[Reject]], *undefined*, « a newly created *TypeError* object »).
+              1. Return _promiseCapability_.[[Promise]].
+            1. Return AsyncFromSyncIteratorContinuation(_result_, _promiseCapability_, _syncIteratorRecord_, *true*).
+          </emu-alg>
+        </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.3 Other Additional Features > B.3.8 Non-default behaviour in HostEnsureCanAddPrivateElement [id: sec-web-compat-host-ensure-can-add-private-field]
+
+<emu-annex id="sec-web-compat-host-ensure-can-add-private-field">
+      <h1>Non-default behaviour in HostEnsureCanAddPrivateElement</h1>
+      <p>The HostEnsureCanAddPrivateElement abstract operation allows hosts which are web browsers to specify non-default behaviour.</p>
+    </emu-annex>

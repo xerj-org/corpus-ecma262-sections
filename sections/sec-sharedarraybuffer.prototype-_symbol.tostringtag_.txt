@@ -1,0 +1,7 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.5 Properties of the SharedArrayBuffer Prototype Object > 25.2.5.7 SharedArrayBuffer.prototype [ %Symbol.toStringTag% ] [id: sec-sharedarraybuffer.prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-sharedarraybuffer.prototype.toString,sec-sharedarraybuffer.prototype-@@tostringtag" id="sec-sharedarraybuffer.prototype-%symbol.tostringtag%">
+        <h1>SharedArrayBuffer.prototype [ %Symbol.toStringTag% ]</h1>
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"SharedArrayBuffer"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

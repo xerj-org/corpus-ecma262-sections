@@ -1,0 +1,6 @@
+ECMA-262 > 24 Keyed Collections > 24.4 WeakSet Objects > 24.4.4 Properties of WeakSet Instances [id: sec-properties-of-weakset-instances]
+
+<emu-clause id="sec-properties-of-weakset-instances">
+      <h1>Properties of WeakSet Instances</h1>
+      <p>WeakSet instances are ordinary objects that inherit properties from the WeakSet prototype object. WeakSet instances also have a [[WeakSetData]] internal slot.</p>
+    </emu-clause>

@@ -1,0 +1,88 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object [id: sec-properties-of-the-%typedarrayprototype%-object]
+
+<emu-clause id="sec-properties-of-the-%typedarrayprototype%-object">
+      <h1>Properties of the %TypedArray% Prototype Object</h1>
+      <p>The <dfn>%TypedArray% prototype object</dfn>:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Object.prototype%.</li>
+        <li>is <dfn>%TypedArray.prototype%</dfn>.</li>
+        <li>is an ordinary object.</li>
+        <li>does not have a [[ViewedArrayBuffer]] or any other of the internal slots that are specific to _TypedArray_ instance objects.</li>
+      </ul>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

@@ -1,0 +1,16 @@
+ECMA-262 > 7 Abstract Operations > 7.5 Operations on Disposable Objects [id: sec-operations-on-disposable-objects]
+
+<emu-clause id="sec-operations-on-disposable-objects">
+    <h1>Operations on Disposable Objects</h1>
+    <p>See Common Resource Management Interfaces (<emu-xref href="#sec-common-resource-management-interfaces"></emu-xref>).</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

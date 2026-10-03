@@ -1,0 +1,22 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.4 Method Definitions > 15.4.3 Static Semantics: SpecialMethod ( ): a Boolean [id: sec-static-semantics-specialmethod]
+
+<emu-clause id="sec-static-semantics-specialmethod" type="sdo">
+      <h1>Static Semantics: SpecialMethod ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>MethodDefinition : ClassElementName `(` UniqueFormalParameters `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        MethodDefinition :
+          GeneratorMethod
+          AsyncMethod
+          AsyncGeneratorMethod
+          `get` ClassElementName `(` `)` `{` FunctionBody `}`
+          `set` ClassElementName `(` PropertySetParameterList `)` `{` FunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return *true*.
+      </emu-alg>
+    </emu-clause>

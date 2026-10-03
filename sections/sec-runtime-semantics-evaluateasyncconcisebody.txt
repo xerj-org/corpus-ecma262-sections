@@ -1,0 +1,24 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.9 Async Arrow Function Definitions > 15.9.3 Runtime Semantics: EvaluateAsyncConciseBody ( _funcObj_: an ECMAScript function object, _argList_: a List of ECMAScript language values, ): a return completion [id: sec-runtime-semantics-evaluateasyncconcisebody]
+
+<emu-clause id="sec-runtime-semantics-evaluateasyncconcisebody" oldids="sec-async-arrow-function-definitions-EvaluateBody" type="sdo">
+      <h1>
+        Runtime Semantics: EvaluateAsyncConciseBody (
+          _funcObj_: an ECMAScript function object,
+          _argList_: a List of ECMAScript language values,
+        ): a return completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>
+        AsyncConciseBody : ExpressionBody
+      </emu-grammar>
+      <emu-alg>
+        1. Let _promiseCapability_ be ! NewPromiseCapability(%Promise%).
+        1. Let _completion_ be Completion(FunctionDeclarationInstantiation(_funcObj_, _argList_)).
+        1. If _completion_ is an abrupt completion, then
+          1. Perform ! Call(_promiseCapability_.[[Reject]], *undefined*, « _completion_.[[Value]] »).
+        1. Else,
+          1. Perform AsyncFunctionStart(_promiseCapability_, |ExpressionBody|).
+        1. Return ReturnCompletion(_promiseCapability_.[[Promise]]).
+      </emu-alg>
+    </emu-clause>

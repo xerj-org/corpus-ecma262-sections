@@ -1,0 +1,18 @@
+ECMA-262 > D Host Layering Points [id: sec-host-layering-points]
+
+<emu-annex id="sec-host-layering-points">
+  <h1>Host Layering Points</h1>
+  <p>See <emu-xref href="#sec-hosts-and-implementations"></emu-xref> for the definition of host.</p>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</emu-annex>

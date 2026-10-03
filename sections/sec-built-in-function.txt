@@ -1,0 +1,9 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.35 built-in function [id: sec-built-in-function]
+
+<emu-clause id="sec-built-in-function">
+      <h1>built-in function</h1>
+      <p>built-in object that is a function</p>
+      <emu-note>
+        <p>Examples of built-in functions include `parseInt` and `Math.exp`. A host or implementation may provide additional built-in functions that are not described in this specification.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,22 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.7 Class Definitions > 15.7.11 Runtime Semantics: ClassStaticBlockDefinitionEvaluation ( _homeObj_: an Object, ): a ClassStaticBlockDefinition Record [id: sec-runtime-semantics-classstaticblockdefinitionevaluation]
+
+<emu-clause id="sec-runtime-semantics-classstaticblockdefinitionevaluation" type="sdo">
+      <h1>
+        Runtime Semantics: ClassStaticBlockDefinitionEvaluation (
+          _homeObj_: an Object,
+        ): a ClassStaticBlockDefinition Record
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>ClassStaticBlock : `static` `{` ClassStaticBlockBody `}`</emu-grammar>
+      <emu-alg>
+        1. Let _lexicalEnv_ be the running execution context's LexicalEnvironment.
+        1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+        1. Let _sourceText_ be the empty sequence of Unicode code points.
+        1. Let _formalParams_ be an instance of the production <emu-grammar>FormalParameters : [empty]</emu-grammar>.
+        1. [id="step-synthetic-class-static-block-fn"] Let _bodyFunc_ be OrdinaryFunctionCreate(%Function.prototype%, _sourceText_, _formalParams_, |ClassStaticBlockBody|, ~non-lexical-this~, _lexicalEnv_, _privateEnv_).
+        1. Perform MakeMethod(_bodyFunc_, _homeObj_).
+        1. Return the ClassStaticBlockDefinition Record { [[BodyFunction]]: _bodyFunc_ }.
+      </emu-alg>
+      <emu-note>The function _bodyFunc_ is never directly accessible to ECMAScript code.</emu-note>
+    </emu-clause>

@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.2 Properties of the Symbol Constructor > 20.4.2.11 Symbol.prototype [id: sec-symbol.prototype]
+
+<emu-clause id="sec-symbol.prototype">
+        <h1>Symbol.prototype</h1>
+        <p>The initial value of `Symbol.prototype` is the Symbol prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

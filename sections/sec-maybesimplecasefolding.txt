@@ -1,0 +1,24 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.9 Runtime Semantics: CompileToCharSet ( _regexpRecord_: a RegExp Record, ): a CharSet > 22.2.2.9.5 MaybeSimpleCaseFolding ( _regexpRecord_: a RegExp Record, _charSet_: a CharSet, ): a CharSet [id: sec-maybesimplecasefolding]
+
+<emu-clause id="sec-maybesimplecasefolding" type="abstract operation">
+          <h1>
+            MaybeSimpleCaseFolding (
+              _regexpRecord_: a RegExp Record,
+              _charSet_: a CharSet,
+            ): a CharSet
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>If _regexpRecord_.[[UnicodeSets]] is *false* or _regexpRecord_.[[IgnoreCase]] is *false*, it returns _charSet_. Otherwise, it uses the <a href="https://www.unicode.org/reports/tr44/#Simple_Case_Folding">Simple Case Folding</a> (<emu-eqn id="eqn-scf" aoid="scf">scf(_codePoint_)</emu-eqn>) definitions in the file <a href="https://unicode.org/Public/UCD/latest/ucd/CaseFolding.txt"><code>CaseFolding.txt</code></a> of the Unicode Character Database (each of which maps a single code point to another single code point) to map each CharSetElement of _charSet_ character-by-character into a canonical form and returns the resulting CharSet.</dd>
+          </dl>
+          <emu-alg>
+            1. If _regexpRecord_.[[UnicodeSets]] is *false* or _regexpRecord_.[[IgnoreCase]] is *false*, return _charSet_.
+            1. Let _otherSet_ be a new empty CharSet.
+            1. For each CharSetElement _s_ of _charSet_, do
+              1. Let _t_ be an empty sequence of characters.
+              1. For each single code point _codePoint_ of _s_, do
+                1. Append scf(_codePoint_) to _t_.
+              1. Add _t_ to _otherSet_.
+            1. Return _otherSet_.
+          </emu-alg>
+        </emu-clause>

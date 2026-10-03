@@ -1,0 +1,31 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.14 IsTypedArrayOutOfBounds ( _taRecord_: a TypedArray With Buffer Witness Record, ): a Boolean [id: sec-istypedarrayoutofbounds]
+
+<emu-clause id="sec-istypedarrayoutofbounds" oldids="sec-isintegerindexedobjectoutofbounds" type="abstract operation">
+        <h1>
+          IsTypedArrayOutOfBounds (
+            _taRecord_: a TypedArray With Buffer Witness Record,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It checks if any of the object's numeric properties reference a value at an index not contained within the underlying buffer's bounds.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _obj_ be _taRecord_.[[Object]].
+          1. Let _bufferByteLength_ be _taRecord_.[[CachedBufferByteLength]].
+          1. If IsDetachedBuffer(_obj_.[[ViewedArrayBuffer]]) is *true*, then
+            1. Assert: _bufferByteLength_ is ~detached~.
+            1. Return *true*.
+          1. Assert: _bufferByteLength_ is a non-negative integer.
+          1. Let _byteOffsetStart_ be _obj_.[[ByteOffset]].
+          1. If _obj_.[[ArrayLength]] is ~auto~, then
+            1. Let _byteOffsetEnd_ be _bufferByteLength_.
+          1. Else,
+            1. Let _elementSize_ be TypedArrayElementSize(_obj_).
+            1. Let _arrayByteLength_ be _obj_.[[ArrayLength]] × _elementSize_.
+            1. Let _byteOffsetEnd_ be _byteOffsetStart_ + _arrayByteLength_.
+          1. NOTE: A 0-length TypedArray whose [[ByteOffset]] is _bufferByteLength_ is not considered out-of-bounds.
+          1. If _byteOffsetStart_ > _bufferByteLength_ or _byteOffsetEnd_ > _bufferByteLength_, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

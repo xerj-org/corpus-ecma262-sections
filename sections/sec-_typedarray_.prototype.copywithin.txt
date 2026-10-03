@@ -1,0 +1,42 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.6 %TypedArray%.prototype.copyWithin ( _target_, _start_ [ , _end_ ] ) [id: sec-%typedarray%.prototype.copywithin]
+
+<emu-clause id="sec-%typedarray%.prototype.copywithin" type="built-in function">
+        <h1>%TypedArray%.prototype.copyWithin ( _target_, _start_ [ , _end_ ] )</h1>
+        <p>The interpretation and use of the arguments of this method are the same as for `Array.prototype.copyWithin` as defined in <emu-xref href="#sec-array.prototype.copywithin"></emu-xref>.</p>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Let _taRecord_ be ? ValidateTypedArray(_obj_, ~seq-cst~).
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. Let _targetIndex_ be ? ToClampedIndex(_target_, _length_).
+          1. Let _startIndex_ be ? ToClampedIndex(_start_, _length_).
+          1. If _end_ is *undefined*, let _endIndex_ be _length_; else let _endIndex_ be ? ToClampedIndex(_end_, _length_).
+          1. Let _count_ be min(_endIndex_ - _startIndex_, _length_ - _targetIndex_).
+          1. If _count_ > 0, then
+            1. NOTE: The copying must be performed in a manner that preserves the bit-level encoding of the source data.
+            1. Let _buffer_ be _obj_.[[ViewedArrayBuffer]].
+            1. Set _taRecord_ to ? ValidateTypedArrayBounds(_obj_, ~seq-cst~).
+            1. Set _length_ to TypedArrayLength(_taRecord_).
+            1. NOTE: Side-effects of the above steps may have reduced the size of _obj_, in which case copying should proceed with the longest still-applicable prefix.
+            1. Set _count_ to min(_count_, _length_ - _startIndex_, _length_ - _targetIndex_).
+            1. Let _elementSize_ be TypedArrayElementSize(_obj_).
+            1. Let _byteOffset_ be _obj_.[[ByteOffset]].
+            1. Let _toByteIndex_ be (_targetIndex_ × _elementSize_) + _byteOffset_.
+            1. Let _fromByteIndex_ be (_startIndex_ × _elementSize_) + _byteOffset_.
+            1. Let _countBytes_ be _count_ × _elementSize_.
+            1. If _fromByteIndex_ &lt; _toByteIndex_ and _toByteIndex_ &lt; _fromByteIndex_ + _countBytes_, then
+              1. Let _direction_ be -1.
+              1. Set _fromByteIndex_ to _fromByteIndex_ + _countBytes_ - 1.
+              1. Set _toByteIndex_ to _toByteIndex_ + _countBytes_ - 1.
+            1. Else,
+              1. Let _direction_ be 1.
+            1. Repeat, while _countBytes_ > 0,
+              1. Assert: _fromByteIndex_ ≥ 0 and _toByteIndex_ ≥ 0.
+              1. Let _value_ be GetValueFromBuffer(_buffer_, _fromByteIndex_, ~uint8~, *true*, ~unordered~).
+              1. Perform SetValueInBuffer(_buffer_, _toByteIndex_, ~uint8~, _value_, *true*, ~unordered~).
+              1. Set _fromByteIndex_ to _fromByteIndex_ + _direction_.
+              1. Set _toByteIndex_ to _toByteIndex_ + _direction_.
+              1. Set _countBytes_ to _countBytes_ - 1.
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

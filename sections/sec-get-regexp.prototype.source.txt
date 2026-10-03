@@ -1,0 +1,19 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.6 Properties of the RegExp Prototype Object > 22.2.6.13 get RegExp.prototype.source [id: sec-get-regexp.prototype.source]
+
+<emu-clause id="sec-get-regexp.prototype.source" type="built-in function">
+        <h1>get RegExp.prototype.source</h1>
+        <p>`RegExp.prototype.source` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _regexp_ be the *this* value.
+          1. If _regexp_ is not an Object, throw a *TypeError* exception.
+          1. If _regexp_ does not have an [[OriginalSource]] internal slot, then
+            1. If SameValue(_regexp_, %RegExp.prototype%) is *true*, return *"(?:)"*.
+            1. Throw a *TypeError* exception.
+          1. Assert: _regexp_ has an [[OriginalFlags]] internal slot.
+          1. Let _source_ be _regexp_.[[OriginalSource]].
+          1. Let _flags_ be _regexp_.[[OriginalFlags]].
+          1. Return EscapeRegExpPattern(_source_, _flags_).
+        </emu-alg>
+
+        
+      </emu-clause>

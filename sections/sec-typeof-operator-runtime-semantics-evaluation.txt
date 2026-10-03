@@ -1,0 +1,24 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.5 Unary Operators > 13.5.3 The `typeof` Operator > 13.5.3.1 Runtime Semantics: Evaluation [id: sec-typeof-operator-runtime-semantics-evaluation]
+
+<emu-clause id="sec-typeof-operator-runtime-semantics-evaluation" oldids="table-typeof-operator-results,sec-IsHTMLDDA-internal-slot-typeof" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>UnaryExpression : `typeof` UnaryExpression</emu-grammar>
+        <emu-alg>
+          1. Let _value_ be ? Evaluation of |UnaryExpression|.
+          1. If _value_ is a Reference Record, then
+            1. If IsUnresolvableReference(_value_) is *true*, return *"undefined"*.
+          1. Set _value_ to ? GetValue(_value_).
+          1. If _value_ is *undefined*, return *"undefined"*.
+          1. If _value_ is *null*, return *"object"*.
+          1. If _value_ is a String, return *"string"*.
+          1. If _value_ is a Symbol, return *"symbol"*.
+          1. If _value_ is a Boolean, return *"boolean"*.
+          1. If _value_ is a Number, return *"number"*.
+          1. If _value_ is a BigInt, return *"bigint"*.
+          1. Assert: _value_ is an Object.
+          1. [id="step-typeof-web-compat-insertion-point", normative-optional] If the host is a web browser or otherwise supports <emu-xref href="#sec-IsHTMLDDA-internal-slot" title></emu-xref>, then
+            1. If _value_ has an [[IsHTMLDDA]] internal slot, return *"undefined"*.
+          1. If _value_ has a [[Call]] internal method, return *"function"*.
+          1. Return *"object"*.
+        </emu-alg>
+      </emu-clause>

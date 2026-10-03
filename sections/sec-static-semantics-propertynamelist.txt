@@ -1,0 +1,20 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.5 Object Initializer > 13.2.5.4 Static Semantics: PropertyNameList ( ): a List of Strings [id: sec-static-semantics-propertynamelist]
+
+<emu-clause id="sec-static-semantics-propertynamelist" type="sdo">
+        <h1>Static Semantics: PropertyNameList ( ): a List of Strings</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>PropertyDefinitionList : PropertyDefinition</emu-grammar>
+        <emu-alg>
+          1. Let _propertyName_ be the PropName of |PropertyDefinition|.
+          1. If _propertyName_ is ~empty~, return a new empty List.
+          1. Return « _propertyName_ ».
+        </emu-alg>
+        <emu-grammar>PropertyDefinitionList : PropertyDefinitionList `,` PropertyDefinition</emu-grammar>
+        <emu-alg>
+          1. Let _list_ be the PropertyNameList of |PropertyDefinitionList|.
+          1. Let _propertyName_ be the PropName of |PropertyDefinition|.
+          1. If _propertyName_ is ~empty~, return _list_.
+          1. Return the list-concatenation of _list_ and « _propertyName_ ».
+        </emu-alg>
+      </emu-clause>

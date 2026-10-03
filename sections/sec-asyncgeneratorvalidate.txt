@@ -1,0 +1,19 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.9 AsyncGenerator Objects > 27.9.3 AsyncGenerator Abstract Operations > 27.9.3.3 AsyncGeneratorValidate ( _gen_: an ECMAScript language value, _genBrand_: a String or ~empty~, ): either a normal completion containing ~unused~ or a throw completion [id: sec-asyncgeneratorvalidate]
+
+<emu-clause id="sec-asyncgeneratorvalidate" type="abstract operation">
+        <h1>
+          AsyncGeneratorValidate (
+            _gen_: an ECMAScript language value,
+            _genBrand_: a String or ~empty~,
+          ): either a normal completion containing ~unused~ or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Perform ? RequireInternalSlot(_gen_, [[AsyncGeneratorContext]]).
+          1. Perform ? RequireInternalSlot(_gen_, [[AsyncGeneratorState]]).
+          1. Perform ? RequireInternalSlot(_gen_, [[AsyncGeneratorQueue]]).
+          1. If _gen_.[[GeneratorBrand]] is not _genBrand_, throw a *TypeError* exception.
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

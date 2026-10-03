@@ -1,0 +1,40 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.20 GetNamedTimeZoneEpochNanoseconds ( _timeZoneIdentifier_: a String, _year_: an integer, _month_: an integer in the inclusive interval from 1 to 12, _day_: an integer in the inclusive interval from 1 to 31, _hour_: an integer in the inclusive interval from 0 to 23, _minute_: an integer in the inclusive interval from 0 to 59, _second_: an integer in the inclusive interval from 0 to 59, _millisecond_: an integer in the inclusive interval from 0 to 999, _microsecond_: an integer in the inclusive interval from 0 to 999, _nanosecond_: an integer in the inclusive interval from 0 to 999, ): a List of epoch nanoseconds counts [id: sec-getnamedtimezoneepochnanoseconds]
+
+<emu-clause id="sec-getnamedtimezoneepochnanoseconds" type="implementation-defined abstract operation">
+        <h1>
+          GetNamedTimeZoneEpochNanoseconds (
+            _timeZoneIdentifier_: a String,
+            _year_: an integer,
+            _month_: an integer in the inclusive interval from 1 to 12,
+            _day_: an integer in the inclusive interval from 1 to 31,
+            _hour_: an integer in the inclusive interval from 0 to 23,
+            _minute_: an integer in the inclusive interval from 0 to 59,
+            _second_: an integer in the inclusive interval from 0 to 59,
+            _millisecond_: an integer in the inclusive interval from 0 to 999,
+            _microsecond_: an integer in the inclusive interval from 0 to 999,
+            _nanosecond_: an integer in the inclusive interval from 0 to 999,
+          ): a List of epoch nanoseconds counts
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>
+            Each value in the returned List represents an epoch nanoseconds count that corresponds to the given ISO 8601 calendar date and wall-clock time in the named time zone identified by _timeZoneIdentifier_.
+          </dd>
+        </dl>
+        <p>
+          When the input represents a local time occurring more than once because of a negative time zone transition (e.g. when daylight saving time ends or the time zone offset is decreased due to a time zone rule change), the returned List will have more than one element and will be sorted by ascending numerical value.
+          When the input represents a local time skipped because of a positive time zone transition (e.g. when daylight saving time begins or the time zone offset is increased due to a time zone rule change), the returned List will be empty.
+          Otherwise, the returned List will have one element.
+        </p>
+        <p>The default implementation of GetNamedTimeZoneEpochNanoseconds, to be used for ECMAScript implementations that do not include local political rules for any time zones, performs the following steps when called:</p>
+        <emu-alg>
+          1. Assert: _timeZoneIdentifier_ is *"UTC"*.
+          1. Let _epochNanoseconds_ be GetUTCEpochNanoseconds(_year_, _month_, _day_, _hour_, _minute_, _second_, _millisecond_, _microsecond_, _nanosecond_).
+          1. Return « _epochNanoseconds_ ».
+        </emu-alg>
+        <emu-note>
+          <p>It is required for time zone aware implementations (and recommended for all others) to use the time zone information of the <a href="https://www.iana.org/time-zones">IANA Time Zone Database</a>.</p>
+          <p>1:30 AM on 5 November 2017 in America/New_York is repeated twice, so GetNamedTimeZoneEpochNanoseconds(*"America/New_York"*, 2017, 11, 5, 1, 30, 0, 0, 0, 0) would return a List of length 2 in which the first element represents 05:30 UTC (corresponding with 01:30 US Eastern Daylight Time at UTC offset -04:00) and the second element represents 06:30 UTC (corresponding with 01:30 US Eastern Standard Time at UTC offset -05:00).</p>
+          <p>2:30 AM on 12 March 2017 in America/New_York does not exist, so GetNamedTimeZoneEpochNanoseconds(*"America/New_York"*, 2017, 3, 12, 2, 30, 0, 0, 0, 0) would return an empty List.</p>
+        </emu-note>
+      </emu-clause>

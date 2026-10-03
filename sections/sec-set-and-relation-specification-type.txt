@@ -1,0 +1,34 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.3 The Set and Relation Specification Types [id: sec-set-and-relation-specification-type]
+
+<emu-clause id="sec-set-and-relation-specification-type">
+      <h1>The Set and Relation Specification Types</h1>
+      <p>The <em>Set</em> type is used to explain a collection of unordered elements for use in the memory model. It is distinct from the ECMAScript collection type of the same name. To disambiguate, instances of the ECMAScript collection are consistently referred to as “Set objects” within this specification. Values of the Set type are simple collections of elements, where no element appears more than once. Elements may be added to and removed from Sets. Sets may be unioned, intersected, or subtracted from each other.</p>
+      <p>The <dfn variants="Relations">Relation</dfn> type is used to explain constraints on Sets. Values of the Relation type are Sets of ordered pairs of values from its value domain. For example, a Relation on Memory events is a set of ordered pairs of Memory events. For a Relation _R_ and two values _a_ and _b_ in the value domain of _R_, _a_ _R_ _b_ is shorthand for saying the ordered pair (_a_, _b_) is a member of _R_. A Relation is the <dfn id="least-relation">least Relation</dfn> with respect to some conditions when it is the smallest Relation that satisfies those conditions.</p>
+      <p>A <dfn variants="strict partial orders">strict partial order</dfn> is a Relation value _R_ that satisfies the following.</p>
+      <ul>
+        <li>
+          <p>For all _a_, _b_, and _c_ in _R_'s domain:</p>
+          <ul>
+            <li>It is not the case that _a_ _R_ _a_, and</li>
+            <li>If _a_ _R_ _b_ and _b_ _R_ _c_, then _a_ _R_ _c_.</li>
+          </ul>
+        </li>
+      </ul>
+      <emu-note>
+        <p>The two properties above are called irreflexivity and transitivity, respectively.</p>
+      </emu-note>
+      <p>A <dfn variants="strict total orders">strict total order</dfn> is a Relation value _R_ that satisfies the following.</p>
+      <ul>
+        <li>
+          <p>For all _a_, _b_, and _c_ in _R_'s domain:</p>
+          <ul>
+            <li>_a_ is _b_ or _a_ _R_ _b_ or _b_ _R_ _a_, and</li>
+            <li>It is not the case that _a_ _R_ _a_, and</li>
+            <li>If _a_ _R_ _b_ and _b_ _R_ _c_, then _a_ _R_ _c_.</li>
+          </ul>
+        </li>
+      </ul>
+      <emu-note>
+        <p>The three properties above are called totality, irreflexivity, and transitivity, respectively.</p>
+      </emu-note>
+    </emu-clause>

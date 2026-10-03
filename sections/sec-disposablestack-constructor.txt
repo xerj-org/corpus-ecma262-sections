@@ -1,0 +1,15 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.3 DisposableStack Objects > 27.3.1 The DisposableStack Constructor [id: sec-disposablestack-constructor]
+
+<emu-clause id="sec-disposablestack-constructor">
+      <h1>The DisposableStack Constructor</h1>
+      <p>The DisposableStack constructor:</p>
+      <ul>
+        <li>is <dfn>%DisposableStack%</dfn>.</li>
+        <li>is the initial value of the *"DisposableStack"* property of the global object.</li>
+        <li>creates and initializes a new DisposableStack when called as a constructor.</li>
+        <li>is not intended to be called as a function and will throw an exception when called in that manner.</li>
+        <li>may be used as the value in an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified DisposableStack behaviour must include a `super` call to the DisposableStack constructor to create and initialize the subclass instance with the internal state necessary to support the built-in methods of `DisposableStack.prototype`.</li>
+      </ul>
+
+      
+    </emu-clause>

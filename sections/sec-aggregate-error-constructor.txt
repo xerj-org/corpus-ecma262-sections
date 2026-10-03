@@ -1,0 +1,14 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.7 AggregateError Objects > 20.5.7.1 The AggregateError Constructor [id: sec-aggregate-error-constructor]
+
+<emu-clause id="sec-aggregate-error-constructor">
+        <h1>The AggregateError Constructor</h1>
+        <p>The AggregateError constructor:</p>
+        <ul>
+          <li>is <dfn>%AggregateError%</dfn>.</li>
+          <li>is the initial value of the *"AggregateError"* property of the global object.</li>
+          <li>creates and initializes a new AggregateError object when called as a function rather than as a constructor. Thus the function call `AggregateError(…)` is equivalent to the object creation expression `new AggregateError(…)` with the same arguments.</li>
+          <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified AggregateError behaviour must include a `super` call to the AggregateError constructor to create and initialize subclass instances with an [[ErrorData]] internal slot.</li>
+        </ul>
+
+        
+      </emu-clause>

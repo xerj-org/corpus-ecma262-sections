@@ -1,0 +1,15 @@
+ECMA-262 > 20 Fundamental Objects > 20.3 Boolean Objects > 20.3.1 The Boolean Constructor [id: sec-boolean-constructor]
+
+<emu-clause id="sec-boolean-constructor">
+      <h1>The Boolean Constructor</h1>
+      <p>The Boolean constructor:</p>
+      <ul>
+        <li>is <dfn>%Boolean%</dfn>.</li>
+        <li>is the initial value of the *"Boolean"* property of the global object.</li>
+        <li>creates and initializes a new Boolean object when called as a constructor.</li>
+        <li>performs a type conversion when called as a function rather than as a constructor.</li>
+        <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified Boolean behaviour must include a `super` call to the Boolean constructor to create and initialize the subclass instance with a [[BooleanData]] internal slot.</li>
+      </ul>
+
+      
+    </emu-clause>

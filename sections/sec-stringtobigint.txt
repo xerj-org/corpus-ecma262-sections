@@ -1,0 +1,22 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.16 StringToBigInt ( _string_: a String, ): a BigInt or *undefined* [id: sec-stringtobigint]
+
+<emu-clause id="sec-stringtobigint" type="abstract operation">
+      <h1>
+        StringToBigInt (
+          _string_: a String,
+        ): a BigInt or *undefined*
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _literal_ be ParseText(_string_, |StringIntegerLiteral|).
+        1. If _literal_ is a List of errors, return *undefined*.
+        1. Let _mv_ be the MV of _literal_.
+        1. Assert: _mv_ is an integer.
+        1. Return ℤ(_mv_).
+      </emu-alg>
+
+      
+
+      
+    </emu-clause>

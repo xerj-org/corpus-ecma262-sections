@@ -1,0 +1,93 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.3 Abstract Operations for Uint8Array Objects > 23.3.3.7 FromBase64 ( _string_: a String, _alphabet_: *"base64"* or *"base64url"*, _lastChunkHandling_: *"loose"*, *"strict"*, or *"stop-before-partial"*, optional _maxLength_: a non-negative integer, ): a Record with fields [[Read]] (an integer), [[Bytes]] (a List of byte values), and [[Error]] (a *SyntaxError* object or ~none~) [id: sec-frombase64]
+
+<emu-clause id="sec-frombase64" type="abstract operation">
+        <h1>
+          FromBase64 (
+            _string_: a String,
+            _alphabet_: *"base64"* or *"base64url"*,
+            _lastChunkHandling_: *"loose"*, *"strict"*, or *"stop-before-partial"*,
+            optional _maxLength_: a non-negative integer,
+          ): a Record with fields [[Read]] (an integer), [[Bytes]] (a List of byte values), and [[Error]] (a *SyntaxError* object or ~none~)
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _maxLength_ is not present, then
+            1. Set _maxLength_ to 2<sup>53</sup> - 1.
+            1. NOTE: Because the input is a String, the length of Strings is limited to 2<sup>53</sup> - 1 characters, and the output requires no more bytes than the input has characters, this limit can never be reached. However, it is editorially convenient to use a finite value for _maxLength_.
+          1. NOTE: The order of validation and decoding in the algorithm below is not observable. Implementations are encouraged to perform them in whatever order is most efficient, possibly interleaving validation with decoding.
+          1. If _maxLength_ = 0, then
+            1. Return the Record { [[Read]]: 0, [[Bytes]]: « », [[Error]]: ~none~ }.
+          1. Let _read_ be 0.
+          1. Let _bytes_ be a new empty List.
+          1. Let _chunk_ be the empty String.
+          1. Let _chunkLength_ be 0.
+          1. Let _index_ be 0.
+          1. Let _length_ be the length of _string_.
+          1. Repeat,
+            1. Assert: The number of elements in _bytes_ is evenly divisible by 3.
+            1. Set _index_ to SkipAsciiWhitespace(_string_, _index_).
+            1. If _index_ = _length_, then
+              1. If _chunkLength_ > 0, then
+                1. If _lastChunkHandling_ is *"stop-before-partial"*, then
+                  1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: ~none~ }.
+                1. If _lastChunkHandling_ is *"strict"*, then
+                  1. Let _error_ be a newly created *SyntaxError* object.
+                  1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: _error_ }.
+                1. Assert: _lastChunkHandling_ is *"loose"*.
+                1. If _chunkLength_ = 1, then
+                  1. Let _error_ be a newly created *SyntaxError* object.
+                  1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: _error_ }.
+                1. Set _bytes_ to the list-concatenation of _bytes_ and ! DecodeFinalBase64Chunk(_chunk_, *false*).
+              1. Return the Record { [[Read]]: _length_, [[Bytes]]: _bytes_, [[Error]]: ~none~ }.
+            1. Let _char_ be the substring of _string_ from _index_ to _index_ + 1.
+            1. Set _index_ to _index_ + 1.
+            1. If _char_ is *"="*, then
+              1. If _chunkLength_ &lt; 2, then
+                1. Let _error_ be a newly created *SyntaxError* object.
+                1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: _error_ }.
+              1. Set _index_ to SkipAsciiWhitespace(_string_, _index_).
+              1. If _chunkLength_ = 2, then
+                1. If _index_ = _length_, then
+                  1. If _lastChunkHandling_ is *"stop-before-partial"*, then
+                    1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: ~none~ }.
+                  1. Let _error_ be a newly created *SyntaxError* object.
+                  1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: _error_ }.
+                1. Set _char_ to the substring of _string_ from _index_ to _index_ + 1.
+                1. If _char_ is *"="*, then
+                  1. Set _index_ to SkipAsciiWhitespace(_string_, _index_ + 1).
+              1. If _index_ &lt; _length_, then
+                1. Let _error_ be a newly created *SyntaxError* object.
+                1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: _error_ }.
+              1. If _lastChunkHandling_ is *"strict"*, let _throwOnExtraBits_ be *true*; else let _throwOnExtraBits_ be *false*.
+              1. Let _decodeResult_ be Completion(DecodeFinalBase64Chunk(_chunk_, _throwOnExtraBits_)).
+              1. If _decodeResult_ is an abrupt completion, then
+                1. Let _error_ be _decodeResult_.[[Value]].
+                1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: _error_ }.
+              1. Set _bytes_ to the list-concatenation of _bytes_ and ! _decodeResult_.
+              1. Return the Record { [[Read]]: _length_, [[Bytes]]: _bytes_, [[Error]]: ~none~ }.
+            1. If _alphabet_ is *"base64url"*, then
+              1. If _char_ is either *"+"* or *"/"*, then
+                1. Let _error_ be a newly created *SyntaxError* object.
+                1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: _error_ }.
+              1. Else if _char_ is *"-"*, then
+                1. Set _char_ to *"+"*.
+              1. Else if _char_ is *"_"*, then
+                1. Set _char_ to *"/"*.
+            1. If the sole code unit of _char_ is not an element of the standard base64 alphabet, then
+              1. Let _error_ be a newly created *SyntaxError* object.
+              1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: _error_ }.
+            1. Let _remaining_ be _maxLength_ - the number of elements in _bytes_.
+            1. If _remaining_ = 1 and _chunkLength_ = 2, or if _remaining_ = 2 and _chunkLength_ = 3, then
+              1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: ~none~ }.
+            1. Set _chunk_ to the string-concatenation of _chunk_ and _char_.
+            1. Set _chunkLength_ to the length of _chunk_.
+            1. If _chunkLength_ = 4, then
+              1. Set _bytes_ to the list-concatenation of _bytes_ and DecodeFullLengthBase64Chunk(_chunk_).
+              1. Set _chunk_ to the empty String.
+              1. Set _chunkLength_ to 0.
+              1. Set _read_ to _index_.
+              1. If the number of elements in _bytes_ = _maxLength_, then
+                1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: ~none~ }.
+        </emu-alg>
+      </emu-clause>

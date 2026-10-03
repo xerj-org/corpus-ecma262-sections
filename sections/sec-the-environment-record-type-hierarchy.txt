@@ -1,0 +1,203 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy [id: sec-the-environment-record-type-hierarchy]
+
+<emu-clause id="sec-the-environment-record-type-hierarchy">
+      <h1>The Environment Record Type Hierarchy</h1>
+      <p>Environment Records can be thought of as existing in a simple object-oriented hierarchy where Environment Record is an abstract class with three concrete subclasses: Declarative Environment Record, Object Environment Record, and Global Environment Record. Function Environment Records and Module Environment Records are subclasses of Declarative Environment Record.</p>
+      <ul>
+        <li>
+          <p>Environment Record (abstract)</p>
+          <ul>
+            <li>
+              <p>A <em>Declarative Environment Record</em> is used to define the effect of ECMAScript language syntactic elements such as |FunctionDeclaration|s, |VariableDeclaration|s, and |Catch| clauses that directly associate identifier bindings with ECMAScript language values.</p>
+              <ul>
+                <li>
+                  <p>A <em>Function Environment Record</em> corresponds to the invocation of an ECMAScript function object, and contains bindings for the top-level declarations within that function. It may establish a new `this` binding. It also captures the state necessary to support `super` method invocations.</p>
+                </li>
+                <li>
+                  <p>A <em>Module Environment Record</em> contains the bindings for the top-level declarations of a |Module|. It also contains the bindings that are explicitly imported by the |Module|. Its [[OuterEnv]] is a Global Environment Record.</p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>An <em>Object Environment Record</em> is used to define the effect of ECMAScript elements such as |WithStatement| that associate identifier bindings with the properties of some object.</p>
+            </li>
+            <li>
+              <p>A <em>Global Environment Record</em> is used for |Script| global declarations. It does not have an outer environment; its [[OuterEnv]] is *null*. It may be prepopulated with identifier bindings and it includes an associated global object whose properties provide some of the global environment's identifier bindings. As ECMAScript code is executed, additional properties may be added to the global object and the initial properties may be modified.</p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <p>The Environment Record abstract class includes the abstract specification methods defined in <emu-xref href="#table-abstract-methods-of-environment-records"></emu-xref>. These abstract methods have distinct concrete algorithms for each of the concrete subclasses.</p>
+      <emu-table id="table-abstract-methods-of-environment-records" type="abstract methods" of="Environment Records" oldids="table-15,table-17,table-19,table-20,table-additional-methods-of-function-environment-records,table-additional-methods-of-global-environment-records,table-additional-methods-of-module-environment-records">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Method
+              </th>
+              <th>
+                Purpose
+              </th>
+              <th>
+                Definitions
+              </th>
+            </tr>
+          </thead>
+          <tr id="abstract-hasbinding">
+            <td>
+              HasBinding (
+                _name_: a String,
+              ): either a normal completion containing a Boolean or a throw completion
+            </td>
+            <td>
+              It determines if an Environment Record has a binding for _name_.
+            </td>
+            <td>
+              It has concrete definitions in the following types:
+              <emu-concrete-method-dfns for="HasBinding"></emu-concrete-method-dfns>
+            </td>
+          </tr>
+          <tr id="abstract-createmutablebinding">
+            <td>
+              CreateMutableBinding (
+                _name_: a String,
+                _deletable_: a Boolean,
+              ): either a normal completion containing ~unused~ or a throw completion
+            </td>
+            <td>
+              It creates a new but uninitialized mutable binding in an Environment Record. _name_ is the text of the bound name. If _deletable_ is *true* the binding may be subsequently deleted.
+            </td>
+            <td>
+              It has concrete definitions in the following types:
+              <emu-concrete-method-dfns for="CreateMutableBinding"></emu-concrete-method-dfns>
+            </td>
+          </tr>
+          <tr id="abstract-createimmutablebinding">
+            <td>
+              CreateImmutableBinding (
+                _name_: a String,
+                _strict_: a Boolean,
+              ): either a normal completion containing ~unused~ or a throw completion
+            </td>
+            <td>
+              It creates a new but uninitialized immutable binding in an Environment Record. _name_ is the text of the bound name. If _strict_ is *true* then attempts to set it after it has been initialized will always throw an exception, regardless of the strict mode setting of operations that reference that binding.
+            </td>
+            <td>
+              It has concrete definitions in the following types:
+              <emu-concrete-method-dfns for="CreateImmutableBinding"></emu-concrete-method-dfns>
+            </td>
+          </tr>
+          <tr id="abstract-initializebinding">
+            <td>
+              InitializeBinding (
+                _name_: a String,
+                _value_: an ECMAScript language value,
+              ): either a normal completion containing ~unused~ or a throw completion
+            </td>
+            <td>
+              It sets the value of an already existing but uninitialized binding in an Environment Record. _name_ is the text of the bound name. _value_ is the value for the binding.
+            </td>
+            <td>
+              It has concrete definitions in the following types:
+              <emu-concrete-method-dfns for="InitializeBinding"></emu-concrete-method-dfns>
+            </td>
+          </tr>
+          <tr id="abstract-setmutablebinding">
+            <td>
+              SetMutableBinding (
+                _name_: a String,
+                _value_: an ECMAScript language value,
+                _strict_: a Boolean,
+              ): either a normal completion containing ~unused~ or a throw completion
+            </td>
+            <td>
+              It sets the value of an already existing mutable binding in an Environment Record. _name_ is the text of the bound name. _value_ is the value for the binding. If _strict_ is *true* and the binding cannot be set, this will throw a *TypeError* exception.
+            </td>
+            <td>
+              It has concrete definitions in the following types:
+              <emu-concrete-method-dfns for="SetMutableBinding"></emu-concrete-method-dfns>
+            </td>
+          </tr>
+          <tr id="abstract-getbindingvalue">
+            <td>
+              GetBindingValue (
+                _name_: a String,
+                _strict_: a Boolean,
+              ): either a normal completion containing an ECMAScript language value or a throw completion
+            </td>
+            <td>
+              It returns the value of an already existing binding from an Environment Record. _name_ is the text of the bound name. _strict_ is used to identify references originating in strict mode code or that otherwise require strict mode reference semantics. If _strict_ is *true* and the binding does not exist, this will throw a *ReferenceError* exception. If the binding exists but is uninitialized a *ReferenceError* is thrown, regardless of the value of _strict_.
+            </td>
+            <td>
+              It has concrete definitions in the following types:
+              <emu-concrete-method-dfns for="GetBindingValue"></emu-concrete-method-dfns>
+            </td>
+          </tr>
+          <tr id="abstract-deletebinding">
+            <td>
+              DeleteBinding (
+                _name_: a String,
+              ): either a normal completion containing a Boolean or a throw completion
+            </td>
+            <td>
+              It deletes a binding from an Environment Record. _name_ is the text of the bound name. If a binding for _name_ exists, this removes the binding and returns *true*. If the binding exists but cannot be removed, this returns *false*. If the binding does not exist, this returns *true*.
+            </td>
+            <td>
+              It has concrete definitions in the following types:
+              <emu-concrete-method-dfns for="DeleteBinding"></emu-concrete-method-dfns>
+            </td>
+          </tr>
+          <tr id="abstract-hasthisbinding">
+            <td>HasThisBinding ( ): a Boolean</td>
+            <td>
+              It determines if an Environment Record establishes a `this` binding. This returns *true* if it does and *false* if it does not.
+            </td>
+            <td>
+              It has concrete definitions in the following types:
+              <emu-concrete-method-dfns for="HasThisBinding"></emu-concrete-method-dfns>
+            </td>
+          </tr>
+          <tr id="abstract-getthisbinding">
+            <td>GetThisBinding ( ): either a normal completion containing an ECMAScript language value or a throw completion</td>
+            <td>
+              It returns the value of this Environment Record's `this` binding. It throws a *ReferenceError* if the `this` binding has not been initialized.
+            </td>
+            <td>
+              It has concrete definitions in the following types:
+              <emu-concrete-method-dfns for="GetThisBinding"></emu-concrete-method-dfns>
+            </td>
+          </tr>
+          <tr id="abstract-hassuperbinding">
+            <td>HasSuperBinding ( ): a Boolean</td>
+            <td>
+              It determines if an Environment Record establishes a `super` method binding. This returns *true* if it does and *false* if it does not. If it returns *true* it implies that the Environment Record is a Function Environment Record, although the reverse implication does not hold.
+            </td>
+            <td>
+              It has concrete definitions in the following types:
+              <emu-concrete-method-dfns for="HasSuperBinding"></emu-concrete-method-dfns>
+            </td>
+          </tr>
+          <tr id="abstract-withbaseobject">
+            <td>WithBaseObject ( ): an Object or *undefined*</td>
+            <td>
+              If this Environment Record is associated with a `with` statement, it returns the with object. Otherwise, it returns *undefined*.
+            </td>
+            <td>
+              It has concrete definitions in the following types:
+              <emu-concrete-method-dfns for="WithBaseObject"></emu-concrete-method-dfns>
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

@@ -1,0 +1,18 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.6 Tokens [id: sec-tokens]
+
+<emu-clause id="sec-tokens">
+    <h1>Tokens</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      CommonToken ::
+        IdentifierName
+        PrivateIdentifier
+        Punctuator
+        NumericLiteral
+        StringLiteral
+        Template
+    </emu-grammar>
+    <emu-note>
+      <p>The |DivPunctuator|, |RegularExpressionLiteral|, |RightBracePunctuator|, and |TemplateSubstitutionTail| productions derive additional tokens that are not included in the |CommonToken| production.</p>
+    </emu-note>
+  </emu-clause>

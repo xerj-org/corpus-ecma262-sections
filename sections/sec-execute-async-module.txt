@@ -1,0 +1,28 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.6 Cyclic Module Records > 16.2.1.6.1 Implementation of Module Record Abstract Methods > 16.2.1.6.1.3 Evaluate ( ): a Promise > 16.2.1.6.1.3.2 ExecuteAsyncModule ( _module_: a Cyclic Module Record, ): ~unused~ [id: sec-execute-async-module]
+
+<emu-clause id="sec-execute-async-module" type="abstract operation">
+              <h1>
+                ExecuteAsyncModule (
+                  _module_: a Cyclic Module Record,
+                ): ~unused~
+              </h1>
+              <dl class="header">
+              </dl>
+
+              <emu-alg>
+                1. Assert: _module_.[[Status]] is either ~evaluating~ or ~evaluating-async~.
+                1. Assert: _module_.[[HasTLA]] is *true*.
+                1. Let _promiseCapability_ be ! NewPromiseCapability(%Promise%).
+                1. Let _fulfilledClosure_ be a new Abstract Closure with no parameters that captures _module_ and performs the following steps when called:
+                  1. Perform AsyncModuleExecutionFulfilled(_module_).
+                  1. Return NormalCompletion(*undefined*).
+                1. Let _onFulfilled_ be CreateBuiltinFunction(_fulfilledClosure_, 0, *""*, « »).
+                1. Let _rejectedClosure_ be a new Abstract Closure with parameters (_error_) that captures _module_ and performs the following steps when called:
+                  1. Perform AsyncModuleExecutionRejected(_module_, _error_).
+                  1. Return NormalCompletion(*undefined*).
+                1. Let _onRejected_ be CreateBuiltinFunction(_rejectedClosure_, 0, *""*, « »).
+                1. Perform PerformPromiseThen(_promiseCapability_.[[Promise]], _onFulfilled_, _onRejected_).
+                1. Perform ! <emu-meta effects="user-code">_module_.ExecuteModule(_promiseCapability_)</emu-meta>.
+                1. Return ~unused~.
+              </emu-alg>
+            </emu-clause>

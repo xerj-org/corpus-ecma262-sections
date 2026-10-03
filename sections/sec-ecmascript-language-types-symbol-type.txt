@@ -1,0 +1,10 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.5 The Symbol Type [id: sec-ecmascript-language-types-symbol-type]
+
+<emu-clause id="sec-ecmascript-language-types-symbol-type">
+      <h1>The Symbol Type</h1>
+      <p>The <dfn variants="is a Symbol,is not a Symbol">Symbol type</dfn> is the set of all non-String values that may be used as the key of an Object property (<emu-xref href="#sec-object-type"></emu-xref>).</p>
+      <p>Each Symbol is unique and immutable.</p>
+      <p>Each Symbol has an immutable [[Description]] internal slot whose value is either a String or *undefined*.</p>
+
+      
+    </emu-clause>

@@ -1,0 +1,23 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.8 Synthetic Module Records > 16.2.1.8.3 SetSyntheticModuleExport ( _module_: a Synthetic Module Record, _exportName_: a String, _exportValue_: an ECMAScript language value, ): ~unused~ [id: sec-setsyntheticmoduleexport]
+
+<emu-clause id="sec-setsyntheticmoduleexport" type="abstract operation">
+          <h1>
+            SetSyntheticModuleExport (
+              _module_: a Synthetic Module Record,
+              _exportName_: a String,
+              _exportValue_: an ECMAScript language value,
+            ): ~unused~
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It can be used to set or change the exported value for an existing export of a Synthetic Module Record.</dd>
+          </dl>
+
+          <emu-alg>
+            1. Assert: _module_.[[ExportNames]] contains _exportName_.
+            1. Let _envRecord_ be _module_.[[Environment]].
+            1. Assert: _envRecord_ is not ~empty~.
+            1. Perform ! _envRecord_.SetMutableBinding(_exportName_, _exportValue_, *true*).
+            1. Return ~unused~.
+          </emu-alg>
+        </emu-clause>

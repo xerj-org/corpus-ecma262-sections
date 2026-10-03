@@ -1,0 +1,29 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.3 Exports > 16.2.3.6 Static Semantics: ReferencedBindings ( ): a List of Parse Nodes [id: sec-static-semantics-referencedbindings]
+
+<emu-clause id="sec-static-semantics-referencedbindings" type="sdo">
+        <h1>Static Semantics: ReferencedBindings ( ): a List of Parse Nodes</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>NamedExports : `{` `}`</emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+        <emu-grammar>ExportsList : ExportsList `,` ExportSpecifier</emu-grammar>
+        <emu-alg>
+          1. Let _names1_ be the ReferencedBindings of |ExportsList|.
+          1. Let _names2_ be the ReferencedBindings of |ExportSpecifier|.
+          1. Return the list-concatenation of _names1_ and _names2_.
+        </emu-alg>
+        <emu-grammar>ExportSpecifier : ModuleExportName `as` ModuleExportName</emu-grammar>
+        <emu-alg>
+          1. Return the ReferencedBindings of the first |ModuleExportName|.
+        </emu-alg>
+        <emu-grammar>ModuleExportName : IdentifierName</emu-grammar>
+        <emu-alg>
+          1. Return a List whose sole element is the |IdentifierName|.
+        </emu-alg>
+        <emu-grammar>ModuleExportName : StringLiteral</emu-grammar>
+        <emu-alg>
+          1. Return a List whose sole element is the |StringLiteral|.
+        </emu-alg>
+      </emu-clause>

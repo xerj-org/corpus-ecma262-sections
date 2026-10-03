@@ -1,0 +1,24 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.5 The `for`-`in`, `for`-`of`, and `for`-`await`-`of` Statements > 14.7.5.3 Runtime Semantics: ForDeclarationBindingInitialization ( _value_: an ECMAScript language value, _envRecord_: an Environment Record, ): either a normal completion containing ~unused~ or an abrupt completion [id: sec-runtime-semantics-fordeclarationbindinginitialization]
+
+<emu-clause id="sec-runtime-semantics-fordeclarationbindinginitialization" oldids="sec-for-in-and-for-of-statements-runtime-semantics-bindinginitialization" type="sdo">
+        <h1>
+          Runtime Semantics: ForDeclarationBindingInitialization (
+            _value_: an ECMAScript language value,
+            _envRecord_: an Environment Record,
+          ): either a normal completion containing ~unused~ or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>ForDeclaration : LetOrConst ForBinding</emu-grammar>
+        <emu-alg>
+          1. Return ? BindingInitialization of |ForBinding| with arguments _value_ and _envRecord_.
+        </emu-alg>
+        <emu-grammar>
+          ForDeclaration :
+            `using` ForBinding
+            `await` `using` ForBinding
+        </emu-grammar>
+        <emu-alg>
+          1. Throw a *SyntaxError* exception.
+        </emu-alg>
+      </emu-clause>

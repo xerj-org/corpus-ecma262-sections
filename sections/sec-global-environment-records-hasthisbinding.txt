@@ -1,0 +1,15 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.4 Global Environment Records > 9.1.1.4.8 HasThisBinding ( ): *true* [id: sec-global-environment-records-hasthisbinding]
+
+<emu-clause id="sec-global-environment-records-hasthisbinding" type="concrete method">
+          <h1>HasThisBinding ( ): *true*</h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>a Global Environment Record _envRecord_</dd>
+          </dl>
+          <emu-alg>
+            1. Return *true*.
+          </emu-alg>
+          <emu-note>
+            <p>Global Environment Records always provide a `this` binding.</p>
+          </emu-note>
+        </emu-clause>

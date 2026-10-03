@@ -1,0 +1,9 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.1 The `this` Keyword > 13.2.1.1 Runtime Semantics: Evaluation [id: sec-this-keyword-runtime-semantics-evaluation]
+
+<emu-clause id="sec-this-keyword-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>PrimaryExpression : `this`</emu-grammar>
+        <emu-alg>
+          1. Return ? ResolveThisBinding().
+        </emu-alg>
+      </emu-clause>

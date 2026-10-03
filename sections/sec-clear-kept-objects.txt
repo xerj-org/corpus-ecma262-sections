@@ -1,0 +1,14 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.10 ClearKeptObjects ( ): ~unused~ [id: sec-clear-kept-objects]
+
+<emu-clause id="sec-clear-kept-objects" type="abstract operation">
+    <h1>ClearKeptObjects ( ): ~unused~</h1>
+    <dl class="header">
+      <dt>description</dt>
+      <dd>ECMAScript implementations are expected to call ClearKeptObjects when a synchronous sequence of ECMAScript executions completes.</dd>
+    </dl>
+    <emu-alg>
+      1. Let _agentRecord_ be the surrounding agent's Agent Record.
+      1. Set _agentRecord_.[[KeptAlive]] to a new empty List.
+      1. Return ~unused~.
+    </emu-alg>
+  </emu-clause>

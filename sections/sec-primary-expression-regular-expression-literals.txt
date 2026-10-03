@@ -1,0 +1,13 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.7 Regular Expression Literals [id: sec-primary-expression-regular-expression-literals]
+
+<emu-clause id="sec-primary-expression-regular-expression-literals">
+      <h1>Regular Expression Literals</h1>
+      <h2>Syntax</h2>
+      <p>See <emu-xref href="#sec-literals-regular-expression-literals"></emu-xref>.</p>
+
+      
+
+      
+
+      
+    </emu-clause>

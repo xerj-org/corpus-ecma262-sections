@@ -1,0 +1,12 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.6 Module Namespace Exotic Objects > 10.4.6.4 [[PreventExtensions]] ( ): a normal completion containing *true* [id: sec-module-namespace-exotic-objects-preventextensions]
+
+<emu-clause id="sec-module-namespace-exotic-objects-preventextensions" type="internal method">
+        <h1>[[PreventExtensions]] ( ): a normal completion containing *true*</h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a module namespace exotic object</dd>
+        </dl>
+        <emu-alg>
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

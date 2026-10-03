@@ -1,0 +1,13 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.10 Automatic Semicolon Insertion > 12.10.3 Interesting Cases of Automatic Semicolon Insertion > 12.10.3.2 Cases of Automatic Semicolon Insertion and “[no |LineTerminator| here]” > 12.10.3.2.1 List of Grammar Productions with Optional Operands and “[no |LineTerminator| here]” [id: sec-no-lineterminator-here-automatic-semicolon-insertion-list]
+
+<emu-clause id="sec-no-lineterminator-here-automatic-semicolon-insertion-list">
+          <h1>List of Grammar Productions with Optional Operands and “[no |LineTerminator| here]”</h1>
+          <ul>
+            <li>|UpdateExpression|.</li>
+            <li>|ContinueStatement|.</li>
+            <li>|BreakStatement|.</li>
+            <li>|ReturnStatement|.</li>
+            <li>|YieldExpression|.</li>
+            <li>Async Function Definitions (<emu-xref href="#sec-async-function-definitions"></emu-xref>) with relation to Function Definitions (<emu-xref href="#sec-function-definitions"></emu-xref>)</li>
+          </ul>
+        </emu-clause>

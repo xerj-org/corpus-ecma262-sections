@@ -1,0 +1,16 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.6 The Property Descriptor Specification Type > 6.2.6.1 IsAccessorDescriptor ( _propertyDesc_: a Property Descriptor, ): a Boolean [id: sec-isaccessordescriptor]
+
+<emu-clause id="sec-isaccessordescriptor" type="abstract operation">
+        <h1>
+          IsAccessorDescriptor (
+            _propertyDesc_: a Property Descriptor,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _propertyDesc_ has a [[Getter]] field, return *true*.
+          1. If _propertyDesc_ has a [[Setter]] field, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

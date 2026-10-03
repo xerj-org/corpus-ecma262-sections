@@ -1,0 +1,32 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.3 Generator Abstract Operations > 27.8.3.8 CreateIteratorFromClosure ( _closure_: an Abstract Closure with no parameters, _genBrand_: a String or ~empty~, _genProto_: an Object, optional _extraSlots_: a List of names of internal slots, ): a Generator [id: sec-createiteratorfromclosure]
+
+<emu-clause id="sec-createiteratorfromclosure" type="abstract operation">
+        <h1>
+          CreateIteratorFromClosure (
+            _closure_: an Abstract Closure with no parameters,
+            _genBrand_: a String or ~empty~,
+            _genProto_: an Object,
+            optional _extraSlots_: a List of names of internal slots,
+          ): a Generator
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. NOTE: _closure_ can contain uses of the Yield operation to yield an IteratorResult object.
+          1. If _extraSlots_ is not present, set _extraSlots_ to a new empty List.
+          1. Let _internalSlotsList_ be the list-concatenation of _extraSlots_ and « [[GeneratorState]], [[GeneratorContext]], [[GeneratorBrand]] ».
+          1. Let _gen_ be OrdinaryObjectCreate(_genProto_, _internalSlotsList_).
+          1. Set _gen_.[[GeneratorBrand]] to _genBrand_.
+          1. Set _gen_.[[GeneratorState]] to ~suspended-start~.
+          1. Let _callerContext_ be the running execution context.
+          1. Let _calleeContext_ be a new execution context.
+          1. Set the Function of _calleeContext_ to *null*.
+          1. Set the Realm of _calleeContext_ to the current Realm Record.
+          1. Set the ScriptOrModule of _calleeContext_ to _callerContext_'s ScriptOrModule.
+          1. If _callerContext_ is not already suspended, suspend _callerContext_.
+          1. Push _calleeContext_ onto the execution context stack; _calleeContext_ is now the running execution context.
+          1. Perform GeneratorStart(_gen_, _closure_).
+          1. Remove _calleeContext_ from the execution context stack and restore _callerContext_ as the running execution context.
+          1. Return _gen_.
+        </emu-alg>
+      </emu-clause>

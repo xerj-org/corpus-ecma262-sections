@@ -1,0 +1,44 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.5 Proxy Object Internal Methods and Internal Slots > 10.5.7 [[HasProperty]] ( _propertyKey_: a property key, ): either a normal completion containing a Boolean or a throw completion [id: sec-proxy-object-internal-methods-and-internal-slots-hasproperty-p]
+
+<emu-clause id="sec-proxy-object-internal-methods-and-internal-slots-hasproperty-p" type="internal method">
+      <h1>
+        [[HasProperty]] (
+          _propertyKey_: a property key,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>a Proxy exotic object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Perform ? ValidateNonRevokedProxy(_obj_).
+        1. Let _target_ be _obj_.[[ProxyTarget]].
+        1. Let _handler_ be _obj_.[[ProxyHandler]].
+        1. Assert: _handler_ is an Object.
+        1. Let _trap_ be ? GetMethod(_handler_, *"has"*).
+        1. If _trap_ is *undefined*, then
+          1. Return ? <emu-meta effects="user-code">_target_.[[HasProperty]](_propertyKey_)</emu-meta>.
+        1. Let _boolTrapResult_ be ToBoolean(? Call(_trap_, _handler_, « _target_, _propertyKey_ »)).
+        1. If _boolTrapResult_ is *false*, then
+          1. Let _targetDesc_ be ? <emu-meta effects="user-code">_target_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+          1. If _targetDesc_ is not *undefined*, then
+            1. If _targetDesc_.[[Configurable]] is *false*, throw a *TypeError* exception.
+            1. Let _extensibleTarget_ be ? IsExtensible(_target_).
+            1. If _extensibleTarget_ is *false*, throw a *TypeError* exception.
+        1. Return _boolTrapResult_.
+      </emu-alg>
+      <emu-note>
+        <p>[[HasProperty]] for Proxy objects enforces the following invariants:</p>
+        <ul>
+          <li>
+            The result of [[HasProperty]] is a Boolean value.
+          </li>
+          <li>
+            A property cannot be reported as non-existent, if it exists as a non-configurable own property of the target object.
+          </li>
+          <li>
+            A property cannot be reported as non-existent, if it exists as an own property of the target object and the target object is not extensible.
+          </li>
+        </ul>
+      </emu-note>
+    </emu-clause>

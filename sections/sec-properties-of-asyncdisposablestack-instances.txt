@@ -1,0 +1,43 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.4 AsyncDisposableStack Objects > 27.4.4 Properties of AsyncDisposableStack Instances [id: sec-properties-of-asyncdisposablestack-instances]
+
+<emu-clause id="sec-properties-of-asyncdisposablestack-instances">
+      <h1>Properties of AsyncDisposableStack Instances</h1>
+      <p>AsyncDisposableStack instances are ordinary objects that inherit properties from the AsyncDisposableStack prototype object (the intrinsic %AsyncDisposableStack.prototype%). AsyncDisposableStack instances are initially created with internal slots described in <emu-xref href="#table-internal-slots-of-asyncdisposablestack-instances"></emu-xref>.</p>
+      <emu-table id="table-internal-slots-of-asyncdisposablestack-instances" caption="Internal Slots of AsyncDisposableStack Instances">
+        <table>
+          <tr>
+            <th>
+              Internal Slot
+            </th>
+            <th>
+              Type
+            </th>
+            <th>
+              Description
+            </th>
+          </tr>
+          <tr>
+            <td>
+              [[AsyncDisposableState]]
+            </td>
+            <td>
+              ~pending~ or ~disposed~
+            </td>
+            <td>
+              Governs how a disposable stack will react to incoming calls to its `%Symbol.asyncDispose%` method.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[DisposableResourceStack]]
+            </td>
+            <td>
+              a List of DisposableResource Records
+            </td>
+            <td>
+              Resources to be disposed when the disposable stack is disposed. Resources are added in the order they are initialized, and are disposed in reverse order.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+    </emu-clause>

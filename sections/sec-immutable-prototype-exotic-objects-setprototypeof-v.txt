@@ -1,0 +1,16 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.7 Immutable Prototype Exotic Objects > 10.4.7.1 [[SetPrototypeOf]] ( _proto_: an Object or *null*, ): either a normal completion containing a Boolean or a throw completion [id: sec-immutable-prototype-exotic-objects-setprototypeof-v]
+
+<emu-clause id="sec-immutable-prototype-exotic-objects-setprototypeof-v" type="internal method">
+        <h1>
+          [[SetPrototypeOf]] (
+            _proto_: an Object or *null*,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>an immutable prototype exotic object _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. Return ? SetImmutablePrototype(_obj_, _proto_).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,73 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.6 Cyclic Module Records > 16.2.1.6.1 Implementation of Module Record Abstract Methods > 16.2.1.6.1.3 Evaluate ( ): a Promise > 16.2.1.6.1.3.1 InnerModuleEvaluation ( _module_: a Module Record, _stack_: a List of Cyclic Module Records, _index_: a non-negative integer, ): either a normal completion containing a non-negative integer or a throw completion [id: sec-innermoduleevaluation]
+
+<emu-clause id="sec-innermoduleevaluation" type="abstract operation">
+              <h1>
+                InnerModuleEvaluation (
+                  _module_: a Module Record,
+                  _stack_: a List of Cyclic Module Records,
+                  _index_: a non-negative integer,
+                ): either a normal completion containing a non-negative integer or a throw completion
+              </h1>
+              <dl class="header">
+                <dt>description</dt>
+                <dd>It is used by Evaluate to perform the actual evaluation process for _module_, as well as recursively on all other modules in the dependency graph. The _stack_ and _index_ parameters, as well as _module_'s [[DFSAncestorIndex]] field, are used the same way as in InnerModuleLinking.</dd>
+              </dl>
+
+              <emu-alg>
+                1. If _module_ is not a Cyclic Module Record, then
+                  1. Perform ? EvaluateModuleSync(_module_).
+                  1. Return _index_.
+                1. If _module_.[[Status]] is either ~evaluating-async~ or ~evaluated~, then
+                  1. If _module_.[[EvaluationError]] is ~empty~, return _index_.
+                  1. Return ? _module_.[[EvaluationError]].
+                1. If _module_.[[Status]] is ~evaluating~, return _index_.
+                1. Assert: _module_.[[Status]] is ~linked~.
+                1. Set _module_.[[Status]] to ~evaluating~.
+                1. Let _moduleIndex_ be _index_.
+                1. Set _module_.[[DFSAncestorIndex]] to _index_.
+                1. Set _module_.[[PendingAsyncDependencies]] to 0.
+                1. Set _index_ to _index_ + 1.
+                1. Append _module_ to _stack_.
+                1. For each ModuleRequest Record _request_ of _module_.[[RequestedModules]], do
+                  1. Let _requiredModule_ be GetImportedModule(_module_, _request_).
+                  1. Set _index_ to ? InnerModuleEvaluation(_requiredModule_, _stack_, _index_).
+                  1. If _requiredModule_ is a Cyclic Module Record, then
+                    1. Assert: _requiredModule_.[[Status]] is one of ~evaluating~, ~evaluating-async~, or ~evaluated~.
+                    1. Assert: _requiredModule_.[[Status]] is ~evaluating~ if and only if _stack_ contains _requiredModule_.
+                    1. If _requiredModule_.[[Status]] is ~evaluating~, then
+                      1. Set _module_.[[DFSAncestorIndex]] to min(_module_.[[DFSAncestorIndex]], _requiredModule_.[[DFSAncestorIndex]]).
+                    1. Else,
+                      1. Set _requiredModule_ to _requiredModule_.[[CycleRoot]].
+                      1. Assert: _requiredModule_.[[Status]] is either ~evaluating-async~ or ~evaluated~.
+                      1. If _requiredModule_.[[EvaluationError]] is not ~empty~, return ? _requiredModule_.[[EvaluationError]].
+                    1. If _requiredModule_.[[AsyncEvaluationOrder]] is an integer, then
+                      1. Set _module_.[[PendingAsyncDependencies]] to _module_.[[PendingAsyncDependencies]] + 1.
+                      1. Append _module_ to _requiredModule_.[[AsyncParentModules]].
+                1. If _module_.[[HasTLA]] is *true* or _module_.[[PendingAsyncDependencies]] > 0, then
+                  1. Assert: _module_.[[AsyncEvaluationOrder]] is ~unset~.
+                  1. Set _module_.[[AsyncEvaluationOrder]] to IncrementModuleAsyncEvaluationCount().
+                  1. If _module_.[[PendingAsyncDependencies]] = 0, perform ExecuteAsyncModule(_module_).
+                1. Else,
+                  1. Perform ? <emu-meta effects="user-code">_module_.ExecuteModule()</emu-meta>.
+                1. Assert: _module_ occurs exactly once in _stack_.
+                1. Assert: _module_.[[DFSAncestorIndex]] ≤ _moduleIndex_.
+                1. If _module_.[[DFSAncestorIndex]] = _moduleIndex_, then
+                  1. Let _done_ be *false*.
+                  1. Repeat, while _done_ is *false*,
+                    1. Let _requiredModule_ be the last element of _stack_.
+                    1. Remove the last element of _stack_.
+                    1. Assert: _requiredModule_ is a Cyclic Module Record.
+                    1. Assert: _requiredModule_.[[AsyncEvaluationOrder]] is either an integer or ~unset~.
+                    1. If _requiredModule_.[[AsyncEvaluationOrder]] is ~unset~, set _requiredModule_.[[Status]] to ~evaluated~.
+                    1. Else, set _requiredModule_.[[Status]] to ~evaluating-async~.
+                    1. If _requiredModule_ and _module_ are the same Module Record, set _done_ to *true*.
+                    1. Set _requiredModule_.[[CycleRoot]] to _module_.
+                1. Return _index_.
+              </emu-alg>
+              <emu-note>
+                <p>A module is ~evaluating~ while it is being traversed by InnerModuleEvaluation. A module is ~evaluated~ on execution completion or ~evaluating-async~ during execution if its [[HasTLA]] field is *true* or if it has asynchronous dependencies.</p>
+              </emu-note>
+              <emu-note>
+                <p>Any modules depending on a module of an asynchronous cycle when that cycle is not ~evaluating~ will instead depend on the execution of the root of the cycle via [[CycleRoot]]. This ensures that the cycle state can be treated as a single strongly connected component through its root module state.</p>
+              </emu-note>
+            </emu-clause>

@@ -1,0 +1,13 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.6 _NativeError_ Object Structure > 20.5.6.2 Properties of the _NativeError_ Constructors [id: sec-properties-of-the-nativeerror-constructors]
+
+<emu-clause id="sec-properties-of-the-nativeerror-constructors">
+        <h1>Properties of the _NativeError_ Constructors</h1>
+        <p>Each _NativeError_ constructor:</p>
+        <ul>
+          <li>has a [[Prototype]] internal slot whose value is %Error%.</li>
+          <li>has a *"name"* property whose value is the String value <emu-val>"<var>NativeError</var>"</emu-val>.</li>
+          <li>has the following properties:</li>
+        </ul>
+
+        
+      </emu-clause>

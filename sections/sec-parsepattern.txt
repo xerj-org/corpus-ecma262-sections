@@ -1,0 +1,27 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.3 Abstract Operations for RegExp Creation > 22.2.3.4 Static Semantics: ParsePattern ( _patternText_: a sequence of Unicode code points, _u_: a Boolean, _v_: a Boolean, ): a Parse Node or a non-empty List of *SyntaxError* objects [id: sec-parsepattern]
+
+<emu-clause id="sec-parsepattern" type="abstract operation">
+        <h1>
+          Static Semantics: ParsePattern (
+            _patternText_: a sequence of Unicode code points,
+            _u_: a Boolean,
+            _v_: a Boolean,
+          ): a Parse Node or a non-empty List of *SyntaxError* objects
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-note>
+          <p>This section is amended in <emu-xref href="#sec-parsepattern-annexb"></emu-xref>.</p>
+        </emu-note>
+        <emu-alg>
+          1. If _v_ is *true* and _u_ is *true*, then
+            1. Let _parseResult_ be a List containing one or more *SyntaxError* objects.
+          1. Else if _v_ is *true*, then
+            1. Let _parseResult_ be ParseText(_patternText_, |Pattern[+UnicodeMode, +UnicodeSetsMode, +NamedCaptureGroups]|).
+          1. Else if _u_ is *true*, then
+            1. Let _parseResult_ be ParseText(_patternText_, |Pattern[+UnicodeMode, ~UnicodeSetsMode, +NamedCaptureGroups]|).
+          1. Else,
+            1. Let _parseResult_ be ParseText(_patternText_, |Pattern[~UnicodeMode, ~UnicodeSetsMode, +NamedCaptureGroups]|).
+          1. Return _parseResult_.
+        </emu-alg>
+      </emu-clause>

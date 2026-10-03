@@ -1,0 +1,30 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.4 The RegExp Constructor > 22.2.4.1 RegExp ( _patternOrRegexp_, _flags_ ) [id: sec-regexp-pattern-flags]
+
+<emu-clause id="sec-regexp-pattern-flags" type="built-in function">
+        <h1>RegExp ( _patternOrRegexp_, _flags_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _patternIsRegExp_ be ? IsRegExp(_patternOrRegexp_).
+          1. If NewTarget is *undefined*, then
+            1. Let _newTarget_ be the active function object.
+            1. If _patternIsRegExp_ is *true* and _flags_ is *undefined*, then
+              1. Let _patternCtor_ be ? Get(_patternOrRegexp_, *"constructor"*).
+              1. If SameValue(_newTarget_, _patternCtor_) is *true*, return _patternOrRegexp_.
+          1. Else,
+            1. Let _newTarget_ be NewTarget.
+          1. If _patternOrRegexp_ is an Object and _patternOrRegexp_ has a [[RegExpMatcher]] internal slot, then
+            1. Let _patternSource_ be _patternOrRegexp_.[[OriginalSource]].
+            1. If _flags_ is *undefined*, set _flags_ to _patternOrRegexp_.[[OriginalFlags]].
+          1. Else if _patternIsRegExp_ is *true*, then
+            1. Let _patternSource_ be ? Get(_patternOrRegexp_, *"source"*).
+            1. If _flags_ is *undefined*, then
+              1. Set _flags_ to ? Get(_patternOrRegexp_, *"flags"*).
+          1. Else,
+            1. Let _patternSource_ be _patternOrRegexp_.
+          1. Let _obj_ be ? RegExpAlloc(_newTarget_).
+          1. Return ? RegExpInitialize(_obj_, _patternSource_, _flags_).
+        </emu-alg>
+        <emu-note>
+          <p>If pattern is supplied using a |StringLiteral|, the usual escape sequence substitutions are performed before the String is processed by this function. If pattern must contain an escape sequence to be recognized by this function, any U+005C (REVERSE SOLIDUS) code points must be escaped within the |StringLiteral| to prevent them being removed when the contents of the |StringLiteral| are formed.</p>
+        </emu-note>
+      </emu-clause>

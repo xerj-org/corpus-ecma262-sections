@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.2 Function Objects > 20.2.2 Properties of the Function Constructor > 20.2.2.1 Function.prototype [id: sec-function.prototype]
+
+<emu-clause id="sec-function.prototype">
+        <h1>Function.prototype</h1>
+        <p>The value of `Function.prototype` is the Function prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

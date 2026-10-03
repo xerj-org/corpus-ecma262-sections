@@ -1,0 +1,20 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.4 ToNumber ( _arg_: an ECMAScript language value, ): either a normal completion containing a Number or a throw completion > 7.1.4.1 ToNumber Applied to the String Type > 7.1.4.1.3 RoundMVResult ( _n_: a mathematical value, ): a Number [id: sec-roundmvresult]
+
+<emu-clause id="sec-roundmvresult" type="abstract operation">
+          <h1>
+            RoundMVResult (
+              _n_: a mathematical value,
+            ): a Number
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It converts _n_ to a Number in an implementation-defined manner. For the purposes of this abstract operation, a digit is significant if it is not zero or there is a non-zero digit to its left and there is a non-zero digit to its right. For the purposes of this abstract operation, “the mathematical value denoted by” a representation of a mathematical value is the inverse of “the decimal representation of” a mathematical value.</dd>
+          </dl>
+          <emu-alg>
+            1. If the decimal representation of _n_ has 20 or fewer significant digits, return 𝔽(_n_).
+            1. Let _option1_ be the mathematical value denoted by the result of replacing each significant digit in the decimal representation of _n_ after the 20th with a 0 digit.
+            1. Let _option2_ be the mathematical value denoted by the result of replacing each significant digit in the decimal representation of _n_ after the 20th with a 0 digit and then incrementing it at the 20th position (with carrying as necessary).
+            1. Let _chosen_ be an implementation-defined choice of either _option1_ or _option2_.
+            1. Return 𝔽(_chosen_).
+          </emu-alg>
+        </emu-clause>

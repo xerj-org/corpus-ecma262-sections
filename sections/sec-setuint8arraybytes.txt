@@ -1,0 +1,22 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.3 Abstract Operations for Uint8Array Objects > 23.3.3.3 SetUint8ArrayBytes ( _into_: a Uint8Array, _bytes_: a List of byte values, ): ~unused~ [id: sec-setuint8arraybytes]
+
+<emu-clause id="sec-setuint8arraybytes" type="abstract operation">
+        <h1>
+          SetUint8ArrayBytes (
+            _into_: a Uint8Array,
+            _bytes_: a List of byte values,
+          ): ~unused~
+        </h1>
+        <dl class="header"></dl>
+        <emu-alg>
+          1. Let _offset_ be _into_.[[ByteOffset]].
+          1. Let _length_ be the number of elements in _bytes_.
+          1. Let _index_ be 0.
+          1. Repeat, while _index_ &lt; _length_,
+            1. Let _byte_ be _bytes_[_index_].
+            1. Let _byteIndexInBuffer_ be _index_ + _offset_.
+            1. Perform SetValueInBuffer(_into_.[[ViewedArrayBuffer]], _byteIndexInBuffer_, ~uint8~, 𝔽(_byte_), *true*, ~unordered~).
+            1. Set _index_ to _index_ + 1.
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

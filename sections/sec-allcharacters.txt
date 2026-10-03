@@ -1,0 +1,20 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.9 Runtime Semantics: CompileToCharSet ( _regexpRecord_: a RegExp Record, ): a CharSet > 22.2.2.9.4 AllCharacters ( _regexpRecord_: a RegExp Record, ): a CharSet [id: sec-allcharacters]
+
+<emu-clause id="sec-allcharacters" type="abstract operation">
+          <h1>
+            AllCharacters (
+              _regexpRecord_: a RegExp Record,
+            ): a CharSet
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>Returns the set of “all characters” according to the regular expression flags.</dd>
+          </dl>
+          <emu-alg>
+            1. If _regexpRecord_.[[UnicodeSets]] is *true* and _regexpRecord_.[[IgnoreCase]] is *true*, then
+              1. [declared="c"] Return the CharSet containing all Unicode code points _c_ that do not have a <a href="https://www.unicode.org/reports/tr44/#Simple_Case_Folding">Simple Case Folding</a> mapping (that is, scf(_c_)=_c_).
+            1. If HasEitherUnicodeFlag(_regexpRecord_) is *true*, then
+              1. Return the CharSet containing all code point values.
+            1. Return the CharSet containing all code unit values.
+          </emu-alg>
+        </emu-clause>

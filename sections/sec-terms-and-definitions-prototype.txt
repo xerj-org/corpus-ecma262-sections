@@ -1,0 +1,9 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.8 prototype [id: sec-terms-and-definitions-prototype]
+
+<emu-clause id="sec-terms-and-definitions-prototype">
+      <h1>prototype</h1>
+      <p>object that provides shared properties for other objects</p>
+      <emu-note>
+        <p>When a constructor creates an object, that object implicitly references the constructor's *"prototype"* property for the purpose of resolving property references. The constructor's *"prototype"* property can be referenced by the program expression <code><var>constructor</var>.prototype</code>, and properties added to an object's prototype are shared, through inheritance, by all objects sharing the prototype. Alternatively, a new object may be created with an explicitly specified prototype by using the `Object.create` built-in function.</p>
+      </emu-note>
+    </emu-clause>

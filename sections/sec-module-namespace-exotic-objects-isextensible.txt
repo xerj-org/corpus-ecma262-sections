@@ -1,0 +1,12 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.6 Module Namespace Exotic Objects > 10.4.6.3 [[IsExtensible]] ( ): a normal completion containing *false* [id: sec-module-namespace-exotic-objects-isextensible]
+
+<emu-clause id="sec-module-namespace-exotic-objects-isextensible" type="internal method">
+        <h1>[[IsExtensible]] ( ): a normal completion containing *false*</h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a module namespace exotic object</dd>
+        </dl>
+        <emu-alg>
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

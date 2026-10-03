@@ -1,0 +1,14 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.3 Iterator Objects > 27.1.3.2 Properties of the Iterator Constructor > 27.1.3.2.2 Iterator.from ( _obj_ ) > 27.1.3.2.2.1 The %WrapForValidIteratorPrototype% Object [id: sec-%wrapforvaliditeratorprototype%-object]
+
+<emu-clause id="sec-%wrapforvaliditeratorprototype%-object">
+            <h1>The %WrapForValidIteratorPrototype% Object</h1>
+            <p>The <dfn>%WrapForValidIteratorPrototype%</dfn> object:</p>
+            <ul>
+              <li>is an ordinary object.</li>
+              <li>has a [[Prototype]] internal slot whose value is %Iterator.prototype%.</li>
+            </ul>
+
+            
+
+            
+          </emu-clause>

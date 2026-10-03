@@ -1,0 +1,23 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.18 LengthOfArrayLike ( _obj_: an Object, ): either a normal completion containing a non-negative integer or a throw completion [id: sec-lengthofarraylike]
+
+<emu-clause id="sec-lengthofarraylike" type="abstract operation">
+      <h1>
+        LengthOfArrayLike (
+          _obj_: an Object,
+        ): either a normal completion containing a non-negative integer or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It returns the value of the *"length"* property of an array-like object.</dd>
+      </dl>
+      <emu-alg>
+        1. Return ℝ(? ToLength(? Get(_obj_, *"length"*))).
+      </emu-alg>
+      <p>An <dfn variants="array-like objects">array-like object</dfn> is any object for which this operation returns a normal completion.</p>
+      <emu-note>
+        Typically, an array-like object would also have some properties with integer index names. However, that is not a requirement of this definition.
+      </emu-note>
+      <emu-note>
+        Arrays and String objects are examples of array-like objects.
+      </emu-note>
+    </emu-clause>

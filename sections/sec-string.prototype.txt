@@ -1,0 +1,7 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.2 Properties of the String Constructor > 22.1.2.3 String.prototype [id: sec-string.prototype]
+
+<emu-clause id="sec-string.prototype">
+        <h1>String.prototype</h1>
+        <p>The initial value of `String.prototype` is the String prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

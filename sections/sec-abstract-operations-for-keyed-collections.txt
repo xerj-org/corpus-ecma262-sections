@@ -1,0 +1,7 @@
+ECMA-262 > 24 Keyed Collections > 24.5 Abstract Operations for Keyed Collections [id: sec-abstract-operations-for-keyed-collections]
+
+<emu-clause id="sec-abstract-operations-for-keyed-collections">
+    <h1>Abstract Operations for Keyed Collections</h1>
+
+    
+  </emu-clause>

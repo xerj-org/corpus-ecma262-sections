@@ -1,0 +1,15 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.4 get %TypedArray%.prototype.byteOffset [id: sec-get-%typedarray%.prototype.byteoffset]
+
+<emu-clause id="sec-get-%typedarray%.prototype.byteoffset" type="built-in function">
+        <h1>get %TypedArray%.prototype.byteOffset</h1>
+        <p>%TypedArray%`.prototype.byteOffset` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_obj_, [[TypedArrayName]]).
+          1. Assert: _obj_ has a [[ViewedArrayBuffer]] internal slot.
+          1. Let _taRecord_ be MakeTypedArrayWithBufferWitnessRecord(_obj_, ~seq-cst~).
+          1. If IsTypedArrayOutOfBounds(_taRecord_) is *true*, return *+0*<sub>𝔽</sub>.
+          1. Let _offset_ be _obj_.[[ByteOffset]].
+          1. Return 𝔽(_offset_).
+        </emu-alg>
+      </emu-clause>

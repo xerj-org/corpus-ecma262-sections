@@ -1,0 +1,22 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.2 ECMAScript Function Objects > 10.2.8 DefineMethodProperty ( _homeObj_: an Object, _name_: a property key or Private Name, _closure_: a function object, _enumerable_: a Boolean, ): either a normal completion containing either a PrivateElement or ~empty~, or an abrupt completion [id: sec-definemethodproperty]
+
+<emu-clause id="sec-definemethodproperty" oldids="sec-createmethodproperty" type="abstract operation">
+      <h1>
+        DefineMethodProperty (
+          _homeObj_: an Object,
+          _name_: a property key or Private Name,
+          _closure_: a function object,
+          _enumerable_: a Boolean,
+        ): either a normal completion containing either a PrivateElement or ~empty~, or an abrupt completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Assert: _homeObj_ is an ordinary, extensible object.
+        1. If _name_ is a Private Name, return PrivateElement { [[Key]]: _name_, [[Kind]]: ~method~, [[Value]]: _closure_ }.
+        1. Let _propertyDesc_ be the PropertyDescriptor { [[Value]]: _closure_, [[Writable]]: *true*, [[Enumerable]]: _enumerable_, [[Configurable]]: *true* }.
+        1. Perform ? DefinePropertyOrThrow(_homeObj_, _name_, _propertyDesc_).
+        1. NOTE: DefinePropertyOrThrow only returns an abrupt completion when attempting to define a class static method whose _name_ is *"prototype"*.
+        1. Return ~empty~.
+      </emu-alg>
+    </emu-clause>

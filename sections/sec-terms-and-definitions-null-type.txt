@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.16 Null type [id: sec-terms-and-definitions-null-type]
+
+<emu-clause id="sec-terms-and-definitions-null-type">
+      <h1>Null type</h1>
+      <p>type whose sole value is the *null* value</p>
+    </emu-clause>

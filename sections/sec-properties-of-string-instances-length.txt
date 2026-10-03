@@ -1,0 +1,7 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.4 Properties of String Instances > 22.1.4.1 length [id: sec-properties-of-string-instances-length]
+
+<emu-clause id="sec-properties-of-string-instances-length">
+        <h1>length</h1>
+        <p>The number of elements in the String value represented by this String object.</p>
+        <p>Once a String object is initialized, this property is unchanging. It has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

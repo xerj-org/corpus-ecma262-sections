@@ -1,0 +1,148 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.6 Miscellaneous > 8.6.3 Runtime Semantics: IteratorBindingInitialization ( _iteratorRecord_: an Iterator Record, _envRecord_: an Environment Record or *undefined*, ): either a normal completion containing ~unused~ or an abrupt completion [id: sec-runtime-semantics-iteratorbindinginitialization]
+
+<emu-clause id="sec-runtime-semantics-iteratorbindinginitialization" oldids="sec-destructuring-binding-patterns-runtime-semantics-iteratorbindinginitialization,sec-function-definitions-runtime-semantics-iteratorbindinginitialization,sec-arrow-function-definitions-runtime-semantics-iteratorbindinginitialization,sec-async-arrow-function-definitions-IteratorBindingInitialization" type="sdo">
+      <h1>
+        Runtime Semantics: IteratorBindingInitialization (
+          _iteratorRecord_: an Iterator Record,
+          _envRecord_: an Environment Record or *undefined*,
+        ): either a normal completion containing ~unused~ or an abrupt completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-note>
+        <p>When *undefined* is passed for _envRecord_ it indicates that a PutValue operation should be used to assign the initialization value. This is the case for formal parameter lists of non-strict functions. In that case the formal parameter bindings are preinitialized in order to deal with the possibility of multiple parameters with the same name.</p>
+      </emu-note>
+      <emu-grammar>ArrayBindingPattern : `[` `]`</emu-grammar>
+      <emu-alg>
+        1. Return ~unused~.
+      </emu-alg>
+      <emu-grammar>ArrayBindingPattern : `[` Elision `]`</emu-grammar>
+      <emu-alg>
+        1. Return ? IteratorDestructuringAssignmentEvaluation of |Elision| with argument _iteratorRecord_.
+      </emu-alg>
+      <emu-grammar>ArrayBindingPattern : `[` Elision? BindingRestElement `]`</emu-grammar>
+      <emu-alg>
+        1. If |Elision| is present, then
+          1. Perform ? IteratorDestructuringAssignmentEvaluation of |Elision| with argument _iteratorRecord_.
+        1. Return ? IteratorBindingInitialization of |BindingRestElement| with arguments _iteratorRecord_ and _envRecord_.
+      </emu-alg>
+      <emu-grammar>ArrayBindingPattern : `[` BindingElementList `,` Elision `]`</emu-grammar>
+      <emu-alg>
+        1. Perform ? IteratorBindingInitialization of |BindingElementList| with arguments _iteratorRecord_ and _envRecord_.
+        1. Return ? IteratorDestructuringAssignmentEvaluation of |Elision| with argument _iteratorRecord_.
+      </emu-alg>
+      <emu-grammar>ArrayBindingPattern : `[` BindingElementList `,` Elision? BindingRestElement `]`</emu-grammar>
+      <emu-alg>
+        1. Perform ? IteratorBindingInitialization of |BindingElementList| with arguments _iteratorRecord_ and _envRecord_.
+        1. If |Elision| is present, then
+          1. Perform ? IteratorDestructuringAssignmentEvaluation of |Elision| with argument _iteratorRecord_.
+        1. Return ? IteratorBindingInitialization of |BindingRestElement| with arguments _iteratorRecord_ and _envRecord_.
+      </emu-alg>
+      <emu-grammar>BindingElementList : BindingElementList `,` BindingElisionElement</emu-grammar>
+      <emu-alg>
+        1. Perform ? IteratorBindingInitialization of |BindingElementList| with arguments _iteratorRecord_ and _envRecord_.
+        1. Return ? IteratorBindingInitialization of |BindingElisionElement| with arguments _iteratorRecord_ and _envRecord_.
+      </emu-alg>
+      <emu-grammar>BindingElisionElement : Elision BindingElement</emu-grammar>
+      <emu-alg>
+        1. Perform ? IteratorDestructuringAssignmentEvaluation of |Elision| with argument _iteratorRecord_.
+        1. Return ? IteratorBindingInitialization of |BindingElement| with arguments _iteratorRecord_ and _envRecord_.
+      </emu-alg>
+      <emu-grammar>SingleNameBinding : BindingIdentifier Initializer?</emu-grammar>
+      <emu-alg>
+        1. Let _name_ be the StringValue of |BindingIdentifier|.
+        1. Let _lhs_ be ? ResolveBinding(_name_, _envRecord_).
+        1. Let _value_ be *undefined*.
+        1. If _iteratorRecord_.[[Done]] is *false*, then
+          1. Let _next_ be ? IteratorStepValue(_iteratorRecord_).
+          1. If _next_ is not ~done~, then
+            1. Set _value_ to _next_.
+        1. If |Initializer| is present and _value_ is *undefined*, then
+          1. If IsAnonymousFunctionDefinition(|Initializer|) is *true*, then
+            1. Set _value_ to ? NamedEvaluation of |Initializer| with argument _name_.
+          1. Else,
+            1. Let _defaultValue_ be ? Evaluation of |Initializer|.
+            1. Set _value_ to ? GetValue(_defaultValue_).
+        1. If _envRecord_ is *undefined*, return ? PutValue(_lhs_, _value_).
+        1. Return ? InitializeReferencedBinding(_lhs_, _value_).
+      </emu-alg>
+      <emu-grammar>BindingElement : BindingPattern Initializer?</emu-grammar>
+      <emu-alg>
+        1. Let _value_ be *undefined*.
+        1. If _iteratorRecord_.[[Done]] is *false*, then
+          1. Let _next_ be ? IteratorStepValue(_iteratorRecord_).
+          1. If _next_ is not ~done~, then
+            1. Set _value_ to _next_.
+        1. If |Initializer| is present and _value_ is *undefined*, then
+          1. Let _defaultValue_ be ? Evaluation of |Initializer|.
+          1. Set _value_ to ? GetValue(_defaultValue_).
+        1. Return ? BindingInitialization of |BindingPattern| with arguments _value_ and _envRecord_.
+      </emu-alg>
+      <emu-grammar>BindingRestElement : `...` BindingIdentifier</emu-grammar>
+      <emu-alg>
+        1. Let _lhs_ be ? ResolveBinding(StringValue of |BindingIdentifier|, _envRecord_).
+        1. Let _array_ be ! ArrayCreate(0).
+        1. Let _n_ be 0.
+        1. Repeat,
+          1. Let _next_ be ~done~.
+          1. If _iteratorRecord_.[[Done]] is *false*, then
+            1. Set _next_ to ? IteratorStepValue(_iteratorRecord_).
+          1. If _next_ is ~done~, then
+            1. If _envRecord_ is *undefined*, return ? PutValue(_lhs_, _array_).
+            1. Return ? InitializeReferencedBinding(_lhs_, _array_).
+          1. Perform ! CreateDataPropertyOrThrow(_array_, ! ToString(𝔽(_n_)), _next_).
+          1. Set _n_ to _n_ + 1.
+      </emu-alg>
+      <emu-grammar>BindingRestElement : `...` BindingPattern</emu-grammar>
+      <emu-alg>
+        1. Let _array_ be ! ArrayCreate(0).
+        1. Let _n_ be 0.
+        1. Repeat,
+          1. Let _next_ be ~done~.
+          1. If _iteratorRecord_.[[Done]] is *false*, then
+            1. Set _next_ to ? IteratorStepValue(_iteratorRecord_).
+          1. If _next_ is ~done~, then
+            1. Return ? BindingInitialization of |BindingPattern| with arguments _array_ and _envRecord_.
+          1. Perform ! CreateDataPropertyOrThrow(_array_, ! ToString(𝔽(_n_)), _next_).
+          1. Set _n_ to _n_ + 1.
+      </emu-alg>
+      <emu-grammar>FormalParameters : [empty]</emu-grammar>
+      <emu-alg>
+        1. Return ~unused~.
+      </emu-alg>
+      <emu-grammar>FormalParameters : FormalParameterList `,` FunctionRestParameter</emu-grammar>
+      <emu-alg>
+        1. Perform ? IteratorBindingInitialization of |FormalParameterList| with arguments _iteratorRecord_ and _envRecord_.
+        1. Return ? IteratorBindingInitialization of |FunctionRestParameter| with arguments _iteratorRecord_ and _envRecord_.
+      </emu-alg>
+      <emu-grammar>FormalParameterList : FormalParameterList `,` FormalParameter</emu-grammar>
+      <emu-alg>
+        1. Perform ? IteratorBindingInitialization of |FormalParameterList| with arguments _iteratorRecord_ and _envRecord_.
+        1. Return ? IteratorBindingInitialization of |FormalParameter| with arguments _iteratorRecord_ and _envRecord_.
+      </emu-alg>
+      <emu-grammar>ArrowParameters : BindingIdentifier</emu-grammar>
+      <emu-alg>
+        1. Let _value_ be *undefined*.
+        1. Assert: _iteratorRecord_.[[Done]] is *false*.
+        1. Let _next_ be ? IteratorStepValue(_iteratorRecord_).
+        1. If _next_ is not ~done~, then
+          1. Set _value_ to _next_.
+        1. Return ? BindingInitialization of |BindingIdentifier| with arguments _value_ and _envRecord_.
+      </emu-alg>
+      <emu-grammar>ArrowParameters : CoverParenthesizedExpressionAndArrowParameterList</emu-grammar>
+      <emu-alg>
+        1. Let _formals_ be the |ArrowFormalParameters| that is covered by |CoverParenthesizedExpressionAndArrowParameterList|.
+        1. Return ? IteratorBindingInitialization of _formals_ with arguments _iteratorRecord_ and _envRecord_.
+      </emu-alg>
+      <emu-grammar>
+        AsyncArrowBindingIdentifier : BindingIdentifier
+      </emu-grammar>
+      <emu-alg>
+        1. Let _value_ be *undefined*.
+        1. Assert: _iteratorRecord_.[[Done]] is *false*.
+        1. Let _next_ be ? IteratorStepValue(_iteratorRecord_).
+        1. If _next_ is not ~done~, then
+          1. Set _value_ to _next_.
+        1. Return ? BindingInitialization of |BindingIdentifier| with arguments _value_ and _envRecord_.
+      </emu-alg>
+    </emu-clause>

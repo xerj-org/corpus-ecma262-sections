@@ -1,0 +1,16 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.7 Abstract Operations for RegExp Matching > 22.2.7.6 GetMatchString ( _string_: a String, _match_: a Match Record, ): a String [id: sec-getmatchstring]
+
+<emu-clause id="sec-getmatchstring" type="abstract operation">
+        <h1>
+          GetMatchString (
+            _string_: a String,
+            _match_: a Match Record,
+          ): a String
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: _match_.[[StartIndex]] ≤ _match_.[[EndIndex]] ≤ the length of _string_.
+          1. Return the substring of _string_ from _match_.[[StartIndex]] to _match_.[[EndIndex]].
+        </emu-alg>
+      </emu-clause>

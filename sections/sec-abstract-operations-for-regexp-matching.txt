@@ -1,0 +1,21 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.7 Abstract Operations for RegExp Matching [id: sec-abstract-operations-for-regexp-matching]
+
+<emu-clause id="sec-abstract-operations-for-regexp-matching">
+      <h1>Abstract Operations for RegExp Matching</h1>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

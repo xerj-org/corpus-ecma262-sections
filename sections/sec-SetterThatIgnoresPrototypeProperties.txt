@@ -1,0 +1,27 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.37 SetterThatIgnoresPrototypeProperties ( _thisValue_: an ECMAScript language value, _home_: an Object, _propertyKey_: a property key, _value_: an ECMAScript language value, ): either a normal completion containing ~unused~ or a throw completion [id: sec-SetterThatIgnoresPrototypeProperties]
+
+<emu-clause id="sec-SetterThatIgnoresPrototypeProperties" type="abstract operation">
+      <h1>
+        SetterThatIgnoresPrototypeProperties (
+          _thisValue_: an ECMAScript language value,
+          _home_: an Object,
+          _propertyKey_: a property key,
+          _value_: an ECMAScript language value,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If _thisValue_ is not an Object, then
+          1. Throw a *TypeError* exception.
+        1. If SameValue(_thisValue_, _home_) is *true*, then
+          1. NOTE: Throwing here emulates assignment to a non-writable data property on the _home_ object in strict mode code.
+          1. Throw a *TypeError* exception.
+        1. Let _propertyDesc_ be ? _thisValue_.[[GetOwnProperty]](_propertyKey_).
+        1. If _propertyDesc_ is *undefined*, then
+          1. Perform ? CreateDataPropertyOrThrow(_thisValue_, _propertyKey_, _value_).
+        1. Else,
+          1. Perform ? Set(_thisValue_, _propertyKey_, _value_, *true*).
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

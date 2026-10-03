@@ -1,0 +1,12 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.8 Properties of RegExp Instances [id: sec-properties-of-regexp-instances]
+
+<emu-clause id="sec-properties-of-regexp-instances">
+      <h1>Properties of RegExp Instances</h1>
+      <p>RegExp instances are ordinary objects that inherit properties from the RegExp prototype object. RegExp instances have internal slots [[OriginalSource]], [[OriginalFlags]], [[RegExpRecord]], and [[RegExpMatcher]]. The value of the [[RegExpMatcher]] internal slot is an Abstract Closure representation of the |Pattern| of the RegExp object.</p>
+      <emu-note>
+        <p>Prior to ECMAScript 2015, RegExp instances were specified as having the own data properties *"source"*, *"global"*, *"ignoreCase"*, and *"multiline"*. Those properties are now specified as accessor properties of `RegExp.prototype`.</p>
+      </emu-note>
+      <p>RegExp instances also have the following property:</p>
+
+      
+    </emu-clause>

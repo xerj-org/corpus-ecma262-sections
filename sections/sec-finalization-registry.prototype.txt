@@ -1,0 +1,7 @@
+ECMA-262 > 26 Managing Memory > 26.2 FinalizationRegistry Objects > 26.2.2 Properties of the FinalizationRegistry Constructor > 26.2.2.1 FinalizationRegistry.prototype [id: sec-finalization-registry.prototype]
+
+<emu-clause id="sec-finalization-registry.prototype">
+        <h1>FinalizationRegistry.prototype</h1>
+        <p>The initial value of `FinalizationRegistry.prototype` is the FinalizationRegistry prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

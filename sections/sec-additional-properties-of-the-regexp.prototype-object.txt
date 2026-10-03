@@ -1,0 +1,7 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties > B.2.4 Additional Properties of the RegExp.prototype Object [id: sec-additional-properties-of-the-regexp.prototype-object]
+
+<emu-annex id="sec-additional-properties-of-the-regexp.prototype-object">
+      <h1>Additional Properties of the RegExp.prototype Object</h1>
+
+      
+    </emu-annex>

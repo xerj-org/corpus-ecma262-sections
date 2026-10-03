@@ -1,0 +1,29 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.6 The Property Descriptor Specification Type > 6.2.6.4 FromPropertyDescriptor ( _propertyDesc_: a Property Descriptor or *undefined*, ): an Object or *undefined* [id: sec-frompropertydescriptor]
+
+<emu-clause id="sec-frompropertydescriptor" type="abstract operation">
+        <h1>
+          FromPropertyDescriptor (
+            _propertyDesc_: a Property Descriptor or *undefined*,
+          ): an Object or *undefined*
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _propertyDesc_ is *undefined*, return *undefined*.
+          1. Let _obj_ be OrdinaryObjectCreate(%Object.prototype%).
+          1. Assert: _obj_ is an extensible ordinary object with no own properties.
+          1. If _propertyDesc_ has a [[Value]] field, then
+            1. Perform ! CreateDataPropertyOrThrow(_obj_, *"value"*, _propertyDesc_.[[Value]]).
+          1. If _propertyDesc_ has a [[Writable]] field, then
+            1. Perform ! CreateDataPropertyOrThrow(_obj_, *"writable"*, _propertyDesc_.[[Writable]]).
+          1. If _propertyDesc_ has a [[Getter]] field, then
+            1. Perform ! CreateDataPropertyOrThrow(_obj_, *"get"*, _propertyDesc_.[[Getter]]).
+          1. If _propertyDesc_ has a [[Setter]] field, then
+            1. Perform ! CreateDataPropertyOrThrow(_obj_, *"set"*, _propertyDesc_.[[Setter]]).
+          1. If _propertyDesc_ has an [[Enumerable]] field, then
+            1. Perform ! CreateDataPropertyOrThrow(_obj_, *"enumerable"*, _propertyDesc_.[[Enumerable]]).
+          1. If _propertyDesc_ has a [[Configurable]] field, then
+            1. Perform ! CreateDataPropertyOrThrow(_obj_, *"configurable"*, _propertyDesc_.[[Configurable]]).
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

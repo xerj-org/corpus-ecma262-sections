@@ -1,0 +1,6 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.3 DisposableStack Objects > 27.3.3 Properties of the DisposableStack Prototype Object > 27.3.3.8 DisposableStack.prototype [ %Symbol.dispose% ] ( ) [id: sec-disposablestack.prototype-%symbol.dispose%]
+
+<emu-clause id="sec-disposablestack.prototype-%symbol.dispose%">
+        <h1>DisposableStack.prototype [ %Symbol.dispose% ] ( )</h1>
+        <p>The initial value of the `%Symbol.dispose%` property is %DisposableStack.prototype.dispose%, defined in <emu-xref href="#sec-disposablestack.prototype.dispose"></emu-xref>.</p>
+      </emu-clause>

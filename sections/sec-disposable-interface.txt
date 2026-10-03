@@ -1,0 +1,34 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.2 Resource Management > 27.2.1 Common Resource Management Interfaces > 27.2.1.1 The Disposable Interface [id: sec-disposable-interface]
+
+<emu-clause id="sec-disposable-interface">
+        <h1>The Disposable Interface</h1>
+        <p>The <dfn>Disposable</dfn> interface includes the properties described in <emu-xref href="#table-disposable-interface-required-properties"></emu-xref>:</p>
+        <emu-table id="table-disposable-interface-required-properties" caption="Disposable Interface Required Properties">
+          <table>
+            <tr>
+              <th>
+                Property
+              </th>
+              <th>
+                Value
+              </th>
+              <th>
+                Requirements
+              </th>
+            </tr>
+            <tr>
+              <td>
+                `%Symbol.dispose%`
+              </td>
+              <td>
+                a function object
+              </td>
+              <td>
+                <p>Invoking this method notifies the Disposable object that the caller does not intend to continue to use this object. This method should perform any necessary logic to perform explicit clean-up of the resource including, but not limited to, file system handles, streams, host objects, etc. When an exception is thrown from this method, it typically means that the resource could not be explicitly freed.</p>
+                <p>Invoking this method more than once on the same object should avoid repeating clean-up logic against the already-disposed resource and should not throw an exception, even if an exception was thrown on the first invocation. However, this requirement is not enforced.</p>
+                <p>When using a Disposable object with a `using` or `await using` declaration, the resource will be automatically disposed when the |Block| or |Module| immediately containing the declaration has been evaluated.</p>
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

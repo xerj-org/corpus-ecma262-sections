@@ -1,0 +1,17 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.3 Arrow Function Definitions > 15.3.3 Runtime Semantics: EvaluateConciseBody ( _funcObj_: an ECMAScript function object, _argList_: a List of ECMAScript language values, ): a return completion or a throw completion [id: sec-runtime-semantics-evaluateconcisebody]
+
+<emu-clause id="sec-runtime-semantics-evaluateconcisebody" oldids="sec-arrow-function-definitions-runtime-semantics-evaluatebody" type="sdo">
+      <h1>
+        Runtime Semantics: EvaluateConciseBody (
+          _funcObj_: an ECMAScript function object,
+          _argList_: a List of ECMAScript language values,
+        ): a return completion or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>ConciseBody : ExpressionBody</emu-grammar>
+      <emu-alg>
+        1. Perform ? FunctionDeclarationInstantiation(_funcObj_, _argList_).
+        1. Return ? Evaluation of |ExpressionBody|.
+      </emu-alg>
+    </emu-clause>

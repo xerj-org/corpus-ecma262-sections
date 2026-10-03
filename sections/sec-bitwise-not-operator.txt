@@ -1,0 +1,7 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.5 Unary Operators > 13.5.6 Bitwise NOT Operator ( `~` ) [id: sec-bitwise-not-operator]
+
+<emu-clause id="sec-bitwise-not-operator">
+      <h1>Bitwise NOT Operator ( `~` )</h1>
+
+      
+    </emu-clause>

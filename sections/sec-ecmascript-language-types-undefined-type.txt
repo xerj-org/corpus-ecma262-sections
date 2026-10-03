@@ -1,0 +1,6 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.1 The Undefined Type [id: sec-ecmascript-language-types-undefined-type]
+
+<emu-clause id="sec-ecmascript-language-types-undefined-type">
+      <h1>The Undefined Type</h1>
+      <p>The Undefined type has exactly one value, called *undefined*. Any variable that has not been assigned a value has the value *undefined*.</p>
+    </emu-clause>

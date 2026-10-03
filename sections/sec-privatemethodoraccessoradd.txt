@@ -1,0 +1,24 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.28 PrivateMethodOrAccessorAdd ( _obj_: an Object, _method_: a PrivateElement, ): either a normal completion containing ~unused~ or a throw completion [id: sec-privatemethodoraccessoradd]
+
+<emu-clause id="sec-privatemethodoraccessoradd" type="abstract operation">
+      <h1>
+        PrivateMethodOrAccessorAdd (
+          _obj_: an Object,
+          _method_: a PrivateElement,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Assert: _method_.[[Kind]] is either ~method~ or ~accessor~.
+        1. If the host is a web browser, then
+          1. Perform ? HostEnsureCanAddPrivateElement(_obj_).
+        1. Let _entry_ be PrivateElementFind(_obj_, _method_.[[Key]]).
+        1. If _entry_ is not ~empty~, throw a *TypeError* exception.
+        1. Append _method_ to _obj_.[[PrivateElements]].
+        1. Return ~unused~.
+      </emu-alg>
+      <emu-note>
+        <p>The values for private methods and accessors are shared across instances. This operation does not create a new copy of the method or accessor.</p>
+      </emu-note>
+    </emu-clause>

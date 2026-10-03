@@ -1,0 +1,23 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.4 Atomics.add ( _ta_, _index_, _value_ ) [id: sec-atomics.add]
+
+<emu-clause id="sec-atomics.add" type="built-in function">
+      <h1>Atomics.add ( _ta_, _index_, _value_ )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _add_ be a new read-modify-write modification function with parameters (_xBytes_, _yBytes_) that captures _ta_ and performs the following steps atomically when called:
+          1. Let _type_ be TypedArrayElementType(_ta_).
+          1. Let _agentRecord_ be the Agent Record of the surrounding agent.
+          1. Let _isLittleEndian_ be _agentRecord_.[[LittleEndian]].
+          1. Let _x_ be RawBytesToNumeric(_type_, _xBytes_, _isLittleEndian_).
+          1. Let _y_ be RawBytesToNumeric(_type_, _yBytes_, _isLittleEndian_).
+          1. If _x_ is a Number, then
+            1. Let _sum_ be Number::add(_x_, _y_).
+          1. Else,
+            1. Assert: _x_ is a BigInt.
+            1. Let _sum_ be BigInt::add(_x_, _y_).
+          1. Let _sumBytes_ be NumericToRawBytes(_type_, _sum_, _isLittleEndian_).
+          1. Assert: _sumBytes_, _xBytes_, and _yBytes_ have the same number of elements.
+          1. Return _sumBytes_.
+        1. Return ? AtomicReadModifyWrite(_ta_, _index_, _value_, _add_).
+      </emu-alg>
+    </emu-clause>

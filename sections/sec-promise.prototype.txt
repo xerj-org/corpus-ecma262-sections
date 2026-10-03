@@ -1,0 +1,7 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.4 Properties of the Promise Constructor > 27.5.4.4 Promise.prototype [id: sec-promise.prototype]
+
+<emu-clause id="sec-promise.prototype">
+        <h1>Promise.prototype</h1>
+        <p>The initial value of `Promise.prototype` is the Promise prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

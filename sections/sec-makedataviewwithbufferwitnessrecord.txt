@@ -1,0 +1,20 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.1 Abstract Operations For DataView Objects > 25.3.1.2 MakeDataViewWithBufferWitnessRecord ( _obj_: a DataView, _order_: ~seq-cst~ or ~unordered~, ): a DataView With Buffer Witness Record [id: sec-makedataviewwithbufferwitnessrecord]
+
+<emu-clause id="sec-makedataviewwithbufferwitnessrecord" type="abstract operation">
+        <h1>
+          MakeDataViewWithBufferWitnessRecord (
+            _obj_: a DataView,
+            _order_: ~seq-cst~ or ~unordered~,
+          ): a DataView With Buffer Witness Record
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _buffer_ be _obj_.[[ViewedArrayBuffer]].
+          1. If IsDetachedBuffer(_buffer_) is *true*, then
+            1. Let _byteLength_ be ~detached~.
+          1. Else,
+            1. Let _byteLength_ be ArrayBufferByteLength(_buffer_, _order_).
+          1. Return the DataView With Buffer Witness Record { [[Object]]: _obj_, [[CachedBufferByteLength]]: _byteLength_ }.
+        </emu-alg>
+      </emu-clause>

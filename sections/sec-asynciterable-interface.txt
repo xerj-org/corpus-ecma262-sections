@@ -1,0 +1,22 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.1 Common Iteration Interfaces > 27.1.1.3 The Async Iterable Interface [id: sec-asynciterable-interface]
+
+<emu-clause id="sec-asynciterable-interface">
+        <h1>The Async Iterable Interface</h1>
+        <p>The <dfn variants="async iterable,async iterables,async iterable object,async iterable objects">async iterable interface</dfn> includes the properties described in <emu-xref href="#table-async-iterable"></emu-xref>:</p>
+        <emu-table id="table-async-iterable" caption="Async Iterable Interface Required Properties">
+          <table>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Value</th>
+                <th>Requirements</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>`%Symbol.asyncIterator%`</td>
+              <td>a function that returns an async iterator object</td>
+              <td>The returned object must conform to the async iterator interface.</td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

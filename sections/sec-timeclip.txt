@@ -1,0 +1,18 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.31 TimeClip ( _time_: a Number, ): a time value [id: sec-timeclip]
+
+<emu-clause id="sec-timeclip" type="abstract operation">
+        <h1>
+          TimeClip (
+            _time_: a Number,
+          ): a time value
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It calculates a number of milliseconds.</dd>
+        </dl>
+        <emu-alg>
+          1. If _time_ is not a finite Number, return *NaN*.
+          1. If abs(ℝ(_time_)) > 8.64 × 10<sup>15</sup>, return *NaN*.
+          1. Return 𝔽(! ToIntegerOrInfinity(_time_)).
+        </emu-alg>
+      </emu-clause>

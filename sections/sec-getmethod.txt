@@ -1,0 +1,20 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.10 GetMethod ( _value_: an ECMAScript language value, _propertyKey_: a property key, ): either a normal completion containing either a function object or *undefined*, or a throw completion [id: sec-getmethod]
+
+<emu-clause id="sec-getmethod" type="abstract operation">
+      <h1>
+        GetMethod (
+          _value_: an ECMAScript language value,
+          _propertyKey_: a property key,
+        ): either a normal completion containing either a function object or *undefined*, or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to get the value of a specific property of an ECMAScript language value when the value of the property is expected to be a function.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _func_ be ? GetV(_value_, _propertyKey_).
+        1. If _func_ is either *undefined* or *null*, return *undefined*.
+        1. If IsCallable(_func_) is *false*, throw a *TypeError* exception.
+        1. Return _func_.
+      </emu-alg>
+    </emu-clause>

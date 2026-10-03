@@ -1,0 +1,11 @@
+ECMA-262 > 5 Notational Conventions > 5.1 Syntactic and Lexical Grammars > 5.1.5 Grammar Notation > 5.1.5.9 but not [id: sec-but-not]
+
+<emu-clause id="sec-but-not">
+        <h1>but not</h1>
+        <p>The right-hand side of a production may specify that certain expansions are not permitted by using the phrase “<b>but not</b>” and then indicating the expansions to be excluded. For example, the production:</p>
+        <emu-grammar type="definition" example>
+          Identifier ::
+            IdentifierName but not ReservedWord
+        </emu-grammar>
+        <p>means that the nonterminal |Identifier| may be replaced by any sequence of code points that could replace |IdentifierName| provided that the same sequence of code points could not replace |ReservedWord|.</p>
+      </emu-clause>

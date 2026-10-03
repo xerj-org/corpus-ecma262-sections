@@ -1,0 +1,22 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.5 The _TypedArray_ Constructors > 23.2.5.1 _TypedArray_ ( ..._args_ ) > 23.2.5.1.4 InitializeTypedArrayFromList ( _obj_: a TypedArray, _values_: a List of ECMAScript language values, ): either a normal completion containing ~unused~ or a throw completion [id: sec-initializetypedarrayfromlist]
+
+<emu-clause id="sec-initializetypedarrayfromlist" type="abstract operation">
+          <h1>
+            InitializeTypedArrayFromList (
+              _obj_: a TypedArray,
+              _values_: a List of ECMAScript language values,
+            ): either a normal completion containing ~unused~ or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _length_ be the number of elements in _values_.
+            1. Perform ? AllocateTypedArrayBuffer(_obj_, _length_).
+            1. Let _k_ be 0.
+            1. Repeat, while _k_ &lt; _length_,
+              1. Let _kValue_ be _values_[_k_].
+              1. Perform ? TypedArraySetElement(_obj_, 𝔽(_k_), _kValue_).
+              1. Set _k_ to _k_ + 1.
+            1. Return ~unused~.
+          </emu-alg>
+        </emu-clause>

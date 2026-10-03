@@ -1,0 +1,16 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.2 The BigInt Type > 6.1.6.2.12 BigInt::lessThan ( _x_: a BigInt, _y_: a BigInt, ): a Boolean [id: sec-numeric-types-bigint-lessThan]
+
+<emu-clause id="sec-numeric-types-bigint-lessThan" type="numeric method">
+          <h1>
+            BigInt::lessThan (
+              _x_: a BigInt,
+              _y_: a BigInt,
+            ): a Boolean
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If ℝ(_x_) &lt; ℝ(_y_), return *true*.
+            1. Return *false*.
+          </emu-alg>
+        </emu-clause>

@@ -1,0 +1,11 @@
+ECMA-262 > 20 Fundamental Objects > 20.3 Boolean Objects > 20.3.3 Properties of the Boolean Prototype Object > 20.3.3.2 Boolean.prototype.toString ( ) [id: sec-boolean.prototype.tostring]
+
+<emu-clause id="sec-boolean.prototype.tostring" type="built-in function">
+        <h1>Boolean.prototype.toString ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _bool_ be ? ThisBooleanValue(*this* value).
+          1. If _bool_ is *true*, return *"true"*.
+          1. Return *"false"*.
+        </emu-alg>
+      </emu-clause>

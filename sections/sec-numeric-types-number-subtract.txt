@@ -1,0 +1,20 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.1 The Number Type > 6.1.6.1.8 Number::subtract ( _x_: a Number, _y_: a Number, ): a Number [id: sec-numeric-types-number-subtract]
+
+<emu-clause id="sec-numeric-types-number-subtract" type="numeric method">
+          <h1>
+            Number::subtract (
+              _x_: a Number,
+              _y_: a Number,
+            ): a Number
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It performs subtraction, producing the difference of its operands; _x_ is the minuend and _y_ is the subtrahend.</dd>
+          </dl>
+          <emu-alg>
+            1. Return Number::add(_x_, Number::unaryMinus(_y_)).
+          </emu-alg>
+          <emu-note>
+            <p>It is always the case that `x - y` produces the same result as `x + (-y)`.</p>
+          </emu-note>
+        </emu-clause>

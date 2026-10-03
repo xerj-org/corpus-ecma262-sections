@@ -1,0 +1,27 @@
+ECMA-262 > 29 Memory Model > 29.3 Chosen Value Records [id: sec-chosen-value-records]
+
+<emu-clause id="sec-chosen-value-records">
+    <h1>Chosen Value Records</h1>
+    <p>A <dfn variants="Chosen Value Records">Chosen Value Record</dfn> is a Record with the following fields.</p>
+    <emu-table id="table-chosen-value-records" caption="Chosen Value Record Fields">
+      <table>
+        <thead>
+          <tr>
+            <th>Field Name</th>
+            <th>Value</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tr>
+          <td>[[Event]]</td>
+          <td>a Shared Data Block event</td>
+          <td>The ReadSharedMemory or ReadModifyWriteSharedMemory event that was introduced for this chosen value.</td>
+        </tr>
+        <tr>
+          <td>[[ChosenValue]]</td>
+          <td>a List of byte values</td>
+          <td>The bytes that were nondeterministically chosen during evaluation.</td>
+        </tr>
+      </table>
+    </emu-table>
+  </emu-clause>

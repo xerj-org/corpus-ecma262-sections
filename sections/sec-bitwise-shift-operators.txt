@@ -1,0 +1,19 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.9 Bitwise Shift Operators [id: sec-bitwise-shift-operators]
+
+<emu-clause id="sec-bitwise-shift-operators">
+    <h1>Bitwise Shift Operators</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      ShiftExpression[Yield, Await] :
+        AdditiveExpression[?Yield, ?Await]
+        ShiftExpression[?Yield, ?Await] `&lt;&lt;` AdditiveExpression[?Yield, ?Await]
+        ShiftExpression[?Yield, ?Await] `&gt;&gt;` AdditiveExpression[?Yield, ?Await]
+        ShiftExpression[?Yield, ?Await] `&gt;&gt;&gt;` AdditiveExpression[?Yield, ?Await]
+    </emu-grammar>
+
+    
+
+    
+
+    
+  </emu-clause>

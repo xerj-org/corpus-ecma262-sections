@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.22 Iterator ( . . . ) [id: sec-constructor-properties-of-the-global-object-iterator]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-iterator">
+      <h1>Iterator ( . . . )</h1>
+      <p>See <emu-xref href="#sec-iterator-constructor"></emu-xref>.</p>
+    </emu-clause>

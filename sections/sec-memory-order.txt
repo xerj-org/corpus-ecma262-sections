@@ -1,0 +1,31 @@
+ECMA-262 > 29 Memory Model > 29.7 Properties of Valid Executions > 29.7.4 Sequentially Consistent Atomics [id: sec-memory-order]
+
+<emu-clause id="sec-memory-order">
+      <h1>Sequentially Consistent Atomics</h1>
+      <p>For a candidate execution _execution_, <dfn>is-memory-order-before</dfn> is a strict total order of all Memory events in EventSet(_execution_) that satisfies the following.</p>
+      <ul>
+        <li>For events _eventA_ and _eventB_, _eventA_ is-memory-order-before _eventB_ in _execution_ if _eventA_ happens-before _eventB_ in _execution_.</li>
+        <li>
+          <p>For events _readEvent_ and _writeEvent_ such that _readEvent_ reads-from _writeEvent_ in _execution_, there is no WriteSharedMemory or ReadModifyWriteSharedMemory event _value_ in SharedDataBlockEventSet(_execution_) such that _value_.[[Order]] is ~seq-cst~, _writeEvent_ is-memory-order-before _value_ in _execution_, _value_ is-memory-order-before _readEvent_ in _execution_, and any of the following conditions are true.</p>
+          <ul>
+            <li>_writeEvent_ synchronizes-with _readEvent_ in _execution_, and _value_ and _readEvent_ have equal memory ranges.</li>
+            <li>_writeEvent_ happens-before _readEvent_ and _value_ happens-before _readEvent_ in _execution_, _writeEvent_.[[Order]] is ~seq-cst~, and _writeEvent_ and _value_ have equal memory ranges.</li>
+            <li>_writeEvent_ happens-before _readEvent_ and _writeEvent_ happens-before _value_ in _execution_, _readEvent_.[[Order]] is ~seq-cst~, and _value_ and _readEvent_ have equal memory ranges.</li>
+          </ul>
+          <emu-note>
+            <p>This clause additionally constrains ~seq-cst~ events on equal memory ranges.</p>
+          </emu-note>
+        </li>
+        <li>
+          <p>For each WriteSharedMemory or ReadModifyWriteSharedMemory event _writeEvent_ in SharedDataBlockEventSet(_execution_), if _writeEvent_.[[Order]] is ~seq-cst~, then it is not the case that there is an infinite number of ReadSharedMemory or ReadModifyWriteSharedMemory events in SharedDataBlockEventSet(_execution_) with equal memory range that is memory-order before _writeEvent_.</p>
+          <emu-note>
+            <p>This clause together with the forward progress guarantee on agents ensure the liveness condition that ~seq-cst~ <emu-xref href="#sec-memory-model-fundamentals">writes</emu-xref> become visible to ~seq-cst~ <emu-xref href="#sec-memory-model-fundamentals">reads</emu-xref> with equal memory range in finite time.</p>
+          </emu-note>
+        </li>
+      </ul>
+      <p>A candidate execution has sequentially consistent atomics if it admits an is-memory-order-before Relation.</p>
+
+      <emu-note>
+        <p>While is-memory-order-before includes all events in EventSet(_execution_), those that are not constrained by happens-before or synchronizes-with in _execution_ are allowed to occur anywhere in the order.</p>
+      </emu-note>
+    </emu-clause>

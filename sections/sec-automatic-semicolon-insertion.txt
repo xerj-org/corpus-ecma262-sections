@@ -1,0 +1,12 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.10 Automatic Semicolon Insertion [id: sec-automatic-semicolon-insertion]
+
+<emu-clause id="sec-automatic-semicolon-insertion">
+    <h1>Automatic Semicolon Insertion</h1>
+    <p>Most ECMAScript statements and declarations must be terminated with a semicolon. Such semicolons may always appear explicitly in the source text. For convenience, however, such semicolons may be omitted from the source text in certain situations. These situations are described by saying that semicolons are automatically inserted into the source code token stream in those situations.</p>
+
+    
+
+    
+
+    
+  </emu-clause>

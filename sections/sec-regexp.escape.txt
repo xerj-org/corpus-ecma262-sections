@@ -1,0 +1,29 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.5 Properties of the RegExp Constructor > 22.2.5.1 RegExp.escape ( _string_ ) [id: sec-regexp.escape]
+
+<emu-clause id="sec-regexp.escape" type="built-in function">
+        <h1>RegExp.escape ( _string_ )</h1>
+        <p>This function returns a copy of _string_ in which characters that are potentially special in a regular expression |Pattern| have been replaced by equivalent escape sequences.</p>
+        <p>It performs the following steps when called:</p>
+
+        <emu-alg>
+          1. If _string_ is not a String, throw a *TypeError* exception.
+          1. Let _escaped_ be the empty String.
+          1. Let _codePointList_ be StringToCodePoints(_string_).
+          1. For each code point _codePoint_ of _codePointList_, do
+            1. If _escaped_ is the empty String and _codePoint_ is matched by either |DecimalDigit| or |AsciiLetter|, then
+              1. NOTE: Escaping a leading digit ensures that output corresponds with pattern text which may be used after a `\0` character escape or a |DecimalEscape| such as `\1` and still match _string_ rather than be interpreted as an extension of the preceding escape sequence. Escaping a leading ASCII letter does the same for the context after `\c`.
+              1. Let _numericValue_ be the numeric value of _codePoint_.
+              1. Let _hex_ be Number::toString(𝔽(_numericValue_), 16).
+              1. Assert: The length of _hex_ is 2.
+              1. Set _escaped_ to the string-concatenation of the code unit 0x005C (REVERSE SOLIDUS), *"x"*, and _hex_.
+            1. Else,
+              1. Set _escaped_ to the string-concatenation of _escaped_ and EncodeForRegExpEscape(_codePoint_).
+          1. Return _escaped_.
+        </emu-alg>
+
+        <emu-note>
+          <p>Despite having similar names, EscapeRegExpPattern and `RegExp.escape` do not perform similar actions. The former escapes a pattern for representation as a string, while this function escapes a string for representation inside a pattern.</p>
+        </emu-note>
+
+        
+      </emu-clause>

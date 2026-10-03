@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.2 Properties of the Number Constructor > 21.1.2.7 Number.MAX_VALUE [id: sec-number.max_value]
+
+<emu-clause id="sec-number.max_value">
+        <h1>Number.MAX_VALUE</h1>
+        <p>The value of `Number.MAX_VALUE` is the largest positive finite Number, which is approximately <emu-eqn>1.7976931348623157 × 10<sup>308</sup></emu-eqn>.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

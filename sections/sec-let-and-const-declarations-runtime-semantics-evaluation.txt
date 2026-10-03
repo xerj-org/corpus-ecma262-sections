@@ -1,0 +1,20 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.3 Declarations and the Variable Statement > 14.3.1 Let, Const, Using, and Await Using Declarations > 14.3.1.2 Runtime Semantics: Evaluation [id: sec-let-and-const-declarations-runtime-semantics-evaluation]
+
+<emu-clause id="sec-let-and-const-declarations-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>LexicalDeclaration : LetOrConst BindingList `;`</emu-grammar>
+        <emu-alg>
+          1. Perform ? BindingEvaluation of |BindingList| with argument ~normal~.
+          1. Return ~empty~.
+        </emu-alg>
+        <emu-grammar>UsingDeclaration : `using` BindingList `;`</emu-grammar>
+        <emu-alg>
+          1. Perform ? BindingEvaluation of |BindingList| with argument ~sync-dispose~.
+          1. Return ~empty~.
+        </emu-alg>
+        <emu-grammar>AwaitUsingDeclaration : CoverAwaitExpressionAndAwaitUsingDeclarationHead BindingList `;`</emu-grammar>
+        <emu-alg>
+          1. Perform ? BindingEvaluation of |BindingList| with argument ~async-dispose~.
+          1. Return ~empty~.
+        </emu-alg>
+      </emu-clause>

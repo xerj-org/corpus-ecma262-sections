@@ -1,0 +1,22 @@
+ECMA-262 > 26 Managing Memory > 26.2 FinalizationRegistry Objects > 26.2.3 Properties of the FinalizationRegistry Prototype Object > 26.2.3.2 FinalizationRegistry.prototype.register ( _target_, _heldValue_ [ , _unregisterToken_ ] ) [id: sec-finalization-registry.prototype.register]
+
+<emu-clause id="sec-finalization-registry.prototype.register" type="built-in function">
+        <h1>FinalizationRegistry.prototype.register ( _target_, _heldValue_ [ , _unregisterToken_ ] )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _finalizationRegistry_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_finalizationRegistry_, [[Cells]]).
+          1. If CanBeHeldWeakly(_target_) is *false*, throw a *TypeError* exception.
+          1. If SameValue(_target_, _heldValue_) is *true*, throw a *TypeError* exception.
+          1. If CanBeHeldWeakly(_unregisterToken_) is *false*, then
+            1. If _unregisterToken_ is not *undefined*, throw a *TypeError* exception.
+            1. Set _unregisterToken_ to ~empty~.
+          1. Let _cell_ be the Record { [[WeakRefTarget]]: _target_, [[HeldValue]]: _heldValue_, [[UnregisterToken]]: _unregisterToken_ }.
+          1. Append _cell_ to _finalizationRegistry_.[[Cells]].
+          1. Return *undefined*.
+        </emu-alg>
+
+        <emu-note>
+          <p>Based on the algorithms and definitions in this specification, _cell_.[[HeldValue]] is live when _finalizationRegistry_.[[Cells]] contains _cell_; however, this does not necessarily mean that _cell_.[[UnregisterToken]] or _cell_.[[Target]] are live. For example, registering an object with itself as its unregister token would not keep the object alive forever.</p>
+        </emu-note>
+      </emu-clause>

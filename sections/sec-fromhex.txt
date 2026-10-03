@@ -1,0 +1,30 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.3 Abstract Operations for Uint8Array Objects > 23.3.3.8 FromHex ( _string_: a String, optional _maxLength_: a non-negative integer, ): a Record with fields [[Read]] (an integer), [[Bytes]] (a List of byte values), and [[Error]] (a *SyntaxError* object or ~none~) [id: sec-fromhex]
+
+<emu-clause id="sec-fromhex" type="abstract operation">
+        <h1>
+          FromHex (
+            _string_: a String,
+            optional _maxLength_: a non-negative integer,
+          ): a Record with fields [[Read]] (an integer), [[Bytes]] (a List of byte values), and [[Error]] (a *SyntaxError* object or ~none~)
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _maxLength_ is not present, set _maxLength_ to 2<sup>53</sup> - 1.
+          1. Let _length_ be the length of _string_.
+          1. Let _bytes_ be a new empty List.
+          1. Let _read_ be 0.
+          1. If _length_ modulo 2 ≠ 0, then
+            1. Let _error_ be a newly created *SyntaxError* object.
+            1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: _error_ }.
+          1. Repeat, while _read_ &lt; _length_ and the number of elements in _bytes_ &lt; _maxLength_,
+            1. Let _hexits_ be the substring of _string_ from _read_ to _read_ + 2.
+            1. If _hexits_ contains any code units which are not in *"0123456789abcdefABCDEF"*, then
+              1. Let _error_ be a newly created *SyntaxError* object.
+              1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: _error_ }.
+            1. Set _read_ to _read_ + 2.
+            1. Let _byte_ be the integer value represented by _hexits_ in base-16 notation, using the letters *A* through *F* and *a* through *f* for digits with values 10 through 15.
+            1. Append _byte_ to _bytes_.
+          1. Return the Record { [[Read]]: _read_, [[Bytes]]: _bytes_, [[Error]]: ~none~ }.
+        </emu-alg>
+      </emu-clause>

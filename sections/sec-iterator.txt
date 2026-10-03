@@ -1,0 +1,10 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.3 Iterator Objects > 27.1.3.1 The Iterator Constructor > 27.1.3.1.1 Iterator ( ) [id: sec-iterator]
+
+<emu-clause id="sec-iterator" type="built-in function">
+          <h1>Iterator ( )</h1>
+          <p>This function performs the following steps when called:</p>
+          <emu-alg>
+            1. If NewTarget is either *undefined* or the active function object, throw a *TypeError* exception.
+            1. Return ? OrdinaryCreateFromConstructor(NewTarget, *"%Iterator.prototype%"*).
+          </emu-alg>
+        </emu-clause>

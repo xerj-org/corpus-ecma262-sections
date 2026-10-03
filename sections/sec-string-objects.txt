@@ -1,0 +1,15 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects [id: sec-string-objects]
+
+<emu-clause id="sec-string-objects">
+    <h1>String Objects</h1>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

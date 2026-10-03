@@ -1,0 +1,6 @@
+ECMA-262 > 26 Managing Memory > 26.1 WeakRef Objects > 26.1.5 Properties of WeakRef Instances [id: sec-properties-of-weak-ref-instances]
+
+<emu-clause id="sec-properties-of-weak-ref-instances">
+      <h1>Properties of WeakRef Instances</h1>
+      <p>WeakRef instances are ordinary objects that inherit properties from the WeakRef prototype object. WeakRef instances also have a [[WeakRefTarget]] internal slot.</p>
+    </emu-clause>

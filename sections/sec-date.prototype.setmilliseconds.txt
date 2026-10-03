@@ -1,0 +1,18 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.4 Properties of the Date Prototype Object > 21.4.4.23 Date.prototype.setMilliseconds ( _millisecond_ ) [id: sec-date.prototype.setmilliseconds]
+
+<emu-clause id="sec-date.prototype.setmilliseconds" type="built-in function">
+        <h1>Date.prototype.setMilliseconds ( _millisecond_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _dateObj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_dateObj_, [[DateValue]]).
+          1. Let _tv_ be _dateObj_.[[DateValue]].
+          1. Let _millisecondNumber_ be ? ToNumber(_millisecond_).
+          1. If _tv_ is *NaN*, return *NaN*.
+          1. Set _tv_ to LocalTime(_tv_).
+          1. Let _time_ be MakeTime(𝔽(HourFromTime(_tv_)), 𝔽(MinuteFromTime(_tv_)), 𝔽(SecondFromTime(_tv_)), _millisecondNumber_).
+          1. Let _u_ be TimeClip(UTC(MakeDate(𝔽(Day(_tv_)), _time_))).
+          1. Set _dateObj_.[[DateValue]] to _u_.
+          1. Return _u_.
+        </emu-alg>
+      </emu-clause>

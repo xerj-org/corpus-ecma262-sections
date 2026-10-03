@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.5 Native Error Types Used in This Standard > 20.5.5.4 SyntaxError [id: sec-native-error-types-used-in-this-standard-syntaxerror]
+
+<emu-clause id="sec-native-error-types-used-in-this-standard-syntaxerror">
+        <h1>SyntaxError</h1>
+        <p>The SyntaxError constructor is <dfn>%SyntaxError%</dfn>.</p>
+        <p>Indicates that a parsing error has occurred.</p>
+      </emu-clause>

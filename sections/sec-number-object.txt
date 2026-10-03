@@ -1,0 +1,9 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.25 Number object [id: sec-number-object]
+
+<emu-clause id="sec-number-object">
+      <h1>Number object</h1>
+      <p>member of the Object type that is an instance of the standard built-in Number constructor</p>
+      <emu-note>
+        <p>A Number object is created by using the Number constructor in a `new` expression, supplying a Number value as an argument. The resulting object has an internal slot whose value is the Number value. A Number object can be coerced to a Number value by calling the Number constructor as a function (<emu-xref href="#sec-number-constructor-number-value"></emu-xref>).</p>
+      </emu-note>
+    </emu-clause>

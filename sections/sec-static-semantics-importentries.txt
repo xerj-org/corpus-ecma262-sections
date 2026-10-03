@@ -1,0 +1,34 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.2 Imports > 16.2.2.2 Static Semantics: ImportEntries ( ): a List of ImportEntry Records [id: sec-static-semantics-importentries]
+
+<emu-clause id="sec-static-semantics-importentries" oldids="sec-module-semantics-static-semantics-importentries,sec-imports-static-semantics-importentries" type="sdo">
+        <h1>Static Semantics: ImportEntries ( ): a List of ImportEntry Records</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>Module : [empty]</emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+        <emu-grammar>ModuleItemList : ModuleItemList ModuleItem</emu-grammar>
+        <emu-alg>
+          1. Let _entries1_ be the ImportEntries of |ModuleItemList|.
+          1. Let _entries2_ be the ImportEntries of |ModuleItem|.
+          1. Return the list-concatenation of _entries1_ and _entries2_.
+        </emu-alg>
+        <emu-grammar>
+          ModuleItem :
+            ExportDeclaration
+            StatementListItem
+        </emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+        <emu-grammar>ImportDeclaration : `import` ImportClause FromClause WithClause? `;`</emu-grammar>
+        <emu-alg>
+          1. Let _module_ be the sole element of the ModuleRequests of |ImportDeclaration|.
+          1. Return the ImportEntriesForModule of |ImportClause| with argument _module_.
+        </emu-alg>
+        <emu-grammar>ImportDeclaration : `import` ModuleSpecifier WithClause? `;`</emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,10 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.12 Object.getPrototypeOf ( _obj_ ) [id: sec-object.getprototypeof]
+
+<emu-clause id="sec-object.getprototypeof" type="built-in function">
+        <h1>Object.getPrototypeOf ( _obj_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _coerced_ be ? ToObject(_obj_).
+          1. Return ? <emu-meta effects="user-code">_coerced_.[[GetPrototypeOf]]()</emu-meta>.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,10 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.6 Properties of SharedArrayBuffer Instances [id: sec-properties-of-the-sharedarraybuffer-instances]
+
+<emu-clause id="sec-properties-of-the-sharedarraybuffer-instances">
+      <h1>Properties of SharedArrayBuffer Instances</h1>
+      <p>SharedArrayBuffer instances inherit properties from the SharedArrayBuffer prototype object. SharedArrayBuffer instances each have an [[ArrayBufferData]] internal slot. SharedArrayBuffer instances which are not growable each have an [[ArrayBufferByteLength]] internal slot. SharedArrayBuffer instances which are growable each have an [[ArrayBufferByteLengthData]] internal slot and an [[ArrayBufferMaxByteLength]] internal slot.</p>
+
+      <emu-note>
+        <p>SharedArrayBuffer instances, unlike ArrayBuffer instances, are never detached.</p>
+      </emu-note>
+    </emu-clause>

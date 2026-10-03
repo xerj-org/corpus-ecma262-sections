@@ -1,0 +1,23 @@
+ECMA-262 > 7 Abstract Operations > 7.2 Testing and Comparison Operations > 7.2.14 IsStrictlyEqual ( _x_: an ECMAScript language value, _y_: an ECMAScript language value, ): a Boolean [id: sec-isstrictlyequal]
+
+<emu-clause id="sec-isstrictlyequal" type="abstract operation" oldids="sec-strict-equality-comparison">
+      <h1>
+        IsStrictlyEqual (
+          _x_: an ECMAScript language value,
+          _y_: an ECMAScript language value,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It provides the semantics for the `===` operator.</dd>
+      </dl>
+      <emu-alg>
+        1. If SameType(_x_, _y_) is *false*, return *false*.
+        1. If _x_ is a Number, then
+          1. Return Number::equal(_x_, _y_).
+        1. Return SameValueNonNumber(_x_, _y_).
+      </emu-alg>
+      <emu-note>
+        <p>This algorithm differs from the SameValue Algorithm in its treatment of signed zeroes and NaNs.</p>
+      </emu-note>
+    </emu-clause>

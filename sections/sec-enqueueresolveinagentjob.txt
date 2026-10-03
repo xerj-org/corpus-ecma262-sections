@@ -1,0 +1,23 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.13 EnqueueResolveInAgentJob ( _agentSignifier_: an agent signifier, _promiseCapability_: a PromiseCapability Record, _resolution_: *"ok"* or *"timed-out"*, ): ~unused~ [id: sec-enqueueresolveinagentjob]
+
+<emu-clause id="sec-enqueueresolveinagentjob" type="abstract operation">
+        <h1>
+          EnqueueResolveInAgentJob (
+            _agentSignifier_: an agent signifier,
+            _promiseCapability_: a PromiseCapability Record,
+            _resolution_: *"ok"* or *"timed-out"*,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _resolveJob_ be a new Job Abstract Closure with no parameters that captures _agentSignifier_, _promiseCapability_, and _resolution_ and performs the following steps when called:
+            1. Assert: AgentSignifier() is _agentSignifier_.
+            1. Perform ! Call(_promiseCapability_.[[Resolve]], *undefined*, « _resolution_ »).
+            1. Return ~unused~.
+          1. Let _realmInTargetAgent_ be ! GetFunctionRealm(_promiseCapability_.[[Resolve]]).
+          1. Assert: _agentSignifier_ is _realmInTargetAgent_.[[AgentSignifier]].
+          1. Perform HostEnqueueGenericJob(_resolveJob_, _realmInTargetAgent_).
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

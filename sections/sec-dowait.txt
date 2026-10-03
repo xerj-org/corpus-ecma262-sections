@@ -1,0 +1,70 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.14 DoWait ( _mode_: ~sync~ or ~async~, _ta_: an ECMAScript language value, _index_: an ECMAScript language value, _value_: an ECMAScript language value, _timeout_: an ECMAScript language value, ): either a normal completion containing either an Object, *"not-equal"*, *"timed-out"*, or *"ok"*, or a throw completion [id: sec-dowait]
+
+<emu-clause id="sec-dowait" type="abstract operation">
+        <h1>
+          DoWait (
+            _mode_: ~sync~ or ~async~,
+            _ta_: an ECMAScript language value,
+            _index_: an ECMAScript language value,
+            _value_: an ECMAScript language value,
+            _timeout_: an ECMAScript language value,
+          ): either a normal completion containing either an Object, *"not-equal"*, *"timed-out"*, or *"ok"*, or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _taRecord_ be ? ValidateIntegerTypedArray(_ta_, *true*).
+          1. Let _buffer_ be _taRecord_.[[Object]].[[ViewedArrayBuffer]].
+          1. If IsSharedArrayBuffer(_buffer_) is *false*, throw a *TypeError* exception.
+          1. Let _byteIndexInBuffer_ be ? ValidateAtomicAccess(_taRecord_, _index_).
+          1. Let _elementType_ be TypedArrayElementType(_ta_).
+          1. Assert: _elementType_ is either ~bigint64~ or ~int32~.
+          1. If _elementType_ is ~bigint64~, let _expected_ be ? ToBigInt64(_value_); else let _expected_ be ? ToInt32(_value_).
+          1. Let _timeoutNumber_ be ? ToNumber(_timeout_).
+          1. If _timeoutNumber_ is either *NaN* or *+∞*<sub>𝔽</sub>, let _realTimeout_ be +∞.
+          1. Else if _timeoutNumber_ is *-∞*<sub>𝔽</sub>, let _realTimeout_ be 0.
+          1. Else, let _realTimeout_ be max(ℝ(_timeoutNumber_), 0).
+          1. If _mode_ is ~sync~ and AgentCanSuspend() is *false*, throw a *TypeError* exception.
+          1. Let _block_ be _buffer_.[[ArrayBufferData]].
+          1. Let _waiterList_ be GetWaiterList(_block_, _byteIndexInBuffer_).
+          1. If _mode_ is ~sync~, then
+            1. Let _promiseCapability_ be ~blocking~.
+            1. Let _resultObj_ be *undefined*.
+          1. Else,
+            1. Let _promiseCapability_ be ! NewPromiseCapability(%Promise%).
+            1. Let _resultObj_ be OrdinaryObjectCreate(%Object.prototype%).
+          1. Perform EnterCriticalSection(_waiterList_).
+          1. Let _witness_ be GetValueFromBuffer(_buffer_, _byteIndexInBuffer_, _elementType_, *true*, ~seq-cst~).
+          1. If _expected_ ≠ _witness_, then
+            1. Perform LeaveCriticalSection(_waiterList_).
+            1. If _mode_ is ~sync~, return *"not-equal"*.
+            1. Perform ! CreateDataPropertyOrThrow(_resultObj_, *"async"*, *false*).
+            1. Perform ! CreateDataPropertyOrThrow(_resultObj_, *"value"*, *"not-equal"*).
+            1. Return _resultObj_.
+          1. If _realTimeout_ = 0 and _mode_ is ~async~, then
+            1. NOTE: There is no special handling of synchronous immediate timeouts. Asynchronous immediate timeouts have special handling in order to fail fast and avoid unnecessary Promise jobs.
+            1. Perform LeaveCriticalSection(_waiterList_).
+            1. Perform ! CreateDataPropertyOrThrow(_resultObj_, *"async"*, *false*).
+            1. Perform ! CreateDataPropertyOrThrow(_resultObj_, *"value"*, *"timed-out"*).
+            1. Return _resultObj_.
+          1. Let _thisAgent_ be AgentSignifier().
+          1. Let _now_ be the time value (UTC) identifying the current time.
+          1. Let _additionalTimeout_ be an implementation-defined non-negative mathematical value.
+          1. Let _timeoutTime_ be ℝ(_now_) + _realTimeout_ + _additionalTimeout_.
+          1. NOTE: When _realTimeout_ is +∞, _timeoutTime_ is also +∞.
+          1. Let _waiterRecord_ be a new Waiter Record { [[AgentSignifier]]: _thisAgent_, [[PromiseCapability]]: _promiseCapability_, [[TimeoutTime]]: _timeoutTime_, [[Result]]: *"ok"* }.
+          1. Perform AddWaiter(_waiterList_, _waiterRecord_).
+          1. If _mode_ is ~sync~, then
+            1. Perform SuspendThisAgent(_waiterList_, _waiterRecord_).
+          1. Else if _timeoutTime_ is finite, then
+            1. Perform EnqueueAtomicsWaitAsyncTimeoutJob(_waiterList_, _waiterRecord_).
+          1. Perform LeaveCriticalSection(_waiterList_).
+          1. If _mode_ is ~sync~, return _waiterRecord_.[[Result]].
+          1. Perform ! CreateDataPropertyOrThrow(_resultObj_, *"async"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_resultObj_, *"value"*, _promiseCapability_.[[Promise]]).
+          1. Return _resultObj_.
+        </emu-alg>
+        <emu-note>
+          <p>_additionalTimeout_ allows implementations to pad timeouts as necessary, such as for reducing power consumption or coarsening timer resolution to mitigate timing attacks. This value may differ from call to call of DoWait.</p>
+        </emu-note>
+      </emu-clause>

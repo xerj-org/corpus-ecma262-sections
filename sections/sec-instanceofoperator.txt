@@ -1,0 +1,25 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.10 Relational Operators > 13.10.2 InstanceofOperator ( _value_: an ECMAScript language value, _target_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion [id: sec-instanceofoperator]
+
+<emu-clause id="sec-instanceofoperator" type="abstract operation">
+      <h1>
+        InstanceofOperator (
+          _value_: an ECMAScript language value,
+          _target_: an ECMAScript language value,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It implements the generic algorithm for determining if _value_ is an instance of _target_ either by consulting _target_'s %Symbol.hasInstance% method or, if absent, determining whether the value of _target_'s *"prototype"* property is present in _value_'s prototype chain.</dd>
+      </dl>
+      <emu-alg>
+        1. If _target_ is not an Object, throw a *TypeError* exception.
+        1. Let _instOfHandler_ be ? GetMethod(_target_, %Symbol.hasInstance%).
+        1. If _instOfHandler_ is not *undefined*, then
+          1. Return ToBoolean(? Call(_instOfHandler_, _target_, « _value_ »)).
+        1. [id="step-instanceof-check-function"] If IsCallable(_target_) is *false*, throw a *TypeError* exception.
+        1. [id="step-instanceof-fallback"] Return ? OrdinaryHasInstance(_target_, _value_).
+      </emu-alg>
+      <emu-note>
+        <p>Steps <emu-xref href="#step-instanceof-check-function"></emu-xref> and <emu-xref href="#step-instanceof-fallback"></emu-xref> provide compatibility with previous editions of ECMAScript that did not use a %Symbol.hasInstance% method to define the `instanceof` operator semantics. If an object does not define or inherit %Symbol.hasInstance% it uses the default `instanceof` semantics.</p>
+      </emu-note>
+    </emu-clause>

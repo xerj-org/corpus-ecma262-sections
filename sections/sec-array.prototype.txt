@@ -1,0 +1,7 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.2 Properties of the Array Constructor > 23.1.2.5 Array.prototype [id: sec-array.prototype]
+
+<emu-clause id="sec-array.prototype">
+        <h1>Array.prototype</h1>
+        <p>The value of `Array.prototype` is the Array prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

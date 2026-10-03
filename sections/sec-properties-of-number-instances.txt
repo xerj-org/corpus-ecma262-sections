@@ -1,0 +1,6 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.4 Properties of Number Instances [id: sec-properties-of-number-instances]
+
+<emu-clause id="sec-properties-of-number-instances">
+      <h1>Properties of Number Instances</h1>
+      <p>Number instances are ordinary objects that inherit properties from the Number prototype object. Number instances also have a [[NumberData]] internal slot. The [[NumberData]] internal slot is the Number value represented by this Number object.</p>
+    </emu-clause>

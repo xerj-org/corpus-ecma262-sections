@@ -1,0 +1,11 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.2 Function Properties of the Math Object > 21.3.2.27 Math.pow ( _base_, _exponent_ ) [id: sec-math.pow]
+
+<emu-clause id="sec-math.pow" type="built-in function">
+        <h1>Math.pow ( _base_, _exponent_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Set _base_ to ? ToNumber(_base_).
+          1. Set _exponent_ to ? ToNumber(_exponent_).
+          1. Return Number::exponentiate(_base_, _exponent_).
+        </emu-alg>
+      </emu-clause>

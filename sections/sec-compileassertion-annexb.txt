@@ -1,0 +1,8 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.1 Additional Syntax > B.1.2 Regular Expressions Patterns > B.1.2.6 Runtime Semantics: CompileAssertion [id: sec-compileassertion-annexb]
+
+<emu-annex id="sec-compileassertion-annexb">
+        <h1>Runtime Semantics: CompileAssertion</h1>
+        <p>The semantics of CompileAssertion with argument _regexpRecord_ is extended as follows:</p>
+        <p>The rule for <emu-grammar>QuantifiableAssertion :: `(?=` Disjunction `)`</emu-grammar> is the same as for <emu-grammar>Assertion :: `(?=` Disjunction `)`</emu-grammar> but with |QuantifiableAssertion| substituted for |Atom|.</p>
+        <p>The rule for <emu-grammar>QuantifiableAssertion :: `(?!` Disjunction `)`</emu-grammar> is the same as for <emu-grammar>Assertion :: `(?!` Disjunction `)`</emu-grammar> but with |QuantifiableAssertion| substituted for |Atom|.</p>
+      </emu-annex>

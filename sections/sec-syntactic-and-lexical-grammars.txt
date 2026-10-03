@@ -1,0 +1,15 @@
+ECMA-262 > 5 Notational Conventions > 5.1 Syntactic and Lexical Grammars [id: sec-syntactic-and-lexical-grammars]
+
+<emu-clause id="sec-syntactic-and-lexical-grammars">
+    <h1>Syntactic and Lexical Grammars</h1>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

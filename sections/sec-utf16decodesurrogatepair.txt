@@ -1,0 +1,19 @@
+ECMA-262 > 11 ECMAScript Language: Source Text > 11.1 Source Text > 11.1.3 Static Semantics: UTF16SurrogatePairToCodePoint ( _lead_: a code unit, _trail_: a code unit, ): a code point [id: sec-utf16decodesurrogatepair]
+
+<emu-clause id="sec-utf16decodesurrogatepair" type="abstract operation" oldids="sec-utf16decode,utf16decodesurrogatepair">
+      <h1>
+        Static Semantics: UTF16SurrogatePairToCodePoint (
+          _lead_: a code unit,
+          _trail_: a code unit,
+        ): a code point
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>Two code units that form a UTF-16 surrogate pair are converted to a code point.</dd>
+      </dl>
+      <emu-alg>
+        1. Assert: _lead_ is a leading surrogate and _trail_ is a trailing surrogate.
+        1. Let _codePoint_ be (_lead_ - 0xD800) × 0x400 + (_trail_ - 0xDC00) + 0x10000.
+        1. Return the code point _codePoint_.
+      </emu-alg>
+    </emu-clause>

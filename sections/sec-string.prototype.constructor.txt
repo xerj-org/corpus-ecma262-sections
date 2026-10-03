@@ -1,0 +1,6 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.3 Properties of the String Prototype Object > 22.1.3.6 String.prototype.constructor [id: sec-string.prototype.constructor]
+
+<emu-clause id="sec-string.prototype.constructor">
+        <h1>String.prototype.constructor</h1>
+        <p>The initial value of `String.prototype.constructor` is %String%.</p>
+      </emu-clause>

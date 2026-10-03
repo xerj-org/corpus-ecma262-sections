@@ -1,0 +1,12 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.6 Properties of the ArrayBuffer Prototype Object > 25.1.6.3 get ArrayBuffer.prototype.detached [id: sec-get-arraybuffer.prototype.detached]
+
+<emu-clause id="sec-get-arraybuffer.prototype.detached" type="built-in function">
+        <h1>get ArrayBuffer.prototype.detached</h1>
+        <p>`ArrayBuffer.prototype.detached` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_obj_, [[ArrayBufferData]]).
+          1. If IsSharedArrayBuffer(_obj_) is *true*, throw a *TypeError* exception.
+          1. Return IsDetachedBuffer(_obj_).
+        </emu-alg>
+      </emu-clause>

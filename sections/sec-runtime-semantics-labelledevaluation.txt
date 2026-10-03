@@ -1,0 +1,66 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.13 Labelled Statements > 14.13.4 Runtime Semantics: LabelledEvaluation ( _labelSet_: a List of Strings, ): either a normal completion containing either an ECMAScript language value or ~empty~, or an abrupt completion [id: sec-runtime-semantics-labelledevaluation]
+
+<emu-clause id="sec-runtime-semantics-labelledevaluation" oldids="sec-statement-semantics-runtime-semantics-labelledevaluation,sec-labelled-statements-runtime-semantics-labelledevaluation" type="sdo">
+      <h1>
+        Runtime Semantics: LabelledEvaluation (
+          _labelSet_: a List of Strings,
+        ): either a normal completion containing either an ECMAScript language value or ~empty~, or an abrupt completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>BreakableStatement : IterationStatement</emu-grammar>
+      <emu-alg>
+        1. Let _stmtResult_ be Completion(LoopEvaluation of |IterationStatement| with argument _labelSet_).
+        1. If _stmtResult_ is a break completion, then
+          1. If _stmtResult_.[[Target]] is ~empty~, then
+            1. If _stmtResult_.[[Value]] is ~empty~, set _stmtResult_ to NormalCompletion(*undefined*).
+            1. Else, set _stmtResult_ to NormalCompletion(_stmtResult_.[[Value]]).
+        1. Return ? _stmtResult_.
+      </emu-alg>
+      <emu-grammar>BreakableStatement : SwitchStatement</emu-grammar>
+      <emu-alg>
+        1. Let _stmtResult_ be Completion(Evaluation of |SwitchStatement|).
+        1. If _stmtResult_ is a break completion, then
+          1. If _stmtResult_.[[Target]] is ~empty~, then
+            1. If _stmtResult_.[[Value]] is ~empty~, set _stmtResult_ to NormalCompletion(*undefined*).
+            1. Else, set _stmtResult_ to NormalCompletion(_stmtResult_.[[Value]]).
+        1. Return ? _stmtResult_.
+      </emu-alg>
+      <emu-note>
+        <p>A |BreakableStatement| is one that can be exited via an unlabelled |BreakStatement|.</p>
+      </emu-note>
+      <emu-grammar>LabelledStatement : LabelIdentifier `:` LabelledItem</emu-grammar>
+      <emu-alg>
+        1. Let _label_ be the StringValue of |LabelIdentifier|.
+        1. Let _newLabelSet_ be the list-concatenation of _labelSet_ and « _label_ ».
+        1. Let _stmtResult_ be Completion(LabelledEvaluation of |LabelledItem| with argument _newLabelSet_).
+        1. If _stmtResult_ is a break completion and _stmtResult_.[[Target]] is _label_, then
+          1. Set _stmtResult_ to NormalCompletion(_stmtResult_.[[Value]]).
+        1. Return ? _stmtResult_.
+      </emu-alg>
+      <emu-grammar>LabelledItem : FunctionDeclaration</emu-grammar>
+      <emu-alg>
+        1. Return ? Evaluation of |FunctionDeclaration|.
+      </emu-alg>
+      <emu-grammar>
+        Statement :
+          BlockStatement
+          VariableStatement
+          EmptyStatement
+          ExpressionStatement
+          IfStatement
+          ContinueStatement
+          BreakStatement
+          ReturnStatement
+          WithStatement
+          ThrowStatement
+          TryStatement
+          DebuggerStatement
+      </emu-grammar>
+      <emu-alg>
+        1. Return ? Evaluation of |Statement|.
+      </emu-alg>
+      <emu-note>
+        <p>The only two productions of |Statement| which have special semantics for LabelledEvaluation are |BreakableStatement| and |LabelledStatement|.</p>
+      </emu-note>
+    </emu-clause>

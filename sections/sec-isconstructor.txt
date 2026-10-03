@@ -1,0 +1,18 @@
+ECMA-262 > 7 Abstract Operations > 7.2 Testing and Comparison Operations > 7.2.4 IsConstructor ( _arg_: an ECMAScript language value, ): a Boolean [id: sec-isconstructor]
+
+<emu-clause id="sec-isconstructor" type="abstract operation">
+      <h1>
+        IsConstructor (
+          _arg_: an ECMAScript language value,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It determines if _arg_ is a function object with a [[Construct]] internal method.</dd>
+      </dl>
+      <emu-alg>
+        1. If _arg_ is not an Object, return *false*.
+        1. If _arg_ has a [[Construct]] internal method, return *true*.
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>

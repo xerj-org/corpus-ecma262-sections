@@ -1,0 +1,19 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.3 Built-in Function Objects > 10.3.2 [[Construct]] ( _argList_: a List of ECMAScript language values, _newTarget_: a constructor, ): either a normal completion containing an Object or a throw completion [id: sec-built-in-function-objects-construct-argumentslist-newtarget]
+
+<emu-clause id="sec-built-in-function-objects-construct-argumentslist-newtarget" type="internal method">
+      <h1>
+        [[Construct]] (
+          _argList_: a List of ECMAScript language values,
+          _newTarget_: a constructor,
+        ): either a normal completion containing an Object or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>a built-in function object _func_ (when the method is present)</dd>
+      </dl>
+      <emu-alg>
+        1. Let _result_ be ? BuiltinCallOrConstruct(_func_, ~uninitialized~, _argList_, _newTarget_).
+        1. Assert: _result_ is an Object.
+        1. Return _result_.
+      </emu-alg>
+    </emu-clause>

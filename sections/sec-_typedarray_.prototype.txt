@@ -1,0 +1,7 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.2 Properties of the %TypedArray% Intrinsic Object > 23.2.2.3 %TypedArray%.prototype [id: sec-%typedarray%.prototype]
+
+<emu-clause id="sec-%typedarray%.prototype">
+        <h1>%TypedArray%.prototype</h1>
+        <p>The initial value of %TypedArray%`.prototype` is the %TypedArray% prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

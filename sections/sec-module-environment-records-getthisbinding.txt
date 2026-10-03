@@ -1,0 +1,12 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.5 Module Environment Records > 9.1.1.5.4 GetThisBinding ( ): a normal completion containing *undefined* [id: sec-module-environment-records-getthisbinding]
+
+<emu-clause id="sec-module-environment-records-getthisbinding" type="concrete method">
+          <h1>GetThisBinding ( ): a normal completion containing *undefined*</h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>a Module Environment Record _envRecord_</dd>
+          </dl>
+          <emu-alg>
+            1. Return *undefined*.
+          </emu-alg>
+        </emu-clause>

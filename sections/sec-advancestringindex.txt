@@ -1,0 +1,21 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.7 Abstract Operations for RegExp Matching > 22.2.7.3 AdvanceStringIndex ( _string_: a String, _index_: a non-negative integer, _unicode_: a Boolean, ): a non-negative integer [id: sec-advancestringindex]
+
+<emu-clause id="sec-advancestringindex" type="abstract operation">
+        <h1>
+          AdvanceStringIndex (
+            _string_: a String,
+            _index_: a non-negative integer,
+            _unicode_: a Boolean,
+          ): a non-negative integer
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: _index_ ≤ 2<sup>53</sup> - 1.
+          1. If _unicode_ is *false*, return _index_ + 1.
+          1. Let _length_ be the length of _string_.
+          1. If _index_ + 1 ≥ _length_, return _index_ + 1.
+          1. Let _codePoint_ be CodePointAt(_string_, _index_).
+          1. Return _index_ + _codePoint_.[[CodeUnitCount]].
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.4 type [id: sec-type]
+
+<emu-clause id="sec-type">
+      <h1>type</h1>
+      <p>set of data values as defined in clause <emu-xref href="#sec-ecmascript-data-types-and-values"></emu-xref></p>
+    </emu-clause>

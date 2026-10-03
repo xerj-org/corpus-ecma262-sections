@@ -1,0 +1,19 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.3 EvaluatePropertyAccessWithExpressionKey ( _baseValue_: an ECMAScript language value, _expr_: an |Expression| Parse Node, _strict_: a Boolean, ): either a normal completion containing a Reference Record or an abrupt completion [id: sec-evaluate-property-access-with-expression-key]
+
+<emu-clause id="sec-evaluate-property-access-with-expression-key" type="abstract operation" oldids="sec-evaluate-expression-key-property-access">
+      <h1>
+        EvaluatePropertyAccessWithExpressionKey (
+          _baseValue_: an ECMAScript language value,
+          _expr_: an |Expression| Parse Node,
+          _strict_: a Boolean,
+        ): either a normal completion containing a Reference Record or an abrupt completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _propertyNameRef_ be ? Evaluation of _expr_.
+        1. Let _propertyNameValue_ be ? GetValue(_propertyNameRef_).
+        1. NOTE: In most cases, ToPropertyKey will be performed on _propertyNameValue_ immediately after this step. However, in the case of `a[b] = c`, it will not be performed until after evaluation of `c`.
+        1. Return the Reference Record { [[Base]]: _baseValue_, [[ReferencedName]]: _propertyNameValue_, [[Strict]]: _strict_, [[ThisValue]]: ~empty~ }.
+      </emu-alg>
+    </emu-clause>

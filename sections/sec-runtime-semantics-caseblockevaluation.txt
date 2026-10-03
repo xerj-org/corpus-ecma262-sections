@@ -1,0 +1,68 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.12 The `switch` Statement > 14.12.2 Runtime Semantics: CaseBlockEvaluation ( _input_: an ECMAScript language value, ): either a normal completion containing an ECMAScript language value or an abrupt completion [id: sec-runtime-semantics-caseblockevaluation]
+
+<emu-clause id="sec-runtime-semantics-caseblockevaluation" type="sdo">
+      <h1>
+        Runtime Semantics: CaseBlockEvaluation (
+          _input_: an ECMAScript language value,
+        ): either a normal completion containing an ECMAScript language value or an abrupt completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>CaseBlock : `{` `}`</emu-grammar>
+      <emu-alg>
+        1. Return *undefined*.
+      </emu-alg>
+      <emu-grammar>CaseBlock : `{` CaseClauses `}`</emu-grammar>
+      <emu-alg>
+        1. Let _resultValue_ be *undefined*.
+        1. Let _caseClauses_ be the List of |CaseClause| items in |CaseClauses|, in source text order.
+        1. Let _found_ be *false*.
+        1. For each |CaseClause| _clause_ of _caseClauses_, do
+          1. If _found_ is *false*, then
+            1. Set _found_ to ? CaseClauseIsSelected(_clause_, _input_).
+          1. If _found_ is *true*, then
+            1. Let _completion_ be Completion(Evaluation of _clause_).
+            1. If _completion_.[[Value]] is not ~empty~, set _resultValue_ to _completion_.[[Value]].
+            1. If _completion_ is an abrupt completion, return ? UpdateEmpty(_completion_, _resultValue_).
+        1. Return _resultValue_.
+      </emu-alg>
+      <emu-grammar>CaseBlock : `{` CaseClauses? DefaultClause CaseClauses? `}`</emu-grammar>
+      <emu-alg>
+        1. Let _resultValue_ be *undefined*.
+        1. If the first |CaseClauses| is present, then
+          1. Let _caseClauses_ be the List of |CaseClause| items in the first |CaseClauses|, in source text order.
+        1. Else,
+          1. Let _caseClauses_ be a new empty List.
+        1. Let _found_ be *false*.
+        1. For each |CaseClause| _clause_ of _caseClauses_, do
+          1. If _found_ is *false*, then
+            1. Set _found_ to ? CaseClauseIsSelected(_clause_, _input_).
+          1. If _found_ is *true*, then
+            1. Let _completion_ be Completion(Evaluation of _clause_).
+            1. If _completion_.[[Value]] is not ~empty~, set _resultValue_ to _completion_.[[Value]].
+            1. If _completion_ is an abrupt completion, return ? UpdateEmpty(_completion_, _resultValue_).
+        1. Let _foundInB_ be *false*.
+        1. If the second |CaseClauses| is present, then
+          1. Let _secondCaseClauses_ be the List of |CaseClause| items in the second |CaseClauses|, in source text order.
+        1. Else,
+          1. Let _secondCaseClauses_ be a new empty List.
+        1. If _found_ is *false*, then
+          1. For each |CaseClause| _clause_ of _secondCaseClauses_, do
+            1. If _foundInB_ is *false*, then
+              1. Set _foundInB_ to ? CaseClauseIsSelected(_clause_, _input_).
+            1. If _foundInB_ is *true*, then
+              1. Let _completion_ be Completion(Evaluation of |CaseClause| _clause_).
+              1. If _completion_.[[Value]] is not ~empty~, set _resultValue_ to _completion_.[[Value]].
+              1. If _completion_ is an abrupt completion, return ? UpdateEmpty(_completion_, _resultValue_).
+        1. If _foundInB_ is *true*, return _resultValue_.
+        1. Let _defaultR_ be Completion(Evaluation of |DefaultClause|).
+        1. If _defaultR_.[[Value]] is not ~empty~, set _resultValue_ to _defaultR_.[[Value]].
+        1. If _defaultR_ is an abrupt completion, return ? UpdateEmpty(_defaultR_, _resultValue_).
+        1. NOTE: The following is another complete iteration of the second |CaseClauses|.
+        1. For each |CaseClause| _clause_ of _secondCaseClauses_, do
+          1. Let _completion_ be Completion(Evaluation of |CaseClause| _clause_).
+          1. If _completion_.[[Value]] is not ~empty~, set _resultValue_ to _completion_.[[Value]].
+          1. If _completion_ is an abrupt completion, return ? UpdateEmpty(_completion_, _resultValue_).
+        1. Return _resultValue_.
+      </emu-alg>
+    </emu-clause>

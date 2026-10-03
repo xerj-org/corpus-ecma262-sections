@@ -1,0 +1,147 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.2 ECMAScript Function Objects > 10.2.11 FunctionDeclarationInstantiation ( _func_: an ECMAScript function object, _argList_: a List of ECMAScript language values, ): either a normal completion containing ~unused~ or a throw completion [id: sec-functiondeclarationinstantiation]
+
+<emu-clause id="sec-functiondeclarationinstantiation" type="abstract operation" oldids="sec-web-compat-functiondeclarationinstantiation">
+      <h1>
+        FunctionDeclarationInstantiation (
+          _func_: an ECMAScript function object,
+          _argList_: a List of ECMAScript language values,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>_func_ is the function object for which the execution context is being established.</dd>
+      </dl>
+      <emu-note>
+        <p>When an execution context is established for evaluating an ECMAScript function a new Function Environment Record is created and bindings for each formal parameter are instantiated in that Environment Record. Each declaration in the function body is also instantiated. If the function's formal parameters do not include any default value initializers then the body declarations are instantiated in the same Environment Record as the parameters. If default value parameter initializers exist, a second Environment Record is created for the body declarations. Formal parameters and functions are initialized as part of FunctionDeclarationInstantiation. All other bindings are initialized during evaluation of the function body.</p>
+      </emu-note>
+      <p>It performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _calleeContext_ be the running execution context.
+        1. Let _code_ be _func_.[[ECMAScriptCode]].
+        1. Let _strict_ be _func_.[[Strict]].
+        1. Let _formals_ be _func_.[[FormalParameters]].
+        1. Let _paramNames_ be the BoundNames of _formals_.
+        1. If _paramNames_ has any duplicate entries, let _hasDuplicates_ be *true*; else let _hasDuplicates_ be *false*.
+        1. Let _simpleParamList_ be IsSimpleParameterList of _formals_.
+        1. Let _hasParamExprs_ be ContainsExpression of _formals_.
+        1. Let _variableNames_ be the VarDeclaredNames of _code_.
+        1. Let _variableDecls_ be the VarScopedDeclarations of _code_.
+        1. Let _lexicalNames_ be the LexicallyDeclaredNames of _code_.
+        1. Let _funcNames_ be a new empty List.
+        1. Let _funcsToInitialize_ be a new empty List.
+        1. For each element _variableDecl_ of _variableDecls_, in reverse List order, do
+          1. If _variableDecl_ is neither a |VariableDeclaration| nor a |ForBinding| nor a |BindingIdentifier|, then
+            1. Assert: _variableDecl_ is either a |FunctionDeclaration|, a |GeneratorDeclaration|, an |AsyncFunctionDeclaration|, or an |AsyncGeneratorDeclaration|.
+            1. Let _funcName_ be the sole element of the BoundNames of _variableDecl_.
+            1. If _funcNames_ does not contain _funcName_, then
+              1. Insert _funcName_ as the first element of _funcNames_.
+              1. NOTE: If there are multiple function declarations for the same name, the last declaration is used.
+              1. Insert _variableDecl_ as the first element of _funcsToInitialize_.
+        1. Let _argumentsObjNeeded_ be *true*.
+        1. If _func_.[[ThisMode]] is ~lexical~, then
+          1. NOTE: Arrow functions never have an arguments object.
+          1. Set _argumentsObjNeeded_ to *false*.
+        1. Else if _paramNames_ contains *"arguments"*, then
+          1. Set _argumentsObjNeeded_ to *false*.
+        1. Else if _hasParamExprs_ is *false*, then
+          1. If _funcNames_ contains *"arguments"* or _lexicalNames_ contains *"arguments"*, then
+            1. Set _argumentsObjNeeded_ to *false*.
+        1. If _strict_ is *true* or _hasParamExprs_ is *false*, then
+          1. NOTE: Only a single Environment Record is needed for the parameters, since calls to `eval` in strict mode code cannot create new bindings which are visible outside of the `eval`.
+          1. Let _envRecord_ be the LexicalEnvironment of _calleeContext_.
+        1. Else,
+          1. NOTE: A separate Environment Record is needed to ensure that bindings created by direct eval calls in the formal parameter list are outside the environment where parameters are declared.
+          1. Let _calleeEnv_ be the LexicalEnvironment of _calleeContext_.
+          1. Let _envRecord_ be NewDeclarativeEnvironment(_calleeEnv_).
+          1. Assert: The VariableEnvironment of _calleeContext_ and _calleeEnv_ are the same Environment Record.
+          1. Set the LexicalEnvironment of _calleeContext_ to _envRecord_.
+        1. For each String _paramName_ of _paramNames_, do
+          1. Let _alreadyDeclared_ be ! _envRecord_.HasBinding(_paramName_).
+          1. NOTE: Early errors ensure that duplicate parameter names can only occur in non-strict functions that do not have parameter default values or rest parameters.
+          1. If _alreadyDeclared_ is *false*, then
+            1. Perform ! _envRecord_.CreateMutableBinding(_paramName_, *false*).
+            1. If _hasDuplicates_ is *true*, then
+              1. Perform ! _envRecord_.InitializeBinding(_paramName_, *undefined*).
+        1. If _argumentsObjNeeded_ is *true*, then
+          1. If _strict_ is *true* or _simpleParamList_ is *false*, then
+            1. Let _argumentsObj_ be CreateUnmappedArgumentsObject(_argList_).
+          1. Else,
+            1. NOTE: A mapped argument object is only provided for non-strict functions that don't have a rest parameter, any parameter default value initializers, or any destructured parameters.
+            1. Let _argumentsObj_ be CreateMappedArgumentsObject(_func_, _formals_, _argList_, _envRecord_).
+          1. If _strict_ is *true*, then
+            1. Perform ! _envRecord_.CreateImmutableBinding(*"arguments"*, *false*).
+            1. NOTE: In strict mode code early errors prevent attempting to assign to this binding, so its mutability is not observable.
+          1. Else,
+            1. Perform ! _envRecord_.CreateMutableBinding(*"arguments"*, *false*).
+          1. Perform ! _envRecord_.InitializeBinding(*"arguments"*, _argumentsObj_).
+          1. Let _paramBindings_ be the list-concatenation of _paramNames_ and « *"arguments"* ».
+        1. Else,
+          1. Let _paramBindings_ be _paramNames_.
+        1. Let _iteratorRecord_ be CreateListIteratorRecord(_argList_).
+        1. If _hasDuplicates_ is *true*, then
+          1. Let _usedEnv_ be *undefined*.
+        1. Else,
+          1. Let _usedEnv_ be _envRecord_.
+        1. NOTE: The following step cannot return a ReturnCompletion because the only way such a completion can arise in expression position is by use of |YieldExpression|, which is forbidden in parameter lists by Early Error rules in <emu-xref href="#sec-generator-function-definitions-static-semantics-early-errors"></emu-xref> and <emu-xref href="#sec-async-generator-function-definitions-static-semantics-early-errors"></emu-xref>.
+        1. Perform ? IteratorBindingInitialization of _formals_ with arguments _iteratorRecord_ and _usedEnv_.
+        1. If _hasParamExprs_ is *false*, then
+          1. NOTE: Only a single Environment Record is needed for the parameters and top-level vars.
+          1. Let _instantiatedVariableNames_ be a copy of the List _paramBindings_.
+          1. For each element _name_ of _variableNames_, do
+            1. If _instantiatedVariableNames_ does not contain _name_, then
+              1. Append _name_ to _instantiatedVariableNames_.
+              1. Perform ! _envRecord_.CreateMutableBinding(_name_, *false*).
+              1. Perform ! _envRecord_.InitializeBinding(_name_, *undefined*).
+          1. Let _variableEnv_ be _envRecord_.
+        1. Else,
+          1. NOTE: A separate Environment Record is needed to ensure that closures created by expressions in the formal parameter list do not have visibility of declarations in the function body.
+          1. Let _variableEnv_ be NewDeclarativeEnvironment(_envRecord_).
+          1. Set the VariableEnvironment of _calleeContext_ to _variableEnv_.
+          1. Let _instantiatedVariableNames_ be a new empty List.
+          1. For each element _name_ of _variableNames_, do
+            1. If _instantiatedVariableNames_ does not contain _name_, then
+              1. Append _name_ to _instantiatedVariableNames_.
+              1. Perform ! _variableEnv_.CreateMutableBinding(_name_, *false*).
+              1. If _paramBindings_ does not contain _name_ or _funcNames_ contains _name_, then
+                1. Let _initialValue_ be *undefined*.
+              1. Else,
+                1. Let _initialValue_ be ! _envRecord_.GetBindingValue(_name_, *false*).
+              1. Perform ! _variableEnv_.InitializeBinding(_name_, _initialValue_).
+              1. NOTE: A var with the same name as a formal parameter initially has the same value as the corresponding initialized parameter.
+        1. If _strict_ is *true*, then
+          1. Let _lexicalEnv_ be _variableEnv_.
+        1. Else,
+          1. [id="step-functiondeclarationinstantiation-web-compat-insertion-point", normative-optional] If the host is a web browser or otherwise supports <emu-xref href="#sec-block-level-function-declarations-web-legacy-compatibility-semantics" title></emu-xref>, then
+            1. For each |FunctionDeclaration| _funcDecl_ that is directly contained in the |StatementList| of any |Block|, |CaseClause|, or |DefaultClause| _x_ such that _code_ Contains _x_ is *true*, do
+              1. Let _funcName_ be the StringValue of the |BindingIdentifier| of _funcDecl_.
+              1. If replacing the |FunctionDeclaration| _funcDecl_ with a |VariableStatement| that has _funcName_ as a |BindingIdentifier| would not produce any Early Errors for _func_ and _paramNames_ does not contain _funcName_, then
+                1. NOTE: A var binding for _funcName_ is only instantiated here if it is neither a VarDeclaredName, the name of a formal parameter, or another |FunctionDeclaration|.
+                1. If _instantiatedVariableNames_ does not contain _funcName_ and _funcName_ is not *"arguments"*, then
+                  1. Perform ! _variableEnv_.CreateMutableBinding(_funcName_, *false*).
+                  1. Perform ! _variableEnv_.InitializeBinding(_funcName_, *undefined*).
+                  1. Append _funcName_ to _instantiatedVariableNames_.
+                1. [id="step-functiondeclarationinstantiation-alt-funcdecl-eval"] When the |FunctionDeclaration| _funcDecl_ is evaluated, perform the following steps in place of the |FunctionDeclaration| Evaluation algorithm provided in <emu-xref href="#sec-function-definitions-runtime-semantics-evaluation"></emu-xref>:
+                  1. Let _funcEnv_ be the running execution context's VariableEnvironment.
+                  1. Let _blockEnv_ be the running execution context's LexicalEnvironment.
+                  1. Let _funcObj_ be ! _blockEnv_.GetBindingValue(_funcName_, *false*).
+                  1. Perform ! _funcEnv_.SetMutableBinding(_funcName_, _funcObj_, *false*).
+                  1. Return ~unused~.
+          1. Let _lexicalEnv_ be NewDeclarativeEnvironment(_variableEnv_).
+          1. NOTE: Non-strict functions use a separate Environment Record for top-level lexical declarations so that a direct eval can determine whether any var scoped declarations introduced by the eval code conflict with pre-existing top-level lexically scoped declarations. This is not needed for strict functions because a strict direct eval always places all declarations into a new Environment Record.
+        1. Set the LexicalEnvironment of _calleeContext_ to _lexicalEnv_.
+        1. Let _lexicalDecls_ be the LexicallyScopedDeclarations of _code_.
+        1. For each element _lexicalDecl_ of _lexicalDecls_, do
+          1. NOTE: A lexically declared name cannot be the same as a function/generator declaration, formal parameter, or a var name. Lexically declared names are only instantiated here but not initialized.
+          1. For each element _name_ of the BoundNames of _lexicalDecl_, do
+            1. If IsConstantDeclaration of _lexicalDecl_ is *true*, then
+              1. Perform ! _lexicalEnv_.CreateImmutableBinding(_name_, *true*).
+            1. Else,
+              1. Perform ! _lexicalEnv_.CreateMutableBinding(_name_, *false*).
+        1. Let _privateEnv_ be the PrivateEnvironment of _calleeContext_.
+        1. For each Parse Node _funcDecl_ of _funcsToInitialize_, do
+          1. Let _funcName_ be the sole element of the BoundNames of _funcDecl_.
+          1. Let _funcObj_ be InstantiateFunctionObject of _funcDecl_ with arguments _lexicalEnv_ and _privateEnv_.
+          1. Perform ! _variableEnv_.SetMutableBinding(_funcName_, _funcObj_, *false*).
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

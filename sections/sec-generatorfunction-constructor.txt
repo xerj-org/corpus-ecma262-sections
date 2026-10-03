@@ -1,0 +1,14 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.6 GeneratorFunction Objects > 27.6.1 The GeneratorFunction Constructor [id: sec-generatorfunction-constructor]
+
+<emu-clause id="sec-generatorfunction-constructor">
+      <h1>The GeneratorFunction Constructor</h1>
+      <p>The GeneratorFunction constructor:</p>
+      <ul>
+        <li>is <dfn>%GeneratorFunction%</dfn>.</li>
+        <li>is a subclass of `Function`.</li>
+        <li>creates and initializes a new GeneratorFunction when called as a function rather than as a constructor. Thus the function call `GeneratorFunction (…)` is equivalent to the object creation expression `new GeneratorFunction (…)` with the same arguments.</li>
+        <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified GeneratorFunction behaviour must include a `super` call to the GeneratorFunction constructor to create and initialize subclass instances with the internal slots necessary for built-in GeneratorFunction behaviour. All ECMAScript syntactic forms for defining generator function objects create direct instances of GeneratorFunction. There is no syntactic means to create instances of GeneratorFunction subclasses.</li>
+      </ul>
+
+      
+    </emu-clause>

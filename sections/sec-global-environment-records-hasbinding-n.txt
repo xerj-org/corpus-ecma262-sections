@@ -1,0 +1,22 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.4 Global Environment Records > 9.1.1.4.1 HasBinding ( _name_: a String, ): either a normal completion containing a Boolean or a throw completion [id: sec-global-environment-records-hasbinding-n]
+
+<emu-clause id="sec-global-environment-records-hasbinding-n" type="concrete method">
+          <h1>
+            HasBinding (
+              _name_: a String,
+            ): either a normal completion containing a Boolean or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>a Global Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It determines if the argument identifier is one of the identifiers bound by the record.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _declRecord_ be _envRecord_.[[DeclarativeRecord]].
+            1. If ! _declRecord_.HasBinding(_name_) is *true*, return *true*.
+            1. Let _objRecord_ be _envRecord_.[[ObjectRecord]].
+            1. Return ? <emu-meta effects="user-code">_objRecord_.HasBinding(_name_)</emu-meta>.
+          </emu-alg>
+        </emu-clause>

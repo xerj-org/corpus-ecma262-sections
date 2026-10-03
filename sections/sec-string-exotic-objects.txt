@@ -1,0 +1,20 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.3 String Exotic Objects [id: sec-string-exotic-objects]
+
+<emu-clause id="sec-string-exotic-objects">
+      <h1>String Exotic Objects</h1>
+      <p>A String object is an exotic object that encapsulates a String value and exposes virtual integer-indexed data properties corresponding to the individual code unit elements of the String value. String exotic objects always have a data property named *"length"* whose value is the length of the encapsulated String value. Both the code unit data properties and the *"length"* property are non-writable and non-configurable.</p>
+
+      <p>An object is a <dfn id="string-exotic-object" variants="String exotic objects">String exotic object</dfn> (or simply, a String object) if its [[GetOwnProperty]], [[DefineOwnProperty]], and [[OwnPropertyKeys]] internal methods use the following implementations, and its other essential internal methods use the definitions found in <emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots"></emu-xref>. These methods are installed in StringCreate.</p>
+
+      <p>String exotic objects have the same internal slots as ordinary objects. They also have a [[StringData]] internal slot.</p>
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

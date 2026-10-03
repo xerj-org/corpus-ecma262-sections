@@ -1,0 +1,46 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.2 Properties of the Symbol Constructor [id: sec-properties-of-the-symbol-constructor]
+
+<emu-clause id="sec-properties-of-the-symbol-constructor">
+      <h1>Properties of the Symbol Constructor</h1>
+      <p>The Symbol constructor:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

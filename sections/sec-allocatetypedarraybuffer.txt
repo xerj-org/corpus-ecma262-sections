@@ -1,0 +1,25 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.5 The _TypedArray_ Constructors > 23.2.5.1 _TypedArray_ ( ..._args_ ) > 23.2.5.1.6 AllocateTypedArrayBuffer ( _obj_: a TypedArray, _length_: a non-negative integer, ): either a normal completion containing ~unused~ or a throw completion [id: sec-allocatetypedarraybuffer]
+
+<emu-clause id="sec-allocatetypedarraybuffer" type="abstract operation">
+          <h1>
+            AllocateTypedArrayBuffer (
+              _obj_: a TypedArray,
+              _length_: a non-negative integer,
+            ): either a normal completion containing ~unused~ or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It allocates and associates an ArrayBuffer with _obj_.</dd>
+          </dl>
+          <emu-alg>
+            1. Assert: _obj_.[[ViewedArrayBuffer]] is *undefined*.
+            1. Let _elementSize_ be TypedArrayElementSize(_obj_).
+            1. Let _byteLength_ be _elementSize_ × _length_.
+            1. Let _data_ be ? <emu-meta suppress-effects="user-code">AllocateArrayBuffer(%ArrayBuffer%, _byteLength_)</emu-meta>.
+            1. Set _obj_.[[ViewedArrayBuffer]] to _data_.
+            1. Set _obj_.[[ByteLength]] to _byteLength_.
+            1. Set _obj_.[[ByteOffset]] to 0.
+            1. Set _obj_.[[ArrayLength]] to _length_.
+            1. Return ~unused~.
+          </emu-alg>
+        </emu-clause>

@@ -1,0 +1,21 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.2 Additional Properties of the Uint8Array Prototype Object > 23.3.2.3 Uint8Array.prototype.toBase64 ( [ _options_ ] ) [id: sec-uint8array.prototype.tobase64]
+
+<emu-clause id="sec-uint8array.prototype.tobase64" type="built-in function">
+        <h1>Uint8Array.prototype.toBase64 ( [ _options_ ] )</h1>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? ValidateUint8Array(_obj_).
+          1. Let _optionsObj_ be ? GetOptionsObject(_options_).
+          1. Let _alphabet_ be ? Get(_optionsObj_, *"alphabet"*).
+          1. If _alphabet_ is *undefined*, set _alphabet_ to *"base64"*.
+          1. If _alphabet_ is neither *"base64"* nor *"base64url"*, throw a *TypeError* exception.
+          1. Let _omitPadding_ be ToBoolean(? Get(_optionsObj_, *"omitPadding"*)).
+          1. Let _toEncode_ be ? GetUint8ArrayBytes(_obj_).
+          1. If _alphabet_ is *"base64"*, then
+            1. Let _outAscii_ be the sequence of code points which results from encoding _toEncode_ according to the base64 encoding specified in section 4 of <a href="https://rfc-editor.org/info/rfc4648">RFC 4648</a>. Padding is included if and only if _omitPadding_ is *false*.
+          1. Else,
+            1. Assert: _alphabet_ is *"base64url"*.
+            1. Let _outAscii_ be the sequence of code points which results from encoding _toEncode_ according to the base64url encoding specified in section 5 of <a href="https://rfc-editor.org/info/rfc4648">RFC 4648</a>. Padding is included if and only if _omitPadding_ is *false*.
+          1. Return CodePointsToString(_outAscii_).
+        </emu-alg>
+      </emu-clause>

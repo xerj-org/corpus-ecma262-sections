@@ -1,0 +1,22 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.5 Module Environment Records > 9.1.1.5.5 CreateImportBinding ( _envRecord_: a Module Environment Record, _name_: a String, _targetModule_: a Module Record, _targetName_: a String, ): ~unused~ [id: sec-createimportbinding]
+
+<emu-clause id="sec-createimportbinding" type="abstract operation">
+          <h1>
+            CreateImportBinding (
+              _envRecord_: a Module Environment Record,
+              _name_: a String,
+              _targetModule_: a Module Record,
+              _targetName_: a String,
+            ): ~unused~
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It creates a new initialized immutable indirect binding for the name _name_. A binding must not already exist in _envRecord_ for _name_. _targetName_ is the name of a binding that exists in _targetModule_'s Module Environment Record. Accesses to the value of the new binding will indirectly access the bound value of the target binding.</dd>
+          </dl>
+          <emu-alg>
+            1. Assert: _envRecord_ does not already have a binding for _name_.
+            1. Assert: When _targetModule_.[[Environment]] is instantiated, it will have a direct binding for _targetName_.
+            1. Create an immutable indirect binding in _envRecord_ for _name_ that references _targetModule_ and _targetName_ as its target binding and record that the binding is initialized.
+            1. Return ~unused~.
+          </emu-alg>
+        </emu-clause>

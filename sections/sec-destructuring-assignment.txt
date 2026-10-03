@@ -1,0 +1,66 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.15 Assignment Operators > 13.15.5 Destructuring Assignment [id: sec-destructuring-assignment]
+
+<emu-clause id="sec-destructuring-assignment">
+      <h1>Destructuring Assignment</h1>
+      <h2>Supplemental Syntax</h2>
+      <p>
+        In certain circumstances when processing an instance of the production<br>
+        <emu-grammar>AssignmentExpression : LeftHandSideExpression `=` AssignmentExpression</emu-grammar><br>
+        the interpretation of |LeftHandSideExpression| is refined using the following grammar:
+      </p>
+      <emu-grammar type="definition">
+        AssignmentPattern[Yield, Await] :
+          ObjectAssignmentPattern[?Yield, ?Await]
+          ArrayAssignmentPattern[?Yield, ?Await]
+
+        ObjectAssignmentPattern[Yield, Await] :
+          `{` `}`
+          `{` AssignmentRestProperty[?Yield, ?Await] `}`
+          `{` AssignmentPropertyList[?Yield, ?Await] `,`? `}`
+          `{` AssignmentPropertyList[?Yield, ?Await] `,` AssignmentRestProperty[?Yield, ?Await] `}`
+
+        ArrayAssignmentPattern[Yield, Await] :
+          `[` Elision? AssignmentRestElement[?Yield, ?Await]? `]`
+          `[` AssignmentElementList[?Yield, ?Await] `]`
+          `[` AssignmentElementList[?Yield, ?Await] `,` Elision? AssignmentRestElement[?Yield, ?Await]? `]`
+
+        AssignmentRestProperty[Yield, Await] :
+          `...` DestructuringAssignmentTarget[?Yield, ?Await]
+
+        AssignmentPropertyList[Yield, Await] :
+          AssignmentProperty[?Yield, ?Await]
+          AssignmentPropertyList[?Yield, ?Await] `,` AssignmentProperty[?Yield, ?Await]
+
+        AssignmentElementList[Yield, Await] :
+          AssignmentElisionElement[?Yield, ?Await]
+          AssignmentElementList[?Yield, ?Await] `,` AssignmentElisionElement[?Yield, ?Await]
+
+        AssignmentElisionElement[Yield, Await] :
+          Elision? AssignmentElement[?Yield, ?Await]
+
+        AssignmentProperty[Yield, Await] :
+          IdentifierReference[?Yield, ?Await] Initializer[+In, ?Yield, ?Await]?
+          PropertyName[?Yield, ?Await] `:` AssignmentElement[?Yield, ?Await]
+
+        AssignmentElement[Yield, Await] :
+          DestructuringAssignmentTarget[?Yield, ?Await] Initializer[+In, ?Yield, ?Await]?
+
+        AssignmentRestElement[Yield, Await] :
+          `...` DestructuringAssignmentTarget[?Yield, ?Await]
+
+        DestructuringAssignmentTarget[Yield, Await] :
+          LeftHandSideExpression[?Yield, ?Await]
+      </emu-grammar>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

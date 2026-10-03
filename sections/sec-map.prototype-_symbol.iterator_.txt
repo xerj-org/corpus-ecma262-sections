@@ -1,0 +1,6 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.3 Properties of the Map Prototype Object > 24.1.3.14 Map.prototype [ %Symbol.iterator% ] ( ) [id: sec-map.prototype-%symbol.iterator%]
+
+<emu-clause oldids="sec-map.prototype-@@iterator" id="sec-map.prototype-%symbol.iterator%" type="built-in function">
+        <h1>Map.prototype [ %Symbol.iterator% ] ( )</h1>
+        <p>The initial value of the %Symbol.iterator% property is %Map.prototype.entries%, defined in <emu-xref href="#sec-map.prototype.entries"></emu-xref>.</p>
+      </emu-clause>

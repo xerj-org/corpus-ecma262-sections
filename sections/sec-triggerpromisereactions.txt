@@ -1,0 +1,20 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.1 Promise Abstract Operations > 27.5.1.8 TriggerPromiseReactions ( _reactions_: a List of PromiseReaction Records, _arg_: an ECMAScript language value, ): ~unused~ [id: sec-triggerpromisereactions]
+
+<emu-clause id="sec-triggerpromisereactions" type="abstract operation">
+        <h1>
+          TriggerPromiseReactions (
+            _reactions_: a List of PromiseReaction Records,
+            _arg_: an ECMAScript language value,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It enqueues a new Job for each record in _reactions_. Each such Job processes the [[Type]] and [[Handler]] of the PromiseReaction Record, and if the [[Handler]] is not ~empty~, calls it passing the given argument. If the [[Handler]] is ~empty~, the behaviour is determined by the [[Type]].</dd>
+        </dl>
+        <emu-alg>
+          1. For each element _reaction_ of _reactions_, do
+            1. Let _job_ be NewPromiseReactionJob(_reaction_, _arg_).
+            1. Perform HostEnqueuePromiseJob(_job_.[[Job]], _job_.[[Realm]]).
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

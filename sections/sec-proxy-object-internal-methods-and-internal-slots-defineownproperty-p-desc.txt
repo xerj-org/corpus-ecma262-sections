@@ -1,0 +1,61 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.5 Proxy Object Internal Methods and Internal Slots > 10.5.6 [[DefineOwnProperty]] ( _propertyKey_: a property key, _propertyDesc_: a Property Descriptor, ): either a normal completion containing a Boolean or a throw completion [id: sec-proxy-object-internal-methods-and-internal-slots-defineownproperty-p-desc]
+
+<emu-clause id="sec-proxy-object-internal-methods-and-internal-slots-defineownproperty-p-desc" type="internal method">
+      <h1>
+        [[DefineOwnProperty]] (
+          _propertyKey_: a property key,
+          _propertyDesc_: a Property Descriptor,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>a Proxy exotic object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Perform ? ValidateNonRevokedProxy(_obj_).
+        1. Let _target_ be _obj_.[[ProxyTarget]].
+        1. Let _handler_ be _obj_.[[ProxyHandler]].
+        1. Assert: _handler_ is an Object.
+        1. Let _trap_ be ? GetMethod(_handler_, *"defineProperty"*).
+        1. If _trap_ is *undefined*, then
+          1. Return ? <emu-meta effects="user-code">_target_.[[DefineOwnProperty]](_propertyKey_, _propertyDesc_)</emu-meta>.
+        1. Let _propertyDescObj_ be FromPropertyDescriptor(_propertyDesc_).
+        1. Let _boolTrapResult_ be ToBoolean(? Call(_trap_, _handler_, « _target_, _propertyKey_, _propertyDescObj_ »)).
+        1. If _boolTrapResult_ is *false*, return *false*.
+        1. Let _targetDesc_ be ? <emu-meta effects="user-code">_target_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+        1. Let _extensibleTarget_ be ? IsExtensible(_target_).
+        1. If _propertyDesc_ has a [[Configurable]] field and _propertyDesc_.[[Configurable]] is *false*, then
+          1. Let _settingConfigurableFalse_ be *true*.
+        1. Else,
+          1. Let _settingConfigurableFalse_ be *false*.
+        1. If _targetDesc_ is *undefined*, then
+          1. If _extensibleTarget_ is *false*, throw a *TypeError* exception.
+          1. If _settingConfigurableFalse_ is *true*, throw a *TypeError* exception.
+        1. Else,
+          1. If IsCompatiblePropertyDescriptor(_extensibleTarget_, _propertyDesc_, _targetDesc_) is *false*, throw a *TypeError* exception.
+          1. If _settingConfigurableFalse_ is *true* and _targetDesc_.[[Configurable]] is *true*, throw a *TypeError* exception.
+          1. If IsDataDescriptor(_targetDesc_) is *true*, _targetDesc_.[[Configurable]] is *false*, and _targetDesc_.[[Writable]] is *true*, then
+            1. If _propertyDesc_ has a [[Writable]] field and _propertyDesc_.[[Writable]] is *false*, throw a *TypeError* exception.
+        1. Return *true*.
+      </emu-alg>
+      <emu-note>
+        <p>[[DefineOwnProperty]] for Proxy objects enforces the following invariants:</p>
+        <ul>
+          <li>
+            The result of [[DefineOwnProperty]] is a Boolean value.
+          </li>
+          <li>
+            A property cannot be added, if the target object is not extensible.
+          </li>
+          <li>
+            A property cannot be non-configurable, unless there exists a corresponding non-configurable own property of the target object.
+          </li>
+          <li>
+            A non-configurable property cannot be non-writable, unless there exists a corresponding non-configurable, non-writable own property of the target object.
+          </li>
+          <li>
+            If a property has a corresponding target object property then applying the Property Descriptor of the property to the target object using [[DefineOwnProperty]] will not throw an exception.
+          </li>
+        </ul>
+      </emu-note>
+    </emu-clause>

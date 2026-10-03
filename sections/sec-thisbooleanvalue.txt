@@ -1,0 +1,19 @@
+ECMA-262 > 20 Fundamental Objects > 20.3 Boolean Objects > 20.3.3 Properties of the Boolean Prototype Object > 20.3.3.3 Boolean.prototype.valueOf ( ) > 20.3.3.3.1 ThisBooleanValue ( _arg_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion [id: sec-thisbooleanvalue]
+
+<emu-clause id="sec-thisbooleanvalue" type="abstract operation" oldids="thisbooleanvalue">
+          <h1>
+            ThisBooleanValue (
+              _arg_: an ECMAScript language value,
+            ): either a normal completion containing a Boolean or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _arg_ is a Boolean, return _arg_.
+            1. If _arg_ is an Object and _arg_ has a [[BooleanData]] internal slot, then
+              1. Let _bool_ be _arg_.[[BooleanData]].
+              1. Assert: _bool_ is a Boolean.
+              1. Return _bool_.
+            1. Throw a *TypeError* exception.
+          </emu-alg>
+        </emu-clause>

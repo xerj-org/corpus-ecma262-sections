@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.5 Native Error Types Used in This Standard > 20.5.5.3 ReferenceError [id: sec-native-error-types-used-in-this-standard-referenceerror]
+
+<emu-clause id="sec-native-error-types-used-in-this-standard-referenceerror">
+        <h1>ReferenceError</h1>
+        <p>The ReferenceError constructor is <dfn>%ReferenceError%</dfn>.</p>
+        <p>Indicate that an invalid reference has been detected.</p>
+      </emu-clause>

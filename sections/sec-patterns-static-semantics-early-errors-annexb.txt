@@ -1,0 +1,31 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.1 Additional Syntax > B.1.2 Regular Expressions Patterns > B.1.2.1 Static Semantics: Early Errors [id: sec-patterns-static-semantics-early-errors-annexb]
+
+<emu-annex id="sec-patterns-static-semantics-early-errors-annexb">
+        <h1>Static Semantics: Early Errors</h1>
+        <p>The semantics of <emu-xref href="#sec-patterns-static-semantics-early-errors"></emu-xref> is extended as follows:</p>
+        <emu-grammar>ExtendedAtom :: InvalidBracedQuantifier</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if any source text is matched by this production.
+          </li>
+        </ul>
+        <p>Additionally, the rules for the following productions are modified with the addition of the <ins>highlighted</ins> text:</p>
+        <emu-grammar>NonemptyClassRanges :: ClassAtom `-` ClassAtom ClassContents</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if IsCharacterClass of the first |ClassAtom| is *true* or IsCharacterClass of the second |ClassAtom| is *true* <ins>and this production has a <sub>[UnicodeMode]</sub> parameter</ins>.
+          </li>
+          <li>
+            It is a Syntax Error if IsCharacterClass of the first |ClassAtom| is *false*, IsCharacterClass of the second |ClassAtom| is *false*, and the CharacterValue of the first |ClassAtom| is strictly greater than the CharacterValue of the second |ClassAtom|.
+          </li>
+        </ul>
+        <emu-grammar>NonemptyClassRangesNoDash :: ClassAtomNoDash `-` ClassAtom ClassContents</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if IsCharacterClass of |ClassAtomNoDash| is *true* or IsCharacterClass of |ClassAtom| is *true* <ins>and this production has a <sub>[UnicodeMode]</sub> parameter</ins>.
+          </li>
+          <li>
+            It is a Syntax Error if IsCharacterClass of |ClassAtomNoDash| is *false*, IsCharacterClass of |ClassAtom| is *false*, and the CharacterValue of |ClassAtomNoDash| is strictly greater than the CharacterValue of |ClassAtom|.
+          </li>
+        </ul>
+      </emu-annex>

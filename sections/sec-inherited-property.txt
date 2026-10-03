@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.42 inherited property [id: sec-inherited-property]
+
+<emu-clause id="sec-inherited-property">
+      <h1>inherited property</h1>
+      <p>property of an object that is not an own property but is a property (either own or inherited) of the object's prototype</p>
+    </emu-clause>

@@ -1,0 +1,10 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.1 The %TypedArray% Intrinsic Object > 23.2.1.1 %TypedArray% ( ) [id: sec-%typedarray%]
+
+<emu-clause id="sec-%typedarray%" type="built-in function">
+        <h1>%TypedArray% ( )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Throw a *TypeError* exception.
+        </emu-alg>
+        <p>The *"length"* property of this function is *+0*<sub>𝔽</sub>.</p>
+      </emu-clause>

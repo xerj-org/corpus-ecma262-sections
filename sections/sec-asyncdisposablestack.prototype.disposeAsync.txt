@@ -1,0 +1,13 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.4 AsyncDisposableStack Objects > 27.4.3 Properties of the AsyncDisposableStack Prototype Object > 27.4.3.4 AsyncDisposableStack.prototype.disposeAsync ( ) [id: sec-asyncdisposablestack.prototype.disposeAsync]
+
+<emu-clause id="sec-asyncdisposablestack.prototype.disposeAsync" type="built-in function">
+        <h1>AsyncDisposableStack.prototype.disposeAsync ( )</h1>
+        <p>This async method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _asyncDisposableStack_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_asyncDisposableStack_, [[AsyncDisposableState]]).
+          1. If _asyncDisposableStack_.[[AsyncDisposableState]] is ~disposed~, return *undefined*.
+          1. Set _asyncDisposableStack_.[[AsyncDisposableState]] to ~disposed~.
+          1. Return ? DisposeResources(_asyncDisposableStack_.[[DisposableResourceStack]], NormalCompletion(*undefined*)).
+        </emu-alg>
+      </emu-clause>

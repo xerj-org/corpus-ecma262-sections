@@ -1,0 +1,23 @@
+ECMA-262 > 26 Managing Memory > 26.1 WeakRef Objects > 26.1.1 The WeakRef Constructor [id: sec-weak-ref-constructor]
+
+<emu-clause id="sec-weak-ref-constructor">
+      <h1>The WeakRef Constructor</h1>
+      <p>The <dfn variants="WeakRefs">WeakRef</dfn> constructor:</p>
+      <ul>
+        <li>is <dfn>%WeakRef%</dfn>.</li>
+        <li>
+          is the initial value of the *"WeakRef"* property of the global object.
+        </li>
+        <li>
+          creates and initializes a new WeakRef when called as a constructor.
+        </li>
+        <li>
+          is not intended to be called as a function and will throw an exception when called in that manner.
+        </li>
+        <li>
+          may be used as the value in an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified `WeakRef` behaviour must include a `super` call to the `WeakRef` constructor to create and initialize the subclass instance with the internal state necessary to support the built-in methods of `WeakRef.prototype`.
+        </li>
+      </ul>
+
+      
+    </emu-clause>

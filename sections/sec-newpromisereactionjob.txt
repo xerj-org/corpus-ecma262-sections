@@ -1,0 +1,42 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.2 Promise Jobs > 27.5.2.1 NewPromiseReactionJob ( _reaction_: a PromiseReaction Record, _arg_: an ECMAScript language value, ): a Record with fields [[Job]] (a Job Abstract Closure) and [[Realm]] (a Realm Record or *null*) [id: sec-newpromisereactionjob]
+
+<emu-clause id="sec-newpromisereactionjob" type="abstract operation" oldids="sec-promisereactionjob">
+        <h1>
+          NewPromiseReactionJob (
+            _reaction_: a PromiseReaction Record,
+            _arg_: an ECMAScript language value,
+          ): a Record with fields [[Job]] (a Job Abstract Closure) and [[Realm]] (a Realm Record or *null*)
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns a new Job Abstract Closure that applies the appropriate handler to the incoming value, and uses the handler's return value to resolve or reject the derived promise associated with that handler.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _job_ be a new Job Abstract Closure with no parameters that captures _reaction_ and _arg_ and performs the following steps when called:
+            1. Let _promiseCapability_ be _reaction_.[[Capability]].
+            1. Let _type_ be _reaction_.[[Type]].
+            1. Let _handler_ be _reaction_.[[Handler]].
+            1. If _handler_ is ~empty~, then
+              1. If _type_ is ~fulfill~, then
+                1. Let _handlerResult_ be NormalCompletion(_arg_).
+              1. Else,
+                1. Assert: _type_ is ~reject~.
+                1. Let _handlerResult_ be ThrowCompletion(_arg_).
+            1. Else,
+              1. Let _handlerResult_ be Completion(HostCallJobCallback(_handler_, *undefined*, « _arg_ »)).
+            1. If _promiseCapability_ is *undefined*, then
+              1. Assert: _handlerResult_ is not an abrupt completion.
+              1. Return ~empty~.
+            1. Assert: _promiseCapability_ is a PromiseCapability Record.
+            1. If _handlerResult_ is an abrupt completion, then
+              1. Return ? Call(_promiseCapability_.[[Reject]], *undefined*, « _handlerResult_.[[Value]] »).
+            1. Return ? Call(_promiseCapability_.[[Resolve]], *undefined*, « _handlerResult_.[[Value]] »).
+          1. Let _handlerRealm_ be *null*.
+          1. If _reaction_.[[Handler]] is not ~empty~, then
+            1. Let _getHandlerRealmResult_ be Completion(GetFunctionRealm(_reaction_.[[Handler]].[[Callback]])).
+            1. If _getHandlerRealmResult_ is a normal completion, set _handlerRealm_ to _getHandlerRealmResult_.[[Value]].
+            1. Else, set _handlerRealm_ to the current Realm Record.
+            1. NOTE: _handlerRealm_ is never *null* unless the handler is *undefined*. When the handler is a revoked Proxy and no ECMAScript code runs, _handlerRealm_ is used to create error objects.
+          1. Return the Record { [[Job]]: _job_, [[Realm]]: _handlerRealm_ }.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,27 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.2 Runtime Semantics: CompilePattern ( _regexpRecord_: a RegExp Record, ): an Abstract Closure that takes a List of characters and a non-negative integer and returns either a MatchState or ~failure~ [id: sec-compilepattern]
+
+<emu-clause id="sec-compilepattern" type="sdo" oldids="sec-pattern">
+        <h1>
+          Runtime Semantics: CompilePattern (
+            _regexpRecord_: a RegExp Record,
+          ): an Abstract Closure that takes a List of characters and a non-negative integer and returns either a MatchState or ~failure~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>Pattern :: Disjunction</emu-grammar>
+        <emu-alg>
+          1. Let _m_ be CompileSubpattern of |Disjunction| with arguments _regexpRecord_ and ~forward~.
+          1. Return a new Abstract Closure with parameters (_input_, _index_) that captures _regexpRecord_ and _m_ and performs the following steps when called:
+            1. Assert: _input_ is a List of characters.
+            1. Assert: 0 ≤ _index_ ≤ the number of elements in _input_.
+            1. Let _c_ be a new MatcherContinuation with parameters (_y_) that captures nothing and performs the following steps when called:
+              1. Assert: _y_ is a MatchState.
+              1. Return _y_.
+            1. Let _capability_ be a List of _regexpRecord_.[[CapturingGroupsCount]] *undefined* values, indexed 1 through _regexpRecord_.[[CapturingGroupsCount]].
+            1. Let _x_ be the MatchState { [[Input]]: _input_, [[EndIndex]]: _index_, [[Captures]]: _capability_ }.
+            1. Return _m_(_x_, _c_).
+        </emu-alg>
+        <emu-note>
+          <p>A Pattern compiles to an Abstract Closure value. RegExpBuiltinExec can then apply this procedure to a List of characters and an offset within that List to determine whether the pattern would match starting at exactly that offset within the List, and, if it does match, what the values of the capturing parentheses would be. The algorithms in <emu-xref href="#sec-pattern-semantics"></emu-xref> are designed so that compiling a pattern may throw a *SyntaxError* exception; on the other hand, once the pattern is successfully compiled, applying the resulting Abstract Closure to find a match in a List of characters cannot throw an exception (except for any implementation-defined exceptions that can occur anywhere such as out-of-memory).</p>
+        </emu-note>
+      </emu-clause>

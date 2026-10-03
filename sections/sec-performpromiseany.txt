@@ -1,0 +1,49 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.4 Properties of the Promise Constructor > 27.5.4.3 Promise.any ( _iterable_ ) > 27.5.4.3.1 PerformPromiseAny ( _iteratorRecord_: an Iterator Record, _ctor_: a constructor, _resultCapability_: a PromiseCapability Record, _promiseResolve_: a function object, ): either a normal completion containing an Object or a throw completion [id: sec-performpromiseany]
+
+<emu-clause id="sec-performpromiseany" oldids="sec-promise.any-reject-element-functions" type="abstract operation">
+          <h1>
+            PerformPromiseAny (
+              _iteratorRecord_: an Iterator Record,
+              _ctor_: a constructor,
+              _resultCapability_: a PromiseCapability Record,
+              _promiseResolve_: a function object,
+            ): either a normal completion containing an Object or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _errors_ be a new empty List.
+            1. [declared="remainingElementsCount"] NOTE: _remainingElementsCount_ starts at 1 instead of 0 to ensure _resultCapability_.[[Reject]] is only called once, even in the presence of a misbehaving *"then"* which calls the passed callback before the input iterator is exhausted.
+            1. Let _remainingElementsCount_ be the Record { [[Value]]: 1 }.
+            1. Let _index_ be 0.
+            1. Repeat,
+              1. Let _next_ be ? IteratorStepValue(_iteratorRecord_).
+              1. If _next_ is ~done~, then
+                1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] - 1.
+                1. If _remainingElementsCount_.[[Value]] = 0, then
+                  1. Let _aggregateError_ be a newly created *AggregateError* object.
+                  1. Perform ! DefinePropertyOrThrow(_aggregateError_, *"errors"*, PropertyDescriptor { [[Configurable]]: *true*, [[Enumerable]]: *false*, [[Writable]]: *true*, [[Value]]: CreateArrayFromList(_errors_) }).
+                  1. Perform ? Call(_resultCapability_.[[Reject]], *undefined*, « _aggregateError_ »).
+                1. Return _resultCapability_.[[Promise]].
+              1. Append *undefined* to _errors_.
+              1. Let _nextPromise_ be ? Call(_promiseResolve_, _ctor_, « _next_ »).
+              1. Let _rejectedSteps_ be a new Abstract Closure with parameters (_error_) that captures _errors_, _resultCapability_, and _remainingElementsCount_ and performs the following steps when called:
+                1. Let _activeFunc_ be the active function object.
+                1. If _activeFunc_.[[AlreadyCalled]] is *true*, return *undefined*.
+                1. Set _activeFunc_.[[AlreadyCalled]] to *true*.
+                1. Let _thisIndex_ be _activeFunc_.[[Index]].
+                1. Set _errors_[_thisIndex_] to _error_.
+                1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] - 1.
+                1. If _remainingElementsCount_.[[Value]] = 0, then
+                  1. Let _aggregateError_ be a newly created *AggregateError* object.
+                  1. Perform ! DefinePropertyOrThrow(_aggregateError_, *"errors"*, PropertyDescriptor { [[Configurable]]: *true*, [[Enumerable]]: *false*, [[Writable]]: *true*, [[Value]]: CreateArrayFromList(_errors_) }).
+                  1. Return ? Call(_resultCapability_.[[Reject]], *undefined*, « _aggregateError_ »).
+                1. Return *undefined*.
+              1. Let _onRejected_ be CreateBuiltinFunction(_rejectedSteps_, 1, *""*, « [[AlreadyCalled]], [[Index]] »).
+              1. Set _onRejected_.[[AlreadyCalled]] to *false*.
+              1. Set _onRejected_.[[Index]] to _index_.
+              1. Set _index_ to _index_ + 1.
+              1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] + 1.
+              1. Perform ? Invoke(_nextPromise_, *"then"*, « _resultCapability_.[[Resolve]], _onRejected_ »).
+          </emu-alg>
+        </emu-clause>

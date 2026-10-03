@@ -1,0 +1,14 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.9 AsyncGenerator Objects [id: sec-asyncgenerator-objects]
+
+<emu-clause id="sec-asyncgenerator-objects">
+    <h1>AsyncGenerator Objects</h1>
+    <p>An AsyncGenerator is created by calling an async generator function and conforms to both the async iterator interface and the async iterable interface.</p>
+
+    <p>AsyncGenerator instances directly inherit properties from the initial value of the *"prototype"* property of the async generator function that created the instance. AsyncGenerator instances indirectly inherit properties from %AsyncGeneratorPrototype%.</p>
+
+    
+
+    
+
+    
+  </emu-clause>

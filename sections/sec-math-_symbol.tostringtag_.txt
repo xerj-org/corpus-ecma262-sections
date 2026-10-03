@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.1 Value Properties of the Math Object > 21.3.1.9 Math [ %Symbol.toStringTag% ] [id: sec-math-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-math-@@tostringtag" id="sec-math-%symbol.tostringtag%">
+        <h1>Math [ %Symbol.toStringTag% ]</h1>
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"Math"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

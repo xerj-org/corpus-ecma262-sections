@@ -1,0 +1,43 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.2 Function Properties of the Math Object > 21.3.2.8 Math.atan2 ( _y_, _x_ ) [id: sec-math.atan2]
+
+<emu-clause id="sec-math.atan2" type="built-in function">
+        <h1>Math.atan2 ( _y_, _x_ )</h1>
+        <p>This function returns the inverse tangent of the quotient <emu-eqn>_y_ / _x_</emu-eqn> of the arguments _y_ and _x_, where the signs of _y_ and _x_ are used to determine the quadrant of the result. Note that it is intentional and traditional for the two-argument inverse tangent function that the argument named _y_ be first and the argument named _x_ be second. The result is expressed in radians and is in the inclusive interval from -π to +π.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _ny_ be ? ToNumber(_y_).
+          1. Let _nx_ be ? ToNumber(_x_).
+          1. If _ny_ is *NaN* or _nx_ is *NaN*, return *NaN*.
+          1. If _ny_ is *+∞*<sub>𝔽</sub>, then
+            1. If _nx_ is *+∞*<sub>𝔽</sub>, return an implementation-approximated Number value representing π / 4.
+            1. If _nx_ is *-∞*<sub>𝔽</sub>, return an implementation-approximated Number value representing 3π / 4.
+            1. Return an implementation-approximated Number value representing π / 2.
+          1. If _ny_ is *-∞*<sub>𝔽</sub>, then
+            1. If _nx_ is *+∞*<sub>𝔽</sub>, return an implementation-approximated Number value representing -π / 4.
+            1. If _nx_ is *-∞*<sub>𝔽</sub>, return an implementation-approximated Number value representing -3π / 4.
+            1. Return an implementation-approximated Number value representing -π / 2.
+          1. If _ny_ is *+0*<sub>𝔽</sub>, then
+            1. If _nx_ > *+0*<sub>𝔽</sub> or _nx_ is *+0*<sub>𝔽</sub>, return *+0*<sub>𝔽</sub>.
+            1. Return an implementation-approximated Number value representing π.
+          1. If _ny_ is *-0*<sub>𝔽</sub>, then
+            1. If _nx_ > *+0*<sub>𝔽</sub> or _nx_ is *+0*<sub>𝔽</sub>, return *-0*<sub>𝔽</sub>.
+            1. Return an implementation-approximated Number value representing -π.
+          1. Assert: _ny_ is a finite Number and is neither *+0*<sub>𝔽</sub> nor *-0*<sub>𝔽</sub>.
+          1. If _ny_ > *+0*<sub>𝔽</sub>, then
+            1. If _nx_ is *+∞*<sub>𝔽</sub>, return *+0*<sub>𝔽</sub>.
+            1. If _nx_ is *-∞*<sub>𝔽</sub>, return an implementation-approximated Number value representing π.
+            1. If _nx_ is either *+0*<sub>𝔽</sub> or *-0*<sub>𝔽</sub>, return an implementation-approximated Number value representing π / 2.
+          1. If _ny_ &lt; *-0*<sub>𝔽</sub>, then
+            1. If _nx_ is *+∞*<sub>𝔽</sub>, return *-0*<sub>𝔽</sub>.
+            1. If _nx_ is *-∞*<sub>𝔽</sub>, return an implementation-approximated Number value representing -π.
+            1. If _nx_ is either *+0*<sub>𝔽</sub> or *-0*<sub>𝔽</sub>, return an implementation-approximated Number value representing -π / 2.
+          1. Assert: _nx_ is a finite Number and is neither *+0*<sub>𝔽</sub> nor *-0*<sub>𝔽</sub>.
+          1. Let _result_ be the inverse tangent of abs(ℝ(_ny_) / ℝ(_nx_)).
+          1. If _nx_ &lt; *-0*<sub>𝔽</sub>, then
+            1. If _ny_ > *+0*<sub>𝔽</sub>, set _result_ to π - _result_.
+            1. Else, set _result_ to -π + _result_.
+          1. Else,
+            1. If _ny_ &lt; *-0*<sub>𝔽</sub>, set _result_ to -_result_.
+          1. Return an implementation-approximated Number value representing _result_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.44 WeakRef ( . . . ) [id: sec-constructor-properties-of-the-global-object-weakref]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-weakref">
+      <h1>WeakRef ( . . . )</h1>
+      <p>See <emu-xref href="#sec-weak-ref-constructor"></emu-xref>.</p>
+    </emu-clause>

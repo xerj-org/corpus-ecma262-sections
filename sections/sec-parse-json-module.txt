@@ -1,0 +1,18 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.8 Synthetic Module Records > 16.2.1.8.2 ParseJSONModule ( _source_: a String, ): either a normal completion containing a Synthetic Module Record, or a throw completion [id: sec-parse-json-module]
+
+<emu-clause id="sec-parse-json-module" type="abstract operation">
+          <h1>
+            ParseJSONModule (
+              _source_: a String,
+            ): either a normal completion containing a Synthetic Module Record, or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd></dd>
+          </dl>
+
+          <emu-alg>
+            1. Let _parseResult_ be ? ParseJSON(_source_).
+            1. Return CreateDefaultExportSyntheticModule(_parseResult_.[[Value]]).
+          </emu-alg>
+        </emu-clause>

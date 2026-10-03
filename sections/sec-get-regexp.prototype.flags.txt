@@ -1,0 +1,30 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.6 Properties of the RegExp Prototype Object > 22.2.6.4 get RegExp.prototype.flags [id: sec-get-regexp.prototype.flags]
+
+<emu-clause id="sec-get-regexp.prototype.flags" type="built-in function">
+        <h1>get RegExp.prototype.flags</h1>
+        <p>`RegExp.prototype.flags` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _regexp_ be the *this* value.
+          1. If _regexp_ is not an Object, throw a *TypeError* exception.
+          1. Let _codeUnits_ be a new empty List.
+          1. Let _hasIndices_ be ToBoolean(? Get(_regexp_, *"hasIndices"*)).
+          1. If _hasIndices_ is *true*, append the code unit 0x0064 (LATIN SMALL LETTER D) to _codeUnits_.
+          1. Let _global_ be ToBoolean(? Get(_regexp_, *"global"*)).
+          1. If _global_ is *true*, append the code unit 0x0067 (LATIN SMALL LETTER G) to _codeUnits_.
+          1. Let _ignoreCase_ be ToBoolean(? Get(_regexp_, *"ignoreCase"*)).
+          1. If _ignoreCase_ is *true*, append the code unit 0x0069 (LATIN SMALL LETTER I) to _codeUnits_.
+          1. Let _multiline_ be ToBoolean(? Get(_regexp_, *"multiline"*)).
+          1. If _multiline_ is *true*, append the code unit 0x006D (LATIN SMALL LETTER M) to _codeUnits_.
+          1. Let _dotAll_ be ToBoolean(? Get(_regexp_, *"dotAll"*)).
+          1. If _dotAll_ is *true*, append the code unit 0x0073 (LATIN SMALL LETTER S) to _codeUnits_.
+          1. Let _unicode_ be ToBoolean(? Get(_regexp_, *"unicode"*)).
+          1. If _unicode_ is *true*, append the code unit 0x0075 (LATIN SMALL LETTER U) to _codeUnits_.
+          1. Let _unicodeSets_ be ToBoolean(? Get(_regexp_, *"unicodeSets"*)).
+          1. If _unicodeSets_ is *true*, append the code unit 0x0076 (LATIN SMALL LETTER V) to _codeUnits_.
+          1. Let _sticky_ be ToBoolean(? Get(_regexp_, *"sticky"*)).
+          1. If _sticky_ is *true*, append the code unit 0x0079 (LATIN SMALL LETTER Y) to _codeUnits_.
+          1. Return the String value whose code units are the elements of the List _codeUnits_. If _codeUnits_ has no elements, the empty String is returned.
+        </emu-alg>
+
+        
+      </emu-clause>

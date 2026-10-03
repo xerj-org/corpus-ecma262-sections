@@ -1,0 +1,10 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.7 AsyncGeneratorFunction Objects > 27.7.4 AsyncGeneratorFunction Instances > 27.7.4.3 prototype [id: sec-asyncgeneratorfunction-instance-prototype]
+
+<emu-clause id="sec-asyncgeneratorfunction-instance-prototype">
+        <h1>prototype</h1>
+        <p>Whenever an AsyncGeneratorFunction instance is created, another ordinary object is also created and is the initial value of the async generator function's *"prototype"* property. The value of the prototype property is used to initialize the [[Prototype]] internal slot of a newly created AsyncGenerator when the generator function object is invoked using [[Call]].</p>
+        <p>This property has the attributes { [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+        <emu-note>
+          <p>Unlike function instances, the object that is the value of an AsyncGeneratorFunction's *"prototype"* property does not have a *"constructor"* property whose value is the AsyncGeneratorFunction instance.</p>
+        </emu-note>
+      </emu-clause>

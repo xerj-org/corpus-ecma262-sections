@@ -1,0 +1,121 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.7 The Object Type > 6.1.7.1 Property Attributes [id: sec-property-attributes]
+
+<emu-clause id="sec-property-attributes">
+        <h1>Property Attributes</h1>
+        <p>Attributes are used in this specification to define and explain the state of Object properties as described in <emu-xref href="#table-object-property-attributes"></emu-xref>. Unless specified explicitly, the initial value of each attribute is its Default Value.</p>
+        <emu-table id="table-object-property-attributes" caption="Attributes of an Object property" oldids="table-2,table-3,table-4,table-data-property-attributes,table-accessor-property-attributes,table-default-attribute-values">
+          <table>
+            <thead>
+              <tr>
+                <th>Attribute Name</th>
+                <th>Types of property for which it is present</th>
+                <th>Value Domain</th>
+                <th>Default Value</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                [[Value]]
+              </td>
+              <td>
+                data property
+              </td>
+              <td>
+                an ECMAScript language value
+              </td>
+              <td>
+                *undefined*
+              </td>
+              <td>
+                The value retrieved by a get access of the property.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Writable]]
+              </td>
+              <td>
+                data property
+              </td>
+              <td>
+                a Boolean
+              </td>
+              <td>
+                *false*
+              </td>
+              <td>
+                If *false*, attempts by ECMAScript code to change the property's [[Value]] attribute using [[Set]] will not succeed.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Getter]]
+              </td>
+              <td>
+                accessor property
+              </td>
+              <td>
+                a function object or *undefined*
+              </td>
+              <td>
+                *undefined*
+              </td>
+              <td>
+                If the value is not *undefined*, its [[Call]] internal method (<emu-xref href="#table-additional-essential-internal-methods-of-function-objects"></emu-xref>) is called with an empty arguments list to retrieve the property value each time a get access of the property is performed.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Setter]]
+              </td>
+              <td>
+                accessor property
+              </td>
+              <td>
+                a function object or *undefined*
+              </td>
+              <td>
+                *undefined*
+              </td>
+              <td>
+                If the value is not *undefined*, its [[Call]] internal method (<emu-xref href="#table-additional-essential-internal-methods-of-function-objects"></emu-xref>) is called with an arguments list containing the assigned value as its sole argument each time a set access of the property is performed. The effect of a property's [[Setter]] internal method may, but is not required to, have an effect on the value returned by subsequent calls to the property's [[Getter]] internal method.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Enumerable]]
+              </td>
+              <td>
+                data property or accessor property
+              </td>
+              <td>
+                a Boolean
+              </td>
+              <td>
+                *false*
+              </td>
+              <td>
+                If *true*, the property will be enumerated by a for-in enumeration (see <emu-xref href="#sec-for-in-and-for-of-statements"></emu-xref>). Otherwise, the property is said to be non-enumerable.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Configurable]]
+              </td>
+              <td>
+                data property or accessor property
+              </td>
+              <td>
+                a Boolean
+              </td>
+              <td>
+                *false*
+              </td>
+              <td>
+                If *false*, attempts to delete the property, change it from a data property to an accessor property or from an accessor property to a data property, or make any changes to its attributes (other than replacing an existing [[Value]] or setting [[Writable]] to *false*) will fail.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

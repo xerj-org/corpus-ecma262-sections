@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.8 Boolean ( . . . ) [id: sec-constructor-properties-of-the-global-object-boolean]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-boolean">
+      <h1>Boolean ( . . . )</h1>
+      <p>See <emu-xref href="#sec-boolean-constructor"></emu-xref>.</p>
+    </emu-clause>

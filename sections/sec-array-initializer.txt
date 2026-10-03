@@ -1,0 +1,33 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.4 Array Initializer [id: sec-array-initializer]
+
+<emu-clause id="sec-array-initializer">
+      <h1>Array Initializer</h1>
+      <emu-note>
+        <p>An |ArrayLiteral| is an expression describing the initialization of an Array, using a list, of zero or more expressions each of which represents an array element, enclosed in square brackets. The elements need not be literals; they are evaluated each time the array initializer is evaluated.</p>
+      </emu-note>
+      <p>Array elements may be elided at the beginning, middle or end of the element list. Whenever a comma in the element list is not preceded by an |AssignmentExpression| (i.e., a comma at the beginning or after another comma), the missing array element contributes to the length of the Array and increases the index of subsequent elements. Elided array elements are not defined. If an element is elided at the end of an array, that element does not contribute to the length of the Array.</p>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        ArrayLiteral[Yield, Await] :
+          `[` Elision? `]`
+          `[` ElementList[?Yield, ?Await] `]`
+          `[` ElementList[?Yield, ?Await] `,` Elision? `]`
+
+        ElementList[Yield, Await] :
+          Elision? AssignmentExpression[+In, ?Yield, ?Await]
+          Elision? SpreadElement[?Yield, ?Await]
+          ElementList[?Yield, ?Await] `,` Elision? AssignmentExpression[+In, ?Yield, ?Await]
+          ElementList[?Yield, ?Await] `,` Elision? SpreadElement[?Yield, ?Await]
+
+        Elision :
+          `,`
+          Elision `,`
+
+        SpreadElement[Yield, Await] :
+          `...` AssignmentExpression[+In, ?Yield, ?Await]
+      </emu-grammar>
+
+      
+
+      
+    </emu-clause>

@@ -1,0 +1,20 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.9 Abstract Operations for Error Objects > 20.5.9.1 InstallErrorCause ( _obj_: an Object, _options_: an ECMAScript language value, ): either a normal completion containing ~unused~ or a throw completion [id: sec-installerrorcause]
+
+<emu-clause id="sec-installerrorcause" type="abstract operation">
+        <h1>
+          InstallErrorCause (
+            _obj_: an Object,
+            _options_: an ECMAScript language value,
+          ): either a normal completion containing ~unused~ or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to create a *"cause"* property on _obj_ when a *"cause"* property is present on _options_.</dd>
+        </dl>
+        <emu-alg>
+          1. If _options_ is an Object and ? HasProperty(_options_, *"cause"*) is *true*, then
+            1. Let _cause_ be ? Get(_options_, *"cause"*).
+            1. Perform CreateNonEnumerableDataPropertyOrThrow(_obj_, *"cause"*, _cause_).
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

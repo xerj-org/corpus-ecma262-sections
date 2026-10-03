@@ -1,0 +1,66 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.8 Argument Lists > 13.3.8.1 Runtime Semantics: ArgumentListEvaluation ( ): either a normal completion containing a List of ECMAScript language values or an abrupt completion [id: sec-runtime-semantics-argumentlistevaluation]
+
+<emu-clause id="sec-runtime-semantics-argumentlistevaluation" oldids="sec-template-literals-runtime-semantics-argumentlistevaluation,sec-argument-lists-runtime-semantics-argumentlistevaluation" type="sdo">
+        <h1>Runtime Semantics: ArgumentListEvaluation ( ): either a normal completion containing a List of ECMAScript language values or an abrupt completion</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>Arguments : `(` `)`</emu-grammar>
+        <emu-alg>
+          1. Return a new empty List.
+        </emu-alg>
+        <emu-grammar>ArgumentList : AssignmentExpression</emu-grammar>
+        <emu-alg>
+          1. Let _ref_ be ? Evaluation of |AssignmentExpression|.
+          1. Let _arg_ be ? GetValue(_ref_).
+          1. Return « _arg_ ».
+        </emu-alg>
+        <emu-grammar>ArgumentList : `...` AssignmentExpression</emu-grammar>
+        <emu-alg>
+          1. Let _list_ be a new empty List.
+          1. Let _spreadRef_ be ? Evaluation of |AssignmentExpression|.
+          1. Let _spreadObj_ be ? GetValue(_spreadRef_).
+          1. Let _iteratorRecord_ be ? GetIterator(_spreadObj_, ~sync~).
+          1. Repeat,
+            1. Let _next_ be ? IteratorStepValue(_iteratorRecord_).
+            1. If _next_ is ~done~, return _list_.
+            1. Append _next_ to _list_.
+        </emu-alg>
+        <emu-grammar>ArgumentList : ArgumentList `,` AssignmentExpression</emu-grammar>
+        <emu-alg>
+          1. Let _precedingArgs_ be ? ArgumentListEvaluation of |ArgumentList|.
+          1. Let _ref_ be ? Evaluation of |AssignmentExpression|.
+          1. Let _arg_ be ? GetValue(_ref_).
+          1. Return the list-concatenation of _precedingArgs_ and « _arg_ ».
+        </emu-alg>
+        <emu-grammar>ArgumentList : ArgumentList `,` `...` AssignmentExpression</emu-grammar>
+        <emu-alg>
+          1. Let _precedingArgs_ be ? ArgumentListEvaluation of |ArgumentList|.
+          1. Let _spreadRef_ be ? Evaluation of |AssignmentExpression|.
+          1. Let _iteratorRecord_ be ? GetIterator(? GetValue(_spreadRef_), ~sync~).
+          1. Repeat,
+            1. Let _next_ be ? IteratorStepValue(_iteratorRecord_).
+            1. If _next_ is ~done~, return _precedingArgs_.
+            1. Append _next_ to _precedingArgs_.
+        </emu-alg>
+        <emu-grammar>TemplateLiteral : NoSubstitutionTemplate</emu-grammar>
+        <emu-alg>
+          1. Let _templateLiteral_ be this |TemplateLiteral|.
+          1. Let _siteObj_ be GetTemplateObject(_templateLiteral_).
+          1. Return « _siteObj_ ».
+        </emu-alg>
+        <emu-grammar>TemplateLiteral : SubstitutionTemplate</emu-grammar>
+        <emu-alg>
+          1. Let _templateLiteral_ be this |TemplateLiteral|.
+          1. Let _siteObj_ be GetTemplateObject(_templateLiteral_).
+          1. Let _remaining_ be ? ArgumentListEvaluation of |SubstitutionTemplate|.
+          1. Return the list-concatenation of « _siteObj_ » and _remaining_.
+        </emu-alg>
+        <emu-grammar>SubstitutionTemplate : TemplateHead Expression TemplateSpans</emu-grammar>
+        <emu-alg>
+          1. Let _firstSubRef_ be ? Evaluation of |Expression|.
+          1. Let _firstSub_ be ? GetValue(_firstSubRef_).
+          1. Let _restSub_ be ? SubstitutionEvaluation of |TemplateSpans|.
+          1. Assert: _restSub_ is a possibly empty List.
+          1. Return the list-concatenation of « _firstSub_ » and _restSub_.
+        </emu-alg>
+      </emu-clause>

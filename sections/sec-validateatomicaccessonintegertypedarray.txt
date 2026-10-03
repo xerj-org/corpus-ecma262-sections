@@ -1,0 +1,16 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.3 ValidateAtomicAccessOnIntegerTypedArray ( _ta_: an ECMAScript language value, _requestIndex_: an ECMAScript language value, ): either a normal completion containing a non-negative integer or a throw completion [id: sec-validateatomicaccessonintegertypedarray]
+
+<emu-clause id="sec-validateatomicaccessonintegertypedarray" type="abstract operation">
+        <h1>
+          ValidateAtomicAccessOnIntegerTypedArray (
+            _ta_: an ECMAScript language value,
+            _requestIndex_: an ECMAScript language value,
+          ): either a normal completion containing a non-negative integer or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _taRecord_ be ? ValidateIntegerTypedArray(_ta_, *false*).
+          1. Return ? ValidateAtomicAccess(_taRecord_, _requestIndex_).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,34 @@
+ECMA-262 > 7 Abstract Operations > 7.2 Testing and Comparison Operations > 7.2.11 SameValueNonNumber ( _x_: an ECMAScript language value, but not a Number, _y_: an ECMAScript language value, but not a Number, ): a Boolean [id: sec-samevaluenonnumber]
+
+<emu-clause id="sec-samevaluenonnumber" type="abstract operation" oldids="sec-samevaluenonnumeric">
+      <h1>
+        SameValueNonNumber (
+          _x_: an ECMAScript language value, but not a Number,
+          _y_: an ECMAScript language value, but not a Number,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Assert: SameType(_x_, _y_) is *true*.
+        1. If _x_ is either *undefined* or *null*, return *true*.
+        1. If _x_ is a BigInt, then
+          1. Return BigInt::equal(_x_, _y_).
+        1. If _x_ is a String, then
+          1. If _x_ and _y_ have the same length and the same code units in the same positions, return *true*.
+          1. Return *false*.
+        1. If _x_ is a Boolean, then
+          1. If _x_ is *true* and _y_ is *true*, return *true*.
+          1. If _x_ is *false* and _y_ is *false*, return *true*.
+          1. Return *false*.
+        1. NOTE: All other ECMAScript language values are compared by identity.
+        1. If _x_ is _y_, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-note>
+        For expository purposes, some cases are handled separately within this algorithm even if it is unnecessary to do so.
+      </emu-note>
+      <emu-note>
+        The specifics of what “_x_ is _y_” means are detailed in <emu-xref href="#sec-identity"></emu-xref>.
+      </emu-note>
+    </emu-clause>

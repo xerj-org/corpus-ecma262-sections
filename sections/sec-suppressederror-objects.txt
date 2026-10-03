@@ -1,0 +1,13 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.8 SuppressedError Objects [id: sec-suppressederror-objects]
+
+<emu-clause id="sec-suppressederror-objects">
+      <h1>SuppressedError Objects</h1>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

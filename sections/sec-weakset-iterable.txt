@@ -1,0 +1,20 @@
+ECMA-262 > 24 Keyed Collections > 24.4 WeakSet Objects > 24.4.1 The WeakSet Constructor > 24.4.1.1 WeakSet ( [ _iterable_ ] ) [id: sec-weakset-iterable]
+
+<emu-clause id="sec-weakset-iterable" type="built-in function">
+        <h1>WeakSet ( [ _iterable_ ] )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If NewTarget is *undefined*, throw a *TypeError* exception.
+          1. Let _set_ be ? OrdinaryCreateFromConstructor(NewTarget, *"%WeakSet.prototype%"*, « [[WeakSetData]] »).
+          1. Set _set_.[[WeakSetData]] to a new empty List.
+          1. If _iterable_ is either *undefined* or *null*, return _set_.
+          1. Let _adder_ be ? Get(_set_, *"add"*).
+          1. If IsCallable(_adder_) is *false*, throw a *TypeError* exception.
+          1. Let _iteratorRecord_ be ? GetIterator(_iterable_, ~sync~).
+          1. Repeat,
+            1. Let _next_ be ? IteratorStepValue(_iteratorRecord_).
+            1. If _next_ is ~done~, return _set_.
+            1. Let _status_ be Completion(Call(_adder_, _set_, « _next_ »)).
+            1. IfAbruptCloseIterator(_status_, _iteratorRecord_).
+        </emu-alg>
+      </emu-clause>

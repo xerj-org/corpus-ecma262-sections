@@ -1,0 +1,44 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals > 12.9.6 Template Literal Lexical Components > 12.9.6.1 Static Semantics: TV ( ): a String or *undefined* [id: sec-static-semantics-tv]
+
+<emu-clause id="sec-static-semantics-tv" type="sdo" oldids="sec-static-semantics-tv-and-trv">
+        <h1>Static Semantics: TV ( ): a String or *undefined*</h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>A template literal component is interpreted by TV as a value of the String type. TV is used to construct the indexed components of a template object (colloquially, the template values). In TV, escape sequences are replaced by the UTF-16 code unit(s) of the Unicode code point represented by the escape sequence.</dd>
+        </dl>
+        <ul>
+          <li>
+            The TV of <emu-grammar>NoSubstitutionTemplate :: ``` ```</emu-grammar> is the empty String.
+          </li>
+          <li>
+            The TV of <emu-grammar>TemplateHead :: ``` `${`</emu-grammar> is the empty String.
+          </li>
+          <li>
+            The TV of <emu-grammar>TemplateMiddle :: `}` `${`</emu-grammar> is the empty String.
+          </li>
+          <li>
+            The TV of <emu-grammar>TemplateTail :: `}` ```</emu-grammar> is the empty String.
+          </li>
+          <li>
+            The TV of <emu-grammar>TemplateCharacters :: TemplateCharacter TemplateCharacters</emu-grammar> is *undefined* if the TV of |TemplateCharacter| is *undefined* or the TV of |TemplateCharacters| is *undefined*. Otherwise, it is the string-concatenation of the TV of |TemplateCharacter| and the TV of |TemplateCharacters|.
+          </li>
+          <li>
+            The TV of <emu-grammar>TemplateCharacter :: SourceCharacter but not one of ``` or `\` or `$` or LineTerminator</emu-grammar> is the result of performing UTF16EncodeCodePoint on the code point matched by |SourceCharacter|.
+          </li>
+          <li>
+            The TV of <emu-grammar>TemplateCharacter :: `$`</emu-grammar> is the String value consisting of the code unit 0x0024 (DOLLAR SIGN).
+          </li>
+          <li>
+            The TV of <emu-grammar>TemplateCharacter :: `\` TemplateEscapeSequence</emu-grammar> is the SV of |TemplateEscapeSequence|.
+          </li>
+          <li>
+            The TV of <emu-grammar>TemplateCharacter :: `\` NotEscapeSequence</emu-grammar> is *undefined*.
+          </li>
+          <li>
+            The TV of <emu-grammar>TemplateCharacter :: LineTerminatorSequence</emu-grammar> is the TRV of |LineTerminatorSequence|.
+          </li>
+          <li>
+            The TV of <emu-grammar>LineContinuation :: `\` LineTerminatorSequence</emu-grammar> is the empty String.
+          </li>
+        </ul>
+      </emu-clause>

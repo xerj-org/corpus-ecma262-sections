@@ -1,0 +1,14 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.3 Properties of the Map Prototype Object > 24.1.3.6 Map.prototype.get ( _key_ ) [id: sec-map.prototype.get]
+
+<emu-clause id="sec-map.prototype.get" type="built-in function">
+        <h1>Map.prototype.get ( _key_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _map_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_map_, [[MapData]]).
+          1. Set _key_ to CanonicalizeKeyedCollectionKey(_key_).
+          1. For each Record { [[Key]], [[Value]] } _entry_ of _map_.[[MapData]], do
+            1. If _entry_.[[Key]] is not ~empty~ and SameValue(_entry_.[[Key]], _key_) is *true*, return _entry_.[[Value]].
+          1. Return *undefined*.
+        </emu-alg>
+      </emu-clause>

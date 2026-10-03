@@ -1,0 +1,11 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.3 Iterator Objects > 27.1.3.2 Properties of the Iterator Constructor > 27.1.3.2.2 Iterator.from ( _obj_ ) > 27.1.3.2.2.1 The %WrapForValidIteratorPrototype% Object > 27.1.3.2.2.1.1 %WrapForValidIteratorPrototype%.next ( ) [id: sec-%wrapforvaliditeratorprototype%.next]
+
+<emu-clause id="sec-%wrapforvaliditeratorprototype%.next" type="built-in function">
+              <h1>%WrapForValidIteratorPrototype%.next ( )</h1>
+              <emu-alg>
+                1. Let _obj_ be *this* value.
+                1. Perform ? RequireInternalSlot(_obj_, [[Iterated]]).
+                1. Let _iteratorRecord_ be _obj_.[[Iterated]].
+                1. Return ? Call(_iteratorRecord_.[[NextMethod]], _iteratorRecord_.[[Iterator]]).
+              </emu-alg>
+            </emu-clause>

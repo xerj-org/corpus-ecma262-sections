@@ -1,0 +1,18 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.2 The BigInt Type > 6.1.6.2.9 BigInt::leftShift ( _x_: a BigInt, _y_: a BigInt, ): a BigInt [id: sec-numeric-types-bigint-leftShift]
+
+<emu-clause id="sec-numeric-types-bigint-leftShift" type="numeric method">
+          <h1>
+            BigInt::leftShift (
+              _x_: a BigInt,
+              _y_: a BigInt,
+            ): a BigInt
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _y_ &lt; *0*<sub>ℤ</sub>, then
+              1. Return ℤ(floor(ℝ(_x_) / 2<sup>-ℝ(_y_)</sup>)).
+            1. Return _x_ × *2*<sub>ℤ</sub><sup>_y_</sup>.
+          </emu-alg>
+          <emu-note>Semantics here should be equivalent to a bitwise shift, treating the BigInt as an infinite length string of binary two's complement digits.</emu-note>
+        </emu-clause>

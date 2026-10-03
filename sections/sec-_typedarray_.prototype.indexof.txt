@@ -1,0 +1,23 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.17 %TypedArray%.prototype.indexOf ( _searchElement_ [ , _fromIndex_ ] ) [id: sec-%typedarray%.prototype.indexof]
+
+<emu-clause id="sec-%typedarray%.prototype.indexof" type="built-in function">
+        <h1>%TypedArray%.prototype.indexOf ( _searchElement_ [ , _fromIndex_ ] )</h1>
+        <p>The interpretation and use of the arguments of this method are the same as for `Array.prototype.indexOf` as defined in <emu-xref href="#sec-array.prototype.indexof"></emu-xref>.</p>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Let _taRecord_ be ? ValidateTypedArray(_obj_, ~seq-cst~).
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. If _length_ = 0, return *-1*<sub>𝔽</sub>.
+          1. Let _k_ be ? ToClampedIndex(_fromIndex_, _length_).
+          1. Repeat, while _k_ &lt; _length_,
+            1. Let _propertyKey_ be ! ToString(𝔽(_k_)).
+            1. Let _kPresent_ be ! HasProperty(_obj_, _propertyKey_).
+            1. If _kPresent_ is *true*, then
+              1. Let _elementK_ be TypedArrayGetElement(_obj_, 𝔽(_k_)).
+              1. If IsStrictlyEqual(_searchElement_, _elementK_) is *true*, return 𝔽(_k_).
+            1. Set _k_ to _k_ + 1.
+          1. Return *-1*<sub>𝔽</sub>.
+        </emu-alg>
+        <p>This method is not generic. The *this* value must be an object with a [[TypedArrayName]] internal slot.</p>
+      </emu-clause>

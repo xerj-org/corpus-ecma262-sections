@@ -1,0 +1,28 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.15 The `try` Statement > 14.15.3 Runtime Semantics: Evaluation [id: sec-try-statement-runtime-semantics-evaluation]
+
+<emu-clause id="sec-try-statement-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>TryStatement : `try` Block Catch</emu-grammar>
+      <emu-alg>
+        1. Let _blockResult_ be Completion(Evaluation of |Block|).
+        1. If _blockResult_ is a throw completion, let _catchResult_ be Completion(CatchClauseEvaluation of |Catch| with argument _blockResult_.[[Value]]).
+        1. Else, let _catchResult_ be _blockResult_.
+        1. Return ? UpdateEmpty(_catchResult_, *undefined*).
+      </emu-alg>
+      <emu-grammar>TryStatement : `try` Block Finally</emu-grammar>
+      <emu-alg>
+        1. Let _blockResult_ be Completion(Evaluation of |Block|).
+        1. Let _finallyResult_ be Completion(Evaluation of |Finally|).
+        1. If _finallyResult_ is a normal completion, set _finallyResult_ to _blockResult_.
+        1. Return ? UpdateEmpty(_finallyResult_, *undefined*).
+      </emu-alg>
+      <emu-grammar>TryStatement : `try` Block Catch Finally</emu-grammar>
+      <emu-alg>
+        1. Let _blockResult_ be Completion(Evaluation of |Block|).
+        1. If _blockResult_ is a throw completion, let _catchResult_ be Completion(CatchClauseEvaluation of |Catch| with argument _blockResult_.[[Value]]).
+        1. Else, let _catchResult_ be _blockResult_.
+        1. Let _finallyResult_ be Completion(Evaluation of |Finally|).
+        1. If _finallyResult_ is a normal completion, set _finallyResult_ to _catchResult_.
+        1. Return ? UpdateEmpty(_finallyResult_, *undefined*).
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,20 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.4 The `for` Statement [id: sec-for-statement]
+
+<emu-clause id="sec-for-statement">
+      <h1>The `for` Statement</h1>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        ForStatement[Yield, Await, Return] :
+          `for` `(` [lookahead != `let` `[`] Expression[~In, ?Yield, ?Await]? `;` Expression[+In, ?Yield, ?Await]? `;` Expression[+In, ?Yield, ?Await]? `)` Statement[?Yield, ?Await, ?Return]
+          `for` `(` `var` VariableDeclarationList[~In, ?Yield, ?Await] `;` Expression[+In, ?Yield, ?Await]? `;` Expression[+In, ?Yield, ?Await]? `)` Statement[?Yield, ?Await, ?Return]
+          `for` `(` LexicalDeclaration[~In, ?Yield, ?Await] Expression[+In, ?Yield, ?Await]? `;` Expression[+In, ?Yield, ?Await]? `)` Statement[?Yield, ?Await, ?Return]
+      </emu-grammar>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

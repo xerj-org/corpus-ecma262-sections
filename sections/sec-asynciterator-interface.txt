@@ -1,0 +1,61 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.1 Common Iteration Interfaces > 27.1.1.4 The Async Iterator Interface [id: sec-asynciterator-interface]
+
+<emu-clause id="sec-asynciterator-interface">
+        <h1>The Async Iterator Interface</h1>
+        <p>An object that implements the <dfn variants="async iterator object,async iterator objects,async iterator,async iterators">async iterator interface</dfn> must include the properties in <emu-xref href="#table-async-iterator-required"></emu-xref>. Such objects may also implement the properties in <emu-xref href="#table-async-iterator-optional"></emu-xref>.</p>
+        <emu-table id="table-async-iterator-required" caption="Async Iterator Interface Required Properties">
+          <table>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Value</th>
+                <th>Requirements</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>*"next"*</td>
+              <td>a function that returns a promise for an IteratorResult object</td>
+              <td>
+                <p>The returned promise, when fulfilled, must fulfill with an object that conforms to the IteratorResult interface. If a previous call to the `next` method of an async iterator has returned a promise for an IteratorResult object whose *"done"* property is *true*, then all subsequent calls to the `next` method of that object should also return a promise for an IteratorResult object whose *"done"* property is *true*. However, this requirement is not enforced.</p>
+
+                <p>Additionally, the IteratorResult object that serves as a fulfillment value should have a *"value"* property whose value is not a promise (or “thenable”). However, this requirement is also not enforced.</p>
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+        <emu-note>
+          <p>Arguments may be passed to the `next` function but their interpretation and validity is dependent upon the target async iterator. The `for`-`await`-`of` statement and other common users of async iterators do not pass any arguments, so async iterator objects that expect to be used in such a manner must be prepared to deal with being called with no arguments.</p>
+        </emu-note>
+        <emu-table id="table-async-iterator-optional" caption="Async Iterator Interface Optional Properties">
+          <table>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Value</th>
+                <th>Requirements</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>*"return"*</td>
+              <td>a function that returns a promise for an IteratorResult object</td>
+              <td>
+                <p>The returned promise, when fulfilled, must fulfill with an object that conforms to the IteratorResult interface. Invoking this method notifies the async iterator object that the caller does not intend to make any more `next` method calls to the async iterator. The returned promise will fulfill with an IteratorResult object which will typically have a *"done"* property whose value is *true*, and a *"value"* property with the value passed as the argument of the `return` method. However, this requirement is not enforced.</p>
+
+                <p>Additionally, the IteratorResult object that serves as a fulfillment value should have a *"value"* property whose value is not a promise (or “thenable”). If the argument value is used in the typical manner, then if it is a rejected promise, a promise rejected with the same reason should be returned; if it is a fulfilled promise, then its fulfillment value should be used as the *"value"* property of the returned promise's IteratorResult object fulfillment value. However, these requirements are also not enforced.</p>
+              </td>
+            </tr>
+            <tr>
+              <td>*"throw"*</td>
+              <td>a function that returns a promise for an IteratorResult object</td>
+              <td>
+                <p>The returned promise, when fulfilled, must fulfill with an object that conforms to the IteratorResult interface. Invoking this method notifies the async iterator object that the caller has detected an error condition. The argument may be used to identify the error condition and typically will be an exception object. A typical response is to return a rejected promise which rejects with the value passed as the argument.</p>
+
+                <p>If the returned promise is fulfilled, the IteratorResult object fulfillment value will typically have a *"done"* property whose value is *true*. Additionally, it should have a *"value"* property whose value is not a promise (or “thenable”), but this requirement is not enforced.</p>
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+        <emu-note>
+          <p>Typically callers of these methods should check for their existence before invoking them. Certain ECMAScript language features including `for`-`await`-`of` and `yield*` call these methods after performing an existence check.</p>
+        </emu-note>
+      </emu-clause>

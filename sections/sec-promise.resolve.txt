@@ -1,0 +1,16 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.4 Properties of the Promise Constructor > 27.5.4.7 Promise.resolve ( _resolution_ ) [id: sec-promise.resolve]
+
+<emu-clause id="sec-promise.resolve" type="built-in function">
+        <h1>Promise.resolve ( _resolution_ )</h1>
+        <p>This function returns either a new promise resolved with the passed argument, or the argument itself if the argument is a promise produced by this constructor.</p>
+        <emu-alg>
+          1. Let _ctor_ be the *this* value.
+          1. If _ctor_ is not an Object, throw a *TypeError* exception.
+          1. Return ? PromiseResolve(_ctor_, _resolution_).
+        </emu-alg>
+        <emu-note>
+          <p>This function expects its *this* value to be a constructor function that supports the parameter conventions of the Promise constructor.</p>
+        </emu-note>
+
+        
+      </emu-clause>

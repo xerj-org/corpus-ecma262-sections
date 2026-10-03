@@ -1,0 +1,9 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties > B.2.3 Additional Properties of the Date.prototype Object > B.2.3.3 Date.prototype.toGMTString ( ) [id: sec-date.prototype.togmtstring]
+
+<emu-annex id="sec-date.prototype.togmtstring" type="built-in function">
+        <h1>Date.prototype.toGMTString ( )</h1>
+        <emu-note>
+          <p>The `toUTCString` method is preferred. This method is provided principally for compatibility with old code.</p>
+        </emu-note>
+        <p>The initial value of the *"toGMTString"* property is %Date.prototype.toUTCString%, defined in <emu-xref href="#sec-date.prototype.toutcstring"></emu-xref>.</p>
+      </emu-annex>

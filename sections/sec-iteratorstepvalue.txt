@@ -1,0 +1,22 @@
+ECMA-262 > 7 Abstract Operations > 7.4 Operations on Iterator Objects > 7.4.10 IteratorStepValue ( _iteratorRecord_: an Iterator Record, ): either a normal completion containing either an ECMAScript language value or ~done~, or a throw completion [id: sec-iteratorstepvalue]
+
+<emu-clause id="sec-iteratorstepvalue" type="abstract operation">
+      <h1>
+        IteratorStepValue (
+          _iteratorRecord_: an Iterator Record,
+        ): either a normal completion containing either an ECMAScript language value or ~done~, or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It requests the next value from _iteratorRecord_.[[Iterator]] by calling _iteratorRecord_.[[NextMethod]] and returns either ~done~ indicating that the iterator has reached its end or the value from the IteratorResult object if a next value is available.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _result_ be ? IteratorStep(_iteratorRecord_).
+        1. If _result_ is ~done~, then
+          1. Return ~done~.
+        1. Let _value_ be Completion(IteratorValue(_result_)).
+        1. If _value_ is a throw completion, then
+          1. Set _iteratorRecord_.[[Done]] to *true*.
+        1. Return ? _value_.
+      </emu-alg>
+    </emu-clause>

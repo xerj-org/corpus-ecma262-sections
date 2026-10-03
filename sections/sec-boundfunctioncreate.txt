@@ -1,0 +1,28 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.1 Bound Function Exotic Objects > 10.4.1.3 BoundFunctionCreate ( _targetFunc_: a function object, _boundThis_: an ECMAScript language value, _boundArgs_: a List of ECMAScript language values, ): either a normal completion containing a function object or a throw completion [id: sec-boundfunctioncreate]
+
+<emu-clause id="sec-boundfunctioncreate" type="abstract operation">
+        <h1>
+          BoundFunctionCreate (
+            _targetFunc_: a function object,
+            _boundThis_: an ECMAScript language value,
+            _boundArgs_: a List of ECMAScript language values,
+          ): either a normal completion containing a function object or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to specify the creation of new bound function exotic objects.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _proto_ be ? <emu-meta effects="user-code">_targetFunc_.[[GetPrototypeOf]]()</emu-meta>.
+          1. Let _internalSlotsList_ be the list-concatenation of « [[Prototype]], [[Extensible]] » and the internal slots listed in <emu-xref href="#table-internal-slots-of-bound-function-exotic-objects"></emu-xref>.
+          1. Let _obj_ be MakeBasicObject(_internalSlotsList_).
+          1. Set _obj_.[[Prototype]] to _proto_.
+          1. Set _obj_.[[Call]] as specified in <emu-xref href="#sec-bound-function-exotic-objects-call-thisargument-argumentslist"></emu-xref>.
+          1. If IsConstructor(_targetFunc_) is *true*, then
+            1. Set _obj_.[[Construct]] as specified in <emu-xref href="#sec-bound-function-exotic-objects-construct-argumentslist-newtarget"></emu-xref>.
+          1. Set _obj_.[[BoundTargetFunction]] to _targetFunc_.
+          1. Set _obj_.[[BoundThis]] to _boundThis_.
+          1. Set _obj_.[[BoundArguments]] to _boundArgs_.
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

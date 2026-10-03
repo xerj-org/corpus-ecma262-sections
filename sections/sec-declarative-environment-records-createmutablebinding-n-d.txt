@@ -1,0 +1,22 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.1 Declarative Environment Records > 9.1.1.1.2 CreateMutableBinding ( _name_: a String, _deletable_: a Boolean, ): a normal completion containing ~unused~ [id: sec-declarative-environment-records-createmutablebinding-n-d]
+
+<emu-clause id="sec-declarative-environment-records-createmutablebinding-n-d" type="concrete method">
+          <h1>
+            CreateMutableBinding (
+              _name_: a String,
+              _deletable_: a Boolean,
+            ): a normal completion containing ~unused~
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>a Declarative Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It creates a new mutable binding for the name _name_ that is uninitialized. A binding must not already exist in this Environment Record for _name_. If _deletable_ is *true*, the new binding is marked as being subject to deletion.</dd>
+          </dl>
+          <emu-alg>
+            1. Assert: _envRecord_ does not already have a binding for _name_.
+            1. Create a mutable binding in _envRecord_ for _name_ and record that it is uninitialized. If _deletable_ is *true*, record that the newly created binding may be deleted by a subsequent DeleteBinding call.
+            1. Return ~unused~.
+          </emu-alg>
+        </emu-clause>

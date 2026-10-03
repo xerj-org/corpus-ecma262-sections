@@ -1,0 +1,14 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.6 Module Namespace Exotic Objects > 10.4.6.11 [[OwnPropertyKeys]] ( ): a normal completion containing a List of property keys [id: sec-module-namespace-exotic-objects-ownpropertykeys]
+
+<emu-clause id="sec-module-namespace-exotic-objects-ownpropertykeys" type="internal method">
+        <h1>[[OwnPropertyKeys]] ( ): a normal completion containing a List of property keys</h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a module namespace exotic object _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. Let _exports_ be _obj_.[[Exports]].
+          1. Let _symbolKeys_ be OrdinaryOwnPropertyKeys(_obj_).
+          1. Return the list-concatenation of _exports_ and _symbolKeys_.
+        </emu-alg>
+      </emu-clause>

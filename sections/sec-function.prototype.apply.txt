@@ -1,0 +1,22 @@
+ECMA-262 > 20 Fundamental Objects > 20.2 Function Objects > 20.2.3 Properties of the Function Prototype Object > 20.2.3.1 Function.prototype.apply ( _thisArg_, _argArray_ ) [id: sec-function.prototype.apply]
+
+<emu-clause id="sec-function.prototype.apply" type="built-in function">
+        <h1>Function.prototype.apply ( _thisArg_, _argArray_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _func_ be the *this* value.
+          1. If IsCallable(_func_) is *false*, throw a *TypeError* exception.
+          1. If _argArray_ is either *undefined* or *null*, then
+            1. Perform PrepareForTailCall().
+            1. Return ? Call(_func_, _thisArg_).
+          1. Let _argList_ be ? CreateListFromArrayLike(_argArray_).
+          1. Perform PrepareForTailCall().
+          1. [id="step-function-proto-apply-call"] Return ? Call(_func_, _thisArg_, _argList_).
+        </emu-alg>
+        <emu-note>
+          <p>The _thisArg_ value is passed without modification as the *this* value. This is a change from Edition 3, where an *undefined* or *null* _thisArg_ is replaced with the global object and ToObject is applied to all other values and that result is passed as the *this* value. Even though the _thisArg_ is passed without modification, non-strict functions still perform these transformations upon entry to the function.</p>
+        </emu-note>
+        <emu-note>
+          <p>If _func_ is either an arrow function or a bound function exotic object, then the _thisArg_ will be ignored by the function [[Call]] in step <emu-xref href="#step-function-proto-apply-call"></emu-xref>.</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,21 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.12 AllImportAttributesSupported ( _attrs_: a List of ImportAttribute Records, ): a Boolean > 16.2.1.12.1 HostGetSupportedImportAttributes ( ): a List of Strings [id: sec-hostgetsupportedimportattributes]
+
+<emu-clause id="sec-hostgetsupportedimportattributes" type="host-defined abstract operation">
+          <h1>HostGetSupportedImportAttributes ( ): a List of Strings</h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It allows host environments to specify which import attributes they support. Only attributes with supported keys will be provided to the host.</dd>
+          </dl>
+
+          <p>An implementation of HostGetSupportedImportAttributes must conform to the following requirements:</p>
+
+          <ul>
+            <li>It must return a List of Strings, each indicating a supported attribute.</li>
+
+            <li>Each time this operation is called, it must return the same List with the same contents in the same order.</li>
+          </ul>
+
+          <p>The default implementation of HostGetSupportedImportAttributes is to return a new empty List.</p>
+
+          <emu-note>The purpose of requiring the host to specify its supported import attributes, rather than passing all attributes to the host and letting it then choose which ones it wants to handle, is to ensure that unsupported attributes are handled in a consistent way across different hosts.</emu-note>
+        </emu-clause>

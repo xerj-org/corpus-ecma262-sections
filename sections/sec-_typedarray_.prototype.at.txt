@@ -1,0 +1,13 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.1 %TypedArray%.prototype.at ( _index_ ) [id: sec-%typedarray%.prototype.at]
+
+<emu-clause id="sec-%typedarray%.prototype.at" type="built-in function">
+        <h1>%TypedArray%.prototype.at ( _index_ )</h1>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Let _taRecord_ be ? ValidateTypedArray(_obj_, ~seq-cst~).
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. Let _k_ be ? ToAbsoluteIndex(_index_, _length_).
+          1. If _k_ &lt; 0 or _k_ ≥ _length_, return *undefined*.
+          1. Return TypedArrayGetElement(_obj_, 𝔽(_k_)).
+        </emu-alg>
+      </emu-clause>

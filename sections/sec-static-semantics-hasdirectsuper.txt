@@ -1,0 +1,38 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.4 Method Definitions > 15.4.2 Static Semantics: HasDirectSuper ( ): a Boolean [id: sec-static-semantics-hasdirectsuper]
+
+<emu-clause id="sec-static-semantics-hasdirectsuper" oldids="sec-method-definitions-static-semantics-hasdirectsuper,sec-generator-function-definitions-static-semantics-hasdirectsuper,sec-async-generator-function-definitions-static-semantics-hasdirectsuper,sec-async-function-definitions-static-semantics-HasDirectSuper" type="sdo">
+      <h1>Static Semantics: HasDirectSuper ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>MethodDefinition : ClassElementName `(` UniqueFormalParameters `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. If |UniqueFormalParameters| Contains |SuperCall| is *true*, return *true*.
+        1. Return |FunctionBody| Contains |SuperCall|.
+      </emu-alg>
+      <emu-grammar>MethodDefinition : `get` ClassElementName `(` `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return |FunctionBody| Contains |SuperCall|.
+      </emu-alg>
+      <emu-grammar>MethodDefinition : `set` ClassElementName `(` PropertySetParameterList `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. If |PropertySetParameterList| Contains |SuperCall| is *true*, return *true*.
+        1. Return |FunctionBody| Contains |SuperCall|.
+      </emu-alg>
+      <emu-grammar>GeneratorMethod : `*` ClassElementName `(` UniqueFormalParameters `)` `{` GeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. If |UniqueFormalParameters| Contains |SuperCall| is *true*, return *true*.
+        1. Return |GeneratorBody| Contains |SuperCall|.
+      </emu-alg>
+      <emu-grammar>AsyncGeneratorMethod : `async` `*` ClassElementName `(` UniqueFormalParameters `)` `{` AsyncGeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. If |UniqueFormalParameters| Contains |SuperCall| is *true*, return *true*.
+        1. Return |AsyncGeneratorBody| Contains |SuperCall|.
+      </emu-alg>
+      <emu-grammar>
+        AsyncMethod : `async` ClassElementName `(` UniqueFormalParameters `)` `{` AsyncFunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. If |UniqueFormalParameters| Contains |SuperCall| is *true*, return *true*.
+        1. Return |AsyncFunctionBody| Contains |SuperCall|.
+      </emu-alg>
+    </emu-clause>

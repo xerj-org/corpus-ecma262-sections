@@ -1,0 +1,18 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.8 Resizable ArrayBuffer Guidelines [id: sec-resizable-arraybuffer-guidelines]
+
+<emu-clause id="sec-resizable-arraybuffer-guidelines">
+      <h1>Resizable ArrayBuffer Guidelines</h1>
+      <emu-note>
+        <p>The following are guidelines for ECMAScript programmers working with resizable ArrayBuffer.</p>
+        <p>We recommend that programs be tested in their deployment environments where possible. The amount of available physical memory differs greatly between hardware devices. Similarly, virtual memory subsystems also differ greatly between hardware devices as well as operating systems. An application that runs without out-of-memory errors on a 64-bit desktop web browser could run out of memory on a 32-bit mobile web browser.</p>
+        <p>When choosing a value for the *"maxByteLength"* option for resizable ArrayBuffer, we recommend that the smallest possible size for the application be chosen. We recommend that *"maxByteLength"* does not exceed 1,073,741,824 (2<sup>30</sup> bytes or 1GiB).</p>
+        <p>Please note that successfully constructing a resizable ArrayBuffer for a particular maximum size does not guarantee that future resizes will succeed.</p>
+      </emu-note>
+
+      <emu-note>
+        <p>The following are guidelines for ECMAScript implementers implementing resizable ArrayBuffer.</p>
+        <p>Resizable ArrayBuffer can be implemented as copying upon resize, as in-place growth via reserving virtual memory up front, or as a combination of both for different values of the constructor's *"maxByteLength"* option.</p>
+        <p>If a host is multi-tenanted (i.e. it runs many ECMAScript applications simultaneously), such as a web browser, and its implementations choose to implement in-place growth by reserving virtual memory, we recommend that both 32-bit and 64-bit implementations throw for values of *"maxByteLength"* ≥ 1GiB to 1.5GiB. This is to reduce the likelihood a single application can exhaust the virtual memory address space and to reduce interoperability risk.</p>
+        <p>If a host does not have virtual memory, such as those running on embedded devices without an MMU, or if a host only implements resizing by copying, it may accept any <emu-not-ref>Number value for</emu-not-ref> the *"maxByteLength"* option. However, we recommend a *RangeError* be thrown if a memory block of the requested size can never be allocated. For example, if the requested size is greater than the maximum amount of usable memory on the device.</p>
+      </emu-note>
+    </emu-clause>

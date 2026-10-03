@@ -1,0 +1,20 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.19 IsArrayBufferViewOutOfBounds ( _obj_: a TypedArray or a DataView, ): a Boolean [id: sec-isarraybufferviewoutofbounds]
+
+<emu-clause id="sec-isarraybufferviewoutofbounds" type="abstract operation">
+        <h1>
+          IsArrayBufferViewOutOfBounds (
+            _obj_: a TypedArray or a DataView,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It checks if either any of a TypedArray's numeric properties or a DataView object's methods can reference a value at an index not contained within the underlying data block's bounds. This abstract operation exists as a convenience for upstream specifications.</dd>
+        </dl>
+        <emu-alg>
+          1. If _obj_ has a [[DataView]] internal slot, then
+            1. Let _viewRecord_ be MakeDataViewWithBufferWitnessRecord(_obj_, ~seq-cst~).
+            1. Return IsViewOutOfBounds(_viewRecord_).
+          1. Let _taRecord_ be MakeTypedArrayWithBufferWitnessRecord(_obj_, ~seq-cst~).
+          1. Return IsTypedArrayOutOfBounds(_taRecord_).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,19 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.3 Properties of the Array Prototype Object > 23.1.3.11 Array.prototype.findLast ( _predicate_ [ , _thisArg_ ] ) [id: sec-array.prototype.findlast]
+
+<emu-clause id="sec-array.prototype.findlast" type="built-in function">
+        <h1>Array.prototype.findLast ( _predicate_ [ , _thisArg_ ] )</h1>
+        <emu-note>
+          <p>This method calls _predicate_ once for each element of the array, in descending index order, until it finds one where _predicate_ returns a value that coerces to *true*. If such an element is found, `findLast` immediately returns that element value. Otherwise, `findLast` returns *undefined*.</p>
+          <p>See FindViaPredicate for additional information.</p>
+        </emu-note>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be ? ToObject(*this* value).
+          1. Let _length_ be ? LengthOfArrayLike(_obj_).
+          1. Let _findRecord_ be ? FindViaPredicate(_obj_, _length_, ~descending~, _predicate_, _thisArg_).
+          1. Return _findRecord_.[[Value]].
+        </emu-alg>
+        <emu-note>
+          <p>This method is intentionally generic; it does not require that its *this* value be an Array object. Therefore it can be transferred to other kinds of objects for use as a method.</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,20 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.8 Synthetic Module Records > 16.2.1.8.4 Implementation of Module Record Abstract Methods > 16.2.1.8.4.3 ResolveExport ( _exportName_: a String, optional _resolveSet_: a List of Records with fields [[Module]] (a Module Record) and [[ExportName]] (a String), ): a ResolvedBinding Record, *null*, or ~ambiguous~ [id: sec-smr-resolveexport]
+
+<emu-clause id="sec-smr-resolveexport" type="concrete method">
+            <h1>
+              ResolveExport (
+                _exportName_: a String,
+                optional _resolveSet_: a List of Records with fields [[Module]] (a Module Record) and [[ExportName]] (a String),
+              ): a ResolvedBinding Record, *null*, or ~ambiguous~
+            </h1>
+            <dl class="header">
+              <dt>for</dt>
+              <dd>a Synthetic Module Record _module_</dd>
+            </dl>
+
+            <emu-alg>
+              1. NOTE: This implementation of ResolveExport does not use _resolveSet_.
+              1. If _module_.[[ExportNames]] does not contain _exportName_, return *null*.
+              1. Return ResolvedBinding Record { [[Module]]: _module_, [[BindingName]]: _exportName_ }.
+            </emu-alg>
+          </emu-clause>

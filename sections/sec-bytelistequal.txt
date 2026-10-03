@@ -1,0 +1,21 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.19 ByteListEqual ( _xBytes_: a List of byte values, _yBytes_: a List of byte values, ): a Boolean [id: sec-bytelistequal]
+
+<emu-clause id="sec-bytelistequal" type="abstract operation">
+        <h1>
+          ByteListEqual (
+            _xBytes_: a List of byte values,
+            _yBytes_: a List of byte values,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _xBytes_ and _yBytes_ do not have the same number of elements, return *false*.
+          1. Let _i_ be 0.
+          1. For each element _xByte_ of _xBytes_, do
+            1. Let _yByte_ be _yBytes_[_i_].
+            1. If _xByte_ ≠ _yByte_, return *false*.
+            1. Set _i_ to _i_ + 1.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

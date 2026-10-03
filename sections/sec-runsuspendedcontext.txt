@@ -1,0 +1,22 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.4 Execution Contexts > 9.4.7 RunSuspendedContext ( _context_: an execution context, _completionRecord_: a Completion Record, ): either a normal completion containing either an ECMAScript language value or ~unused~, or an abrupt completion [id: sec-runsuspendedcontext]
+
+<emu-clause id="sec-runsuspendedcontext" type="abstract operation">
+      <h1>
+        RunSuspendedContext (
+          _context_: an execution context,
+          _completionRecord_: a Completion Record,
+        ): either a normal completion containing either an ECMAScript language value or ~unused~, or an abrupt completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It resumes _context_ (passing it _completionRecord_ as the resumption value), and waits for the result.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _callerContext_ be the running execution context.
+        1. Suspend _callerContext_.
+        1. Push _context_ onto the execution context stack; _context_ is now the running execution context.
+        1. <emu-meta effects="user-code">Resume the suspended evaluation of _context_</emu-meta> passing _completionRecord_ as the result of the operation that suspended it. Let _result_ be the Completion Record passed by the resumed computation.
+        1. Assert: When we reach this step, _context_ has already been removed from the execution context stack and _callerContext_ is the running execution context again.
+        1. Return Completion(_result_).
+      </emu-alg>
+    </emu-clause>

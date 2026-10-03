@@ -1,0 +1,20 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.2 Environment Record Operations > 9.1.2.3 NewObjectEnvironment ( _obj_: an Object, _isWithEnv_: a Boolean, _outerEnv_: an Environment Record or *null*, ): an Object Environment Record [id: sec-newobjectenvironment]
+
+<emu-clause id="sec-newobjectenvironment" type="abstract operation">
+        <h1>
+          NewObjectEnvironment (
+            _obj_: an Object,
+            _isWithEnv_: a Boolean,
+            _outerEnv_: an Environment Record or *null*,
+          ): an Object Environment Record
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _envRecord_ be a new Object Environment Record.
+          1. Set _envRecord_.[[BindingObject]] to _obj_.
+          1. Set _envRecord_.[[IsWithEnvironment]] to _isWithEnv_.
+          1. Set _envRecord_.[[OuterEnv]] to _outerEnv_.
+          1. Return _envRecord_.
+        </emu-alg>
+      </emu-clause>

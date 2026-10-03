@@ -1,0 +1,12 @@
+ECMA-262 > 28 Reflection > 28.1 The Reflect Object > 28.1.3 Reflect.defineProperty ( _target_, _key_, _attrs_ ) [id: sec-reflect.defineproperty]
+
+<emu-clause id="sec-reflect.defineproperty" type="built-in function">
+      <h1>Reflect.defineProperty ( _target_, _key_, _attrs_ )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. If _target_ is not an Object, throw a *TypeError* exception.
+        1. Let _propertyKey_ be ? ToPropertyKey(_key_).
+        1. Let _propertyDesc_ be ? ToPropertyDescriptor(_attrs_).
+        1. Return ? <emu-meta effects="user-code">_target_.[[DefineOwnProperty]](_propertyKey_, _propertyDesc_)</emu-meta>.
+      </emu-alg>
+    </emu-clause>

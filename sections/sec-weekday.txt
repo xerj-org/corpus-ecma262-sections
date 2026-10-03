@@ -1,0 +1,16 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.12 WeekDay ( _tv_: a finite time value, ): an integer in the inclusive interval from 0 to 6 [id: sec-weekday]
+
+<emu-clause id="sec-weekday" type="abstract operation" oldids="sec-week-day">
+        <h1>
+          WeekDay (
+            _tv_: a finite time value,
+          ): an integer in the inclusive interval from 0 to 6
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns an integer identifying the day of the week in which _tv_ falls. A weekday value of 0 specifies Sunday; 1 specifies Monday; 2 specifies Tuesday; 3 specifies Wednesday; 4 specifies Thursday; 5 specifies Friday; and 6 specifies Saturday. Note that <emu-eqn>WeekDay(*+0*<sub>𝔽</sub>) = 4</emu-eqn>, corresponding to Thursday, 1 January 1970.</dd>
+        </dl>
+        <emu-alg>
+          1. Return (Day(_tv_) + 4) modulo 7.
+        </emu-alg>
+      </emu-clause>

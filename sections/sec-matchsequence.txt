@@ -1,0 +1,31 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.3 Runtime Semantics: CompileSubpattern ( _regexpRecord_: a RegExp Record, _direction_: ~forward~ or ~backward~, ): a Matcher > 22.2.2.3.4 MatchSequence ( _m1_: a Matcher, _m2_: a Matcher, _direction_: ~forward~ or ~backward~, ): a Matcher [id: sec-matchsequence]
+
+<emu-clause id="sec-matchsequence" type="abstract operation">
+          <h1>
+            MatchSequence (
+              _m1_: a Matcher,
+              _m2_: a Matcher,
+              _direction_: ~forward~ or ~backward~,
+            ): a Matcher
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _direction_ is ~forward~, then
+              1. Return a new Matcher with parameters (_matchState_, _continue_) that captures _m1_ and _m2_ and performs the following steps when called:
+                1. Assert: _matchState_ is a MatchState.
+                1. Assert: _continue_ is a MatcherContinuation.
+                1. Let _d_ be a new MatcherContinuation with parameters (_y_) that captures _continue_ and _m2_ and performs the following steps when called:
+                  1. Assert: _y_ is a MatchState.
+                  1. Return _m2_(_y_, _continue_).
+                1. Return _m1_(_matchState_, _d_).
+            1. Assert: _direction_ is ~backward~.
+            1. Return a new Matcher with parameters (_matchState_, _continue_) that captures _m1_ and _m2_ and performs the following steps when called:
+              1. Assert: _matchState_ is a MatchState.
+              1. Assert: _continue_ is a MatcherContinuation.
+              1. Let _d_ be a new MatcherContinuation with parameters (_y_) that captures _continue_ and _m1_ and performs the following steps when called:
+                1. Assert: _y_ is a MatchState.
+                1. Return _m1_(_y_, _continue_).
+              1. Return _m2_(_matchState_, _d_).
+          </emu-alg>
+        </emu-clause>

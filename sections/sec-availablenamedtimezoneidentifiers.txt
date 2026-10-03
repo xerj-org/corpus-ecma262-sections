@@ -1,0 +1,31 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.23 AvailableNamedTimeZoneIdentifiers ( ): a List of Time Zone Identifier Records [id: sec-availablenamedtimezoneidentifiers]
+
+<emu-clause id="sec-availablenamedtimezoneidentifiers" type="implementation-defined abstract operation">
+        <h1>AvailableNamedTimeZoneIdentifiers ( ): a List of Time Zone Identifier Records</h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>
+            Its result describes all available named time zone identifiers in this implementation, as well as the primary time zone identifier corresponding to each available named time zone identifier.
+            The List is ordered according to the [[Identifier]] field of each Time Zone Identifier Record.
+          </dd>
+        </dl>
+        <p>
+          Time zone aware implementations, including all implementations that implement the ECMA-402 Internationalization API, must implement the AvailableNamedTimeZoneIdentifiers abstract operation as specified in ECMA-402.
+          Otherwise, AvailableNamedTimeZoneIdentifiers performs the following steps when called:
+        </p>
+        <emu-alg>
+          1. If the implementation does not include local political rules for any time zones, then
+            1. Return « the Time Zone Identifier Record { [[Identifier]]: *"UTC"*, [[PrimaryIdentifier]]: *"UTC"* } ».
+          1. Let _identifiers_ be the List of unique available named time zone identifiers, sorted according to lexicographic code unit order.
+          1. Let _result_ be a new empty List.
+          1. For each element _identifier_ of _identifiers_, do
+            1. Let _primary_ be _identifier_.
+            1. If _identifier_ is a non-primary time zone identifier in this implementation and _identifier_ is not *"UTC"*, then
+              1. Set _primary_ to the primary time zone identifier associated with _identifier_.
+              1. NOTE: An implementation may need to resolve _identifier_ iteratively to obtain the primary time zone identifier.
+            1. Let _record_ be the Time Zone Identifier Record { [[Identifier]]: _identifier_, [[PrimaryIdentifier]]: _primary_ }.
+            1. Append _record_ to _result_.
+          1. Assert: _result_ contains a Time Zone Identifier Record _record_ such that _record_.[[Identifier]] is *"UTC"* and _record_.[[PrimaryIdentifier]] is *"UTC"*.
+          1. Return _result_.
+        </emu-alg>
+      </emu-clause>

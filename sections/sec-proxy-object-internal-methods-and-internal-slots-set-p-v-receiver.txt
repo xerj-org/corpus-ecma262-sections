@@ -1,0 +1,47 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.5 Proxy Object Internal Methods and Internal Slots > 10.5.9 [[Set]] ( _propertyKey_: a property key, _value_: an ECMAScript language value, _receiver_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion [id: sec-proxy-object-internal-methods-and-internal-slots-set-p-v-receiver]
+
+<emu-clause id="sec-proxy-object-internal-methods-and-internal-slots-set-p-v-receiver" type="internal method">
+      <h1>
+        [[Set]] (
+          _propertyKey_: a property key,
+          _value_: an ECMAScript language value,
+          _receiver_: an ECMAScript language value,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>a Proxy exotic object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Perform ? ValidateNonRevokedProxy(_obj_).
+        1. Let _target_ be _obj_.[[ProxyTarget]].
+        1. Let _handler_ be _obj_.[[ProxyHandler]].
+        1. Assert: _handler_ is an Object.
+        1. Let _trap_ be ? GetMethod(_handler_, *"set"*).
+        1. If _trap_ is *undefined*, then
+          1. Return ? <emu-meta effects="user-code">_target_.[[Set]](_propertyKey_, _value_, _receiver_)</emu-meta>.
+        1. Let _boolTrapResult_ be ToBoolean(? Call(_trap_, _handler_, « _target_, _propertyKey_, _value_, _receiver_ »)).
+        1. If _boolTrapResult_ is *false*, return *false*.
+        1. Let _targetDesc_ be ? <emu-meta effects="user-code">_target_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+        1. If _targetDesc_ is not *undefined* and _targetDesc_.[[Configurable]] is *false*, then
+          1. If IsDataDescriptor(_targetDesc_) is *true* and _targetDesc_.[[Writable]] is *false*, then
+            1. If SameValue(_value_, _targetDesc_.[[Value]]) is *false*, throw a *TypeError* exception.
+          1. If IsAccessorDescriptor(_targetDesc_) is *true*, then
+            1. If _targetDesc_.[[Setter]] is *undefined*, throw a *TypeError* exception.
+        1. Return *true*.
+      </emu-alg>
+      <emu-note>
+        <p>[[Set]] for Proxy objects enforces the following invariants:</p>
+        <ul>
+          <li>
+            The result of [[Set]] is a Boolean value.
+          </li>
+          <li>
+            Cannot change the value of a property to be different from the value of the corresponding target object property if the corresponding target object property is a non-writable, non-configurable own data property.
+          </li>
+          <li>
+            Cannot set the value of a property if the corresponding target object property is a non-configurable own accessor property that has *undefined* as its [[Setter]] attribute.
+          </li>
+        </ul>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,44 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.6 The Property Descriptor Specification Type > 6.2.6.5 ToPropertyDescriptor ( _obj_: an ECMAScript language value, ): either a normal completion containing a Property Descriptor or a throw completion [id: sec-topropertydescriptor]
+
+<emu-clause id="sec-topropertydescriptor" type="abstract operation">
+        <h1>
+          ToPropertyDescriptor (
+            _obj_: an ECMAScript language value,
+          ): either a normal completion containing a Property Descriptor or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _obj_ is not an Object, throw a *TypeError* exception.
+          1. Let _propertyDesc_ be a new Property Descriptor that initially has no fields.
+          1. Let _hasEnumerable_ be ? HasProperty(_obj_, *"enumerable"*).
+          1. If _hasEnumerable_ is *true*, then
+            1. Let _enumerable_ be ToBoolean(? Get(_obj_, *"enumerable"*)).
+            1. Set _propertyDesc_.[[Enumerable]] to _enumerable_.
+          1. Let _hasConfigurable_ be ? HasProperty(_obj_, *"configurable"*).
+          1. If _hasConfigurable_ is *true*, then
+            1. Let _configurable_ be ToBoolean(? Get(_obj_, *"configurable"*)).
+            1. Set _propertyDesc_.[[Configurable]] to _configurable_.
+          1. Let _hasValue_ be ? HasProperty(_obj_, *"value"*).
+          1. If _hasValue_ is *true*, then
+            1. Let _value_ be ? Get(_obj_, *"value"*).
+            1. Set _propertyDesc_.[[Value]] to _value_.
+          1. Let _hasWritable_ be ? HasProperty(_obj_, *"writable"*).
+          1. If _hasWritable_ is *true*, then
+            1. Let _writable_ be ToBoolean(? Get(_obj_, *"writable"*)).
+            1. Set _propertyDesc_.[[Writable]] to _writable_.
+          1. Let _hasGet_ be ? HasProperty(_obj_, *"get"*).
+          1. If _hasGet_ is *true*, then
+            1. Let _getter_ be ? Get(_obj_, *"get"*).
+            1. If IsCallable(_getter_) is *false* and _getter_ is not *undefined*, throw a *TypeError* exception.
+            1. Set _propertyDesc_.[[Getter]] to _getter_.
+          1. Let _hasSet_ be ? HasProperty(_obj_, *"set"*).
+          1. If _hasSet_ is *true*, then
+            1. Let _setter_ be ? Get(_obj_, *"set"*).
+            1. If IsCallable(_setter_) is *false* and _setter_ is not *undefined*, throw a *TypeError* exception.
+            1. Set _propertyDesc_.[[Setter]] to _setter_.
+          1. If _propertyDesc_ has a [[Getter]] field or _propertyDesc_ has a [[Setter]] field, then
+            1. If _propertyDesc_ has a [[Value]] field or _propertyDesc_ has a [[Writable]] field, throw a *TypeError* exception.
+          1. Return _propertyDesc_.
+        </emu-alg>
+      </emu-clause>

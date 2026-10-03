@@ -1,0 +1,67 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.5 The `for`-`in`, `for`-`of`, and `for`-`await`-`of` Statements > 14.7.5.10 For-In Iterator Objects > 14.7.5.10.3 Properties of For-In Iterator Instances [id: sec-properties-of-for-in-iterator-instances]
+
+<emu-clause id="sec-properties-of-for-in-iterator-instances">
+          <h1>Properties of For-In Iterator Instances</h1>
+          <p>For-In Iterator instances are ordinary objects that inherit properties from the %ForInIteratorPrototype% intrinsic object. For-In Iterator instances are initially created with the internal slots listed in <emu-xref href="#table-for-in-iterator-instance-slots"></emu-xref>.</p>
+          <emu-table id="table-for-in-iterator-instance-slots" caption="Internal Slots of For-In Iterator Instances">
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    Internal Slot
+                  </th>
+                  <th>
+                    Type
+                  </th>
+                  <th>
+                    Description
+                  </th>
+                </tr>
+              </thead>
+              <tr>
+                <td>
+                  [[Object]]
+                </td>
+                <td>
+                  an Object
+                </td>
+                <td>
+                  The Object value whose properties are being iterated.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  [[ObjectWasVisited]]
+                </td>
+                <td>
+                  a Boolean
+                </td>
+                <td>
+                  *true* if the iterator has invoked [[OwnPropertyKeys]] on [[Object]], *false* otherwise.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  [[VisitedKeys]]
+                </td>
+                <td>
+                  a List of Strings
+                </td>
+                <td>
+                  The values that have been emitted by this iterator thus far.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  [[RemainingKeys]]
+                </td>
+                <td>
+                  a List of Strings
+                </td>
+                <td>
+                  The values remaining to be emitted for the current object, before iterating the properties of its prototype (if its prototype is not *null*).
+                </td>
+              </tr>
+            </table>
+          </emu-table>
+        </emu-clause>

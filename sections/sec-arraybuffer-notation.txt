@@ -1,0 +1,19 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.1 Notation [id: sec-arraybuffer-notation]
+
+<emu-clause id="sec-arraybuffer-notation">
+      <h1>Notation</h1>
+      <p>The descriptions below in this section, <emu-xref href="#sec-atomics-object"></emu-xref>, and <emu-xref href="#sec-memory-model"></emu-xref> use the read-modify-write modification function internal data structure.</p>
+      <p>A <dfn variants="read-modify-write modification functions">read-modify-write modification function</dfn> is a mathematical function that is represented as an Abstract Closure that takes two Lists of byte values as arguments and returns a List of byte values. These Abstract Closures satisfy all of the following properties:</p>
+      <ul>
+        <li>They perform all their algorithm steps atomically.</li>
+        <li>Their individual algorithm steps are not observable.</li>
+      </ul>
+      <emu-note>
+        <p>To aid verifying that a read-modify-write modification function's algorithm steps constitute a pure, mathematical function, the following editorial conventions are recommended:</p>
+        <ul>
+          <li>They do not access, directly or transitively via invoked abstract operations and Abstract Closures, any language or specification values except their parameters and captured values.</li>
+          <li>They do not invoke, directly or transitively, abstract operations and Abstract Closures that return Completion Records.</li>
+          <li>They do not return Completion Records.</li>
+        </ul>
+      </emu-note>
+    </emu-clause>

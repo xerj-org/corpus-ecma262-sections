@@ -1,0 +1,27 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.18 TypedArraySetElement ( _obj_: a TypedArray, _index_: a Number, _value_: an ECMAScript language value, ): either a normal completion containing ~unused~ or a throw completion [id: sec-typedarraysetelement]
+
+<emu-clause id="sec-typedarraysetelement" oldids="sec-integerindexedelementset" type="abstract operation">
+        <h1>
+          TypedArraySetElement (
+            _obj_: a TypedArray,
+            _index_: a Number,
+            _value_: an ECMAScript language value,
+          ): either a normal completion containing ~unused~ or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _obj_.[[ContentType]] is ~bigint~, let _number_ be ? ToBigInt(_value_).
+          1. Else, let _number_ be ? ToNumber(_value_).
+          1. If IsValidIntegerIndex(_obj_, _index_) is *true*, then
+            1. Let _offset_ be _obj_.[[ByteOffset]].
+            1. Let _elementSize_ be TypedArrayElementSize(_obj_).
+            1. Let _byteIndexInBuffer_ be (ℝ(_index_) × _elementSize_) + _offset_.
+            1. Let _elementType_ be TypedArrayElementType(_obj_).
+            1. Perform SetValueInBuffer(_obj_.[[ViewedArrayBuffer]], _byteIndexInBuffer_, _elementType_, _number_, *true*, ~unordered~).
+          1. Return ~unused~.
+        </emu-alg>
+        <emu-note>
+          <p>This operation always appears to succeed, but it has no effect when attempting to write past the end of a TypedArray or to a TypedArray which is backed by a detached ArrayBuffer.</p>
+        </emu-note>
+      </emu-clause>

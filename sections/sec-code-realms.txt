@@ -1,0 +1,111 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.3 Realms [id: sec-code-realms]
+
+<emu-clause id="sec-code-realms">
+    <h1>Realms</h1>
+    <p>Before it is evaluated, all ECMAScript code must be associated with a <dfn id="realm" variants="realms">realm</dfn>. Conceptually, a realm consists of a set of intrinsic objects, an ECMAScript global environment, all of the ECMAScript code that is loaded within the scope of that global environment, and other associated state and resources.</p>
+    <p>A realm is represented in this specification as a <dfn id="realm-record" variants="Realm Records">Realm Record</dfn> with the fields specified in <emu-xref href="#table-realm-record-fields"></emu-xref>:</p>
+    <emu-table id="table-realm-record-fields" caption="Realm Record Fields" oldids="table-21">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Field Name
+            </th>
+            <th>
+              Value
+            </th>
+            <th>
+              Meaning
+            </th>
+          </tr>
+        </thead>
+        <tr>
+          <td>
+            [[AgentSignifier]]
+          </td>
+          <td>
+            an agent signifier
+          </td>
+          <td>
+            The agent that owns this realm
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[Intrinsics]]
+          </td>
+          <td>
+            a Record whose field names are intrinsic keys and whose values are objects
+          </td>
+          <td>
+            The intrinsic values used by code associated with this realm
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[GlobalObject]]
+          </td>
+          <td>
+            an Object
+          </td>
+          <td>
+            The global object for this realm
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[GlobalEnv]]
+          </td>
+          <td>
+            a Global Environment Record
+          </td>
+          <td>
+            The global environment for this realm
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[TemplateMap]]
+          </td>
+          <td>
+            a List of Records with fields [[Site]] (a |TemplateLiteral| Parse Node) and [[Array]] (an Array)
+          </td>
+          <td>
+            <p>Template objects are canonicalized separately for each realm using its Realm Record's [[TemplateMap]]. Each [[Site]] value is a Parse Node that is a |TemplateLiteral|. The associated [[Array]] value is the corresponding template object that is passed to a tag function.</p>
+            <emu-note>Once a Parse Node becomes unreachable, the corresponding [[Array]] is also unreachable, and it would be unobservable if an implementation removed the pair from the [[TemplateMap]] list.</emu-note>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[LoadedModules]]
+          </td>
+          <td>
+            a List of LoadedModuleRequest Records
+          </td>
+          <td>
+            <p>A map from the specifier strings imported by this realm to the resolved Module Record. The list does not contain two different Records _r1_ and _r2_ such that ModuleRequestsEqual(_r1_, _r2_) is *true*.</p>
+            <emu-note>
+              As mentioned in HostLoadImportedModule (<emu-xref href="#note-HostLoadImportedModule-referrer-Realm-Record"></emu-xref>), [[LoadedModules]] in Realm Records is only used when running an `import()` expression in a context where there is no active script or module.
+            </emu-note>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[HostDefined]]
+          </td>
+          <td>
+            anything (default value is *undefined*)
+          </td>
+          <td>
+            Field reserved for use by hosts that need to associate additional information with a Realm Record.
+          </td>
+        </tr>
+      </table>
+    </emu-table>
+
+    
+
+    
+
+    
+  </emu-clause>

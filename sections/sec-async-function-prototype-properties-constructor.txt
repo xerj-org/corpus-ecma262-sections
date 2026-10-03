@@ -1,0 +1,9 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.10 AsyncFunction Objects > 27.10.3 Properties of the AsyncFunction Prototype Object > 27.10.3.1 AsyncFunction.prototype.constructor [id: sec-async-function-prototype-properties-constructor]
+
+<emu-clause id="sec-async-function-prototype-properties-constructor">
+        <h1>AsyncFunction.prototype.constructor</h1>
+
+        <p>The initial value of `AsyncFunction.prototype.constructor` is %AsyncFunction%.</p>
+
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

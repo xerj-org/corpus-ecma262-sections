@@ -1,0 +1,53 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.4 Arguments Exotic Objects > 10.4.4.7 CreateMappedArgumentsObject ( _func_: an ECMAScript function object, _formals_: a Parse Node, _argList_: a List of ECMAScript language values, _envRecord_: an Environment Record, ): an arguments exotic object [id: sec-createmappedargumentsobject]
+
+<emu-clause id="sec-createmappedargumentsobject" type="abstract operation">
+        <h1>
+          CreateMappedArgumentsObject (
+            _func_: an ECMAScript function object,
+            _formals_: a Parse Node,
+            _argList_: a List of ECMAScript language values,
+            _envRecord_: an Environment Record,
+          ): an arguments exotic object
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: _formals_ does not contain a rest parameter, any binding patterns, or any initializers. It may contain duplicate identifiers.
+          1. Let _length_ be the number of elements in _argList_.
+          1. Let _obj_ be MakeBasicObject(« [[Prototype]], [[Extensible]], [[ParameterMap]] »).
+          1. Set _obj_.[[GetOwnProperty]] as specified in <emu-xref href="#sec-arguments-exotic-objects-getownproperty-p"></emu-xref>.
+          1. Set _obj_.[[DefineOwnProperty]] as specified in <emu-xref href="#sec-arguments-exotic-objects-defineownproperty-p-desc"></emu-xref>.
+          1. Set _obj_.[[Get]] as specified in <emu-xref href="#sec-arguments-exotic-objects-get-p-receiver"></emu-xref>.
+          1. Set _obj_.[[Set]] as specified in <emu-xref href="#sec-arguments-exotic-objects-set-p-v-receiver"></emu-xref>.
+          1. Set _obj_.[[Delete]] as specified in <emu-xref href="#sec-arguments-exotic-objects-delete-p"></emu-xref>.
+          1. Set _obj_.[[Prototype]] to %Object.prototype%.
+          1. Let _map_ be OrdinaryObjectCreate(*null*).
+          1. Set _obj_.[[ParameterMap]] to _map_.
+          1. Let _paramNames_ be the BoundNames of _formals_.
+          1. Let _paramCount_ be the number of elements in _paramNames_.
+          1. Let _index_ be 0.
+          1. Repeat, while _index_ &lt; _length_,
+            1. Let _value_ be _argList_[_index_].
+            1. Perform ! CreateDataPropertyOrThrow(_obj_, ! ToString(𝔽(_index_)), _value_).
+            1. Set _index_ to _index_ + 1.
+          1. Perform ! DefinePropertyOrThrow(_obj_, *"length"*, PropertyDescriptor { [[Value]]: 𝔽(_length_), [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }).
+          1. Let _mappedNames_ be a new empty List.
+          1. Set _index_ to _paramCount_ - 1.
+          1. Repeat, while _index_ ≥ 0,
+            1. Let _name_ be _paramNames_[_index_].
+            1. If _mappedNames_ does not contain _name_, then
+              1. Append _name_ to _mappedNames_.
+              1. If _index_ &lt; _length_, then
+                1. Let _getter_ be MakeArgGetter(_name_, _envRecord_).
+                1. Let _setter_ be MakeArgSetter(_name_, _envRecord_).
+                1. Perform ! _map_.[[DefineOwnProperty]](! ToString(𝔽(_index_)), PropertyDescriptor { [[Setter]]: _setter_, [[Getter]]: _getter_, [[Enumerable]]: *false*, [[Configurable]]: *true* }).
+            1. Set _index_ to _index_ - 1.
+          1. Perform ! DefinePropertyOrThrow(_obj_, %Symbol.iterator%, PropertyDescriptor { [[Value]]: %Array.prototype.values%, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }).
+          1. Perform ! DefinePropertyOrThrow(_obj_, *"callee"*, PropertyDescriptor { [[Value]]: _func_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }).
+          1. Return _obj_.
+        </emu-alg>
+
+        
+
+        
+      </emu-clause>

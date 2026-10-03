@@ -1,0 +1,18 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.5 The Reference Record Specification Type > 6.2.5.8 InitializeReferencedBinding ( _refRecord_: a Reference Record, _value_: an ECMAScript language value, ): either a normal completion containing ~unused~ or an abrupt completion [id: sec-initializereferencedbinding]
+
+<emu-clause id="sec-initializereferencedbinding" type="abstract operation">
+        <h1>
+          InitializeReferencedBinding (
+            _refRecord_: a Reference Record,
+            _value_: an ECMAScript language value,
+          ): either a normal completion containing ~unused~ or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: IsUnresolvableReference(_refRecord_) is *false*.
+          1. Let _base_ be _refRecord_.[[Base]].
+          1. Assert: _base_ is an Environment Record.
+          1. Return ? _base_.InitializeBinding(_refRecord_.[[ReferencedName]], _value_).
+        </emu-alg>
+      </emu-clause>

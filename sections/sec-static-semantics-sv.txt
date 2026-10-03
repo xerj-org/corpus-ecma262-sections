@@ -1,0 +1,227 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals > 12.9.4 String Literals > 12.9.4.2 Static Semantics: SV ( ): a String [id: sec-static-semantics-sv]
+
+<emu-clause id="sec-static-semantics-sv" oldids="sec-string-literals-static-semantics-stringvalue,sec-additional-syntax-string-literals-static-semantics" type="sdo">
+        <h1>Static Semantics: SV ( ): a String</h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>
+            <p>A string literal stands for a value of the String type. SV produces String values for string literals through recursive application on the various parts of the string literal. As part of this process, some Unicode code points within the string literal are interpreted as having a mathematical value, as described below or in <emu-xref href="#sec-literals-numeric-literals"></emu-xref>.</p>
+          </dd>
+        </dl>
+        <ul>
+          <li>
+            The SV of <emu-grammar>StringLiteral :: `"` `"`</emu-grammar> is the empty String.
+          </li>
+          <li>
+            The SV of <emu-grammar>StringLiteral :: `'` `'`</emu-grammar> is the empty String.
+          </li>
+          <li>
+            The SV of <emu-grammar>DoubleStringCharacters :: DoubleStringCharacter DoubleStringCharacters</emu-grammar> is the string-concatenation of the SV of |DoubleStringCharacter| and the SV of |DoubleStringCharacters|.
+          </li>
+          <li>
+            The SV of <emu-grammar>SingleStringCharacters :: SingleStringCharacter SingleStringCharacters</emu-grammar> is the string-concatenation of the SV of |SingleStringCharacter| and the SV of |SingleStringCharacters|.
+          </li>
+          <li>
+            The SV of <emu-grammar>DoubleStringCharacter :: SourceCharacter but not one of `"` or `\` or LineTerminator</emu-grammar> is the result of performing UTF16EncodeCodePoint on the code point matched by |SourceCharacter|.
+          </li>
+          <li>
+            The SV of <emu-grammar>DoubleStringCharacter :: &lt;LS&gt;</emu-grammar> is the String value consisting of the code unit 0x2028 (LINE SEPARATOR).
+          </li>
+          <li>
+            The SV of <emu-grammar>DoubleStringCharacter :: &lt;PS&gt;</emu-grammar> is the String value consisting of the code unit 0x2029 (PARAGRAPH SEPARATOR).
+          </li>
+          <li>
+            The SV of <emu-grammar>DoubleStringCharacter :: LineContinuation</emu-grammar> is the empty String.
+          </li>
+          <li>
+            The SV of <emu-grammar>SingleStringCharacter :: SourceCharacter but not one of `'` or `\` or LineTerminator</emu-grammar> is the result of performing UTF16EncodeCodePoint on the code point matched by |SourceCharacter|.
+          </li>
+          <li>
+            The SV of <emu-grammar>SingleStringCharacter :: &lt;LS&gt;</emu-grammar> is the String value consisting of the code unit 0x2028 (LINE SEPARATOR).
+          </li>
+          <li>
+            The SV of <emu-grammar>SingleStringCharacter :: &lt;PS&gt;</emu-grammar> is the String value consisting of the code unit 0x2029 (PARAGRAPH SEPARATOR).
+          </li>
+          <li>
+            The SV of <emu-grammar>SingleStringCharacter :: LineContinuation</emu-grammar> is the empty String.
+          </li>
+          <li>
+            The SV of <emu-grammar>EscapeSequence :: `0`</emu-grammar> is the String value consisting of the code unit 0x0000 (NULL).
+          </li>
+          <li>
+            The SV of <emu-grammar>CharacterEscapeSequence :: SingleEscapeCharacter</emu-grammar> is the String value consisting of the code unit whose numeric value is determined by the |SingleEscapeCharacter| according to <emu-xref href="#table-string-single-character-escape-sequences"></emu-xref>.
+          </li>
+        </ul>
+        <emu-table id="table-string-single-character-escape-sequences" caption="String Single Character Escape Sequences" oldids="table-34">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Escape Sequence
+                </th>
+                <th>
+                  Code Unit Value
+                </th>
+                <th>
+                  Unicode Character Name
+                </th>
+                <th>
+                  Symbol
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                `\\b`
+              </td>
+              <td>
+                `0x0008`
+              </td>
+              <td>
+                BACKSPACE
+              </td>
+              <td>
+                &lt;BS>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                `\\t`
+              </td>
+              <td>
+                `0x0009`
+              </td>
+              <td>
+                CHARACTER TABULATION
+              </td>
+              <td>
+                &lt;HT>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                `\\n`
+              </td>
+              <td>
+                `0x000A`
+              </td>
+              <td>
+                LINE FEED (LF)
+              </td>
+              <td>
+                &lt;LF>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                `\\v`
+              </td>
+              <td>
+                `0x000B`
+              </td>
+              <td>
+                LINE TABULATION
+              </td>
+              <td>
+                &lt;VT>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                `\\f`
+              </td>
+              <td>
+                `0x000C`
+              </td>
+              <td>
+                FORM FEED (FF)
+              </td>
+              <td>
+                &lt;FF>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                `\\r`
+              </td>
+              <td>
+                `0x000D`
+              </td>
+              <td>
+                CARRIAGE RETURN (CR)
+              </td>
+              <td>
+                &lt;CR>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                `\\"`
+              </td>
+              <td>
+                `0x0022`
+              </td>
+              <td>
+                QUOTATION MARK
+              </td>
+              <td>
+                `"`
+              </td>
+            </tr>
+            <tr>
+              <td>
+                `\\'`
+              </td>
+              <td>
+                `0x0027`
+              </td>
+              <td>
+                APOSTROPHE
+              </td>
+              <td>
+                `'`
+              </td>
+            </tr>
+            <tr>
+              <td>
+                `\\\\`
+              </td>
+              <td>
+                `0x005C`
+              </td>
+              <td>
+                REVERSE SOLIDUS
+              </td>
+              <td>
+                `\\`
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+        <ul>
+          <li>
+            The SV of <emu-grammar>NonEscapeCharacter :: SourceCharacter but not one of EscapeCharacter or LineTerminator</emu-grammar> is the result of performing UTF16EncodeCodePoint on the code point matched by |SourceCharacter|.
+          </li>
+          <li>
+            The SV of <emu-grammar>EscapeSequence :: LegacyOctalEscapeSequence</emu-grammar> is the String value consisting of the code unit whose numeric value is the MV of |LegacyOctalEscapeSequence|.
+          </li>
+          <li>
+            The SV of <emu-grammar>NonOctalDecimalEscapeSequence :: `8`</emu-grammar> is the String value consisting of the code unit 0x0038 (DIGIT EIGHT).
+          </li>
+          <li>
+            The SV of <emu-grammar>NonOctalDecimalEscapeSequence :: `9`</emu-grammar> is the String value consisting of the code unit 0x0039 (DIGIT NINE).
+          </li>
+          <li>
+            The SV of <emu-grammar>HexEscapeSequence :: `x` HexDigit HexDigit</emu-grammar> is the String value consisting of the code unit whose numeric value is the MV of |HexEscapeSequence|.
+          </li>
+          <li>
+            The SV of <emu-grammar>Hex4Digits :: HexDigit HexDigit HexDigit HexDigit</emu-grammar> is the String value consisting of the code unit whose numeric value is the MV of |Hex4Digits|.
+          </li>
+          <li>
+            The SV of <emu-grammar>UnicodeEscapeSequence :: `u{` CodePoint `}`</emu-grammar> is the result of performing UTF16EncodeCodePoint on the MV of |CodePoint|.
+          </li>
+          <li>
+            The SV of <emu-grammar>TemplateEscapeSequence :: `0`</emu-grammar> is the String value consisting of the code unit 0x0000 (NULL).
+          </li>
+        </ul>
+      </emu-clause>

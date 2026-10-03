@@ -1,0 +1,31 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.26 %TypedArray%.prototype.set ( _source_ [ , _offset_ ] ) > 23.2.3.26.1 SetTypedArrayFromArrayLike ( _target_: a TypedArray, _targetOffset_: a non-negative integer or +∞, _source_: an ECMAScript language value, but not a TypedArray, ): either a normal completion containing ~unused~ or a throw completion [id: sec-settypedarrayfromarraylike]
+
+<emu-clause id="sec-settypedarrayfromarraylike" type="abstract operation" oldids="sec-%typedarray%.prototype.set-array-offset">
+          <h1>
+            SetTypedArrayFromArrayLike (
+              _target_: a TypedArray,
+              _targetOffset_: a non-negative integer or +&infin;,
+              _source_: an ECMAScript language value, but not a TypedArray,
+            ): either a normal completion containing ~unused~ or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It sets multiple values in _target_, starting at index _targetOffset_, reading the values from _source_.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _targetRecord_ be ? ValidateTypedArrayBounds(_target_, ~seq-cst~).
+            1. Let _targetLength_ be TypedArrayLength(_targetRecord_).
+            1. Set _source_ to ? ToObject(_source_).
+            1. Let _sourceLength_ be ? LengthOfArrayLike(_source_).
+            1. If _targetOffset_ = +∞, throw a *RangeError* exception.
+            1. If _sourceLength_ + _targetOffset_ > _targetLength_, throw a *RangeError* exception.
+            1. Let _k_ be 0.
+            1. Repeat, while _k_ &lt; _sourceLength_,
+              1. Let _propertyKey_ be ! ToString(𝔽(_k_)).
+              1. Let _value_ be ? Get(_source_, _propertyKey_).
+              1. Let _targetIndex_ be 𝔽(_targetOffset_ + _k_).
+              1. Perform ? TypedArraySetElement(_target_, _targetIndex_, _value_).
+              1. Set _k_ to _k_ + 1.
+            1. Return ~unused~.
+          </emu-alg>
+        </emu-clause>

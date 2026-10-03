@@ -1,0 +1,31 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.11 DateFromTime ( _tv_: a finite time value, ): an integer in the inclusive interval from 1 to 31 [id: sec-datefromtime]
+
+<emu-clause id="sec-datefromtime" type="abstract operation" oldids="sec-date-number">
+        <h1>
+          DateFromTime (
+            _tv_: a finite time value,
+          ): an integer in the inclusive interval from 1 to 31
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns the day of the month in which _tv_ falls.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _inLeapYear_ be InLeapYear(_tv_).
+          1. Let _dayWithinYear_ be DayWithinYear(_tv_).
+          1. Let _month_ be MonthFromTime(_tv_).
+          1. If _month_ = 0, return _dayWithinYear_ + 1.
+          1. If _month_ = 1, return _dayWithinYear_ - 30.
+          1. If _month_ = 2, return _dayWithinYear_ - 58 - _inLeapYear_.
+          1. If _month_ = 3, return _dayWithinYear_ - 89 - _inLeapYear_.
+          1. If _month_ = 4, return _dayWithinYear_ - 119 - _inLeapYear_.
+          1. If _month_ = 5, return _dayWithinYear_ - 150 - _inLeapYear_.
+          1. If _month_ = 6, return _dayWithinYear_ - 180 - _inLeapYear_.
+          1. If _month_ = 7, return _dayWithinYear_ - 211 - _inLeapYear_.
+          1. If _month_ = 8, return _dayWithinYear_ - 242 - _inLeapYear_.
+          1. If _month_ = 9, return _dayWithinYear_ - 272 - _inLeapYear_.
+          1. If _month_ = 10, return _dayWithinYear_ - 303 - _inLeapYear_.
+          1. Assert: _month_ = 11.
+          1. Return _dayWithinYear_ - 333 - _inLeapYear_.
+        </emu-alg>
+      </emu-clause>

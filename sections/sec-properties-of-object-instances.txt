@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.4 Properties of Object Instances [id: sec-properties-of-object-instances]
+
+<emu-clause id="sec-properties-of-object-instances">
+      <h1>Properties of Object Instances</h1>
+      <p>Object instances have no special properties beyond those inherited from the Object prototype object.</p>
+    </emu-clause>

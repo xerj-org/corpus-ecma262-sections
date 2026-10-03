@@ -1,0 +1,18 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.9 AsyncGenerator Objects > 27.9.3 AsyncGenerator Abstract Operations > 27.9.3.7 AsyncGeneratorUnwrapYieldResumption ( _resumptionValue_: a Completion Record, ): either a normal completion containing an ECMAScript language value or an abrupt completion [id: sec-asyncgeneratorunwrapyieldresumption]
+
+<emu-clause id="sec-asyncgeneratorunwrapyieldresumption" type="abstract operation">
+        <h1>
+          AsyncGeneratorUnwrapYieldResumption (
+            _resumptionValue_: a Completion Record,
+          ): either a normal completion containing an ECMAScript language value or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _resumptionValue_ is not a return completion, return ? _resumptionValue_.
+          1. Let _awaited_ be Completion(Await(_resumptionValue_.[[Value]])).
+          1. If _awaited_ is a throw completion, return ? _awaited_.
+          1. Assert: _awaited_ is a normal completion.
+          1. Return ReturnCompletion(_awaited_.[[Value]]).
+        </emu-alg>
+      </emu-clause>

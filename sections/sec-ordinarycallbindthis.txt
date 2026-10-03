@@ -1,0 +1,33 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.2 ECMAScript Function Objects > 10.2.1 [[Call]] ( _thisArg_: an ECMAScript language value, _argList_: a List of ECMAScript language values, ): either a normal completion containing an ECMAScript language value or a throw completion > 10.2.1.2 OrdinaryCallBindThis ( _func_: an ECMAScript function object, _calleeContext_: an execution context, _thisArg_: an ECMAScript language value, ): ~unused~ [id: sec-ordinarycallbindthis]
+
+<emu-clause id="sec-ordinarycallbindthis" type="abstract operation">
+        <h1>
+          OrdinaryCallBindThis (
+            _func_: an ECMAScript function object,
+            _calleeContext_: an execution context,
+            _thisArg_: an ECMAScript language value,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _thisMode_ be _func_.[[ThisMode]].
+          1. If _thisMode_ is ~lexical~, return ~unused~.
+          1. Let _calleeRealm_ be _func_.[[Realm]].
+          1. Let _localEnv_ be the LexicalEnvironment of _calleeContext_.
+          1. If _thisMode_ is ~strict~, then
+            1. Let _thisValue_ be _thisArg_.
+          1. Else,
+            1. If _thisArg_ is either *undefined* or *null*, then
+              1. Let _globalEnv_ be _calleeRealm_.[[GlobalEnv]].
+              1. Assert: _globalEnv_ is a Global Environment Record.
+              1. Let _thisValue_ be _globalEnv_.[[GlobalThisValue]].
+            1. Else,
+              1. Let _thisValue_ be ! ToObject(_thisArg_).
+              1. NOTE: ToObject produces wrapper objects using _calleeRealm_.
+          1. Assert: _localEnv_ is a Function Environment Record.
+          1. Assert: The next step never returns an abrupt completion because _localEnv_.[[ThisBindingStatus]] is not ~initialized~.
+          1. Perform ! BindThisValue(_localEnv_, _thisValue_).
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

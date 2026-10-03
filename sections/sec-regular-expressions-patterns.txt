@@ -1,0 +1,114 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.1 Additional Syntax > B.1.2 Regular Expressions Patterns [id: sec-regular-expressions-patterns]
+
+<emu-annex id="sec-regular-expressions-patterns">
+      <h1>Regular Expressions Patterns</h1>
+      <p>The syntax of <emu-xref href="#sec-patterns"></emu-xref> is modified and extended as follows. These changes introduce ambiguities that are broken by the ordering of grammar productions and by contextual information. When parsing using the following grammar, each alternative is considered only if previous production alternatives do not match.</p>
+      <p>This alternative pattern grammar and semantics only changes the syntax and semantics of BMP patterns. The following grammar extensions include productions parameterized with the [UnicodeMode] parameter. However, none of these extensions change the syntax of Unicode patterns recognized when parsing with the [UnicodeMode] parameter present on the goal symbol.</p>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        Term[UnicodeMode, UnicodeSetsMode, NamedCaptureGroups] ::
+          [+UnicodeMode] Assertion[+UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]
+          [+UnicodeMode] Atom[+UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] Quantifier
+          [+UnicodeMode] Atom[+UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]
+          [~UnicodeMode] QuantifiableAssertion[?NamedCaptureGroups] Quantifier
+          [~UnicodeMode] Assertion[~UnicodeMode, ~UnicodeSetsMode, ?NamedCaptureGroups]
+          [~UnicodeMode] ExtendedAtom[?NamedCaptureGroups] Quantifier
+          [~UnicodeMode] ExtendedAtom[?NamedCaptureGroups]
+
+        Assertion[UnicodeMode, UnicodeSetsMode, NamedCaptureGroups] ::
+          `^`
+          `$`
+          `\b`
+          `\B`
+          [+UnicodeMode] `(?=` Disjunction[+UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] `)`
+          [+UnicodeMode] `(?!` Disjunction[+UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] `)`
+          [~UnicodeMode] QuantifiableAssertion[?NamedCaptureGroups]
+          `(?&lt;=` Disjunction[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] `)`
+          `(?&lt;!` Disjunction[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] `)`
+
+        QuantifiableAssertion[NamedCaptureGroups] ::
+          `(?=` Disjunction[~UnicodeMode, ~UnicodeSetsMode, ?NamedCaptureGroups] `)`
+          `(?!` Disjunction[~UnicodeMode, ~UnicodeSetsMode, ?NamedCaptureGroups] `)`
+
+        ExtendedAtom[NamedCaptureGroups] ::
+          `.`
+          `\` AtomEscape[~UnicodeMode, ?NamedCaptureGroups]
+          `\` [lookahead == `c`]
+          CharacterClass[~UnicodeMode, ~UnicodeSetsMode]
+          `(` GroupSpecifier[~UnicodeMode]? Disjunction[~UnicodeMode, ~UnicodeSetsMode, ?NamedCaptureGroups] `)`
+          `(?` RegularExpressionModifiers `:` Disjunction[~UnicodeMode, ~UnicodeSetsMode, ?NamedCaptureGroups] `)`
+          `(?` RegularExpressionModifiers `-` RegularExpressionModifiers `:` Disjunction[~UnicodeMode, ~UnicodeSetsMode, ?NamedCaptureGroups] `)`
+          InvalidBracedQuantifier
+          ExtendedPatternCharacter
+
+        InvalidBracedQuantifier ::
+          `{` DecimalDigits[~Sep] `}`
+          `{` DecimalDigits[~Sep] `,}`
+          `{` DecimalDigits[~Sep] `,` DecimalDigits[~Sep] `}`
+
+        ExtendedPatternCharacter ::
+          SourceCharacter but not one of `^` `$` `\` `.` `*` `+` `?` `(` `)` `[` `|`
+
+        AtomEscape[UnicodeMode, NamedCaptureGroups] ::
+          [+UnicodeMode] DecimalEscape
+          [~UnicodeMode] DecimalEscape [> but only if the CapturingGroupNumber of |DecimalEscape| is &le; CountLeftCapturingParensWithin(the |Pattern| containing |DecimalEscape|)]
+          CharacterClassEscape[?UnicodeMode]
+          CharacterEscape[?UnicodeMode, ?NamedCaptureGroups]
+          [+NamedCaptureGroups] `k` GroupName[?UnicodeMode]
+
+        CharacterEscape[UnicodeMode, NamedCaptureGroups] ::
+          ControlEscape
+          `c` AsciiLetter
+          `0` [lookahead &notin; DecimalDigit]
+          HexEscapeSequence
+          RegExpUnicodeEscapeSequence[?UnicodeMode]
+          [~UnicodeMode] LegacyOctalEscapeSequence
+          IdentityEscape[?UnicodeMode, ?NamedCaptureGroups]
+
+        IdentityEscape[UnicodeMode, NamedCaptureGroups] ::
+          [+UnicodeMode] SyntaxCharacter
+          [+UnicodeMode] `/`
+          [~UnicodeMode] SourceCharacterIdentityEscape[?NamedCaptureGroups]
+
+        SourceCharacterIdentityEscape[NamedCaptureGroups] ::
+          [~NamedCaptureGroups] SourceCharacter but not `c`
+          [+NamedCaptureGroups] SourceCharacter but not one of `c` or `k`
+
+        ClassAtomNoDash[UnicodeMode, NamedCaptureGroups] ::
+          SourceCharacter but not one of `\` or `]` or `-`
+          `\` ClassEscape[?UnicodeMode, ?NamedCaptureGroups]
+          `\` [lookahead == `c`]
+
+        ClassEscape[UnicodeMode, NamedCaptureGroups] ::
+          `b`
+          [+UnicodeMode] `-`
+          [~UnicodeMode] `c` ClassControlLetter
+          CharacterClassEscape[?UnicodeMode]
+          CharacterEscape[?UnicodeMode, ?NamedCaptureGroups]
+
+        ClassControlLetter ::
+          DecimalDigit
+          `_`
+      </emu-grammar>
+      <emu-note>
+        <p>When the same left-hand sides occurs with both [+UnicodeMode] and [\~UnicodeMode] guards it is to control the disambiguation priority.</p>
+      </emu-note>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-annex>

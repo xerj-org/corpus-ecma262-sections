@@ -1,0 +1,19 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.1 The Number Type > 6.1.6.1.14 Number::sameValue ( _x_: a Number, _y_: a Number, ): a Boolean [id: sec-numeric-types-number-sameValue]
+
+<emu-clause id="sec-numeric-types-number-sameValue" type="numeric method">
+          <h1>
+            Number::sameValue (
+              _x_: a Number,
+              _y_: a Number,
+            ): a Boolean
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _x_ is *NaN* and _y_ is *NaN*, return *true*.
+            1. If _x_ is *+0*<sub>𝔽</sub> and _y_ is *-0*<sub>𝔽</sub>, return *false*.
+            1. If _x_ is *-0*<sub>𝔽</sub> and _y_ is *+0*<sub>𝔽</sub>, return *false*.
+            1. If _x_ is _y_, return *true*.
+            1. Return *false*.
+          </emu-alg>
+        </emu-clause>

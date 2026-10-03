@@ -1,0 +1,23 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.4 Method Definitions > 15.4.4 Runtime Semantics: DefineMethod ( _obj_: an Object, optional _proto_: an Object, ): either a normal completion containing a Record with fields [[Key]] (a property key) and [[Closure]] (an ECMAScript function object) or an abrupt completion [id: sec-runtime-semantics-definemethod]
+
+<emu-clause id="sec-runtime-semantics-definemethod" type="sdo">
+      <h1>
+        Runtime Semantics: DefineMethod (
+          _obj_: an Object,
+          optional _proto_: an Object,
+        ): either a normal completion containing a Record with fields [[Key]] (a property key) and [[Closure]] (an ECMAScript function object) or an abrupt completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>MethodDefinition : ClassElementName `(` UniqueFormalParameters `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Let _propertyKey_ be ? Evaluation of |ClassElementName|.
+        1. Let _envRecord_ be the running execution context's LexicalEnvironment.
+        1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+        1. If _proto_ is not present, set _proto_ to %Function.prototype%.
+        1. Let _sourceText_ be the source text matched by |MethodDefinition|.
+        1. Let _closure_ be OrdinaryFunctionCreate(_proto_, _sourceText_, |UniqueFormalParameters|, |FunctionBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform MakeMethod(_closure_, _obj_).
+        1. Return the Record { [[Key]]: _propertyKey_, [[Closure]]: _closure_ }.
+      </emu-alg>
+    </emu-clause>

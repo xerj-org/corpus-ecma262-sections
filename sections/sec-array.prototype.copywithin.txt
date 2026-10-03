@@ -1,0 +1,43 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.3 Properties of the Array Prototype Object > 23.1.3.4 Array.prototype.copyWithin ( _target_, _start_ [ , _end_ ] ) [id: sec-array.prototype.copywithin]
+
+<emu-clause id="sec-array.prototype.copywithin" type="built-in function">
+        <h1>Array.prototype.copyWithin ( _target_, _start_ [ , _end_ ] )</h1>
+        <emu-note>
+          <p>The _end_ argument is optional. If it is not provided, the length of the *this* value is used.</p>
+        </emu-note>
+        <emu-note>
+          <p>If _target_ is negative, it is treated as <emu-eqn>_length_ + _target_</emu-eqn> where _length_ is the length of the array. If _start_ is negative, it is treated as <emu-eqn>_length_ + _start_</emu-eqn>. If _end_ is negative, it is treated as <emu-eqn>_length_ + _end_</emu-eqn>.</p>
+        </emu-note>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be ? ToObject(*this* value).
+          1. Let _length_ be ? LengthOfArrayLike(_obj_).
+          1. Let _to_ be ? ToClampedIndex(_target_, _length_).
+          1. Let _from_ be ? ToClampedIndex(_start_, _length_).
+          1. If _end_ is *undefined*, let _final_ be _length_; else let _final_ be ? ToClampedIndex(_end_, _length_).
+          1. Let _count_ be min(_final_ - _from_, _length_ - _to_).
+          1. If _from_ &lt; _to_ and _to_ &lt; _from_ + _count_, then
+            1. Let _direction_ be -1.
+            1. Set _from_ to _from_ + _count_ - 1.
+            1. Set _to_ to _to_ + _count_ - 1.
+          1. Else,
+            1. Let _direction_ be 1.
+          1. Repeat, while _count_ > 0,
+            1. Let _fromKey_ be ! ToString(𝔽(_from_)).
+            1. Let _toKey_ be ! ToString(𝔽(_to_)).
+            1. Let _fromPresent_ be ? HasProperty(_obj_, _fromKey_).
+            1. If _fromPresent_ is *true*, then
+              1. Let _fromValue_ be ? Get(_obj_, _fromKey_).
+              1. Perform ? Set(_obj_, _toKey_, _fromValue_, *true*).
+            1. Else,
+              1. Assert: _fromPresent_ is *false*.
+              1. Perform ? DeletePropertyOrThrow(_obj_, _toKey_).
+            1. Set _from_ to _from_ + _direction_.
+            1. Set _to_ to _to_ + _direction_.
+            1. Set _count_ to _count_ - 1.
+          1. Return _obj_.
+        </emu-alg>
+        <emu-note>
+          <p>This method is intentionally generic; it does not require that its *this* value be an Array. Therefore it can be transferred to other kinds of objects for use as a method.</p>
+        </emu-note>
+      </emu-clause>

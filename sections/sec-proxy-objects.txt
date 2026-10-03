@@ -1,0 +1,9 @@
+ECMA-262 > 28 Reflection > 28.2 Proxy Objects [id: sec-proxy-objects]
+
+<emu-clause id="sec-proxy-objects">
+    <h1>Proxy Objects</h1>
+
+    
+
+    
+  </emu-clause>

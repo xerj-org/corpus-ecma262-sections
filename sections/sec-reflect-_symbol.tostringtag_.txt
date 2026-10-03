@@ -1,0 +1,7 @@
+ECMA-262 > 28 Reflection > 28.1 The Reflect Object > 28.1.14 Reflect [ %Symbol.toStringTag% ] [id: sec-reflect-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-reflect-@@tostringtag" id="sec-reflect-%symbol.tostringtag%">
+      <h1>Reflect [ %Symbol.toStringTag% ]</h1>
+      <p>The initial value of the %Symbol.toStringTag% property is the String value *"Reflect"*.</p>
+      <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+    </emu-clause>

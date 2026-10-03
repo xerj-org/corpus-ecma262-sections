@@ -1,0 +1,12 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.5 Unary Operators > 13.5.7 Logical NOT Operator ( `!` ) > 13.5.7.1 Runtime Semantics: Evaluation [id: sec-logical-not-operator-runtime-semantics-evaluation]
+
+<emu-clause id="sec-logical-not-operator-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>UnaryExpression : `!` UnaryExpression</emu-grammar>
+        <emu-alg>
+          1. Let _expr_ be ? Evaluation of |UnaryExpression|.
+          1. Let _oldValue_ be ToBoolean(? GetValue(_expr_)).
+          1. If _oldValue_ is *true*, return *false*.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

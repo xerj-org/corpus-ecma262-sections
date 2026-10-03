@@ -1,0 +1,7 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.3 Iterator Objects > 27.1.3.4 Abstract Operations for Iterators [id: sec-abstract-operations-for-iterators]
+
+<emu-clause id="sec-abstract-operations-for-iterators">
+        <h1>Abstract Operations for Iterators</h1>
+
+        
+      </emu-clause>

@@ -1,0 +1,22 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.1 Semantics > 14.7.1.1 LoopContinues ( _completion_: a Completion Record, _labelSet_: a List of Strings, ): a Boolean [id: sec-loopcontinues]
+
+<emu-clause id="sec-loopcontinues" type="abstract operation">
+        <h1>
+          LoopContinues (
+            _completion_: a Completion Record,
+            _labelSet_: a List of Strings,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _completion_ is a normal completion, return *true*.
+          1. If _completion_ is not a continue completion, return *false*.
+          1. If _completion_.[[Target]] is ~empty~, return *true*.
+          1. If _labelSet_ contains _completion_.[[Target]], return *true*.
+          1. Return *false*.
+        </emu-alg>
+        <emu-note>
+          <p>Within the |Statement| part of an |IterationStatement| a |ContinueStatement| may be used to begin a new iteration.</p>
+        </emu-note>
+      </emu-clause>

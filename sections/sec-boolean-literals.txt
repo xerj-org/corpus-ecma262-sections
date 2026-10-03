@@ -1,0 +1,11 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals > 12.9.2 Boolean Literals [id: sec-boolean-literals]
+
+<emu-clause id="sec-boolean-literals">
+      <h1>Boolean Literals</h1>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        BooleanLiteral ::
+          `true`
+          `false`
+      </emu-grammar>
+    </emu-clause>

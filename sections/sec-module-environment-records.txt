@@ -1,0 +1,17 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.5 Module Environment Records [id: sec-module-environment-records]
+
+<emu-clause id="sec-module-environment-records" oldids="module-environment">
+        <h1>Module Environment Records</h1>
+        <p>A <dfn variants="Module Environment Records">Module Environment Record</dfn> is a Declarative Environment Record that is used to represent the outer scope of an ECMAScript |Module|. In additional to normal mutable and immutable bindings, Module Environment Records also provide immutable import bindings which are bindings that provide indirect access to a target binding that exists in another Environment Record.</p>
+        <p>Module Environment Records support all of the Declarative Environment Record methods listed in <emu-xref href="#table-abstract-methods-of-environment-records"></emu-xref> and share the same specifications for all of those methods except for GetBindingValue, DeleteBinding, HasThisBinding, and GetThisBinding.</p>
+
+        
+
+        
+
+        
+
+        
+
+        
+      </emu-clause>

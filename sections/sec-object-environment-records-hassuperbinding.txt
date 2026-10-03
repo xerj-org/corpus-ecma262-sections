@@ -1,0 +1,15 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.2 Object Environment Records > 9.1.1.2.10 HasSuperBinding ( ): *false* [id: sec-object-environment-records-hassuperbinding]
+
+<emu-clause id="sec-object-environment-records-hassuperbinding" type="concrete method">
+          <h1>HasSuperBinding ( ): *false*</h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>an Object Environment Record _envRecord_</dd>
+          </dl>
+          <emu-alg>
+            1. Return *false*.
+          </emu-alg>
+          <emu-note>
+            <p>Object Environment Records do not provide a `super` binding.</p>
+          </emu-note>
+        </emu-clause>

@@ -1,0 +1,15 @@
+ECMA-262 > 24 Keyed Collections > 24.5 Abstract Operations for Keyed Collections > 24.5.1 CanonicalizeKeyedCollectionKey ( _key_: an ECMAScript language value, ): an ECMAScript language value [id: sec-canonicalizekeyedcollectionkey]
+
+<emu-clause id="sec-canonicalizekeyedcollectionkey" type="abstract operation">
+      <h1>
+        CanonicalizeKeyedCollectionKey (
+          _key_: an ECMAScript language value,
+        ): an ECMAScript language value
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If _key_ is *-0*<sub>𝔽</sub>, return *+0*<sub>𝔽</sub>.
+        1. Return _key_.
+      </emu-alg>
+    </emu-clause>

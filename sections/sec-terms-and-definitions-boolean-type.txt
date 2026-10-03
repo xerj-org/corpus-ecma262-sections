@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.18 Boolean type [id: sec-terms-and-definitions-boolean-type]
+
+<emu-clause id="sec-terms-and-definitions-boolean-type">
+      <h1>Boolean type</h1>
+      <p>type consisting of the primitive values *true* and *false*</p>
+    </emu-clause>

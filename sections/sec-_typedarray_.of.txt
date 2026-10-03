@@ -1,0 +1,18 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.2 Properties of the %TypedArray% Intrinsic Object > 23.2.2.2 %TypedArray%.of ( ..._items_ ) [id: sec-%typedarray%.of]
+
+<emu-clause id="sec-%typedarray%.of" type="built-in function">
+        <h1>%TypedArray%.of ( ..._items_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _length_ be the number of elements in _items_.
+          1. Let _ctor_ be the *this* value.
+          1. If IsConstructor(_ctor_) is *false*, throw a *TypeError* exception.
+          1. Let _newObj_ be ? TypedArrayCreateFromConstructor(_ctor_, « 𝔽(_length_) »).
+          1. Let _k_ be 0.
+          1. Repeat, while _k_ &lt; _length_,
+            1. Let _kValue_ be _items_[_k_].
+            1. Perform ? TypedArraySetElement(_newObj_, 𝔽(_k_), _kValue_).
+            1. Set _k_ to _k_ + 1.
+          1. Return _newObj_.
+        </emu-alg>
+      </emu-clause>

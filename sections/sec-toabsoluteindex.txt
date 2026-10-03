@@ -1,0 +1,19 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.25 ToAbsoluteIndex ( _value_: an ECMAScript language value, _length_: a non-negative integer, ): either a normal completion containing either an integer, +∞, or -∞, or a throw completion [id: sec-toabsoluteindex]
+
+<emu-clause id="sec-toabsoluteindex" type="abstract operation">
+      <h1>
+        ToAbsoluteIndex (
+          _value_: an ECMAScript language value,
+          _length_: a non-negative integer,
+        ): either a normal completion containing either an integer, +&infin;, or -&infin;, or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It converts _value_ to an integer, +∞, or -∞, interpreting negative values relative to _length_.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _int_ be ? ToIntegerOrInfinity(_value_).
+        1. If _int_ is finite and _int_ &lt; 0, set _int_ to _length_ + _int_.
+        1. Return _int_.
+      </emu-alg>
+    </emu-clause>

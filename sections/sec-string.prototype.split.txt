@@ -1,0 +1,50 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.3 Properties of the String Prototype Object > 22.1.3.23 String.prototype.split ( _separator_, _limit_ ) [id: sec-string.prototype.split]
+
+<emu-clause id="sec-string.prototype.split" type="built-in function">
+        <h1>String.prototype.split ( _separator_, _limit_ )</h1>
+        <p>This method returns an Array into which substrings of the result of converting this object to a String have been stored. The substrings are determined by searching from left to right for occurrences of _separator_; these occurrences are not part of any String in the returned array, but serve to divide up the String value. The value of _separator_ may be a String of any length or it may be an object, such as a RegExp, that has a %Symbol.split% method.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _thisValue_ be the *this* value.
+          1. Perform ? RequireObjectCoercible(_thisValue_).
+          1. If _separator_ is an Object, then
+            1. Let _splitter_ be ? GetMethod(_separator_, %Symbol.split%).
+            1. If _splitter_ is not *undefined*, then
+              1. Return ? Call(_splitter_, _separator_, « _thisValue_, _limit_ »).
+          1. Let _string_ be ? ToString(_thisValue_).
+          1. If _limit_ is *undefined*, let _lim_ be 2<sup>32</sup> - 1; else let _lim_ be ℝ(? ToUint32(_limit_)).
+          1. Let _separatorString_ be ? ToString(_separator_).
+          1. If _lim_ = 0, then
+            1. Return CreateArrayFromList(« »).
+          1. If _separator_ is *undefined*, then
+            1. Return CreateArrayFromList(« _string_ »).
+          1. Let _separatorLength_ be the length of _separatorString_.
+          1. If _separatorLength_ = 0, then
+            1. Let _stringLength_ be the length of _string_.
+            1. Let _outLength_ be the result of clamping _lim_ between 0 and _stringLength_.
+            1. Let _head_ be the substring of _string_ from 0 to _outLength_.
+            1. Let _codeUnits_ be a List consisting of the sequence of code units that are the elements of _head_.
+            1. Return CreateArrayFromList(_codeUnits_).
+          1. If _string_ is the empty String, return CreateArrayFromList(« _string_ »).
+          1. Let _substrings_ be a new empty List.
+          1. Let _searchStart_ be 0.
+          1. Let _matchIndex_ be StringIndexOf(_string_, _separatorString_, 0).
+          1. Repeat, while _matchIndex_ is not ~not-found~,
+            1. Let _substring_ be the substring of _string_ from _searchStart_ to _matchIndex_.
+            1. Append _substring_ to _substrings_.
+            1. If the number of elements in _substrings_ is _lim_, return CreateArrayFromList(_substrings_).
+            1. Set _searchStart_ to _matchIndex_ + _separatorLength_.
+            1. Set _matchIndex_ to StringIndexOf(_string_, _separatorString_, _searchStart_).
+          1. Let _substring_ be the substring of _string_ from _searchStart_.
+          1. Append _substring_ to _substrings_.
+          1. Return CreateArrayFromList(_substrings_).
+        </emu-alg>
+        <emu-note>
+          <p>The value of _separator_ may be an empty String. In this case, _separator_ does not match the empty <emu-not-ref>substring</emu-not-ref> at the beginning or end of the input String, nor does it match the empty <emu-not-ref>substring</emu-not-ref> at the end of the previous separator match. If _separator_ is the empty String, the String is split up into individual code unit elements; the length of the result array equals the length of the String, and each <emu-not-ref>substring</emu-not-ref> contains one code unit.</p>
+          <p>If the *this* value is (or converts to) the empty String, the result depends on whether _separator_ can match the empty String. If it can, the result array contains no elements. Otherwise, the result array contains one element, which is the empty String.</p>
+          <p>If _separator_ is *undefined*, then the result array contains just one String, which is the *this* value (converted to a String). If _limit_ is not *undefined*, then the output array is truncated so that it contains no more than _limit_ elements.</p>
+        </emu-note>
+        <emu-note>
+          <p>This method is intentionally generic; it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.</p>
+        </emu-note>
+      </emu-clause>

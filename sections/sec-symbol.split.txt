@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.2 Properties of the Symbol Constructor > 20.4.2.15 Symbol.split [id: sec-symbol.split]
+
+<emu-clause id="sec-symbol.split">
+        <h1>Symbol.split</h1>
+        <p>The initial value of `Symbol.split` is the well-known symbol %Symbol.split% (<emu-xref href="#table-well-known-symbols"></emu-xref>).</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

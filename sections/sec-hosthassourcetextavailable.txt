@@ -1,0 +1,18 @@
+ECMA-262 > 20 Fundamental Objects > 20.2 Function Objects > 20.2.5 HostHasSourceTextAvailable ( _func_: a function object, ): a Boolean [id: sec-hosthassourcetextavailable]
+
+<emu-clause id="sec-hosthassourcetextavailable" type="host-defined abstract operation">
+      <h1>
+        HostHasSourceTextAvailable (
+          _func_: a function object,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It allows host environments to prevent the source text from being provided for _func_.</dd>
+      </dl>
+      <p>An implementation of HostHasSourceTextAvailable must conform to the following requirements:</p>
+      <ul>
+        <li>It must be deterministic with respect to its parameters. Each time it is called with a specific _func_ as its argument, it must return the same result.</li>
+      </ul>
+      <p>The default implementation of HostHasSourceTextAvailable is to return *true*.</p>
+    </emu-clause>

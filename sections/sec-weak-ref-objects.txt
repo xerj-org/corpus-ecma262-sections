@@ -1,0 +1,16 @@
+ECMA-262 > 26 Managing Memory > 26.1 WeakRef Objects [id: sec-weak-ref-objects]
+
+<emu-clause id="sec-weak-ref-objects">
+    <h1>WeakRef Objects</h1>
+    <p>A WeakRef is an object that is used to refer to a target object or symbol without preserving it from garbage collection. WeakRefs can be dereferenced to allow access to the target value, if the target hasn't been reclaimed by garbage collection.</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

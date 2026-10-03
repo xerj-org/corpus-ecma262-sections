@@ -1,0 +1,14 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.5 The _TypedArray_ Constructors [id: sec-typedarray-constructors]
+
+<emu-clause id="sec-typedarray-constructors">
+      <h1>The _TypedArray_ Constructors</h1>
+      <p>Each _TypedArray_ constructor:</p>
+      <ul>
+        <li>is an intrinsic object that has the structure described below, differing only in the name used as the constructor name instead of _TypedArray_, in <emu-xref href="#table-the-typedarray-constructors"></emu-xref>, except where otherwise noted.</li>
+        <li>is a function whose behaviour differs based upon the number and types of its arguments. The actual behaviour of a call of _TypedArray_ depends upon the number and kind of arguments that are passed to it.</li>
+        <li>is not intended to be called as a function and will throw an exception when called in that manner.</li>
+        <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified _TypedArray_ behaviour must include a `super` call to the _TypedArray_ constructor to create and initialize the subclass instance with the internal state necessary to support the built-in methods of %TypedArray%`.prototype`.</li>
+      </ul>
+
+      
+    </emu-clause>

@@ -1,0 +1,32 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.2 Function Definitions [id: sec-function-definitions]
+
+<emu-clause id="sec-function-definitions">
+    <h1>Function Definitions</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      FunctionDeclaration[Yield, Await, Default] :
+        `function` BindingIdentifier[?Yield, ?Await] `(` FormalParameters[~Yield, ~Await] `)` `{` FunctionBody[~Yield, ~Await] `}`
+        [+Default] `function` `(` FormalParameters[~Yield, ~Await] `)` `{` FunctionBody[~Yield, ~Await] `}`
+
+      FunctionExpression :
+        `function` BindingIdentifier[~Yield, ~Await]? `(` FormalParameters[~Yield, ~Await] `)` `{` FunctionBody[~Yield, ~Await] `}`
+
+      FunctionBody[Yield, Await] :
+        FunctionStatementList[?Yield, ?Await]
+
+      FunctionStatementList[Yield, Await] :
+        StatementList[?Yield, ?Await, +Return]?
+    </emu-grammar>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

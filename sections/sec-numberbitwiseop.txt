@@ -1,0 +1,27 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.1 The Number Type > 6.1.6.1.16 NumberBitwiseOp ( _op_: `&`, `^`, or `|`, _x_: a Number, _y_: a Number, ): an integral Number [id: sec-numberbitwiseop]
+
+<emu-clause id="sec-numberbitwiseop" type="abstract operation">
+          <h1>
+            NumberBitwiseOp (
+              _op_: `&amp;`, `^`, or `|`,
+              _x_: a Number,
+              _y_: a Number,
+            ): an integral Number
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _leftNumber_ be ! ToInt32(_x_).
+            1. Let _rightNumber_ be ! ToInt32(_y_).
+            1. Let _leftBits_ be the 32-bit two's complement bit string representing ℝ(_leftNumber_).
+            1. Let _rightBits_ be the 32-bit two's complement bit string representing ℝ(_rightNumber_).
+            1. If _op_ is `&amp;`, then
+              1. Let _result_ be the result of applying the bitwise AND operation to _leftBits_ and _rightBits_.
+            1. Else if _op_ is `^`, then
+              1. Let _result_ be the result of applying the bitwise exclusive OR (XOR) operation to _leftBits_ and _rightBits_.
+            1. Else,
+              1. Assert: _op_ is `|`.
+              1. Let _result_ be the result of applying the bitwise inclusive OR operation to _leftBits_ and _rightBits_.
+            1. Return the Number value for the integer represented by the 32-bit two's complement bit string _result_.
+          </emu-alg>
+        </emu-clause>

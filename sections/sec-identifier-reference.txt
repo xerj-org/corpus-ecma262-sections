@@ -1,0 +1,6 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.2 Identifier Reference [id: sec-identifier-reference]
+
+<emu-clause id="sec-identifier-reference">
+      <h1>Identifier Reference</h1>
+      <p>See <emu-xref href="#sec-identifiers"></emu-xref> for |IdentifierReference|.</p>
+    </emu-clause>

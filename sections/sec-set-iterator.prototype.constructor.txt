@@ -1,0 +1,10 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.3 Iterator Objects > 27.1.3.3 Properties of the Iterator Prototype Object > 27.1.3.3.1 Iterator.prototype.constructor > 27.1.3.3.1.2 set Iterator.prototype.constructor [id: sec-set-iterator.prototype.constructor]
+
+<emu-clause id="sec-set-iterator.prototype.constructor" type="built-in function">
+            <h1>set Iterator.prototype.constructor</h1>
+            <p>The value of the [[Setter]] attribute is a built-in function that takes an argument _v_. It performs the following steps when called:</p>
+            <emu-alg>
+              1. Perform ? SetterThatIgnoresPrototypeProperties(*this* value, %Iterator.prototype%, *"constructor"*, _v_).
+              1. Return *undefined*.
+            </emu-alg>
+          </emu-clause>

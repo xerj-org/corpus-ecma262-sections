@@ -1,0 +1,25 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.17 AtomicReadModifyWrite ( _ta_: an ECMAScript language value, _index_: an ECMAScript language value, _value_: an ECMAScript language value, _op_: a read-modify-write modification function, ): either a normal completion containing either a Number or a BigInt, or a throw completion [id: sec-atomicreadmodifywrite]
+
+<emu-clause id="sec-atomicreadmodifywrite" type="abstract operation">
+        <h1>
+          AtomicReadModifyWrite (
+            _ta_: an ECMAScript language value,
+            _index_: an ECMAScript language value,
+            _value_: an ECMAScript language value,
+            _op_: a read-modify-write modification function,
+          ): either a normal completion containing either a Number or a BigInt, or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>_op_ takes two List of byte values arguments and returns a List of byte values. This operation atomically loads a value, combines it with another value, and stores the combination. It returns the loaded value.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _byteIndexInBuffer_ be ? ValidateAtomicAccessOnIntegerTypedArray(_ta_, _index_).
+          1. If _ta_.[[ContentType]] is ~bigint~, let _coerced_ be ? ToBigInt(_value_).
+          1. Else, let _coerced_ be 𝔽(? ToIntegerOrInfinity(_value_)).
+          1. Perform ? RevalidateAtomicAccess(_ta_, _byteIndexInBuffer_).
+          1. Let _buffer_ be _ta_.[[ViewedArrayBuffer]].
+          1. Let _elementType_ be TypedArrayElementType(_ta_).
+          1. Return GetModifySetValueInBuffer(_buffer_, _byteIndexInBuffer_, _elementType_, _coerced_, _op_).
+        </emu-alg>
+      </emu-clause>

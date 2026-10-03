@@ -1,0 +1,18 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.9 Processing Model of WeakRef and FinalizationRegistry Targets > 9.9.4 Host Hooks > 9.9.4.1 HostEnqueueFinalizationRegistryCleanupJob ( _finalizationRegistry_: a FinalizationRegistry, ): ~unused~ [id: sec-host-cleanup-finalization-registry]
+
+<emu-clause id="sec-host-cleanup-finalization-registry" type="host-defined abstract operation">
+        <h1>
+          HostEnqueueFinalizationRegistryCleanupJob (
+            _finalizationRegistry_: a FinalizationRegistry,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <p>Let _cleanupJob_ be a new Job Abstract Closure with no parameters that captures _finalizationRegistry_ and performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _cleanupResult_ be Completion(CleanupFinalizationRegistry(_finalizationRegistry_)).
+          1. If _cleanupResult_ is an abrupt completion, perform any host-defined steps for reporting the error.
+          1. Return ~unused~.
+        </emu-alg>
+        <p>An implementation of HostEnqueueFinalizationRegistryCleanupJob schedules _cleanupJob_ to be performed at some future time, if possible. It must also conform to the requirements in <emu-xref href="#sec-jobs"></emu-xref>.</p>
+      </emu-clause>

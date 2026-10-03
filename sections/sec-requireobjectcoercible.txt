@@ -1,0 +1,17 @@
+ECMA-262 > 7 Abstract Operations > 7.2 Testing and Comparison Operations > 7.2.1 RequireObjectCoercible ( _arg_: an ECMAScript language value, ): either a normal completion containing ~unused~ or a throw completion [id: sec-requireobjectcoercible]
+
+<emu-clause id="sec-requireobjectcoercible" type="abstract operation" oldids="table-requireobjectcoercible-results,table-14">
+      <h1>
+        RequireObjectCoercible (
+          _arg_: an ECMAScript language value,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It throws an error if _arg_ is a value that cannot be converted to an Object using ToObject.</dd>
+      </dl>
+      <emu-alg>
+        1. If _arg_ is either *undefined* or *null*, throw a *TypeError* exception.
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,13 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.2 Additional Properties of the Uint8Array Prototype Object [id: sec-additional-properties-of-the-uint8array-prototype-object]
+
+<emu-clause id="sec-additional-properties-of-the-uint8array-prototype-object">
+      <h1>Additional Properties of the Uint8Array Prototype Object</h1>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

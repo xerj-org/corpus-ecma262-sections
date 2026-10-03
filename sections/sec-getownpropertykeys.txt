@@ -1,0 +1,21 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.11 Object.getOwnPropertySymbols ( _obj_ ) > 20.1.2.11.1 GetOwnPropertyKeys ( _value_: an ECMAScript language value, _type_: ~string~ or ~symbol~, ): either a normal completion containing a List of property keys or a throw completion [id: sec-getownpropertykeys]
+
+<emu-clause id="sec-getownpropertykeys" type="abstract operation">
+          <h1>
+            GetOwnPropertyKeys (
+              _value_: an ECMAScript language value,
+              _type_: ~string~ or ~symbol~,
+            ): either a normal completion containing a List of property keys or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _obj_ be ? ToObject(_value_).
+            1. Let _keys_ be ? <emu-meta effects="user-code">_obj_.[[OwnPropertyKeys]]()</emu-meta>.
+            1. Let _nameList_ be a new empty List.
+            1. For each element _nextKey_ of _keys_, do
+              1. If _nextKey_ is a Symbol and _type_ is ~symbol~, or if _nextKey_ is a String and _type_ is ~string~, then
+                1. Append _nextKey_ to _nameList_.
+            1. Return _nameList_.
+          </emu-alg>
+        </emu-clause>

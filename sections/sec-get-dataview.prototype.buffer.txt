@@ -1,0 +1,13 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.4 Properties of the DataView Prototype Object > 25.3.4.1 get DataView.prototype.buffer [id: sec-get-dataview.prototype.buffer]
+
+<emu-clause id="sec-get-dataview.prototype.buffer" type="built-in function">
+        <h1>get DataView.prototype.buffer</h1>
+        <p>`DataView.prototype.buffer` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_obj_, [[DataView]]).
+          1. Assert: _obj_ has a [[ViewedArrayBuffer]] internal slot.
+          1. Let _buffer_ be _obj_.[[ViewedArrayBuffer]].
+          1. Return _buffer_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,38 @@
+ECMA-262 > 19 The Global Object > 19.2 Function Properties of the Global Object > 19.2.6 URI Handling Functions > 19.2.6.5 Encode ( _string_: a String, _extraUnescaped_: a String, ): either a normal completion containing a String or a throw completion [id: sec-encode]
+
+<emu-clause id="sec-encode" type="abstract operation">
+        <h1>
+          Encode (
+            _string_: a String,
+            _extraUnescaped_: a String,
+          ): either a normal completion containing a String or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It performs URI encoding and escaping, interpreting _string_ as a sequence of UTF-16 encoded code points as described in <emu-xref href="#sec-ecmascript-language-types-string-type"></emu-xref>. If a character is identified as unreserved in RFC 2396 or appears in _extraUnescaped_, it is not escaped.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _length_ be the length of _string_.
+          1. Let _result_ be the empty String.
+          1. Let _alwaysUnescaped_ be the string-concatenation of the ASCII word characters and *"-.!~\*'()"*.
+          1. Let _unescapedSet_ be the string-concatenation of _alwaysUnescaped_ and _extraUnescaped_.
+          1. Let _k_ be 0.
+          1. Repeat, while _k_ &lt; _length_,
+            1. Let _codeUnit_ be the code unit at index _k_ within _string_.
+            1. If _unescapedSet_ contains _codeUnit_, then
+              1. Set _k_ to _k_ + 1.
+              1. Set _result_ to the string-concatenation of _result_ and _codeUnit_.
+            1. Else,
+              1. Let _codePoint_ be CodePointAt(_string_, _k_).
+              1. If _codePoint_.[[IsUnpairedSurrogate]] is *true*, throw a *URIError* exception.
+              1. Set _k_ to _k_ + _codePoint_.[[CodeUnitCount]].
+              1. Let _octets_ be the List of octets resulting by applying the UTF-8 transformation to _codePoint_.[[CodePoint]].
+              1. For each element _octet_ of _octets_, do
+                1. Let _hex_ be the String representation of _octet_, formatted as an uppercase hexadecimal number.
+                1. Set _result_ to the string-concatenation of _result_, *"%"*, and StringPad(_hex_, 2, *"0"*, ~start~).
+          1. Return _result_.
+        </emu-alg>
+        <emu-note>
+          <p>Because percent-encoding is used to represent individual octets, a single code point may be expressed as multiple consecutive escape sequences (one for each of its 8-bit UTF-8 code units).</p>
+        </emu-note>
+      </emu-clause>

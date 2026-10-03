@@ -1,0 +1,10 @@
+ECMA-262 > 28 Reflection > 28.2 Proxy Objects > 28.2.1 The Proxy Constructor > 28.2.1.1 Proxy ( _target_, _handler_ ) [id: sec-proxy-target-handler]
+
+<emu-clause id="sec-proxy-target-handler" type="built-in function">
+        <h1>Proxy ( _target_, _handler_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If NewTarget is *undefined*, throw a *TypeError* exception.
+          1. Return ? ProxyCreate(_target_, _handler_).
+        </emu-alg>
+      </emu-clause>

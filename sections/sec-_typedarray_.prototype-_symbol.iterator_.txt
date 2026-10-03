@@ -1,0 +1,6 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.37 %TypedArray%.prototype [ %Symbol.iterator% ] ( ) [id: sec-%typedarray%.prototype-%symbol.iterator%]
+
+<emu-clause oldids="sec-%typedarray%.prototype-@@iterator" id="sec-%typedarray%.prototype-%symbol.iterator%" type="built-in function">
+        <h1>%TypedArray%.prototype [ %Symbol.iterator% ] ( )</h1>
+        <p>The initial value of the %Symbol.iterator% property is %TypedArray.prototype.values%, defined in <emu-xref href="#sec-%typedarray%.prototype.values"></emu-xref>.</p>
+      </emu-clause>

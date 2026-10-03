@@ -1,0 +1,31 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.5 Module Environment Records > 9.1.1.5.1 GetBindingValue ( _name_: a String, _strict_: a Boolean, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-module-environment-records-getbindingvalue-n-s]
+
+<emu-clause id="sec-module-environment-records-getbindingvalue-n-s" type="concrete method">
+          <h1>
+            GetBindingValue (
+              _name_: a String,
+              _strict_: a Boolean,
+            ): either a normal completion containing an ECMAScript language value or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>a Module Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It returns the value of its bound identifier whose name is _name_. However, if the binding is an indirect binding the value of the target binding is returned. If the binding exists but is uninitialized a *ReferenceError* is thrown.</dd>
+          </dl>
+          <emu-alg>
+            1. Assert: _strict_ is *true*.
+            1. Assert: _envRecord_ has a binding for _name_.
+            1. If the binding for _name_ is an indirect binding, then
+              1. Let _module_ and _targetName_ be the indirection values provided when this binding for _name_ was created.
+              1. Let _targetEnv_ be _module_.[[Environment]].
+              1. If _targetEnv_ is ~empty~, throw a *ReferenceError* exception.
+              1. Return ? _targetEnv_.GetBindingValue(_targetName_, *true*).
+            1. If the binding for _name_ in _envRecord_ is an uninitialized binding, throw a *ReferenceError* exception.
+            1. Return the value currently bound to _name_ in _envRecord_.
+          </emu-alg>
+          <emu-note>
+            <p>_strict_ will always be *true* because a |Module| is always strict mode code.</p>
+          </emu-note>
+        </emu-clause>

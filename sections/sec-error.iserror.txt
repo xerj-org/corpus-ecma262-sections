@@ -1,0 +1,11 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.2 Properties of the Error Constructor > 20.5.2.1 Error.isError ( _arg_ ) [id: sec-error.iserror]
+
+<emu-clause id="sec-error.iserror" type="built-in function">
+        <h1>Error.isError ( _arg_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If _arg_ is not an Object, return *false*.
+          1. If _arg_ does not have an [[ErrorData]] internal slot, return *false*.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

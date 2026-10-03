@@ -1,0 +1,7 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.2 Resource Management [id: sec-resource-management]
+
+<emu-clause id="sec-resource-management">
+    <h1>Resource Management</h1>
+
+    
+  </emu-clause>

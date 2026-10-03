@@ -1,0 +1,36 @@
+ECMA-262 > 29 Memory Model > 29.5 Abstract Operations for the Memory Model > 29.5.4 ComposeWriteEventBytes ( _execution_: a candidate execution, _byteIndex_: a non-negative integer, _writes_: a List of either WriteSharedMemory or ReadModifyWriteSharedMemory events, ): a List of byte values [id: sec-composewriteeventbytes]
+
+<emu-clause id="sec-composewriteeventbytes" type="abstract operation">
+      <h1>
+        ComposeWriteEventBytes (
+          _execution_: a candidate execution,
+          _byteIndex_: a non-negative integer,
+          _writes_: a List of either WriteSharedMemory or ReadModifyWriteSharedMemory events,
+        ): a List of byte values
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _byteLocation_ be _byteIndex_.
+        1. Let _bytesRead_ be a new empty List.
+        1. For each element _writeEvent_ of _writes_, do
+          1. Assert: _writeEvent_ has _byteLocation_ in its memory range.
+          1. Let _payloadIndex_ be _byteLocation_ - _writeEvent_.[[ByteIndex]].
+          1. If _writeEvent_ is a WriteSharedMemory event, then
+            1. Let _byte_ be _writeEvent_.[[Payload]][_payloadIndex_].
+          1. Else,
+            1. Assert: _writeEvent_ is a ReadModifyWriteSharedMemory event.
+            1. Let _bytes_ be ValueOfReadEvent(_execution_, _writeEvent_).
+            1. Let _bytesModified_ be _writeEvent_.[[ModifyOp]](_bytes_, _writeEvent_.[[Payload]]).
+            1. Let _byte_ be _bytesModified_[_payloadIndex_].
+          1. Append _byte_ to _bytesRead_.
+          1. Set _byteLocation_ to _byteLocation_ + 1.
+        1. Return _bytesRead_.
+      </emu-alg>
+      <emu-note>
+        <p>The read-modify-write modification [[ModifyOp]] is given by the function properties on the Atomics object that introduce ReadModifyWriteSharedMemory events.</p>
+      </emu-note>
+      <emu-note>
+        <p>This abstract operation composes a List of write events into a List of byte values. It is used in the event semantics of ReadSharedMemory and ReadModifyWriteSharedMemory events.</p>
+      </emu-note>
+    </emu-clause>

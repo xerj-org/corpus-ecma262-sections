@@ -1,0 +1,16 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.6 TimeFromYear ( _y_: an integer, ): a time value [id: sec-timefromyear]
+
+<emu-clause id="sec-timefromyear" type="abstract operation" oldids="eqn-TimeFromYear">
+        <h1>
+          TimeFromYear (
+            _y_: an integer,
+          ): a time value
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns the time value of the start of year _y_.</dd>
+        </dl>
+        <emu-alg>
+          1. Return 𝔽(MillisecondsPerDay × DayFromYear(_y_)).
+        </emu-alg>
+      </emu-clause>

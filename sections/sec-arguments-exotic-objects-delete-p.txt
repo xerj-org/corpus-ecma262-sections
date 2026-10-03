@@ -1,0 +1,21 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.4 Arguments Exotic Objects > 10.4.4.5 [[Delete]] ( _propertyKey_: a property key, ): either a normal completion containing a Boolean or a throw completion [id: sec-arguments-exotic-objects-delete-p]
+
+<emu-clause id="sec-arguments-exotic-objects-delete-p" type="internal method">
+        <h1>
+          [[Delete]] (
+            _propertyKey_: a property key,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>an arguments exotic object _args_</dd>
+        </dl>
+        <emu-alg>
+          1. Let _map_ be _args_.[[ParameterMap]].
+          1. Let _isMapped_ be ! HasOwnProperty(_map_, _propertyKey_).
+          1. Let _result_ be ? OrdinaryDelete(_args_, _propertyKey_).
+          1. If _result_ is *true* and _isMapped_ is *true*, then
+            1. Perform ! _map_.[[Delete]](_propertyKey_).
+          1. Return _result_.
+        </emu-alg>
+      </emu-clause>

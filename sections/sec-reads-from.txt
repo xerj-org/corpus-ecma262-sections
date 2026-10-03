@@ -1,0 +1,9 @@
+ECMA-262 > 29 Memory Model > 29.6 Relations of Candidate Executions > 29.6.3 reads-from [id: sec-reads-from]
+
+<emu-clause id="sec-reads-from">
+      <h1>reads-from</h1>
+      <p>For a candidate execution _execution_, its <dfn>reads-from</dfn> Relation is the least Relation on Memory events that satisfies the following.</p>
+      <ul>
+        <li>For events _readEvent_ and _writeEvent_, _readEvent_ reads-from _writeEvent_ in _execution_ if SharedDataBlockEventSet(_execution_) contains both _readEvent_ and _writeEvent_, and reads-bytes-from(_readEvent_) in _execution_ contains _writeEvent_.</li>
+      </ul>
+    </emu-clause>

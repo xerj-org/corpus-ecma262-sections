@@ -1,0 +1,262 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.2 Scope Analysis > 8.2.1 Static Semantics: BoundNames ( ): a List of Strings [id: sec-static-semantics-boundnames]
+
+<emu-clause id="sec-static-semantics-boundnames" oldids="sec-identifiers-static-semantics-boundnames,sec-let-and-const-declarations-static-semantics-boundnames,sec-variable-statement-static-semantics-boundnames,sec-destructuring-binding-patterns-static-semantics-boundnames,sec-for-in-and-for-of-statements-static-semantics-boundnames,sec-function-definitions-static-semantics-boundnames,sec-arrow-function-definitions-static-semantics-boundnames,sec-generator-function-definitions-static-semantics-boundnames,sec-async-generator-function-definitions-static-semantics-boundnames,sec-class-definitions-static-semantics-boundnames,sec-async-function-definitions-static-semantics-BoundNames,sec-async-arrow-function-definitions-static-semantics-BoundNames,sec-imports-static-semantics-boundnames,sec-exports-static-semantics-boundnames" type="sdo">
+      <h1>Static Semantics: BoundNames ( ): a List of Strings</h1>
+      <dl class="header">
+      </dl>
+      <emu-note id="note-star-default-star">
+        <p>*"\*default\*"* is used within this specification as a synthetic name for a module's default export when it does not have another name. An entry in the module's [[Environment]] is created with that name and holds the corresponding value, and resolving the export named *"default"* by calling <emu-xref href="#sec-resolveexport" title></emu-xref> for the module will return a ResolvedBinding Record whose [[BindingName]] is *"\*default\*"*, which will then resolve in the module's [[Environment]] to the above-mentioned value. This is done only for ease of specification, so that anonymous default exports can be resolved like any other export. This *"\*default\*"* string is never accessible to ECMAScript code or to the module linking algorithm.</p>
+      </emu-note>
+      <emu-grammar>BindingIdentifier : Identifier</emu-grammar>
+      <emu-alg>
+        1. Return a List whose sole element is the StringValue of |Identifier|.
+      </emu-alg>
+      <emu-grammar>BindingIdentifier : `yield`</emu-grammar>
+      <emu-alg>
+        1. Return « *"yield"* ».
+      </emu-alg>
+      <emu-grammar>BindingIdentifier : `await`</emu-grammar>
+      <emu-alg>
+        1. Return « *"await"* ».
+      </emu-alg>
+      <emu-grammar>LexicalDeclaration : LetOrConst BindingList `;`</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingList|.
+      </emu-alg>
+      <emu-grammar>
+        UsingDeclaration :
+          `using` BindingList `;`
+
+        AwaitUsingDeclaration :
+          CoverAwaitExpressionAndAwaitUsingDeclarationHead BindingList `;`
+      </emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingList|.
+      </emu-alg>
+      <emu-grammar>BindingList : BindingList `,` LexicalBinding</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the BoundNames of |BindingList|.
+        1. Let _names2_ be the BoundNames of |LexicalBinding|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>LexicalBinding : BindingIdentifier Initializer?</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingIdentifier|.
+      </emu-alg>
+      <emu-grammar>LexicalBinding : BindingPattern Initializer</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingPattern|.
+      </emu-alg>
+      <emu-grammar>VariableDeclarationList : VariableDeclarationList `,` VariableDeclaration</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the BoundNames of |VariableDeclarationList|.
+        1. Let _names2_ be the BoundNames of |VariableDeclaration|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>VariableDeclaration : BindingIdentifier Initializer?</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingIdentifier|.
+      </emu-alg>
+      <emu-grammar>VariableDeclaration : BindingPattern Initializer</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingPattern|.
+      </emu-alg>
+      <emu-grammar>ObjectBindingPattern : `{` `}`</emu-grammar>
+      <emu-alg>
+        1. Return a new empty List.
+      </emu-alg>
+      <emu-grammar>ObjectBindingPattern : `{` BindingPropertyList `,` BindingRestProperty `}`</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the BoundNames of |BindingPropertyList|.
+        1. Let _names2_ be the BoundNames of |BindingRestProperty|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>ArrayBindingPattern : `[` Elision? `]`</emu-grammar>
+      <emu-alg>
+        1. Return a new empty List.
+      </emu-alg>
+      <emu-grammar>ArrayBindingPattern : `[` Elision? BindingRestElement `]`</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingRestElement|.
+      </emu-alg>
+      <emu-grammar>ArrayBindingPattern : `[` BindingElementList `,` Elision? `]`</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingElementList|.
+      </emu-alg>
+      <emu-grammar>ArrayBindingPattern : `[` BindingElementList `,` Elision? BindingRestElement `]`</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the BoundNames of |BindingElementList|.
+        1. Let _names2_ be the BoundNames of |BindingRestElement|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>BindingPropertyList : BindingPropertyList `,` BindingProperty</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the BoundNames of |BindingPropertyList|.
+        1. Let _names2_ be the BoundNames of |BindingProperty|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>BindingElementList : BindingElementList `,` BindingElisionElement</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the BoundNames of |BindingElementList|.
+        1. Let _names2_ be the BoundNames of |BindingElisionElement|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>BindingElisionElement : Elision? BindingElement</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingElement|.
+      </emu-alg>
+      <emu-grammar>BindingProperty : PropertyName `:` BindingElement</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingElement|.
+      </emu-alg>
+      <emu-grammar>SingleNameBinding : BindingIdentifier Initializer?</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingIdentifier|.
+      </emu-alg>
+      <emu-grammar>BindingElement : BindingPattern Initializer?</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingPattern|.
+      </emu-alg>
+      <emu-grammar>ForDeclaration : LetOrConst ForBinding</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |ForBinding|.
+      </emu-alg>
+      <emu-grammar>FunctionDeclaration : `function` BindingIdentifier `(` FormalParameters `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingIdentifier|.
+      </emu-alg>
+      <emu-grammar>FunctionDeclaration : `function` `(` FormalParameters `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return « *"\*default\*"* ».
+      </emu-alg>
+      <emu-grammar>FormalParameters : [empty]</emu-grammar>
+      <emu-alg>
+        1. Return a new empty List.
+      </emu-alg>
+      <emu-grammar>FormalParameters : FormalParameterList `,` FunctionRestParameter</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the BoundNames of |FormalParameterList|.
+        1. Let _names2_ be the BoundNames of |FunctionRestParameter|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>FormalParameterList : FormalParameterList `,` FormalParameter</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the BoundNames of |FormalParameterList|.
+        1. Let _names2_ be the BoundNames of |FormalParameter|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>ArrowParameters : CoverParenthesizedExpressionAndArrowParameterList</emu-grammar>
+      <emu-alg>
+        1. Let _formals_ be the |ArrowFormalParameters| that is covered by |CoverParenthesizedExpressionAndArrowParameterList|.
+        1. Return the BoundNames of _formals_.
+      </emu-alg>
+      <emu-grammar>GeneratorDeclaration : `function` `*` BindingIdentifier `(` FormalParameters `)` `{` GeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingIdentifier|.
+      </emu-alg>
+      <emu-grammar>GeneratorDeclaration : `function` `*` `(` FormalParameters `)` `{` GeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return « *"\*default\*"* ».
+      </emu-alg>
+      <emu-grammar>AsyncGeneratorDeclaration : `async` `function` `*` BindingIdentifier `(` FormalParameters `)` `{` AsyncGeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingIdentifier|.
+      </emu-alg>
+      <emu-grammar>AsyncGeneratorDeclaration : `async` `function` `*` `(` FormalParameters `)` `{` AsyncGeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return « *"\*default\*"* ».
+      </emu-alg>
+      <emu-grammar>ClassDeclaration : `class` BindingIdentifier ClassTail</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingIdentifier|.
+      </emu-alg>
+      <emu-grammar>ClassDeclaration : `class` ClassTail</emu-grammar>
+      <emu-alg>
+        1. Return « *"\*default\*"* ».
+      </emu-alg>
+      <emu-grammar>
+        AsyncFunctionDeclaration : `async` `function` BindingIdentifier `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |BindingIdentifier|.
+      </emu-alg>
+      <emu-grammar>
+        AsyncFunctionDeclaration : `async` `function` `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return « *"\*default\*"* ».
+      </emu-alg>
+      <emu-grammar>
+        CoverCallExpressionAndAsyncArrowHead : MemberExpression Arguments
+      </emu-grammar>
+      <emu-alg>
+        1. Let _head_ be the |AsyncArrowHead| that is covered by |CoverCallExpressionAndAsyncArrowHead|.
+        1. Return the BoundNames of _head_.
+      </emu-alg>
+      <emu-grammar>ImportDeclaration : `import` ImportClause FromClause WithClause? `;`</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |ImportClause|.
+      </emu-alg>
+      <emu-grammar>ImportDeclaration : `import` ModuleSpecifier WithClause? `;`</emu-grammar>
+      <emu-alg>
+        1. Return a new empty List.
+      </emu-alg>
+      <emu-grammar>ImportClause : ImportedDefaultBinding `,` NameSpaceImport</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the BoundNames of |ImportedDefaultBinding|.
+        1. Let _names2_ be the BoundNames of |NameSpaceImport|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>ImportClause : ImportedDefaultBinding `,` NamedImports</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the BoundNames of |ImportedDefaultBinding|.
+        1. Let _names2_ be the BoundNames of |NamedImports|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>NamedImports : `{` `}`</emu-grammar>
+      <emu-alg>
+        1. Return a new empty List.
+      </emu-alg>
+      <emu-grammar>ImportsList : ImportsList `,` ImportSpecifier</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the BoundNames of |ImportsList|.
+        1. Let _names2_ be the BoundNames of |ImportSpecifier|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+      <emu-grammar>ImportSpecifier : ModuleExportName `as` ImportedBinding</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |ImportedBinding|.
+      </emu-alg>
+      <emu-grammar>
+        ExportDeclaration :
+          `export` ExportFromClause FromClause WithClause? `;`
+          `export` NamedExports `;`
+      </emu-grammar>
+      <emu-alg>
+        1. Return a new empty List.
+      </emu-alg>
+      <emu-grammar>ExportDeclaration : `export` VariableStatement</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |VariableStatement|.
+      </emu-alg>
+      <emu-grammar>ExportDeclaration : `export` Declaration</emu-grammar>
+      <emu-alg>
+        1. Return the BoundNames of |Declaration|.
+      </emu-alg>
+      <emu-grammar>ExportDeclaration : `export` `default` HoistableDeclaration</emu-grammar>
+      <emu-alg>
+        1. Let _declNames_ be the BoundNames of |HoistableDeclaration|.
+        1. If _declNames_ does not include the element *"\*default\*"*, append *"\*default\*"* to _declNames_.
+        1. Return _declNames_.
+      </emu-alg>
+      <emu-grammar>ExportDeclaration : `export` `default` ClassDeclaration</emu-grammar>
+      <emu-alg>
+        1. Let _declNames_ be the BoundNames of |ClassDeclaration|.
+        1. If _declNames_ does not include the element *"\*default\*"*, append *"\*default\*"* to _declNames_.
+        1. Return _declNames_.
+      </emu-alg>
+      <emu-grammar>ExportDeclaration : `export` `default` AssignmentExpression `;`</emu-grammar>
+      <emu-alg>
+        1. Return « *"\*default\*"* ».
+      </emu-alg>
+    </emu-clause>

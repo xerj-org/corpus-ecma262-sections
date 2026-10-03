@@ -1,0 +1,58 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.7 Class Definitions > 15.7.7 Static Semantics: AllPrivateIdentifiersValid ( _names_: a List of Strings, ): a Boolean [id: sec-static-semantics-allprivateidentifiersvalid]
+
+<emu-clause id="sec-static-semantics-allprivateidentifiersvalid" type="sdo">
+      <h1>
+        Static Semantics: AllPrivateIdentifiersValid (
+          _names_: a List of Strings,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+      </dl>
+      <p>Every grammar production alternative in this specification which is not listed below implicitly has the following default definition of AllPrivateIdentifiersValid:</p>
+      <emu-alg>
+        1. For each child node _child_ of this Parse Node, do
+          1. If _child_ is an instance of a nonterminal, then
+            1. If AllPrivateIdentifiersValid of _child_ with argument _names_ is *false*, return *false*.
+        1. Return *true*.
+      </emu-alg>
+
+      <emu-grammar>MemberExpression : MemberExpression `.` PrivateIdentifier</emu-grammar>
+      <emu-alg>
+        1. If _names_ contains the StringValue of |PrivateIdentifier|, then
+          1. Return AllPrivateIdentifiersValid of |MemberExpression| with argument _names_.
+        1. Return *false*.
+      </emu-alg>
+
+      <emu-grammar>CallExpression : CallExpression `.` PrivateIdentifier</emu-grammar>
+      <emu-alg>
+        1. If _names_ contains the StringValue of |PrivateIdentifier|, then
+          1. Return AllPrivateIdentifiersValid of |CallExpression| with argument _names_.
+        1. Return *false*.
+      </emu-alg>
+
+      <emu-grammar>OptionalChain : `?.` PrivateIdentifier</emu-grammar>
+      <emu-alg>
+        1. If _names_ contains the StringValue of |PrivateIdentifier|, return *true*.
+        1. Return *false*.
+      </emu-alg>
+
+      <emu-grammar>OptionalChain : OptionalChain `.` PrivateIdentifier</emu-grammar>
+      <emu-alg>
+        1. If _names_ contains the StringValue of |PrivateIdentifier|, then
+          1. Return AllPrivateIdentifiersValid of |OptionalChain| with argument _names_.
+        1. Return *false*.
+      </emu-alg>
+
+      <emu-grammar>ClassBody : ClassElementList</emu-grammar>
+      <emu-alg>
+        1. Let _newNames_ be the list-concatenation of _names_ and the PrivateBoundIdentifiers of |ClassBody|.
+        1. Return AllPrivateIdentifiersValid of |ClassElementList| with argument _newNames_.
+      </emu-alg>
+
+      <emu-grammar>RelationalExpression : PrivateIdentifier `in` ShiftExpression</emu-grammar>
+      <emu-alg>
+        1. If _names_ contains the StringValue of |PrivateIdentifier|, then
+          1. Return AllPrivateIdentifiersValid of |ShiftExpression| with argument _names_.
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>

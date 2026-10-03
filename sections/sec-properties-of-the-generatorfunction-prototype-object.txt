@@ -1,0 +1,18 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.6 GeneratorFunction Objects > 27.6.3 Properties of the GeneratorFunction Prototype Object [id: sec-properties-of-the-generatorfunction-prototype-object]
+
+<emu-clause id="sec-properties-of-the-generatorfunction-prototype-object">
+      <h1>Properties of the GeneratorFunction Prototype Object</h1>
+      <p>The <dfn>GeneratorFunction prototype object</dfn>:</p>
+      <ul>
+        <li>is <dfn>%GeneratorFunction.prototype%</dfn> (see <emu-xref href="#figure-2"></emu-xref>).</li>
+        <li>is an ordinary object.</li>
+        <li>is not a function object and does not have an [[ECMAScriptCode]] internal slot or any other of the internal slots listed in <emu-xref href="#table-internal-slots-of-ecmascript-function-objects"></emu-xref> or <emu-xref href="#table-internal-slots-of-generator-instances"></emu-xref>.</li>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+      </ul>
+
+      
+
+      
+
+      
+    </emu-clause>

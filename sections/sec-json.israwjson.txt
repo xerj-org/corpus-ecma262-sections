@@ -1,0 +1,10 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object > 25.5.1 JSON.isRawJSON ( _obj_ ) [id: sec-json.israwjson]
+
+<emu-clause id="sec-json.israwjson" type="built-in function">
+      <h1>JSON.isRawJSON ( _obj_ )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. If _obj_ is an Object and _obj_ has an [[IsRawJSON]] internal slot, return *true*.
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>

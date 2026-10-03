@@ -1,0 +1,12 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.22 Object.seal ( _obj_ ) [id: sec-object.seal]
+
+<emu-clause id="sec-object.seal" type="built-in function">
+        <h1>Object.seal ( _obj_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If _obj_ is not an Object, return _obj_.
+          1. Let _status_ be ? SetIntegrityLevel(_obj_, ~sealed~).
+          1. If _status_ is *false*, throw a *TypeError* exception.
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

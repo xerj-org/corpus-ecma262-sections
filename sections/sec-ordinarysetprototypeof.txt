@@ -1,0 +1,33 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.2 [[SetPrototypeOf]] ( _proto_: an Object or *null*, ): a normal completion containing a Boolean > 10.1.2.1 OrdinarySetPrototypeOf ( _obj_: an Object, _proto_: an Object or *null*, ): a Boolean [id: sec-ordinarysetprototypeof]
+
+<emu-clause id="sec-ordinarysetprototypeof" type="abstract operation">
+        <h1>
+          OrdinarySetPrototypeOf (
+            _obj_: an Object,
+            _proto_: an Object or *null*,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _current_ be _obj_.[[Prototype]].
+          1. If SameValue(_proto_, _current_) is *true*, return *true*.
+          1. Let _extensible_ be _obj_.[[Extensible]].
+          1. If _extensible_ is *false*, return *false*.
+          1. Let _cursor_ be _proto_.
+          1. Let _done_ be *false*.
+          1. [id="step-ordinarysetprototypeof-loop"] Repeat, while _done_ is *false*,
+            1. If _cursor_ is *null*, then
+              1. Set _done_ to *true*.
+            1. Else if SameValue(_cursor_, _obj_) is *true*, then
+              1. Return *false*.
+            1. Else,
+              1. If _cursor_.[[GetPrototypeOf]] is not the ordinary object internal method defined in <emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots-getprototypeof"></emu-xref>, set _done_ to *true*.
+              1. Else, set _cursor_ to _cursor_.[[Prototype]].
+          1. Set _obj_.[[Prototype]] to _proto_.
+          1. Return *true*.
+        </emu-alg>
+        <emu-note>
+          <p>The loop in step <emu-xref href="#step-ordinarysetprototypeof-loop"></emu-xref> guarantees that there will be no cycles in any prototype chain that only includes objects that use the ordinary object definitions for [[GetPrototypeOf]] and [[SetPrototypeOf]].</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,11 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.19 Object.keys ( _obj_ ) [id: sec-object.keys]
+
+<emu-clause id="sec-object.keys" type="built-in function">
+        <h1>Object.keys ( _obj_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _coerced_ be ? ToObject(_obj_).
+          1. Let _keyList_ be ? EnumerableOwnProperties(_coerced_, ~key~).
+          1. Return CreateArrayFromList(_keyList_).
+        </emu-alg>
+      </emu-clause>

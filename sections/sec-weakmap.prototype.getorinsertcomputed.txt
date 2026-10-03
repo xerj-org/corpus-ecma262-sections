@@ -1,0 +1,23 @@
+ECMA-262 > 24 Keyed Collections > 24.3 WeakMap Objects > 24.3.3 Properties of the WeakMap Prototype Object > 24.3.3.5 WeakMap.prototype.getOrInsertComputed ( _key_, _callback_ ) [id: sec-weakmap.prototype.getorinsertcomputed]
+
+<emu-clause id="sec-weakmap.prototype.getorinsertcomputed" type="built-in function">
+        <h1>WeakMap.prototype.getOrInsertComputed ( _key_, _callback_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _weakMap_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_weakMap_, [[WeakMapData]]).
+          1. If CanBeHeldWeakly(_key_) is *false*, throw a *TypeError* exception.
+          1. If IsCallable(_callback_) is *false*, throw a *TypeError* exception.
+          1. For each Record { [[Key]], [[Value]] } _entry_ of _weakMap_.[[WeakMapData]], do
+            1. If _entry_.[[Key]] is not ~empty~ and SameValue(_entry_.[[Key]], _key_) is *true*, return _entry_.[[Value]].
+          1. Let _value_ be ? Call(_callback_, *undefined*, « _key_ »).
+          1. NOTE: The WeakMap may have been modified during execution of _callback_.
+          1. For each Record { [[Key]], [[Value]] } _entry_ of _weakMap_.[[WeakMapData]], do
+            1. If _entry_.[[Key]] is not ~empty~ and SameValue(_entry_.[[Key]], _key_) is *true*, then
+              1. Set _entry_.[[Value]] to _value_.
+              1. Return _value_.
+          1. Let _entry_ be the Record { [[Key]]: _key_, [[Value]]: _value_ }.
+          1. Append _entry_ to _weakMap_.[[WeakMapData]].
+          1. Return _value_.
+        </emu-alg>
+      </emu-clause>

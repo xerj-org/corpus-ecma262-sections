@@ -1,0 +1,11 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.6 Agents > 9.6.1 AgentSignifier ( ): an agent signifier [id: sec-agentsignifier]
+
+<emu-clause id="sec-agentsignifier" type="abstract operation">
+      <h1>AgentSignifier ( ): an agent signifier</h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _agentRecord_ be the Agent Record of the surrounding agent.
+        1. Return _agentRecord_.[[Signifier]].
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,28 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.6 Cyclic Module Records > 16.2.1.6.1 Implementation of Module Record Abstract Methods > 16.2.1.6.1.3 Evaluate ( ): a Promise > 16.2.1.6.1.3.3 GatherAvailableAncestors ( _module_: a Cyclic Module Record, _execList_: a List of Cyclic Module Records, ): ~unused~ [id: sec-gather-available-ancestors]
+
+<emu-clause id="sec-gather-available-ancestors" type="abstract operation">
+              <h1>
+                GatherAvailableAncestors (
+                  _module_: a Cyclic Module Record,
+                  _execList_: a List of Cyclic Module Records,
+                ): ~unused~
+              </h1>
+              <dl class="header">
+              </dl>
+              <emu-alg>
+                1. For each Cyclic Module Record _ancestorModule_ of _module_.[[AsyncParentModules]], do
+                  1. If _execList_ does not contain _ancestorModule_ and _ancestorModule_.[[CycleRoot]].[[EvaluationError]] is ~empty~, then
+                    1. Assert: _ancestorModule_.[[Status]] is ~evaluating-async~.
+                    1. Assert: _ancestorModule_.[[EvaluationError]] is ~empty~.
+                    1. Assert: _ancestorModule_.[[AsyncEvaluationOrder]] is an integer.
+                    1. Assert: _ancestorModule_.[[PendingAsyncDependencies]] > 0.
+                    1. Set _ancestorModule_.[[PendingAsyncDependencies]] to _ancestorModule_.[[PendingAsyncDependencies]] - 1.
+                    1. If _ancestorModule_.[[PendingAsyncDependencies]] = 0, then
+                      1. Append _ancestorModule_ to _execList_.
+                      1. If _ancestorModule_.[[HasTLA]] is *false*, perform GatherAvailableAncestors(_ancestorModule_, _execList_).
+                1. Return ~unused~.
+              </emu-alg>
+              <emu-note>
+                <p>When an asynchronous execution for a root _module_ is fulfilled, this function determines the list of modules which are able to synchronously execute together on this completion, populating them in _execList_.</p>
+              </emu-note>
+            </emu-clause>

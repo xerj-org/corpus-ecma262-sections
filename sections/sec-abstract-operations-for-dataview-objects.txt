@@ -1,0 +1,17 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.1 Abstract Operations For DataView Objects [id: sec-abstract-operations-for-dataview-objects]
+
+<emu-clause id="sec-abstract-operations-for-dataview-objects">
+      <h1>Abstract Operations For DataView Objects</h1>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

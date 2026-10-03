@@ -1,0 +1,21 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.5 The `for`-`in`, `for`-`of`, and `for`-`await`-`of` Statements > 14.7.5.10 For-In Iterator Objects > 14.7.5.10.1 CreateForInIterator ( _obj_: an Object, ): a For-In Iterator [id: sec-createforiniterator]
+
+<emu-clause id="sec-createforiniterator" type="abstract operation">
+          <h1>
+            CreateForInIterator (
+              _obj_: an Object,
+            ): a For-In Iterator
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It is used to create a For-In Iterator object which iterates over the own and inherited enumerable string properties of _obj_ in a specific order.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _iterator_ be OrdinaryObjectCreate(%ForInIteratorPrototype%, « [[Object]], [[ObjectWasVisited]], [[VisitedKeys]], [[RemainingKeys]] »).
+            1. Set _iterator_.[[Object]] to _obj_.
+            1. Set _iterator_.[[ObjectWasVisited]] to *false*.
+            1. Set _iterator_.[[VisitedKeys]] to a new empty List.
+            1. Set _iterator_.[[RemainingKeys]] to a new empty List.
+            1. Return _iterator_.
+          </emu-alg>
+        </emu-clause>

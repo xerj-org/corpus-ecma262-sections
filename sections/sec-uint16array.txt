@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.40 Uint16Array ( . . . ) [id: sec-uint16array]
+
+<emu-clause id="sec-uint16array">
+      <h1>Uint16Array ( . . . )</h1>
+      <p>See <emu-xref href="#sec-typedarray-constructors"></emu-xref>.</p>
+    </emu-clause>

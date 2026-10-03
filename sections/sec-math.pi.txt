@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.1 Value Properties of the Math Object > 21.3.1.6 Math.PI [id: sec-math.pi]
+
+<emu-clause id="sec-math.pi">
+        <h1>Math.PI</h1>
+        <p>The Number value for π, the ratio of the circumference of a circle to its diameter, which is approximately 3.1415926535897932.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

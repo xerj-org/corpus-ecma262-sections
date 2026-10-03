@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.31 Symbol value [id: sec-symbol-value]
+
+<emu-clause id="sec-symbol-value">
+      <h1>Symbol value</h1>
+      <p>primitive value that represents a unique, non-String Object property key</p>
+    </emu-clause>

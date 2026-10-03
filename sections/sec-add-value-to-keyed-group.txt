@@ -1,0 +1,23 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.34 AddValueToKeyedGroup ( _groups_: a List of Records with fields [[Key]] (an ECMAScript language value) and [[Elements]] (a List of ECMAScript language values), _key_: an ECMAScript language value, _value_: an ECMAScript language value, ): ~unused~ [id: sec-add-value-to-keyed-group]
+
+<emu-clause id="sec-add-value-to-keyed-group" type="abstract operation">
+      <h1>
+        AddValueToKeyedGroup (
+          _groups_: a List of Records with fields [[Key]] (an ECMAScript language value) and [[Elements]] (a List of ECMAScript language values),
+          _key_: an ECMAScript language value,
+          _value_: an ECMAScript language value,
+        ): ~unused~
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. For each Record { [[Key]], [[Elements]] } _group_ of _groups_, do
+          1. If SameValue(_group_.[[Key]], _key_) is *true*, then
+            1. Assert: Exactly one element of _groups_ meets this criterion.
+            1. Append _value_ to _group_.[[Elements]].
+            1. Return ~unused~.
+        1. Let _group_ be the Record { [[Key]]: _key_, [[Elements]]: « _value_ » }.
+        1. Append _group_ to _groups_.
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

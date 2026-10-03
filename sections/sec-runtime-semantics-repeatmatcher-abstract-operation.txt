@@ -1,0 +1,80 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.3 Runtime Semantics: CompileSubpattern ( _regexpRecord_: a RegExp Record, _direction_: ~forward~ or ~backward~, ): a Matcher > 22.2.2.3.1 RepeatMatcher ( _m_: a Matcher, _min_: a non-negative integer, _max_: a non-negative integer or +∞, _greedy_: a Boolean, _matchState_: a MatchState, _continue_: a MatcherContinuation, _parenIndex_: a non-negative integer, _parenCount_: a non-negative integer, ): either a MatchState or ~failure~ [id: sec-runtime-semantics-repeatmatcher-abstract-operation]
+
+<emu-clause id="sec-runtime-semantics-repeatmatcher-abstract-operation" type="abstract operation">
+          <h1>
+            RepeatMatcher (
+              _m_: a Matcher,
+              _min_: a non-negative integer,
+              _max_: a non-negative integer or +&infin;,
+              _greedy_: a Boolean,
+              _matchState_: a MatchState,
+              _continue_: a MatcherContinuation,
+              _parenIndex_: a non-negative integer,
+              _parenCount_: a non-negative integer,
+            ): either a MatchState or ~failure~
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _max_ = 0, return _continue_(_matchState_).
+            1. Let _d_ be a new MatcherContinuation with parameters (_y_) that captures _m_, _min_, _max_, _greedy_, _matchState_, _continue_, _parenIndex_, and _parenCount_ and performs the following steps when called:
+              1. Assert: _y_ is a MatchState.
+              1. [id="step-repeatmatcher-done"] If _min_ = 0 and _y_.[[EndIndex]] = _matchState_.[[EndIndex]], return ~failure~.
+              1. If _min_ = 0, let _min2_ be 0; else let _min2_ be _min_ - 1.
+              1. If _max_ = +∞, let _max2_ be +∞; else let _max2_ be _max_ - 1.
+              1. Return RepeatMatcher(_m_, _min2_, _max2_, _greedy_, _y_, _continue_, _parenIndex_, _parenCount_).
+            1. Let _capability_ be a copy of _matchState_.[[Captures]].
+            1. [id="step-repeatmatcher-clear-captures"] For each integer _k_ in the inclusive interval from _parenIndex_ + 1 to _parenIndex_ + _parenCount_, set _capability_[_k_] to *undefined*.
+            1. Let _input_ be _matchState_.[[Input]].
+            1. Let _e_ be _matchState_.[[EndIndex]].
+            1. Let _xr_ be the MatchState { [[Input]]: _input_, [[EndIndex]]: _e_, [[Captures]]: _capability_ }.
+            1. If _min_ ≠ 0, return _m_(_xr_, _d_).
+            1. If _greedy_ is *false*, then
+              1. Let _z_ be _continue_(_matchState_).
+              1. If _z_ is not ~failure~, return _z_.
+              1. Return _m_(_xr_, _d_).
+            1. Let _z_ be _m_(_xr_, _d_).
+            1. If _z_ is not ~failure~, return _z_.
+            1. Return _continue_(_matchState_).
+          </emu-alg>
+          <emu-note>
+            <p>An |Atom| followed by a |Quantifier| is repeated the number of times specified by the |Quantifier|. A |Quantifier| can be non-greedy, in which case the |Atom| pattern is repeated as few times as possible while still matching the sequel, or it can be greedy, in which case the |Atom| pattern is repeated as many times as possible while still matching the sequel. The |Atom| pattern is repeated rather than the input character sequence that it matches, so different repetitions of the |Atom| can match different input substrings.</p>
+          </emu-note>
+          <emu-note>
+            <p>If the |Atom| and the sequel of the regular expression all have choice points, the |Atom| is first matched as many (or as few, if non-greedy) times as possible. All choices in the sequel are tried before moving on to the next choice in the last repetition of |Atom|. All choices in the last (n<sup>th</sup>) repetition of |Atom| are tried before moving on to the next choice in the next-to-last (n - 1)<sup>st</sup> repetition of |Atom|; at which point it may turn out that more or fewer repetitions of |Atom| are now possible; these are exhausted (again, starting with either as few or as many as possible) before moving on to the next choice in the (n - 1)<sup>st</sup> repetition of |Atom| and so on.</p>
+            <p>Compare</p>
+            <pre><code class="javascript">/a[a-z]{2,4}/.exec("abcdefghi")</code></pre>
+            <p>which returns *"abcde"* with</p>
+            <pre><code class="javascript">/a[a-z]{2,4}?/.exec("abcdefghi")</code></pre>
+            <p>which returns *"abc"*.</p>
+            <p>Consider also</p>
+            <pre><code class="javascript">/(aa|aabaac|ba|b|c)*/.exec("aabaac")</code></pre>
+            <p>which, by the choice point ordering above, returns the array</p>
+            <pre><code class="javascript">["aaba", "ba"]</code></pre>
+            <p>and not any of:</p>
+            <pre><code class="javascript">
+              ["aabaac", "aabaac"]
+              ["aabaac", "c"]
+            </code></pre>
+            <p>The above ordering of choice points can be used to write a regular expression that calculates the greatest common divisor of two numbers (represented in unary notation). The following example calculates the gcd of 10 and 15:</p>
+            <pre><code class="javascript">"aaaaaaaaaa,aaaaaaaaaaaaaaa".replace(/^(a+)\1*,\1+$/, "$1")</code></pre>
+            <p>which returns the gcd in unary notation *"aaaaa"*.</p>
+          </emu-note>
+          <emu-note>
+            <p>Step <emu-xref href="#step-repeatmatcher-clear-captures"></emu-xref> of the RepeatMatcher clears |Atom|'s captures each time |Atom| is repeated. We can see its behaviour in the regular expression</p>
+            <pre><code class="javascript">/(z)((a+)?(b+)?(c))*/.exec("zaacbbbcac")</code></pre>
+            <p>which returns the array</p>
+            <pre><code class="javascript">["zaacbbbcac", "z", "ac", "a", undefined, "c"]</code></pre>
+            <p>and not</p>
+            <pre><code class="javascript">["zaacbbbcac", "z", "ac", "a", "bbb", "c"]</code></pre>
+            <p>because each iteration of the outermost `*` clears all captured Strings contained in the quantified |Atom|, which in this case includes capture Strings numbered 2, 3, 4, and 5.</p>
+          </emu-note>
+          <emu-note>
+            <p>Step <emu-xref href="#step-repeatmatcher-done"></emu-xref> of the RepeatMatcher states that once the minimum number of repetitions has been satisfied, any more expansions of |Atom| that match the empty character sequence are not considered for further repetitions. This prevents the regular expression engine from falling into an infinite loop on patterns such as:</p>
+            <pre><code class="javascript">/(a*)*/.exec("b")</code></pre>
+            <p>or the slightly more complicated:</p>
+            <pre><code class="javascript">/(a*)b\1+/.exec("baaaac")</code></pre>
+            <p>which returns the array</p>
+            <pre><code class="javascript">["b", ""]</code></pre>
+          </emu-note>
+        </emu-clause>

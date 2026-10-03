@@ -1,0 +1,39 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.7 The `super` Keyword > 13.3.7.1 Runtime Semantics: Evaluation [id: sec-super-keyword-runtime-semantics-evaluation]
+
+<emu-clause id="sec-super-keyword-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>SuperProperty : `super` `[` Expression `]`</emu-grammar>
+        <emu-alg>
+          1. Let _envRecord_ be GetThisEnvironment().
+          1. Let _actualThis_ be ? _envRecord_.GetThisBinding().
+          1. Let _propertyNameRef_ be ? Evaluation of |Expression|.
+          1. Let _propertyNameValue_ be ? GetValue(_propertyNameRef_).
+          1. Let _strict_ be IsStrict(this |SuperProperty|).
+          1. NOTE: In most cases, ToPropertyKey will be performed on _propertyNameValue_ immediately after this step. However, in the case of `super[b] = c`, it will not be performed until after evaluation of `c`.
+          1. Return MakeSuperPropertyReference(_actualThis_, _propertyNameValue_, _strict_).
+        </emu-alg>
+        <emu-grammar>SuperProperty : `super` `.` IdentifierName</emu-grammar>
+        <emu-alg>
+          1. Let _envRecord_ be GetThisEnvironment().
+          1. Let _actualThis_ be ? _envRecord_.GetThisBinding().
+          1. Let _propertyKey_ be the StringValue of |IdentifierName|.
+          1. Let _strict_ be IsStrict(this |SuperProperty|).
+          1. Return MakeSuperPropertyReference(_actualThis_, _propertyKey_, _strict_).
+        </emu-alg>
+        <emu-grammar>SuperCall : `super` Arguments</emu-grammar>
+        <emu-alg>
+          1. Let _newTarget_ be GetNewTarget().
+          1. Assert: _newTarget_ is a constructor.
+          1. Let _superCtor_ be GetSuperConstructor().
+          1. Let _argList_ be ? ArgumentListEvaluation of |Arguments|.
+          1. If IsConstructor(_superCtor_) is *false*, throw a *TypeError* exception.
+          1. Let _result_ be ? Construct(_superCtor_, _argList_, _newTarget_).
+          1. Let _thisER_ be GetThisEnvironment().
+          1. Assert: _thisER_ is a Function Environment Record.
+          1. Perform ? BindThisValue(_thisER_, _result_).
+          1. Let _funcObj_ be _thisER_.[[FunctionObject]].
+          1. Assert: _funcObj_ is an ECMAScript function object.
+          1. Perform ? InitializeInstanceElements(_result_, _funcObj_).
+          1. Return _result_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,21 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.3 String Exotic Objects > 10.4.3.2 [[DefineOwnProperty]] ( _propertyKey_: a property key, _propertyDesc_: a Property Descriptor, ): a normal completion containing a Boolean [id: sec-string-exotic-objects-defineownproperty-p-desc]
+
+<emu-clause id="sec-string-exotic-objects-defineownproperty-p-desc" type="internal method">
+        <h1>
+          [[DefineOwnProperty]] (
+            _propertyKey_: a property key,
+            _propertyDesc_: a Property Descriptor,
+          ): a normal completion containing a Boolean
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a String exotic object _string_</dd>
+        </dl>
+        <emu-alg>
+          1. Let _stringDesc_ be StringGetOwnProperty(_string_, _propertyKey_).
+          1. If _stringDesc_ is not *undefined*, then
+            1. Let _extensible_ be _string_.[[Extensible]].
+            1. Return IsCompatiblePropertyDescriptor(_extensible_, _propertyDesc_, _stringDesc_).
+          1. Return ! OrdinaryDefineOwnProperty(_string_, _propertyKey_, _propertyDesc_).
+        </emu-alg>
+      </emu-clause>

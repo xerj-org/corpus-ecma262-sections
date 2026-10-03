@@ -1,0 +1,32 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.15 Assignment Operators [id: sec-assignment-operators]
+
+<emu-clause id="sec-assignment-operators">
+    <h1>Assignment Operators</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      AssignmentExpression[In, Yield, Await] :
+        ConditionalExpression[?In, ?Yield, ?Await]
+        [+Yield] YieldExpression[?In, ?Await]
+        ArrowFunction[?In, ?Yield, ?Await]
+        AsyncArrowFunction[?In, ?Yield, ?Await]
+        LeftHandSideExpression[?Yield, ?Await] `=` AssignmentExpression[?In, ?Yield, ?Await] #assignment
+        LeftHandSideExpression[?Yield, ?Await] AssignmentOperator AssignmentExpression[?In, ?Yield, ?Await]
+        LeftHandSideExpression[?Yield, ?Await] `&amp;&amp;=` AssignmentExpression[?In, ?Yield, ?Await]
+        LeftHandSideExpression[?Yield, ?Await] `||=` AssignmentExpression[?In, ?Yield, ?Await]
+        LeftHandSideExpression[?Yield, ?Await] `??=` AssignmentExpression[?In, ?Yield, ?Await]
+
+      // emu-format ignore
+      AssignmentOperator : one of
+        `*=` `/=` `%=` `+=` `-=` `&lt;&lt;=` `&gt;&gt;=` `&gt;&gt;&gt;=` `&amp;=` `^=` `|=` `**=`
+    </emu-grammar>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

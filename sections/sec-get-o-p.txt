@@ -1,0 +1,17 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.2 Get ( _obj_: an Object, _propertyKey_: a property key, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-get-o-p]
+
+<emu-clause id="sec-get-o-p" type="abstract operation">
+      <h1>
+        Get (
+          _obj_: an Object,
+          _propertyKey_: a property key,
+        ): either a normal completion containing an ECMAScript language value or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to retrieve the value of a specific property of an object.</dd>
+      </dl>
+      <emu-alg>
+        1. Return ? <emu-meta effects="user-code">_obj_.[[Get]](_propertyKey_, _obj_)</emu-meta>.
+      </emu-alg>
+    </emu-clause>

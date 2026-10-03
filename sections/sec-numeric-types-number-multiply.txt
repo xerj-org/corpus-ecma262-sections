@@ -1,0 +1,35 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.1 The Number Type > 6.1.6.1.4 Number::multiply ( _x_: a Number, _y_: a Number, ): a Number [id: sec-numeric-types-number-multiply]
+
+<emu-clause id="sec-numeric-types-number-multiply" type="numeric method" oldids="sec-applying-the-mul-operator">
+          <h1>
+            Number::multiply (
+              _x_: a Number,
+              _y_: a Number,
+            ): a Number
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It performs multiplication according to the rules of IEEE 754-2019 binary double-precision arithmetic, producing the product of _x_ and _y_.</dd>
+          </dl>
+          <emu-alg>
+            1. If _x_ is *NaN* or _y_ is *NaN*, return *NaN*.
+            1. If _x_ is either *+∞*<sub>𝔽</sub> or *-∞*<sub>𝔽</sub>, then
+              1. If _y_ is either *+0*<sub>𝔽</sub> or *-0*<sub>𝔽</sub>, return *NaN*.
+              1. If _y_ > *+0*<sub>𝔽</sub>, return _x_.
+              1. Return -_x_.
+            1. If _y_ is either *+∞*<sub>𝔽</sub> or *-∞*<sub>𝔽</sub>, then
+              1. If _x_ is either *+0*<sub>𝔽</sub> or *-0*<sub>𝔽</sub>, return *NaN*.
+              1. If _x_ > *+0*<sub>𝔽</sub>, return _y_.
+              1. Return -_y_.
+            1. If _x_ is *-0*<sub>𝔽</sub>, then
+              1. If _y_ is *-0*<sub>𝔽</sub> or _y_ &lt; *-0*<sub>𝔽</sub>, return *+0*<sub>𝔽</sub>.
+              1. Return *-0*<sub>𝔽</sub>.
+            1. If _y_ is *-0*<sub>𝔽</sub>, then
+              1. If _x_ &lt; *-0*<sub>𝔽</sub>, return *+0*<sub>𝔽</sub>.
+              1. Return *-0*<sub>𝔽</sub>.
+            1. Return 𝔽(ℝ(_x_) × ℝ(_y_)).
+          </emu-alg>
+          <emu-note>
+            <p>Finite-precision multiplication is commutative, but not always associative.</p>
+          </emu-note>
+        </emu-clause>

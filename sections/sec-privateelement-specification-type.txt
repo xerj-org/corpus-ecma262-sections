@@ -1,0 +1,97 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.10 The PrivateElement Specification Type [id: sec-privateelement-specification-type]
+
+<emu-clause id="sec-privateelement-specification-type">
+      <h1>The PrivateElement Specification Type</h1>
+      <p>The PrivateElement type is a Record used in the specification of private class fields, methods, and accessors. Although private elements are not associated with Property Descriptors, and are not properties, the runtime semantics of expressions that refer to them are in some ways similar to those of non-configurable properties (private fields are analogous to writable data properties, private methods are analogous to non-writable data properties, and private accessors are analogous to accessor properties) and the corresponding Record fields are used for similar purposes.</p>
+      <p>Values of the PrivateElement type are Records whose fields are defined by <emu-xref href="#table-privateelement-fields"></emu-xref>. Such values are referred to as <dfn variants="PrivateElement">PrivateElements</dfn>.</p>
+      <emu-table id="table-privateelement-fields" caption="PrivateElement Fields">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Values of the [[Kind]] field for which it is present
+              </th>
+              <th>
+                Value
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              [[Key]]
+            </td>
+            <td>
+              All
+            </td>
+            <td>
+              a Private Name
+            </td>
+            <td>
+              The name of the field, method, or accessor.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[Kind]]
+            </td>
+            <td>
+              All
+            </td>
+            <td>
+              ~field~, ~method~, or ~accessor~
+            </td>
+            <td>
+              The kind of the element.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[Value]]
+            </td>
+            <td>
+              ~field~ and ~method~
+            </td>
+            <td>
+              an ECMAScript language value
+            </td>
+            <td>
+              The value of the field.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[Getter]]
+            </td>
+            <td>
+              ~accessor~
+            </td>
+            <td>
+              a function object or *undefined*
+            </td>
+            <td>
+              The getter for a private accessor.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[Setter]]
+            </td>
+            <td>
+              ~accessor~
+            </td>
+            <td>
+              a function object or *undefined*
+            </td>
+            <td>
+              The setter for a private accessor.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+    </emu-clause>

@@ -1,0 +1,22 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.5 CreateDataProperty ( _obj_: an Object, _propertyKey_: a property key, _value_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion [id: sec-createdataproperty]
+
+<emu-clause id="sec-createdataproperty" type="abstract operation">
+      <h1>
+        CreateDataProperty (
+          _obj_: an Object,
+          _propertyKey_: a property key,
+          _value_: an ECMAScript language value,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to create a new own property of an object.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _newDesc_ be the PropertyDescriptor { [[Value]]: _value_, [[Writable]]: *true*, [[Enumerable]]: *true*, [[Configurable]]: *true* }.
+        1. Return ? <emu-meta effects="user-code">_obj_.[[DefineOwnProperty]](_propertyKey_, _newDesc_)</emu-meta>.
+      </emu-alg>
+      <emu-note>
+        <p>This abstract operation creates a property whose attributes are set to the same defaults used for properties created by the ECMAScript language assignment operator. Normally, the property will not already exist. If it does exist and is not configurable or if _obj_ is not extensible, [[DefineOwnProperty]] will return *false*.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,28 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.15 EnqueueAtomicsWaitAsyncTimeoutJob ( _waiterList_: a WaiterList Record, _waiterRecord_: a Waiter Record, ): ~unused~ [id: sec-enqueueatomicswaitasynctimeoutjob]
+
+<emu-clause id="sec-enqueueatomicswaitasynctimeoutjob" type="abstract operation">
+        <h1>
+          EnqueueAtomicsWaitAsyncTimeoutJob (
+            _waiterList_: a WaiterList Record,
+            _waiterRecord_: a Waiter Record,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _timeoutJob_ be a new Job Abstract Closure with no parameters that captures _waiterList_ and _waiterRecord_ and performs the following steps when called:
+            1. Perform EnterCriticalSection(_waiterList_).
+            1. If _waiterList_.[[Waiters]] contains _waiterRecord_, then
+              1. Let _timeOfJobExecution_ be the time value (UTC) identifying the current time.
+              1. Assert: ℝ(_timeOfJobExecution_) ≥ _waiterRecord_.[[TimeoutTime]] (ignoring potential non-monotonicity of time values).
+              1. Set _waiterRecord_.[[Result]] to *"timed-out"*.
+              1. Perform RemoveWaiter(_waiterList_, _waiterRecord_).
+              1. Perform NotifyWaiter(_waiterList_, _waiterRecord_).
+            1. Perform LeaveCriticalSection(_waiterList_).
+            1. Return ~unused~.
+          1. Let _now_ be the time value (UTC) identifying the current time.
+          1. Let _currentRealm_ be the current Realm Record.
+          1. Perform HostEnqueueTimeoutJob(_timeoutJob_, _currentRealm_, 𝔽(_waiterRecord_.[[TimeoutTime]]) - _now_).
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

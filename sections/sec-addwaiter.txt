@@ -1,0 +1,18 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.8 AddWaiter ( _waiterList_: a WaiterList Record, _waiterRecord_: a Waiter Record, ): ~unused~ [id: sec-addwaiter]
+
+<emu-clause id="sec-addwaiter" type="abstract operation">
+        <h1>
+          AddWaiter (
+            _waiterList_: a WaiterList Record,
+            _waiterRecord_: a Waiter Record,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: The surrounding agent is in the critical section for _waiterList_.
+          1. Assert: There is no Waiter Record in _waiterList_.[[Waiters]] whose [[PromiseCapability]] field is _waiterRecord_.[[PromiseCapability]] and whose [[AgentSignifier]] field is _waiterRecord_.[[AgentSignifier]].
+          1. Append _waiterRecord_ to _waiterList_.[[Waiters]].
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,37 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.2 Abstract Operations for SharedArrayBuffer Objects > 25.2.2.1 AllocateSharedArrayBuffer ( _ctor_: a constructor, _byteLength_: a non-negative integer, optional _maxByteLength_: a non-negative integer or ~empty~, ): either a normal completion containing a SharedArrayBuffer or a throw completion [id: sec-allocatesharedarraybuffer]
+
+<emu-clause id="sec-allocatesharedarraybuffer" type="abstract operation">
+        <h1>
+          AllocateSharedArrayBuffer (
+            _ctor_: a constructor,
+            _byteLength_: a non-negative integer,
+            optional _maxByteLength_: a non-negative integer or ~empty~,
+          ): either a normal completion containing a SharedArrayBuffer or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to create a SharedArrayBuffer.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _slots_ be « [[ArrayBufferData]] ».
+          1. If _maxByteLength_ is present and _maxByteLength_ is not ~empty~, let _allocatingGrowableBuffer_ be *true*; else let _allocatingGrowableBuffer_ be *false*.
+          1. If _allocatingGrowableBuffer_ is *true*, then
+            1. If _byteLength_ > _maxByteLength_, throw a *RangeError* exception.
+            1. Append [[ArrayBufferByteLengthData]] and [[ArrayBufferMaxByteLength]] to _slots_.
+          1. Else,
+            1. Append [[ArrayBufferByteLength]] to _slots_.
+          1. Let _obj_ be ? OrdinaryCreateFromConstructor(_ctor_, *"%SharedArrayBuffer.prototype%"*, _slots_).
+          1. If _allocatingGrowableBuffer_ is *true*, let _allocationLength_ be _maxByteLength_; else let _allocationLength_ be _byteLength_.
+          1. Let _block_ be ? CreateSharedByteDataBlock(_allocationLength_).
+          1. Set _obj_.[[ArrayBufferData]] to _block_.
+          1. If _allocatingGrowableBuffer_ is *true*, then
+            1. Assert: _byteLength_ ≤ _maxByteLength_.
+            1. Let _byteLengthBlock_ be ? CreateSharedByteDataBlock(8).
+            1. Perform SetValueInBuffer(_byteLengthBlock_, 0, ~biguint64~, ℤ(_byteLength_), *true*, ~seq-cst~).
+            1. Set _obj_.[[ArrayBufferByteLengthData]] to _byteLengthBlock_.
+            1. Set _obj_.[[ArrayBufferMaxByteLength]] to _maxByteLength_.
+          1. Else,
+            1. Set _obj_.[[ArrayBufferByteLength]] to _byteLength_.
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

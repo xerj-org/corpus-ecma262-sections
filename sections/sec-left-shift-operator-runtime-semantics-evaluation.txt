@@ -1,0 +1,9 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.9 Bitwise Shift Operators > 13.9.1 The Left Shift Operator ( `<<` ) > 13.9.1.1 Runtime Semantics: Evaluation [id: sec-left-shift-operator-runtime-semantics-evaluation]
+
+<emu-clause id="sec-left-shift-operator-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>ShiftExpression : ShiftExpression `&lt;&lt;` AdditiveExpression</emu-grammar>
+        <emu-alg>
+          1. Return ? EvaluateStringOrNumericBinaryExpression(|ShiftExpression|, `&lt;&lt;`, |AdditiveExpression|).
+        </emu-alg>
+      </emu-clause>

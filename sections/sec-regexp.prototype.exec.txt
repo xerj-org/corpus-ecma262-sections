@@ -1,0 +1,13 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.6 Properties of the RegExp Prototype Object > 22.2.6.2 RegExp.prototype.exec ( _string_ ) [id: sec-regexp.prototype.exec]
+
+<emu-clause id="sec-regexp.prototype.exec" type="built-in function">
+        <h1>RegExp.prototype.exec ( _string_ )</h1>
+        <p>This method searches _string_ for an occurrence of the regular expression pattern and returns an Array containing the results of the match, or *null* if _string_ did not match.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _regexp_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_regexp_, [[RegExpMatcher]]).
+          1. Set _string_ to ? ToString(_string_).
+          1. Return ? RegExpBuiltinExec(_regexp_, _string_).
+        </emu-alg>
+      </emu-clause>

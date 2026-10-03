@@ -1,0 +1,16 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.15 SecondFromTime ( _tv_: a finite time value, ): an integer in the inclusive interval from 0 to 59 [id: sec-secondfromtime]
+
+<emu-clause id="sec-secondfromtime" type="abstract operation" oldids="eqn-SecFromTime,sec-secfromtime">
+        <h1>
+          SecondFromTime (
+            _tv_: a finite time value,
+          ): an integer in the inclusive interval from 0 to 59
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns the second of the minute in which _tv_ falls.</dd>
+        </dl>
+        <emu-alg>
+          1. Return floor(ℝ(_tv_) / MillisecondsPerSecond) modulo SecondsPerMinute.
+        </emu-alg>
+      </emu-clause>

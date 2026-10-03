@@ -1,0 +1,19 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.8 Synthetic Module Records > 16.2.1.8.4 Implementation of Module Record Abstract Methods > 16.2.1.8.4.4 Link ( ): a normal completion containing ~unused~ [id: sec-smr-Link]
+
+<emu-clause id="sec-smr-Link" type="concrete method">
+            <h1>Link ( ): a normal completion containing ~unused~</h1>
+            <dl class="header">
+              <dt>for</dt>
+              <dd>a Synthetic Module Record _module_</dd>
+            </dl>
+
+            <emu-alg>
+              1. Let _realm_ be _module_.[[Realm]].
+              1. Let _envRecord_ be NewModuleEnvironment(_realm_.[[GlobalEnv]]).
+              1. Set _module_.[[Environment]] to _envRecord_.
+              1. For each String _exportName_ of _module_.[[ExportNames]], do
+                1. Perform ! _envRecord_.CreateMutableBinding(_exportName_, *false*).
+                1. Perform ! _envRecord_.InitializeBinding(_exportName_, *undefined*).
+              1. Return NormalCompletion(~unused~).
+            </emu-alg>
+          </emu-clause>

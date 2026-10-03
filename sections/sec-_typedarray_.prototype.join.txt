@@ -1,0 +1,25 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.18 %TypedArray%.prototype.join ( _separator_ ) [id: sec-%typedarray%.prototype.join]
+
+<emu-clause id="sec-%typedarray%.prototype.join" type="built-in function">
+        <h1>%TypedArray%.prototype.join ( _separator_ )</h1>
+        <p>The interpretation and use of the arguments of this method are the same as for `Array.prototype.join` as defined in <emu-xref href="#sec-array.prototype.join"></emu-xref>.</p>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Let _taRecord_ be ? ValidateTypedArray(_obj_, ~seq-cst~).
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. If _separator_ is *undefined*, let _separatorString_ be *","*.
+          1. Else, let _separatorString_ be ? ToString(_separator_).
+          1. Let _result_ be the empty String.
+          1. Let _k_ be 0.
+          1. Repeat, while _k_ &lt; _length_,
+            1. If _k_ > 0, set _result_ to the string-concatenation of _result_ and _separatorString_.
+            1. Let _element_ be TypedArrayGetElement(_obj_, 𝔽(_k_)).
+            1. If _element_ is not *undefined*, then
+              1. Let _elementString_ be ! ToString(_element_).
+              1. Set _result_ to the string-concatenation of _result_ and _elementString_.
+            1. Set _k_ to _k_ + 1.
+          1. Return _result_.
+        </emu-alg>
+        <p>This method is not generic. The *this* value must be an object with a [[TypedArrayName]] internal slot.</p>
+      </emu-clause>

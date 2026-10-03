@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.1 implementation-approximated [id: sec-terms-and-definitions-implementation-approximated]
+
+<emu-clause id="sec-terms-and-definitions-implementation-approximated">
+      <h1>implementation-approximated</h1>
+      <p>an implementation-approximated facility is defined in whole or in part by an external source but has a recommended, ideal behaviour in this specification</p>
+    </emu-clause>

@@ -1,0 +1,54 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.5 Array Iterator Objects > 23.1.5.3 Properties of Array Iterator Instances [id: sec-properties-of-array-iterator-instances]
+
+<emu-clause id="sec-properties-of-array-iterator-instances">
+        <h1>Properties of Array Iterator Instances</h1>
+        <p>Array Iterator instances are ordinary objects that inherit properties from the %ArrayIteratorPrototype% intrinsic object. Array Iterator instances are initially created with the internal slots listed in <emu-xref href="#table-internal-slots-of-array-iterator-instances"></emu-xref>.</p>
+        <emu-table id="table-internal-slots-of-array-iterator-instances" caption="Internal Slots of Array Iterator Instances" oldids="table-48">
+          <table>
+            <tr>
+              <th>
+                Internal Slot
+              </th>
+              <th>
+                Type
+              </th>
+              <th>
+                Description
+              </th>
+            </tr>
+            <tr>
+              <td>
+                [[IteratedArrayLike]]
+              </td>
+              <td>
+                an Object or *undefined*
+              </td>
+              <td>
+                The array-like object that is being iterated.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[ArrayLikeNextIndex]]
+              </td>
+              <td>
+                a non-negative integer
+              </td>
+              <td>
+                The integer index of the next element to be examined by this iterator.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[ArrayLikeIterationKind]]
+              </td>
+              <td>
+                ~key+value~, ~key~, or ~value~
+              </td>
+              <td>
+                A value that identifies what is returned for each element of the iteration.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

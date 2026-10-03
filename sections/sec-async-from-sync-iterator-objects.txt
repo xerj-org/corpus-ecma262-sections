@@ -1,0 +1,14 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.5 Async-from-Sync Iterator Objects [id: sec-async-from-sync-iterator-objects]
+
+<emu-clause id="sec-async-from-sync-iterator-objects">
+      <h1>Async-from-Sync Iterator Objects</h1>
+      <p>An <dfn variants="Async-from-Sync Iterator objects">Async-from-Sync Iterator object</dfn> is an async iterator that adapts a specific synchronous iterator. Async-from-Sync Iterator objects are never directly accessible to ECMAScript code. There is not a named constructor for Async-from-Sync Iterator objects. Instead, Async-from-Sync Iterator objects are created by the CreateAsyncFromSyncIterator abstract operation as needed.</p>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

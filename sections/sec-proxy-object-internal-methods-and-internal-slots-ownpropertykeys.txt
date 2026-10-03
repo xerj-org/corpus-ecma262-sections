@@ -1,0 +1,65 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.5 Proxy Object Internal Methods and Internal Slots > 10.5.11 [[OwnPropertyKeys]] ( ): either a normal completion containing a List of property keys or a throw completion [id: sec-proxy-object-internal-methods-and-internal-slots-ownpropertykeys]
+
+<emu-clause id="sec-proxy-object-internal-methods-and-internal-slots-ownpropertykeys" type="internal method">
+      <h1>[[OwnPropertyKeys]] ( ): either a normal completion containing a List of property keys or a throw completion</h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>a Proxy exotic object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Perform ? ValidateNonRevokedProxy(_obj_).
+        1. Let _target_ be _obj_.[[ProxyTarget]].
+        1. Let _handler_ be _obj_.[[ProxyHandler]].
+        1. Assert: _handler_ is an Object.
+        1. Let _trap_ be ? GetMethod(_handler_, *"ownKeys"*).
+        1. If _trap_ is *undefined*, then
+          1. Return ? <emu-meta effects="user-code">_target_.[[OwnPropertyKeys]]()</emu-meta>.
+        1. Let _trapResultArray_ be ? Call(_trap_, _handler_, « _target_ »).
+        1. Let _trapResult_ be ? CreateListFromArrayLike(_trapResultArray_, ~property-key~).
+        1. If _trapResult_ contains any duplicate entries, throw a *TypeError* exception.
+        1. Let _extensibleTarget_ be ? IsExtensible(_target_).
+        1. Let _targetKeys_ be ? <emu-meta effects="user-code">_target_.[[OwnPropertyKeys]]()</emu-meta>.
+        1. Assert: _targetKeys_ is a List of property keys.
+        1. Assert: _targetKeys_ contains no duplicate entries.
+        1. Let _targetConfigurableKeys_ be a new empty List.
+        1. Let _targetNonconfigurableKeys_ be a new empty List.
+        1. For each element _key_ of _targetKeys_, do
+          1. Let _propertyDesc_ be ? <emu-meta effects="user-code">_target_.[[GetOwnProperty]](_key_)</emu-meta>.
+          1. If _propertyDesc_ is not *undefined* and _propertyDesc_.[[Configurable]] is *false*, then
+            1. Append _key_ to _targetNonconfigurableKeys_.
+          1. Else,
+            1. Append _key_ to _targetConfigurableKeys_.
+        1. If _extensibleTarget_ is *true* and _targetNonconfigurableKeys_ is empty, then
+          1. Return _trapResult_.
+        1. Let _uncheckedResultKeys_ be a List whose elements are the elements of _trapResult_.
+        1. For each element _key_ of _targetNonconfigurableKeys_, do
+          1. If _uncheckedResultKeys_ does not contain _key_, throw a *TypeError* exception.
+          1. Remove _key_ from _uncheckedResultKeys_.
+        1. If _extensibleTarget_ is *true*, return _trapResult_.
+        1. For each element _key_ of _targetConfigurableKeys_, do
+          1. If _uncheckedResultKeys_ does not contain _key_, throw a *TypeError* exception.
+          1. Remove _key_ from _uncheckedResultKeys_.
+        1. If _uncheckedResultKeys_ is not empty, throw a *TypeError* exception.
+        1. Return _trapResult_.
+      </emu-alg>
+      <emu-note>
+        <p>[[OwnPropertyKeys]] for Proxy objects enforces the following invariants:</p>
+        <ul>
+          <li>
+            The result of [[OwnPropertyKeys]] is a List.
+          </li>
+          <li>
+            The returned List contains no duplicate entries.
+          </li>
+          <li>
+            Each element of the returned List is a property key.
+          </li>
+          <li>
+            The result List must contain the keys of all non-configurable own properties of the target object.
+          </li>
+          <li>
+            If the target object is not extensible, then the result List must contain all the keys of the own properties of the target object and no other values.
+          </li>
+        </ul>
+      </emu-note>
+    </emu-clause>

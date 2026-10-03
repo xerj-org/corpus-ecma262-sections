@@ -1,0 +1,19 @@
+ECMA-262 > 24 Keyed Collections > 24.4 WeakSet Objects [id: sec-weakset-objects]
+
+<emu-clause id="sec-weakset-objects">
+    <h1>WeakSet Objects</h1>
+    <p>WeakSets are collections of objects and/or symbols. A distinct object or symbol may only occur once as an element of a WeakSet's collection. A WeakSet may be queried to see if it contains a specific value, but no mechanism is provided for enumerating the values it holds. In certain conditions, values which are not live are removed as WeakSet elements, as described in <emu-xref href="#sec-weakref-execution"></emu-xref>.</p>
+    <p>An implementation may impose an arbitrarily determined latency between the time a value contained in a WeakSet becomes inaccessible and the time when the value is removed from the WeakSet. If this latency was observable to ECMAScript program, it would be a source of indeterminacy that could impact program execution. For that reason, an ECMAScript implementation must not provide any means to determine if a WeakSet contains a particular value that does not require the observer to present the observed value.</p>
+    <p>WeakSets must be implemented using either hash tables or other mechanisms that, on average, provide access times that are sublinear on the number of elements in the collection. The data structure used in this specification is only intended to describe the required observable semantics of WeakSets. It is not intended to be a viable implementation model.</p>
+    <emu-note>
+      <p>See the NOTE in <emu-xref href="#sec-weakmap-objects"></emu-xref>.</p>
+    </emu-note>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

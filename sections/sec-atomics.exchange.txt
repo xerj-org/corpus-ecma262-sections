@@ -1,0 +1,11 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.7 Atomics.exchange ( _ta_, _index_, _value_ ) [id: sec-atomics.exchange]
+
+<emu-clause id="sec-atomics.exchange" type="built-in function">
+      <h1>Atomics.exchange ( _ta_, _index_, _value_ )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _second_ be a new read-modify-write modification function with parameters (_oldBytes_, _newBytes_) that captures nothing and performs the following steps atomically when called:
+          1. Return _newBytes_.
+        1. Return ? AtomicReadModifyWrite(_ta_, _index_, _value_, _second_).
+      </emu-alg>
+    </emu-clause>

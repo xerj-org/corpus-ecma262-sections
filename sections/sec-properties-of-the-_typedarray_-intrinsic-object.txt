@@ -1,0 +1,19 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.2 Properties of the %TypedArray% Intrinsic Object [id: sec-properties-of-the-%typedarray%-intrinsic-object]
+
+<emu-clause id="sec-properties-of-the-%typedarray%-intrinsic-object">
+      <h1>Properties of the %TypedArray% Intrinsic Object</h1>
+      <p>The %TypedArray% intrinsic object:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li>has a *"name"* property whose value is *"TypedArray"*.</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

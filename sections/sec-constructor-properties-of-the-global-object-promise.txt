@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.26 Promise ( . . . ) [id: sec-constructor-properties-of-the-global-object-promise]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-promise">
+      <h1>Promise ( . . . )</h1>
+      <p>See <emu-xref href="#sec-promise-constructor"></emu-xref>.</p>
+    </emu-clause>

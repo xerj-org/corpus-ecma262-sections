@@ -1,0 +1,15 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.1 The Object Constructor [id: sec-object-constructor]
+
+<emu-clause id="sec-object-constructor">
+      <h1>The Object Constructor</h1>
+      <p>The Object constructor:</p>
+      <ul>
+        <li>is <dfn>%Object%</dfn>.</li>
+        <li>is the initial value of the *"Object"* property of the global object.</li>
+        <li>creates a new ordinary object when called as a constructor.</li>
+        <li>performs a type conversion when called as a function rather than as a constructor.</li>
+        <li>may be used as the value of an `extends` clause of a class definition.</li>
+      </ul>
+
+      
+    </emu-clause>

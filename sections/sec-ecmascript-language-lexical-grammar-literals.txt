@@ -1,0 +1,17 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals [id: sec-ecmascript-language-lexical-grammar-literals]
+
+<emu-clause id="sec-ecmascript-language-lexical-grammar-literals">
+    <h1>Literals</h1>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

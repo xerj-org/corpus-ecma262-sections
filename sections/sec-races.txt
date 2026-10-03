@@ -1,0 +1,15 @@
+ECMA-262 > 29 Memory Model > 29.8 Races [id: sec-races]
+
+<emu-clause id="sec-races">
+    <h1>Races</h1>
+    <p>For an execution _execution_ and events _eventA_ and _eventB_ that are contained in SharedDataBlockEventSet(_execution_), _eventA_ and _eventB_ are in a <em>race</em> if the following algorithm returns *true*.</p>
+    <emu-alg>
+      1. If _eventA_ and _eventB_ are not the same Shared Data Block event, then
+        1. If it is not the case that both _eventA_ happens-before _eventB_ in _execution_ and _eventB_ happens-before _eventA_ in _execution_, then
+          1. If _eventA_ is either a WriteSharedMemory or ReadModifyWriteSharedMemory event, _eventB_ is either a WriteSharedMemory or ReadModifyWriteSharedMemory event, and _eventA_ and _eventB_ do not have disjoint memory ranges, then
+            1. Return *true*.
+          1. If _eventA_ reads-from _eventB_ in _execution_ or _eventB_ reads-from _eventA_ in _execution_, then
+            1. Return *true*.
+      1. Return *false*.
+    </emu-alg>
+  </emu-clause>

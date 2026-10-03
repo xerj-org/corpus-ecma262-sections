@@ -1,0 +1,14 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.23 Object.setPrototypeOf ( _obj_, _proto_ ) [id: sec-object.setprototypeof]
+
+<emu-clause id="sec-object.setprototypeof" type="built-in function">
+        <h1>Object.setPrototypeOf ( _obj_, _proto_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Perform ? RequireObjectCoercible(_obj_).
+          1. If _proto_ is not an Object and _proto_ is not *null*, throw a *TypeError* exception.
+          1. If _obj_ is not an Object, return _obj_.
+          1. Let _status_ be ? <emu-meta effects="user-code">_obj_.[[SetPrototypeOf]](_proto_)</emu-meta>.
+          1. If _status_ is *false*, throw a *TypeError* exception.
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

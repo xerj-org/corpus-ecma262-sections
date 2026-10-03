@@ -1,0 +1,23 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.3 Properties of the String Prototype Object > 22.1.3.17 String.prototype.padStart ( _maxLength_ [ , _fillString_ ] ) > 22.1.3.17.1 StringPaddingBuiltinsImpl ( _thisValue_: an ECMAScript language value, _maxLength_: an ECMAScript language value, _fillString_: an ECMAScript language value, _placement_: ~start~ or ~end~, ): either a normal completion containing a String or a throw completion [id: sec-stringpaddingbuiltinsimpl]
+
+<emu-clause id="sec-stringpaddingbuiltinsimpl" type="abstract operation">
+          <h1>
+            StringPaddingBuiltinsImpl (
+              _thisValue_: an ECMAScript language value,
+              _maxLength_: an ECMAScript language value,
+              _fillString_: an ECMAScript language value,
+              _placement_: ~start~ or ~end~,
+            ): either a normal completion containing a String or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _string_ be ? ToString(_thisValue_).
+            1. Let _intMaxLength_ be ℝ(? ToLength(_maxLength_)).
+            1. Let _stringLength_ be the length of _string_.
+            1. If _intMaxLength_ ≤ _stringLength_, return _string_.
+            1. If _fillString_ is *undefined*, set _fillString_ to the String value consisting solely of the code unit 0x0020 (SPACE).
+            1. Else, set _fillString_ to ? ToString(_fillString_).
+            1. Return StringPad(_string_, _intMaxLength_, _fillString_, _placement_).
+          </emu-alg>
+        </emu-clause>

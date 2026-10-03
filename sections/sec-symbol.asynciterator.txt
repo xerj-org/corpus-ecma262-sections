@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.2 Properties of the Symbol Constructor > 20.4.2.2 Symbol.asyncIterator [id: sec-symbol.asynciterator]
+
+<emu-clause id="sec-symbol.asynciterator">
+        <h1>Symbol.asyncIterator</h1>
+        <p>The initial value of `Symbol.asyncIterator` is the well-known symbol %Symbol.asyncIterator% (<emu-xref href="#table-well-known-symbols"></emu-xref>).</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

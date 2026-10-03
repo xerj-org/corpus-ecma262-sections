@@ -1,0 +1,35 @@
+ECMA-262 > 20 Fundamental Objects > 20.2 Function Objects > 20.2.3 Properties of the Function Prototype Object > 20.2.3.2 Function.prototype.bind ( _thisArg_, ..._args_ ) [id: sec-function.prototype.bind]
+
+<emu-clause id="sec-function.prototype.bind" type="built-in function">
+        <h1>Function.prototype.bind ( _thisArg_, ..._args_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _target_ be the *this* value.
+          1. If IsCallable(_target_) is *false*, throw a *TypeError* exception.
+          1. Let _boundFunc_ be ? BoundFunctionCreate(_target_, _thisArg_, _args_).
+          1. Let _length_ be 0.
+          1. Let _targetHasLength_ be ? HasOwnProperty(_target_, *"length"*).
+          1. If _targetHasLength_ is *true*, then
+            1. Let _targetLength_ be ? Get(_target_, *"length"*).
+            1. If _targetLength_ is a Number, then
+              1. Let _targetLengthAsInt_ be ! ToIntegerOrInfinity(_targetLength_).
+              1. If _targetLengthAsInt_ = +∞, then
+                1. Set _length_ to +∞.
+              1. Else if _targetLengthAsInt_ = -∞, then
+                1. Set _length_ to 0.
+              1. Else,
+                1. Let _argCount_ be the number of elements in _args_.
+                1. Set _length_ to max(_targetLengthAsInt_ - _argCount_, 0).
+          1. Perform SetFunctionLength(_boundFunc_, _length_).
+          1. Let _targetName_ be ? Get(_target_, *"name"*).
+          1. If _targetName_ is not a String, set _targetName_ to the empty String.
+          1. Perform SetFunctionName(_boundFunc_, _targetName_, *"bound"*).
+          1. Return _boundFunc_.
+        </emu-alg>
+        <emu-note>
+          <p>Function objects created using `Function.prototype.bind` are exotic objects. They also do not have a *"prototype"* property.</p>
+        </emu-note>
+        <emu-note>
+          <p>If _target_ is either an arrow function or a bound function exotic object, then the _thisArg_ passed to this method will not be used by subsequent calls to _func_.</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.2 BigInt Objects > 21.2.3 Properties of the BigInt Prototype Object > 21.2.3.5 BigInt.prototype [ %Symbol.toStringTag% ] [id: sec-bigint.prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-bigint.prototype-@@tostringtag" id="sec-bigint.prototype-%symbol.tostringtag%">
+        <h1>BigInt.prototype [ %Symbol.toStringTag% ]</h1>
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"BigInt"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

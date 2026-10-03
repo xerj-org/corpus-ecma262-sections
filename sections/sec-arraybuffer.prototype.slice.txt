@@ -1,0 +1,33 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.6 Properties of the ArrayBuffer Prototype Object > 25.1.6.7 ArrayBuffer.prototype.slice ( _start_, _end_ ) [id: sec-arraybuffer.prototype.slice]
+
+<emu-clause id="sec-arraybuffer.prototype.slice" type="built-in function">
+        <h1>ArrayBuffer.prototype.slice ( _start_, _end_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_obj_, [[ArrayBufferData]]).
+          1. If IsSharedArrayBuffer(_obj_) is *true*, throw a *TypeError* exception.
+          1. If IsDetachedBuffer(_obj_) is *true*, throw a *TypeError* exception.
+          1. Let _length_ be _obj_.[[ArrayBufferByteLength]].
+          1. Let _first_ be ? ToClampedIndex(_start_, _length_).
+          1. If _end_ is *undefined*, let _final_ be _length_; else let _final_ be ? ToClampedIndex(_end_, _length_).
+          1. Let _newLength_ be max(_final_ - _first_, 0).
+          1. Let _ctor_ be ? SpeciesConstructor(_obj_, %ArrayBuffer%).
+          1. Let _new_ be ? Construct(_ctor_, « 𝔽(_newLength_) »).
+          1. Perform ? RequireInternalSlot(_new_, [[ArrayBufferData]]).
+          1. If IsSharedArrayBuffer(_new_) is *true*, throw a *TypeError* exception.
+          1. If IsDetachedBuffer(_new_) is *true*, throw a *TypeError* exception.
+          1. If SameValue(_new_, _obj_) is *true*, throw a *TypeError* exception.
+          1. If _new_.[[ArrayBufferByteLength]] &lt; _newLength_, throw a *TypeError* exception.
+          1. NOTE: Side-effects of the above steps may have detached or resized _obj_.
+          1. If IsDetachedBuffer(_obj_) is *true*, throw a *TypeError* exception.
+          1. Let _fromBlock_ be _obj_.[[ArrayBufferData]].
+          1. Let _toBlock_ be _new_.[[ArrayBufferData]].
+          1. Let _currentLength_ be _obj_.[[ArrayBufferByteLength]].
+          1. Let _maxCount_ be _currentLength_ - _first_.
+          1. If _maxCount_ > 0, then
+            1. Let _count_ be min(_newLength_, _maxCount_).
+            1. Perform CopyDataBlockBytes(_toBlock_, 0, _fromBlock_, _first_, _count_).
+          1. Return _new_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,15 @@
+ECMA-262 > 21 Numbers and Dates > 21.2 BigInt Objects > 21.2.1 The BigInt Constructor > 21.2.1.1 BigInt ( _value_ ) > 21.2.1.1.1 NumberToBigInt ( _number_: a Number, ): either a normal completion containing a BigInt or a throw completion [id: sec-numbertobigint]
+
+<emu-clause id="sec-numbertobigint" type="abstract operation">
+          <h1>
+            NumberToBigInt (
+              _number_: a Number,
+            ): either a normal completion containing a BigInt or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _number_ is not an integral Number, throw a *RangeError* exception.
+            1. Return ℤ(ℝ(_number_)).
+          </emu-alg>
+        </emu-clause>

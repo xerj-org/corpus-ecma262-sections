@@ -1,0 +1,21 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.11 The `with` Statement [id: sec-with-statement]
+
+<emu-clause id="sec-with-statement" legacy>
+    <h1>The `with` Statement</h1>
+    <emu-note>
+      <p>Use of the Legacy `with` statement is discouraged in new ECMAScript code. Consider alternatives that are permitted in both strict mode code and non-strict code, such as <emu-xref href="#sec-destructuring-assignment">destructuring assignment</emu-xref>.</p>
+    </emu-note>
+
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      WithStatement[Yield, Await, Return] :
+        `with` `(` Expression[+In, ?Yield, ?Await] `)` Statement[?Yield, ?Await, ?Return]
+    </emu-grammar>
+    <emu-note>
+      <p>The `with` statement adds an Object Environment Record for a computed object to the lexical environment of the running execution context. It then executes a statement using this augmented lexical environment. Finally, it restores the original lexical environment.</p>
+    </emu-note>
+
+    
+
+    
+  </emu-clause>

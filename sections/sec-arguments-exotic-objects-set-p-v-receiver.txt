@@ -1,0 +1,26 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.4 Arguments Exotic Objects > 10.4.4.4 [[Set]] ( _propertyKey_: a property key, _value_: an ECMAScript language value, _receiver_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion [id: sec-arguments-exotic-objects-set-p-v-receiver]
+
+<emu-clause id="sec-arguments-exotic-objects-set-p-v-receiver" type="internal method">
+        <h1>
+          [[Set]] (
+            _propertyKey_: a property key,
+            _value_: an ECMAScript language value,
+            _receiver_: an ECMAScript language value,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>an arguments exotic object _args_</dd>
+        </dl>
+        <emu-alg>
+          1. If SameValue(_args_, _receiver_) is *false*, then
+            1. Let _isMapped_ be *false*.
+          1. Else,
+            1. Let _map_ be _args_.[[ParameterMap]].
+            1. Let _isMapped_ be ! HasOwnProperty(_map_, _propertyKey_).
+          1. If _isMapped_ is *true*, then
+            1. Assert: The following Set will succeed, since formal parameters mapped by arguments objects are always writable.
+            1. Perform ! Set(_map_, _propertyKey_, _value_, *false*).
+          1. Return ? OrdinarySet(_args_, _propertyKey_, _value_, _receiver_).
+        </emu-alg>
+      </emu-clause>

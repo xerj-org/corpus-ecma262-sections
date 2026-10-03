@@ -1,0 +1,16 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.1 The Array Constructor [id: sec-array-constructor]
+
+<emu-clause id="sec-array-constructor">
+      <h1>The Array Constructor</h1>
+      <p>The Array constructor:</p>
+      <ul>
+        <li>is <dfn>%Array%</dfn>.</li>
+        <li>is the initial value of the *"Array"* property of the global object.</li>
+        <li>creates and initializes a new Array when called as a constructor.</li>
+        <li>also creates and initializes a new Array when called as a function rather than as a constructor. Thus the function call `Array(…)` is equivalent to the object creation expression `new Array(…)` with the same arguments.</li>
+        <li>is a function whose behaviour differs based upon the number and types of its arguments.</li>
+        <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the exotic Array behaviour must include a `super` call to the Array constructor to initialize subclass instances that are Array exotic objects. However, most of the `Array.prototype` methods are generic methods that are not dependent upon their *this* value being an Array exotic object.</li>
+      </ul>
+
+      
+    </emu-clause>

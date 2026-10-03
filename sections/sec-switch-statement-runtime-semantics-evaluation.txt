@@ -1,0 +1,37 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.12 The `switch` Statement > 14.12.4 Runtime Semantics: Evaluation [id: sec-switch-statement-runtime-semantics-evaluation]
+
+<emu-clause id="sec-switch-statement-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>SwitchStatement : `switch` `(` Expression `)` CaseBlock</emu-grammar>
+      <emu-alg>
+        1. Let _exprRef_ be ? Evaluation of |Expression|.
+        1. Let _switchValue_ be ? GetValue(_exprRef_).
+        1. Let _oldEnv_ be the running execution context's LexicalEnvironment.
+        1. Let _blockEnv_ be NewDeclarativeEnvironment(_oldEnv_).
+        1. Perform BlockDeclarationInstantiation(|CaseBlock|, _blockEnv_).
+        1. Set the running execution context's LexicalEnvironment to _blockEnv_.
+        1. Let _blockResult_ be Completion(CaseBlockEvaluation of |CaseBlock| with argument _switchValue_).
+        1. Assert: _blockEnv_.[[DisposableResourceStack]] is an empty List.
+        1. Set the running execution context's LexicalEnvironment to _oldEnv_.
+        1. Return _blockResult_.
+      </emu-alg>
+      <emu-note>
+        <p>No matter how control leaves the |SwitchStatement| the LexicalEnvironment is always restored to its former state.</p>
+      </emu-note>
+      <emu-grammar>CaseClause : `case` Expression `:`</emu-grammar>
+      <emu-alg>
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-grammar>CaseClause : `case` Expression `:` StatementList</emu-grammar>
+      <emu-alg>
+        1. Return ? Evaluation of |StatementList|.
+      </emu-alg>
+      <emu-grammar>DefaultClause : `default` `:`</emu-grammar>
+      <emu-alg>
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-grammar>DefaultClause : `default` `:` StatementList</emu-grammar>
+      <emu-alg>
+        1. Return ? Evaluation of |StatementList|.
+      </emu-alg>
+    </emu-clause>

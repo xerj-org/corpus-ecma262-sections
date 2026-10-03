@@ -1,0 +1,12 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.3 Properties of the String Prototype Object > 22.1.3.10 String.prototype.isWellFormed ( ) [id: sec-string.prototype.iswellformed]
+
+<emu-clause id="sec-string.prototype.iswellformed" type="built-in function">
+        <h1>String.prototype.isWellFormed ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _thisValue_ be the *this* value.
+          1. Perform ? RequireObjectCoercible(_thisValue_).
+          1. Let _string_ be ? ToString(_thisValue_).
+          1. Return IsStringWellFormedUnicode(_string_).
+        </emu-alg>
+      </emu-clause>

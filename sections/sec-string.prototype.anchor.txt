@@ -1,0 +1,12 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties > B.2.2 Additional Properties of the String.prototype Object > B.2.2.2 String.prototype.anchor ( _name_ ) [id: sec-string.prototype.anchor]
+
+<emu-annex id="sec-string.prototype.anchor" type="built-in function">
+        <h1>String.prototype.anchor ( _name_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _string_ be the *this* value.
+          1. Return ? CreateHTML(_string_, *"a"*, *"name"*, _name_).
+        </emu-alg>
+
+        
+      </emu-annex>

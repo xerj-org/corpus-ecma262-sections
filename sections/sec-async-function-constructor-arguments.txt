@@ -1,0 +1,15 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.10 AsyncFunction Objects > 27.10.1 The AsyncFunction Constructor > 27.10.1.1 AsyncFunction ( ..._paramArgs_, _bodyArg_ ) [id: sec-async-function-constructor-arguments]
+
+<emu-clause id="sec-async-function-constructor-arguments" type="built-in function">
+        <h1>AsyncFunction ( ..._paramArgs_, _bodyArg_ )</h1>
+        <p>The last argument (if any) specifies the body (executable code) of an async function. Any preceding arguments specify formal parameters.</p>
+        <p>This function performs the following steps when called:</p>
+
+        <emu-alg>
+          1. Let _activeFunc_ be the active function object.
+          1. If _bodyArg_ is not present, set _bodyArg_ to the empty String.
+          1. Return ? CreateDynamicFunction(_activeFunc_, NewTarget, ~async~, _paramArgs_, _bodyArg_).
+        </emu-alg>
+
+        <emu-note>See NOTE for <emu-xref href="#sec-function-p1-p2-pn-body"></emu-xref>.</emu-note>
+      </emu-clause>

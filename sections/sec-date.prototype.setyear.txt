@@ -1,0 +1,21 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties > B.2.3 Additional Properties of the Date.prototype Object > B.2.3.2 Date.prototype.setYear ( _year_ ) [id: sec-date.prototype.setyear]
+
+<emu-annex id="sec-date.prototype.setyear" type="built-in function">
+        <h1>Date.prototype.setYear ( _year_ )</h1>
+        <emu-note>
+          <p>The `setFullYear` method is preferred for nearly all purposes, because it avoids the “year 2000 problem.”</p>
+        </emu-note>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _dateObj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_dateObj_, [[DateValue]]).
+          1. Let _time_ be _dateObj_.[[DateValue]].
+          1. If _time_ is *NaN*, set _time_ to *+0*<sub>𝔽</sub>; else set _time_ to LocalTime(_time_).
+          1. Let _fullYear_ be MakeFullYear(? ToNumber(_year_)).
+          1. Let _day_ be MakeDay(_fullYear_, 𝔽(MonthFromTime(_time_)), 𝔽(DateFromTime(_time_))).
+          1. Let _date_ be MakeDate(_day_, 𝔽(TimeWithinDay(_time_))).
+          1. Let _utcTimestamp_ be TimeClip(UTC(_date_)).
+          1. Set _dateObj_.[[DateValue]] to _utcTimestamp_.
+          1. Return _utcTimestamp_.
+        </emu-alg>
+      </emu-annex>

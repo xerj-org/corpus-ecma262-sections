@@ -1,0 +1,24 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.1 Scripts > 16.1.5 ParseScript ( _sourceText_: a String or a sequence of Unicode code points, _realm_: a Realm Record, _hostDefined_: anything, ): a Script Record or a non-empty List of *SyntaxError* objects [id: sec-parse-script]
+
+<emu-clause id="sec-parse-script" type="abstract operation">
+      <h1>
+        ParseScript (
+          _sourceText_: a String or a sequence of Unicode code points,
+          _realm_: a Realm Record,
+          _hostDefined_: anything,
+        ): a Script Record or a non-empty List of *SyntaxError* objects
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It creates a Script Record based upon the result of parsing _sourceText_ as a |Script|.</dd>
+      </dl>
+
+      <emu-alg>
+        1. Let _script_ be ParseText(_sourceText_, |Script|).
+        1. If _script_ is a List of errors, return _script_.
+        1. Return Script Record { [[Realm]]: _realm_, [[ECMAScriptCode]]: _script_, [[LoadedModules]]: « », [[HostDefined]]: _hostDefined_ }.
+      </emu-alg>
+      <emu-note>
+        <p>An implementation may parse script source text and analyse it for Early Error conditions prior to evaluation of ParseScript for that script source text. However, the reporting of any errors must be deferred until the point where this specification actually performs ParseScript upon that source text.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,11 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.6 Properties of the RegExp Prototype Object > 22.2.6.15 get RegExp.prototype.sticky [id: sec-get-regexp.prototype.sticky]
+
+<emu-clause id="sec-get-regexp.prototype.sticky" type="built-in function">
+        <h1>get RegExp.prototype.sticky</h1>
+        <p>`RegExp.prototype.sticky` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _regexp_ be the *this* value.
+          1. Let _codeUnit_ be the code unit 0x0079 (LATIN SMALL LETTER Y).
+          1. Return ? RegExpHasFlag(_regexp_, _codeUnit_).
+        </emu-alg>
+      </emu-clause>

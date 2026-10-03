@@ -1,0 +1,19 @@
+ECMA-262 > 29 Memory Model > 29.7 Properties of Valid Executions > 29.7.1 Valid Chosen Reads [id: sec-valid-chosen-reads]
+
+<emu-clause id="sec-valid-chosen-reads">
+      <h1>Valid Chosen Reads</h1>
+      <p>A candidate execution _execution_ has valid chosen reads if the following algorithm returns *true*.</p>
+      <emu-alg>
+        1. For each ReadSharedMemory or ReadModifyWriteSharedMemory event _readEvent_ of SharedDataBlockEventSet(_execution_), do
+          1. Let _chosenValueRecord_ be the element of _execution_.[[ChosenValues]] whose [[Event]] field is _readEvent_.
+          1. Let _chosenValue_ be _chosenValueRecord_.[[ChosenValue]].
+          1. Let _readValue_ be ValueOfReadEvent(_execution_, _readEvent_).
+          1. Let _chosenLength_ be the number of elements in _chosenValue_.
+          1. Let _readLength_ be the number of elements in _readValue_.
+          1. If _chosenLength_ ≠ _readLength_, then
+            1. Return *false*.
+          1. If _chosenValue_[_i_] ≠ _readValue_[_i_] for some integer _i_ in the interval from 0 (inclusive) to _chosenLength_ (exclusive), then
+            1. Return *false*.
+        1. Return *true*.
+      </emu-alg>
+    </emu-clause>

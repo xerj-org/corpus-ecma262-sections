@@ -1,0 +1,22 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.4 Global Environment Records > 9.1.1.4.3 CreateImmutableBinding ( _name_: a String, _strict_: a Boolean, ): either a normal completion containing ~unused~ or a throw completion [id: sec-global-environment-records-createimmutablebinding-n-s]
+
+<emu-clause id="sec-global-environment-records-createimmutablebinding-n-s" type="concrete method">
+          <h1>
+            CreateImmutableBinding (
+              _name_: a String,
+              _strict_: a Boolean,
+            ): either a normal completion containing ~unused~ or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>a Global Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It creates a new immutable binding for the name _name_ that is uninitialized. A binding must not already exist in this Environment Record for _name_. If _strict_ is *true*, the new binding is marked as a strict binding.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _declRecord_ be _envRecord_.[[DeclarativeRecord]].
+            1. If ! _declRecord_.HasBinding(_name_) is *true*, throw a *TypeError* exception.
+            1. Return ! _declRecord_.CreateImmutableBinding(_name_, _strict_).
+          </emu-alg>
+        </emu-clause>

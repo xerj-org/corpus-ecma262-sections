@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.3 Properties of the Symbol Prototype Object > 20.4.3.1 Symbol.prototype.constructor [id: sec-symbol.prototype.constructor]
+
+<emu-clause id="sec-symbol.prototype.constructor">
+        <h1>Symbol.prototype.constructor</h1>
+        <p>The initial value of `Symbol.prototype.constructor` is %Symbol%.</p>
+      </emu-clause>

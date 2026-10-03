@@ -1,0 +1,28 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.9 AsyncGenerator Objects > 27.9.3 AsyncGenerator Abstract Operations > 27.9.3.1 AsyncGeneratorRequest Records [id: sec-asyncgeneratorrequest-records]
+
+<emu-clause id="sec-asyncgeneratorrequest-records">
+        <h1>AsyncGeneratorRequest Records</h1>
+        <p>An <dfn variants="AsyncGeneratorRequests">AsyncGeneratorRequest</dfn> is a Record used to store information about how an async generator should be resumed and contains capabilities for fulfilling or rejecting the corresponding promise.</p>
+        <p>They have the following fields:</p>
+        <emu-table caption="AsyncGeneratorRequest Record Fields">
+          <table>
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Value</th>
+                <th>Meaning</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>[[Completion]]</td>
+              <td>a Completion Record</td>
+              <td>The Completion Record which should be used to resume the async generator.</td>
+            </tr>
+            <tr>
+              <td>[[Capability]]</td>
+              <td>a PromiseCapability Record</td>
+              <td>The promise capabilities associated with this request.</td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

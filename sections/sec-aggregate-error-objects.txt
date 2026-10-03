@@ -1,0 +1,13 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.7 AggregateError Objects [id: sec-aggregate-error-objects]
+
+<emu-clause id="sec-aggregate-error-objects">
+      <h1>AggregateError Objects</h1>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

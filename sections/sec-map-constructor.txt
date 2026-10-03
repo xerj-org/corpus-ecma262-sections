@@ -1,0 +1,17 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.1 The Map Constructor [id: sec-map-constructor]
+
+<emu-clause id="sec-map-constructor">
+      <h1>The Map Constructor</h1>
+      <p>The Map constructor:</p>
+      <ul>
+        <li>is <dfn>%Map%</dfn>.</li>
+        <li>is the initial value of the *"Map"* property of the global object.</li>
+        <li>creates and initializes a new Map when called as a constructor.</li>
+        <li>is not intended to be called as a function and will throw an exception when called in that manner.</li>
+        <li>may be used as the value in an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified Map behaviour must include a `super` call to the Map constructor to create and initialize the subclass instance with the internal state necessary to support the built-in methods of `Map.prototype`.</li>
+      </ul>
+
+      
+
+      
+    </emu-clause>

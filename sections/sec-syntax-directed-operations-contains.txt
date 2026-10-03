@@ -1,0 +1,9 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.5 Contains [id: sec-syntax-directed-operations-contains]
+
+<emu-clause id="sec-syntax-directed-operations-contains">
+    <h1>Contains</h1>
+
+    
+
+    
+  </emu-clause>

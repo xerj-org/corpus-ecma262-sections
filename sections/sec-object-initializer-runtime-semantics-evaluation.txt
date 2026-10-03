@@ -1,0 +1,34 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.5 Object Initializer > 13.2.5.5 Runtime Semantics: Evaluation [id: sec-object-initializer-runtime-semantics-evaluation]
+
+<emu-clause id="sec-object-initializer-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>ObjectLiteral : `{` `}`</emu-grammar>
+        <emu-alg>
+          1. Return OrdinaryObjectCreate(%Object.prototype%).
+        </emu-alg>
+        <emu-grammar>ObjectLiteral : `{` PropertyDefinitionList `,`? `}`</emu-grammar>
+        <emu-alg>
+          1. Let _obj_ be OrdinaryObjectCreate(%Object.prototype%).
+          1. Perform ? PropertyDefinitionEvaluation of |PropertyDefinitionList| with argument _obj_.
+          1. Return _obj_.
+        </emu-alg>
+        <emu-grammar>LiteralPropertyName : IdentifierName</emu-grammar>
+        <emu-alg>
+          1. Return the StringValue of |IdentifierName|.
+        </emu-alg>
+        <emu-grammar>LiteralPropertyName : StringLiteral</emu-grammar>
+        <emu-alg>
+          1. Return the SV of |StringLiteral|.
+        </emu-alg>
+        <emu-grammar>LiteralPropertyName : NumericLiteral</emu-grammar>
+        <emu-alg>
+          1. Let _number_ be the NumericValue of |NumericLiteral|.
+          1. Return ! ToString(_number_).
+        </emu-alg>
+        <emu-grammar>ComputedPropertyName : `[` AssignmentExpression `]`</emu-grammar>
+        <emu-alg>
+          1. Let _exprValue_ be ? Evaluation of |AssignmentExpression|.
+          1. Let _propertyName_ be ? GetValue(_exprValue_).
+          1. Return ? ToPropertyKey(_propertyName_).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,15 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.12 Meta Properties > 13.3.12.1 Runtime Semantics: Evaluation > 13.3.12.1.1 HostGetImportMetaProperties ( _moduleRecord_: a Module Record, ): a List of Records with fields [[Key]] (a property key) and [[Value]] (an ECMAScript language value) [id: sec-hostgetimportmetaproperties]
+
+<emu-clause id="sec-hostgetimportmetaproperties" type="host-defined abstract operation">
+          <h1>
+            HostGetImportMetaProperties (
+              _moduleRecord_: a Module Record,
+            ): a List of Records with fields [[Key]] (a property key) and [[Value]] (an ECMAScript language value)
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It allows hosts to provide property keys and values for the object returned from `import.meta`.</dd>
+          </dl>
+
+          <p>The default implementation of HostGetImportMetaProperties is to return a new empty List.</p>
+        </emu-clause>

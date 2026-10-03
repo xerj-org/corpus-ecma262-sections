@@ -1,0 +1,6 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.5 %TypedArray%.prototype.constructor [id: sec-%typedarray%.prototype.constructor]
+
+<emu-clause id="sec-%typedarray%.prototype.constructor">
+        <h1>%TypedArray%.prototype.constructor</h1>
+        <p>The initial value of %TypedArray%`.prototype.constructor` is %TypedArray%.</p>
+      </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.32 Symbol type [id: sec-terms-and-definitions-symbol-type]
+
+<emu-clause id="sec-terms-and-definitions-symbol-type">
+      <h1>Symbol type</h1>
+      <p>set of all possible Symbol values</p>
+    </emu-clause>

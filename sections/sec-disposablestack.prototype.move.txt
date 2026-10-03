@@ -1,0 +1,17 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.3 DisposableStack Objects > 27.3.3 Properties of the DisposableStack Prototype Object > 27.3.3.6 DisposableStack.prototype.move ( ) [id: sec-disposablestack.prototype.move]
+
+<emu-clause id="sec-disposablestack.prototype.move" type="built-in function">
+        <h1>DisposableStack.prototype.move ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _disposableStack_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_disposableStack_, [[DisposableState]]).
+          1. If _disposableStack_.[[DisposableState]] is ~disposed~, throw a *ReferenceError* exception.
+          1. Let _newDisposableStack_ be ? OrdinaryCreateFromConstructor(%DisposableStack%, *"%DisposableStack.prototype%"*, « [[DisposableState]], [[DisposableResourceStack]] »).
+          1. Set _newDisposableStack_.[[DisposableState]] to ~pending~.
+          1. Set _newDisposableStack_.[[DisposableResourceStack]] to _disposableStack_.[[DisposableResourceStack]].
+          1. Set _disposableStack_.[[DisposableResourceStack]] to a new empty List.
+          1. Set _disposableStack_.[[DisposableState]] to ~disposed~.
+          1. Return _newDisposableStack_.
+        </emu-alg>
+      </emu-clause>

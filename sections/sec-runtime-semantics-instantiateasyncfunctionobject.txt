@@ -1,0 +1,31 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.8 Async Function Definitions > 15.8.2 Runtime Semantics: InstantiateAsyncFunctionObject ( _envRecord_: an Environment Record, _privateEnv_: a PrivateEnvironment Record or *null*, ): an ECMAScript function object [id: sec-runtime-semantics-instantiateasyncfunctionobject]
+
+<emu-clause id="sec-runtime-semantics-instantiateasyncfunctionobject" oldids="sec-async-function-definitions-InstantiateFunctionObject" type="sdo">
+      <h1>
+        Runtime Semantics: InstantiateAsyncFunctionObject (
+          _envRecord_: an Environment Record,
+          _privateEnv_: a PrivateEnvironment Record or *null*,
+        ): an ECMAScript function object
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>
+        AsyncFunctionDeclaration : `async` `function` BindingIdentifier `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Let _name_ be the StringValue of |BindingIdentifier|.
+        1. Let _sourceText_ be the source text matched by |AsyncFunctionDeclaration|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%AsyncFunction.prototype%, _sourceText_, |FormalParameters|, |AsyncFunctionBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform SetFunctionName(_closure_, _name_).
+        1. Return _closure_.
+      </emu-alg>
+      <emu-grammar>
+        AsyncFunctionDeclaration : `async` `function` `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Let _sourceText_ be the source text matched by |AsyncFunctionDeclaration|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%AsyncFunction.prototype%, _sourceText_, |FormalParameters|, |AsyncFunctionBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform SetFunctionName(_closure_, *"default"*).
+        1. Return _closure_.
+      </emu-alg>
+    </emu-clause>

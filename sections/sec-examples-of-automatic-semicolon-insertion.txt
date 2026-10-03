@@ -1,0 +1,65 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.10 Automatic Semicolon Insertion > 12.10.2 Examples of Automatic Semicolon Insertion [id: sec-examples-of-automatic-semicolon-insertion]
+
+<emu-clause id="sec-examples-of-automatic-semicolon-insertion">
+      <h1>Examples of Automatic Semicolon Insertion</h1>
+      <em>This section is non-normative.</em>
+      <p>The source</p>
+      <pre><code class="javascript">{ 1 2 } 3</code></pre>
+      <p>is not a valid sentence in the ECMAScript grammar, even with the automatic semicolon insertion rules. In contrast, the source</p>
+      <pre><code class="javascript">
+        { 1
+        2 } 3
+      </code></pre>
+      <p>is also not a valid ECMAScript sentence, but is transformed by automatic semicolon insertion into the following:</p>
+      <pre><code class="javascript">
+        { 1
+        ;2 ;} 3;
+      </code></pre>
+      <p>which is a valid ECMAScript sentence.</p>
+      <p>The source</p>
+      <pre><code class="javascript">
+        for (a; b
+        )
+      </code></pre>
+      <p>is not a valid ECMAScript sentence and is not altered by automatic semicolon insertion because the semicolon is needed for the header of a `for` statement. Automatic semicolon insertion never inserts one of the two semicolons in the header of a `for` statement.</p>
+      <p>The source</p>
+      <pre><code class="javascript">
+        return
+        a + b
+      </code></pre>
+      <p>is transformed by automatic semicolon insertion into the following:</p>
+      <pre><code class="javascript">
+        return;
+        a + b;
+      </code></pre>
+      <emu-note>
+        <p>The expression `a + b` is not treated as a value to be returned by the `return` statement, because a |LineTerminator| separates it from the token `return`.</p>
+      </emu-note>
+      <p>The source</p>
+      <pre><code class="javascript">
+        a = b
+        ++c
+      </code></pre>
+      <p>is transformed by automatic semicolon insertion into the following:</p>
+      <pre><code class="javascript">
+        a = b;
+        ++c;
+      </code></pre>
+      <emu-note>
+        <p>The token `++` is not treated as a postfix operator applying to the variable `b`, because a |LineTerminator| occurs between `b` and `++`.</p>
+      </emu-note>
+      <p>The source</p>
+      <pre><code class="javascript">
+        if (a &gt; b)
+        else c = d
+      </code></pre>
+      <p>is not a valid ECMAScript sentence and is not altered by automatic semicolon insertion before the `else` token, even though no production of the grammar applies at that point, because an automatically inserted semicolon would then be parsed as an empty statement.</p>
+      <p>The source</p>
+      <pre><code class="javascript">
+        a = b + c
+        (d + e).print()
+      </code></pre>
+      <p>is <em>not</em> transformed by automatic semicolon insertion, because the parenthesized expression that begins the second line can be interpreted as an argument list for a function call:</p>
+      <pre><code class="javascript">a = b + c(d + e).print()</code></pre>
+      <p>In the circumstance that an assignment statement must begin with a left parenthesis, it is a good idea for the programmer to provide an explicit semicolon at the end of the preceding statement rather than to rely on automatic semicolon insertion.</p>
+    </emu-clause>

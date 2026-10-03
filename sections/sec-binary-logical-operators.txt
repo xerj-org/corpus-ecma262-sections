@@ -1,0 +1,31 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.13 Binary Logical Operators [id: sec-binary-logical-operators]
+
+<emu-clause id="sec-binary-logical-operators">
+    <h1>Binary Logical Operators</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      LogicalANDExpression[In, Yield, Await] :
+        BitwiseORExpression[?In, ?Yield, ?Await]
+        LogicalANDExpression[?In, ?Yield, ?Await] `&amp;&amp;` BitwiseORExpression[?In, ?Yield, ?Await]
+
+      LogicalORExpression[In, Yield, Await] :
+        LogicalANDExpression[?In, ?Yield, ?Await]
+        LogicalORExpression[?In, ?Yield, ?Await] `||` LogicalANDExpression[?In, ?Yield, ?Await]
+
+      CoalesceExpression[In, Yield, Await] :
+        CoalesceExpressionHead[?In, ?Yield, ?Await] `??` BitwiseORExpression[?In, ?Yield, ?Await]
+
+      CoalesceExpressionHead[In, Yield, Await] :
+        CoalesceExpression[?In, ?Yield, ?Await]
+        BitwiseORExpression[?In, ?Yield, ?Await]
+
+      ShortCircuitExpression[In, Yield, Await] :
+        LogicalORExpression[?In, ?Yield, ?Await]
+        CoalesceExpression[?In, ?Yield, ?Await]
+    </emu-grammar>
+    <emu-note>
+      <p>The value produced by a `&amp;&amp;` or `||` operator is not necessarily of type Boolean. The value produced will always be the value of one of the two operand expressions.</p>
+    </emu-note>
+
+    
+  </emu-clause>

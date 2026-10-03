@@ -1,0 +1,16 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.3 Iterator Objects > 27.1.3.3 Properties of the Iterator Prototype Object > 27.1.3.3.12 Iterator.prototype.toArray ( ) [id: sec-iterator.prototype.toarray]
+
+<emu-clause id="sec-iterator.prototype.toarray" type="built-in function">
+          <h1>Iterator.prototype.toArray ( )</h1>
+          <p>This method performs the following steps when called:</p>
+          <emu-alg>
+            1. Let _obj_ be the *this* value.
+            1. If _obj_ is not an Object, throw a *TypeError* exception.
+            1. Let _iterated_ be ? GetIteratorDirect(_obj_).
+            1. Let _items_ be a new empty List.
+            1. Repeat,
+              1. Let _value_ be ? IteratorStepValue(_iterated_).
+              1. If _value_ is ~done~, return CreateArrayFromList(_items_).
+              1. Append _value_ to _items_.
+          </emu-alg>
+        </emu-clause>

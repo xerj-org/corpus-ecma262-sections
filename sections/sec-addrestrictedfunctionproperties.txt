@@ -1,0 +1,21 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.2 ECMAScript Function Objects > 10.2.4 AddRestrictedFunctionProperties ( _func_: a function object, _realm_: a Realm Record, ): ~unused~ [id: sec-addrestrictedfunctionproperties]
+
+<emu-clause id="sec-addrestrictedfunctionproperties" type="abstract operation">
+      <h1>
+        AddRestrictedFunctionProperties (
+          _func_: a function object,
+          _realm_: a Realm Record,
+        ): ~unused~
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Assert: _realm_.[[Intrinsics]].[[%ThrowTypeError%]] exists and has been initialized.
+        1. Let _thrower_ be _realm_.[[Intrinsics]].[[%ThrowTypeError%]].
+        1. Perform ! DefinePropertyOrThrow(_func_, *"caller"*, PropertyDescriptor { [[Getter]]: _thrower_, [[Setter]]: _thrower_, [[Enumerable]]: *false*, [[Configurable]]: *true* }).
+        1. Perform ! DefinePropertyOrThrow(_func_, *"arguments"*, PropertyDescriptor { [[Getter]]: _thrower_, [[Setter]]: _thrower_, [[Enumerable]]: *false*, [[Configurable]]: *true* }).
+        1. Return ~unused~.
+      </emu-alg>
+
+      
+    </emu-clause>

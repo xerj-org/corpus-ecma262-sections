@@ -1,0 +1,32 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules [id: sec-modules]
+
+<emu-clause id="sec-modules">
+    <h1>Modules</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      Module :
+        ModuleBody?
+
+      ModuleBody :
+        ModuleItemList
+
+      ModuleItemList :
+        ModuleItem
+        ModuleItemList ModuleItem
+
+      ModuleItem :
+        ImportDeclaration
+        ExportDeclaration
+        StatementListItem[~Yield, +Await, ~Return]
+
+      ModuleExportName :
+        IdentifierName
+        StringLiteral
+    </emu-grammar>
+
+    
+
+    
+
+    
+  </emu-clause>

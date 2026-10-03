@@ -1,0 +1,7 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.9 AsyncGenerator Objects > 27.9.1 The %AsyncGeneratorPrototype% Object > 27.9.1.1 %AsyncGeneratorPrototype%.constructor [id: sec-asyncgenerator-prototype-constructor]
+
+<emu-clause id="sec-asyncgenerator-prototype-constructor">
+        <h1>%AsyncGeneratorPrototype%.constructor</h1>
+        <p>The initial value of %AsyncGeneratorPrototype%`.constructor` is %AsyncGeneratorFunction.prototype%.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

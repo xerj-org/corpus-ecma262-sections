@@ -1,0 +1,9 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules [id: sec-ecmascript-language-scripts-and-modules]
+
+<emu-clause id="sec-ecmascript-language-scripts-and-modules">
+  <h1>ECMAScript Language: Scripts and Modules</h1>
+
+  
+
+  
+</emu-clause>

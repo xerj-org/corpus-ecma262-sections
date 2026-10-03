@@ -1,0 +1,23 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.3 Properties of the String Prototype Object > 22.1.3.5 String.prototype.concat ( ..._args_ ) [id: sec-string.prototype.concat]
+
+<emu-clause id="sec-string.prototype.concat" type="built-in function">
+        <h1>String.prototype.concat ( ..._args_ )</h1>
+        <emu-note>
+          <p>When this method is called it returns the String value consisting of the code units of the *this* value (converted to a String) followed by the code units of each of the arguments converted to a String. The result is a String value, not a String object.</p>
+        </emu-note>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _thisValue_ be the *this* value.
+          1. Perform ? RequireObjectCoercible(_thisValue_).
+          1. Let _string_ be ? ToString(_thisValue_).
+          1. Let _result_ be _string_.
+          1. For each element _next_ of _args_, do
+            1. Let _nextString_ be ? ToString(_next_).
+            1. Set _result_ to the string-concatenation of _result_ and _nextString_.
+          1. Return _result_.
+        </emu-alg>
+        <p>The *"length"* property of this method is *1*<sub>𝔽</sub>.</p>
+        <emu-note>
+          <p>This method is intentionally generic; it does not require that its *this* value be a String object. Therefore it can be transferred to other kinds of objects for use as a method.</p>
+        </emu-note>
+      </emu-clause>

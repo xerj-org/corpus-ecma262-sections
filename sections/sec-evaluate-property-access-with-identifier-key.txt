@@ -1,0 +1,17 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.4 EvaluatePropertyAccessWithIdentifierKey ( _baseValue_: an ECMAScript language value, _identifierName_: an |IdentifierName| Parse Node, _strict_: a Boolean, ): a Reference Record [id: sec-evaluate-property-access-with-identifier-key]
+
+<emu-clause id="sec-evaluate-property-access-with-identifier-key" type="abstract operation" oldids="sec-evaluate-identifier-key-property-access">
+      <h1>
+        EvaluatePropertyAccessWithIdentifierKey (
+          _baseValue_: an ECMAScript language value,
+          _identifierName_: an |IdentifierName| Parse Node,
+          _strict_: a Boolean,
+        ): a Reference Record
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _propertyNameString_ be the StringValue of _identifierName_.
+        1. Return the Reference Record { [[Base]]: _baseValue_, [[ReferencedName]]: _propertyNameString_, [[Strict]]: _strict_, [[ThisValue]]: ~empty~ }.
+      </emu-alg>
+    </emu-clause>

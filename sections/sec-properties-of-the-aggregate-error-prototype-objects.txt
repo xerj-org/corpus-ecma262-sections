@@ -1,0 +1,18 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.7 AggregateError Objects > 20.5.7.3 Properties of the AggregateError Prototype Object [id: sec-properties-of-the-aggregate-error-prototype-objects]
+
+<emu-clause id="sec-properties-of-the-aggregate-error-prototype-objects">
+        <h1>Properties of the AggregateError Prototype Object</h1>
+        <p>The <dfn>AggregateError prototype object</dfn>:</p>
+        <ul>
+          <li>is <dfn>%AggregateError.prototype%</dfn>.</li>
+          <li>is an ordinary object.</li>
+          <li>is not an Error instance or an AggregateError instance and does not have an [[ErrorData]] internal slot.</li>
+          <li>has a [[Prototype]] internal slot whose value is %Error.prototype%.</li>
+        </ul>
+
+        
+
+        
+
+        
+      </emu-clause>

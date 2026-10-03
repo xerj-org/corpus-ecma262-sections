@@ -1,0 +1,59 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.1 Promise Abstract Operations > 27.5.1.1 PromiseCapability Records [id: sec-promisecapability-records]
+
+<emu-clause id="sec-promisecapability-records">
+        <h1>PromiseCapability Records</h1>
+        <p>A <dfn variants="PromiseCapability Records">PromiseCapability Record</dfn> is a Record used to encapsulate a Promise or promise-like object along with the functions that are capable of resolving or rejecting that promise. PromiseCapability Records are produced by the NewPromiseCapability abstract operation.</p>
+        <p>PromiseCapability Records have the fields listed in <emu-xref href="#table-promisecapability-record-fields"></emu-xref>.</p>
+        <emu-table id="table-promisecapability-record-fields" caption="PromiseCapability Record Fields" oldids="table-57">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Field Name
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Meaning
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                [[Promise]]
+              </td>
+              <td>
+                an Object
+              </td>
+              <td>
+                An object that is usable as a promise.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Resolve]]
+              </td>
+              <td>
+                a function object
+              </td>
+              <td>
+                The function that is used to resolve the given promise.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Reject]]
+              </td>
+              <td>
+                a function object
+              </td>
+              <td>
+                The function that is used to reject the given promise.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+
+        
+      </emu-clause>

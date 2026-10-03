@@ -1,0 +1,18 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.24 ToIndex ( _arg_: an ECMAScript language value, ): either a normal completion containing a non-negative integer or a throw completion [id: sec-toindex]
+
+<emu-clause id="sec-toindex" type="abstract operation">
+      <h1>
+        ToIndex (
+          _arg_: an ECMAScript language value,
+        ): either a normal completion containing a non-negative integer or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It converts _arg_ to an integer and returns that integer if it is non-negative and corresponds with an integer index. Otherwise, it throws an exception.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _int_ be ? ToIntegerOrInfinity(_arg_).
+        1. If _int_ is not in the inclusive interval from 0 to 2<sup>53</sup> - 1, throw a *RangeError* exception.
+        1. Return _int_.
+      </emu-alg>
+    </emu-clause>

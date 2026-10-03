@@ -1,0 +1,29 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.1 Patterns > 22.2.1.6 Static Semantics: IsCharacterClass ( ): a Boolean [id: sec-patterns-static-semantics-is-character-class]
+
+<emu-clause id="sec-patterns-static-semantics-is-character-class" type="sdo">
+        <h1>Static Semantics: IsCharacterClass ( ): a Boolean</h1>
+        <dl class="header">
+        </dl>
+        <emu-note>
+          <p>This section is amended in <emu-xref href="#sec-patterns-static-semantics-is-character-class-annexb"></emu-xref>.</p>
+        </emu-note>
+        <emu-grammar>
+          ClassAtom ::
+            `-`
+
+          ClassAtomNoDash ::
+            SourceCharacter but not one of `\` or `]` or `-`
+
+          ClassEscape ::
+            `b`
+            `-`
+            CharacterEscape
+        </emu-grammar>
+        <emu-alg>
+          1. Return *false*.
+        </emu-alg>
+        <emu-grammar>ClassEscape :: CharacterClassEscape</emu-grammar>
+        <emu-alg>
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

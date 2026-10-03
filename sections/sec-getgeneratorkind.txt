@@ -1,0 +1,14 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.3 Generator Abstract Operations > 27.8.3.5 GetGeneratorKind ( ): ~non-generator~, ~sync~, or ~async~ [id: sec-getgeneratorkind]
+
+<emu-clause id="sec-getgeneratorkind" type="abstract operation">
+        <h1>GetGeneratorKind ( ): ~non-generator~, ~sync~, or ~async~</h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _genContext_ be the running execution context.
+          1. If _genContext_ does not have a Generator component, return ~non-generator~.
+          1. Let _gen_ be the Generator component of _genContext_.
+          1. If _gen_ has an [[AsyncGeneratorState]] internal slot, return ~async~.
+          1. Return ~sync~.
+        </emu-alg>
+      </emu-clause>

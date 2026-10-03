@@ -1,0 +1,26 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.4 Array Initializer > 13.2.4.2 Runtime Semantics: Evaluation [id: sec-array-initializer-runtime-semantics-evaluation]
+
+<emu-clause id="sec-array-initializer-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>ArrayLiteral : `[` Elision? `]`</emu-grammar>
+        <emu-alg>
+          1. Let _array_ be ! ArrayCreate(0).
+          1. If |Elision| is present, then
+            1. Perform ? ArrayAccumulation of |Elision| with arguments _array_ and 0.
+          1. Return _array_.
+        </emu-alg>
+        <emu-grammar>ArrayLiteral : `[` ElementList `]`</emu-grammar>
+        <emu-alg>
+          1. Let _array_ be ! ArrayCreate(0).
+          1. Perform ? ArrayAccumulation of |ElementList| with arguments _array_ and 0.
+          1. Return _array_.
+        </emu-alg>
+        <emu-grammar>ArrayLiteral : `[` ElementList `,` Elision? `]`</emu-grammar>
+        <emu-alg>
+          1. Let _array_ be ! ArrayCreate(0).
+          1. Let _nextIndex_ be ? ArrayAccumulation of |ElementList| with arguments _array_ and 0.
+          1. If |Elision| is present, then
+            1. Perform ? ArrayAccumulation of |Elision| with arguments _array_ and _nextIndex_.
+          1. Return _array_.
+        </emu-alg>
+      </emu-clause>

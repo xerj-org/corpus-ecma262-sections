@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.2 Properties of the Number Constructor > 21.1.2.10 Number.NaN [id: sec-number.nan]
+
+<emu-clause id="sec-number.nan">
+        <h1>Number.NaN</h1>
+        <p>The value of `Number.NaN` is *NaN*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

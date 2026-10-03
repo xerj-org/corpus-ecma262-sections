@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.38 Uint8Array ( . . . ) [id: sec-constructor-properties-of-the-global-object-uint8array]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-uint8array">
+      <h1>Uint8Array ( . . . )</h1>
+      <p>See <emu-xref href="#sec-typedarray-constructors"></emu-xref>.</p>
+    </emu-clause>

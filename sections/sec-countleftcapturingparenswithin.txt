@@ -1,0 +1,20 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.1 Patterns > 22.2.1.2 Static Semantics: CountLeftCapturingParensWithin ( _parseNode_: a Parse Node, ): a non-negative integer [id: sec-countleftcapturingparenswithin]
+
+<emu-clause id="sec-countleftcapturingparenswithin" type="abstract operation">
+        <h1>
+          Static Semantics: CountLeftCapturingParensWithin (
+            _parseNode_: a Parse Node,
+          ): a non-negative integer
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns the number of left-capturing parentheses in _parseNode_. A <dfn variants="left-capturing parentheses">left-capturing parenthesis</dfn> is any `(` pattern character that is matched by the `(` terminal of the <emu-grammar>Atom :: `(` GroupSpecifier? Disjunction `)`</emu-grammar> production.</dd>
+        </dl>
+        <emu-note>
+          <p>This section is amended in <emu-xref href="#sec-countleftcapturingparens-annexb"></emu-xref>.</p>
+        </emu-note>
+        <emu-alg>
+          1. Assert: _parseNode_ is an instance of a production in <emu-xref href="#sec-patterns">the RegExp Pattern grammar</emu-xref>.
+          1. Return the number of <emu-grammar>Atom :: `(` GroupSpecifier? Disjunction `)`</emu-grammar> Parse Nodes contained within _parseNode_.
+        </emu-alg>
+      </emu-clause>

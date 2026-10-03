@@ -1,0 +1,39 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.1 Identifiers [id: sec-identifiers]
+
+<emu-clause id="sec-identifiers">
+    <h1>Identifiers</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      IdentifierReference[Yield, Await] :
+        Identifier
+        [~Yield] `yield`
+        [~Await] `await`
+
+      BindingIdentifier[Yield, Await] :
+        Identifier
+        `yield`
+        `await`
+
+      LabelIdentifier[Yield, Await] :
+        Identifier
+        [~Yield] `yield`
+        [~Await] `await`
+
+      Identifier :
+        IdentifierName but not ReservedWord
+    </emu-grammar>
+
+    <emu-note>
+      <p>`yield` and `await` are permitted as |BindingIdentifier| in the grammar, and prohibited with static semantics below, to prohibit automatic semicolon insertion in cases such as</p>
+      <pre><code class="javascript">
+        let
+        await 0;
+      </code></pre>
+    </emu-note>
+
+    
+
+    
+
+    
+  </emu-clause>

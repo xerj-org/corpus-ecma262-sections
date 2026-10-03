@@ -1,0 +1,15 @@
+ECMA-262 > 7 Abstract Operations > 7.4 Operations on Iterator Objects > 7.4.14 IfAbruptCloseIterators ( _value_, _iteratorRecords_ ) [id: sec-ifabruptcloseiterators]
+
+<emu-clause id="sec-ifabruptcloseiterators" aoid="IfAbruptCloseIterators">
+      <h1>IfAbruptCloseIterators ( _value_, _iteratorRecords_ )</h1>
+      <p>IfAbruptCloseIterators is a shorthand for a sequence of algorithm steps that use a list of Iterator Records. An algorithm step of the form:</p>
+      <emu-alg>
+        1. IfAbruptCloseIterators(_value_, _iteratorRecords_).
+      </emu-alg>
+      <p>means the same thing as:</p>
+      <emu-alg>
+        1. Assert: _value_ is a Completion Record.
+        1. If _value_ is an abrupt completion, return ? IteratorCloseAll(_iteratorRecords_, _value_).
+        1. Set _value_ to ! _value_.
+      </emu-alg>
+    </emu-clause>

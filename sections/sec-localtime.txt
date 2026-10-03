@@ -1,0 +1,35 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.25 LocalTime ( _tv_: a finite time value, ): an integral Number [id: sec-localtime]
+
+<emu-clause id="sec-localtime" type="abstract operation">
+        <h1>
+          LocalTime (
+            _tv_: a finite time value,
+          ): an integral Number
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>
+            It converts _tv_ from UTC to local time.
+            The local political rules for standard time and daylight saving time in effect at _tv_ should be used to determine the result in the way specified in this section.
+          </dd>
+        </dl>
+        <emu-alg>
+          1. Let _systemTimeZoneIdentifier_ be SystemTimeZoneIdentifier().
+          1. If IsTimeZoneOffsetString(_systemTimeZoneIdentifier_) is *true*, then
+            1. Let _offsetNanoseconds_ be ParseTimeZoneOffsetString(_systemTimeZoneIdentifier_).
+          1. Else,
+            1. Let _offsetNanoseconds_ be GetNamedTimeZoneOffsetNanoseconds(_systemTimeZoneIdentifier_, ℝ(_tv_) × NanosecondsPerMillisecond).
+          1. Let _offsetMilliseconds_ be truncate(_offsetNanoseconds_ / NanosecondsPerMillisecond).
+          1. Return _tv_ + 𝔽(_offsetMilliseconds_).
+        </emu-alg>
+        <emu-note>
+          <p>If political rules for the local time _tv_ are not available within the implementation, the result is _tv_ because SystemTimeZoneIdentifier returns *"UTC"* and GetNamedTimeZoneOffsetNanoseconds returns 0.</p>
+        </emu-note>
+        <emu-note>
+          <p>It is required for time zone aware implementations (and recommended for all others) to use the time zone information of the IANA Time Zone Database <a href="https://www.iana.org/time-zones/">https://www.iana.org/time-zones/</a>.</p>
+        </emu-note>
+        <emu-note>
+          <p>Two different input time values <emu-eqn>_tv_<sub>UTC</sub></emu-eqn> are converted to the same local time <emu-eqn>t<sub>local</sub></emu-eqn> at a negative time zone transition when there are repeated times (e.g. the daylight saving time ends or the time zone adjustment is decreased.).</p>
+          <p><emu-eqn>LocalTime(UTC(_tv_<sub>local</sub>))</emu-eqn> is not necessarily always equal to <emu-eqn>_tv_<sub>local</sub></emu-eqn>. Correspondingly, <emu-eqn>UTC(LocalTime(_tv_<sub>UTC</sub>))</emu-eqn> is not necessarily always equal to <emu-eqn>_tv_<sub>UTC</sub></emu-eqn>.</p>
+        </emu-note>
+      </emu-clause>

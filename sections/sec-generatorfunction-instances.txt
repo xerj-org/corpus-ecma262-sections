@@ -1,0 +1,13 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.6 GeneratorFunction Objects > 27.6.4 GeneratorFunction Instances [id: sec-generatorfunction-instances]
+
+<emu-clause id="sec-generatorfunction-instances">
+      <h1>GeneratorFunction Instances</h1>
+      <p>Every GeneratorFunction instance is an ECMAScript function object and has the internal slots listed in <emu-xref href="#table-internal-slots-of-ecmascript-function-objects"></emu-xref>. The value of the [[IsClassConstructor]] internal slot for all such instances is *false*.</p>
+      <p>Each GeneratorFunction instance has the following own properties:</p>
+
+      
+
+      
+
+      
+    </emu-clause>

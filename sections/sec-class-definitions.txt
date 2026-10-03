@@ -1,0 +1,86 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.7 Class Definitions [id: sec-class-definitions]
+
+<emu-clause id="sec-class-definitions">
+    <h1>Class Definitions</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      ClassDeclaration[Yield, Await, Default] :
+        `class` BindingIdentifier[?Yield, ?Await] ClassTail[?Yield, ?Await]
+        [+Default] `class` ClassTail[?Yield, ?Await]
+
+      ClassExpression[Yield, Await] :
+        `class` BindingIdentifier[?Yield, ?Await]? ClassTail[?Yield, ?Await]
+
+      ClassTail[Yield, Await] :
+        ClassHeritage[?Yield, ?Await]? `{` ClassBody[?Yield, ?Await]? `}`
+
+      ClassHeritage[Yield, Await] :
+        `extends` LeftHandSideExpression[?Yield, ?Await]
+
+      ClassBody[Yield, Await] :
+        ClassElementList[?Yield, ?Await]
+
+      ClassElementList[Yield, Await] :
+        ClassElement[?Yield, ?Await]
+        ClassElementList[?Yield, ?Await] ClassElement[?Yield, ?Await]
+
+      ClassElement[Yield, Await] :
+        MethodDefinition[?Yield, ?Await]
+        `static` MethodDefinition[?Yield, ?Await]
+        FieldDefinition[?Yield, ?Await] `;`
+        `static` FieldDefinition[?Yield, ?Await] `;`
+        ClassStaticBlock
+        `;`
+
+      FieldDefinition[Yield, Await] :
+        ClassElementName[?Yield, ?Await] Initializer[+In, ?Yield, ?Await]?
+
+      ClassElementName[Yield, Await] :
+        PropertyName[?Yield, ?Await]
+        PrivateIdentifier
+
+      ClassStaticBlock :
+        `static` `{` ClassStaticBlockBody `}`
+
+      ClassStaticBlockBody :
+        ClassStaticBlockStatementList
+
+      ClassStaticBlockStatementList :
+        StatementList[~Yield, +Await, ~Return]?
+    </emu-grammar>
+    <emu-note>
+      <p>A class definition is always strict mode code.</p>
+    </emu-note>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

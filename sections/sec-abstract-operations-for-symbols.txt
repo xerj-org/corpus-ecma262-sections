@@ -1,0 +1,9 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.5 Abstract Operations for Symbols [id: sec-abstract-operations-for-symbols]
+
+<emu-clause id="sec-abstract-operations-for-symbols">
+      <h1>Abstract Operations for Symbols</h1>
+
+      
+
+      
+    </emu-clause>

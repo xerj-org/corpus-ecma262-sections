@@ -1,0 +1,24 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.3 String Exotic Objects > 10.4.3.3 [[OwnPropertyKeys]] ( ): a normal completion containing a List of property keys [id: sec-string-exotic-objects-ownpropertykeys]
+
+<emu-clause id="sec-string-exotic-objects-ownpropertykeys" type="internal method">
+        <h1>[[OwnPropertyKeys]] ( ): a normal completion containing a List of property keys</h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a String exotic object _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. Let _keys_ be a new empty List.
+          1. Let _string_ be _obj_.[[StringData]].
+          1. Assert: _string_ is a String.
+          1. Let _length_ be the length of _string_.
+          1. For each integer _i_ such that 0 ≤ _i_ &lt; _length_, in ascending order, do
+            1. Append ! ToString(𝔽(_i_)) to _keys_.
+          1. For each own property key _propertyKey_ of _obj_ such that _propertyKey_ is an array index and ! ToIntegerOrInfinity(_propertyKey_) ≥ _length_, in ascending numeric index order, do
+            1. Append _propertyKey_ to _keys_.
+          1. For each own property key _propertyKey_ of _obj_ such that _propertyKey_ is a String and _propertyKey_ is not an array index, in ascending chronological order of property creation, do
+            1. Append _propertyKey_ to _keys_.
+          1. For each own property key _propertyKey_ of _obj_ such that _propertyKey_ is a Symbol, in ascending chronological order of property creation, do
+            1. Append _propertyKey_ to _keys_.
+          1. Return _keys_.
+        </emu-alg>
+      </emu-clause>

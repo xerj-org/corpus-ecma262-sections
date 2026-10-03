@@ -1,0 +1,16 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.6 The Property Descriptor Specification Type > 6.2.6.3 IsGenericDescriptor ( _propertyDesc_: a Property Descriptor, ): a Boolean [id: sec-isgenericdescriptor]
+
+<emu-clause id="sec-isgenericdescriptor" type="abstract operation">
+        <h1>
+          IsGenericDescriptor (
+            _propertyDesc_: a Property Descriptor,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If IsAccessorDescriptor(_propertyDesc_) is *true*, return *false*.
+          1. If IsDataDescriptor(_propertyDesc_) is *true*, return *false*.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

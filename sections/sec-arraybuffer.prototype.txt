@@ -1,0 +1,7 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.5 Properties of the ArrayBuffer Constructor > 25.1.5.2 ArrayBuffer.prototype [id: sec-arraybuffer.prototype]
+
+<emu-clause id="sec-arraybuffer.prototype">
+        <h1>ArrayBuffer.prototype</h1>
+        <p>The initial value of `ArrayBuffer.prototype` is the ArrayBuffer prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

@@ -1,0 +1,17 @@
+ECMA-262 > 5 Notational Conventions > 5.1 Syntactic and Lexical Grammars > 5.1.5 Grammar Notation > 5.1.5.2 Nonterminal Symbols and Productions [id: sec-nonterminal-symbols-and-productions]
+
+<emu-clause id="sec-nonterminal-symbols-and-productions">
+        <h1>Nonterminal Symbols and Productions</h1>
+        <p>Nonterminal symbols are shown in <i>italic</i> type. The definition of a nonterminal (also called a “production”) is introduced by the name of the nonterminal being defined followed by one or more colons. (The number of colons indicates to which grammar the production belongs.) One or more alternative right-hand sides for the nonterminal then follow on succeeding lines. For example, the syntactic definition:</p>
+        <emu-grammar type="definition" example>
+          WhileStatement :
+            `while` `(` Expression `)` Statement
+        </emu-grammar>
+        <p>states that the nonterminal |WhileStatement| represents the token `while`, followed by a left parenthesis token, followed by an |Expression|, followed by a right parenthesis token, followed by a |Statement|. The occurrences of |Expression| and |Statement| are themselves nonterminals. As another example, the syntactic definition:</p>
+        <emu-grammar type="definition" example>
+          ArgumentList :
+            AssignmentExpression
+            ArgumentList `,` AssignmentExpression
+        </emu-grammar>
+        <p>states that an |ArgumentList| may represent either a single |AssignmentExpression| or an |ArgumentList|, followed by a comma, followed by an |AssignmentExpression|. This definition of |ArgumentList| is recursive, that is, it is defined in terms of itself. The result is that an |ArgumentList| may contain any positive number of arguments, separated by commas, where each argument expression is an |AssignmentExpression|. Such recursive definitions of nonterminals are common.</p>
+      </emu-clause>

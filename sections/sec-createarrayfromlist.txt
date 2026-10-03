@@ -1,0 +1,21 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.17 CreateArrayFromList ( _elements_: a List of ECMAScript language values, ): an Array [id: sec-createarrayfromlist]
+
+<emu-clause id="sec-createarrayfromlist" type="abstract operation">
+      <h1>
+        CreateArrayFromList (
+          _elements_: a List of ECMAScript language values,
+        ): an Array
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to create an Array whose elements are provided by _elements_.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _array_ be ! ArrayCreate(0).
+        1. Let _n_ be 0.
+        1. For each element _element_ of _elements_, do
+          1. Perform ! CreateDataPropertyOrThrow(_array_, ! ToString(𝔽(_n_)), _element_).
+          1. Set _n_ to _n_ + 1.
+        1. Return _array_.
+      </emu-alg>
+    </emu-clause>

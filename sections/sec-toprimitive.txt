@@ -1,0 +1,37 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.1 ToPrimitive ( _input_: an ECMAScript language value, optional _preferredType_: ~string~ or ~number~, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-toprimitive]
+
+<emu-clause id="sec-toprimitive" type="abstract operation" oldids="table-9">
+      <h1>
+        ToPrimitive (
+          _input_: an ECMAScript language value,
+          optional _preferredType_: ~string~ or ~number~,
+        ): either a normal completion containing an ECMAScript language value or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It converts its _input_ argument to a non-Object type. If an object is capable of converting to more than one primitive type, it may use the optional hint _preferredType_ to favour that type.</dd>
+      </dl>
+      <emu-alg>
+        1. If _input_ is an Object, then
+          1. Let _exoticToPrimitive_ be ? GetMethod(_input_, %Symbol.toPrimitive%).
+          1. If _exoticToPrimitive_ is not *undefined*, then
+            1. If _preferredType_ is not present, then
+              1. Let _hint_ be *"default"*.
+            1. Else if _preferredType_ is ~string~, then
+              1. Let _hint_ be *"string"*.
+            1. Else,
+              1. Assert: _preferredType_ is ~number~.
+              1. Let _hint_ be *"number"*.
+            1. Let _result_ be ? Call(_exoticToPrimitive_, _input_, « _hint_ »).
+            1. If _result_ is not an Object, return _result_.
+            1. Throw a *TypeError* exception.
+          1. If _preferredType_ is not present, set _preferredType_ to ~number~.
+          1. Return ? OrdinaryToPrimitive(_input_, _preferredType_).
+        1. Return _input_.
+      </emu-alg>
+      <emu-note>
+        <p>When ToPrimitive is called without a hint, then it generally behaves as if the hint were ~number~. However, objects may over-ride this behaviour by defining a %Symbol.toPrimitive% method. Of the objects defined in this specification only Dates (see <emu-xref href="#sec-date.prototype-%symbol.toprimitive%"></emu-xref>) and Symbol objects (see <emu-xref href="#sec-symbol.prototype-%symbol.toprimitive%"></emu-xref>) over-ride the default ToPrimitive behaviour. Dates treat the absence of a hint as if the hint were ~string~.</p>
+      </emu-note>
+
+      
+    </emu-clause>

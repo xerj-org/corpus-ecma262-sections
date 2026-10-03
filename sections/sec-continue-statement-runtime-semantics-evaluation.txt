@@ -1,0 +1,14 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.8 The `continue` Statement > 14.8.2 Runtime Semantics: Evaluation [id: sec-continue-statement-runtime-semantics-evaluation]
+
+<emu-clause id="sec-continue-statement-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>ContinueStatement : `continue` `;`</emu-grammar>
+      <emu-alg>
+        1. Return Completion Record { [[Type]]: ~continue~, [[Value]]: ~empty~, [[Target]]: ~empty~ }.
+      </emu-alg>
+      <emu-grammar>ContinueStatement : `continue` LabelIdentifier `;`</emu-grammar>
+      <emu-alg>
+        1. Let _label_ be the StringValue of |LabelIdentifier|.
+        1. Return Completion Record { [[Type]]: ~continue~, [[Value]]: ~empty~, [[Target]]: _label_ }.
+      </emu-alg>
+    </emu-clause>

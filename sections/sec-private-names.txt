@@ -1,0 +1,6 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.12 Private Names [id: sec-private-names]
+
+<emu-clause id="sec-private-names">
+      <h1>Private Names</h1>
+      <p>The <dfn variants="Private Names">Private Name</dfn> specification type is used to describe a globally unique value (one which differs from any other Private Name, even if they are otherwise indistinguishable) which represents the key of a private class element (field, method, or accessor). Each Private Name has an immutable [[Description]] internal slot which is a String. A Private Name may be installed on any ECMAScript object with PrivateFieldAdd or PrivateMethodOrAccessorAdd, and then read or written using PrivateGet and PrivateSet.</p>
+    </emu-clause>

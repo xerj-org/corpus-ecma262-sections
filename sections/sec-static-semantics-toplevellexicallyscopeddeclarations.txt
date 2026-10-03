@@ -1,0 +1,23 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.2 Scope Analysis > 8.2.11 Static Semantics: TopLevelLexicallyScopedDeclarations ( ): a List of Parse Nodes [id: sec-static-semantics-toplevellexicallyscopeddeclarations]
+
+<emu-clause id="sec-static-semantics-toplevellexicallyscopeddeclarations" oldids="sec-block-static-semantics-toplevellexicallyscopeddeclarations,sec-labelled-statements-static-semantics-toplevellexicallyscopeddeclarations" type="sdo">
+      <h1>Static Semantics: TopLevelLexicallyScopedDeclarations ( ): a List of Parse Nodes</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>StatementList : StatementList StatementListItem</emu-grammar>
+      <emu-alg>
+        1. Let _decls1_ be the TopLevelLexicallyScopedDeclarations of |StatementList|.
+        1. Let _decls2_ be the TopLevelLexicallyScopedDeclarations of |StatementListItem|.
+        1. Return the list-concatenation of _decls1_ and _decls2_.
+      </emu-alg>
+      <emu-grammar>StatementListItem : Statement</emu-grammar>
+      <emu-alg>
+        1. Return a new empty List.
+      </emu-alg>
+      <emu-grammar>StatementListItem : Declaration</emu-grammar>
+      <emu-alg>
+        1. If |Declaration| is <emu-grammar>Declaration : HoistableDeclaration</emu-grammar>, then
+          1. Return a new empty List.
+        1. Return « |Declaration| ».
+      </emu-alg>
+    </emu-clause>

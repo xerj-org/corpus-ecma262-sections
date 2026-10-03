@@ -1,0 +1,14 @@
+ECMA-262 > 20 Fundamental Objects > 20.2 Function Objects > 20.2.2 Properties of the Function Constructor [id: sec-properties-of-the-function-constructor]
+
+<emu-clause id="sec-properties-of-the-function-constructor">
+      <h1>Properties of the Function Constructor</h1>
+      <p>The Function constructor:</p>
+      <ul>
+        <li>is itself a built-in function object.</li>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li oldids="sec-function.length">has a *"length"* property whose value is *1*<sub>𝔽</sub>.</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+    </emu-clause>

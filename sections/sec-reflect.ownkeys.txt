@@ -1,0 +1,11 @@
+ECMA-262 > 28 Reflection > 28.1 The Reflect Object > 28.1.10 Reflect.ownKeys ( _target_ ) [id: sec-reflect.ownkeys]
+
+<emu-clause id="sec-reflect.ownkeys" type="built-in function">
+      <h1>Reflect.ownKeys ( _target_ )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. If _target_ is not an Object, throw a *TypeError* exception.
+        1. Let _keys_ be ? <emu-meta effects="user-code">_target_.[[OwnPropertyKeys]]()</emu-meta>.
+        1. Return CreateArrayFromList(_keys_).
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,21 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.2 PrivateEnvironment Records > 9.2.1 PrivateEnvironment Record Operations > 9.2.1.2 ResolvePrivateIdentifier ( _privateEnv_: a PrivateEnvironment Record, _identifier_: a String, ): a Private Name [id: sec-resolve-private-identifier]
+
+<emu-clause id="sec-resolve-private-identifier" type="abstract operation">
+        <h1>
+          ResolvePrivateIdentifier (
+            _privateEnv_: a PrivateEnvironment Record,
+            _identifier_: a String,
+          ): a Private Name
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _names_ be _privateEnv_.[[Names]].
+          1. For each Private Name _privateName_ of _names_, do
+            1. If _privateName_.[[Description]] is _identifier_, then
+              1. Return _privateName_.
+          1. Let _outerPrivateEnv_ be _privateEnv_.[[OuterPrivateEnvironment]].
+          1. Assert: _outerPrivateEnv_ is not *null*.
+          1. Return ResolvePrivateIdentifier(_outerPrivateEnv_, _identifier_).
+        </emu-alg>
+      </emu-clause>

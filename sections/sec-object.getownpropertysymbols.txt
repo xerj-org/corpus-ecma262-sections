@@ -1,0 +1,11 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.11 Object.getOwnPropertySymbols ( _obj_ ) [id: sec-object.getownpropertysymbols]
+
+<emu-clause id="sec-object.getownpropertysymbols" type="built-in function">
+        <h1>Object.getOwnPropertySymbols ( _obj_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Return CreateArrayFromList(? GetOwnPropertyKeys(_obj_, ~symbol~)).
+        </emu-alg>
+
+        
+      </emu-clause>

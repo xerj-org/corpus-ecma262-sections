@@ -1,0 +1,22 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.4 Properties of the Promise Constructor > 27.5.4.7 Promise.resolve ( _resolution_ ) > 27.5.4.7.1 PromiseResolve ( _ctor_: an Object, _resolution_: an ECMAScript language value, ): either a normal completion containing an Object or a throw completion [id: sec-promise-resolve]
+
+<emu-clause id="sec-promise-resolve" type="abstract operation">
+          <h1>
+            PromiseResolve (
+              _ctor_: an Object,
+              _resolution_: an ECMAScript language value,
+            ): either a normal completion containing an Object or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It returns a new promise resolved with _resolution_.</dd>
+          </dl>
+          <emu-alg>
+            1. If IsPromise(_resolution_) is *true*, then
+              1. Let _resolutionCtor_ be ? Get(_resolution_, *"constructor"*).
+              1. If SameValue(_resolutionCtor_, _ctor_) is *true*, return _resolution_.
+            1. Let _promiseCapability_ be ? NewPromiseCapability(_ctor_).
+            1. Perform ? Call(_promiseCapability_.[[Resolve]], *undefined*, « _resolution_ »).
+            1. Return _promiseCapability_.[[Promise]].
+          </emu-alg>
+        </emu-clause>

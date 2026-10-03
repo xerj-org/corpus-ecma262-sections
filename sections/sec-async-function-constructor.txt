@@ -1,0 +1,15 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.10 AsyncFunction Objects > 27.10.1 The AsyncFunction Constructor [id: sec-async-function-constructor]
+
+<emu-clause id="sec-async-function-constructor">
+      <h1>The AsyncFunction Constructor</h1>
+
+      <p>The AsyncFunction constructor:</p>
+      <ul>
+        <li>is <dfn>%AsyncFunction%</dfn>.</li>
+        <li>is a subclass of `Function`.</li>
+        <li>creates and initializes a new AsyncFunction when called as a function rather than as a constructor. Thus the function call `AsyncFunction(…)` is equivalent to the object creation expression `new AsyncFunction(…)` with the same arguments.</li>
+        <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified AsyncFunction behaviour must include a `super` call to the AsyncFunction constructor to create and initialize a subclass instance with the internal slots necessary for built-in async function behaviour. All ECMAScript syntactic forms for defining async function objects create direct instances of AsyncFunction. There is no syntactic means to create instances of AsyncFunction subclasses.</li>
+      </ul>
+
+      
+    </emu-clause>

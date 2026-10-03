@@ -1,0 +1,19 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.11 Equality Operators [id: sec-equality-operators]
+
+<emu-clause id="sec-equality-operators">
+    <h1>Equality Operators</h1>
+    <emu-note>
+      <p>The result of evaluating an equality operator is always of type Boolean, reflecting whether the relationship named by the operator holds between its two operands.</p>
+    </emu-note>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      EqualityExpression[In, Yield, Await] :
+        RelationalExpression[?In, ?Yield, ?Await]
+        EqualityExpression[?In, ?Yield, ?Await] `==` RelationalExpression[?In, ?Yield, ?Await]
+        EqualityExpression[?In, ?Yield, ?Await] `!=` RelationalExpression[?In, ?Yield, ?Await]
+        EqualityExpression[?In, ?Yield, ?Await] `===` RelationalExpression[?In, ?Yield, ?Await]
+        EqualityExpression[?In, ?Yield, ?Await] `!==` RelationalExpression[?In, ?Yield, ?Await]
+    </emu-grammar>
+
+    
+  </emu-clause>

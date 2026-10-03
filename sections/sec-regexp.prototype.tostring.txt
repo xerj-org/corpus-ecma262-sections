@@ -1,0 +1,16 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.6 Properties of the RegExp Prototype Object > 22.2.6.17 RegExp.prototype.toString ( ) [id: sec-regexp.prototype.tostring]
+
+<emu-clause id="sec-regexp.prototype.tostring" type="built-in function">
+        <h1>RegExp.prototype.toString ( )</h1>
+        <emu-alg>
+          1. Let _regexp_ be the *this* value.
+          1. If _regexp_ is not an Object, throw a *TypeError* exception.
+          1. Let _pattern_ be ? ToString(? Get(_regexp_, *"source"*)).
+          1. Let _flags_ be ? ToString(? Get(_regexp_, *"flags"*)).
+          1. Let _result_ be the string-concatenation of *"/"*, _pattern_, *"/"*, and _flags_.
+          1. Return _result_.
+        </emu-alg>
+        <emu-note>
+          <p>The returned String has the form of a |RegularExpressionLiteral| that evaluates to another RegExp object with the same behaviour as this object.</p>
+        </emu-note>
+      </emu-clause>

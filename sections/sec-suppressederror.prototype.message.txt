@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.8 SuppressedError Objects > 20.5.8.3 Properties of the SuppressedError Prototype Object > 20.5.8.3.2 SuppressedError.prototype.message [id: sec-suppressederror.prototype.message]
+
+<emu-clause id="sec-suppressederror.prototype.message">
+          <h1>SuppressedError.prototype.message</h1>
+          <p>The initial value of `SuppressedError.prototype.message` is the empty String.</p>
+        </emu-clause>

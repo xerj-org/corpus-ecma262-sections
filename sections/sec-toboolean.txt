@@ -1,0 +1,20 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.2 ToBoolean ( _arg_: an ECMAScript language value, ): a Boolean [id: sec-toboolean]
+
+<emu-clause id="sec-toboolean" oldids="table-toboolean-conversions,sec-IsHTMLDDA-internal-slot-to-boolean" type="abstract operation">
+      <h1>
+        ToBoolean (
+          _arg_: an ECMAScript language value,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It converts _arg_ to a value of type Boolean.</dd>
+      </dl>
+      <emu-alg>
+        1. If _arg_ is a Boolean, return _arg_.
+        1. If _arg_ is one of *undefined*, *null*, *+0*<sub>𝔽</sub>, *-0*<sub>𝔽</sub>, *NaN*, *0*<sub>ℤ</sub>, or the empty String, return *false*.
+        1. [id="step-to-boolean-web-compat-insertion-point", normative-optional] If the host is a web browser or otherwise supports <emu-xref href="#sec-IsHTMLDDA-internal-slot" title></emu-xref>, then
+          1. If _arg_ is an Object and _arg_ has an [[IsHTMLDDA]] internal slot, return *false*.
+        1. Return *true*.
+      </emu-alg>
+    </emu-clause>

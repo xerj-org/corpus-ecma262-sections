@@ -1,0 +1,15 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.14 Conditional Operator ( `? :` ) > 13.14.1 Runtime Semantics: Evaluation [id: sec-conditional-operator-runtime-semantics-evaluation]
+
+<emu-clause id="sec-conditional-operator-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>ConditionalExpression : ShortCircuitExpression `?` AssignmentExpression `:` AssignmentExpression</emu-grammar>
+      <emu-alg>
+        1. Let _leftRef_ be ? Evaluation of |ShortCircuitExpression|.
+        1. Let _leftValue_ be ToBoolean(? GetValue(_leftRef_)).
+        1. If _leftValue_ is *true*, then
+          1. Let _trueRef_ be ? Evaluation of the first |AssignmentExpression|.
+          1. Return ? GetValue(_trueRef_).
+        1. Let _falseRef_ be ? Evaluation of the second |AssignmentExpression|.
+        1. Return ? GetValue(_falseRef_).
+      </emu-alg>
+    </emu-clause>

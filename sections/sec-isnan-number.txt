@@ -1,0 +1,15 @@
+ECMA-262 > 19 The Global Object > 19.2 Function Properties of the Global Object > 19.2.3 isNaN ( _value_ ) [id: sec-isnan-number]
+
+<emu-clause id="sec-isnan-number" type="built-in function">
+      <h1>isNaN ( _value_ )</h1>
+      <p>This function is the <dfn>%isNaN%</dfn> intrinsic object.</p>
+      <p>It performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _number_ be ? ToNumber(_value_).
+        1. If _number_ is *NaN*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-note>
+        <p>A reliable way for ECMAScript code to test if a value `X` is *NaN* is an expression of the form `X !== X`. The result will be *true* if and only if `X` is *NaN*.</p>
+      </emu-note>
+    </emu-clause>

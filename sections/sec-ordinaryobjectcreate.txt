@@ -1,0 +1,25 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.12 OrdinaryObjectCreate ( _proto_: an Object or *null*, optional _additionalInternalSlotsList_: a List of names of internal slots, ): an Object [id: sec-ordinaryobjectcreate]
+
+<emu-clause id="sec-ordinaryobjectcreate" type="abstract operation" oldids="sec-objectcreate">
+      <h1>
+        OrdinaryObjectCreate (
+          _proto_: an Object or *null*,
+          optional _additionalInternalSlotsList_: a List of names of internal slots,
+        ): an Object
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to specify the runtime creation of new ordinary objects. _additionalInternalSlotsList_ contains the names of additional internal slots that must be defined as part of the object, beyond [[Prototype]] and [[Extensible]]. If _additionalInternalSlotsList_ is not provided, a new empty List is used.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _internalSlotsList_ be « [[Prototype]], [[Extensible]] ».
+        1. If _additionalInternalSlotsList_ is present, set _internalSlotsList_ to the list-concatenation of _internalSlotsList_ and _additionalInternalSlotsList_.
+        1. Let _obj_ be MakeBasicObject(_internalSlotsList_).
+        1. Set _obj_.[[Prototype]] to _proto_.
+        1. Return _obj_.
+      </emu-alg>
+
+      <emu-note>
+        <p>Although OrdinaryObjectCreate does little more than call MakeBasicObject, its use communicates the intention to create an ordinary object, and not an exotic one. Thus, within this specification, it is not called by any algorithm that subsequently modifies the internal methods of the object in ways that would make the result non-ordinary. Operations that create exotic objects invoke MakeBasicObject directly.</p>
+      </emu-note>
+    </emu-clause>

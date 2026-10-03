@@ -1,0 +1,31 @@
+ECMA-262 > 9 Executable Code and Execution Contexts [id: sec-executable-code-and-execution-contexts]
+
+<emu-clause id="sec-executable-code-and-execution-contexts">
+  <h1>Executable Code and Execution Contexts</h1>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</emu-clause>

@@ -1,0 +1,24 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.4 Abstract Operations for TypedArray Objects > 23.2.4.1 TypedArrayCreateFromConstructor ( _ctor_: a constructor, _argList_: a List of ECMAScript language values, ): either a normal completion containing a TypedArray or a throw completion [id: sec-typedarraycreatefromconstructor]
+
+<emu-clause id="sec-typedarraycreatefromconstructor" oldids="typedarray-create" type="abstract operation">
+        <h1>
+          TypedArrayCreateFromConstructor (
+            _ctor_: a constructor,
+            _argList_: a List of ECMAScript language values,
+          ): either a normal completion containing a TypedArray or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to specify the creation of a new TypedArray using a constructor function.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _ta_ be ? Construct(_ctor_, _argList_).
+          1. Let _taRecord_ be ? ValidateTypedArray(_ta_, ~seq-cst~).
+          1. Assert: _ta_ has all the internal slots mentioned in <emu-xref href="#sec-properties-of-typedarray-instances" title></emu-xref>.
+          1. If the number of elements in _argList_ is 1 and _argList_[0] is a Number, then
+            1. If IsTypedArrayOutOfBounds(_taRecord_) is *true*, throw a *TypeError* exception.
+            1. Let _length_ be TypedArrayLength(_taRecord_).
+            1. If _length_ &lt; ℝ(_argList_[0]), throw a *TypeError* exception.
+          1. Return _ta_.
+        </emu-alg>
+      </emu-clause>

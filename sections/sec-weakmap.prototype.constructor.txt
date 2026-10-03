@@ -1,0 +1,6 @@
+ECMA-262 > 24 Keyed Collections > 24.3 WeakMap Objects > 24.3.3 Properties of the WeakMap Prototype Object > 24.3.3.1 WeakMap.prototype.constructor [id: sec-weakmap.prototype.constructor]
+
+<emu-clause id="sec-weakmap.prototype.constructor">
+        <h1>WeakMap.prototype.constructor</h1>
+        <p>The initial value of `WeakMap.prototype.constructor` is %WeakMap%.</p>
+      </emu-clause>

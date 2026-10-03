@@ -1,0 +1,20 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.4 Properties of the Promise Constructor > 27.5.4.8 Promise.try ( _callback_, ..._args_ ) [id: sec-promise.try]
+
+<emu-clause id="sec-promise.try" type="built-in function">
+        <h1>Promise.try ( _callback_, ..._args_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _ctor_ be the *this* value.
+          1. If _ctor_ is not an Object, throw a *TypeError* exception.
+          1. Let _status_ be Completion(Call(_callback_, *undefined*, _args_)).
+          1. If _status_ is an abrupt completion, then
+            1. Let _promiseCapability_ be ? NewPromiseCapability(_ctor_).
+            1. Perform ? Call(_promiseCapability_.[[Reject]], *undefined*, « _status_.[[Value]] »).
+            1. Return _promiseCapability_.[[Promise]].
+          1. Else,
+            1. Return ? PromiseResolve(_ctor_, ! _status_).
+        </emu-alg>
+        <emu-note>
+          <p>This function expects its *this* value to be a constructor function that supports the parameter conventions of the Promise constructor.</p>
+        </emu-note>
+      </emu-clause>

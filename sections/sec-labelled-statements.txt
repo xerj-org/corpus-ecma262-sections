@@ -1,0 +1,25 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.13 Labelled Statements [id: sec-labelled-statements]
+
+<emu-clause id="sec-labelled-statements">
+    <h1>Labelled Statements</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      LabelledStatement[Yield, Await, Return] :
+        LabelIdentifier[?Yield, ?Await] `:` LabelledItem[?Yield, ?Await, ?Return]
+
+      LabelledItem[Yield, Await, Return] :
+        Statement[?Yield, ?Await, ?Return]
+        FunctionDeclaration[?Yield, ?Await, ~Default]
+    </emu-grammar>
+    <emu-note>
+      <p>A |Statement| may be prefixed by a label. Labelled statements are only used in conjunction with labelled `break` and `continue` statements. ECMAScript has no `goto` statement. A |Statement| can be part of a |LabelledStatement|, which itself can be part of a |LabelledStatement|, and so on. The labels introduced this way are collectively referred to as the “current label set” when describing the semantics of individual statements.</p>
+    </emu-note>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

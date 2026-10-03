@@ -1,0 +1,17 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.2 Environment Record Operations > 9.1.2.2 NewDeclarativeEnvironment ( _outerEnv_: an Environment Record or *null*, ): a Declarative Environment Record [id: sec-newdeclarativeenvironment]
+
+<emu-clause id="sec-newdeclarativeenvironment" type="abstract operation">
+        <h1>
+          NewDeclarativeEnvironment (
+            _outerEnv_: an Environment Record or *null*,
+          ): a Declarative Environment Record
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _envRecord_ be a new Declarative Environment Record containing no bindings.
+          1. Set _envRecord_.[[OuterEnv]] to _outerEnv_.
+          1. Set _envRecord_.[[DisposableResourceStack]] to a new empty List.
+          1. Return _envRecord_.
+        </emu-alg>
+      </emu-clause>

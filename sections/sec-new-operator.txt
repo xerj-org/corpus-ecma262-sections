@@ -1,0 +1,7 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.5 The `new` Operator [id: sec-new-operator]
+
+<emu-clause id="sec-new-operator">
+      <h1>The `new` Operator</h1>
+
+      
+    </emu-clause>

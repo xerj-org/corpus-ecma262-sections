@@ -1,0 +1,13 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.3 Iterator Objects [id: sec-iterator-objects]
+
+<emu-clause id="sec-iterator-objects">
+      <h1>Iterator Objects</h1>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

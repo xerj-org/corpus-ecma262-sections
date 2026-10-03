@@ -1,0 +1,10 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.31 %TypedArray%.prototype.toLocaleString ( [ _reserved1_ [ , _reserved2_ ] ] ) [id: sec-%typedarray%.prototype.tolocalestring]
+
+<emu-clause id="sec-%typedarray%.prototype.tolocalestring" type="built-in function">
+        <h1>%TypedArray%.prototype.toLocaleString ( [ _reserved1_ [ , _reserved2_ ] ] )</h1>
+        <p>This is a distinct method that implements the same algorithm as `Array.prototype.toLocaleString` as defined in <emu-xref href="#sec-array.prototype.tolocalestring"></emu-xref> except that TypedArrayLength is called in place of performing a [[Get]] of *"length"*. The implementation of the algorithm may be optimized with the knowledge that the *this* value has a fixed length when the underlying buffer is not resizable and whose integer-indexed properties are not sparse. However, such optimization must not introduce any observable changes in the specified behaviour of the algorithm.</p>
+        <p>This method is not generic. ValidateTypedArray is called with the *this* value and ~seq-cst~ as arguments prior to evaluating the algorithm. If its result is an abrupt completion that exception is thrown instead of evaluating the algorithm.</p>
+        <emu-note>
+          <p>If the ECMAScript implementation includes the ECMA-402 Internationalization API this method is based upon the algorithm for `Array.prototype.toLocaleString` that is in ECMA-402.</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,22 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.4 Global Environment Records > 9.1.1.4.2 CreateMutableBinding ( _name_: a String, _deletable_: a Boolean, ): either a normal completion containing ~unused~ or a throw completion [id: sec-global-environment-records-createmutablebinding-n-d]
+
+<emu-clause id="sec-global-environment-records-createmutablebinding-n-d" type="concrete method">
+          <h1>
+            CreateMutableBinding (
+              _name_: a String,
+              _deletable_: a Boolean,
+            ): either a normal completion containing ~unused~ or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>a Global Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It creates a new mutable binding for the name _name_ that is uninitialized. The binding is created in the associated DeclarativeRecord. A binding for _name_ must not already exist in the DeclarativeRecord. If _deletable_ is *true*, the new binding is marked as being subject to deletion.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _declRecord_ be _envRecord_.[[DeclarativeRecord]].
+            1. If ! _declRecord_.HasBinding(_name_) is *true*, throw a *TypeError* exception.
+            1. Return ! _declRecord_.CreateMutableBinding(_name_, _deletable_).
+          </emu-alg>
+        </emu-clause>

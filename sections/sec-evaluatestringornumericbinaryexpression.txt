@@ -1,0 +1,20 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.15 Assignment Operators > 13.15.4 EvaluateStringOrNumericBinaryExpression ( _leftOperand_: a Parse Node, _opText_: `**`, `*`, `/`, `%`, `+`, `-`, `<<`, `>>`, `>>>`, `&`, `^`, or `|`, _rightOperand_: a Parse Node, ): either a normal completion containing either a String, a BigInt, or a Number, or an abrupt completion [id: sec-evaluatestringornumericbinaryexpression]
+
+<emu-clause id="sec-evaluatestringornumericbinaryexpression" type="abstract operation">
+      <h1>
+        EvaluateStringOrNumericBinaryExpression (
+          _leftOperand_: a Parse Node,
+          _opText_: `**`, `*`, `/`, `%`, `+`, `-`, `&lt;&lt;`, `&gt;&gt;`, `&gt;&gt;&gt;`, `&amp;`, `^`, or `|`,
+          _rightOperand_: a Parse Node,
+        ): either a normal completion containing either a String, a BigInt, or a Number, or an abrupt completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _leftRef_ be ? Evaluation of _leftOperand_.
+        1. Let _leftValue_ be ? GetValue(_leftRef_).
+        1. Let _rightRef_ be ? Evaluation of _rightOperand_.
+        1. Let _rightValue_ be ? GetValue(_rightRef_).
+        1. Return ? ApplyStringOrNumericBinaryOperator(_leftValue_, _opText_, _rightValue_).
+      </emu-alg>
+    </emu-clause>

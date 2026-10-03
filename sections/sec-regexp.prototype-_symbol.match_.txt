@@ -1,0 +1,33 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.6 Properties of the RegExp Prototype Object > 22.2.6.8 RegExp.prototype [ %Symbol.match% ] ( _string_ ) [id: sec-regexp.prototype-%symbol.match%]
+
+<emu-clause oldids="sec-regexp.prototype-@@match" id="sec-regexp.prototype-%symbol.match%" type="built-in function">
+        <h1>RegExp.prototype [ %Symbol.match% ] ( _string_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _regexp_ be the *this* value.
+          1. If _regexp_ is not an Object, throw a *TypeError* exception.
+          1. Set _string_ to ? ToString(_string_).
+          1. Let _flags_ be ? ToString(? Get(_regexp_, *"flags"*)).
+          1. If _flags_ does not contain *"g"*, return ? RegExpExec(_regexp_, _string_).
+          1. If _flags_ contains *"u"* or _flags_ contains *"v"*, let _fullUnicode_ be *true*; else let _fullUnicode_ be *false*.
+          1. Perform ? Set(_regexp_, *"lastIndex"*, *+0*<sub>𝔽</sub>, *true*).
+          1. Let _array_ be ! ArrayCreate(0).
+          1. Let _matchCount_ be 0.
+          1. Repeat,
+            1. Let _result_ be ? RegExpExec(_regexp_, _string_).
+            1. If _result_ is *null*, then
+              1. If _matchCount_ = 0, return *null*.
+              1. Return _array_.
+            1. Let _matchString_ be ? ToString(? Get(_result_, *"0"*)).
+            1. Perform ! CreateDataPropertyOrThrow(_array_, ! ToString(𝔽(_matchCount_)), _matchString_).
+            1. If _matchString_ is the empty String, then
+              1. Let _thisIndex_ be ℝ(? ToLength(? Get(_regexp_, *"lastIndex"*))).
+              1. Let _nextIndex_ be AdvanceStringIndex(_string_, _thisIndex_, _fullUnicode_).
+              1. Perform ? Set(_regexp_, *"lastIndex"*, 𝔽(_nextIndex_), *true*).
+            1. Set _matchCount_ to _matchCount_ + 1.
+        </emu-alg>
+        <p>The value of the *"name"* property of this method is *"[Symbol.match]"*.</p>
+        <emu-note>
+          <p>The %Symbol.match% property is used by the IsRegExp abstract operation to identify objects that have the basic behaviour of regular expressions. The absence of a %Symbol.match% property or the existence of such a property whose value does not Boolean coerce to *true* indicates that the object is not intended to be used as a regular expression object.</p>
+        </emu-note>
+      </emu-clause>

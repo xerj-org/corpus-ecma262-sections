@@ -1,0 +1,20 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.8 DefinePropertyOrThrow ( _obj_: an Object, _propertyKey_: a property key, _propertyDesc_: a Property Descriptor, ): either a normal completion containing ~unused~ or a throw completion [id: sec-definepropertyorthrow]
+
+<emu-clause id="sec-definepropertyorthrow" type="abstract operation">
+      <h1>
+        DefinePropertyOrThrow (
+          _obj_: an Object,
+          _propertyKey_: a property key,
+          _propertyDesc_: a Property Descriptor,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to call the [[DefineOwnProperty]] internal method of an object in a manner that will throw a *TypeError* exception if the requested property update cannot be performed.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _success_ be ? <emu-meta effects="user-code">_obj_.[[DefineOwnProperty]](_propertyKey_, _propertyDesc_)</emu-meta>.
+        1. If _success_ is *false*, throw a *TypeError* exception.
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,41 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.3 Abstract Operations for RegExp Creation > 22.2.3.3 RegExpInitialize ( _obj_: an Object, _pattern_: an ECMAScript language value, _flags_: an ECMAScript language value, ): either a normal completion containing an Object or a throw completion [id: sec-regexpinitialize]
+
+<emu-clause id="sec-regexpinitialize" type="abstract operation">
+        <h1>
+          RegExpInitialize (
+            _obj_: an Object,
+            _pattern_: an ECMAScript language value,
+            _flags_: an ECMAScript language value,
+          ): either a normal completion containing an Object or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _pattern_ is *undefined*, set _pattern_ to the empty String.
+          1. Else, set _pattern_ to ? ToString(_pattern_).
+          1. If _flags_ is *undefined*, set _flags_ to the empty String.
+          1. Else, set _flags_ to ? ToString(_flags_).
+          1. If _flags_ contains any code unit other than *"d"*, *"g"*, *"i"*, *"m"*, *"s"*, *"u"*, *"v"*, or *"y"*, throw a *SyntaxError* exception.
+          1. If _flags_ contains any code unit more than once, throw a *SyntaxError* exception.
+          1. If _flags_ contains *"i"*, let _i_ be *true*; else let _i_ be *false*.
+          1. If _flags_ contains *"m"*, let _m_ be *true*; else let _m_ be *false*.
+          1. If _flags_ contains *"s"*, let _s_ be *true*; else let _s_ be *false*.
+          1. If _flags_ contains *"u"*, let _u_ be *true*; else let _u_ be *false*.
+          1. If _flags_ contains *"v"*, let _v_ be *true*; else let _v_ be *false*.
+          1. If _u_ is *true* or _v_ is *true*, then
+            1. Let _patternText_ be StringToCodePoints(_pattern_).
+          1. Else,
+            1. Let _patternText_ be the result of interpreting each of _pattern_'s 16-bit elements as a Unicode BMP code point. UTF-16 decoding is not applied to the elements.
+          1. Let _parseResult_ be ParsePattern(_patternText_, _u_, _v_).
+          1. If _parseResult_ is a non-empty List of *SyntaxError* objects, throw a *SyntaxError* exception.
+          1. Assert: _parseResult_ is a |Pattern| Parse Node.
+          1. Set _obj_.[[OriginalSource]] to _pattern_.
+          1. Set _obj_.[[OriginalFlags]] to _flags_.
+          1. Let _capturingGroupsCount_ be CountLeftCapturingParensWithin(_parseResult_).
+          1. Let _regexpRecord_ be the RegExp Record { [[IgnoreCase]]: _i_, [[Multiline]]: _m_, [[DotAll]]: _s_, [[Unicode]]: _u_, [[UnicodeSets]]: _v_, [[CapturingGroupsCount]]: _capturingGroupsCount_ }.
+          1. Set _obj_.[[RegExpRecord]] to _regexpRecord_.
+          1. Set _obj_.[[RegExpMatcher]] to CompilePattern of _parseResult_ with argument _regexpRecord_.
+          1. Perform ? <emu-meta suppress-effects="user-code">Set(_obj_, *"lastIndex"*, *+0*<sub>𝔽</sub>, *true*)</emu-meta>.
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

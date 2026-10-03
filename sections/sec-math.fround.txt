@@ -1,0 +1,14 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.2 Function Properties of the Math Object > 21.3.2.17 Math.fround ( _x_ ) [id: sec-math.fround]
+
+<emu-clause id="sec-math.fround" type="built-in function">
+        <h1>Math.fround ( _x_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _n_ be ? ToNumber(_x_).
+          1. If _n_ is *NaN*, return *NaN*.
+          1. If _n_ is one of *+0*<sub>𝔽</sub>, *-0*<sub>𝔽</sub>, *+∞*<sub>𝔽</sub>, or *-∞*<sub>𝔽</sub>, return _n_.
+          1. Let _n32_ be the result of converting _n_ to IEEE 754-2019 binary32 format using roundTiesToEven mode.
+          1. Let _n64_ be the result of converting _n32_ to IEEE 754-2019 binary64 format.
+          1. Return the ECMAScript Number value corresponding to _n64_.
+        </emu-alg>
+      </emu-clause>

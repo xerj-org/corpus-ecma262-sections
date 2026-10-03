@@ -1,0 +1,15 @@
+ECMA-262 > 29 Memory Model > 29.7 Properties of Valid Executions > 29.7.5 Valid Executions [id: sec-valid-executions]
+
+<emu-clause id="sec-valid-executions">
+      <h1>Valid Executions</h1>
+      <p>A candidate execution _execution_ is a valid execution (or simply an execution) if all of the following are true.</p>
+      <ul>
+        <li>The host provides a host-synchronizes-with Relation for _execution_.</li>
+        <li>_execution_ admits a happens-before Relation that is a strict partial order.</li>
+        <li>_execution_ has valid chosen reads.</li>
+        <li>_execution_ has coherent reads.</li>
+        <li>_execution_ has tear free reads.</li>
+        <li>_execution_ has sequentially consistent atomics.</li>
+      </ul>
+      <p>All programs have at least one valid execution.</p>
+    </emu-clause>

@@ -1,0 +1,55 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.5 Jobs and Host Operations to Enqueue Jobs [id: sec-jobs]
+
+<emu-clause id="sec-jobs" oldids="sec-jobs-and-job-queues,sec-enqueuejob,sec-runjobs,job-queue">
+    <h1>Jobs and Host Operations to Enqueue Jobs</h1>
+    <p>A <dfn id="job" variants="Jobs">Job</dfn> is an Abstract Closure with no parameters that initiates an ECMAScript computation when no other ECMAScript computation is currently in progress.</p>
+    <p>Jobs are scheduled for execution by ECMAScript host environments in a particular agent. This specification describes the host hooks HostEnqueueGenericJob, HostEnqueueFinalizationRegistryCleanupJob, HostEnqueuePromiseJob, and HostEnqueueTimeoutJob to schedule jobs. The host hooks in this specification are organized by the additional constraints imposed on the scheduling of jobs. Hosts may define additional abstract operations which schedule jobs. Such operations accept a Job Abstract Closure and a realm (a Realm Record or *null*) as parameters. If a Realm Record is provided, these operations schedule the job to be performed at some future time in the provided realm, in the agent that owns the realm. If *null* is provided instead for the realm, then the job does not evaluate ECMAScript code. Their implementations must conform to the following requirements:</p>
+
+    <ul>
+      <li>At some future point in time, when there is no running context in the agent for which the job is scheduled and that agent's execution context stack is empty, the implementation must:
+        <ol>
+          <li>Perform any host-defined preparation steps.</li>
+          <li><emu-not-ref>Invoke</emu-not-ref> the Job Abstract Closure.</li>
+          <li>Perform any host-defined cleanup steps, after which the execution context stack must be empty.</li>
+        </ol>
+      </li>
+      <li>Only one Job may be actively undergoing evaluation at any point in time in an agent.</li>
+      <li>Once evaluation of a Job starts, it must run to completion before evaluation of any other Job starts in an agent.</li>
+      <li>The Abstract Closure must return a normal completion, implementing its own handling of errors.</li>
+    </ul>
+
+    <emu-note>
+      Host environments are not required to treat Jobs uniformly with respect to scheduling. For example, web browsers and Node.js treat Promise-handling Jobs as a higher priority than other work; future features may add Jobs that are not treated at such a high priority.
+    </emu-note>
+
+    <p>At any particular time, _scriptOrModule_ (a Script Record, a Module Record, or *null*) is the <dfn id="job-activescriptormodule">active script or module</dfn> if all of the following conditions are true:</p>
+    <ul>
+      <li>GetActiveScriptOrModule() is _scriptOrModule_.</li>
+      <li>If _scriptOrModule_ is a Script Record or Module Record, let _executionContext_ be the topmost execution context on the execution context stack whose ScriptOrModule component is _scriptOrModule_. The Realm component of _executionContext_ is _scriptOrModule_.[[Realm]].</li>
+    </ul>
+
+    <p>At any particular time, an execution is <dfn id="job-preparedtoevaluatecode">prepared to evaluate ECMAScript code</dfn> if all of the following conditions are true:</p>
+    <ul>
+      <li>The execution context stack is not empty.</li>
+      <li>The Realm component of the topmost execution context on the execution context stack is a Realm Record.</li>
+    </ul>
+
+    <emu-note>
+      <p>Host environments may prepare an execution to evaluate code by pushing execution contexts onto the execution context stack. The specific steps are implementation-defined.</p>
+      <p>The specific choice of Realm is up to the host environment. This initial execution context and Realm is only in use before any callback function is invoked. When a callback function related to a Job, like a Promise handler, is invoked, the invocation pushes its own execution context and Realm.</p>
+    </emu-note>
+
+    <p>Particular kinds of Jobs have additional conformance requirements.</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

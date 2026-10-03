@@ -1,0 +1,21 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.9 GetImportedModule ( _referrer_: a Cyclic Module Record, _request_: a ModuleRequest Record, ): a Module Record [id: sec-GetImportedModule]
+
+<emu-clause id="sec-GetImportedModule" type="abstract operation">
+        <h1>
+          GetImportedModule (
+            _referrer_: a Cyclic Module Record,
+            _request_: a ModuleRequest Record,
+          ): a Module Record
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd></dd>
+        </dl>
+
+        <emu-alg>
+          1. [declared="r"] Let _records_ be a List consisting of each LoadedModuleRequest Record _r_ of _referrer_.[[LoadedModules]] such that ModuleRequestsEqual(_r_, _request_) is *true*.
+          1. Assert: _records_ has exactly one element, since LoadRequestedModules has completed successfully on _referrer_ prior to invoking this abstract operation.
+          1. Let _record_ be the sole element of _records_.
+          1. Return _record_.[[Module]].
+        </emu-alg>
+      </emu-clause>

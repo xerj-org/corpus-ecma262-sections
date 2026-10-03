@@ -1,0 +1,16 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.5 The Reference Record Specification Type > 6.2.5.1 IsPropertyReference ( _refRecord_: a Reference Record, ): a Boolean [id: sec-ispropertyreference]
+
+<emu-clause id="sec-ispropertyreference" type="abstract operation" oldids="ao-ispropertyreference">
+        <h1>
+          IsPropertyReference (
+            _refRecord_: a Reference Record,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _refRecord_.[[Base]] is ~unresolvable~, return *false*.
+          1. If _refRecord_.[[Base]] is an Environment Record, return *false*.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

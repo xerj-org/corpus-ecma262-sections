@@ -1,0 +1,31 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.4 Abstract Operations for TypedArray Objects > 23.2.4.8 CompareTypedArrayElements ( _x_: a Number or a BigInt, _y_: a Number or a BigInt, _comparator_: a function object or *undefined*, ): either a normal completion containing a Number or an abrupt completion [id: sec-comparetypedarrayelements]
+
+<emu-clause id="sec-comparetypedarrayelements" type="abstract operation">
+        <h1>
+          CompareTypedArrayElements (
+            _x_: a Number or a BigInt,
+            _y_: a Number or a BigInt,
+            _comparator_: a function object or *undefined*,
+          ): either a normal completion containing a Number or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: _x_ is a Number and _y_ is a Number, or _x_ is a BigInt and _y_ is a BigInt.
+          1. If _comparator_ is not *undefined*, then
+            1. Let _result_ be ? ToNumber(? Call(_comparator_, *undefined*, « _x_, _y_ »)).
+            1. If _result_ is *NaN*, return *+0*<sub>𝔽</sub>.
+            1. Return _result_.
+          1. If _x_ is *NaN* and _y_ is *NaN*, return *+0*<sub>𝔽</sub>.
+          1. If _x_ is *NaN*, return *1*<sub>𝔽</sub>.
+          1. If _y_ is *NaN*, return *-1*<sub>𝔽</sub>.
+          1. If _x_ &lt; _y_, return *-1*<sub>𝔽</sub>.
+          1. If _x_ > _y_, return *1*<sub>𝔽</sub>.
+          1. If _x_ is *-0*<sub>𝔽</sub> and _y_ is *+0*<sub>𝔽</sub>, return *-1*<sub>𝔽</sub>.
+          1. If _x_ is *+0*<sub>𝔽</sub> and _y_ is *-0*<sub>𝔽</sub>, return *1*<sub>𝔽</sub>.
+          1. Return *+0*<sub>𝔽</sub>.
+        </emu-alg>
+        <emu-note>
+          This performs a numeric comparison rather than the string comparison used in <emu-xref href="#sec-comparearrayelements"></emu-xref>.
+        </emu-note>
+      </emu-clause>

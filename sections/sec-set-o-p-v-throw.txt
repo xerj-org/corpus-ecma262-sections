@@ -1,0 +1,21 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.4 Set ( _obj_: an Object, _propertyKey_: a property key, _value_: an ECMAScript language value, _throw_: a Boolean, ): either a normal completion containing ~unused~ or a throw completion [id: sec-set-o-p-v-throw]
+
+<emu-clause id="sec-set-o-p-v-throw" type="abstract operation">
+      <h1>
+        Set (
+          _obj_: an Object,
+          _propertyKey_: a property key,
+          _value_: an ECMAScript language value,
+          _throw_: a Boolean,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to set the value of a specific property of an object. _value_ is the new value for the property.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _success_ be ? <emu-meta effects="user-code">_obj_.[[Set]](_propertyKey_, _value_, _obj_)</emu-meta>.
+        1. If _success_ is *false* and _throw_ is *true*, throw a *TypeError* exception.
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

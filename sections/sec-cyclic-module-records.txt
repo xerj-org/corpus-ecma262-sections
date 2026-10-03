@@ -1,0 +1,265 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.6 Cyclic Module Records [id: sec-cyclic-module-records]
+
+<emu-clause id="sec-cyclic-module-records">
+        <h1>Cyclic Module Records</h1>
+        <p>A <dfn id="cyclic-module-record" variants="Cyclic Module Records">Cyclic Module Record</dfn> is used to represent information about a module that can participate in dependency cycles with other modules that are subclasses of the Cyclic Module Record type. Module Records that are not subclasses of the Cyclic Module Record type must not participate in dependency cycles with Source Text Module Records.</p>
+        <p>In addition to the fields defined in <emu-xref href="#table-module-record-fields"></emu-xref> Cyclic Module Records have the additional fields listed in <emu-xref href="#table-cyclic-module-fields"></emu-xref></p>
+        <emu-table id="table-cyclic-module-fields" caption="Additional Fields of Cyclic Module Records">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Field Name
+                </th>
+                <th>
+                  Value Type
+                </th>
+                <th>
+                  Meaning
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                [[Status]]
+              </td>
+              <td>
+                ~new~, ~unlinked~, ~linking~, ~linked~, ~evaluating~, ~evaluating-async~, or ~evaluated~
+              </td>
+              <td>
+                Initially ~new~. Transitions to ~unlinked~, ~linking~, ~linked~, ~evaluating~, possibly ~evaluating-async~, ~evaluated~ (in that order) as the module progresses throughout its lifecycle. ~evaluating-async~ indicates this module is queued to execute on completion of its asynchronous dependencies or it is a module whose [[HasTLA]] field is *true* that has been executed and is pending top-level completion.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[EvaluationError]]
+              </td>
+              <td>
+                a throw completion or ~empty~
+              </td>
+              <td>
+                A throw completion representing the exception that occurred during evaluation. ~empty~ if no exception occurred or if [[Status]] is not ~evaluated~.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[DFSAncestorIndex]]
+              </td>
+              <td>
+                an integer or ~empty~
+              </td>
+              <td>
+                Auxiliary field used during Link and Evaluate only. If [[Status]] is either ~linking~ or ~evaluating~, this is either the module's depth-first traversal index or that of an “earlier” module in the same strongly connected component.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[RequestedModules]]
+              </td>
+              <td>
+                a List of ModuleRequest Records
+              </td>
+              <td>
+                A List of the ModuleRequest Records associated with the imports in this module. The List is in source text occurrence order of the imports.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[LoadedModules]]
+              </td>
+              <td>
+                a List of LoadedModuleRequest Records
+              </td>
+              <td>
+                A map from the specifier strings used by the module represented by this record to request the importation of a module with the relative import attributes to the resolved Module Record. The list does not contain two different Records _r1_ and _r2_ such that ModuleRequestsEqual(_r1_, _r2_) is *true*.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[CycleRoot]]
+              </td>
+              <td>
+                a Cyclic Module Record or ~empty~
+              </td>
+              <td>
+                The first visited module of the cycle, the root DFS ancestor of the strongly connected component. For a module not in a cycle, this would be the module itself. Once Evaluate has completed, a module's [[DFSAncestorIndex]] is the depth-first traversal index of its [[CycleRoot]].
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[HasTLA]]
+              </td>
+              <td>
+                a Boolean
+              </td>
+              <td>
+                Whether this module is individually asynchronous (for example, if it's a Source Text Module Record containing a top-level await). Having an asynchronous dependency does not mean this field is *true*. This field must not change after the module is parsed.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[AsyncEvaluationOrder]]
+              </td>
+              <td>
+                ~unset~, an integer, or ~done~
+              </td>
+              <td>
+                This field is initially set to ~unset~, and remains ~unset~ for fully synchronous modules. For modules that are either themselves asynchronous or have an asynchronous dependency, it is set to an integer that determines the order in which execution of pending modules is queued by <emu-xref href="#sec-async-module-execution-fulfilled"></emu-xref>. Once the pending module is successfully executed, the field is set to ~done~.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[TopLevelCapability]]
+              </td>
+              <td>
+                a PromiseCapability Record or ~empty~
+              </td>
+              <td>
+                If this module is the [[CycleRoot]] of some cycle, and Evaluate() was called on some module in that cycle, this field contains the PromiseCapability Record for that entire evaluation. It is used to settle the Promise object that is returned from the Evaluate() abstract method. This field will be ~empty~ for any dependencies of that module, unless a top-level Evaluate() has been initiated for some of those dependencies.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[AsyncParentModules]]
+              </td>
+              <td>
+                a List of Cyclic Module Records
+              </td>
+              <td>
+                If this module or a dependency has [[HasTLA]] *true*, and execution is in progress, this tracks the parent importers of this module for the top-level execution job. These parent modules will not start executing before this module has successfully completed execution.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[PendingAsyncDependencies]]
+              </td>
+              <td>
+                an integer or ~empty~
+              </td>
+              <td>
+                If this module has any asynchronous dependencies, this tracks the number of asynchronous dependency modules remaining to execute for this module. A module with asynchronous dependencies will be executed when this field reaches 0 and there are no execution errors.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+        <p>In addition to the methods defined in <emu-xref href="#table-abstract-methods-of-module-records"></emu-xref> Cyclic Module Records have the additional methods listed in <emu-xref href="#table-cyclic-module-methods"></emu-xref>:</p>
+        <emu-table id="table-cyclic-module-methods" type="abstract methods" of="Cyclic Module Records" caption="Additional Abstract Methods of Cyclic Module Records">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Method
+                </th>
+                <th>
+                  Purpose
+                </th>
+                <th>
+                  Definitions
+                </th>
+              </tr>
+            </thead>
+            <tr id="abstract-initializeenvironment">
+              <td>InitializeEnvironment ( ): either a normal completion containing ~unused~ or a throw completion</td>
+              <td>
+                It initializes the Environment Record of the module, including resolving all imported bindings, and creates the module's execution context.
+              </td>
+              <td>
+                Within this specification it has definitions in the following types; hosts may provide additional types with their own definitions:
+                <emu-concrete-method-dfns for="InitializeEnvironment"></emu-concrete-method-dfns>
+              </td>
+            </tr>
+            <tr id="abstract-executemodule">
+              <td>
+                ExecuteModule (
+                  optional _capability_: a PromiseCapability Record,
+                ): either a normal completion containing ~unused~ or a throw completion
+              </td>
+              <td>
+                It evaluates the module's code within its execution context. If this module has *true* in [[HasTLA]], then a PromiseCapability Record is passed as an argument, and the method is expected to resolve or reject the given capability. In this case, the method must not throw an exception, but instead reject the PromiseCapability Record if necessary.
+              </td>
+              <td>
+                Within this specification it has definitions in the following types; hosts may provide additional types with their own definitions:
+                <emu-concrete-method-dfns for="ExecuteModule"></emu-concrete-method-dfns>
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+
+        <p>A <dfn id="graphloadingstate-record" variants="GraphLoadingState Records">GraphLoadingState Record</dfn> is a Record that contains information about the loading process of a module graph. It's used to continue loading after a call to HostLoadImportedModule. Each GraphLoadingState Record has the fields defined in <emu-xref href="#table-graphloadingstate-record-fields"></emu-xref>:</p>
+        <emu-table id="table-graphloadingstate-record-fields" caption="GraphLoadingState Record Fields">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Field Name
+                </th>
+                <th>
+                  Value Type
+                </th>
+                <th>
+                  Meaning
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                [[PromiseCapability]]
+              </td>
+              <td>
+                a PromiseCapability Record
+              </td>
+              <td>
+                The promise to resolve when the loading process finishes.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[IsLoading]]
+              </td>
+              <td>
+                a Boolean
+              </td>
+              <td>
+                It is true if the loading process has not finished yet, neither successfully nor with an error.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[PendingModulesCount]]
+              </td>
+              <td>
+                a non-negative integer
+              </td>
+              <td>
+                It tracks the number of pending HostLoadImportedModule calls.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Visited]]
+              </td>
+              <td>
+                a List of Cyclic Module Records
+              </td>
+              <td>
+                It is a list of the Cyclic Module Records that have been already loaded by the current loading process, to avoid infinite loops with circular dependencies.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[HostDefined]]
+              </td>
+              <td>
+                anything (default value is ~empty~)
+              </td>
+              <td>
+                It contains host-defined data to pass from the LoadRequestedModules caller to HostLoadImportedModule.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+
+        
+
+        
+      </emu-clause>

@@ -1,0 +1,19 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.10 AsyncFunction Objects > 27.10.5 Async Functions Abstract Operations > 27.10.5.1 AsyncFunctionStart ( _promiseCapability_: a PromiseCapability Record, _asyncFuncBody_: a |FunctionBody| Parse Node, an |ExpressionBody| Parse Node, or an Abstract Closure with no parameters, ): ~unused~ [id: sec-async-functions-abstract-operations-async-function-start]
+
+<emu-clause id="sec-async-functions-abstract-operations-async-function-start" type="abstract operation">
+        <h1>
+          AsyncFunctionStart (
+            _promiseCapability_: a PromiseCapability Record,
+            _asyncFuncBody_: a |FunctionBody| Parse Node, an |ExpressionBody| Parse Node, or an Abstract Closure with no parameters,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _runningContext_ be the running execution context.
+          1. Let _asyncContext_ be a copy of _runningContext_.
+          1. NOTE: Copying the execution state is required for AsyncBlockStart to resume its execution. It is ill-defined to resume a currently executing context.
+          1. Perform AsyncBlockStart(_promiseCapability_, _asyncFuncBody_, _asyncContext_).
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

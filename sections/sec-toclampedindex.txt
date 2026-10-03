@@ -1,0 +1,18 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.26 ToClampedIndex ( _value_: an ECMAScript language value, _length_: a non-negative integer, ): either a normal completion containing a non-negative integer or a throw completion [id: sec-toclampedindex]
+
+<emu-clause id="sec-toclampedindex" type="abstract operation">
+      <h1>
+        ToClampedIndex (
+          _value_: an ECMAScript language value,
+          _length_: a non-negative integer,
+        ): either a normal completion containing a non-negative integer or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It converts _value_ to an integer (interpreting negative values relative to _length_) and clamps the result to the inclusive interval from 0 to _length_.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _index_ be ? ToAbsoluteIndex(_value_, _length_).
+        1. Return the result of clamping _index_ between 0 and _length_.
+      </emu-alg>
+    </emu-clause>

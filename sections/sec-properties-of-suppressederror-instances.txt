@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.8 SuppressedError Objects > 20.5.8.4 Properties of SuppressedError Instances [id: sec-properties-of-suppressederror-instances]
+
+<emu-clause id="sec-properties-of-suppressederror-instances">
+        <h1>Properties of SuppressedError Instances</h1>
+        <p>SuppressedError instances are ordinary objects that inherit properties from their SuppressedError prototype object and have an [[ErrorData]] internal slot whose value is *undefined*. The only specified use of [[ErrorData]] is to identify Error, AggregateError, SuppressedError, and _NativeError_ instances as Error objects within `Object.prototype.toString` and `Error.isError`.</p>
+      </emu-clause>

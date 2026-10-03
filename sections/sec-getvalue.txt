@@ -1,0 +1,28 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.5 The Reference Record Specification Type > 6.2.5.5 GetValue ( _refRecord_: a Reference Record or an ECMAScript language value, ): either a normal completion containing an ECMAScript language value or an abrupt completion [id: sec-getvalue]
+
+<emu-clause id="sec-getvalue" type="abstract operation">
+        <h1>
+          GetValue (
+            _refRecord_: a Reference Record or an ECMAScript language value,
+          ): either a normal completion containing an ECMAScript language value or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _refRecord_ is not a Reference Record, return _refRecord_.
+          1. If IsUnresolvableReference(_refRecord_) is *true*, throw a *ReferenceError* exception.
+          1. If IsPropertyReference(_refRecord_) is *true*, then
+            1. [id="step-getvalue-toobject"] Let _baseObj_ be ? ToObject(_refRecord_.[[Base]]).
+            1. If IsPrivateReference(_refRecord_) is *true*, then
+              1. Return ? PrivateGet(_baseObj_, _refRecord_.[[ReferencedName]]).
+            1. If _refRecord_.[[ReferencedName]] is not a property key, then
+              1. Set _refRecord_.[[ReferencedName]] to ? ToPropertyKey(_refRecord_.[[ReferencedName]]).
+            1. Return ? <emu-meta effects="user-code">_baseObj_.[[Get]](_refRecord_.[[ReferencedName]], GetThisValue(_refRecord_))</emu-meta>.
+          1. Let _base_ be _refRecord_.[[Base]].
+          1. Assert: _base_ is an Environment Record.
+          1. Return ? <emu-meta effects="user-code">_base_.GetBindingValue(_refRecord_.[[ReferencedName]], _refRecord_.[[Strict]])</emu-meta> (see <emu-xref href="#sec-environment-records"></emu-xref>).
+        </emu-alg>
+        <emu-note>
+          <p>The object that may be created in step <emu-xref href="#step-getvalue-toobject"></emu-xref> is not accessible outside of the above abstract operation and the ordinary object [[Get]] internal method. An implementation might choose to avoid the actual creation of the object.</p>
+        </emu-note>
+      </emu-clause>

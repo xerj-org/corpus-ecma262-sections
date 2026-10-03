@@ -1,0 +1,18 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.3 String Exotic Objects > 10.4.3.1 [[GetOwnProperty]] ( _propertyKey_: a property key, ): a normal completion containing either a Property Descriptor or *undefined* [id: sec-string-exotic-objects-getownproperty-p]
+
+<emu-clause id="sec-string-exotic-objects-getownproperty-p" type="internal method">
+        <h1>
+          [[GetOwnProperty]] (
+            _propertyKey_: a property key,
+          ): a normal completion containing either a Property Descriptor or *undefined*
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a String exotic object _string_</dd>
+        </dl>
+        <emu-alg>
+          1. Let _propertyDesc_ be OrdinaryGetOwnProperty(_string_, _propertyKey_).
+          1. If _propertyDesc_ is not *undefined*, return _propertyDesc_.
+          1. Return StringGetOwnProperty(_string_, _propertyKey_).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,25 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.2 Object Environment Records > 9.1.1.2.6 GetBindingValue ( _name_: a String, _strict_: a Boolean, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-object-environment-records-getbindingvalue-n-s]
+
+<emu-clause id="sec-object-environment-records-getbindingvalue-n-s" type="concrete method">
+          <h1>
+            GetBindingValue (
+              _name_: a String,
+              _strict_: a Boolean,
+            ): either a normal completion containing an ECMAScript language value or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>an Object Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It returns the value of its associated binding object's property whose name is _name_. The property should already exist but if it does not the result depends upon _strict_.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _bindingObj_ be _envRecord_.[[BindingObject]].
+            1. Let _value_ be ? HasProperty(_bindingObj_, _name_).
+            1. If _value_ is *false*, then
+              1. If _strict_ is *false*, return *undefined*.
+              1. Throw a *ReferenceError* exception.
+            1. Return ? Get(_bindingObj_, _name_).
+          </emu-alg>
+        </emu-clause>

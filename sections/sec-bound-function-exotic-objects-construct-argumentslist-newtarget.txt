@@ -1,0 +1,22 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.1 Bound Function Exotic Objects > 10.4.1.2 [[Construct]] ( _argList_: a List of ECMAScript language values, _newTarget_: a constructor, ): either a normal completion containing an Object or a throw completion [id: sec-bound-function-exotic-objects-construct-argumentslist-newtarget]
+
+<emu-clause id="sec-bound-function-exotic-objects-construct-argumentslist-newtarget" type="internal method">
+        <h1>
+          [[Construct]] (
+            _argList_: a List of ECMAScript language values,
+            _newTarget_: a constructor,
+          ): either a normal completion containing an Object or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a bound function exotic object _func_</dd>
+        </dl>
+        <emu-alg>
+          1. Let _target_ be _func_.[[BoundTargetFunction]].
+          1. Assert: IsConstructor(_target_) is *true*.
+          1. Let _boundArgs_ be _func_.[[BoundArguments]].
+          1. Let _args_ be the list-concatenation of _boundArgs_ and _argList_.
+          1. If SameValue(_func_, _newTarget_) is *true*, set _newTarget_ to _target_.
+          1. Return ? Construct(_target_, _args_, _newTarget_).
+        </emu-alg>
+      </emu-clause>

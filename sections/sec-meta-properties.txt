@@ -1,0 +1,7 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.12 Meta Properties [id: sec-meta-properties]
+
+<emu-clause id="sec-meta-properties">
+      <h1>Meta Properties</h1>
+
+      
+    </emu-clause>

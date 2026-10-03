@@ -1,0 +1,37 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.7 Runtime Semantics: CompileAtom ( _regexpRecord_: a RegExp Record, _direction_: ~forward~ or ~backward~, ): a Matcher > 22.2.2.7.1 CharacterSetMatcher ( _regexpRecord_: a RegExp Record, _charSet_: a CharSet, _invert_: a Boolean, _direction_: ~forward~ or ~backward~, ): a Matcher [id: sec-runtime-semantics-charactersetmatcher-abstract-operation]
+
+<emu-clause id="sec-runtime-semantics-charactersetmatcher-abstract-operation" type="abstract operation">
+          <h1>
+            CharacterSetMatcher (
+              _regexpRecord_: a RegExp Record,
+              _charSet_: a CharSet,
+              _invert_: a Boolean,
+              _direction_: ~forward~ or ~backward~,
+            ): a Matcher
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _regexpRecord_.[[UnicodeSets]] is *true*, then
+              1. Assert: _invert_ is *false*.
+              1. Assert: Every CharSetElement of _charSet_ consists of a single character.
+            1. Return a new Matcher with parameters (_x_, _c_) that captures _regexpRecord_, _charSet_, _invert_, and _direction_ and performs the following steps when called:
+              1. Assert: _x_ is a MatchState.
+              1. Assert: _c_ is a MatcherContinuation.
+              1. Let _input_ be _x_.[[Input]].
+              1. Let _endIndex_ be _x_.[[EndIndex]].
+              1. If _direction_ is ~forward~, let _f_ be _endIndex_ + 1.
+              1. Else, let _f_ be _endIndex_ - 1.
+              1. Let _inputLength_ be the number of elements in _input_.
+              1. If _f_ &lt; 0 or _f_ > _inputLength_, return ~failure~.
+              1. Let _index_ be min(_endIndex_, _f_).
+              1. Let _char_ be the character _input_[_index_].
+              1. Let _cc_ be Canonicalize(_regexpRecord_, _char_).
+              1. If there exists a CharSetElement in _charSet_ containing exactly one character _a_ such that Canonicalize(_regexpRecord_, _a_) is _cc_, let _found_ be *true*; else let _found_ be *false*.
+              1. If _invert_ is *false* and _found_ is *false*, return ~failure~.
+              1. If _invert_ is *true* and _found_ is *true*, return ~failure~.
+              1. Let _capability_ be _x_.[[Captures]].
+              1. Let _y_ be the MatchState { [[Input]]: _input_, [[EndIndex]]: _f_, [[Captures]]: _capability_ }.
+              1. Return _c_(_y_).
+          </emu-alg>
+        </emu-clause>

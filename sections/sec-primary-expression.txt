@@ -1,0 +1,58 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression [id: sec-primary-expression]
+
+<emu-clause id="sec-primary-expression">
+    <h1>Primary Expression</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      PrimaryExpression[Yield, Await] :
+        `this`
+        IdentifierReference[?Yield, ?Await]
+        Literal
+        ArrayLiteral[?Yield, ?Await]
+        ObjectLiteral[?Yield, ?Await]
+        FunctionExpression
+        ClassExpression[?Yield, ?Await]
+        GeneratorExpression
+        AsyncFunctionExpression
+        AsyncGeneratorExpression
+        RegularExpressionLiteral
+        TemplateLiteral[?Yield, ?Await, ~Tagged]
+        CoverParenthesizedExpressionAndArrowParameterList[?Yield, ?Await] #parencover
+
+      CoverParenthesizedExpressionAndArrowParameterList[Yield, Await] :
+        `(` `)`
+        `(` Expression[+In, ?Yield, ?Await] `,`? `)`
+        `(` `...` BindingIdentifier[?Yield, ?Await] `)`
+        `(` `...` BindingPattern[?Yield, ?Await] `)`
+        `(` Expression[+In, ?Yield, ?Await] `,` `...` BindingIdentifier[?Yield, ?Await] `)`
+        `(` Expression[+In, ?Yield, ?Await] `,` `...` BindingPattern[?Yield, ?Await] `)`
+    </emu-grammar>
+    <h2>Supplemental Syntax</h2>
+    <p>
+      When processing an instance of the production<br>
+      <emu-grammar>PrimaryExpression[Yield, Await] : CoverParenthesizedExpressionAndArrowParameterList[?Yield, ?Await]</emu-grammar><br>
+      the interpretation of |CoverParenthesizedExpressionAndArrowParameterList| is refined using the following grammar:
+    </p>
+    <emu-grammar type="definition">
+      ParenthesizedExpression[Yield, Await] :
+        `(` Expression[+In, ?Yield, ?Await] `)`
+    </emu-grammar>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

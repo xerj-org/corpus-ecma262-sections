@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.1 Value Properties of the Math Object > 21.3.1.1 Math.E [id: sec-math.e]
+
+<emu-clause id="sec-math.e">
+        <h1>Math.E</h1>
+        <p>The Number value for <i>e</i>, the base of the natural logarithms, which is approximately 2.7182818284590452354.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

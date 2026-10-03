@@ -1,0 +1,6 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.4 Properties of the DataView Prototype Object > 25.3.4.4 DataView.prototype.constructor [id: sec-dataview.prototype.constructor]
+
+<emu-clause id="sec-dataview.prototype.constructor">
+        <h1>DataView.prototype.constructor</h1>
+        <p>The initial value of `DataView.prototype.constructor` is %DataView%.</p>
+      </emu-clause>

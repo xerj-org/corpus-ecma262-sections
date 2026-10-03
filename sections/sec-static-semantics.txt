@@ -1,0 +1,7 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.1 Static Semantics [id: sec-static-semantics]
+
+<emu-clause id="sec-static-semantics">
+      <h1>Static Semantics</h1>
+
+      
+    </emu-clause>

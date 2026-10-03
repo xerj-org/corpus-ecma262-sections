@@ -1,0 +1,26 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.6 Module Namespace Exotic Objects > 10.4.6.12 ModuleNamespaceCreate ( _module_: a Module Record, _exports_: a List of Strings, ): a module namespace exotic object [id: sec-modulenamespacecreate]
+
+<emu-clause id="sec-modulenamespacecreate" type="abstract operation">
+        <h1>
+          ModuleNamespaceCreate (
+            _module_: a Module Record,
+            _exports_: a List of Strings,
+          ): a module namespace exotic object
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to specify the creation of new module namespace exotic objects.</dd>
+        </dl>
+        <emu-alg>
+          1. Assert: _module_.[[Namespace]] is ~empty~.
+          1. Let _internalSlotsList_ be the internal slots listed in <emu-xref href="#table-internal-slots-of-module-namespace-exotic-objects"></emu-xref>.
+          1. Let _namespace_ be MakeBasicObject(_internalSlotsList_).
+          1. Set _namespace_'s essential internal methods to the definitions specified in <emu-xref href="#sec-module-namespace-exotic-objects"></emu-xref>.
+          1. Set _namespace_.[[Module]] to _module_.
+          1. Let _sortedExports_ be a List whose elements are the elements of _exports_, sorted according to lexicographic code unit order.
+          1. Set _namespace_.[[Exports]] to _sortedExports_.
+          1. Create own properties of _namespace_ corresponding to the definitions in <emu-xref href="#sec-module-namespace-objects"></emu-xref>.
+          1. Set _module_.[[Namespace]] to _namespace_.
+          1. Return _namespace_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,24 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.7 Class Definitions > 15.7.15 Runtime Semantics: BindingClassDeclarationEvaluation ( ): either a normal completion containing a function object or an abrupt completion [id: sec-runtime-semantics-bindingclassdeclarationevaluation]
+
+<emu-clause id="sec-runtime-semantics-bindingclassdeclarationevaluation" type="sdo">
+      <h1>Runtime Semantics: BindingClassDeclarationEvaluation ( ): either a normal completion containing a function object or an abrupt completion</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>ClassDeclaration : `class` BindingIdentifier ClassTail</emu-grammar>
+      <emu-alg>
+        1. Let _className_ be the StringValue of |BindingIdentifier|.
+        1. Let _sourceText_ be the source text matched by |ClassDeclaration|.
+        1. Let _value_ be ? ClassDefinitionEvaluation of |ClassTail| with arguments _className_, _className_, and _sourceText_.
+        1. Let _envRecord_ be the running execution context's LexicalEnvironment.
+        1. Perform ? InitializeBoundName(_className_, _value_, _envRecord_).
+        1. Return _value_.
+      </emu-alg>
+      <emu-grammar>ClassDeclaration : `class` ClassTail</emu-grammar>
+      <emu-alg>
+        1. Let _sourceText_ be the source text matched by |ClassDeclaration|.
+        1. Return ? ClassDefinitionEvaluation of |ClassTail| with arguments *undefined*, *"default"*, and _sourceText_.
+      </emu-alg>
+      <emu-note>
+        <p><emu-grammar>ClassDeclaration : `class` ClassTail</emu-grammar> only occurs as part of an |ExportDeclaration| and establishing its binding is handled as part of the evaluation action for that production. See <emu-xref href="#sec-exports-runtime-semantics-evaluation"></emu-xref>.</p>
+      </emu-note>
+    </emu-clause>

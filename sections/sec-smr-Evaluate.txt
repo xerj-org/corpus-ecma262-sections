@@ -1,0 +1,28 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.8 Synthetic Module Records > 16.2.1.8.4 Implementation of Module Record Abstract Methods > 16.2.1.8.4.5 Evaluate ( ): a Promise [id: sec-smr-Evaluate]
+
+<emu-clause id="sec-smr-Evaluate" type="concrete method">
+            <h1>Evaluate ( ): a Promise</h1>
+            <dl class="header">
+              <dt>for</dt>
+              <dd>a Synthetic Module Record _module_</dd>
+            </dl>
+
+            <emu-alg>
+              1. Let _moduleContext_ be a new ECMAScript code execution context.
+              1. Set the Function of _moduleContext_ to *null*.
+              1. Set the Realm of _moduleContext_ to _module_.[[Realm]].
+              1. Set the ScriptOrModule of _moduleContext_ to _module_.
+              1. Set the VariableEnvironment of _moduleContext_ to _module_.[[Environment]].
+              1. Set the LexicalEnvironment of _moduleContext_ to _module_.[[Environment]].
+              1. Suspend the running execution context.
+              1. Push _moduleContext_ onto the execution context stack; _moduleContext_ is now the running execution context.
+              1. Let _steps_ be _module_.[[EvaluationSteps]].
+              1. Let _result_ be Completion(_steps_(_module_)).
+              1. Suspend _moduleContext_ and remove it from the execution context stack.
+              1. Resume the context that is now on the top of the execution context stack as the running execution context.
+              1. Let _promiseCapability_ be ! NewPromiseCapability(%Promise%).
+              1. IfAbruptRejectPromise(_result_, _promiseCapability_).
+              1. Perform ! Call(_promiseCapability_.[[Resolve]], *undefined*, « *undefined* »).
+              1. Return _promiseCapability_.[[Promise]].
+            </emu-alg>
+          </emu-clause>

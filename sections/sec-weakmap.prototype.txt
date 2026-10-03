@@ -1,0 +1,7 @@
+ECMA-262 > 24 Keyed Collections > 24.3 WeakMap Objects > 24.3.2 Properties of the WeakMap Constructor > 24.3.2.1 WeakMap.prototype [id: sec-weakmap.prototype]
+
+<emu-clause id="sec-weakmap.prototype">
+        <h1>WeakMap.prototype</h1>
+        <p>The initial value of `WeakMap.prototype` is the WeakMap prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

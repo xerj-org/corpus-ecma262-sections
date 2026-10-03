@@ -1,0 +1,7 @@
+ECMA-262 > 26 Managing Memory > 26.1 WeakRef Objects > 26.1.2 Properties of the WeakRef Constructor > 26.1.2.1 WeakRef.prototype [id: sec-weak-ref.prototype]
+
+<emu-clause id="sec-weak-ref.prototype">
+        <h1>WeakRef.prototype</h1>
+        <p>The initial value of `WeakRef.prototype` is the WeakRef prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

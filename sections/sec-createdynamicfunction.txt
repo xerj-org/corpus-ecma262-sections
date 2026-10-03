@@ -1,0 +1,89 @@
+ECMA-262 > 20 Fundamental Objects > 20.2 Function Objects > 20.2.1 The Function Constructor > 20.2.1.1 Function ( ..._paramArgs_, _bodyArg_ ) > 20.2.1.1.1 CreateDynamicFunction ( _ctor_: a constructor, _newTarget_: a constructor or *undefined*, _kind_: ~normal~, ~generator~, ~async~, or ~async-generator~, _paramArgs_: a List of ECMAScript language values, _bodyArg_: an ECMAScript language value, ): either a normal completion containing an ECMAScript function object or a throw completion [id: sec-createdynamicfunction]
+
+<emu-clause id="sec-createdynamicfunction" type="abstract operation" oldids="table-dynamic-function-sourcetext-prefixes">
+          <h1>
+            CreateDynamicFunction (
+              _ctor_: a constructor,
+              _newTarget_: a constructor or *undefined*,
+              _kind_: ~normal~, ~generator~, ~async~, or ~async-generator~,
+              _paramArgs_: a List of ECMAScript language values,
+              _bodyArg_: an ECMAScript language value,
+            ): either a normal completion containing an ECMAScript function object or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>_ctor_ is the constructor function that is performing this action. _newTarget_ is the constructor that `new` was initially applied to. _paramArgs_ and _bodyArg_ reflect the argument values that were passed to _ctor_.</dd>
+          </dl>
+          <emu-alg>
+            1. If _newTarget_ is *undefined*, set _newTarget_ to _ctor_.
+            1. If _kind_ is ~normal~, then
+              1. Let _prefix_ be *"function"*.
+              1. Let _exprGrammar_ be the grammar symbol |FunctionExpression|.
+              1. Let _bodyGrammar_ be the grammar symbol |FunctionBody[~Yield, ~Await]|.
+              1. Let _paramGrammar_ be the grammar symbol |FormalParameters[~Yield, ~Await]|.
+              1. Let _fallbackProto_ be *"%Function.prototype%"*.
+            1. Else if _kind_ is ~generator~, then
+              1. Let _prefix_ be *"function\*"*.
+              1. Let _exprGrammar_ be the grammar symbol |GeneratorExpression|.
+              1. Let _bodyGrammar_ be the grammar symbol |GeneratorBody|.
+              1. Let _paramGrammar_ be the grammar symbol |FormalParameters[+Yield, ~Await]|.
+              1. Let _fallbackProto_ be *"%GeneratorFunction.prototype%"*.
+            1. Else if _kind_ is ~async~, then
+              1. Let _prefix_ be *"async function"*.
+              1. Let _exprGrammar_ be the grammar symbol |AsyncFunctionExpression|.
+              1. Let _bodyGrammar_ be the grammar symbol |AsyncFunctionBody|.
+              1. Let _paramGrammar_ be the grammar symbol |FormalParameters[~Yield, +Await]|.
+              1. Let _fallbackProto_ be *"%AsyncFunction.prototype%"*.
+            1. Else,
+              1. Assert: _kind_ is ~async-generator~.
+              1. Let _prefix_ be *"async function\*"*.
+              1. Let _exprGrammar_ be the grammar symbol |AsyncGeneratorExpression|.
+              1. Let _bodyGrammar_ be the grammar symbol |AsyncGeneratorBody|.
+              1. Let _paramGrammar_ be the grammar symbol |FormalParameters[+Yield, +Await]|.
+              1. Let _fallbackProto_ be *"%AsyncGeneratorFunction.prototype%"*.
+            1. Let _argCount_ be the number of elements in _paramArgs_.
+            1. Let _paramStrings_ be a new empty List.
+            1. For each element _arg_ of _paramArgs_, do
+              1. Append ? ToString(_arg_) to _paramStrings_.
+            1. Let _bodyString_ be ? ToString(_bodyArg_).
+            1. Let _currentRealm_ be the current Realm Record.
+            1. Perform ? HostEnsureCanCompileStrings(_currentRealm_, _paramStrings_, _bodyString_, *false*).
+            1. Let _paramString_ be the empty String.
+            1. If _argCount_ > 0, then
+              1. Set _paramString_ to _paramStrings_[0].
+              1. Let _k_ be 1.
+              1. Repeat, while _k_ &lt; _argCount_,
+                1. Let _nextArgString_ be _paramStrings_[_k_].
+                1. Set _paramString_ to the string-concatenation of _paramString_, *","* (a comma), and _nextArgString_.
+                1. Set _k_ to _k_ + 1.
+            1. Let _bodyParseString_ be the string-concatenation of 0x000A (LINE FEED), _bodyString_, and 0x000A (LINE FEED).
+            1. Let _sourceString_ be the string-concatenation of _prefix_, *" anonymous("*, _paramString_, 0x000A (LINE FEED), *") {"*, _bodyParseString_, and *"}"*.
+            1. Let _sourceText_ be StringToCodePoints(_sourceString_).
+            1. Let _params_ be ParseText(_paramString_, _paramGrammar_).
+            1. If _params_ is a List of errors, throw a *SyntaxError* exception.
+            1. Let _body_ be ParseText(_bodyParseString_, _bodyGrammar_).
+            1. If _body_ is a List of errors, throw a *SyntaxError* exception.
+            1. NOTE: The parameters and body are parsed separately to ensure that each is valid alone. For example, `new Function("/*", "*/ ) {")` does not evaluate to a function.
+            1. NOTE: If this step is reached, _sourceText_ must have the syntax of _exprGrammar_ (although the reverse implication does not hold). The purpose of the next two steps is to enforce any Early Error rules which apply to _exprGrammar_ directly.
+            1. Let _expr_ be ParseText(_sourceText_, _exprGrammar_).
+            1. If _expr_ is a List of errors, throw a *SyntaxError* exception.
+            1. Let _funcProto_ be ? GetPrototypeFromConstructor(_newTarget_, _fallbackProto_).
+            1. Let _envRecord_ be _currentRealm_.[[GlobalEnv]].
+            1. Let _privateEnv_ be *null*.
+            1. Let _func_ be OrdinaryFunctionCreate(_funcProto_, _sourceText_, _params_, _body_, ~non-lexical-this~, _envRecord_, _privateEnv_).
+            1. Perform SetFunctionName(_func_, *"anonymous"*).
+            1. If _kind_ is ~generator~, then
+              1. Let _protoProto_ be OrdinaryObjectCreate(%GeneratorPrototype%).
+              1. Perform ! DefinePropertyOrThrow(_func_, *"prototype"*, PropertyDescriptor { [[Value]]: _protoProto_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+            1. Else if _kind_ is ~async-generator~, then
+              1. Let _protoProto_ be OrdinaryObjectCreate(%AsyncGeneratorPrototype%).
+              1. Perform ! DefinePropertyOrThrow(_func_, *"prototype"*, PropertyDescriptor { [[Value]]: _protoProto_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+            1. Else if _kind_ is ~normal~, then
+              1. Perform MakeConstructor(_func_).
+            1. NOTE: Functions whose _kind_ is ~async~ are not constructable and do not have a [[Construct]] internal method or a *"prototype"* property.
+            1. Return _func_.
+          </emu-alg>
+          <emu-note>
+            <p>CreateDynamicFunction defines a *"prototype"* property on any function it creates whose _kind_ is not ~async~ to provide for the possibility that the function will be used as a constructor.</p>
+          </emu-note>
+        </emu-clause>

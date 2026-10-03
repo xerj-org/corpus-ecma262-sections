@@ -1,0 +1,16 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.5 String Iterator Objects > 22.1.5.1 The %StringIteratorPrototype% Object [id: sec-%stringiteratorprototype%-object]
+
+<emu-clause id="sec-%stringiteratorprototype%-object">
+        <h1>The %StringIteratorPrototype% Object</h1>
+        <p>The <dfn>%StringIteratorPrototype%</dfn> object:</p>
+        <ul>
+          <li>has properties that are inherited by all String Iterator objects.</li>
+          <li>is an ordinary object.</li>
+          <li>has a [[Prototype]] internal slot whose value is %Iterator.prototype%.</li>
+          <li>has the following properties:</li>
+        </ul>
+
+        
+
+        
+      </emu-clause>

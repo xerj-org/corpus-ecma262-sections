@@ -1,0 +1,21 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.12 Binary Bitwise Operators [id: sec-binary-bitwise-operators]
+
+<emu-clause id="sec-binary-bitwise-operators">
+    <h1>Binary Bitwise Operators</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      BitwiseANDExpression[In, Yield, Await] :
+        EqualityExpression[?In, ?Yield, ?Await]
+        BitwiseANDExpression[?In, ?Yield, ?Await] `&amp;` EqualityExpression[?In, ?Yield, ?Await]
+
+      BitwiseXORExpression[In, Yield, Await] :
+        BitwiseANDExpression[?In, ?Yield, ?Await]
+        BitwiseXORExpression[?In, ?Yield, ?Await] `^` BitwiseANDExpression[?In, ?Yield, ?Await]
+
+      BitwiseORExpression[In, Yield, Await] :
+        BitwiseXORExpression[?In, ?Yield, ?Await]
+        BitwiseORExpression[?In, ?Yield, ?Await] `|` BitwiseXORExpression[?In, ?Yield, ?Await]
+    </emu-grammar>
+
+    
+  </emu-clause>

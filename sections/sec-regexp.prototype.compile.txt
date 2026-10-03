@@ -1,0 +1,18 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties > B.2.4 Additional Properties of the RegExp.prototype Object > B.2.4.1 RegExp.prototype.compile ( _pattern_, _flags_ ) [id: sec-regexp.prototype.compile]
+
+<emu-annex id="sec-regexp.prototype.compile" type="built-in function">
+        <h1>RegExp.prototype.compile ( _pattern_, _flags_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_obj_, [[RegExpMatcher]]).
+          1. If _pattern_ is an Object and _pattern_ has a [[RegExpMatcher]] internal slot, then
+            1. If _flags_ is not *undefined*, throw a *TypeError* exception.
+            1. Set _flags_ to _pattern_.[[OriginalFlags]].
+            1. Set _pattern_ to _pattern_.[[OriginalSource]].
+          1. Return ? RegExpInitialize(_obj_, _pattern_, _flags_).
+        </emu-alg>
+        <emu-note>
+          <p>This method completely reinitializes the *this* value RegExp with a new pattern and flags. An implementation may interpret use of this method as an assertion that the resulting RegExp object will be used multiple times and hence is a candidate for extra optimization.</p>
+        </emu-note>
+      </emu-annex>

@@ -1,0 +1,18 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.2 The BigInt Type > 6.1.6.2.21 BigInt::toString ( _x_: a BigInt, _radix_: an integer in the inclusive interval from 2 to 36, ): a String [id: sec-numeric-types-bigint-tostring]
+
+<emu-clause id="sec-numeric-types-bigint-tostring" type="numeric method">
+          <h1>
+            BigInt::toString (
+              _x_: a BigInt,
+              _radix_: an integer in the inclusive interval from 2 to 36,
+            ): a String
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It represents _x_ as a String using a positional numeral system with radix _radix_. The digits used in the representation of a BigInt using radix _r_ are taken from the first _r_ code units of *"0123456789abcdefghijklmnopqrstuvwxyz"* in order. The representation of BigInts other than *0*<sub>ℤ</sub> never includes leading zeroes.</dd>
+          </dl>
+          <emu-alg>
+            1. If _x_ &lt; *0*<sub>ℤ</sub>, return the string-concatenation of *"-"* and BigInt::toString(-_x_, _radix_).
+            1. Return the String value consisting of the representation of _x_ using radix _radix_.
+          </emu-alg>
+        </emu-clause>

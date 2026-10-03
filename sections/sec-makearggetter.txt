@@ -1,0 +1,21 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.4 Arguments Exotic Objects > 10.4.4.7 CreateMappedArgumentsObject ( _func_: an ECMAScript function object, _formals_: a Parse Node, _argList_: a List of ECMAScript language values, _envRecord_: an Environment Record, ): an arguments exotic object > 10.4.4.7.1 MakeArgGetter ( _name_: a String, _envRecord_: an Environment Record, ): a function object [id: sec-makearggetter]
+
+<emu-clause id="sec-makearggetter" type="abstract operation">
+          <h1>
+            MakeArgGetter (
+              _name_: a String,
+              _envRecord_: an Environment Record,
+            ): a function object
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It creates a built-in function object that when executed returns the value bound for _name_ in _envRecord_.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _getterClosure_ be a new Abstract Closure with no parameters that captures _name_ and _envRecord_ and performs the following steps when called:
+              1. Return NormalCompletion(! _envRecord_.GetBindingValue(_name_, *false*)).
+            1. Let _getter_ be CreateBuiltinFunction(_getterClosure_, 0, *""*, « »).
+            1. NOTE: _getter_ is never directly accessible to ECMAScript code.
+            1. Return _getter_.
+          </emu-alg>
+        </emu-clause>

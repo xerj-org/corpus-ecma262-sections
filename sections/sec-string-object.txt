@@ -1,0 +1,9 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.22 String object [id: sec-string-object]
+
+<emu-clause id="sec-string-object">
+      <h1>String object</h1>
+      <p>member of the Object type that is an instance of the standard built-in String constructor</p>
+      <emu-note>
+        <p>A String object is created by using the String constructor in a `new` expression, supplying a String value as an argument. The resulting object has an internal slot whose value is the String value. A String object can be coerced to a String value by calling the String constructor as a function (<emu-xref href="#sec-string-constructor-string-value"></emu-xref>).</p>
+      </emu-note>
+    </emu-clause>

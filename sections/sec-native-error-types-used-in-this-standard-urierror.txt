@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.5 Native Error Types Used in This Standard > 20.5.5.6 URIError [id: sec-native-error-types-used-in-this-standard-urierror]
+
+<emu-clause id="sec-native-error-types-used-in-this-standard-urierror">
+        <h1>URIError</h1>
+        <p>The URIError constructor is <dfn>%URIError%</dfn>.</p>
+        <p>Indicates that one of the global URI handling functions was used in a way that is incompatible with its definition.</p>
+      </emu-clause>

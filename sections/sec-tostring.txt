@@ -1,0 +1,27 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.19 ToString ( _arg_: an ECMAScript language value, ): either a normal completion containing a String or a throw completion [id: sec-tostring]
+
+<emu-clause id="sec-tostring" oldids="table-tostring-conversions" type="abstract operation">
+      <h1>
+        ToString (
+          _arg_: an ECMAScript language value,
+        ): either a normal completion containing a String or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It converts _arg_ to a value of type String.</dd>
+      </dl>
+      <emu-alg>
+        1. If _arg_ is a String, return _arg_.
+        1. If _arg_ is a Symbol, throw a *TypeError* exception.
+        1. If _arg_ is *undefined*, return *"undefined"*.
+        1. If _arg_ is *null*, return *"null"*.
+        1. If _arg_ is *true*, return *"true"*.
+        1. If _arg_ is *false*, return *"false"*.
+        1. If _arg_ is a Number, return Number::toString(_arg_, 10).
+        1. If _arg_ is a BigInt, return BigInt::toString(_arg_, 10).
+        1. Assert: _arg_ is an Object.
+        1. Let _primitiveValue_ be ? ToPrimitive(_arg_, ~string~).
+        1. Assert: _primitiveValue_ is not an Object.
+        1. Return ? ToString(_primitiveValue_).
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,15 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.1 The Number Constructor [id: sec-number-constructor]
+
+<emu-clause id="sec-number-constructor">
+      <h1>The Number Constructor</h1>
+      <p>The Number constructor:</p>
+      <ul>
+        <li>is <dfn>%Number%</dfn>.</li>
+        <li>is the initial value of the *"Number"* property of the global object.</li>
+        <li>creates and initializes a new Number object when called as a constructor.</li>
+        <li>performs a type conversion when called as a function rather than as a constructor.</li>
+        <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified Number behaviour must include a `super` call to the Number constructor to create and initialize the subclass instance with a [[NumberData]] internal slot.</li>
+      </ul>
+
+      
+    </emu-clause>

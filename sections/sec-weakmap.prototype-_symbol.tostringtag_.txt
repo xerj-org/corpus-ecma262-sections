@@ -1,0 +1,7 @@
+ECMA-262 > 24 Keyed Collections > 24.3 WeakMap Objects > 24.3.3 Properties of the WeakMap Prototype Object > 24.3.3.8 WeakMap.prototype [ %Symbol.toStringTag% ] [id: sec-weakmap.prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-weakmap.prototype-@@tostringtag" id="sec-weakmap.prototype-%symbol.tostringtag%">
+        <h1>WeakMap.prototype [ %Symbol.toStringTag% ]</h1>
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"WeakMap"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

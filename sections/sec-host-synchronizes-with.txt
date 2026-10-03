@@ -1,0 +1,17 @@
+ECMA-262 > 29 Memory Model > 29.6 Relations of Candidate Executions > 29.6.4 host-synchronizes-with [id: sec-host-synchronizes-with]
+
+<emu-clause id="sec-host-synchronizes-with">
+      <h1>host-synchronizes-with</h1>
+      <p>For a candidate execution _execution_, its <dfn>host-synchronizes-with</dfn> Relation is a host-provided strict partial order on host-specific Memory events that satisfies at least the following.</p>
+      <ul>
+        <li>If _eventA_ host-synchronizes-with _eventB_ in _execution_, HostEventSet(_execution_) contains _eventA_ and _eventB_.</li>
+        <li>There is no cycle in the union of host-synchronizes-with and is-agent-order-before in _execution_.</li>
+      </ul>
+
+      <emu-note>
+        <p>For two host-specific events _eventA_ and _eventB_ in a candidate execution _execution_, _eventA_ host-synchronizes-with _eventB_ in _execution_ implies _eventA_ happens-before _eventB_ in _execution_.</p>
+      </emu-note>
+      <emu-note>
+        <p>This Relation allows the host to provide additional synchronization mechanisms, such as `postMessage` between HTML workers.</p>
+      </emu-note>
+    </emu-clause>

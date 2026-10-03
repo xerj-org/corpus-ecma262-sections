@@ -1,0 +1,38 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.3 Properties of the Array Prototype Object > 23.1.3.30 Array.prototype.sort ( _comparator_ ) [id: sec-array.prototype.sort]
+
+<emu-clause id="sec-array.prototype.sort" oldids="sec-sortcompare" type="built-in function">
+        <h1>Array.prototype.sort ( _comparator_ )</h1>
+        <p>This method sorts the elements of this array. If _comparator_ is not *undefined*, it should be a function that accepts two arguments _x_ and _y_ and returns a negative Number if _x_ &lt; _y_, a positive Number if _x_ > _y_, or a zero otherwise.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. [id="step-array-sort-comparefn"] If _comparator_ is not *undefined* and IsCallable(_comparator_) is *false*, throw a *TypeError* exception.
+          1. Let _obj_ be ? ToObject(*this* value).
+          1. [id="step-array-sort-len"] Let _length_ be ? LengthOfArrayLike(_obj_).
+          1. Let _sortCompare_ be a new Abstract Closure with parameters (_x_, _y_) that captures _comparator_ and performs the following steps when called:
+            1. Return ? CompareArrayElements(_x_, _y_, _comparator_).
+          1. [id="step-array-sortindexedproperties"] Let _sortedList_ be ? SortIndexedProperties(_obj_, _length_, _sortCompare_, ~skip-holes~).
+          1. Let _itemCount_ be the number of elements in _sortedList_.
+          1. Let _j_ be 0.
+          1. Repeat, while _j_ &lt; _itemCount_,
+            1. Perform ? Set(_obj_, ! ToString(𝔽(_j_)), _sortedList_[_j_], *true*).
+            1. Set _j_ to _j_ + 1.
+          1. NOTE: The call to SortIndexedProperties in step <emu-xref href="#step-array-sortindexedproperties"></emu-xref> uses ~skip-holes~. The remaining indices are deleted to preserve the number of holes that were detected and excluded from the sort.
+          1. Repeat, while _j_ &lt; _length_,
+            1. Perform ? DeletePropertyOrThrow(_obj_, ! ToString(𝔽(_j_))).
+            1. Set _j_ to _j_ + 1.
+          1. Return _obj_.
+        </emu-alg>
+        <emu-note>
+          <p>Because non-existent property values always compare greater than *undefined* property values, and *undefined* always compares greater than any other value (see CompareArrayElements), *undefined* property values always sort to the end of the result, followed by non-existent property values.</p>
+        </emu-note>
+        <emu-note>
+          <p>Method calls performed by the ToString abstract operations in steps <emu-xref href="#step-sortcompare-tostring-x"></emu-xref> and <emu-xref href="#step-sortcompare-tostring-y"></emu-xref> have the potential to cause _sortCompare_ to not behave as a consistent comparator.</p>
+        </emu-note>
+        <emu-note>
+          <p>This method is intentionally generic; it does not require that its *this* value be an Array. Therefore, it can be transferred to other kinds of objects for use as a method.</p>
+        </emu-note>
+
+        
+
+        
+      </emu-clause>

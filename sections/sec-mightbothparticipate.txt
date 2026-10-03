@@ -1,0 +1,17 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.1 Patterns > 22.2.1.4 Static Semantics: MightBothParticipate ( _x_: a Parse Node, _y_: a Parse Node, ): a Boolean [id: sec-mightbothparticipate]
+
+<emu-clause id="sec-mightbothparticipate" type="abstract operation">
+        <h1>
+          Static Semantics: MightBothParticipate (
+            _x_: a Parse Node,
+            _y_: a Parse Node,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: _x_ and _y_ have the same enclosing |Pattern|.
+          1. If the enclosing |Pattern| contains a <emu-grammar>Disjunction :: Alternative `|` Disjunction</emu-grammar> Parse Node such that either _x_ is contained within the |Alternative| and _y_ is contained within the derived |Disjunction|, or _x_ is contained within the derived |Disjunction| and _y_ is contained within the |Alternative|, return *false*.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

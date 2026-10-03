@@ -1,0 +1,6 @@
+ECMA-262 > 11 ECMAScript Language: Source Text > 11.2 Types of Source Code > 11.2.3 Non-ECMAScript Functions [id: sec-non-ecmascript-functions]
+
+<emu-clause id="sec-non-ecmascript-functions">
+      <h1>Non-ECMAScript Functions</h1>
+      <p>An ECMAScript implementation may support the evaluation of function exotic objects whose evaluative behaviour is expressed in some host-defined form of executable code other than ECMAScript source text. Whether a function object is defined within ECMAScript code or is a built-in function is not observable from the perspective of ECMAScript code that calls or is called by such a function object.</p>
+    </emu-clause>

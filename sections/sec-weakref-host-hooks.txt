@@ -1,0 +1,7 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.9 Processing Model of WeakRef and FinalizationRegistry Targets > 9.9.4 Host Hooks [id: sec-weakref-host-hooks]
+
+<emu-clause id="sec-weakref-host-hooks">
+      <h1>Host Hooks</h1>
+
+      
+    </emu-clause>

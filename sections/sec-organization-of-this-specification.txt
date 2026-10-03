@@ -1,0 +1,11 @@
+ECMA-262 > 4 Overview > 4.5 Organization of This Specification [id: sec-organization-of-this-specification]
+
+<emu-clause id="sec-organization-of-this-specification">
+    <h1>Organization of This Specification</h1>
+    <p>The remainder of this specification is organized as follows:</p>
+    <p>Clause <emu-xref href="#sec-notational-conventions"></emu-xref> defines the notational conventions used throughout the specification.</p>
+    <p>Clauses <emu-xref href="#sec-ecmascript-data-types-and-values"></emu-xref> through <emu-xref href="#sec-ordinary-and-exotic-objects-behaviours"></emu-xref> define the execution environment within which ECMAScript programs operate.</p>
+    <p>Clauses <emu-xref href="#sec-ecmascript-language-source-code"></emu-xref> through <emu-xref href="#sec-error-handling-and-language-extensions"></emu-xref> define the actual ECMAScript programming language including its syntactic encoding and the execution semantics of all language features.</p>
+    <p>Clauses <emu-xref href="#sec-ecmascript-standard-built-in-objects"></emu-xref> through <emu-xref href="#sec-reflection"></emu-xref> define the ECMAScript standard library. They include the definitions of all of the standard objects that are available for use by ECMAScript programs as they execute.</p>
+    <p>Clause <emu-xref href="#sec-memory-model"></emu-xref> describes the memory consistency model of accesses on SharedArrayBuffer-backed memory and methods of the Atomics object.</p>
+  </emu-clause>

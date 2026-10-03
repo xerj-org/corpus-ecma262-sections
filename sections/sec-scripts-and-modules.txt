@@ -1,0 +1,30 @@
+ECMA-262 > A Grammar Summary > A.5 Scripts and Modules [id: sec-scripts-and-modules]
+
+<emu-annex id="sec-scripts-and-modules">
+    <h1>Scripts and Modules</h1>
+    <emu-prodref name="Script"></emu-prodref>
+    <emu-prodref name="ScriptBody"></emu-prodref>
+    <emu-prodref name="Module"></emu-prodref>
+    <emu-prodref name="ModuleBody"></emu-prodref>
+    <emu-prodref name="ModuleItemList"></emu-prodref>
+    <emu-prodref name="ModuleItem"></emu-prodref>
+    <emu-prodref name="ModuleExportName"></emu-prodref>
+    <emu-prodref name="ImportDeclaration"></emu-prodref>
+    <emu-prodref name="ImportClause"></emu-prodref>
+    <emu-prodref name="ImportedDefaultBinding"></emu-prodref>
+    <emu-prodref name="NameSpaceImport"></emu-prodref>
+    <emu-prodref name="NamedImports"></emu-prodref>
+    <emu-prodref name="FromClause"></emu-prodref>
+    <emu-prodref name="ImportsList"></emu-prodref>
+    <emu-prodref name="ImportSpecifier"></emu-prodref>
+    <emu-prodref name="ModuleSpecifier"></emu-prodref>
+    <emu-prodref name="ImportedBinding"></emu-prodref>
+    <emu-prodref name="WithClause"></emu-prodref>
+    <emu-prodref name="WithEntries"></emu-prodref>
+    <emu-prodref name="AttributeKey"></emu-prodref>
+    <emu-prodref name="ExportDeclaration"></emu-prodref>
+    <emu-prodref name="ExportFromClause"></emu-prodref>
+    <emu-prodref name="NamedExports"></emu-prodref>
+    <emu-prodref name="ExportsList"></emu-prodref>
+    <emu-prodref name="ExportSpecifier"></emu-prodref>
+  </emu-annex>

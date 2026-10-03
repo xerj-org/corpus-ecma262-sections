@@ -1,0 +1,54 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.10 Import Calls > 13.3.10.2 EvaluateImportCall ( _specifierExpr_: a Parse Node, optional _optionsExpr_: a Parse Node, ): either a normal completion containing a Promise or an abrupt completion [id: sec-evaluate-import-call]
+
+<emu-clause id="sec-evaluate-import-call" type="abstract operation">
+        <h1>
+          EvaluateImportCall (
+            _specifierExpr_: a Parse Node,
+            optional _optionsExpr_: a Parse Node,
+          ): either a normal completion containing a Promise or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _referrer_ be GetActiveScriptOrModule().
+          1. If _referrer_ is *null*, set _referrer_ to the current Realm Record.
+          1. Let _specifierRef_ be ? Evaluation of _specifierExpr_.
+          1. Let _specifier_ be ? GetValue(_specifierRef_).
+          1. If _optionsExpr_ is present, then
+            1. Let _optionsRef_ be ? Evaluation of _optionsExpr_.
+            1. Let _options_ be ? GetValue(_optionsRef_).
+          1. Else,
+            1. Let _options_ be *undefined*.
+          1. Let _promiseCapability_ be ! NewPromiseCapability(%Promise%).
+          1. Let _specifierString_ be Completion(ToString(_specifier_)).
+          1. IfAbruptRejectPromise(_specifierString_, _promiseCapability_).
+          1. Let _attrs_ be a new empty List.
+          1. If _options_ is not *undefined*, then
+            1. If _options_ is not an Object, then
+              1. Perform ! Call(_promiseCapability_.[[Reject]], *undefined*, « a newly created *TypeError* object »).
+              1. Return _promiseCapability_.[[Promise]].
+            1. Let _attrsObj_ be Completion(Get(_options_, *"with"*)).
+            1. IfAbruptRejectPromise(_attrsObj_, _promiseCapability_).
+            1. If _attrsObj_ is not *undefined*, then
+              1. If _attrsObj_ is not an Object, then
+                1. Perform ! Call(_promiseCapability_.[[Reject]], *undefined*, « a newly created *TypeError* object »).
+                1. Return _promiseCapability_.[[Promise]].
+              1. Let _entries_ be Completion(EnumerableOwnProperties(_attrsObj_, ~key+value~)).
+              1. IfAbruptRejectPromise(_entries_, _promiseCapability_).
+              1. For each element _entry_ of _entries_, do
+                1. Let _key_ be ! Get(_entry_, *"0"*).
+                1. Let _value_ be ! Get(_entry_, *"1"*).
+                1. If _key_ is a String, then
+                  1. If _value_ is not a String, then
+                    1. Perform ! Call(_promiseCapability_.[[Reject]], *undefined*, « a newly created *TypeError* object »).
+                    1. Return _promiseCapability_.[[Promise]].
+                  1. Append the ImportAttribute Record { [[Key]]: _key_, [[Value]]: _value_ } to _attrs_.
+            1. If AllImportAttributesSupported(_attrs_) is *false*, then
+              1. Perform ! Call(_promiseCapability_.[[Reject]], *undefined*, « a newly created *TypeError* object »).
+              1. Return _promiseCapability_.[[Promise]].
+            1. Sort _attrs_ according to the lexicographic order of their [[Key]] field, treating the value of each such field as a sequence of UTF-16 code unit values. NOTE: This sorting is observable only in that hosts are prohibited from changing behaviour based on the order in which attributes are enumerated.
+          1. Let _moduleRequest_ be a new ModuleRequest Record { [[Specifier]]: _specifierString_, [[Attributes]]: _attrs_ }.
+          1. Perform HostLoadImportedModule(_referrer_, _moduleRequest_, ~empty~, _promiseCapability_).
+          1. Return _promiseCapability_.[[Promise]].
+        </emu-alg>
+      </emu-clause>

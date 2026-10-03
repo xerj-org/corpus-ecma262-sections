@@ -1,0 +1,29 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.3 Properties of the String Prototype Object > 22.1.3.17 String.prototype.padStart ( _maxLength_ [ , _fillString_ ] ) > 22.1.3.17.2 StringPad ( _string_: a String, _maxLength_: a non-negative integer, _fillString_: a String, _placement_: ~start~ or ~end~, ): a String [id: sec-stringpad]
+
+<emu-clause id="sec-stringpad" type="abstract operation">
+          <h1>
+            StringPad (
+              _string_: a String,
+              _maxLength_: a non-negative integer,
+              _fillString_: a String,
+              _placement_: ~start~ or ~end~,
+            ): a String
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _stringLength_ be the length of _string_.
+            1. If _maxLength_ ≤ _stringLength_, return _string_.
+            1. If _fillString_ is the empty String, return _string_.
+            1. Let _fillLength_ be _maxLength_ - _stringLength_.
+            1. Let _truncatedStringFiller_ be the String value consisting of repeated concatenations of _fillString_ truncated to length _fillLength_.
+            1. If _placement_ is ~start~, return the string-concatenation of _truncatedStringFiller_ and _string_.
+            1. Return the string-concatenation of _string_ and _truncatedStringFiller_.
+          </emu-alg>
+          <emu-note>
+            <p>The argument _maxLength_ will be clamped such that it can be no smaller than the length of _string_.</p>
+          </emu-note>
+          <emu-note>
+            <p>The argument _fillString_ defaults to *" "* (the String value consisting of the code unit 0x0020 SPACE).</p>
+          </emu-note>
+        </emu-clause>

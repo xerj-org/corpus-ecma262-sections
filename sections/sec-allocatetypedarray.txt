@@ -1,0 +1,31 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.5 The _TypedArray_ Constructors > 23.2.5.1 _TypedArray_ ( ..._args_ ) > 23.2.5.1.1 AllocateTypedArray ( _ctorName_: a String which is the name of a TypedArray constructor in , _newTarget_: a constructor, _defaultProto_: a String, optional _length_: a non-negative integer, ): either a normal completion containing a TypedArray or a throw completion [id: sec-allocatetypedarray]
+
+<emu-clause id="sec-allocatetypedarray" type="abstract operation">
+          <h1>
+            AllocateTypedArray (
+              _ctorName_: a String which is the name of a TypedArray constructor in <emu-xref href="#table-the-typedarray-constructors"></emu-xref>,
+              _newTarget_: a constructor,
+              _defaultProto_: a String,
+              optional _length_: a non-negative integer,
+            ): either a normal completion containing a TypedArray or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It is used to validate and create an instance of a TypedArray constructor. If the _length_ argument is passed, an ArrayBuffer of that length is also allocated and associated with the new TypedArray instance. AllocateTypedArray provides common semantics that is used by _TypedArray_.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _proto_ be ? GetPrototypeFromConstructor(_newTarget_, _defaultProto_).
+            1. Let _obj_ be TypedArrayCreate(_proto_).
+            1. Assert: _obj_.[[ViewedArrayBuffer]] is *undefined*.
+            1. Set _obj_.[[TypedArrayName]] to _ctorName_.
+            1. If _ctorName_ is either *"BigInt64Array"* or *"BigUint64Array"*, set _obj_.[[ContentType]] to ~bigint~.
+            1. Else, set _obj_.[[ContentType]] to ~number~.
+            1. If _length_ is not present, then
+              1. Set _obj_.[[ByteLength]] to 0.
+              1. Set _obj_.[[ByteOffset]] to 0.
+              1. Set _obj_.[[ArrayLength]] to 0.
+            1. Else,
+              1. Perform ? AllocateTypedArrayBuffer(_obj_, _length_).
+            1. Return _obj_.
+          </emu-alg>
+        </emu-clause>

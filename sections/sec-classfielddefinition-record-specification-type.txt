@@ -1,0 +1,46 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.11 The ClassFieldDefinition Record Specification Type [id: sec-classfielddefinition-record-specification-type]
+
+<emu-clause id="sec-classfielddefinition-record-specification-type">
+      <h1>The ClassFieldDefinition Record Specification Type</h1>
+      <p>The ClassFieldDefinition type is a Record used in the specification of class fields.</p>
+      <p>Values of the ClassFieldDefinition type are Records whose fields are defined by <emu-xref href="#table-classfielddefinition-fields"></emu-xref>. Such values are referred to as <dfn variants="ClassFieldDefinition Record">ClassFieldDefinition Records</dfn>.</p>
+      <emu-table id="table-classfielddefinition-fields" caption="ClassFieldDefinition Record Fields">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              [[Name]]
+            </td>
+            <td>
+              a Private Name, a String, or a Symbol
+            </td>
+            <td>
+              The name of the field.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[Initializer]]
+            </td>
+            <td>
+              an ECMAScript function object or ~empty~
+            </td>
+            <td>
+              The initializer of the field, if any.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+    </emu-clause>

@@ -1,0 +1,33 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.4 The String Type [id: sec-ecmascript-language-types-string-type]
+
+<emu-clause id="sec-ecmascript-language-types-string-type">
+      <h1>The String Type</h1>
+      <p>The <dfn variants="is a String,is not a String">String type</dfn> is the set of all ordered sequences of zero or more 16-bit unsigned integer values (“elements”) up to a maximum length of 2<sup>53</sup> - 1 elements. The String type is generally used to represent textual data in a running ECMAScript program, in which case each element in the String is treated as a UTF-16 code unit value. Each element is regarded as occupying a position within the sequence. These positions are indexed with non-negative integers. The first element (if any) is at index 0, the next element (if any) at index 1, and so on. The length of a String is the number of elements (i.e., 16-bit values) within it. The empty String has length zero and therefore contains no elements.</p>
+      <p>ECMAScript operations that do not interpret String contents apply no further semantics. Operations that do interpret String values treat each element as a single UTF-16 code unit. However, ECMAScript does not restrict the value of or relationships between these code units, so operations that further interpret String contents as sequences of Unicode code points encoded in UTF-16 must account for ill-formed subsequences. Such operations apply special treatment to every code unit with a numeric value in the inclusive interval from 0xD800 to 0xDBFF (defined by the Unicode Standard as a <dfn id="leading-surrogate" variants="leading surrogates">leading surrogate</dfn>, or more formally as a <dfn id="high-surrogate-code-unit" variants="high-surrogate code units">high-surrogate code unit</dfn>) and every code unit with a numeric value in the inclusive interval from 0xDC00 to 0xDFFF (defined as a <dfn id="trailing-surrogate" variants="trailing surrogates">trailing surrogate</dfn>, or more formally as a <dfn id="low-surrogate-code-unit" variants="low-surrogate code units">low-surrogate code unit</dfn>) using the following rules:</p>
+      <ul>
+        <li>
+          A code unit that is not a leading surrogate and not a trailing surrogate is interpreted as a code point with the same value.
+        </li>
+        <li>
+          A sequence of two code units, where the first code unit _c1_ is a leading surrogate and the second code unit _c2_ a trailing surrogate, is a <dfn id="surrogate-pair" variants="surrogate pairs">surrogate pair</dfn> and is interpreted as a code point with the value (_c1_ - 0xD800) × 0x400 + (_c2_ - 0xDC00) + 0x10000. (See <emu-xref href="#sec-utf16decodesurrogatepair"></emu-xref>)
+        </li>
+        <li>
+          A code unit that is a leading surrogate or trailing surrogate, but is not part of a surrogate pair, is interpreted as a code point with the same value.
+        </li>
+      </ul>
+      <p>The function `String.prototype.normalize` (see <emu-xref href="#sec-string.prototype.normalize"></emu-xref>) can be used to explicitly normalize a String value. `String.prototype.localeCompare` (see <emu-xref href="#sec-string.prototype.localecompare"></emu-xref>) internally normalizes String values, but no other operations implicitly normalize the strings upon which they operate. Operation results are not language- and/or locale-sensitive unless stated otherwise.</p>
+      <emu-note>
+        <p>The rationale behind this design was to keep the implementation of Strings as simple and high-performing as possible. If ECMAScript source text is in Normalized Form C, string literals are guaranteed to also be normalized, as long as they do not contain any Unicode escape sequences.</p>
+      </emu-note>
+      <p>In this specification, the phrase “the <dfn id="string-concatenation">string-concatenation</dfn> of _A_, _B_, ...” (where each argument is a String value, a code unit, or a sequence of code units) denotes the String value whose sequence of code units is the concatenation of the code units (in order) of each of the arguments (in order).</p>
+      <p>The phrase “the <dfn id="substring">substring</dfn> of _string_ from _inclusiveStart_ to _exclusiveEnd_” (where _string_ is a String value or a sequence of code units and _inclusiveStart_ and _exclusiveEnd_ are integers) denotes the String value consisting of the consecutive code units of _string_ beginning at index _inclusiveStart_ and ending immediately before index _exclusiveEnd_ (which is the empty String when _inclusiveStart_ = _exclusiveEnd_). If the “to” suffix is omitted, the length of _string_ is used as the value of _exclusiveEnd_.</p>
+      <p>
+        The phrase “<dfn id="ASCII-word-characters">the ASCII word characters</dfn>” denotes the following String value, which consists solely of every letter and number in the Unicode Basic Latin block along with U+005F (LOW LINE):<br>
+        *"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"*.<br>
+        For historical reasons, it has significance to various algorithms.
+      </p>
+
+      
+
+      
+    </emu-clause>

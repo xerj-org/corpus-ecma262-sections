@@ -1,0 +1,14 @@
+ECMA-262 > A Grammar Summary > A.6 Number Conversions [id: sec-number-conversions]
+
+<emu-annex id="sec-number-conversions">
+    <h1>Number Conversions</h1>
+    <emu-prodref name="StringNumericLiteral"></emu-prodref>
+    <emu-prodref name="StrWhiteSpace"></emu-prodref>
+    <emu-prodref name="StrWhiteSpaceChar"></emu-prodref>
+    <emu-prodref name="StrNumericLiteral"></emu-prodref>
+    <emu-prodref name="StrDecimalLiteral"></emu-prodref>
+    <emu-prodref name="StrUnsignedDecimalLiteral"></emu-prodref>
+    <p>All grammar symbols not explicitly defined by the |StringNumericLiteral| grammar have the definitions used in the <emu-xref href="#sec-literals-numeric-literals">Lexical Grammar for numeric literals</emu-xref>.</p>
+    <emu-prodref name="StringIntegerLiteral"></emu-prodref>
+    <emu-prodref name="StrIntegerLiteral"></emu-prodref>
+  </emu-annex>

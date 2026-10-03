@@ -1,0 +1,10 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.7 Multiplicative Operators > 13.7.1 Runtime Semantics: Evaluation [id: sec-multiplicative-operators-runtime-semantics-evaluation]
+
+<emu-clause id="sec-multiplicative-operators-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>MultiplicativeExpression : MultiplicativeExpression MultiplicativeOperator ExponentiationExpression</emu-grammar>
+      <emu-alg>
+        1. Let _opText_ be the source text matched by |MultiplicativeOperator|.
+        1. Return ? EvaluateStringOrNumericBinaryExpression(|MultiplicativeExpression|, _opText_, |ExponentiationExpression|).
+      </emu-alg>
+    </emu-clause>

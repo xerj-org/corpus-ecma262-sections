@@ -1,0 +1,26 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.32 DefineField ( _receiver_: an Object, _fieldRecord_: a ClassFieldDefinition Record, ): either a normal completion containing ~unused~ or a throw completion [id: sec-definefield]
+
+<emu-clause id="sec-definefield" type="abstract operation">
+      <h1>
+        DefineField (
+          _receiver_: an Object,
+          _fieldRecord_: a ClassFieldDefinition Record,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _fieldName_ be _fieldRecord_.[[Name]].
+        1. Let _initializer_ be _fieldRecord_.[[Initializer]].
+        1. If _initializer_ is not ~empty~, then
+          1. Let _initValue_ be ? Call(_initializer_, _receiver_).
+        1. Else,
+          1. Let _initValue_ be *undefined*.
+        1. If _fieldName_ is a Private Name, then
+          1. Perform ? PrivateFieldAdd(_receiver_, _fieldName_, _initValue_).
+        1. Else,
+          1. Assert: _fieldName_ is a property key.
+          1. Perform ? CreateDataPropertyOrThrow(_receiver_, _fieldName_, _initValue_).
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

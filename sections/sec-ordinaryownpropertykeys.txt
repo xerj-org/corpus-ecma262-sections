@@ -1,0 +1,22 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.11 [[OwnPropertyKeys]] ( ): a normal completion containing a List of property keys > 10.1.11.1 OrdinaryOwnPropertyKeys ( _obj_: an Object, ): a List of property keys [id: sec-ordinaryownpropertykeys]
+
+<emu-clause id="sec-ordinaryownpropertykeys" type="abstract operation">
+        <h1>
+          OrdinaryOwnPropertyKeys (
+            _obj_: an Object,
+          ): a List of property keys
+        </h1>
+        <dl class="header">
+        </dl>
+
+        <emu-alg>
+          1. Let _keys_ be a new empty List.
+          1. For each own property key _propertyKey_ of _obj_ such that _propertyKey_ is an array index, in ascending numeric index order, do
+            1. Append _propertyKey_ to _keys_.
+          1. For each own property key _propertyKey_ of _obj_ such that _propertyKey_ is a String and _propertyKey_ is not an array index, in ascending chronological order of property creation, do
+            1. Append _propertyKey_ to _keys_.
+          1. For each own property key _propertyKey_ of _obj_ such that _propertyKey_ is a Symbol, in ascending chronological order of property creation, do
+            1. Append _propertyKey_ to _keys_.
+          1. Return _keys_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,15 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.2 The Set Constructor [id: sec-set-constructor]
+
+<emu-clause id="sec-set-constructor">
+      <h1>The Set Constructor</h1>
+      <p>The Set constructor:</p>
+      <ul>
+        <li>is <dfn>%Set%</dfn>.</li>
+        <li>is the initial value of the *"Set"* property of the global object.</li>
+        <li>creates and initializes a new Set object when called as a constructor.</li>
+        <li>is not intended to be called as a function and will throw an exception when called in that manner.</li>
+        <li>may be used as the value in an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified Set behaviour must include a `super` call to the Set constructor to create and initialize the subclass instance with the internal state necessary to support the built-in methods of `Set.prototype`.</li>
+      </ul>
+
+      
+    </emu-clause>

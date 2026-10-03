@@ -1,0 +1,20 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.8 Synthetic Module Records > 16.2.1.8.1 CreateDefaultExportSyntheticModule ( _defaultExport_: an ECMAScript language value, ): a Synthetic Module Record [id: sec-create-default-export-synthetic-module]
+
+<emu-clause id="sec-create-default-export-synthetic-module" type="abstract operation">
+          <h1>
+            CreateDefaultExportSyntheticModule (
+              _defaultExport_: an ECMAScript language value,
+            ): a Synthetic Module Record
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It creates a Synthetic Module Record whose default export is _defaultExport_.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _realm_ be the current Realm Record.
+            1. Let _setDefaultExport_ be a new Abstract Closure with parameters (_module_) that captures _defaultExport_ and performs the following steps when called:
+              1. Perform SetSyntheticModuleExport(_module_, *"default"*, _defaultExport_).
+              1. Return NormalCompletion(~unused~).
+            1. Return the Synthetic Module Record { [[Realm]]: _realm_, [[Environment]]: ~empty~, [[Namespace]]: ~empty~, [[HostDefined]]: *undefined*, [[ExportNames]]: « *"default"* », [[EvaluationSteps]]: _setDefaultExport_ }.
+          </emu-alg>
+        </emu-clause>

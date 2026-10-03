@@ -1,0 +1,6 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.10 AsyncFunction Objects > 27.10.4 AsyncFunction Instances > 27.10.4.2 name [id: sec-async-function-instances-name]
+
+<emu-clause id="sec-async-function-instances-name">
+        <h1>name</h1>
+        <p>The specification for the *"name"* property of Function instances given in <emu-xref href="#sec-function-instances-name"></emu-xref> also applies to AsyncFunction instances.</p>
+      </emu-clause>

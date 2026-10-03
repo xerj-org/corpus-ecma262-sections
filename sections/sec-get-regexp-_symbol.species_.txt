@@ -1,0 +1,13 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.5 Properties of the RegExp Constructor > 22.2.5.3 get RegExp [ %Symbol.species% ] [id: sec-get-regexp-%symbol.species%]
+
+<emu-clause oldids="sec-get-regexp-@@species" id="sec-get-regexp-%symbol.species%" type="built-in function">
+        <h1>get RegExp [ %Symbol.species% ]</h1>
+        <p>`RegExp[%Symbol.species%]` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Return the *this* value.
+        </emu-alg>
+        <p>The value of the *"name"* property of this function is *"get [Symbol.species]"*.</p>
+        <emu-note>
+          <p>RegExp prototype methods normally use their *this* value's constructor to create a derived object. However, a subclass constructor may over-ride that default behaviour by redefining its %Symbol.species% property.</p>
+        </emu-note>
+      </emu-clause>

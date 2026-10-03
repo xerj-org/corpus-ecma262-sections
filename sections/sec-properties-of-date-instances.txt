@@ -1,0 +1,6 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.5 Properties of Date Instances [id: sec-properties-of-date-instances]
+
+<emu-clause id="sec-properties-of-date-instances">
+      <h1>Properties of Date Instances</h1>
+      <p>Date instances are ordinary objects that inherit properties from the Date prototype object. Date instances also have a [[DateValue]] internal slot. The [[DateValue]] internal slot is the time value represented by this Date.</p>
+    </emu-clause>

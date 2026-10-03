@@ -1,0 +1,19 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.9 [[Set]] ( _propertyKey_: a property key, _value_: an ECMAScript language value, _receiver_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion > 10.1.9.1 OrdinarySet ( _obj_: an Object, _propertyKey_: a property key, _value_: an ECMAScript language value, _receiver_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion [id: sec-ordinaryset]
+
+<emu-clause id="sec-ordinaryset" type="abstract operation">
+        <h1>
+          OrdinarySet (
+            _obj_: an Object,
+            _propertyKey_: a property key,
+            _value_: an ECMAScript language value,
+            _receiver_: an ECMAScript language value,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+
+        <emu-alg>
+          1. Let _ownDesc_ be ? <emu-meta effects="user-code">_obj_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+          1. Return ? OrdinarySetWithOwnDescriptor(_obj_, _propertyKey_, _value_, _receiver_, _ownDesc_).
+        </emu-alg>
+      </emu-clause>

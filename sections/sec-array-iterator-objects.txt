@@ -1,0 +1,12 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.5 Array Iterator Objects [id: sec-array-iterator-objects]
+
+<emu-clause id="sec-array-iterator-objects">
+      <h1>Array Iterator Objects</h1>
+      <p>An <dfn variants="Array Iterators,Array Iterator object,Array Iterator objects">Array Iterator</dfn> is an object that represents a specific iteration over some specific Array instance object. There is not a named constructor for Array Iterator objects. Instead, Array Iterator objects are created by calling certain methods of Array instance objects.</p>
+
+      
+
+      
+
+      
+    </emu-clause>

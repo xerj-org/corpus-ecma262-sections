@@ -1,0 +1,58 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.4 Function Name Inference > 8.4.1 Static Semantics: HasName ( ): a Boolean [id: sec-static-semantics-hasname]
+
+<emu-clause id="sec-static-semantics-hasname" oldids="sec-semantics-static-semantics-hasname,sec-function-definitions-static-semantics-hasname,sec-arrow-function-definitions-static-semantics-hasname,sec-generator-function-definitions-static-semantics-hasname,sec-async-generator-function-definitions-static-semantics-hasname,sec-class-definitions-static-semantics-hasname,sec-async-function-definitions-static-semantics-HasName,sec-async-arrow-function-definitions-static-semantics-HasName" type="sdo">
+      <h1>Static Semantics: HasName ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>PrimaryExpression : CoverParenthesizedExpressionAndArrowParameterList</emu-grammar>
+      <emu-alg>
+        1. Let _expr_ be the |ParenthesizedExpression| that is covered by |CoverParenthesizedExpressionAndArrowParameterList|.
+        1. If IsFunctionDefinition of _expr_ is *false*, return *false*.
+        1. Return HasName of _expr_.
+      </emu-alg>
+      <emu-grammar>
+        FunctionExpression :
+          `function` `(` FormalParameters `)` `{` FunctionBody `}`
+
+        GeneratorExpression :
+          `function` `*` `(` FormalParameters `)` `{` GeneratorBody `}`
+
+        AsyncGeneratorExpression :
+          `async` `function` `*` `(` FormalParameters `)` `{` AsyncGeneratorBody `}`
+
+        AsyncFunctionExpression :
+          `async` `function` `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+
+        ArrowFunction :
+          ArrowParameters `=>` ConciseBody
+
+        AsyncArrowFunction :
+          `async` AsyncArrowBindingIdentifier `=>` AsyncConciseBody
+          CoverCallExpressionAndAsyncArrowHead `=>` AsyncConciseBody
+
+        ClassExpression :
+          `class` ClassTail
+      </emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        FunctionExpression :
+          `function` BindingIdentifier `(` FormalParameters `)` `{` FunctionBody `}`
+
+        GeneratorExpression :
+          `function` `*` BindingIdentifier `(` FormalParameters `)` `{` GeneratorBody `}`
+
+        AsyncGeneratorExpression :
+          `async` `function` `*` BindingIdentifier `(` FormalParameters `)` `{` AsyncGeneratorBody `}`
+
+        AsyncFunctionExpression :
+          `async` `function` BindingIdentifier `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+
+        ClassExpression :
+          `class` BindingIdentifier ClassTail
+      </emu-grammar>
+      <emu-alg>
+        1. Return *true*.
+      </emu-alg>
+    </emu-clause>

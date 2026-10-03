@@ -1,0 +1,66 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.1 Parameter Lists > 15.1.3 Static Semantics: IsSimpleParameterList ( ): a Boolean [id: sec-static-semantics-issimpleparameterlist]
+
+<emu-clause id="sec-static-semantics-issimpleparameterlist" oldids="sec-destructuring-binding-patterns-static-semantics-issimpleparameterlist,sec-function-definitions-static-semantics-issimpleparameterlist,sec-arrow-function-definitions-static-semantics-issimpleparameterlist,sec-async-arrow-function-definitions-static-semantics-IsSimpleParameterList" type="sdo">
+      <h1>Static Semantics: IsSimpleParameterList ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>BindingElement : BindingPattern</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>BindingElement : BindingPattern Initializer</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>SingleNameBinding : BindingIdentifier</emu-grammar>
+      <emu-alg>
+        1. Return *true*.
+      </emu-alg>
+      <emu-grammar>SingleNameBinding : BindingIdentifier Initializer</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>FormalParameters : [empty]</emu-grammar>
+      <emu-alg>
+        1. Return *true*.
+      </emu-alg>
+      <emu-grammar>FormalParameters : FunctionRestParameter</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>FormalParameters : FormalParameterList `,` FunctionRestParameter</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>FormalParameterList : FormalParameterList `,` FormalParameter</emu-grammar>
+      <emu-alg>
+        1. If IsSimpleParameterList of |FormalParameterList| is *false*, return *false*.
+        1. Return IsSimpleParameterList of |FormalParameter|.
+      </emu-alg>
+      <emu-grammar>FormalParameter : BindingElement</emu-grammar>
+      <emu-alg>
+        1. Return IsSimpleParameterList of |BindingElement|.
+      </emu-alg>
+      <emu-grammar>ArrowParameters : BindingIdentifier</emu-grammar>
+      <emu-alg>
+        1. Return *true*.
+      </emu-alg>
+      <emu-grammar>ArrowParameters : CoverParenthesizedExpressionAndArrowParameterList</emu-grammar>
+      <emu-alg>
+        1. Let _formals_ be the |ArrowFormalParameters| that is covered by |CoverParenthesizedExpressionAndArrowParameterList|.
+        1. Return IsSimpleParameterList of _formals_.
+      </emu-alg>
+      <emu-grammar>
+        AsyncArrowBindingIdentifier : BindingIdentifier
+      </emu-grammar>
+      <emu-alg>
+        1. Return *true*.
+      </emu-alg>
+      <emu-grammar>
+        CoverCallExpressionAndAsyncArrowHead : MemberExpression Arguments
+      </emu-grammar>
+      <emu-alg>
+        1. Let _head_ be the |AsyncArrowHead| that is covered by |CoverCallExpressionAndAsyncArrowHead|.
+        1. Return IsSimpleParameterList of _head_.
+      </emu-alg>
+    </emu-clause>

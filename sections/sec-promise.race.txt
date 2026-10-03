@@ -1,0 +1,27 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.4 Properties of the Promise Constructor > 27.5.4.5 Promise.race ( _iterable_ ) [id: sec-promise.race]
+
+<emu-clause id="sec-promise.race" type="built-in function">
+        <h1>Promise.race ( _iterable_ )</h1>
+        <p>This function returns a new promise which is settled in the same way as the first passed promise to settle. It resolves all elements of the passed _iterable_ to promises as it runs this algorithm.</p>
+        <emu-alg>
+          1. Let _ctor_ be the *this* value.
+          1. Let _promiseCapability_ be ? NewPromiseCapability(_ctor_).
+          1. Let _promiseResolve_ be Completion(GetPromiseResolve(_ctor_)).
+          1. IfAbruptRejectPromise(_promiseResolve_, _promiseCapability_).
+          1. Let _iteratorRecord_ be Completion(GetIterator(_iterable_, ~sync~)).
+          1. IfAbruptRejectPromise(_iteratorRecord_, _promiseCapability_).
+          1. Let _result_ be Completion(PerformPromiseRace(_iteratorRecord_, _ctor_, _promiseCapability_, _promiseResolve_)).
+          1. If _result_ is an abrupt completion, then
+            1. If _iteratorRecord_.[[Done]] is *false*, set _result_ to Completion(IteratorClose(_iteratorRecord_, _result_)).
+            1. IfAbruptRejectPromise(_result_, _promiseCapability_).
+          1. Return ! _result_.
+        </emu-alg>
+        <emu-note>
+          <p>If the _iterable_ argument yields no values or if none of the promises yielded by _iterable_ ever settle, then the pending promise returned by this method will never be settled.</p>
+        </emu-note>
+        <emu-note>
+          <p>This function expects its *this* value to be a constructor function that supports the parameter conventions of the Promise constructor. It also expects that its *this* value provides a `resolve` method.</p>
+        </emu-note>
+
+        
+      </emu-clause>

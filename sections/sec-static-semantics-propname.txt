@@ -1,0 +1,87 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.6 Miscellaneous > 8.6.5 Static Semantics: PropName ( ): a String or ~empty~ [id: sec-static-semantics-propname]
+
+<emu-clause id="sec-static-semantics-propname" oldids="sec-object-initializer-static-semantics-propname,sec-method-definitions-static-semantics-propname,sec-generator-function-definitions-static-semantics-propname,sec-async-generator-function-definitions-static-semantics-propname,sec-class-definitions-static-semantics-propname,sec-async-function-definitions-static-semantics-PropName" type="sdo">
+      <h1>Static Semantics: PropName ( ): a String or ~empty~</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>PropertyDefinition : IdentifierReference</emu-grammar>
+      <emu-alg>
+        1. Return the StringValue of |IdentifierReference|.
+      </emu-alg>
+      <emu-grammar>PropertyDefinition : `...` AssignmentExpression</emu-grammar>
+      <emu-alg>
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-grammar>PropertyDefinition : PropertyName `:` AssignmentExpression</emu-grammar>
+      <emu-alg>
+        1. Return the PropName of |PropertyName|.
+      </emu-alg>
+      <emu-grammar>
+        LiteralPropertyName : IdentifierName
+
+        AttributeKey : IdentifierName
+      </emu-grammar>
+      <emu-alg>
+        1. Return the StringValue of |IdentifierName|.
+      </emu-alg>
+      <emu-grammar>
+        LiteralPropertyName : StringLiteral
+
+        AttributeKey : StringLiteral
+      </emu-grammar>
+      <emu-alg>
+        1. Return the SV of |StringLiteral|.
+      </emu-alg>
+      <emu-grammar>LiteralPropertyName : NumericLiteral</emu-grammar>
+      <emu-alg>
+        1. Let _number_ be the NumericValue of |NumericLiteral|.
+        1. Return ! ToString(_number_).
+      </emu-alg>
+      <emu-grammar>ComputedPropertyName : `[` AssignmentExpression `]`</emu-grammar>
+      <emu-alg>
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-grammar>
+        MethodDefinition :
+          ClassElementName `(` UniqueFormalParameters `)` `{` FunctionBody `}`
+          `get` ClassElementName `(` `)` `{` FunctionBody `}`
+          `set` ClassElementName `(` PropertySetParameterList `)` `{` FunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return the PropName of |ClassElementName|.
+      </emu-alg>
+      <emu-grammar>GeneratorMethod : `*` ClassElementName `(` UniqueFormalParameters `)` `{` GeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return the PropName of |ClassElementName|.
+      </emu-alg>
+      <emu-grammar>AsyncGeneratorMethod : `async` `*` ClassElementName `(` UniqueFormalParameters `)` `{` AsyncGeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return the PropName of |ClassElementName|.
+      </emu-alg>
+      <emu-grammar>ClassElement : ClassStaticBlock</emu-grammar>
+      <emu-alg>
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-grammar>ClassElement : `;`</emu-grammar>
+      <emu-alg>
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-grammar>
+        AsyncMethod : `async` ClassElementName `(` UniqueFormalParameters `)` `{` AsyncFunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return the PropName of |ClassElementName|.
+      </emu-alg>
+      <emu-grammar>
+        FieldDefinition : ClassElementName Initializer?
+      </emu-grammar>
+      <emu-alg>
+        1. Return the PropName of |ClassElementName|.
+      </emu-alg>
+      <emu-grammar>
+        ClassElementName : PrivateIdentifier
+      </emu-grammar>
+      <emu-alg>
+        1. Return ~empty~.
+      </emu-alg>
+    </emu-clause>

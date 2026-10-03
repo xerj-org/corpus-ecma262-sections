@@ -1,0 +1,23 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.22 SpeciesConstructor ( _obj_: an Object, _defaultCtor_: a constructor, ): either a normal completion containing a constructor or a throw completion [id: sec-speciesconstructor]
+
+<emu-clause id="sec-speciesconstructor" type="abstract operation">
+      <h1>
+        SpeciesConstructor (
+          _obj_: an Object,
+          _defaultCtor_: a constructor,
+        ): either a normal completion containing a constructor or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to retrieve the constructor that should be used to create new objects that are derived from _obj_. _defaultCtor_ is the constructor to use if a constructor %Symbol.species% property cannot be found starting from _obj_.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _ctor_ be ? Get(_obj_, *"constructor"*).
+        1. If _ctor_ is *undefined*, return _defaultCtor_.
+        1. If _ctor_ is not an Object, throw a *TypeError* exception.
+        1. Let _species_ be ? Get(_ctor_, %Symbol.species%).
+        1. If _species_ is either *undefined* or *null*, return _defaultCtor_.
+        1. If IsConstructor(_species_) is *true*, return _species_.
+        1. Throw a *TypeError* exception.
+      </emu-alg>
+    </emu-clause>

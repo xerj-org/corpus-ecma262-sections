@@ -1,0 +1,58 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object > 25.5.2 JSON.parse ( _text_ [ , _reviver_ ] ) > 25.5.2.4 InternalizeJSONProperty ( _holder_: an Object, _name_: a String, _reviver_: a function object, _parseRecord_: a JSON Parse Record or ~empty~, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-internalizejsonproperty]
+
+<emu-clause id="sec-internalizejsonproperty" type="abstract operation">
+        <h1>
+          InternalizeJSONProperty (
+            _holder_: an Object,
+            _name_: a String,
+            _reviver_: a function object,
+            _parseRecord_: a JSON Parse Record or ~empty~,
+          ): either a normal completion containing an ECMAScript language value or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-note>
+          <p>This algorithm intentionally does not throw an exception if either [[Delete]] or CreateDataProperty return *false*.</p>
+        </emu-note>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _value_ be ? Get(_holder_, _name_).
+          1. Let _context_ be OrdinaryObjectCreate(%Object.prototype%).
+          1. If _parseRecord_ is a JSON Parse Record and SameValue(_parseRecord_.[[Value]], _value_) is *true*, then
+            1. If _value_ is not an Object, then
+              1. Let _parseNode_ be _parseRecord_.[[ParseNode]].
+              1. Assert: _parseNode_ is neither an |ArrayLiteral| Parse Node nor an |ObjectLiteral| Parse Node.
+              1. Let _sourceText_ be the source text matched by _parseNode_.
+              1. Perform ! CreateDataPropertyOrThrow(_context_, *"source"*, CodePointsToString(_sourceText_)).
+            1. Let _elementRecords_ be _parseRecord_.[[Elements]].
+            1. Let _entryRecords_ be _parseRecord_.[[Entries]].
+          1. Else,
+            1. Let _elementRecords_ be a new empty List.
+            1. Let _entryRecords_ be a new empty List.
+          1. If _value_ is an Object, then
+            1. Let _isArray_ be ? IsArray(_value_).
+            1. If _isArray_ is *true*, then
+              1. Let _elementRecordsLength_ be the number of elements in _elementRecords_.
+              1. Let _length_ be ? LengthOfArrayLike(_value_).
+              1. Let _index_ be 0.
+              1. Repeat, while _index_ &lt; _length_,
+                1. Let _propertyKey_ be ! ToString(𝔽(_index_)).
+                1. If _index_ &lt; _elementRecordsLength_, let _elementRecord_ be _elementRecords_[_index_]; else let _elementRecord_ be ~empty~.
+                1. Let _newElement_ be ? InternalizeJSONProperty(_value_, _propertyKey_, _reviver_, _elementRecord_).
+                1. If _newElement_ is *undefined*, then
+                  1. Perform ? <emu-meta effects="user-code">_value_.[[Delete]](_propertyKey_)</emu-meta>.
+                1. Else,
+                  1. Perform ? CreateDataProperty(_value_, _propertyKey_, _newElement_).
+                1. Set _index_ to _index_ + 1.
+            1. Else,
+              1. Let _keys_ be ? EnumerableOwnProperties(_value_, ~key~).
+              1. For each String _propertyKey_ of _keys_, do
+                1. If there exists an element _entry_ of _entryRecords_ such that _entry_.[[Key]] is _propertyKey_, let _entryRecord_ be _entry_; else let _entryRecord_ be ~empty~.
+                1. Let _newElement_ be ? InternalizeJSONProperty(_value_, _propertyKey_, _reviver_, _entryRecord_).
+                1. If _newElement_ is *undefined*, then
+                  1. Perform ? <emu-meta effects="user-code">_value_.[[Delete]](_propertyKey_)</emu-meta>.
+                1. Else,
+                  1. Perform ? CreateDataProperty(_value_, _propertyKey_, _newElement_).
+          1. Return ? Call(_reviver_, _holder_, « _name_, _value_, _context_ »).
+        </emu-alg>
+      </emu-clause>

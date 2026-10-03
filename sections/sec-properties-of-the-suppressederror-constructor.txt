@@ -1,0 +1,12 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.8 SuppressedError Objects > 20.5.8.2 Properties of the SuppressedError Constructor [id: sec-properties-of-the-suppressederror-constructor]
+
+<emu-clause id="sec-properties-of-the-suppressederror-constructor">
+        <h1>Properties of the SuppressedError Constructor</h1>
+        <p>The SuppressedError constructor:</p>
+        <ul>
+          <li>has a [[Prototype]] internal slot whose value is %Error%.</li>
+          <li>has the following properties:</li>
+        </ul>
+
+        
+      </emu-clause>

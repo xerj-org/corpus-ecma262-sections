@@ -1,0 +1,42 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.3 Properties of the Array Prototype Object > 23.1.3.35 Array.prototype.toSpliced ( _start_, _skipCount_, ..._items_ ) [id: sec-array.prototype.tospliced]
+
+<emu-clause id="sec-array.prototype.tospliced" type="built-in function">
+        <h1>Array.prototype.toSpliced ( _start_, _skipCount_, ..._items_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be ? ToObject(*this* value).
+          1. Let _length_ be ? LengthOfArrayLike(_obj_).
+          1. Let _actualStart_ be ? ToClampedIndex(_start_, _length_).
+          1. Let _insertCount_ be the number of elements in _items_.
+          1. Let _maxSkipCount_ be _length_ - _actualStart_.
+          1. If _start_ is not present, then
+            1. Let _actualSkipCount_ be 0.
+          1. Else if _skipCount_ is not present, then
+            1. Let _actualSkipCount_ be _maxSkipCount_.
+          1. Else,
+            1. Let _actualSkipCount_ be the result of clamping ? ToIntegerOrInfinity(_skipCount_) between 0 and _maxSkipCount_.
+          1. Let _newLength_ be _length_ + _insertCount_ - _actualSkipCount_.
+          1. Assert: _newLength_ ≥ 0.
+          1. If _newLength_ > 2<sup>53</sup> - 1, throw a *TypeError* exception.
+          1. Let _newArray_ be ? ArrayCreate(_newLength_).
+          1. Let _writeIndex_ be 0.
+          1. Let _readIndex_ be _actualStart_ + _actualSkipCount_.
+          1. Repeat, while _writeIndex_ &lt; _actualStart_,
+            1. Let _propertyKey_ be ! ToString(𝔽(_writeIndex_)).
+            1. Let _iValue_ be ? Get(_obj_, _propertyKey_).
+            1. Perform ! CreateDataPropertyOrThrow(_newArray_, _propertyKey_, _iValue_).
+            1. Set _writeIndex_ to _writeIndex_ + 1.
+          1. For each element _item_ of _items_, do
+            1. Let _propertyKey_ be ! ToString(𝔽(_writeIndex_)).
+            1. Perform ! CreateDataPropertyOrThrow(_newArray_, _propertyKey_, _item_).
+            1. Set _writeIndex_ to _writeIndex_ + 1.
+          1. Repeat, while _writeIndex_ &lt; _newLength_,
+            1. Let _propertyKey_ be ! ToString(𝔽(_writeIndex_)).
+            1. Let _from_ be ! ToString(𝔽(_readIndex_)).
+            1. Let _fromValue_ be ? Get(_obj_, _from_).
+            1. Perform ! CreateDataPropertyOrThrow(_newArray_, _propertyKey_, _fromValue_).
+            1. Set _writeIndex_ to _writeIndex_ + 1.
+            1. Set _readIndex_ to _readIndex_ + 1.
+          1. Return _newArray_.
+        </emu-alg>
+      </emu-clause>

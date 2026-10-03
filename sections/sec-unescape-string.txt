@@ -1,0 +1,33 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties > B.2.1 Additional Properties of the Global Object > B.2.1.2 unescape ( _string_ ) [id: sec-unescape-string]
+
+<emu-annex id="sec-unescape-string" type="built-in function">
+        <h1>unescape ( _string_ )</h1>
+        <p>This function is a property of the global object. It computes a new version of a String value in which each escape sequence of the sort that might be introduced by the `escape` function is replaced with the code unit that it represents.</p>
+        <p>It is the <dfn>%unescape%</dfn> intrinsic object.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Set _string_ to ? ToString(_string_).
+          1. Let _length_ be the length of _string_.
+          1. Let _result_ be the empty String.
+          1. Let _k_ be 0.
+          1. Repeat, while _k_ &lt; _length_,
+            1. Let _codeUnit_ be the code unit at index _k_ within _string_.
+            1. If _codeUnit_ is the code unit 0x0025 (PERCENT SIGN), then
+              1. Let _hexDigits_ be the empty String.
+              1. Let _optionalAdvance_ be 0.
+              1. If _k_ + 5 &lt; _length_ and the code unit at index _k_ + 1 within _string_ is the code unit 0x0075 (LATIN SMALL LETTER U), then
+                1. Set _hexDigits_ to the substring of _string_ from _k_ + 2 to _k_ + 6.
+                1. Set _optionalAdvance_ to 5.
+              1. Else if _k_ + 3 ≤ _length_, then
+                1. Set _hexDigits_ to the substring of _string_ from _k_ + 1 to _k_ + 3.
+                1. Set _optionalAdvance_ to 2.
+              1. Let _parseResult_ be ParseText(_hexDigits_, |HexDigits[~Sep]|).
+              1. If _parseResult_ is a Parse Node, then
+                1. Let _codeUnitNumber_ be the MV of _parseResult_.
+                1. Set _codeUnit_ to the code unit whose numeric value is _codeUnitNumber_.
+                1. Set _k_ to _k_ + _optionalAdvance_.
+            1. Set _result_ to the string-concatenation of _result_ and _codeUnit_.
+            1. Set _k_ to _k_ + 1.
+          1. Return _result_.
+        </emu-alg>
+      </emu-annex>

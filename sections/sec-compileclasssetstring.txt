@@ -1,0 +1,29 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.10 Runtime Semantics: CompileClassSetString ( _regexpRecord_: a RegExp Record, ): a sequence of characters [id: sec-compileclasssetstring]
+
+<emu-clause id="sec-compileclasssetstring" type="sdo">
+        <h1>
+          Runtime Semantics: CompileClassSetString (
+            _regexpRecord_: a RegExp Record,
+          ): a sequence of characters
+        </h1>
+        <dl class="header">
+        </dl>
+
+        <emu-grammar>ClassString :: [empty]</emu-grammar>
+        <emu-alg>
+          1. Return an empty sequence of characters.
+        </emu-alg>
+        <emu-grammar>ClassString :: NonEmptyClassString</emu-grammar>
+        <emu-alg>
+          1. Return CompileClassSetString of |NonEmptyClassString| with argument _regexpRecord_.
+        </emu-alg>
+        <emu-grammar>NonEmptyClassString :: ClassSetCharacter NonEmptyClassString?</emu-grammar>
+        <emu-alg>
+          1. Let _cs_ be CompileToCharSet of |ClassSetCharacter| with argument _regexpRecord_.
+          1. Let _s1_ be the sequence of characters that is the single CharSetElement of _cs_.
+          1. If |NonEmptyClassString| is present, then
+            1. Let _s2_ be CompileClassSetString of |NonEmptyClassString| with argument _regexpRecord_.
+            1. Return the concatenation of _s1_ and _s2_.
+          1. Return _s1_.
+        </emu-alg>
+      </emu-clause>

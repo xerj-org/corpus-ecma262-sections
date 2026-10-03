@@ -1,0 +1,11 @@
+ECMA-262 > 23 Indexed Collections [id: sec-indexed-collections]
+
+<emu-clause id="sec-indexed-collections">
+  <h1>Indexed Collections</h1>
+
+  
+
+  
+
+  
+</emu-clause>

@@ -1,0 +1,16 @@
+ECMA-262 > 21 Numbers and Dates > 21.2 BigInt Objects > 21.2.2 Properties of the BigInt Constructor [id: sec-properties-of-the-bigint-constructor]
+
+<emu-clause id="sec-properties-of-the-bigint-constructor">
+      <h1>Properties of the BigInt Constructor</h1>
+      <p>The BigInt constructor:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+
+      
+
+      
+    </emu-clause>

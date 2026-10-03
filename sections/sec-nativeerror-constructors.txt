@@ -1,0 +1,12 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.6 _NativeError_ Object Structure > 20.5.6.1 The _NativeError_ Constructors [id: sec-nativeerror-constructors]
+
+<emu-clause id="sec-nativeerror-constructors">
+        <h1>The _NativeError_ Constructors</h1>
+        <p>Each _NativeError_ constructor:</p>
+        <ul>
+          <li>creates and initializes a new _NativeError_ object when called as a function rather than as a constructor. A call of the object as a function is equivalent to calling it as a constructor with the same arguments. Thus the function call <code><var>NativeError</var>(&hellip;)</code> is equivalent to the object creation expression <code>new <var>NativeError</var>(&hellip;)</code> with the same arguments.</li>
+          <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified _NativeError_ behaviour must include a `super` call to the _NativeError_ constructor to create and initialize subclass instances with an [[ErrorData]] internal slot.</li>
+        </ul>
+
+        
+      </emu-clause>

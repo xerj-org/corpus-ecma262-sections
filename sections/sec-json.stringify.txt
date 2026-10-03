@@ -1,0 +1,102 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object > 25.5.4 JSON.stringify ( _value_ [ , _replacer_ [ , _space_ ] ] ) [id: sec-json.stringify]
+
+<emu-clause id="sec-json.stringify" type="built-in function">
+      <h1>JSON.stringify ( _value_ [ , _replacer_ [ , _space_ ] ] )</h1>
+      <p>This function returns a String in UTF-16 encoded JSON format representing an ECMAScript language value, or *undefined*. It can take three parameters. The _value_ parameter is an ECMAScript language value, which is usually an object or array, although it can also be a String, Boolean, Number or *null*. The optional _replacer_ parameter is either a function that alters the way objects and arrays are stringified, or an array of Strings and Numbers that acts as an inclusion list for selecting the object properties that will be stringified. The optional _space_ parameter is a String or Number that allows the result to have white space injected into it to improve human readability.</p>
+      <p>It performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _stack_ be a new empty List.
+        1. Let _indent_ be the empty String.
+        1. Let _propertyList_ be *undefined*.
+        1. Let _replacerFunc_ be *undefined*.
+        1. If _replacer_ is an Object, then
+          1. If IsCallable(_replacer_) is *true*, then
+            1. Set _replacerFunc_ to _replacer_.
+          1. Else,
+            1. Let _isArray_ be ? IsArray(_replacer_).
+            1. If _isArray_ is *true*, then
+              1. Set _propertyList_ to a new empty List.
+              1. Let _length_ be ? LengthOfArrayLike(_replacer_).
+              1. Let _k_ be 0.
+              1. Repeat, while _k_ &lt; _length_,
+                1. Let _propertyKey_ be ! ToString(𝔽(_k_)).
+                1. Let _propertyValue_ be ? Get(_replacer_, _propertyKey_).
+                1. Let _item_ be *undefined*.
+                1. If _propertyValue_ is a String, then
+                  1. Set _item_ to _propertyValue_.
+                1. Else if _propertyValue_ is a Number, then
+                  1. Set _item_ to ! ToString(_propertyValue_).
+                1. Else if _propertyValue_ is an Object, then
+                  1. If _propertyValue_ has a [[StringData]] or [[NumberData]] internal slot, set _item_ to ? ToString(_propertyValue_).
+                1. If _item_ is not *undefined* and _propertyList_ does not contain _item_, then
+                  1. Append _item_ to _propertyList_.
+                1. Set _k_ to _k_ + 1.
+        1. If _space_ is an Object, then
+          1. If _space_ has a [[NumberData]] internal slot, then
+            1. Set _space_ to ? ToNumber(_space_).
+          1. Else if _space_ has a [[StringData]] internal slot, then
+            1. Set _space_ to ? ToString(_space_).
+        1. If _space_ is a Number, then
+          1. Let _spaceMV_ be ! ToIntegerOrInfinity(_space_).
+          1. Set _spaceMV_ to min(10, _spaceMV_).
+          1. If _spaceMV_ &lt; 1, let _gap_ be the empty String; else let _gap_ be the String value containing _spaceMV_ occurrences of the code unit 0x0020 (SPACE).
+        1. Else if _space_ is a String, then
+          1. If the length of _space_ ≤ 10, let _gap_ be _space_; else let _gap_ be the substring of _space_ from 0 to 10.
+        1. Else,
+          1. Let _gap_ be the empty String.
+        1. Let _wrapper_ be OrdinaryObjectCreate(%Object.prototype%).
+        1. Perform ! CreateDataPropertyOrThrow(_wrapper_, the empty String, _value_).
+        1. Let _state_ be the JSON Serialization Record { [[ReplacerFunction]]: _replacerFunc_, [[Stack]]: _stack_, [[Indent]]: _indent_, [[Gap]]: _gap_, [[PropertyList]]: _propertyList_ }.
+        1. Return ? SerializeJSONProperty(_state_, the empty String, _wrapper_).
+      </emu-alg>
+      <p>The *"length"* property of this function is *3*<sub>𝔽</sub>.</p>
+      <emu-note>
+        <p>JSON structures are allowed to be nested to any depth, but they must be acyclic. If _value_ is or contains a cyclic structure, then this function must throw a *TypeError* exception. This is an example of a value that cannot be stringified:</p>
+        <pre><code class="javascript">
+          a = [];
+          a[0] = a;
+          my_text = JSON.stringify(a); // This must throw a TypeError.
+        </code></pre>
+      </emu-note>
+      <emu-note>
+        <p>Symbolic primitive values are rendered as follows:</p>
+        <ul>
+          <li>
+            The *null* value is rendered in JSON text as the String value *"null"*.
+          </li>
+          <li>
+            The *undefined* value is not rendered.
+          </li>
+          <li>
+            The *true* value is rendered in JSON text as the String value *"true"*.
+          </li>
+          <li>
+            The *false* value is rendered in JSON text as the String value *"false"*.
+          </li>
+        </ul>
+      </emu-note>
+      <emu-note>
+        <p>String values are wrapped in QUOTATION MARK (`"`) code units. The code units `"` and `\\` are escaped with `\\` prefixes. Control characters code units are replaced with escape sequences `\\u`HHHH, or with the shorter forms, `\\b` (BACKSPACE), `\\f` (FORM FEED), `\\n` (LINE FEED), `\\r` (CARRIAGE RETURN), `\\t` (CHARACTER TABULATION).</p>
+      </emu-note>
+      <emu-note>
+        <p>Each finite Number is stringified as if by calling ToString(_number_). *NaN*, *+∞*<sub>𝔽</sub>, and *-∞*<sub>𝔽</sub> are represented as the String value *"null"*.</p>
+      </emu-note>
+      <emu-note>
+        <p>Values that do not have a JSON representation (such as *undefined* and functions) do not produce a String. Instead they produce the *undefined* value. In arrays these values are represented as the String value *"null"*. In objects an unrepresentable value causes the property to be excluded from stringification.</p>
+      </emu-note>
+      <emu-note>
+        <p>An object is rendered as U+007B (LEFT CURLY BRACKET) followed by zero or more properties, separated with a U+002C (COMMA), closed with a U+007D (RIGHT CURLY BRACKET). A property is a quoted String representing the property name, a U+003A (COLON), and then the stringified property value. An array is rendered as an opening U+005B (LEFT SQUARE BRACKET) followed by zero or more values, separated with a U+002C (COMMA), closed with a U+005D (RIGHT SQUARE BRACKET).</p>
+      </emu-note>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

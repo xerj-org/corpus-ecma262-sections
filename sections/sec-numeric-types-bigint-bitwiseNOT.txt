@@ -1,0 +1,16 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.2 The BigInt Type > 6.1.6.2.2 BigInt::bitwiseNOT ( _bigint_: a BigInt, ): a BigInt [id: sec-numeric-types-bigint-bitwiseNOT]
+
+<emu-clause id="sec-numeric-types-bigint-bitwiseNOT" type="numeric method">
+          <h1>
+            BigInt::bitwiseNOT (
+              _bigint_: a BigInt,
+            ): a BigInt
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It returns the one's complement of _bigint_.</dd>
+          </dl>
+          <emu-alg>
+            1. Return -_bigint_ - *1*<sub>ℤ</sub>.
+          </emu-alg>
+        </emu-clause>

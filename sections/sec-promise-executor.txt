@@ -1,0 +1,27 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.3 The Promise Constructor > 27.5.3.1 Promise ( _executor_ ) [id: sec-promise-executor]
+
+<emu-clause id="sec-promise-executor" type="built-in function">
+        <h1>Promise ( _executor_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If NewTarget is *undefined*, throw a *TypeError* exception.
+          1. If IsCallable(_executor_) is *false*, throw a *TypeError* exception.
+          1. Let _promise_ be ? OrdinaryCreateFromConstructor(NewTarget, *"%Promise.prototype%"*, « [[PromiseState]], [[PromiseResult]], [[PromiseFulfillReactions]], [[PromiseRejectReactions]], [[PromiseIsHandled]] »).
+          1. Set _promise_.[[PromiseState]] to ~pending~.
+          1. Set _promise_.[[PromiseResult]] to ~empty~.
+          1. Set _promise_.[[PromiseFulfillReactions]] to a new empty List.
+          1. Set _promise_.[[PromiseRejectReactions]] to a new empty List.
+          1. Set _promise_.[[PromiseIsHandled]] to *false*.
+          1. Let _resolvingFuncs_ be CreateResolvingFunctions(_promise_).
+          1. Let _completion_ be Completion(Call(_executor_, *undefined*, « _resolvingFuncs_.[[Resolve]], _resolvingFuncs_.[[Reject]] »)).
+          1. If _completion_ is an abrupt completion, then
+            1. Perform ? Call(_resolvingFuncs_.[[Reject]], *undefined*, « _completion_.[[Value]] »).
+          1. Return _promise_.
+        </emu-alg>
+        <emu-note>
+          <p>The _executor_ argument must be a function object. It is called for initiating and reporting completion of the possibly deferred action represented by this Promise. The executor is called with two arguments: _resolve_ and _reject_. These are functions that may be used by the _executor_ function to report eventual completion or failure of the deferred computation. Returning from the executor function does not mean that the deferred action has been completed but only that the request to eventually perform the deferred action has been accepted.</p>
+          <p>The _resolve_ function that is passed to an _executor_ function accepts a single argument. The _executor_ code may eventually call the _resolve_ function to indicate that it wishes to resolve the associated Promise. The argument passed to the _resolve_ function represents the eventual value of the deferred action and can be either the actual fulfillment value or another promise which will provide the value if it is fulfilled.</p>
+          <p>The _reject_ function that is passed to an _executor_ function accepts a single argument. The _executor_ code may eventually call the _reject_ function to indicate that the associated Promise is rejected and will never be fulfilled. The argument passed to the _reject_ function is used as the rejection value of the promise. Typically it will be an Error object.</p>
+          <p>The resolve and reject functions passed to an _executor_ function by the Promise constructor have the capability to actually resolve and reject the associated promise. Subclasses may have different constructor behaviour that passes in customized values for resolve and reject.</p>
+        </emu-note>
+      </emu-clause>

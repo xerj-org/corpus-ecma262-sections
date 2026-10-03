@@ -1,0 +1,10 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.2 PrivateEnvironment Records > 9.2.1 PrivateEnvironment Record Operations [id: sec-privateenvironment-record-operations]
+
+<emu-clause id="sec-privateenvironment-record-operations">
+      <h1>PrivateEnvironment Record Operations</h1>
+      <p>The following abstract operations are used in this specification to operate upon PrivateEnvironment Records:</p>
+
+      
+
+      
+    </emu-clause>

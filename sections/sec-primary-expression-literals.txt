@@ -1,0 +1,15 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.3 Literals [id: sec-primary-expression-literals]
+
+<emu-clause id="sec-primary-expression-literals">
+      <h1>Literals</h1>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        Literal :
+          NullLiteral
+          BooleanLiteral
+          NumericLiteral
+          StringLiteral
+      </emu-grammar>
+
+      
+    </emu-clause>

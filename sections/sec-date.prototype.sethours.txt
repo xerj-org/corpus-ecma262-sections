@@ -1,0 +1,28 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.4 Properties of the Date Prototype Object > 21.4.4.22 Date.prototype.setHours ( _hour_ [ , _minute_ [ , _second_ [ , _millisecond_ ] ] ] ) [id: sec-date.prototype.sethours]
+
+<emu-clause id="sec-date.prototype.sethours" type="built-in function">
+        <h1>Date.prototype.setHours ( _hour_ [ , _minute_ [ , _second_ [ , _millisecond_ ] ] ] )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _dateObj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_dateObj_, [[DateValue]]).
+          1. Let _tv_ be _dateObj_.[[DateValue]].
+          1. Let _hourNumber_ be ? ToNumber(_hour_).
+          1. If _minute_ is present, let _minuteNumber_ be ? ToNumber(_minute_).
+          1. If _second_ is present, let _secondNumber_ be ? ToNumber(_second_).
+          1. If _millisecond_ is present, let _millisecondNumber_ be ? ToNumber(_millisecond_).
+          1. If _tv_ is *NaN*, return *NaN*.
+          1. Set _tv_ to LocalTime(_tv_).
+          1. If _minute_ is not present, let _minuteNumber_ be 𝔽(MinuteFromTime(_tv_)).
+          1. If _second_ is not present, let _secondNumber_ be 𝔽(SecondFromTime(_tv_)).
+          1. If _millisecond_ is not present, let _millisecondNumber_ be 𝔽(MillisecondFromTime(_tv_)).
+          1. Let _date_ be MakeDate(𝔽(Day(_tv_)), MakeTime(_hourNumber_, _minuteNumber_, _secondNumber_, _millisecondNumber_)).
+          1. Let _u_ be TimeClip(UTC(_date_)).
+          1. Set _dateObj_.[[DateValue]] to _u_.
+          1. Return _u_.
+        </emu-alg>
+        <p>The *"length"* property of this method is *4*<sub>𝔽</sub>.</p>
+        <emu-note>
+          <p>If _minute_ is not present, this method behaves as if _minute_ was present with the value `getMinutes()`. If _second_ is not present, it behaves as if _second_ was present with the value `getSeconds()`. If _millisecond_ is not present, it behaves as if _millisecond_ was present with the value `getMilliseconds()`.</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,12 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.1 The Symbol Constructor > 20.4.1.1 Symbol ( [ _description_ ] ) [id: sec-symbol-description]
+
+<emu-clause id="sec-symbol-description" type="built-in function">
+        <h1>Symbol ( [ _description_ ] )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If NewTarget is not *undefined*, throw a *TypeError* exception.
+          1. If _description_ is *undefined*, let _descString_ be *undefined*.
+          1. Else, let _descString_ be ? ToString(_description_).
+          1. Return a new Symbol whose [[Description]] is _descString_.
+        </emu-alg>
+      </emu-clause>

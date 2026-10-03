@@ -1,0 +1,21 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.13 CanBeHeldWeakly ( _arg_: an ECMAScript language value, ): a Boolean [id: sec-canbeheldweakly]
+
+<emu-clause id="sec-canbeheldweakly" type="abstract operation">
+    <h1>
+      CanBeHeldWeakly (
+        _arg_: an ECMAScript language value,
+      ): a Boolean
+    </h1>
+    <dl class="header">
+      <dt>description</dt>
+      <dd>It returns *true* if and only if _arg_ is suitable for use as a weak reference. Only values that are suitable for use as a weak reference may be a key of a WeakMap, an element of a WeakSet, the target of a WeakRef, or one of the targets of a FinalizationRegistry.</dd>
+    </dl>
+    <emu-alg>
+      1. If _arg_ is an Object, return *true*.
+      1. If _arg_ is a Symbol and KeyForSymbol(_arg_) is *undefined*, return *true*.
+      1. Return *false*.
+    </emu-alg>
+    <emu-note>
+      <p>A language value without <emu-xref href="#sec-identity">language identity</emu-xref> can be manifested without prior reference and is unsuitable for use as a weak reference. A Symbol value produced by <emu-xref href="#sec-symbol.for">Symbol.for</emu-xref>, unlike other Symbol values, does not have language identity and is unsuitable for use as a weak reference. <emu-xref href="#sec-well-known-symbols">Well-known symbols</emu-xref> are likely to never be collected, but are nonetheless treated as suitable for use as a weak reference because they are limited in number and therefore manageable by a variety of implementation approaches. However, any value associated to a well-known symbol in a live WeakMap is unlikely to be collected and could “leak” memory resources in implementations.</p>
+    </emu-note>
+  </emu-clause>

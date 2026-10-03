@@ -1,0 +1,97 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.7 Abstract Operations for RegExp Matching > 22.2.7.2 RegExpBuiltinExec ( _regexp_: an initialized RegExp instance, _string_: a String, ): either a normal completion containing either an Array exotic object or *null*, or a throw completion [id: sec-regexpbuiltinexec]
+
+<emu-clause id="sec-regexpbuiltinexec" type="abstract operation">
+        <h1>
+          RegExpBuiltinExec (
+            _regexp_: an initialized RegExp instance,
+            _string_: a String,
+          ): either a normal completion containing either an Array exotic object or *null*, or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _length_ be the length of _string_.
+          1. Let _lastIndex_ be ℝ(? ToLength(! Get(_regexp_, *"lastIndex"*))).
+          1. Let _flags_ be _regexp_.[[OriginalFlags]].
+          1. If _flags_ contains *"g"*, let _global_ be *true*; else let _global_ be *false*.
+          1. If _flags_ contains *"y"*, let _sticky_ be *true*; else let _sticky_ be *false*.
+          1. If _flags_ contains *"d"*, let _hasIndices_ be *true*; else let _hasIndices_ be *false*.
+          1. If _global_ is *false* and _sticky_ is *false*, set _lastIndex_ to 0.
+          1. Let _matcher_ be _regexp_.[[RegExpMatcher]].
+          1. If _flags_ contains *"u"* or _flags_ contains *"v"*, let _fullUnicode_ be *true*; else let _fullUnicode_ be *false*.
+          1. Let _matchSucceeded_ be *false*.
+          1. If _fullUnicode_ is *true*, let _input_ be StringToCodePoints(_string_); else let _input_ be a List whose elements are the code units that are the elements of _string_.
+          1. NOTE: Each element of _input_ is considered to be a character.
+          1. Repeat, while _matchSucceeded_ is *false*,
+            1. If _lastIndex_ > _length_, then
+              1. If _global_ is *true* or _sticky_ is *true*, then
+                1. Perform ? <emu-meta suppress-effects="user-code">Set(_regexp_, *"lastIndex"*, *+0*<sub>𝔽</sub>, *true*)</emu-meta>.
+              1. Return *null*.
+            1. Let _inputIndex_ be the index into _input_ of the character that was obtained from element _lastIndex_ of _string_.
+            1. Let _result_ be _matcher_(_input_, _inputIndex_).
+            1. If _result_ is ~failure~, then
+              1. If _sticky_ is *true*, then
+                1. Perform ? <emu-meta suppress-effects="user-code">Set(_regexp_, *"lastIndex"*, *+0*<sub>𝔽</sub>, *true*)</emu-meta>.
+                1. Return *null*.
+              1. Set _lastIndex_ to AdvanceStringIndex(_string_, _lastIndex_, _fullUnicode_).
+            1. Else,
+              1. Assert: _result_ is a MatchState.
+              1. Set _matchSucceeded_ to *true*.
+          1. Let _endIndex_ be _result_.[[EndIndex]].
+          1. If _fullUnicode_ is *true*, set _endIndex_ to GetStringIndex(_string_, _endIndex_).
+          1. If _global_ is *true* or _sticky_ is *true*, then
+            1. Perform ? <emu-meta suppress-effects="user-code">Set(_regexp_, *"lastIndex"*, 𝔽(_endIndex_), *true*)</emu-meta>.
+          1. Let _capturingGroupsCount_ be the number of elements in _result_.[[Captures]].
+          1. Assert: _capturingGroupsCount_ = _regexp_.[[RegExpRecord]].[[CapturingGroupsCount]].
+          1. Assert: _capturingGroupsCount_ &lt; 2<sup>32</sup> - 1.
+          1. Let _array_ be ! ArrayCreate(_capturingGroupsCount_ + 1).
+          1. Assert: The mathematical value of _array_'s *"length"* property is _capturingGroupsCount_ + 1.
+          1. Perform ! CreateDataPropertyOrThrow(_array_, *"index"*, 𝔽(_lastIndex_)).
+          1. Perform ! CreateDataPropertyOrThrow(_array_, *"input"*, _string_).
+          1. Let _match_ be the Match Record { [[StartIndex]]: _lastIndex_, [[EndIndex]]: _endIndex_ }.
+          1. Let _indices_ be a new empty List.
+          1. Let _groupNames_ be a new empty List.
+          1. Append _match_ to _indices_.
+          1. Let _matchedSubstring_ be GetMatchString(_string_, _match_).
+          1. Perform ! CreateDataPropertyOrThrow(_array_, *"0"*, _matchedSubstring_).
+          1. If _regexp_ contains any |GroupName|, then
+            1. Let _groups_ be OrdinaryObjectCreate(*null*).
+            1. Let _hasGroups_ be *true*.
+          1. Else,
+            1. Let _groups_ be *undefined*.
+            1. Let _hasGroups_ be *false*.
+          1. Perform ! CreateDataPropertyOrThrow(_array_, *"groups"*, _groups_).
+          1. Let _matchedGroupNames_ be a new empty List.
+          1. For each integer _i_ such that 1 ≤ _i_ ≤ _capturingGroupsCount_, in ascending order, do
+            1. Let _capture_ be _i_<sup>th</sup> element of _result_.[[Captures]].
+            1. If _capture_ is *undefined*, then
+              1. Let _capturedValue_ be *undefined*.
+              1. Append *undefined* to _indices_.
+            1. Else,
+              1. Let _captureStart_ be _capture_.[[StartIndex]].
+              1. Let _captureEnd_ be _capture_.[[EndIndex]].
+              1. If _fullUnicode_ is *true*, then
+                1. Set _captureStart_ to GetStringIndex(_string_, _captureStart_).
+                1. Set _captureEnd_ to GetStringIndex(_string_, _captureEnd_).
+              1. Let _captureRecord_ be the Match Record { [[StartIndex]]: _captureStart_, [[EndIndex]]: _captureEnd_ }.
+              1. Let _capturedValue_ be GetMatchString(_string_, _captureRecord_).
+              1. Append _captureRecord_ to _indices_.
+            1. Perform ! CreateDataPropertyOrThrow(_array_, ! ToString(𝔽(_i_)), _capturedValue_).
+            1. If the _i_<sup>th</sup> capture of _regexp_ was defined with a |GroupName|, then
+              1. Let _groupName_ be the CapturingGroupName of that |GroupName|.
+              1. If _matchedGroupNames_ contains _groupName_, then
+                1. Assert: _capturedValue_ is *undefined*.
+                1. Append *undefined* to _groupNames_.
+              1. Else,
+                1. If _capturedValue_ is not *undefined*, append _groupName_ to _matchedGroupNames_.
+                1. NOTE: If there are multiple groups named _groupName_, _groups_ may already have an _groupName_ property at this point. However, because _groups_ is an ordinary object whose properties are all writable data properties, the call to CreateDataPropertyOrThrow is nevertheless guaranteed to succeed.
+                1. Perform ! CreateDataPropertyOrThrow(_groups_, _groupName_, _capturedValue_).
+                1. Append _groupName_ to _groupNames_.
+            1. Else,
+              1. Append *undefined* to _groupNames_.
+          1. If _hasIndices_ is *true*, then
+            1. Let _indicesArray_ be MakeMatchIndicesIndexPairArray(_string_, _indices_, _groupNames_, _hasGroups_).
+            1. Perform ! CreateDataPropertyOrThrow(_array_, *"indices"*, _indicesArray_).
+          1. Return _array_.
+        </emu-alg>
+      </emu-clause>

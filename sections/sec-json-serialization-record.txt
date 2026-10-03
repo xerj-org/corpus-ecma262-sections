@@ -1,0 +1,43 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object > 25.5.4 JSON.stringify ( _value_ [ , _replacer_ [ , _space_ ] ] ) > 25.5.4.1 JSON Serialization Record [id: sec-json-serialization-record]
+
+<emu-clause id="sec-json-serialization-record">
+        <h1>JSON Serialization Record</h1>
+        <p>A <dfn variants="JSON Serialization Records">JSON Serialization Record</dfn> is a Record used to enable serialization to the JSON format.</p>
+        <p>JSON Serialization Records have the fields listed in <emu-xref href="#table-json-serialization-record"></emu-xref>.</p>
+        <emu-table id="table-json-serialization-record" caption="JSON Serialization Record Fields">
+          <table>
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Value</th>
+                <th>Meaning</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>[[ReplacerFunction]]</td>
+              <td>a function object or *undefined*</td>
+              <td>A function that can supply replacement values for object properties (from JSON.stringify's _replacer_ parameter).</td>
+            </tr>
+            <tr>
+              <td>[[PropertyList]]</td>
+              <td>either a List of Strings or *undefined*</td>
+              <td>The names of properties to include when serializing a non-array object (from JSON.stringify's _replacer_ parameter).</td>
+            </tr>
+            <tr>
+              <td>[[Gap]]</td>
+              <td>a String</td>
+              <td>The unit of indentation (from JSON.stringify's _space_ parameter).</td>
+            </tr>
+            <tr>
+              <td>[[Stack]]</td>
+              <td>a List of Objects</td>
+              <td>The set of nested objects that are in the process of being serialized. Used to detect cyclic structures.</td>
+            </tr>
+            <tr>
+              <td>[[Indent]]</td>
+              <td>a String</td>
+              <td>The current indentation.</td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

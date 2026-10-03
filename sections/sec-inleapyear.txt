@@ -1,0 +1,20 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.9 InLeapYear ( _tv_: a finite time value, ): 0 or 1 [id: sec-inleapyear]
+
+<emu-clause id="sec-inleapyear" type="abstract operation" oldids="eqn-InLeapYear,sec-daysinyear,eqn-DaysInYear">
+        <h1>
+          InLeapYear (
+            _tv_: a finite time value,
+          ): 0 or 1
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns 1 if _tv_ is within a leap year and 0 otherwise.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _y_ be YearFromTime(_tv_).
+          1. If (_y_ modulo 400) = 0, return 1.
+          1. If (_y_ modulo 100) = 0, return 0.
+          1. If (_y_ modulo 4) = 0, return 1.
+          1. Return 0.
+        </emu-alg>
+      </emu-clause>

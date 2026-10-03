@@ -1,0 +1,14 @@
+ECMA-262 > 7 Abstract Operations > 7.4 Operations on Iterator Objects > 7.4.8 IteratorValue ( _iteratorResult_: an Object, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-iteratorvalue]
+
+<emu-clause id="sec-iteratorvalue" type="abstract operation">
+      <h1>
+        IteratorValue (
+          _iteratorResult_: an Object,
+        ): either a normal completion containing an ECMAScript language value or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Return ? Get(_iteratorResult_, *"value"*).
+      </emu-alg>
+    </emu-clause>

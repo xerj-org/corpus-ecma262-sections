@@ -1,0 +1,102 @@
+ECMA-262 > A Grammar Summary > A.2 Expressions [id: sec-expressions]
+
+<emu-annex id="sec-expressions">
+    <h1>Expressions</h1>
+    <emu-prodref name="IdentifierReference"></emu-prodref>
+    <emu-prodref name="BindingIdentifier"></emu-prodref>
+    <emu-prodref name="LabelIdentifier"></emu-prodref>
+    <emu-prodref name="Identifier"></emu-prodref>
+    <emu-prodref name="PrimaryExpression"></emu-prodref>
+    <emu-prodref name="CoverParenthesizedExpressionAndArrowParameterList"></emu-prodref>
+    <p>
+      When processing an instance of the production<br>
+      <emu-prodref name="PrimaryExpression" a="parencover"></emu-prodref><br>
+      the interpretation of |CoverParenthesizedExpressionAndArrowParameterList| is refined using the following grammar:
+    </p>
+    <emu-prodref name="ParenthesizedExpression"></emu-prodref>
+    <p>&nbsp;</p>
+    <emu-prodref name="Literal"></emu-prodref>
+    <emu-prodref name="ArrayLiteral"></emu-prodref>
+    <emu-prodref name="ElementList"></emu-prodref>
+    <emu-prodref name="Elision"></emu-prodref>
+    <emu-prodref name="SpreadElement"></emu-prodref>
+    <emu-prodref name="ObjectLiteral"></emu-prodref>
+    <emu-prodref name="PropertyDefinitionList"></emu-prodref>
+    <emu-prodref name="PropertyDefinition"></emu-prodref>
+    <emu-prodref name="PropertyName"></emu-prodref>
+    <emu-prodref name="LiteralPropertyName"></emu-prodref>
+    <emu-prodref name="ComputedPropertyName"></emu-prodref>
+    <emu-prodref name="CoverInitializedName"></emu-prodref>
+    <emu-prodref name="Initializer"></emu-prodref>
+    <emu-prodref name="TemplateLiteral"></emu-prodref>
+    <emu-prodref name="SubstitutionTemplate"></emu-prodref>
+    <emu-prodref name="TemplateSpans"></emu-prodref>
+    <emu-prodref name="TemplateMiddleList"></emu-prodref>
+    <emu-prodref name="MemberExpression"></emu-prodref>
+    <emu-prodref name="SuperProperty"></emu-prodref>
+    <emu-prodref name="MetaProperty"></emu-prodref>
+    <emu-prodref name="NewTarget"></emu-prodref>
+    <emu-prodref name="ImportMeta"></emu-prodref>
+    <emu-prodref name="NewExpression"></emu-prodref>
+    <emu-prodref name="CallExpression"></emu-prodref>
+    <p>
+      When processing an instance of the production<br>
+      <emu-prodref name="CallExpression" a="callcover"></emu-prodref><br>
+      the interpretation of |CoverCallExpressionAndAsyncArrowHead| is refined using the following grammar:
+    </p>
+    <emu-prodref name="CallMemberExpression"></emu-prodref>
+    <p>&nbsp;</p>
+    <emu-prodref name="SuperCall"></emu-prodref>
+    <emu-prodref name="ImportCall"></emu-prodref>
+    <emu-prodref name="Arguments"></emu-prodref>
+    <emu-prodref name="ArgumentList"></emu-prodref>
+    <emu-prodref name="OptionalExpression"></emu-prodref>
+    <emu-prodref name="OptionalChain"></emu-prodref>
+    <emu-prodref name="LeftHandSideExpression"></emu-prodref>
+    <emu-prodref name="UpdateExpression"></emu-prodref>
+    <emu-prodref name="UnaryExpression"></emu-prodref>
+    <emu-prodref name="CoverAwaitExpressionAndAwaitUsingDeclarationHead"></emu-prodref>
+    <p>
+      When processing an instance of the production<br>
+      <emu-prodref name="UnaryExpression" a="awaitusingcover"></emu-prodref><br>
+      the interpretation of |CoverAwaitExpressionAndAwaitUsingDeclarationHead| is refined using the following grammar:
+    </p>
+    <emu-prodref name="AwaitExpression"></emu-prodref>
+    <p>&nbsp;</p>
+    <emu-prodref name="ExponentiationExpression"></emu-prodref>
+    <emu-prodref name="MultiplicativeExpression"></emu-prodref>
+    <emu-prodref name="MultiplicativeOperator"></emu-prodref>
+    <emu-prodref name="AdditiveExpression"></emu-prodref>
+    <emu-prodref name="ShiftExpression"></emu-prodref>
+    <emu-prodref name="RelationalExpression"></emu-prodref>
+    <emu-prodref name="EqualityExpression"></emu-prodref>
+    <emu-prodref name="BitwiseANDExpression"></emu-prodref>
+    <emu-prodref name="BitwiseXORExpression"></emu-prodref>
+    <emu-prodref name="BitwiseORExpression"></emu-prodref>
+    <emu-prodref name="LogicalANDExpression"></emu-prodref>
+    <emu-prodref name="LogicalORExpression"></emu-prodref>
+    <emu-prodref name="CoalesceExpression"></emu-prodref>
+    <emu-prodref name="CoalesceExpressionHead"></emu-prodref>
+    <emu-prodref name="ShortCircuitExpression"></emu-prodref>
+    <emu-prodref name="ConditionalExpression"></emu-prodref>
+    <emu-prodref name="AssignmentExpression"></emu-prodref>
+    <emu-prodref name="AssignmentOperator"></emu-prodref>
+    <p>
+      In certain circumstances when processing an instance of the production<br>
+      <emu-prodref name="AssignmentExpression" a="assignment"></emu-prodref><br>
+      the interpretation of |LeftHandSideExpression| is refined using the following grammar:
+    </p>
+    <emu-prodref name="AssignmentPattern"></emu-prodref>
+    <emu-prodref name="ObjectAssignmentPattern"></emu-prodref>
+    <emu-prodref name="ArrayAssignmentPattern"></emu-prodref>
+    <emu-prodref name="AssignmentRestProperty"></emu-prodref>
+    <emu-prodref name="AssignmentPropertyList"></emu-prodref>
+    <emu-prodref name="AssignmentElementList"></emu-prodref>
+    <emu-prodref name="AssignmentElisionElement"></emu-prodref>
+    <emu-prodref name="AssignmentProperty"></emu-prodref>
+    <emu-prodref name="AssignmentElement"></emu-prodref>
+    <emu-prodref name="AssignmentRestElement"></emu-prodref>
+    <emu-prodref name="DestructuringAssignmentTarget"></emu-prodref>
+    <p>&nbsp;</p>
+    <emu-prodref name="Expression"></emu-prodref>
+  </emu-annex>

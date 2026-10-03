@@ -1,0 +1,13 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.5 Unary Operators > 13.5.6 Bitwise NOT Operator ( `~` ) > 13.5.6.1 Runtime Semantics: Evaluation [id: sec-bitwise-not-operator-runtime-semantics-evaluation]
+
+<emu-clause id="sec-bitwise-not-operator-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>UnaryExpression : `~` UnaryExpression</emu-grammar>
+        <emu-alg>
+          1. Let _expr_ be ? Evaluation of |UnaryExpression|.
+          1. Let _oldValue_ be ? ToNumeric(? GetValue(_expr_)).
+          1. If _oldValue_ is a Number, return Number::bitwiseNOT(_oldValue_).
+          1. Assert: _oldValue_ is a BigInt.
+          1. Return BigInt::bitwiseNOT(_oldValue_).
+        </emu-alg>
+      </emu-clause>

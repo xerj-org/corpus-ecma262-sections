@@ -1,0 +1,18 @@
+ECMA-262 > 21 Numbers and Dates > 21.2 BigInt Objects > 21.2.3 Properties of the BigInt Prototype Object > 21.2.3.4 BigInt.prototype.valueOf ( ) > 21.2.3.4.1 ThisBigIntValue ( _arg_: an ECMAScript language value, ): either a normal completion containing a BigInt or a throw completion [id: sec-thisbigintvalue]
+
+<emu-clause id="sec-thisbigintvalue" type="abstract operation" oldids="thisbigintvalue">
+          <h1>
+            ThisBigIntValue (
+              _arg_: an ECMAScript language value,
+            ): either a normal completion containing a BigInt or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _arg_ is a BigInt, return _arg_.
+            1. If _arg_ is an Object and _arg_ has a [[BigIntData]] internal slot, then
+              1. Assert: _arg_.[[BigIntData]] is a BigInt.
+              1. Return _arg_.[[BigIntData]].
+            1. Throw a *TypeError* exception.
+          </emu-alg>
+        </emu-clause>

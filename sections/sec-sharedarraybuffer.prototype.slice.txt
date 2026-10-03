@@ -1,0 +1,25 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.5 Properties of the SharedArrayBuffer Prototype Object > 25.2.5.6 SharedArrayBuffer.prototype.slice ( _start_, _end_ ) [id: sec-sharedarraybuffer.prototype.slice]
+
+<emu-clause id="sec-sharedarraybuffer.prototype.slice" type="built-in function">
+        <h1>SharedArrayBuffer.prototype.slice ( _start_, _end_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_obj_, [[ArrayBufferData]]).
+          1. If IsSharedArrayBuffer(_obj_) is *false*, throw a *TypeError* exception.
+          1. Let _length_ be ArrayBufferByteLength(_obj_, ~seq-cst~).
+          1. Let _first_ be ? ToClampedIndex(_start_, _length_).
+          1. If _end_ is *undefined*, let _final_ be _length_; else let _final_ be ? ToClampedIndex(_end_, _length_).
+          1. Let _newLength_ be max(_final_ - _first_, 0).
+          1. Let _ctor_ be ? SpeciesConstructor(_obj_, %SharedArrayBuffer%).
+          1. Let _new_ be ? Construct(_ctor_, « 𝔽(_newLength_) »).
+          1. Perform ? RequireInternalSlot(_new_, [[ArrayBufferData]]).
+          1. If IsSharedArrayBuffer(_new_) is *false*, throw a *TypeError* exception.
+          1. If _new_.[[ArrayBufferData]] is _obj_.[[ArrayBufferData]], throw a *TypeError* exception.
+          1. If ArrayBufferByteLength(_new_, ~seq-cst~) &lt; _newLength_, throw a *TypeError* exception.
+          1. Let _fromBlock_ be _obj_.[[ArrayBufferData]].
+          1. Let _toBlock_ be _new_.[[ArrayBufferData]].
+          1. Perform CopyDataBlockBytes(_toBlock_, 0, _fromBlock_, _first_, _newLength_).
+          1. Return _new_.
+        </emu-alg>
+      </emu-clause>

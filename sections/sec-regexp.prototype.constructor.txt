@@ -1,0 +1,6 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.6 Properties of the RegExp Prototype Object > 22.2.6.1 RegExp.prototype.constructor [id: sec-regexp.prototype.constructor]
+
+<emu-clause id="sec-regexp.prototype.constructor">
+        <h1>RegExp.prototype.constructor</h1>
+        <p>The initial value of `RegExp.prototype.constructor` is %RegExp%.</p>
+      </emu-clause>

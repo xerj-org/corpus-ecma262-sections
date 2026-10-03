@@ -1,0 +1,55 @@
+ECMA-262 > 19 The Global Object > 19.2 Function Properties of the Global Object > 19.2.6 URI Handling Functions > 19.2.6.6 Decode ( _string_: a String, _preserveEscapeSet_: a String, ): either a normal completion containing a String or a throw completion [id: sec-decode]
+
+<emu-clause id="sec-decode" type="abstract operation">
+        <h1>
+          Decode (
+            _string_: a String,
+            _preserveEscapeSet_: a String,
+          ): either a normal completion containing a String or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It performs URI unescaping and decoding, preserving any escape sequences that correspond to Basic Latin characters in _preserveEscapeSet_.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _length_ be the length of _string_.
+          1. Let _result_ be the empty String.
+          1. Let _k_ be 0.
+          1. Repeat, while _k_ &lt; _length_,
+            1. Let _codeUnit_ be the code unit at index _k_ within _string_.
+            1. Let _segment_ be _codeUnit_.
+            1. If _codeUnit_ is the code unit 0x0025 (PERCENT SIGN), then
+              1. If _k_ + 3 > _length_, throw a *URIError* exception.
+              1. Let _escape_ be the substring of _string_ from _k_ to _k_ + 3.
+              1. Let _firstOctet_ be ParseHexOctet(_string_, _k_ + 1).
+              1. If _firstOctet_ is not an integer, throw a *URIError* exception.
+              1. Set _k_ to _k_ + 2.
+              1. Let _n_ be the number of leading 1 bits in _firstOctet_.
+              1. If _n_ = 0, then
+                1. Let _asciiChar_ be the code unit whose numeric value is _firstOctet_.
+                1. If _preserveEscapeSet_ contains _asciiChar_, set _segment_ to _escape_; else set _segment_ to _asciiChar_.
+              1. Else,
+                1. If _n_ = 1 or _n_ > 4, throw a *URIError* exception.
+                1. Let _octets_ be « _firstOctet_ ».
+                1. Let _j_ be 1.
+                1. Repeat, while _j_ &lt; _n_,
+                  1. Set _k_ to _k_ + 1.
+                  1. If _k_ + 3 > _length_, throw a *URIError* exception.
+                  1. If the code unit at index _k_ within _string_ is not the code unit 0x0025 (PERCENT SIGN), throw a *URIError* exception.
+                  1. Let _continuationByte_ be ParseHexOctet(_string_, _k_ + 1).
+                  1. If _continuationByte_ is not an integer, throw a *URIError* exception.
+                  1. Append _continuationByte_ to _octets_.
+                  1. Set _k_ to _k_ + 2.
+                  1. Set _j_ to _j_ + 1.
+                1. Assert: The length of _octets_ is _n_.
+                1. If _octets_ does not contain a valid UTF-8 encoding of a Unicode code point, throw a *URIError* exception.
+                1. Let _codePoint_ be the code point obtained by applying the UTF-8 transformation to _octets_, that is, from a List of octets into a 21-bit value.
+                1. Set _segment_ to UTF16EncodeCodePoint(_codePoint_).
+            1. Set _result_ to the string-concatenation of _result_ and _segment_.
+            1. Set _k_ to _k_ + 1.
+          1. Return _result_.
+        </emu-alg>
+        <emu-note>
+          <p>RFC 3629 prohibits the decoding of invalid UTF-8 octet sequences. For example, the invalid sequence 0xC0 0x80 must not decode into the code unit 0x0000. Implementations of the Decode algorithm are required to throw a *URIError* when encountering such invalid sequences.</p>
+        </emu-note>
+      </emu-clause>

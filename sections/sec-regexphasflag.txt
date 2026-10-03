@@ -1,0 +1,21 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.6 Properties of the RegExp Prototype Object > 22.2.6.4 get RegExp.prototype.flags > 22.2.6.4.1 RegExpHasFlag ( _regexp_: an ECMAScript language value, _codeUnit_: a code unit, ): either a normal completion containing either a Boolean or *undefined*, or a throw completion [id: sec-regexphasflag]
+
+<emu-clause id="sec-regexphasflag" type="abstract operation">
+          <h1>
+            RegExpHasFlag (
+              _regexp_: an ECMAScript language value,
+              _codeUnit_: a code unit,
+            ): either a normal completion containing either a Boolean or *undefined*, or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _regexp_ is not an Object, throw a *TypeError* exception.
+            1. If _regexp_ does not have an [[OriginalFlags]] internal slot, then
+              1. If SameValue(_regexp_, %RegExp.prototype%) is *true*, return *undefined*.
+              1. Throw a *TypeError* exception.
+            1. Let _flags_ be _regexp_.[[OriginalFlags]].
+            1. If _flags_ contains _codeUnit_, return *true*.
+            1. Return *false*.
+          </emu-alg>
+        </emu-clause>

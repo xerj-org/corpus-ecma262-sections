@@ -1,0 +1,46 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals > 12.9.4 String Literals > 12.9.4.3 Static Semantics: MV [id: sec-string-literals-static-semantics-mv]
+
+<emu-clause id="sec-string-literals-static-semantics-mv">
+        <h1>Static Semantics: MV</h1>
+        <ul>
+          <li>
+            The MV of <emu-grammar>LegacyOctalEscapeSequence :: ZeroToThree OctalDigit</emu-grammar> is (8 times the MV of |ZeroToThree|) plus the MV of |OctalDigit|.
+          </li>
+          <li>
+            The MV of <emu-grammar>LegacyOctalEscapeSequence :: FourToSeven OctalDigit</emu-grammar> is (8 times the MV of |FourToSeven|) plus the MV of |OctalDigit|.
+          </li>
+          <li>
+            The MV of <emu-grammar>LegacyOctalEscapeSequence :: ZeroToThree OctalDigit OctalDigit</emu-grammar> is (64 (that is, 8<sup>2</sup>) times the MV of |ZeroToThree|) plus (8 times the MV of the first |OctalDigit|) plus the MV of the second |OctalDigit|.
+          </li>
+          <li>
+            The MV of <emu-grammar>ZeroToThree :: `0`</emu-grammar> is 0.
+          </li>
+          <li>
+            The MV of <emu-grammar>ZeroToThree :: `1`</emu-grammar> is 1.
+          </li>
+          <li>
+            The MV of <emu-grammar>ZeroToThree :: `2`</emu-grammar> is 2.
+          </li>
+          <li>
+            The MV of <emu-grammar>ZeroToThree :: `3`</emu-grammar> is 3.
+          </li>
+          <li>
+            The MV of <emu-grammar>FourToSeven :: `4`</emu-grammar> is 4.
+          </li>
+          <li>
+            The MV of <emu-grammar>FourToSeven :: `5`</emu-grammar> is 5.
+          </li>
+          <li>
+            The MV of <emu-grammar>FourToSeven :: `6`</emu-grammar> is 6.
+          </li>
+          <li>
+            The MV of <emu-grammar>FourToSeven :: `7`</emu-grammar> is 7.
+          </li>
+          <li>
+            The MV of <emu-grammar>HexEscapeSequence :: `x` HexDigit HexDigit</emu-grammar> is (16 times the MV of the first |HexDigit|) plus the MV of the second |HexDigit|.
+          </li>
+          <li>
+            The MV of <emu-grammar>Hex4Digits :: HexDigit HexDigit HexDigit HexDigit</emu-grammar> is (0x1000 × the MV of the first |HexDigit|) plus (0x100 × the MV of the second |HexDigit|) plus (0x10 × the MV of the third |HexDigit|) plus the MV of the fourth |HexDigit|.
+          </li>
+        </ul>
+      </emu-clause>

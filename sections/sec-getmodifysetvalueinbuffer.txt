@@ -1,0 +1,38 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.3 Abstract Operations For ArrayBuffer Objects > 25.1.3.19 GetModifySetValueInBuffer ( _arrayBuffer_: an ArrayBuffer or a SharedArrayBuffer, _byteIndex_: a non-negative integer, _type_: a TypedArray element type, _value_: a Number or a BigInt, _op_: a read-modify-write modification function, ): a Number or a BigInt [id: sec-getmodifysetvalueinbuffer]
+
+<emu-clause id="sec-getmodifysetvalueinbuffer" type="abstract operation">
+        <h1>
+          GetModifySetValueInBuffer (
+            _arrayBuffer_: an ArrayBuffer or a SharedArrayBuffer,
+            _byteIndex_: a non-negative integer,
+            _type_: a TypedArray element type,
+            _value_: a Number or a BigInt,
+            _op_: a read-modify-write modification function,
+          ): a Number or a BigInt
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: IsDetachedBuffer(_arrayBuffer_) is *false*.
+          1. Assert: There are sufficient bytes in _arrayBuffer_ starting at _byteIndex_ to represent a value of _type_.
+          1. Assert: _value_ is a BigInt if IsBigIntElementType(_type_) is *true*; else, _value_ is a Number.
+          1. Let _block_ be _arrayBuffer_.[[ArrayBufferData]].
+          1. Let _elementSize_ be the Element Size value specified in <emu-xref href="#table-the-typedarray-constructors"></emu-xref> for Element Type _type_.
+          1. Let _agentRecord_ be the Agent Record of the surrounding agent.
+          1. Let _isLittleEndian_ be _agentRecord_.[[LittleEndian]].
+          1. Let _rawBytes_ be NumericToRawBytes(_type_, _value_, _isLittleEndian_).
+          1. If IsSharedArrayBuffer(_arrayBuffer_) is *true*, then
+            1. Let _execution_ be _agentRecord_.[[CandidateExecution]].
+            1. Let _eventsRecord_ be the Agent Events Record of _execution_.[[EventsRecords]] whose [[AgentSignifier]] is AgentSignifier().
+            1. Let _rawBytesRead_ be a List of length _elementSize_ whose elements are nondeterministically chosen byte values.
+            1. NOTE: In implementations, _rawBytesRead_ is the result of a load-link, of a load-exclusive, or of an operand of a read-modify-write instruction on the underlying hardware. The nondeterminism is a semantic prescription of the memory model to describe observable behaviour of hardware with weak consistency.
+            1. Let _rmwEvent_ be ReadModifyWriteSharedMemory { [[Order]]: ~seq-cst~, [[NoTear]]: *true*, [[Block]]: _block_, [[ByteIndex]]: _byteIndex_, [[ElementSize]]: _elementSize_, [[Payload]]: _rawBytes_, [[ModifyOp]]: _op_ }.
+            1. Append _rmwEvent_ to _eventsRecord_.[[EventList]].
+            1. Append Chosen Value Record { [[Event]]: _rmwEvent_, [[ChosenValue]]: _rawBytesRead_ } to _execution_.[[ChosenValues]].
+          1. Else,
+            1. Let _rawBytesRead_ be a List of length _elementSize_ whose elements are the sequence of _elementSize_ bytes starting with _block_[_byteIndex_].
+            1. Let _rawBytesModified_ be _op_(_rawBytesRead_, _rawBytes_).
+            1. Store the individual bytes of _rawBytesModified_ into _block_, starting at _block_[_byteIndex_].
+          1. Return RawBytesToNumeric(_type_, _rawBytesRead_, _isLittleEndian_).
+        </emu-alg>
+      </emu-clause>

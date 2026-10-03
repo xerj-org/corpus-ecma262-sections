@@ -1,0 +1,16 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.10 The `return` Statement > 14.10.1 Runtime Semantics: Evaluation [id: sec-return-statement-runtime-semantics-evaluation]
+
+<emu-clause id="sec-return-statement-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>ReturnStatement : `return` `;`</emu-grammar>
+      <emu-alg>
+        1. Return ReturnCompletion(*undefined*).
+      </emu-alg>
+      <emu-grammar>ReturnStatement : `return` Expression `;`</emu-grammar>
+      <emu-alg>
+        1. Let _exprRef_ be ? Evaluation of |Expression|.
+        1. Let _exprValue_ be ? GetValue(_exprRef_).
+        1. If GetGeneratorKind() is ~async~, set _exprValue_ to ? Await(_exprValue_).
+        1. Return ReturnCompletion(_exprValue_).
+      </emu-alg>
+    </emu-clause>

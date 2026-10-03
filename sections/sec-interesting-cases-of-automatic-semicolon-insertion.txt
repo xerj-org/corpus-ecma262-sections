@@ -1,0 +1,15 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.10 Automatic Semicolon Insertion > 12.10.3 Interesting Cases of Automatic Semicolon Insertion [id: sec-interesting-cases-of-automatic-semicolon-insertion]
+
+<emu-clause id="sec-interesting-cases-of-automatic-semicolon-insertion">
+      <h1>Interesting Cases of Automatic Semicolon Insertion</h1>
+      <em>This section is non-normative.</em>
+      <p>ECMAScript programs can be written in a style with very few semicolons by relying on automatic semicolon insertion. As described above, semicolons are not inserted at every newline, and automatic semicolon insertion can depend on multiple tokens across line terminators.</p>
+
+      <p>As new syntactic features are added to ECMAScript, additional grammar productions could be added that cause lines relying on automatic semicolon insertion preceding them to change grammar productions when parsed.</p>
+
+      <p>For the purposes of this section, a case of automatic semicolon insertion is considered interesting if it is a place where a semicolon may or may not be inserted, depending on the source text which precedes it. The rest of this section describes a number of interesting cases of automatic semicolon insertion in this version of ECMAScript.</p>
+
+      
+
+      
+    </emu-clause>

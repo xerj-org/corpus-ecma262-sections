@@ -1,0 +1,62 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.5 Object Initializer > 13.2.5.6 Runtime Semantics: PropertyDefinitionEvaluation ( _obj_: an Object, ): either a normal completion containing ~unused~ or an abrupt completion [id: sec-runtime-semantics-propertydefinitionevaluation]
+
+<emu-clause id="sec-runtime-semantics-propertydefinitionevaluation" oldids="sec-object-initializer-runtime-semantics-propertydefinitionevaluation" type="sdo">
+        <h1>
+          Runtime Semantics: PropertyDefinitionEvaluation (
+            _obj_: an Object,
+          ): either a normal completion containing ~unused~ or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>PropertyDefinitionList : PropertyDefinitionList `,` PropertyDefinition</emu-grammar>
+        <emu-alg>
+          1. Perform ? PropertyDefinitionEvaluation of |PropertyDefinitionList| with argument _obj_.
+          1. Perform ? PropertyDefinitionEvaluation of |PropertyDefinition| with argument _obj_.
+          1. Return ~unused~.
+        </emu-alg>
+        <emu-grammar>PropertyDefinition : `...` AssignmentExpression</emu-grammar>
+        <emu-alg>
+          1. Let _exprValue_ be ? Evaluation of |AssignmentExpression|.
+          1. Let _fromValue_ be ? GetValue(_exprValue_).
+          1. Let _excludedNames_ be a new empty List.
+          1. Perform ? CopyDataProperties(_obj_, _fromValue_, _excludedNames_).
+          1. Return ~unused~.
+        </emu-alg>
+        <emu-grammar>PropertyDefinition : IdentifierReference</emu-grammar>
+        <emu-alg>
+          1. Let _propertyName_ be the StringValue of |IdentifierReference|.
+          1. Let _exprValue_ be ? Evaluation of |IdentifierReference|.
+          1. Let _propertyValue_ be ? GetValue(_exprValue_).
+          1. Assert: _obj_ is an ordinary, extensible object with no non-configurable properties.
+          1. Perform ! CreateDataPropertyOrThrow(_obj_, _propertyName_, _propertyValue_).
+          1. Return ~unused~.
+        </emu-alg>
+        <emu-grammar>PropertyDefinition : PropertyName `:` AssignmentExpression</emu-grammar>
+        <emu-alg>
+          1. Let _propertyKey_ be ? Evaluation of |PropertyName|.
+          1. If this |PropertyDefinition| is contained within a |Script| that is being evaluated for ParseJSON (see step <emu-xref href="#step-json-parse-eval"></emu-xref> of ParseJSON), then
+            1. Let _isProtoSetter_ be *false*.
+          1. Else if _propertyKey_ is *"__proto__"* and IsComputedPropertyKey of |PropertyName| is *false*, then
+            1. Let _isProtoSetter_ be *true*.
+          1. Else,
+            1. Let _isProtoSetter_ be *false*.
+          1. If IsAnonymousFunctionDefinition(|AssignmentExpression|) is *true* and _isProtoSetter_ is *false*, then
+            1. Let _propertyValue_ be ? NamedEvaluation of |AssignmentExpression| with argument _propertyKey_.
+          1. Else,
+            1. Let _exprValueRef_ be ? Evaluation of |AssignmentExpression|.
+            1. Let _propertyValue_ be ? GetValue(_exprValueRef_).
+          1. If _isProtoSetter_ is *true*, then
+            1. If _propertyValue_ is an Object or _propertyValue_ is *null*, then
+              1. Perform ! <emu-meta effects="user-code">_obj_.[[SetPrototypeOf]](_propertyValue_)</emu-meta>.
+            1. Return ~unused~.
+          1. Assert: _obj_ is an ordinary, extensible object with no non-configurable properties.
+          1. Perform ! CreateDataPropertyOrThrow(_obj_, _propertyKey_, _propertyValue_).
+          1. Return ~unused~.
+        </emu-alg>
+        <emu-grammar>PropertyDefinition : MethodDefinition</emu-grammar>
+        <emu-alg>
+          1. Let _result_ be ? MethodDefinitionEvaluation of |MethodDefinition| with arguments _obj_ and *true*.
+          1. Assert: _result_ is ~empty~.
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

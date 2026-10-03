@@ -1,0 +1,12 @@
+ECMA-262 > 20 Fundamental Objects > 20.3 Boolean Objects > 20.3.2 Properties of the Boolean Constructor [id: sec-properties-of-the-boolean-constructor]
+
+<emu-clause id="sec-properties-of-the-boolean-constructor">
+      <h1>Properties of the Boolean Constructor</h1>
+      <p>The Boolean constructor:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+    </emu-clause>

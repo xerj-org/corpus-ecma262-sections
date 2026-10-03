@@ -1,0 +1,11 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.10 Tail Position Calls [id: sec-tail-position-calls]
+
+<emu-clause id="sec-tail-position-calls">
+    <h1>Tail Position Calls</h1>
+
+    
+
+    
+
+    
+  </emu-clause>

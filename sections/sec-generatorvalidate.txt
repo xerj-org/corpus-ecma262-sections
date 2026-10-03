@@ -1,0 +1,21 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.3 Generator Abstract Operations > 27.8.3.2 GeneratorValidate ( _gen_: an ECMAScript language value, _genBrand_: a String or ~empty~, ): either a normal completion containing one of ~suspended-start~, ~suspended-yield~, or ~completed~, or a throw completion [id: sec-generatorvalidate]
+
+<emu-clause id="sec-generatorvalidate" type="abstract operation">
+        <h1>
+          GeneratorValidate (
+            _gen_: an ECMAScript language value,
+            _genBrand_: a String or ~empty~,
+          ): either a normal completion containing one of ~suspended-start~, ~suspended-yield~, or ~completed~, or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Perform ? RequireInternalSlot(_gen_, [[GeneratorState]]).
+          1. Perform ? RequireInternalSlot(_gen_, [[GeneratorBrand]]).
+          1. If _gen_.[[GeneratorBrand]] is not _genBrand_, throw a *TypeError* exception.
+          1. Assert: _gen_ has a [[GeneratorContext]] internal slot.
+          1. Let _state_ be _gen_.[[GeneratorState]].
+          1. If _state_ is ~executing~, throw a *TypeError* exception.
+          1. Return _state_.
+        </emu-alg>
+      </emu-clause>

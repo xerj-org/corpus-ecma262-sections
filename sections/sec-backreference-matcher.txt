@@ -1,0 +1,38 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.7 Runtime Semantics: CompileAtom ( _regexpRecord_: a RegExp Record, _direction_: ~forward~ or ~backward~, ): a Matcher > 22.2.2.7.2 BackreferenceMatcher ( _regexpRecord_: a RegExp Record, _ns_: a List of positive integers, _direction_: ~forward~ or ~backward~, ): a Matcher [id: sec-backreference-matcher]
+
+<emu-clause id="sec-backreference-matcher" type="abstract operation">
+          <h1>
+            BackreferenceMatcher (
+              _regexpRecord_: a RegExp Record,
+              _ns_: a List of positive integers,
+              _direction_: ~forward~ or ~backward~,
+            ): a Matcher
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Return a new Matcher with parameters (_x_, _c_) that captures _regexpRecord_, _ns_, and _direction_ and performs the following steps when called:
+              1. Assert: _x_ is a MatchState.
+              1. Assert: _c_ is a MatcherContinuation.
+              1. Let _input_ be _x_.[[Input]].
+              1. Let _capability_ be _x_.[[Captures]].
+              1. Let _r_ be *undefined*.
+              1. For each integer _n_ of _ns_, do
+                1. If _capability_[_n_] is not *undefined*, then
+                  1. Assert: _r_ is *undefined*.
+                  1. Set _r_ to _capability_[_n_].
+              1. If _r_ is *undefined*, return _c_(_x_).
+              1. Let _endIndex_ be _x_.[[EndIndex]].
+              1. Let _rs_ be _r_.[[StartIndex]].
+              1. Let _re_ be _r_.[[EndIndex]].
+              1. Let _length_ be _re_ - _rs_.
+              1. If _direction_ is ~forward~, let _f_ be _endIndex_ + _length_.
+              1. Else, let _f_ be _endIndex_ - _length_.
+              1. Let _inputLength_ be the number of elements in _input_.
+              1. If _f_ &lt; 0 or _f_ > _inputLength_, return ~failure~.
+              1. Let _g_ be min(_endIndex_, _f_).
+              1. If there exists an integer _i_ in the interval from 0 (inclusive) to _length_ (exclusive) such that Canonicalize(_regexpRecord_, _input_[_rs_ + _i_]) is not Canonicalize(_regexpRecord_, _input_[_g_ + _i_]), return ~failure~.
+              1. Let _y_ be the MatchState { [[Input]]: _input_, [[EndIndex]]: _f_, [[Captures]]: _capability_ }.
+              1. Return _c_(_y_).
+          </emu-alg>
+        </emu-clause>

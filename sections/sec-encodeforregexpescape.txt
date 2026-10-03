@@ -1,0 +1,33 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.5 Properties of the RegExp Constructor > 22.2.5.1 RegExp.escape ( _string_ ) > 22.2.5.1.1 EncodeForRegExpEscape ( _codePoint_: a code point, ): a String [id: sec-encodeforregexpescape]
+
+<emu-clause id="sec-encodeforregexpescape" type="abstract operation">
+          <h1>
+            EncodeForRegExpEscape (
+              _codePoint_: a code point,
+            ): a String
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It returns a String representing a |Pattern| for matching _codePoint_. If _codePoint_ is white space or an ASCII punctuator, the returned value is an escape sequence. Otherwise, the returned value is a String representation of _codePoint_ itself.</dd>
+          </dl>
+
+          <emu-alg>
+            1. If _codePoint_ is matched by |SyntaxCharacter| or _codePoint_ is U+002F (SOLIDUS), then
+              1. Return the string-concatenation of 0x005C (REVERSE SOLIDUS) and UTF16EncodeCodePoint(_codePoint_).
+            1. If _codePoint_ is a code point listed in the “Code Point” column of <emu-xref href="#table-controlescape-code-point-values"></emu-xref>, then
+              1. Return the string-concatenation of 0x005C (REVERSE SOLIDUS) and the string in the “ControlEscape” column of the row whose “Code Point” column contains _codePoint_.
+            1. Let _otherPunctuators_ be the string-concatenation of *",-=&lt;>#&amp;!%:;@~'`"* and the code unit 0x0022 (QUOTATION MARK).
+            1. Let _toEscape_ be StringToCodePoints(_otherPunctuators_).
+            1. If _toEscape_ contains _codePoint_, _codePoint_ is matched by either |WhiteSpace| or |LineTerminator|, or _codePoint_ has the same numeric value as a leading surrogate or trailing surrogate, then
+              1. Let _codePointNumber_ be the numeric value of _codePoint_.
+              1. If _codePointNumber_ ≤ 0xFF, then
+                1. Let _hex_ be Number::toString(𝔽(_codePointNumber_), 16).
+                1. Return the string-concatenation of the code unit 0x005C (REVERSE SOLIDUS), *"x"*, and StringPad(_hex_, 2, *"0"*, ~start~).
+              1. Let _escaped_ be the empty String.
+              1. Let _codeUnits_ be UTF16EncodeCodePoint(_codePoint_).
+              1. For each code unit _codeUnit_ of _codeUnits_, do
+                1. Set _escaped_ to the string-concatenation of _escaped_ and UnicodeEscape(_codeUnit_).
+              1. Return _escaped_.
+            1. Return UTF16EncodeCodePoint(_codePoint_).
+          </emu-alg>
+        </emu-clause>

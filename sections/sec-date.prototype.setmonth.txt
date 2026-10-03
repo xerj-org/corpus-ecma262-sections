@@ -1,0 +1,24 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.4 Properties of the Date Prototype Object > 21.4.4.25 Date.prototype.setMonth ( _month_ [ , _day_ ] ) [id: sec-date.prototype.setmonth]
+
+<emu-clause id="sec-date.prototype.setmonth" type="built-in function">
+        <h1>Date.prototype.setMonth ( _month_ [ , _day_ ] )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _dateObj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_dateObj_, [[DateValue]]).
+          1. Let _tv_ be _dateObj_.[[DateValue]].
+          1. Let _monthNumber_ be ? ToNumber(_month_).
+          1. If _day_ is present, let _dayNumber_ be ? ToNumber(_day_).
+          1. If _tv_ is *NaN*, return *NaN*.
+          1. Set _tv_ to LocalTime(_tv_).
+          1. If _day_ is not present, let _dayNumber_ be 𝔽(DateFromTime(_tv_)).
+          1. Let _newDate_ be MakeDate(MakeDay(𝔽(YearFromTime(_tv_)), _monthNumber_, _dayNumber_), 𝔽(TimeWithinDay(_tv_))).
+          1. Let _u_ be TimeClip(UTC(_newDate_)).
+          1. Set _dateObj_.[[DateValue]] to _u_.
+          1. Return _u_.
+        </emu-alg>
+        <p>The *"length"* property of this method is *2*<sub>𝔽</sub>.</p>
+        <emu-note>
+          <p>If _day_ is not present, this method behaves as if _day_ was present with the value `getDate()`.</p>
+        </emu-note>
+      </emu-clause>

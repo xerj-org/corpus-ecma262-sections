@@ -1,0 +1,10 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties > B.2.2 Additional Properties of the String.prototype Object > B.2.2.9 String.prototype.italics ( ) [id: sec-string.prototype.italics]
+
+<emu-annex id="sec-string.prototype.italics" type="built-in function">
+        <h1>String.prototype.italics ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _string_ be the *this* value.
+          1. Return ? CreateHTML(_string_, *"i"*, *""*, *""*).
+        </emu-alg>
+      </emu-annex>

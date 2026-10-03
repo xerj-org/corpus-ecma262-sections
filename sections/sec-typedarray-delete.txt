@@ -1,0 +1,21 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.7 [[Delete]] ( _propertyKey_: a property key, ): a normal completion containing a Boolean [id: sec-typedarray-delete]
+
+<emu-clause id="sec-typedarray-delete" oldids="sec-integer-indexed-exotic-objects-delete-p" type="internal method">
+        <h1>
+          [[Delete]] (
+            _propertyKey_: a property key,
+          ): a normal completion containing a Boolean
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a TypedArray _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. If _propertyKey_ is a String, then
+            1. Let _numericIndex_ be CanonicalNumericIndexString(_propertyKey_).
+            1. If _numericIndex_ is not *undefined*, then
+              1. If IsValidIntegerIndex(_obj_, _numericIndex_) is *false*, return *true*.
+              1. Return *false*.
+          1. Return ! OrdinaryDelete(_obj_, _propertyKey_).
+        </emu-alg>
+      </emu-clause>

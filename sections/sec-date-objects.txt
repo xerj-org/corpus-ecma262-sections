@@ -1,0 +1,15 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects [id: sec-date-objects]
+
+<emu-clause id="sec-date-objects">
+    <h1>Date Objects</h1>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

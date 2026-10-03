@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.41 own property [id: sec-own-property]
+
+<emu-clause id="sec-own-property">
+      <h1>own property</h1>
+      <p>property that is directly contained by its object</p>
+    </emu-clause>

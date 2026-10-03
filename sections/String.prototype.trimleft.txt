@@ -1,0 +1,9 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties > B.2.2 Additional Properties of the String.prototype Object > B.2.2.15 String.prototype.trimLeft ( ) [id: String.prototype.trimleft]
+
+<emu-annex id="String.prototype.trimleft" type="built-in function">
+        <h1>String.prototype.trimLeft ( )</h1>
+        <emu-note>
+          <p>The property *"trimStart"* is preferred. The *"trimLeft"* property is provided principally for compatibility with old code. It is recommended that the *"trimStart"* property be used in new ECMAScript code.</p>
+        </emu-note>
+        <p>The initial value of the *"trimLeft"* property is %String.prototype.trimStart%, defined in <emu-xref href="#sec-string.prototype.trimstart"></emu-xref>.</p>
+      </emu-annex>

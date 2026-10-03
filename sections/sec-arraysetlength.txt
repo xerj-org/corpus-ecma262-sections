@@ -1,0 +1,51 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.2 Array Exotic Objects > 10.4.2.4 ArraySetLength ( _array_: an Array, _propertyDesc_: a Property Descriptor, ): either a normal completion containing a Boolean or a throw completion [id: sec-arraysetlength]
+
+<emu-clause id="sec-arraysetlength" type="abstract operation">
+        <h1>
+          ArraySetLength (
+            _array_: an Array,
+            _propertyDesc_: a Property Descriptor,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _propertyDesc_ does not have a [[Value]] field, then
+            1. Return ! OrdinaryDefineOwnProperty(_array_, *"length"*, _propertyDesc_).
+          1. Let _newLengthDesc_ be a copy of _propertyDesc_.
+          1. [id="step-arraysetlength-newlen"] Let _newLength_ be ? ToUint32(_propertyDesc_.[[Value]]).
+          1. [id="step-arraysetlength-numberlen"] Let _numberLength_ be ? ToNumber(_propertyDesc_.[[Value]]).
+          1. If SameValueZero(_newLength_, _numberLength_) is *false*, throw a *RangeError* exception.
+          1. Set _newLengthDesc_.[[Value]] to _newLength_.
+          1. Let _oldLengthDesc_ be OrdinaryGetOwnProperty(_array_, *"length"*).
+          1. Assert: _oldLengthDesc_ is not *undefined*.
+          1. Assert: IsDataDescriptor(_oldLengthDesc_) is *true*.
+          1. Assert: _oldLengthDesc_.[[Configurable]] is *false*.
+          1. Let _oldLength_ be _oldLengthDesc_.[[Value]].
+          1. If _newLength_ ≥ _oldLength_, then
+            1. Return ! OrdinaryDefineOwnProperty(_array_, *"length"*, _newLengthDesc_).
+          1. If _oldLengthDesc_.[[Writable]] is *false*, return *false*.
+          1. If _newLengthDesc_ does not have a [[Writable]] field or _newLengthDesc_.[[Writable]] is *true*, then
+            1. Let _newWritable_ be *true*.
+          1. Else,
+            1. NOTE: Setting the [[Writable]] attribute to *false* is deferred in case any elements cannot be deleted.
+            1. Let _newWritable_ be *false*.
+            1. Set _newLengthDesc_.[[Writable]] to *true*.
+          1. Let _succeeded_ be ! OrdinaryDefineOwnProperty(_array_, *"length"*, _newLengthDesc_).
+          1. If _succeeded_ is *false*, return *false*.
+          1. For each own property key _propertyKey_ of _array_ such that _propertyKey_ is an array index and ! ToUint32(_propertyKey_) ≥ _newLength_, in descending numeric index order, do
+            1. Let _deleteSucceeded_ be ! _array_.[[Delete]](_propertyKey_).
+            1. If _deleteSucceeded_ is *false*, then
+              1. Set _newLengthDesc_.[[Value]] to ! ToUint32(_propertyKey_) + *1*<sub>𝔽</sub>.
+              1. If _newWritable_ is *false*, set _newLengthDesc_.[[Writable]] to *false*.
+              1. Perform ! OrdinaryDefineOwnProperty(_array_, *"length"*, _newLengthDesc_).
+              1. Return *false*.
+          1. If _newWritable_ is *false*, then
+            1. Set _succeeded_ to ! OrdinaryDefineOwnProperty(_array_, *"length"*, PropertyDescriptor { [[Writable]]: *false* }).
+            1. Assert: _succeeded_ is *true*.
+          1. Return *true*.
+        </emu-alg>
+        <emu-note>
+          <p>In steps <emu-xref href="#step-arraysetlength-newlen"></emu-xref> and <emu-xref href="#step-arraysetlength-numberlen"></emu-xref>, if _propertyDesc_.[[Value]] is an object then its `valueOf` method is called twice. This is legacy behaviour that was specified with this effect starting with the 2<sup>nd</sup> Edition of this specification.</p>
+        </emu-note>
+      </emu-clause>

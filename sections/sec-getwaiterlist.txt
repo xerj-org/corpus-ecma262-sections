@@ -1,0 +1,16 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.5 GetWaiterList ( _block_: a Shared Data Block, _i_: a non-negative integer that is evenly divisible by 4, ): a WaiterList Record [id: sec-getwaiterlist]
+
+<emu-clause id="sec-getwaiterlist" type="abstract operation">
+        <h1>
+          GetWaiterList (
+            _block_: a Shared Data Block,
+            _i_: a non-negative integer that is evenly divisible by 4,
+          ): a WaiterList Record
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: _i_ and _i_ + 3 are valid byte offsets within the memory of _block_.
+          1. Return the WaiterList Record that is referenced by the pair (_block_, _i_).
+        </emu-alg>
+      </emu-clause>

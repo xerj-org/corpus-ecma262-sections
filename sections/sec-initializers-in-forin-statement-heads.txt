@@ -1,0 +1,71 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.3 Other Additional Features > B.3.5 Initializers in ForIn Statement Heads [id: sec-initializers-in-forin-statement-heads]
+
+<emu-annex id="sec-initializers-in-forin-statement-heads">
+      <h1>Initializers in ForIn Statement Heads</h1>
+      <p>The following augments the |ForInOfStatement| production in <emu-xref href="#sec-for-in-and-for-of-statements"></emu-xref>:</p>
+      <emu-grammar type="definition">
+        ForInOfStatement[Yield, Await, Return] :
+          `for` `(` `var` BindingIdentifier[?Yield, ?Await] Initializer[~In, ?Yield, ?Await] `in` Expression[+In, ?Yield, ?Await] `)` Statement[?Yield, ?Await, ?Return]
+      </emu-grammar>
+      <p>This production only applies when parsing non-strict code.</p>
+
+      <p>The static semantics of ContainsDuplicateLabels with argument _labelSet_ are augmented with the following:</p>
+      <emu-grammar>ForInOfStatement : `for` `(` `var` BindingIdentifier Initializer `in` Expression `)` Statement</emu-grammar>
+      <emu-alg>
+        1. Return ContainsDuplicateLabels of |Statement| with argument _labelSet_.
+      </emu-alg>
+
+      <p>The static semantics of ContainsUndefinedBreakTarget with argument _labelSet_ are augmented with the following:</p>
+      <emu-grammar>ForInOfStatement : `for` `(` `var` BindingIdentifier Initializer `in` Expression `)` Statement</emu-grammar>
+      <emu-alg>
+        1. Return ContainsUndefinedBreakTarget of |Statement| with argument _labelSet_.
+      </emu-alg>
+
+      <p>The static semantics of ContainsUndefinedContinueTarget with arguments _iterationSet_ and _labelSet_ are augmented with the following:</p>
+      <emu-grammar>ForInOfStatement : `for` `(` `var` BindingIdentifier Initializer `in` Expression `)` Statement</emu-grammar>
+      <emu-alg>
+        1. Return ContainsUndefinedContinueTarget of |Statement| with arguments _iterationSet_ and « ».
+      </emu-alg>
+
+      <p>The static semantics of IsDestructuring are augmented with the following:</p>
+      <emu-grammar>
+        BindingIdentifier :
+          Identifier
+          `yield`
+          `await`
+      </emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+
+      <p>The static semantics of VarDeclaredNames are augmented with the following:</p>
+      <emu-grammar>ForInOfStatement : `for` `(` `var` BindingIdentifier Initializer `in` Expression `)` Statement</emu-grammar>
+      <emu-alg>
+        1. Let _names1_ be the BoundNames of |BindingIdentifier|.
+        1. Let _names2_ be the VarDeclaredNames of |Statement|.
+        1. Return the list-concatenation of _names1_ and _names2_.
+      </emu-alg>
+
+      <p>The static semantics of VarScopedDeclarations are augmented with the following:</p>
+      <emu-grammar>ForInOfStatement : `for` `(` `var` BindingIdentifier Initializer `in` Expression `)` Statement</emu-grammar>
+      <emu-alg>
+        1. Let _decls1_ be « |BindingIdentifier| ».
+        1. Let _decls2_ be the VarScopedDeclarations of |Statement|.
+        1. Return the list-concatenation of _decls1_ and _decls2_.
+      </emu-alg>
+
+      <p>The runtime semantics of ForInOfLoopEvaluation with argument _labelSet_ are augmented with the following:</p>
+      <emu-grammar>ForInOfStatement : `for` `(` `var` BindingIdentifier Initializer `in` Expression `)` Statement</emu-grammar>
+      <emu-alg>
+        1. Let _name_ be the StringValue of |BindingIdentifier|.
+        1. Let _lhs_ be ? ResolveBinding(_name_).
+        1. If IsAnonymousFunctionDefinition(|Initializer|) is *true*, then
+          1. Let _value_ be ? NamedEvaluation of |Initializer| with argument _name_.
+        1. Else,
+          1. Let _rhs_ be ? Evaluation of |Initializer|.
+          1. Let _value_ be ? GetValue(_rhs_).
+        1. Perform ? PutValue(_lhs_, _value_).
+        1. Let _keyResult_ be ? ForIn/OfHeadEvaluation(« », |Expression|, ~enumerate~).
+        1. Return ? ForIn/OfBodyEvaluation(|BindingIdentifier|, |Statement|, _keyResult_, ~enumerate~, ~var-binding~, _labelSet_).
+      </emu-alg>
+    </emu-annex>

@@ -1,0 +1,6 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.3 The Boolean Type [id: sec-ecmascript-language-types-boolean-type]
+
+<emu-clause id="sec-ecmascript-language-types-boolean-type">
+      <h1>The Boolean Type</h1>
+      <p>The <dfn variants="is a Boolean,is not a Boolean">Boolean type</dfn> represents a logical entity having two values, called *true* and *false*.</p>
+    </emu-clause>

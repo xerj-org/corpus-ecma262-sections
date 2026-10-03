@@ -1,0 +1,7 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.2 Properties of the Map Constructor > 24.1.2.2 Map.prototype [id: sec-map.prototype]
+
+<emu-clause id="sec-map.prototype">
+        <h1>Map.prototype</h1>
+        <p>The initial value of `Map.prototype` is the Map prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

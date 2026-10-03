@@ -1,0 +1,135 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.3 ModuleRequest Records [id: sec-modulerequest-record]
+
+<emu-clause id="sec-modulerequest-record">
+        <h1>ModuleRequest Records</h1>
+
+        <p>A <dfn id="modulerequest-record" variants="ModuleRequest Records">ModuleRequest Record</dfn> represents the request to import a module with given import attributes. It consists of the following fields:</p>
+        <emu-table id="table-modulerequest-fields" caption="ModuleRequest Record Fields">
+          <table>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value Type
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+            <tr>
+              <td>
+                [[Specifier]]
+              </td>
+              <td>
+                a String
+              </td>
+              <td>
+                The module specifier
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Attributes]]
+              </td>
+              <td>
+                a List of ImportAttribute Records
+              </td>
+              <td>
+                The import attributes
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+
+        <p>A <dfn id="loadedmodulerequest-record" variants="LoadedModuleRequest Records">LoadedModuleRequest Record</dfn> represents the request to import a module together with the resulting Module Record. It consists of the same fields defined in table <emu-xref href="#table-modulerequest-fields"></emu-xref>, with the addition of [[Module]]:</p>
+        <emu-table id="table-loadedmodulerequest-fields" caption="LoadedModuleRequest Record Fields">
+          <table>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value Type
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+            <tr>
+              <td>
+                [[Specifier]]
+              </td>
+              <td>
+                a String
+              </td>
+              <td>
+                The module specifier
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Attributes]]
+              </td>
+              <td>
+                a List of ImportAttribute Records
+              </td>
+              <td>
+                The import attributes
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Module]]
+              </td>
+              <td>
+                a Module Record
+              </td>
+              <td>
+                The loaded module corresponding to this module request
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+
+        <p>An <dfn id="importattribute-record" variants="ImportAttribute Records">ImportAttribute Record</dfn> consists of the following fields:</p>
+        <emu-table id="table-importattribute-fields" caption="ImportAttribute Record Fields">
+          <table>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value Type
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+            <tr>
+              <td>
+                [[Key]]
+              </td>
+              <td>
+                a String
+              </td>
+              <td>
+                The attribute key
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Value]]
+              </td>
+              <td>
+                a String
+              </td>
+              <td>
+                The attribute value
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+
+        
+      </emu-clause>

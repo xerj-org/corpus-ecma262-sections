@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.39 Uint8ClampedArray ( . . . ) [id: sec-uint8clampedarray]
+
+<emu-clause id="sec-uint8clampedarray">
+      <h1>Uint8ClampedArray ( . . . )</h1>
+      <p>See <emu-xref href="#sec-typedarray-constructors"></emu-xref>.</p>
+    </emu-clause>

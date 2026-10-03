@@ -1,0 +1,24 @@
+ECMA-262 > 11 ECMAScript Language: Source Text > 11.1 Source Text > 11.1.6 Static Semantics: ParseText ( _sourceText_: a String or a sequence of Unicode code points, _goalSymbol_: a nonterminal in one of the ECMAScript grammars, ): a Parse Node or a non-empty List of *SyntaxError* objects [id: sec-parsetext]
+
+<emu-clause id="sec-parsetext" type="abstract operation">
+      <h1>
+        Static Semantics: ParseText (
+          _sourceText_: a String or a sequence of Unicode code points,
+          _goalSymbol_: a nonterminal in one of the ECMAScript grammars,
+        ): a Parse Node or a non-empty List of *SyntaxError* objects
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If _sourceText_ is a String, set _sourceText_ to StringToCodePoints(_sourceText_).
+        1. Attempt to parse _sourceText_ using _goalSymbol_ as the goal symbol, and analyse the parse result for any early error conditions. Parsing and early error detection may be interleaved in an implementation-defined manner.
+        1. If the parse succeeded and no early errors were found, return the Parse Node (an instance of _goalSymbol_) at the root of the parse tree resulting from the parse.
+        1. Return a List of one or more *SyntaxError* objects representing the parsing errors and/or early errors. If more than one parsing error or early error is present, the number and ordering of error objects in the list is implementation-defined, but at least one must be present.
+      </emu-alg>
+      <emu-note>
+        <p>Consider a text that has an early error at a particular point, and also a syntax error at a later point. An implementation that does a parse pass followed by an early errors pass might report the syntax error and not proceed to the early errors pass. An implementation that interleaves the two activities might report the early error and not proceed to find the syntax error. A third implementation might report both errors. All of these behaviours are conformant.</p>
+      </emu-note>
+      <emu-note>
+        <p>See also clause <emu-xref href="#sec-error-handling-and-language-extensions"></emu-xref>.</p>
+      </emu-note>
+    </emu-clause>

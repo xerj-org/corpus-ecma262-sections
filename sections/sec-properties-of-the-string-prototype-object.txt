@@ -1,0 +1,86 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.3 Properties of the String Prototype Object [id: sec-properties-of-the-string-prototype-object]
+
+<emu-clause id="sec-properties-of-the-string-prototype-object">
+      <h1>Properties of the String Prototype Object</h1>
+      <p>The <dfn>String prototype object</dfn>:</p>
+      <ul>
+        <li>is <dfn>%String.prototype%</dfn>.</li>
+        <li>is a String exotic object and has the internal methods specified for such objects.</li>
+        <li>has a [[StringData]] internal slot whose value is the empty String.</li>
+        <li>has a *"length"* property whose initial value is *+0*<sub>𝔽</sub> and whose attributes are { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</li>
+        <li>has a [[Prototype]] internal slot whose value is %Object.prototype%.</li>
+      </ul>
+      <p>Unless explicitly stated otherwise, the methods of the String prototype object defined below are not generic and the *this* value passed to them must be either a String value or an object that has a [[StringData]] internal slot that has been initialized to a String value.</p>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

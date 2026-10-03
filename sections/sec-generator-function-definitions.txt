@@ -1,0 +1,44 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.5 Generator Function Definitions [id: sec-generator-function-definitions]
+
+<emu-clause id="sec-generator-function-definitions">
+    <h1>Generator Function Definitions</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      GeneratorDeclaration[Yield, Await, Default] :
+        `function` `*` BindingIdentifier[?Yield, ?Await] `(` FormalParameters[+Yield, ~Await] `)` `{` GeneratorBody `}`
+        [+Default] `function` `*` `(` FormalParameters[+Yield, ~Await] `)` `{` GeneratorBody `}`
+
+      GeneratorExpression :
+        `function` `*` BindingIdentifier[+Yield, ~Await]? `(` FormalParameters[+Yield, ~Await] `)` `{` GeneratorBody `}`
+
+      GeneratorMethod[Yield, Await] :
+        `*` ClassElementName[?Yield, ?Await] `(` UniqueFormalParameters[+Yield, ~Await] `)` `{` GeneratorBody `}`
+
+      GeneratorBody :
+        FunctionBody[+Yield, ~Await]
+
+      YieldExpression[In, Await] :
+        `yield`
+        `yield` [no LineTerminator here] AssignmentExpression[?In, +Yield, ?Await]
+        `yield` [no LineTerminator here] `*` AssignmentExpression[?In, +Yield, ?Await]
+    </emu-grammar>
+    <emu-note>
+      <p>The syntactic context immediately following `yield` requires use of the |InputElementRegExpOrTemplateTail| lexical goal.</p>
+    </emu-note>
+    <emu-note>
+      <p>|YieldExpression| cannot be used within the |FormalParameters| of a generator function because any expressions that are part of |FormalParameters| are evaluated before the resulting Generator is in a resumable state.</p>
+    </emu-note>
+    <emu-note>
+      <p>Abstract operations relating to Generators are defined in <emu-xref href="#sec-generator-abstract-operations"></emu-xref>.</p>
+    </emu-note>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

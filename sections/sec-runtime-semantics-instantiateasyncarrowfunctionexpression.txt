@@ -1,0 +1,38 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.9 Async Arrow Function Definitions > 15.9.4 Runtime Semantics: InstantiateAsyncArrowFunctionExpression ( optional _name_: a property key or a Private Name, ): an ECMAScript function object [id: sec-runtime-semantics-instantiateasyncarrowfunctionexpression]
+
+<emu-clause id="sec-runtime-semantics-instantiateasyncarrowfunctionexpression" type="sdo">
+      <h1>
+        Runtime Semantics: InstantiateAsyncArrowFunctionExpression (
+          optional _name_: a property key or a Private Name,
+        ): an ECMAScript function object
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>
+        AsyncArrowFunction : `async` AsyncArrowBindingIdentifier `=>` AsyncConciseBody
+      </emu-grammar>
+      <emu-alg>
+        1. If _name_ is not present, set _name_ to the empty String.
+        1. Let _envRecord_ be the LexicalEnvironment of the running execution context.
+        1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+        1. Let _sourceText_ be the source text matched by |AsyncArrowFunction|.
+        1. Let _params_ be |AsyncArrowBindingIdentifier|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%AsyncFunction.prototype%, _sourceText_, _params_, |AsyncConciseBody|, ~lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform SetFunctionName(_closure_, _name_).
+        1. Return _closure_.
+      </emu-alg>
+      <emu-grammar>
+        AsyncArrowFunction : CoverCallExpressionAndAsyncArrowHead `=>` AsyncConciseBody
+      </emu-grammar>
+      <emu-alg>
+        1. If _name_ is not present, set _name_ to the empty String.
+        1. Let _envRecord_ be the LexicalEnvironment of the running execution context.
+        1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+        1. Let _sourceText_ be the source text matched by |AsyncArrowFunction|.
+        1. Let _head_ be the |AsyncArrowHead| that is covered by |CoverCallExpressionAndAsyncArrowHead|.
+        1. Let _params_ be the |ArrowFormalParameters| of _head_.
+        1. Let _closure_ be OrdinaryFunctionCreate(%AsyncFunction.prototype%, _sourceText_, _params_, |AsyncConciseBody|, ~lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform SetFunctionName(_closure_, _name_).
+        1. Return _closure_.
+      </emu-alg>
+    </emu-clause>

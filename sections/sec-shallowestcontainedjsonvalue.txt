@@ -1,0 +1,39 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object > 25.5.2 JSON.parse ( _text_ [ , _reviver_ ] ) > 25.5.2.5 Static Semantics: ShallowestContainedJSONValue ( _root_: a Parse Node, ): a Parse Node or ~empty~ [id: sec-shallowestcontainedjsonvalue]
+
+<emu-clause id="sec-shallowestcontainedjsonvalue" type="abstract operation">
+        <h1>
+          Static Semantics: ShallowestContainedJSONValue (
+            _root_: a Parse Node,
+          ): a Parse Node or ~empty~
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It performs a breadth-first search of the parse tree rooted at _root_, and returns the first node that is an instance of a nonterminal corresponding to a JSON value, or ~empty~ if there is no such node.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _activeFunc_ be the active function object.
+          1. Assert: _activeFunc_ is a `JSON.parse` built-in function object (see <emu-xref href="#sec-json.parse">JSON.parse</emu-xref>).
+          1. Let _types_ be « |NullLiteral|, |BooleanLiteral|, |NumericLiteral|, |StringLiteral|, |ArrayLiteral|, |ObjectLiteral|, |UnaryExpression| ».
+          1. Let _unaryExpr_ be ~empty~.
+          1. Let _queue_ be « _root_ ».
+          1. Repeat, while _queue_ is not empty,
+            1. Let _candidate_ be the first element of _queue_.
+            1. Remove the first element from _queue_.
+            1. Let _queuedChildren_ be *false*.
+            1. For each nonterminal _type_ of _types_, do
+              1. If _candidate_ is an instance of _type_, then
+                1. NOTE: In the JSON grammar, a <code>number</code> token may represent a negative value. In ECMAScript, negation is represented as a unary operation in which a |UnaryExpression| parses to a `-` followed by a derived |UnaryExpression|.
+                1. If _type_ is |UnaryExpression|, then
+                  1. If the parent of _candidate_ is not a |UnaryExpression| Parse Node, set _unaryExpr_ to _candidate_.
+                1. Else if _type_ is |NumericLiteral|, then
+                  1. Assert: _candidate_ is contained within _unaryExpr_.
+                  1. Return _unaryExpr_.
+                1. Else,
+                  1. Return _candidate_.
+              1. If _queuedChildren_ is *false*, _candidate_ is an instance of a nonterminal, and _candidate_ Contains _type_ is *true*, then
+                1. Let _children_ be a List containing each child node of _candidate_, in order.
+                1. Set _queue_ to the list-concatenation of _queue_ and _children_.
+                1. Set _queuedChildren_ to *true*.
+          1. Return ~empty~.
+        </emu-alg>
+      </emu-clause>

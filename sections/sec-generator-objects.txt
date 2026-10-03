@@ -1,0 +1,13 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects [id: sec-generator-objects]
+
+<emu-clause id="sec-generator-objects">
+    <h1>Generator Objects</h1>
+    <p>A Generator is created by calling a generator function and conforms to both the iterator interface and the iterable interface.</p>
+    <p>Generator instances directly inherit properties from the initial value of the *"prototype"* property of the generator function that created the instance. Generator instances indirectly inherit properties from %GeneratorPrototype%.</p>
+
+    
+
+    
+
+    
+  </emu-clause>

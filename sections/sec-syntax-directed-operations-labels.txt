@@ -1,0 +1,11 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.3 Labels [id: sec-syntax-directed-operations-labels]
+
+<emu-clause id="sec-syntax-directed-operations-labels">
+    <h1>Labels</h1>
+
+    
+
+    
+
+    
+  </emu-clause>

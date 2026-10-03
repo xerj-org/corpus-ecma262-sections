@@ -1,0 +1,27 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.21 OrdinaryHasInstance ( _ctor_: an ECMAScript language value, _instance_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion [id: sec-ordinaryhasinstance]
+
+<emu-clause id="sec-ordinaryhasinstance" type="abstract operation">
+      <h1>
+        OrdinaryHasInstance (
+          _ctor_: an ECMAScript language value,
+          _instance_: an ECMAScript language value,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It implements the default algorithm for determining if _instance_ inherits from the instance object inheritance path provided by _ctor_.</dd>
+      </dl>
+      <emu-alg>
+        1. If IsCallable(_ctor_) is *false*, return *false*.
+        1. If _ctor_ has a [[BoundTargetFunction]] internal slot, then
+          1. Let _boundCtor_ be _ctor_.[[BoundTargetFunction]].
+          1. Return ? InstanceofOperator(_instance_, _boundCtor_).
+        1. If _instance_ is not an Object, return *false*.
+        1. Let _proto_ be ? Get(_ctor_, *"prototype"*).
+        1. If _proto_ is not an Object, throw a *TypeError* exception.
+        1. Repeat,
+          1. Set _instance_ to ? <emu-meta effects="user-code">_instance_.[[GetPrototypeOf]]()</emu-meta>.
+          1. If _instance_ is *null*, return *false*.
+          1. If SameValue(_proto_, _instance_) is *true*, return *true*.
+      </emu-alg>
+    </emu-clause>

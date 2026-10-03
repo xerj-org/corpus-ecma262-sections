@@ -1,0 +1,41 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.8 Template Literals > 13.2.8.2 Static Semantics: TemplateStrings ( _escapes_: ~raw~ or ~cooked~, ): a List of either Strings or *undefined* [id: sec-static-semantics-templatestrings]
+
+<emu-clause id="sec-static-semantics-templatestrings" type="sdo">
+        <h1>
+          Static Semantics: TemplateStrings (
+            _escapes_: ~raw~ or ~cooked~,
+          ): a List of either Strings or *undefined*
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>TemplateLiteral : NoSubstitutionTemplate</emu-grammar>
+        <emu-alg>
+          1. Return « TemplateString(|NoSubstitutionTemplate|, _escapes_) ».
+        </emu-alg>
+        <emu-grammar>SubstitutionTemplate : TemplateHead Expression TemplateSpans</emu-grammar>
+        <emu-alg>
+          1. Let _head_ be « TemplateString(|TemplateHead|, _escapes_) ».
+          1. Let _tail_ be the TemplateStrings of |TemplateSpans| with argument _escapes_.
+          1. Return the list-concatenation of _head_ and _tail_.
+        </emu-alg>
+        <emu-grammar>TemplateSpans : TemplateTail</emu-grammar>
+        <emu-alg>
+          1. Return « TemplateString(|TemplateTail|, _escapes_) ».
+        </emu-alg>
+        <emu-grammar>TemplateSpans : TemplateMiddleList TemplateTail</emu-grammar>
+        <emu-alg>
+          1. Let _middle_ be the TemplateStrings of |TemplateMiddleList| with argument _escapes_.
+          1. Let _tail_ be « TemplateString(|TemplateTail|, _escapes_) ».
+          1. Return the list-concatenation of _middle_ and _tail_.
+        </emu-alg>
+        <emu-grammar>TemplateMiddleList : TemplateMiddle Expression</emu-grammar>
+        <emu-alg>
+          1. Return « TemplateString(|TemplateMiddle|, _escapes_) ».
+        </emu-alg>
+        <emu-grammar>TemplateMiddleList : TemplateMiddleList TemplateMiddle Expression</emu-grammar>
+        <emu-alg>
+          1. Let _front_ be the TemplateStrings of |TemplateMiddleList| with argument _escapes_.
+          1. Let _last_ be « TemplateString(|TemplateMiddle|, _escapes_) ».
+          1. Return the list-concatenation of _front_ and _last_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,18 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.9 AsyncGenerator Objects > 27.9.3 AsyncGenerator Abstract Operations > 27.9.3.4 AsyncGeneratorEnqueue ( _gen_: an AsyncGenerator, _completion_: a Completion Record, _promiseCapability_: a PromiseCapability Record, ): ~unused~ [id: sec-asyncgeneratorenqueue]
+
+<emu-clause id="sec-asyncgeneratorenqueue" type="abstract operation">
+        <h1>
+          AsyncGeneratorEnqueue (
+            _gen_: an AsyncGenerator,
+            _completion_: a Completion Record,
+            _promiseCapability_: a PromiseCapability Record,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _request_ be AsyncGeneratorRequest { [[Completion]]: _completion_, [[Capability]]: _promiseCapability_ }.
+          1. Append _request_ to _gen_.[[AsyncGeneratorQueue]].
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

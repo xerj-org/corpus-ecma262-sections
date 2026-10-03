@@ -1,0 +1,11 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.5 Properties of the ArrayBuffer Constructor > 25.1.5.1 ArrayBuffer.isView ( _arg_ ) [id: sec-arraybuffer.isview]
+
+<emu-clause id="sec-arraybuffer.isview" type="built-in function">
+        <h1>ArrayBuffer.isView ( _arg_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If _arg_ is not an Object, return *false*.
+          1. If _arg_ has a [[ViewedArrayBuffer]] internal slot, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

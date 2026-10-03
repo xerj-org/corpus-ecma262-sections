@@ -1,0 +1,13 @@
+ECMA-262 > 21 Numbers and Dates [id: sec-numbers-and-dates]
+
+<emu-clause id="sec-numbers-and-dates">
+  <h1>Numbers and Dates</h1>
+
+  
+
+  
+
+  
+
+  
+</emu-clause>

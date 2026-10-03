@@ -1,0 +1,50 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.5 The `for`-`in`, `for`-`of`, and `for`-`await`-`of` Statements [id: sec-for-in-and-for-of-statements]
+
+<emu-clause id="sec-for-in-and-for-of-statements">
+      <h1>The `for`-`in`, `for`-`of`, and `for`-`await`-`of` Statements</h1>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        ForInOfStatement[Yield, Await, Return] :
+          `for` `(` [lookahead != `let` `[`] LeftHandSideExpression[?Yield, ?Await] `in` Expression[+In, ?Yield, ?Await] `)` Statement[?Yield, ?Await, ?Return]
+          `for` `(` `var` ForBinding[?Yield, ?Await, +Pattern] `in` Expression[+In, ?Yield, ?Await] `)` Statement[?Yield, ?Await, ?Return]
+          `for` `(` ForDeclaration[?Yield, ?Await, ~Using] `in` Expression[+In, ?Yield, ?Await] `)` Statement[?Yield, ?Await, ?Return]
+          `for` `(` [lookahead &notin; { `let`, `async` `of` }] LeftHandSideExpression[?Yield, ?Await] `of` AssignmentExpression[+In, ?Yield, ?Await] `)` Statement[?Yield, ?Await, ?Return]
+          `for` `(` `var` ForBinding[?Yield, ?Await, +Pattern] `of` AssignmentExpression[+In, ?Yield, ?Await] `)` Statement[?Yield, ?Await, ?Return]
+          `for` `(` [lookahead != `using` `of`] ForDeclaration[?Yield, ?Await, +Using] `of` AssignmentExpression[+In, ?Yield, ?Await] `)` Statement[?Yield, ?Await, ?Return]
+          [+Await] `for` `await` `(` [lookahead != `let`] LeftHandSideExpression[?Yield, ?Await] `of` AssignmentExpression[+In, ?Yield, ?Await] `)` Statement[?Yield, ?Await, ?Return]
+          [+Await] `for` `await` `(` `var` ForBinding[?Yield, ?Await, +Pattern] `of` AssignmentExpression[+In, ?Yield, ?Await] `)` Statement[?Yield, ?Await, ?Return]
+          [+Await] `for` `await` `(` [lookahead != `using` `of`] ForDeclaration[?Yield, ?Await, +Using] `of` AssignmentExpression[+In, ?Yield, ?Await] `)` Statement[?Yield, ?Await, ?Return]
+
+        ForDeclaration[Yield, Await, Using] :
+          LetOrConst ForBinding[?Yield, ?Await, +Pattern]
+          [+Using] `using` [no LineTerminator here] ForBinding[?Yield, ?Await, ~Pattern]
+          [+Using, +Await] `await` [no LineTerminator here] `using` [no LineTerminator here] ForBinding[?Yield, +Await, ~Pattern]
+
+        ForBinding[Yield, Await, Pattern] :
+          BindingIdentifier[?Yield, ?Await]
+          [+Pattern] BindingPattern[?Yield, ?Await]
+      </emu-grammar>
+      <emu-note>
+        <p>This section is extended by Annex <emu-xref href="#sec-initializers-in-forin-statement-heads"></emu-xref>.</p>
+      </emu-note>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

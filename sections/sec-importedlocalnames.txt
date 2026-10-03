@@ -1,0 +1,19 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.2 Static Semantics: ImportedLocalNames ( _importEntries_: a List of ImportEntry Records, ): a List of Strings [id: sec-importedlocalnames]
+
+<emu-clause id="sec-importedlocalnames" type="abstract operation">
+        <h1>
+          Static Semantics: ImportedLocalNames (
+            _importEntries_: a List of ImportEntry Records,
+          ): a List of Strings
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It creates a List of all of the local name bindings defined by _importEntries_.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _localNames_ be a new empty List.
+          1. For each ImportEntry Record _importEntry_ of _importEntries_, do
+            1. Append _importEntry_.[[LocalName]] to _localNames_.
+          1. Return _localNames_.
+        </emu-alg>
+      </emu-clause>

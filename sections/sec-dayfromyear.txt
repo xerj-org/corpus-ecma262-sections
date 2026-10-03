@@ -1,0 +1,21 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.5 DayFromYear ( _y_: an integer, ): an integer [id: sec-dayfromyear]
+
+<emu-clause id="sec-dayfromyear" type="abstract operation" oldids="eqn-DaysFromYear,sec-year-number">
+        <h1>
+          DayFromYear (
+            _y_: an integer,
+          ): an integer
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns the day number of the first day of year _y_.</dd>
+        </dl>
+        <emu-alg>
+          1. [declared="numberYears1,numberYears4,numberYears100,numberYears400"] NOTE: In the following steps, _numberYears1_, _numberYears4_, _numberYears100_, and _numberYears400_ represent the number of years divisible by 1, 4, 100, and 400, respectively, that occur between the epoch and the start of year _y_. The number is negative if _y_ is before the epoch.
+          1. Let _numberYears1_ be (_y_ - 1970).
+          1. Let _numberYears4_ be floor((_y_ - 1969) / 4).
+          1. Let _numberYears100_ be floor((_y_ - 1901) / 100).
+          1. Let _numberYears400_ be floor((_y_ - 1601) / 400).
+          1. Return 365 × _numberYears1_ + _numberYears4_ - _numberYears100_ + _numberYears400_.
+        </emu-alg>
+      </emu-clause>

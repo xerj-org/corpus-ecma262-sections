@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.7 AggregateError Objects > 20.5.7.2 Properties of the AggregateError Constructor > 20.5.7.2.1 AggregateError.prototype [id: sec-aggregate-error.prototype]
+
+<emu-clause id="sec-aggregate-error.prototype">
+          <h1>AggregateError.prototype</h1>
+          <p>The initial value of `AggregateError.prototype` is %AggregateError.prototype%.</p>
+          <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+        </emu-clause>

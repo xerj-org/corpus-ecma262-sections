@@ -1,0 +1,17 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.11 ToUint16 ( _arg_: an ECMAScript language value, ): either a normal completion containing an integral Number or a throw completion [id: sec-touint16]
+
+<emu-clause id="sec-touint16" type="abstract operation">
+      <h1>
+        ToUint16 (
+          _arg_: an ECMAScript language value,
+        ): either a normal completion containing an integral Number or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It converts _arg_ to one of 2<sup>16</sup> integral Number values in the inclusive interval from *+0*<sub>𝔽</sub> to 𝔽(2<sup>16</sup> - 1).</dd>
+      </dl>
+      <emu-alg>
+        1. Let _int_ be ? ToIntegerOrInfinity(_arg_).
+        1. Return 𝔽(ToFixedSizeInteger(_int_, ~unsigned~, 16)).
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,24 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.3 Built-in Function Objects [id: sec-built-in-function-objects]
+
+<emu-clause id="sec-built-in-function-objects">
+    <h1>Built-in Function Objects</h1>
+    <p>A built-in function object is an ordinary object; it must satisfy the requirements for ordinary objects set out in <emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots"></emu-xref>.</p>
+    <p>In addition to the internal slots required of every ordinary object (see <emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots"></emu-xref>), a built-in function object must also have the following internal slots:</p>
+    <ul>
+      <li>[[Realm]], a Realm Record that represents the realm in which the function was created.</li>
+      <li>[[InitialName]], a String that is the initial name of the function. It is used by <emu-xref href="#sec-function.prototype.tostring"></emu-xref>.</li>
+      <li>[[Async]], a Boolean that indicates whether the function has async function call and construct behaviour in BuiltinCallOrConstruct.</li>
+    </ul>
+    <p>The initial value of a built-in function object's [[Prototype]] internal slot is %Function.prototype%, unless otherwise specified.</p>
+    <p>A built-in function object must have a [[Call]] internal method that conforms to the definition in <emu-xref href="#sec-built-in-function-objects-call-thisargument-argumentslist"></emu-xref>.</p>
+    <p>A built-in function object has a [[Construct]] internal method if and only if it is described as a “constructor”, or some algorithm in this specification explicitly sets its [[Construct]] internal method. Such a [[Construct]] internal method must conform to the definition in <emu-xref href="#sec-built-in-function-objects-construct-argumentslist-newtarget"></emu-xref>.</p>
+    <p>An implementation may provide additional built-in function objects that are not defined in this specification.</p>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

@@ -1,0 +1,25 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.6 Module Namespace Exotic Objects > 10.4.6.6 [[DefineOwnProperty]] ( _propertyKey_: a property key, _propertyDesc_: a Property Descriptor, ): either a normal completion containing a Boolean or a throw completion [id: sec-module-namespace-exotic-objects-defineownproperty-p-desc]
+
+<emu-clause id="sec-module-namespace-exotic-objects-defineownproperty-p-desc" type="internal method">
+        <h1>
+          [[DefineOwnProperty]] (
+            _propertyKey_: a property key,
+            _propertyDesc_: a Property Descriptor,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a module namespace exotic object _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. If _propertyKey_ is a Symbol, return ! OrdinaryDefineOwnProperty(_obj_, _propertyKey_, _propertyDesc_).
+          1. Let _current_ be ? _obj_.[[GetOwnProperty]](_propertyKey_).
+          1. If _current_ is *undefined*, return *false*.
+          1. If _propertyDesc_ has a [[Configurable]] field and _propertyDesc_.[[Configurable]] is *true*, return *false*.
+          1. If _propertyDesc_ has an [[Enumerable]] field and _propertyDesc_.[[Enumerable]] is *false*, return *false*.
+          1. If IsAccessorDescriptor(_propertyDesc_) is *true*, return *false*.
+          1. If _propertyDesc_ has a [[Writable]] field and _propertyDesc_.[[Writable]] is *false*, return *false*.
+          1. If _propertyDesc_ has a [[Value]] field, return SameValue(_propertyDesc_.[[Value]], _current_.[[Value]]).
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

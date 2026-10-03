@@ -1,0 +1,14 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.3 Iterator Objects > 27.1.3.3 Properties of the Iterator Prototype Object > 27.1.3.3.1 Iterator.prototype.constructor [id: sec-iterator.prototype.constructor]
+
+<emu-clause id="sec-iterator.prototype.constructor">
+          <h1>Iterator.prototype.constructor</h1>
+          <p>`Iterator.prototype.constructor` is an accessor property with attributes { [[Enumerable]]: *false*, [[Configurable]]: *true* }. The [[Getter]] and [[Setter]] attributes are defined as follows:</p>
+
+          
+
+          
+
+          <emu-note>
+            <p>Unlike the *"constructor"* property on most built-in prototypes, for web-compatibility reasons this property must be an accessor.</p>
+          </emu-note>
+        </emu-clause>

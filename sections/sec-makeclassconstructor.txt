@@ -1,0 +1,16 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.2 ECMAScript Function Objects > 10.2.6 MakeClassConstructor ( _func_: an ECMAScript function object, ): ~unused~ [id: sec-makeclassconstructor]
+
+<emu-clause id="sec-makeclassconstructor" type="abstract operation">
+      <h1>
+        MakeClassConstructor (
+          _func_: an ECMAScript function object,
+        ): ~unused~
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Assert: _func_.[[IsClassConstructor]] is *false*.
+        1. Set _func_.[[IsClassConstructor]] to *true*.
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.3 Boolean Objects > 20.3.4 Properties of Boolean Instances [id: sec-properties-of-boolean-instances]
+
+<emu-clause id="sec-properties-of-boolean-instances">
+      <h1>Properties of Boolean Instances</h1>
+      <p>Boolean instances are ordinary objects that inherit properties from the Boolean prototype object. Boolean instances have a [[BooleanData]] internal slot. The [[BooleanData]] internal slot is the Boolean value represented by this Boolean object.</p>
+    </emu-clause>

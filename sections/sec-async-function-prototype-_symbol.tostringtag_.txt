@@ -1,0 +1,9 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.10 AsyncFunction Objects > 27.10.3 Properties of the AsyncFunction Prototype Object > 27.10.3.2 AsyncFunction.prototype [ %Symbol.toStringTag% ] [id: sec-async-function-prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-async-function-prototype-properties-toStringTag" id="sec-async-function-prototype-%symbol.tostringtag%">
+        <h1>AsyncFunction.prototype [ %Symbol.toStringTag% ]</h1>
+
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"AsyncFunction"*.</p>
+
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

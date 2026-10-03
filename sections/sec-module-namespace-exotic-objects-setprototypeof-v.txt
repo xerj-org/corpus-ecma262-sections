@@ -1,0 +1,16 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.6 Module Namespace Exotic Objects > 10.4.6.2 [[SetPrototypeOf]] ( _proto_: an Object or *null*, ): a normal completion containing a Boolean [id: sec-module-namespace-exotic-objects-setprototypeof-v]
+
+<emu-clause id="sec-module-namespace-exotic-objects-setprototypeof-v" type="internal method">
+        <h1>
+          [[SetPrototypeOf]] (
+            _proto_: an Object or *null*,
+          ): a normal completion containing a Boolean
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a module namespace exotic object _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. Return ! SetImmutablePrototype(_obj_, _proto_).
+        </emu-alg>
+      </emu-clause>

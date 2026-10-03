@@ -1,0 +1,18 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.6 [[DefineOwnProperty]] ( _propertyKey_: a property key, _propertyDesc_: a Property Descriptor, ): either a normal completion containing a Boolean or a throw completion > 10.1.6.1 OrdinaryDefineOwnProperty ( _obj_: an Object, _propertyKey_: a property key, _propertyDesc_: a Property Descriptor, ): either a normal completion containing a Boolean or a throw completion [id: sec-ordinarydefineownproperty]
+
+<emu-clause id="sec-ordinarydefineownproperty" type="abstract operation">
+        <h1>
+          OrdinaryDefineOwnProperty (
+            _obj_: an Object,
+            _propertyKey_: a property key,
+            _propertyDesc_: a Property Descriptor,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _current_ be ? <emu-meta effects="user-code">_obj_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+          1. Let _extensible_ be ? IsExtensible(_obj_).
+          1. Return ValidateAndApplyPropertyDescriptor(_obj_, _propertyKey_, _extensible_, _propertyDesc_, _current_).
+        </emu-alg>
+      </emu-clause>

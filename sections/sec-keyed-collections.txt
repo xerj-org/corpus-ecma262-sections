@@ -1,0 +1,15 @@
+ECMA-262 > 24 Keyed Collections [id: sec-keyed-collections]
+
+<emu-clause id="sec-keyed-collections" oldids="sec-keyed-collection">
+  <h1>Keyed Collections</h1>
+
+  
+
+  
+
+  
+
+  
+
+  
+</emu-clause>

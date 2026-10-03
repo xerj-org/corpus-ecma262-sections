@@ -1,0 +1,7 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.1 The %GeneratorPrototype% Object > 27.8.1.1 %GeneratorPrototype%.constructor [id: sec-generator.prototype.constructor]
+
+<emu-clause id="sec-generator.prototype.constructor">
+        <h1>%GeneratorPrototype%.constructor</h1>
+        <p>The initial value of %GeneratorPrototype%`.constructor` is %GeneratorFunction.prototype%.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

@@ -1,0 +1,19 @@
+ECMA-262 > 17 Error Handling and Language Extensions [id: sec-error-handling-and-language-extensions]
+
+<emu-clause id="sec-error-handling-and-language-extensions">
+  <h1>Error Handling and Language Extensions</h1>
+  <p>An implementation must report most errors at the time the relevant ECMAScript language construct is evaluated. An <dfn id="early-error" variants="early errors">early error</dfn> is an error that can be detected and reported prior to the evaluation of any construct in the |Script| containing the error. The presence of an early error prevents the evaluation of the construct. An implementation must report early errors in a |Script| as part of parsing that |Script| in ParseScript. Early errors in a |Module| are reported at the point when the |Module| would be evaluated and the |Module| is never initialized. Early errors in <b>eval</b> code are reported at the time `eval` is called and prevent evaluation of the <b>eval</b> code. All errors that are not early errors are runtime errors.</p>
+  <p>An implementation must report as an early error any occurrence of a condition that is listed in a “Static Semantics: Early Errors” subclause of this specification.</p>
+  <p>An implementation shall not treat other kinds of errors as early errors even if the compiler can prove that a construct cannot execute without error under any circumstances. An implementation may issue an early warning in such a case, but it should not report the error until the relevant construct is actually executed.</p>
+  <p>An implementation shall report all errors as specified, except for the following:</p>
+  <ul>
+    <li>
+      Except as restricted in <emu-xref href="#sec-forbidden-extensions"></emu-xref>, a host or implementation may extend |Script| syntax, |Module| syntax, and regular expression pattern or flag syntax. To permit this, all operations (such as calling `eval`, using a regular expression literal, or using the Function or RegExp constructor) that are allowed to throw *SyntaxError* are permitted to exhibit host-defined behaviour instead of throwing *SyntaxError* when they encounter a host-defined extension to the script syntax or regular expression pattern or flag syntax.
+    </li>
+    <li>
+      Except as restricted in <emu-xref href="#sec-forbidden-extensions"></emu-xref>, a host or implementation may provide additional types, values, objects, properties, and functions beyond those described in this specification. This may cause constructs (such as looking up a variable in the global scope) to have host-defined behaviour instead of throwing an error (such as *ReferenceError*).
+    </li>
+  </ul>
+
+  
+</emu-clause>

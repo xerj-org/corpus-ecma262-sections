@@ -1,0 +1,7 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.1 The `this` Keyword [id: sec-this-keyword]
+
+<emu-clause id="sec-this-keyword">
+      <h1>The `this` Keyword</h1>
+
+      
+    </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.2 implementation-defined [id: sec-terms-and-definitions-implementation-defined]
+
+<emu-clause id="sec-terms-and-definitions-implementation-defined">
+      <h1>implementation-defined</h1>
+      <p>an implementation-defined facility is defined in whole or in part by an external source to this specification</p>
+    </emu-clause>

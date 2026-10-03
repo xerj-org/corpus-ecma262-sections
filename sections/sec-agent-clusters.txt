@@ -1,0 +1,60 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.7 Agent Clusters [id: sec-agent-clusters]
+
+<emu-clause id="sec-agent-clusters">
+    <h1>Agent Clusters</h1>
+
+    <p>An <dfn variants="agent clusters">agent cluster</dfn> is a maximal set of agents that can communicate by operating on shared memory.</p>
+
+    <emu-note>
+      <p>Programs within different agents may share memory by unspecified means. At a minimum, the backing memory for SharedArrayBuffers can be shared among the agents in the cluster.</p>
+
+      <p>There may be agents that can communicate by message passing that cannot share memory; they are never in the same agent cluster.</p>
+    </emu-note>
+
+    <p>Every agent belongs to exactly one agent cluster.</p>
+
+    <emu-note>
+      <p>The agents in a cluster need not all be alive at some particular point in time. If agent <b>A</b> creates another agent <b>B</b>, after which <b>A</b> terminates and <b>B</b> creates agent <b>C</b>, the three agents are in the same cluster if <b>A</b> could share some memory with <b>B</b> and <b>B</b> could share some memory with <b>C</b>.</p>
+    </emu-note>
+
+    <p>All agents within a cluster must have the same value for the [[LittleEndian]] field in their respective Agent Records.</p>
+
+    <emu-note>
+      <p>If different agents within an agent cluster have different values of [[LittleEndian]] it becomes hard to use shared memory for multi-byte data.</p>
+    </emu-note>
+
+    <p>All agents within a cluster must have the same values for the [[IsLockFree1]] field in their respective Agent Records; similarly for the [[IsLockFree2]] and [[IsLockFree8]] fields.</p>
+
+    <p>All agents within a cluster must have different values for the [[Signifier]] field in their respective Agent Records.</p>
+
+    <p>An embedding may deactivate (stop forward progress) or activate (resume forward progress) an agent without the agent's knowledge or cooperation. If the embedding does so, it must not leave some agents in the cluster active while other agents in the cluster are deactivated indefinitely.</p>
+
+    <emu-note>
+      <p>The purpose of the preceding restriction is to avoid a situation where an agent deadlocks or starves because another agent has been deactivated. For example, if an HTML shared worker that has a lifetime independent of documents in any windows were allowed to share memory with the dedicated worker of such an independent document, and the document and its dedicated worker were to be deactivated while the dedicated worker holds a lock (say, the document is pushed into its window's history), and the shared worker then tries to acquire the lock, then the shared worker will be blocked until the dedicated worker is activated again, if ever. Meanwhile other workers trying to access the shared worker from other windows will starve.</p>
+
+      <p>The implication of the restriction is that it will not be possible to share memory between agents that don't belong to the same suspend/wake collective within the embedding.</p>
+    </emu-note>
+
+    <p>An embedding may terminate an agent without any of the agent's cluster's other agents' prior knowledge or cooperation. If an agent is terminated not by programmatic action of its own or of another agent in the cluster but by forces external to the cluster, then the embedding must choose one of two strategies: Either terminate all the agents in the cluster, or provide reliable APIs that allow the agents in the cluster to coordinate so that at least one remaining member of the cluster will be able to detect the termination, with the termination data containing enough information to identify the agent that was terminated.</p>
+
+    <emu-note>
+      <p>Examples of that type of termination are: operating systems or users terminating agents that are running in separate processes; the embedding itself terminating an agent that is running in-process with the other agents when per-agent resource accounting indicates that the agent is runaway.</p>
+    </emu-note>
+
+    <p>Each of the following specification values, and values transitively reachable from them, belong to exactly one agent cluster.</p>
+    <ul>
+      <li>candidate execution Record</li>
+      <li>Shared Data Block</li>
+      <li>WaiterList Record</li>
+    </ul>
+
+    <p>Prior to any evaluation of any ECMAScript code by any agent in a cluster, the [[CandidateExecution]] field of the Agent Record for all agents in the cluster is set to the initial candidate execution. The initial candidate execution is an empty candidate execution whose [[EventsRecords]] field is a List containing, for each agent, an Agent Events Record whose [[AgentSignifier]] field is that agent's agent signifier, and whose [[EventList]] and [[AgentSynchronizesWith]] fields are empty Lists.</p>
+
+    <emu-note>
+      <p>All agents in an agent cluster share the same candidate execution in its Agent Record's [[CandidateExecution]] field. The candidate execution is a specification mechanism used by the memory model.</p>
+    </emu-note>
+
+    <emu-note>
+      <p>An agent cluster is a specification mechanism and need not correspond to any particular artefact of an ECMAScript implementation.</p>
+    </emu-note>
+  </emu-clause>

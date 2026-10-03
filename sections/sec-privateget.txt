@@ -1,0 +1,22 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.30 PrivateGet ( _obj_: an Object, _privateName_: a Private Name, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-privateget]
+
+<emu-clause id="sec-privateget" type="abstract operation">
+      <h1>
+        PrivateGet (
+          _obj_: an Object,
+          _privateName_: a Private Name,
+        ): either a normal completion containing an ECMAScript language value or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _entry_ be PrivateElementFind(_obj_, _privateName_).
+        1. If _entry_ is ~empty~, throw a *TypeError* exception.
+        1. If _entry_.[[Kind]] is either ~field~ or ~method~, then
+          1. Return _entry_.[[Value]].
+        1. Assert: _entry_.[[Kind]] is ~accessor~.
+        1. If _entry_.[[Getter]] is *undefined*, throw a *TypeError* exception.
+        1. Let _getter_ be _entry_.[[Getter]].
+        1. Return ? Call(_getter_, _obj_).
+      </emu-alg>
+    </emu-clause>

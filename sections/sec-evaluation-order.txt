@@ -1,0 +1,20 @@
+ECMA-262 > 5 Notational Conventions > 5.2 Algorithm Conventions > 5.2.1 Evaluation Order [id: sec-evaluation-order]
+
+<emu-clause id="sec-evaluation-order">
+      <h1>Evaluation Order</h1>
+      <p>When complex expressions appear in algorithm steps, these are to be understood as being evaluated in a left-to-right, inside-to-outside order. For example, the step</p>
+      <emu-alg example>
+        1. Return A(B(), C.[[D]]) + E(F()).
+      </emu-alg>
+      <p>is equivalent to</p>
+      <emu-alg example>
+        1. Let _tmp1_ be B().
+        1. Let _tmp2_ be C.[[D]].
+        1. Let _tmp3_ be A(_tmp1_, _tmp2_).
+        1. Let _tmp4_ be F().
+        1. Let _tmp5_ be E(_tmp4_).
+        1. Let _tmp6_ be _tmp3_ + _tmp5_.
+        1. Return _tmp6_.
+      </emu-alg>
+      <p>where the various _tmpN_ aliases are ephemeral and visible only in these steps.</p>
+    </emu-clause>

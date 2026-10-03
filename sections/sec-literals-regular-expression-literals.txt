@@ -1,0 +1,60 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals > 12.9.5 Regular Expression Literals [id: sec-literals-regular-expression-literals]
+
+<emu-clause id="sec-literals-regular-expression-literals">
+      <h1>Regular Expression Literals</h1>
+      <emu-note>
+        <p>A regular expression literal is an input element that is converted to a RegExp object (see <emu-xref href="#sec-regexp-regular-expression-objects"></emu-xref>) each time the literal is evaluated. Two regular expression literals in a program evaluate to regular expression objects that never compare as `===` to each other even if the two literals' contents are identical. A RegExp object may also be created at runtime by `new RegExp` or calling the RegExp constructor as a function (see <emu-xref href="#sec-regexp-constructor"></emu-xref>).</p>
+      </emu-note>
+      <p>The productions below describe the syntax for a regular expression literal and are used by the input element scanner to find the end of the regular expression literal. The source text comprising the |RegularExpressionBody| and the |RegularExpressionFlags| are subsequently parsed again using the more stringent ECMAScript Regular Expression grammar (<emu-xref href="#sec-patterns"></emu-xref>).</p>
+      <p>An implementation may extend the ECMAScript Regular Expression grammar defined in <emu-xref href="#sec-patterns"></emu-xref>, but it must not extend the |RegularExpressionBody| and |RegularExpressionFlags| productions defined below or the productions used by these productions.</p>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        RegularExpressionLiteral ::
+          `/` RegularExpressionBody `/` RegularExpressionFlags
+
+        RegularExpressionBody ::
+          RegularExpressionFirstChar RegularExpressionChars
+
+        RegularExpressionChars ::
+          [empty]
+          RegularExpressionChars RegularExpressionChar
+
+        RegularExpressionFirstChar ::
+          RegularExpressionNonTerminator but not one of `*` or `\` or `/` or `[`
+          RegularExpressionBackslashSequence
+          RegularExpressionClass
+
+        RegularExpressionChar ::
+          RegularExpressionNonTerminator but not one of `\` or `/` or `[`
+          RegularExpressionBackslashSequence
+          RegularExpressionClass
+
+        RegularExpressionBackslashSequence ::
+          `\` RegularExpressionNonTerminator
+
+        RegularExpressionNonTerminator ::
+          SourceCharacter but not LineTerminator
+
+        RegularExpressionClass ::
+          `[` RegularExpressionClassChars `]`
+
+        RegularExpressionClassChars ::
+          [empty]
+          RegularExpressionClassChars RegularExpressionClassChar
+
+        RegularExpressionClassChar ::
+          RegularExpressionNonTerminator but not one of `]` or `\`
+          RegularExpressionBackslashSequence
+
+        RegularExpressionFlags ::
+          [empty]
+          RegularExpressionFlags IdentifierPartChar
+      </emu-grammar>
+      <emu-note>
+        <p>Regular expression literals may not be empty; instead of representing an empty regular expression literal, the code unit sequence `//` starts a single-line comment. To specify an empty regular expression, use: `/(?:)/`.</p>
+      </emu-note>
+
+      
+
+      
+    </emu-clause>

@@ -1,0 +1,10 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.3 Other Additional Features > B.3.4 VariableStatements in Catch Blocks [id: sec-variablestatements-in-catch-blocks]
+
+<emu-annex id="sec-variablestatements-in-catch-blocks">
+      <h1>VariableStatements in Catch Blocks</h1>
+      <p>In this feature, the |Block| of a |Catch| clause may contain `var` declarations that bind a name that is also bound by the |CatchParameter|. This is accomplished by modifying an early error rule for <emu-grammar>Catch : `catch` `(` CatchParameter `)` Block</emu-grammar> in <emu-xref href="#sec-try-statement-static-semantics-early-errors"></emu-xref>.</p>
+      <emu-note>
+        <p>At runtime, such bindings are instantiated in the VariableDeclarationEnvironment. They do not shadow the same-named bindings introduced by the |CatchParameter| and hence the |Initializer| for such `var` declarations will assign to the corresponding catch parameter rather than the `var` binding.</p>
+      </emu-note>
+      <p>This modified behaviour also applies to `var` and `function` declarations introduced by direct eval calls contained within the |Block| of a |Catch| clause. This change is accomplished by modifying steps <emu-xref href="#step-evaldeclarationinstantiation-throw-duplicate-binding"></emu-xref> and <emu-xref href="#step-evaldeclarationinstantiation-web-compat-bindingexists"></emu-xref> in EvalDeclarationInstantiation.</p>
+    </emu-annex>

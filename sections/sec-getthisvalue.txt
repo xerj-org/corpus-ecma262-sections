@@ -1,0 +1,16 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.5 The Reference Record Specification Type > 6.2.5.7 GetThisValue ( _refRecord_: a Reference Record, ): an ECMAScript language value [id: sec-getthisvalue]
+
+<emu-clause id="sec-getthisvalue" type="abstract operation">
+        <h1>
+          GetThisValue (
+            _refRecord_: a Reference Record,
+          ): an ECMAScript language value
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: IsPropertyReference(_refRecord_) is *true*.
+          1. If IsSuperReference(_refRecord_) is *true*, return _refRecord_.[[ThisValue]].
+          1. Return _refRecord_.[[Base]].
+        </emu-alg>
+      </emu-clause>

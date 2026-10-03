@@ -1,0 +1,16 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.9 Runtime Semantics: CompileToCharSet ( _regexpRecord_: a RegExp Record, ): a CharSet > 22.2.2.9.6 CharacterComplement ( _regexpRecord_: a RegExp Record, _complement_: a CharSet, ): a CharSet [id: sec-charactercomplement]
+
+<emu-clause id="sec-charactercomplement" type="abstract operation">
+          <h1>
+            CharacterComplement (
+              _regexpRecord_: a RegExp Record,
+              _complement_: a CharSet,
+            ): a CharSet
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _charSet_ be AllCharacters(_regexpRecord_).
+            1. Return the CharSet containing the CharSetElements of _charSet_ which are not also CharSetElements of _complement_.
+          </emu-alg>
+        </emu-clause>

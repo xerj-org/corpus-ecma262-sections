@@ -1,0 +1,21 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects [id: sec-arraybuffer-objects]
+
+<emu-clause id="sec-arraybuffer-objects">
+    <h1>ArrayBuffer Objects</h1>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

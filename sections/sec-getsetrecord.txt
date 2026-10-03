@@ -1,0 +1,25 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.1 Abstract Operations For Set Objects > 24.2.1.2 GetSetRecord ( _obj_: an ECMAScript language value, ): either a normal completion containing a Set Record or a throw completion [id: sec-getsetrecord]
+
+<emu-clause id="sec-getsetrecord" type="abstract operation">
+        <h1>
+          GetSetRecord (
+            _obj_: an ECMAScript language value,
+          ): either a normal completion containing a Set Record or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _obj_ is not an Object, throw a *TypeError* exception.
+          1. Let _rawSize_ be ? Get(_obj_, *"size"*).
+          1. Let _numberSize_ be ? ToNumber(_rawSize_).
+          1. NOTE: If _rawSize_ is *undefined*, then _numberSize_ will be *NaN*.
+          1. If _numberSize_ is *NaN*, throw a *TypeError* exception.
+          1. Let _intSize_ be ! ToIntegerOrInfinity(_numberSize_).
+          1. If _intSize_ &lt; 0, throw a *RangeError* exception.
+          1. Let _has_ be ? Get(_obj_, *"has"*).
+          1. If IsCallable(_has_) is *false*, throw a *TypeError* exception.
+          1. Let _keys_ be ? Get(_obj_, *"keys"*).
+          1. If IsCallable(_keys_) is *false*, throw a *TypeError* exception.
+          1. Return a new Set Record { [[SetObject]]: _obj_, [[Size]]: _intSize_, [[Has]]: _has_, [[Keys]]: _keys_ }.
+        </emu-alg>
+      </emu-clause>

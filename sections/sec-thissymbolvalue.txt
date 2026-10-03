@@ -1,0 +1,19 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.3 Properties of the Symbol Prototype Object > 20.4.3.4 Symbol.prototype.valueOf ( ) > 20.4.3.4.1 ThisSymbolValue ( _arg_: an ECMAScript language value, ): either a normal completion containing a Symbol or a throw completion [id: sec-thissymbolvalue]
+
+<emu-clause id="sec-thissymbolvalue" type="abstract operation" oldids="thissymbolvalue">
+          <h1>
+            ThisSymbolValue (
+              _arg_: an ECMAScript language value,
+            ): either a normal completion containing a Symbol or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _arg_ is a Symbol, return _arg_.
+            1. If _arg_ is an Object and _arg_ has a [[SymbolData]] internal slot, then
+              1. Let _symbol_ be _arg_.[[SymbolData]].
+              1. Assert: _symbol_ is a Symbol.
+              1. Return _symbol_.
+            1. Throw a *TypeError* exception.
+          </emu-alg>
+        </emu-clause>

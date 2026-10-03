@@ -1,0 +1,22 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.2 Environment Record Operations > 9.1.2.1 GetIdentifierReference ( _envRecord_: an Environment Record or *null*, _name_: a String, _strict_: a Boolean, ): either a normal completion containing a Reference Record or a throw completion [id: sec-getidentifierreference]
+
+<emu-clause id="sec-getidentifierreference" type="abstract operation">
+        <h1>
+          GetIdentifierReference (
+            _envRecord_: an Environment Record or *null*,
+            _name_: a String,
+            _strict_: a Boolean,
+          ): either a normal completion containing a Reference Record or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _envRecord_ is *null*, then
+            1. Return the Reference Record { [[Base]]: ~unresolvable~, [[ReferencedName]]: _name_, [[Strict]]: _strict_, [[ThisValue]]: ~empty~ }.
+          1. Let _exists_ be ? <emu-meta effects="user-code">_envRecord_.HasBinding(_name_)</emu-meta>.
+          1. If _exists_ is *true*, then
+            1. Return the Reference Record { [[Base]]: _envRecord_, [[ReferencedName]]: _name_, [[Strict]]: _strict_, [[ThisValue]]: ~empty~ }.
+          1. Let _outer_ be _envRecord_.[[OuterEnv]].
+          1. Return ? GetIdentifierReference(_outer_, _name_, _strict_).
+        </emu-alg>
+      </emu-clause>

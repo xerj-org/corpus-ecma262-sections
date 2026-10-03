@@ -1,0 +1,29 @@
+ECMA-262 > 11 ECMAScript Language: Source Text > 11.1 Source Text > 11.1.4 Static Semantics: CodePointAt ( _string_: a String, _position_: a non-negative integer, ): a Record with fields [[CodePoint]] (a code point), [[CodeUnitCount]] (a positive integer), and [[IsUnpairedSurrogate]] (a Boolean) [id: sec-codepointat]
+
+<emu-clause id="sec-codepointat" type="abstract operation">
+      <h1>
+        Static Semantics: CodePointAt (
+          _string_: a String,
+          _position_: a non-negative integer,
+        ): a Record with fields [[CodePoint]] (a code point), [[CodeUnitCount]] (a positive integer), and [[IsUnpairedSurrogate]] (a Boolean)
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It interprets _string_ as a sequence of UTF-16 encoded code points, as described in <emu-xref href="#sec-ecmascript-language-types-string-type"></emu-xref>, and reads from it a single code point starting with the code unit at index _position_.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _size_ be the length of _string_.
+        1. Assert: _position_ ≥ 0 and _position_ &lt; _size_.
+        1. Let _first_ be the code unit at index _position_ within _string_.
+        1. Let _codePoint_ be the code point whose numeric value is the numeric value of _first_.
+        1. If _first_ is neither a leading surrogate nor a trailing surrogate, then
+          1. Return the Record { [[CodePoint]]: _codePoint_, [[CodeUnitCount]]: 1, [[IsUnpairedSurrogate]]: *false* }.
+        1. If _first_ is a trailing surrogate or _position_ + 1 = _size_, then
+          1. Return the Record { [[CodePoint]]: _codePoint_, [[CodeUnitCount]]: 1, [[IsUnpairedSurrogate]]: *true* }.
+        1. Let _second_ be the code unit at index _position_ + 1 within _string_.
+        1. If _second_ is not a trailing surrogate, then
+          1. Return the Record { [[CodePoint]]: _codePoint_, [[CodeUnitCount]]: 1, [[IsUnpairedSurrogate]]: *true* }.
+        1. Set _codePoint_ to UTF16SurrogatePairToCodePoint(_first_, _second_).
+        1. Return the Record { [[CodePoint]]: _codePoint_, [[CodeUnitCount]]: 2, [[IsUnpairedSurrogate]]: *false* }.
+      </emu-alg>
+    </emu-clause>

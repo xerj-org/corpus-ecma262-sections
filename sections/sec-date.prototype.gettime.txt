@@ -1,0 +1,11 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.4 Properties of the Date Prototype Object > 21.4.4.10 Date.prototype.getTime ( ) [id: sec-date.prototype.gettime]
+
+<emu-clause id="sec-date.prototype.gettime" type="built-in function">
+        <h1>Date.prototype.getTime ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _dateObj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_dateObj_, [[DateValue]]).
+          1. Return _dateObj_.[[DateValue]].
+        </emu-alg>
+      </emu-clause>

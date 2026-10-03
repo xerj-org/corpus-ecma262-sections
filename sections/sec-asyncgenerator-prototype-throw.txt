@@ -1,0 +1,25 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.9 AsyncGenerator Objects > 27.9.1 The %AsyncGeneratorPrototype% Object > 27.9.1.4 %AsyncGeneratorPrototype%.throw ( _exception_ ) [id: sec-asyncgenerator-prototype-throw]
+
+<emu-clause id="sec-asyncgenerator-prototype-throw" type="built-in function">
+        <h1>%AsyncGeneratorPrototype%.throw ( _exception_ )</h1>
+        <emu-alg>
+          1. Let _gen_ be the *this* value.
+          1. Let _promiseCapability_ be ! NewPromiseCapability(%Promise%).
+          1. Let _result_ be Completion(AsyncGeneratorValidate(_gen_, ~empty~)).
+          1. IfAbruptRejectPromise(_result_, _promiseCapability_).
+          1. Let _state_ be _gen_.[[AsyncGeneratorState]].
+          1. If _state_ is ~suspended-start~, then
+            1. Set _gen_.[[AsyncGeneratorState]] to ~completed~.
+            1. Set _state_ to ~completed~.
+          1. If _state_ is ~completed~, then
+            1. Perform ! Call(_promiseCapability_.[[Reject]], *undefined*, « _exception_ »).
+            1. Return _promiseCapability_.[[Promise]].
+          1. Let _completion_ be ThrowCompletion(_exception_).
+          1. Perform AsyncGeneratorEnqueue(_gen_, _completion_, _promiseCapability_).
+          1. If _state_ is ~suspended-yield~, then
+            1. Perform AsyncGeneratorResume(_gen_, _completion_).
+          1. Else,
+            1. Assert: _state_ is either ~executing~ or ~draining-queue~.
+          1. Return _promiseCapability_.[[Promise]].
+        </emu-alg>
+      </emu-clause>

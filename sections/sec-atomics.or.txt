@@ -1,0 +1,11 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.11 Atomics.or ( _ta_, _index_, _value_ ) [id: sec-atomics.or]
+
+<emu-clause id="sec-atomics.or" type="built-in function">
+      <h1>Atomics.or ( _ta_, _index_, _value_ )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _or_ be a new read-modify-write modification function with parameters (_xBytes_, _yBytes_) that captures nothing and performs the following steps atomically when called:
+          1. Return ByteListBitwiseOp(`|`, _xBytes_, _yBytes_).
+        1. Return ? AtomicReadModifyWrite(_ta_, _index_, _value_, _or_).
+      </emu-alg>
+    </emu-clause>

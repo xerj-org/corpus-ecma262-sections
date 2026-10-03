@@ -1,0 +1,32 @@
+ECMA-262 > 29 Memory Model > 29.2 Agent Events Records [id: sec-agent-event-records]
+
+<emu-clause id="sec-agent-event-records">
+    <h1>Agent Events Records</h1>
+    <p>An <dfn variants="Agent Events Records">Agent Events Record</dfn> is a Record with the following fields.</p>
+    <emu-table id="table-agent-events-records" caption="Agent Events Record Fields">
+      <table>
+        <thead>
+          <tr>
+            <th>Field Name</th>
+            <th>Value</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tr>
+          <td>[[AgentSignifier]]</td>
+          <td>an agent signifier</td>
+          <td>The agent whose evaluation resulted in this ordering.</td>
+        </tr>
+        <tr>
+          <td>[[EventList]]</td>
+          <td>a List of Memory events</td>
+          <td>Events are appended to the list during evaluation.</td>
+        </tr>
+        <tr>
+          <td>[[AgentSynchronizesWith]]</td>
+          <td>a List of pairs of Synchronize events</td>
+          <td>Synchronize relationships introduced by the operational semantics.</td>
+        </tr>
+      </table>
+    </emu-table>
+  </emu-clause>

@@ -1,0 +1,30 @@
+ECMA-262 > 7 Abstract Operations > 7.5 Operations on Disposable Objects > 7.5.4 GetDisposeMethod ( _value_: an ECMAScript language value, _kind_: ~sync-dispose~ or ~async-dispose~, ): either a normal completion containing either a function object or *undefined*, or a throw completion [id: sec-getdisposemethod]
+
+<emu-clause id="sec-getdisposemethod" type="abstract operation">
+      <h1>
+        GetDisposeMethod (
+          _value_: an ECMAScript language value,
+          _kind_: ~sync-dispose~ or ~async-dispose~,
+        ): either a normal completion containing either a function object or *undefined*, or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If _value_ is not an Object, throw a *TypeError* exception.
+        1. If _kind_ is ~sync-dispose~, return ? GetMethod(_value_, %Symbol.dispose%).
+        1. Assert: _kind_ is ~async-dispose~.
+        1. Let _asyncMethod_ be ? GetMethod(_value_, %Symbol.asyncDispose%).
+        1. If _asyncMethod_ is not *undefined*, return _asyncMethod_.
+        1. Let _syncMethod_ be ? GetMethod(_value_, %Symbol.dispose%).
+        1. If _syncMethod_ is *undefined*, return *undefined*.
+        1. Let _closure_ be a new Abstract Closure with no parameters that captures _syncMethod_ and performs the following steps when called:
+          1. Let _obj_ be the *this* value.
+          1. Let _promiseCapability_ be ! NewPromiseCapability(%Promise%).
+          1. Let _result_ be Completion(Call(_syncMethod_, _obj_)).
+          1. IfAbruptRejectPromise(_result_, _promiseCapability_).
+          1. Perform ! Call(_promiseCapability_.[[Resolve]], *undefined*, « *undefined* »).
+          1. Return _promiseCapability_.[[Promise]].
+        1. NOTE: This function is not observable to user code. It is used to ensure that a Promise returned from a synchronous `%Symbol.dispose%` method will not be awaited and that a synchronous exception will be translated to a rejected Promise.
+        1. Return CreateBuiltinFunction(_closure_, 0, *""*, « »).
+      </emu-alg>
+    </emu-clause>

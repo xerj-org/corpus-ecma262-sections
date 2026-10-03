@@ -1,0 +1,9 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.6 Function Calls [id: sec-function-calls]
+
+<emu-clause id="sec-function-calls">
+      <h1>Function Calls</h1>
+
+      
+
+      
+    </emu-clause>

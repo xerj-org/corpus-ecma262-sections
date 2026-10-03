@@ -1,0 +1,11 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties > B.2.3 Additional Properties of the Date.prototype Object [id: sec-additional-properties-of-the-date.prototype-object]
+
+<emu-annex id="sec-additional-properties-of-the-date.prototype-object">
+      <h1>Additional Properties of the Date.prototype Object</h1>
+
+      
+
+      
+
+      
+    </emu-annex>

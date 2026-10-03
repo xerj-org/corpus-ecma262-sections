@@ -1,0 +1,77 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.5 Generator Function Definitions > 15.5.5 Runtime Semantics: Evaluation [id: sec-generator-function-definitions-runtime-semantics-evaluation]
+
+<emu-clause id="sec-generator-function-definitions-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>
+        GeneratorExpression : `function` `*` BindingIdentifier? `(` FormalParameters `)` `{` GeneratorBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return InstantiateGeneratorFunctionExpression of |GeneratorExpression|.
+      </emu-alg>
+      <emu-grammar>YieldExpression : `yield`</emu-grammar>
+      <emu-alg>
+        1. Return ? Yield(*undefined*).
+      </emu-alg>
+      <emu-grammar>YieldExpression : `yield` AssignmentExpression</emu-grammar>
+      <emu-alg>
+        1. Let _exprRef_ be ? Evaluation of |AssignmentExpression|.
+        1. Let _value_ be ? GetValue(_exprRef_).
+        1. Return ? Yield(_value_).
+      </emu-alg>
+      <emu-grammar>YieldExpression : `yield` `*` AssignmentExpression</emu-grammar>
+      <emu-alg>
+        1. Let _genKind_ be GetGeneratorKind().
+        1. Assert: _genKind_ is either ~sync~ or ~async~.
+        1. Let _exprRef_ be ? Evaluation of |AssignmentExpression|.
+        1. Let _value_ be ? GetValue(_exprRef_).
+        1. Let _iteratorRecord_ be ? GetIterator(_value_, _genKind_).
+        1. Let _iterator_ be _iteratorRecord_.[[Iterator]].
+        1. Let _received_ be NormalCompletion(*undefined*).
+        1. Repeat,
+          1. If _received_ is a normal completion, then
+            1. Let _innerResult_ be ? Call(_iteratorRecord_.[[NextMethod]], _iteratorRecord_.[[Iterator]], « _received_.[[Value]] »).
+            1. If _genKind_ is ~async~, set _innerResult_ to ? Await(_innerResult_).
+            1. If _innerResult_ is not an Object, throw a *TypeError* exception.
+            1. Let _done_ be ? IteratorComplete(_innerResult_).
+            1. If _done_ is *true*, then
+              1. Return ? IteratorValue(_innerResult_).
+            1. If _genKind_ is ~async~, set _received_ to Completion(AsyncGeneratorYield(? IteratorValue(_innerResult_))).
+            1. Else, set _received_ to Completion(GeneratorYield(_innerResult_)).
+          1. Else if _received_ is a throw completion, then
+            1. Let _throw_ be ? GetMethod(_iterator_, *"throw"*).
+            1. If _throw_ is not *undefined*, then
+              1. Let _innerResult_ be ? Call(_throw_, _iterator_, « _received_.[[Value]] »).
+              1. If _genKind_ is ~async~, set _innerResult_ to ? Await(_innerResult_).
+              1. NOTE: Exceptions from the inner iterator `throw` method are propagated. Normal completions from an inner `throw` method are processed similarly to an inner `next`.
+              1. If _innerResult_ is not an Object, throw a *TypeError* exception.
+              1. Let _done_ be ? IteratorComplete(_innerResult_).
+              1. If _done_ is *true*, then
+                1. Return ? IteratorValue(_innerResult_).
+              1. If _genKind_ is ~async~, set _received_ to Completion(AsyncGeneratorYield(? IteratorValue(_innerResult_))).
+              1. Else, set _received_ to Completion(GeneratorYield(_innerResult_)).
+            1. Else,
+              1. NOTE: If _iterator_ does not have a `throw` method, this throw is going to terminate the `yield*` loop. But first we need to give _iterator_ a chance to clean up.
+              1. Let _closeCompletion_ be NormalCompletion(~empty~).
+              1. If _genKind_ is ~async~, perform ? AsyncIteratorClose(_iteratorRecord_, _closeCompletion_).
+              1. Else, perform ? IteratorClose(_iteratorRecord_, _closeCompletion_).
+              1. NOTE: The next step throws a *TypeError* to indicate that there was a `yield*` protocol violation: _iterator_ does not have a `throw` method.
+              1. Throw a *TypeError* exception.
+          1. Else,
+            1. Assert: _received_ is a return completion.
+            1. Let _return_ be ? GetMethod(_iterator_, *"return"*).
+            1. If _return_ is *undefined*, then
+              1. Let _receivedValue_ be _received_.[[Value]].
+              1. If _genKind_ is ~async~, then
+                1. Set _receivedValue_ to ? Await(_receivedValue_).
+              1. Return ReturnCompletion(_receivedValue_).
+            1. Let _innerReturnResult_ be ? Call(_return_, _iterator_, « _received_.[[Value]] »).
+            1. If _genKind_ is ~async~, set _innerReturnResult_ to ? Await(_innerReturnResult_).
+            1. If _innerReturnResult_ is not an Object, throw a *TypeError* exception.
+            1. Let _done_ be ? IteratorComplete(_innerReturnResult_).
+            1. If _done_ is *true*, then
+              1. Let _returnedValue_ be ? IteratorValue(_innerReturnResult_).
+              1. Return ReturnCompletion(_returnedValue_).
+            1. If _genKind_ is ~async~, set _received_ to Completion(AsyncGeneratorYield(? IteratorValue(_innerReturnResult_))).
+            1. Else, set _received_ to Completion(GeneratorYield(_innerReturnResult_)).
+      </emu-alg>
+    </emu-clause>

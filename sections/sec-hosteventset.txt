@@ -1,0 +1,14 @@
+ECMA-262 > 29 Memory Model > 29.5 Abstract Operations for the Memory Model > 29.5.3 HostEventSet ( _execution_: a candidate execution, ): a Set of Memory events [id: sec-hosteventset]
+
+<emu-clause id="sec-hosteventset" type="abstract operation">
+      <h1>
+        HostEventSet (
+          _execution_: a candidate execution,
+        ): a Set of Memory events
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Return a new Set containing all elements of EventSet(_execution_) that are not in SharedDataBlockEventSet(_execution_).
+      </emu-alg>
+    </emu-clause>

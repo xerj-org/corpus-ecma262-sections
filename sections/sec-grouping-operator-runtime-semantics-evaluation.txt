@@ -1,0 +1,17 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.9 The Grouping Operator > 13.2.9.2 Runtime Semantics: Evaluation [id: sec-grouping-operator-runtime-semantics-evaluation]
+
+<emu-clause id="sec-grouping-operator-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>PrimaryExpression : CoverParenthesizedExpressionAndArrowParameterList</emu-grammar>
+        <emu-alg>
+          1. Let _expr_ be the |ParenthesizedExpression| that is covered by |CoverParenthesizedExpressionAndArrowParameterList|.
+          1. Return ? Evaluation of _expr_.
+        </emu-alg>
+        <emu-grammar>ParenthesizedExpression : `(` Expression `)`</emu-grammar>
+        <emu-alg>
+          1. Return ? Evaluation of |Expression|. This may be of type Reference.
+        </emu-alg>
+        <emu-note>
+          <p>This algorithm does not apply GetValue to Evaluation of |Expression|. The principal motivation for this is so that operators such as `delete` and `typeof` may be applied to parenthesized expressions.</p>
+        </emu-note>
+      </emu-clause>

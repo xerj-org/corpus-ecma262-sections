@@ -1,0 +1,17 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.3 Properties of the Error Prototype Object > 20.5.3.4 Error.prototype.toString ( ) [id: sec-error.prototype.tostring]
+
+<emu-clause id="sec-error.prototype.tostring" type="built-in function">
+        <h1>Error.prototype.toString ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. If _obj_ is not an Object, throw a *TypeError* exception.
+          1. Let _name_ be ? Get(_obj_, *"name"*).
+          1. If _name_ is *undefined*, set _name_ to *"Error"*; else set _name_ to ? ToString(_name_).
+          1. Let _message_ be ? Get(_obj_, *"message"*).
+          1. If _message_ is *undefined*, set _message_ to the empty String; else set _message_ to ? ToString(_message_).
+          1. If _name_ is the empty String, return _message_.
+          1. If _message_ is the empty String, return _name_.
+          1. Return the string-concatenation of _name_, the code unit 0x003A (COLON), the code unit 0x0020 (SPACE), and _message_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,18 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.8 Forward Progress [id: sec-forward-progress]
+
+<emu-clause id="sec-forward-progress">
+    <h1>Forward Progress</h1>
+    <p>For an agent to <em>make forward progress</em> is for it to perform an evaluation step according to this specification.</p>
+    <p>An agent becomes <em>blocked</em> when its running execution context waits synchronously and indefinitely for an external event. Only agents whose Agent Record's [[CanBlock]] field is *true* can become blocked in this sense. An <em>unblocked</em> agent is one that is not blocked.</p>
+
+    <p>Implementations must ensure that:</p>
+    <ul>
+      <li>every unblocked agent with a dedicated executing thread eventually makes forward progress</li>
+      <li>in a set of agents that share an executing thread, one agent eventually makes forward progress</li>
+      <li>an agent does not cause another agent to become blocked except via explicit APIs that provide blocking.</li>
+    </ul>
+
+    <emu-note>
+      <p>This, along with the liveness guarantee in the memory model, ensures that all ~seq-cst~ writes eventually become observable to all agents.</p>
+    </emu-note>
+  </emu-clause>

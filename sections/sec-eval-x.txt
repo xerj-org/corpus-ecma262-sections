@@ -1,0 +1,16 @@
+ECMA-262 > 19 The Global Object > 19.2 Function Properties of the Global Object > 19.2.1 eval ( _source_ ) [id: sec-eval-x]
+
+<emu-clause id="sec-eval-x" type="built-in function">
+      <h1>eval ( _source_ )</h1>
+      <p>This function is the <dfn>%eval%</dfn> intrinsic object.</p>
+      <p>It performs the following steps when called:</p>
+      <emu-alg>
+        1. Return ? PerformEval(_source_, *false*, *false*).
+      </emu-alg>
+
+      
+
+      
+
+      
+    </emu-clause>

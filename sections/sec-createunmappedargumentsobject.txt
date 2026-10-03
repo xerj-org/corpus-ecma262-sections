@@ -1,0 +1,25 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.4 Arguments Exotic Objects > 10.4.4.6 CreateUnmappedArgumentsObject ( _argList_: a List of ECMAScript language values, ): an ordinary object [id: sec-createunmappedargumentsobject]
+
+<emu-clause id="sec-createunmappedargumentsobject" type="abstract operation">
+        <h1>
+          CreateUnmappedArgumentsObject (
+            _argList_: a List of ECMAScript language values,
+          ): an ordinary object
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _length_ be the number of elements in _argList_.
+          1. Let _obj_ be OrdinaryObjectCreate(%Object.prototype%, « [[ParameterMap]] »).
+          1. Set _obj_.[[ParameterMap]] to *undefined*.
+          1. Perform ! DefinePropertyOrThrow(_obj_, *"length"*, PropertyDescriptor { [[Value]]: 𝔽(_length_), [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }).
+          1. Let _index_ be 0.
+          1. Repeat, while _index_ &lt; _length_,
+            1. Let _value_ be _argList_[_index_].
+            1. Perform ! CreateDataPropertyOrThrow(_obj_, ! ToString(𝔽(_index_)), _value_).
+            1. Set _index_ to _index_ + 1.
+          1. Perform ! DefinePropertyOrThrow(_obj_, %Symbol.iterator%, PropertyDescriptor { [[Value]]: %Array.prototype.values%, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }).
+          1. Perform ! DefinePropertyOrThrow(_obj_, *"callee"*, PropertyDescriptor { [[Getter]]: %ThrowTypeError%, [[Setter]]: %ThrowTypeError%, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

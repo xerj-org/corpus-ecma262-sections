@@ -1,0 +1,14 @@
+ECMA-262 > 28 Reflection > 28.2 Proxy Objects > 28.2.1 The Proxy Constructor [id: sec-proxy-constructor]
+
+<emu-clause id="sec-proxy-constructor">
+      <h1>The Proxy Constructor</h1>
+      <p>The Proxy constructor:</p>
+      <ul>
+        <li>is <dfn>%Proxy%</dfn>.</li>
+        <li>is the initial value of the *"Proxy"* property of the global object.</li>
+        <li>creates and initializes a new Proxy object when called as a constructor.</li>
+        <li>is not intended to be called as a function and will throw an exception when called in that manner.</li>
+      </ul>
+
+      
+    </emu-clause>

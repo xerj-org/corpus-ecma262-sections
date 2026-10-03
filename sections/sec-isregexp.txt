@@ -1,0 +1,18 @@
+ECMA-262 > 7 Abstract Operations > 7.2 Testing and Comparison Operations > 7.2.6 IsRegExp ( _arg_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion [id: sec-isregexp]
+
+<emu-clause id="sec-isregexp" type="abstract operation">
+      <h1>
+        IsRegExp (
+          _arg_: an ECMAScript language value,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If _arg_ is not an Object, return *false*.
+        1. Let _matcher_ be ? Get(_arg_, %Symbol.match%).
+        1. If _matcher_ is not *undefined*, return ToBoolean(_matcher_).
+        1. If _arg_ has a [[RegExpMatcher]] internal slot, return *true*.
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>

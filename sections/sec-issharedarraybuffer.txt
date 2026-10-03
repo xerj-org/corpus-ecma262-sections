@@ -1,0 +1,17 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.2 Abstract Operations for SharedArrayBuffer Objects > 25.2.2.2 IsSharedArrayBuffer ( _obj_: an ArrayBuffer or a SharedArrayBuffer, ): a Boolean [id: sec-issharedarraybuffer]
+
+<emu-clause id="sec-issharedarraybuffer" type="abstract operation">
+        <h1>
+          IsSharedArrayBuffer (
+            _obj_: an ArrayBuffer or a SharedArrayBuffer,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It tests whether an object is a SharedArrayBuffer.</dd>
+        </dl>
+        <emu-alg>
+          1. If _obj_.[[ArrayBufferData]] is a Shared Data Block, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

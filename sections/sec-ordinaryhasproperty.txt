@@ -1,0 +1,20 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.7 [[HasProperty]] ( _propertyKey_: a property key, ): either a normal completion containing a Boolean or a throw completion > 10.1.7.1 OrdinaryHasProperty ( _obj_: an Object, _propertyKey_: a property key, ): either a normal completion containing a Boolean or a throw completion [id: sec-ordinaryhasproperty]
+
+<emu-clause id="sec-ordinaryhasproperty" type="abstract operation">
+        <h1>
+          OrdinaryHasProperty (
+            _obj_: an Object,
+            _propertyKey_: a property key,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _hasOwn_ be ? <emu-meta effects="user-code">_obj_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+          1. If _hasOwn_ is not *undefined*, return *true*.
+          1. Let _parent_ be ? <emu-meta effects="user-code">_obj_.[[GetPrototypeOf]]()</emu-meta>.
+          1. If _parent_ is not *null*, then
+            1. Return ? <emu-meta effects="user-code">_parent_.[[HasProperty]](_propertyKey_)</emu-meta>.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

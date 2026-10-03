@@ -1,0 +1,69 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.4 Array Initializer > 13.2.4.1 Runtime Semantics: ArrayAccumulation ( _array_: an Array, _nextIndex_: an integer, ): either a normal completion containing an integer or an abrupt completion [id: sec-runtime-semantics-arrayaccumulation]
+
+<emu-clause id="sec-runtime-semantics-arrayaccumulation" oldids="sec-static-semantics-elisionwidth" type="sdo">
+        <h1>
+          Runtime Semantics: ArrayAccumulation (
+            _array_: an Array,
+            _nextIndex_: an integer,
+          ): either a normal completion containing an integer or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>Elision : `,`</emu-grammar>
+        <emu-alg>
+          1. Let _length_ be _nextIndex_ + 1.
+          1. Perform ? Set(_array_, *"length"*, 𝔽(_length_), *true*).
+          1. NOTE: The above step throws if _length_ exceeds 2<sup>32</sup> - 1.
+          1. Return _length_.
+        </emu-alg>
+        <emu-grammar>Elision : Elision `,`</emu-grammar>
+        <emu-alg>
+          1. Return ? ArrayAccumulation of |Elision| with arguments _array_ and (_nextIndex_ + 1).
+        </emu-alg>
+        <emu-grammar>ElementList : Elision? AssignmentExpression</emu-grammar>
+        <emu-alg>
+          1. If |Elision| is present, then
+            1. Set _nextIndex_ to ? ArrayAccumulation of |Elision| with arguments _array_ and _nextIndex_.
+          1. Let _initResult_ be ? Evaluation of |AssignmentExpression|.
+          1. Let _initValue_ be ? GetValue(_initResult_).
+          1. Perform ! CreateDataPropertyOrThrow(_array_, ! ToString(𝔽(_nextIndex_)), _initValue_).
+          1. Return _nextIndex_ + 1.
+        </emu-alg>
+        <emu-grammar>ElementList : Elision? SpreadElement</emu-grammar>
+        <emu-alg>
+          1. If |Elision| is present, then
+            1. Set _nextIndex_ to ? ArrayAccumulation of |Elision| with arguments _array_ and _nextIndex_.
+          1. Return ? ArrayAccumulation of |SpreadElement| with arguments _array_ and _nextIndex_.
+        </emu-alg>
+        <emu-grammar>ElementList : ElementList `,` Elision? AssignmentExpression</emu-grammar>
+        <emu-alg>
+          1. Set _nextIndex_ to ? ArrayAccumulation of the derived |ElementList| with arguments _array_ and _nextIndex_.
+          1. If |Elision| is present, then
+            1. Set _nextIndex_ to ? ArrayAccumulation of |Elision| with arguments _array_ and _nextIndex_.
+          1. Let _initResult_ be ? Evaluation of |AssignmentExpression|.
+          1. Let _initValue_ be ? GetValue(_initResult_).
+          1. Perform ! CreateDataPropertyOrThrow(_array_, ! ToString(𝔽(_nextIndex_)), _initValue_).
+          1. Return _nextIndex_ + 1.
+        </emu-alg>
+        <emu-grammar>ElementList : ElementList `,` Elision? SpreadElement</emu-grammar>
+        <emu-alg>
+          1. Set _nextIndex_ to ? ArrayAccumulation of the derived |ElementList| with arguments _array_ and _nextIndex_.
+          1. If |Elision| is present, then
+            1. Set _nextIndex_ to ? ArrayAccumulation of |Elision| with arguments _array_ and _nextIndex_.
+          1. Return ? ArrayAccumulation of |SpreadElement| with arguments _array_ and _nextIndex_.
+        </emu-alg>
+        <emu-grammar>SpreadElement : `...` AssignmentExpression</emu-grammar>
+        <emu-alg>
+          1. Let _spreadRef_ be ? Evaluation of |AssignmentExpression|.
+          1. Let _spreadObj_ be ? GetValue(_spreadRef_).
+          1. Let _iteratorRecord_ be ? GetIterator(_spreadObj_, ~sync~).
+          1. Repeat,
+            1. Let _next_ be ? IteratorStepValue(_iteratorRecord_).
+            1. If _next_ is ~done~, return _nextIndex_.
+            1. Perform ! CreateDataPropertyOrThrow(_array_, ! ToString(𝔽(_nextIndex_)), _next_).
+            1. Set _nextIndex_ to _nextIndex_ + 1.
+        </emu-alg>
+        <emu-note>
+          <p>CreateDataPropertyOrThrow is used to ensure that own properties are defined for the array even if the standard built-in Array prototype object has been modified in a manner that would preclude the creation of new own properties using [[Set]].</p>
+        </emu-note>
+      </emu-clause>

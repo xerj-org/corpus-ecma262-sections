@@ -1,0 +1,10 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.8 Argument Lists [id: sec-argument-lists]
+
+<emu-clause id="sec-argument-lists">
+      <h1>Argument Lists</h1>
+      <emu-note>
+        <p>The evaluation of an argument list produces a List of values.</p>
+      </emu-note>
+
+      
+    </emu-clause>

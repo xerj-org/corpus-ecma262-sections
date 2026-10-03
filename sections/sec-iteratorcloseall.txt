@@ -1,0 +1,19 @@
+ECMA-262 > 7 Abstract Operations > 7.4 Operations on Iterator Objects > 7.4.12 IteratorCloseAll ( _iterators_: a List of Iterator Records, _completion_: a Completion Record, ): a Completion Record [id: sec-iteratorcloseall]
+
+<emu-clause id="sec-iteratorcloseall" type="abstract operation">
+      <h1>
+        IteratorCloseAll (
+          _iterators_: a List of Iterator Records,
+          _completion_: a Completion Record,
+        ): a Completion Record
+      </h1>
+      <dl class="header">
+        <dt>skip global checks</dt>
+        <dd>true</dd>
+      </dl>
+      <emu-alg>
+        1. For each element _iterator_ of _iterators_, in reverse List order, do
+          1. Set _completion_ to Completion(IteratorClose(_iterator_, _completion_)).
+        1. Return ? _completion_.
+      </emu-alg>
+    </emu-clause>

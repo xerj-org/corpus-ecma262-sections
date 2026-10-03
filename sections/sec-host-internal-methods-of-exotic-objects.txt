@@ -1,0 +1,6 @@
+ECMA-262 > D Host Layering Points > D.5 Internal Methods of Exotic Objects [id: sec-host-internal-methods-of-exotic-objects]
+
+<emu-annex id="sec-host-internal-methods-of-exotic-objects">
+    <h1>Internal Methods of Exotic Objects</h1>
+    <p>Any of the essential internal methods in <emu-xref href="#table-essential-internal-methods"></emu-xref> for any exotic object not specified within this specification.</p>
+  </emu-annex>

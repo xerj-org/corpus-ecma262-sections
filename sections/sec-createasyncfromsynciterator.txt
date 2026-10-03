@@ -1,0 +1,20 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.5 Async-from-Sync Iterator Objects > 27.1.5.1 CreateAsyncFromSyncIterator ( _syncIteratorRecord_: an Iterator Record, ): an Iterator Record [id: sec-createasyncfromsynciterator]
+
+<emu-clause id="sec-createasyncfromsynciterator" type="abstract operation">
+        <h1>
+          CreateAsyncFromSyncIterator (
+            _syncIteratorRecord_: an Iterator Record,
+          ): an Iterator Record
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to create an async Iterator Record from a synchronous Iterator Record.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _asyncIterator_ be OrdinaryObjectCreate(%AsyncFromSyncIteratorPrototype%, « [[SyncIteratorRecord]] »).
+          1. Set _asyncIterator_.[[SyncIteratorRecord]] to _syncIteratorRecord_.
+          1. Let _nextMethod_ be ! Get(_asyncIterator_, *"next"*).
+          1. Let _iteratorRecord_ be the Iterator Record { [[Iterator]]: _asyncIterator_, [[NextMethod]]: _nextMethod_, [[Done]]: *false* }.
+          1. Return _iteratorRecord_.
+        </emu-alg>
+      </emu-clause>

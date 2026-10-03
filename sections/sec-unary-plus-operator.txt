@@ -1,0 +1,10 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.5 Unary Operators > 13.5.4 Unary `+` Operator [id: sec-unary-plus-operator]
+
+<emu-clause id="sec-unary-plus-operator">
+      <h1>Unary `+` Operator</h1>
+      <emu-note>
+        <p>The unary + operator converts its operand to Number type.</p>
+      </emu-note>
+
+      
+    </emu-clause>

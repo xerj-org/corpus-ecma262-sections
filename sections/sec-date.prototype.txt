@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.3 Properties of the Date Constructor > 21.4.3.3 Date.prototype [id: sec-date.prototype]
+
+<emu-clause id="sec-date.prototype">
+        <h1>Date.prototype</h1>
+        <p>The initial value of `Date.prototype` is the Date prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

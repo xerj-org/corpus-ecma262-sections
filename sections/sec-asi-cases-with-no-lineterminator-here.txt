@@ -1,0 +1,11 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.10 Automatic Semicolon Insertion > 12.10.3 Interesting Cases of Automatic Semicolon Insertion > 12.10.3.2 Cases of Automatic Semicolon Insertion and “[no |LineTerminator| here]” [id: sec-asi-cases-with-no-lineterminator-here]
+
+<emu-clause id="sec-asi-cases-with-no-lineterminator-here">
+        <h1>Cases of Automatic Semicolon Insertion and “[no |LineTerminator| here]”</h1>
+        <em>This section is non-normative.</em>
+        <p>ECMAScript contains grammar productions which include “[no |LineTerminator| here]”. These productions are sometimes a means to have optional operands in the grammar. Introducing a |LineTerminator| in these locations would change the grammar production of a source text by using the grammar production without the optional operand.</p>
+
+        <p>The rest of this section describes a number of productions using “[no |LineTerminator| here]” in this version of ECMAScript.</p>
+
+        
+      </emu-clause>

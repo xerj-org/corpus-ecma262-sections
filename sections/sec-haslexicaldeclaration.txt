@@ -1,0 +1,18 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.4 Global Environment Records > 9.1.1.4.12 HasLexicalDeclaration ( _envRecord_: a Global Environment Record, _name_: a String, ): a Boolean [id: sec-haslexicaldeclaration]
+
+<emu-clause id="sec-haslexicaldeclaration" type="abstract operation">
+          <h1>
+            HasLexicalDeclaration (
+              _envRecord_: a Global Environment Record,
+              _name_: a String,
+            ): a Boolean
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It determines if the argument identifier has a binding in _envRecord_ that was created using a lexical declaration such as a |LexicalDeclaration| or a |ClassDeclaration|.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _declRecord_ be _envRecord_.[[DeclarativeRecord]].
+            1. Return ! _declRecord_.HasBinding(_name_).
+          </emu-alg>
+        </emu-clause>

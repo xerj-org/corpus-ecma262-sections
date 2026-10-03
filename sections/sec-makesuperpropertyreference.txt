@@ -1,0 +1,20 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.7 The `super` Keyword > 13.3.7.3 MakeSuperPropertyReference ( _actualThis_: an ECMAScript language value, _propertyKey_: an ECMAScript language value, _strict_: a Boolean, ): a Super Reference Record [id: sec-makesuperpropertyreference]
+
+<emu-clause id="sec-makesuperpropertyreference" type="abstract operation">
+        <h1>
+          MakeSuperPropertyReference (
+            _actualThis_: an ECMAScript language value,
+            _propertyKey_: an ECMAScript language value,
+            _strict_: a Boolean,
+          ): a Super Reference Record
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _envRecord_ be GetThisEnvironment().
+          1. Assert: _envRecord_.HasSuperBinding() is *true*.
+          1. Assert: _envRecord_ is a Function Environment Record.
+          1. Let _baseValue_ be GetSuperBase(_envRecord_).
+          1. Return the Reference Record { [[Base]]: _baseValue_, [[ReferencedName]]: _propertyKey_, [[Strict]]: _strict_, [[ThisValue]]: _actualThis_ }.
+        </emu-alg>
+      </emu-clause>

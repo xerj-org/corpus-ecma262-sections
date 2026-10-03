@@ -1,0 +1,17 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.4 The Completion Record Specification Type > 6.2.4.4 UpdateEmpty ( _completionRecord_: a Completion Record, _value_: any value except a Completion Record, ): a Completion Record [id: sec-updateempty]
+
+<emu-clause id="sec-updateempty" type="abstract operation">
+        <h1>
+          UpdateEmpty (
+            _completionRecord_: a Completion Record,
+            _value_: any value except a Completion Record,
+          ): a Completion Record
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: If _completionRecord_ is either a return completion or a throw completion, then _completionRecord_.[[Value]] is not ~empty~.
+          1. If _completionRecord_.[[Value]] is not ~empty~, return ? _completionRecord_.
+          1. Return Completion Record { [[Type]]: _completionRecord_.[[Type]], [[Value]]: _value_, [[Target]]: _completionRecord_.[[Target]] }.
+        </emu-alg>
+      </emu-clause>

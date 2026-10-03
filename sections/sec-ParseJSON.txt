@@ -1,0 +1,30 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object > 25.5.2 JSON.parse ( _text_ [ , _reviver_ ] ) > 25.5.2.1 ParseJSON ( _text_: a String, ): either a normal completion containing a Record with fields [[ParseNode]] (a Parse Node) and [[Value]] (an ECMAScript language value), or a throw completion [id: sec-ParseJSON]
+
+<emu-clause id="sec-ParseJSON" type="abstract operation">
+        <h1>
+          ParseJSON (
+            _text_: a String,
+          ): either a normal completion containing a Record with fields [[ParseNode]] (a Parse Node) and [[Value]] (an ECMAScript language value), or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. [id="step-json-parse-validate"] If StringToCodePoints(_text_) is not a valid JSON text as specified in ECMA-404, throw a *SyntaxError* exception.
+          1. Let _scriptString_ be the string-concatenation of *"("*, _text_, and *");"*.
+          1. [id="step-json-parse-parse"] Let _script_ be ParseText(_scriptString_, |Script|).
+          1. NOTE: The early error rules defined in <emu-xref href="#sec-object-initializer-static-semantics-early-errors"></emu-xref> have special handling for the above invocation of ParseText.
+          1. Assert: _script_ is a Parse Node.
+          1. [id="step-json-parse-eval"] Let _result_ be ! <emu-meta suppress-effects="user-code">Evaluation of _script_</emu-meta>.
+          1. NOTE: The PropertyDefinitionEvaluation semantics defined in <emu-xref href="#sec-runtime-semantics-propertydefinitionevaluation"></emu-xref> have special handling for the above evaluation.
+          1. [id="step-json-parse-assert-type"] Assert: _result_ is either a String, a Number, a Boolean, an Object that is defined by either an |ArrayLiteral| or an |ObjectLiteral|, or *null*.
+          1. Return the Record { [[ParseNode]]: _script_, [[Value]]: _result_ }.
+        </emu-alg>
+        <p>It is not permitted for a conforming implementation of `JSON.parse` to extend the JSON grammars. If an implementation wishes to support a modified or extended JSON interchange format it must do so by defining a different parse function.</p>
+        <emu-note>
+          <p>Valid JSON text is a subset of the ECMAScript |PrimaryExpression| syntax. Step <emu-xref href="#step-json-parse-validate"></emu-xref> verifies that _jsonString_ conforms to that subset, and step <emu-xref href="#step-json-parse-assert-type"></emu-xref> asserts that evaluation returns a value of an appropriate type.</p>
+          <p>However, because <emu-xref href="#sec-runtime-semantics-propertydefinitionevaluation"></emu-xref> behaves differently during ParseJSON, the same source text can produce different results when evaluated as a |PrimaryExpression| rather than as JSON. Furthermore, the Early Error for duplicate *"__proto__"* properties in object literals, which likewise does not apply during ParseJSON, means that not all texts accepted by ParseJSON are valid as a |PrimaryExpression|, despite matching the grammar.</p>
+        </emu-note>
+        <emu-note>
+          <p>In the case where there are duplicate name Strings within an object, lexically preceding values for the same key shall be overwritten.</p>
+        </emu-note>
+      </emu-clause>

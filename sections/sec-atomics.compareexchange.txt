@@ -1,0 +1,31 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.6 Atomics.compareExchange ( _ta_, _index_, _expectedValue_, _replacementValue_ ) [id: sec-atomics.compareexchange]
+
+<emu-clause id="sec-atomics.compareexchange" type="built-in function">
+      <h1>Atomics.compareExchange ( _ta_, _index_, _expectedValue_, _replacementValue_ )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _byteIndexInBuffer_ be ? ValidateAtomicAccessOnIntegerTypedArray(_ta_, _index_).
+        1. Let _buffer_ be _ta_.[[ViewedArrayBuffer]].
+        1. Let _block_ be _buffer_.[[ArrayBufferData]].
+        1. If _ta_.[[ContentType]] is ~bigint~, then
+          1. Let _expected_ be ? ToBigInt(_expectedValue_).
+          1. Let _replacement_ be ? ToBigInt(_replacementValue_).
+        1. Else,
+          1. Let _expected_ be 𝔽(? ToIntegerOrInfinity(_expectedValue_)).
+          1. Let _replacement_ be 𝔽(? ToIntegerOrInfinity(_replacementValue_)).
+        1. Perform ? RevalidateAtomicAccess(_ta_, _byteIndexInBuffer_).
+        1. Let _elementType_ be TypedArrayElementType(_ta_).
+        1. Let _elementSize_ be TypedArrayElementSize(_ta_).
+        1. Let _agentRecord_ be the Agent Record of the surrounding agent.
+        1. Let _isLittleEndian_ be _agentRecord_.[[LittleEndian]].
+        1. Let _expectedBytes_ be NumericToRawBytes(_elementType_, _expected_, _isLittleEndian_).
+        1. Let _replacementBytes_ be NumericToRawBytes(_elementType_, _replacement_, _isLittleEndian_).
+        1. If IsSharedArrayBuffer(_buffer_) is *true*, then
+          1. Let _rawBytesRead_ be AtomicCompareExchangeInSharedBlock(_block_, _byteIndexInBuffer_, _elementSize_, _expectedBytes_, _replacementBytes_).
+        1. Else,
+          1. Let _rawBytesRead_ be a List of length _elementSize_ whose elements are the sequence of _elementSize_ bytes starting with _block_[_byteIndexInBuffer_].
+          1. If ByteListEqual(_rawBytesRead_, _expectedBytes_) is *true*, then
+            1. Store the individual bytes of _replacementBytes_ into _block_, starting at _block_[_byteIndexInBuffer_].
+        1. Return RawBytesToNumeric(_elementType_, _rawBytesRead_, _isLittleEndian_).
+      </emu-alg>
+    </emu-clause>

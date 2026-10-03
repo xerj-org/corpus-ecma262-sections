@@ -1,0 +1,34 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.5 Properties of the SharedArrayBuffer Prototype Object > 25.2.5.3 SharedArrayBuffer.prototype.grow ( _newLength_ ) [id: sec-sharedarraybuffer.prototype.grow]
+
+<emu-clause id="sec-sharedarraybuffer.prototype.grow" type="built-in function">
+        <h1>SharedArrayBuffer.prototype.grow ( _newLength_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_obj_, [[ArrayBufferMaxByteLength]]).
+          1. If IsSharedArrayBuffer(_obj_) is *false*, throw a *TypeError* exception.
+          1. Let _newByteLength_ be ? ToIndex(_newLength_).
+          1. Let _hostHandled_ be ? HostGrowSharedArrayBuffer(_obj_, _newByteLength_).
+          1. If _hostHandled_ is ~handled~, return *undefined*.
+          1. Let _agentRecord_ be the Agent Record of the surrounding agent.
+          1. Let _isLittleEndian_ be _agentRecord_.[[LittleEndian]].
+          1. Let _byteLengthBlock_ be _obj_.[[ArrayBufferByteLengthData]].
+          1. Let _currentByteLengthRawBytes_ be GetRawBytesFromSharedBlock(_byteLengthBlock_, 0, ~biguint64~, *true*, ~seq-cst~).
+          1. Let _newByteLengthRawBytes_ be NumericToRawBytes(~biguint64~, ℤ(_newByteLength_), _isLittleEndian_).
+          1. Repeat,
+            1. NOTE: This is a compare-and-exchange loop to ensure that parallel, racing grows of the same buffer are totally ordered, are not lost, and do not silently do nothing. The loop exits if it was able to attempt to grow uncontended.
+            1. Let _currentByteLength_ be ℝ(RawBytesToNumeric(~biguint64~, _currentByteLengthRawBytes_, _isLittleEndian_)).
+            1. If _newByteLength_ = _currentByteLength_, return *undefined*.
+            1. If _newByteLength_ &lt; _currentByteLength_ or _newByteLength_ > _obj_.[[ArrayBufferMaxByteLength]], throw a *RangeError* exception.
+            1. Let _byteLengthDelta_ be _newByteLength_ - _currentByteLength_.
+            1. If it is impossible to create a new Shared Data Block value consisting of _byteLengthDelta_ bytes, throw a *RangeError* exception.
+            1. NOTE: No new Shared Data Block is constructed and used here. The observable behaviour of growable SharedArrayBuffers is specified by allocating a max-sized Shared Data Block at construction time, and this step captures the requirement that implementations that run out of memory must throw a *RangeError*.
+            1. Let _readByteLengthRawBytes_ be AtomicCompareExchangeInSharedBlock(_byteLengthBlock_, 0, 8, _currentByteLengthRawBytes_, _newByteLengthRawBytes_).
+            1. If ByteListEqual(_readByteLengthRawBytes_, _currentByteLengthRawBytes_) is *true*, return *undefined*.
+            1. Set _currentByteLengthRawBytes_ to _readByteLengthRawBytes_.
+        </emu-alg>
+        <emu-note>
+          <p>Spurious failures of the compare-exchange to update the length are prohibited. If the bounds checking for the new length passes and the implementation is not out of memory, a ReadModifyWriteSharedMemory event (i.e. a successful compare-exchange) is always added into the candidate execution.</p>
+          <p>Parallel calls to SharedArrayBuffer.prototype.grow are totally ordered. For example, consider two racing calls: `sab.grow(10)` and `sab.grow(20)`. One of the two calls is guaranteed to win the race. The call to `sab.grow(10)` will never shrink `sab` even if `sab.grow(20)` happened first; in that case it will instead throw a RangeError.</p>
+        </emu-note>
+      </emu-clause>

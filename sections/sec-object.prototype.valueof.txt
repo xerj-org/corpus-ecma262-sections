@@ -1,0 +1,9 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.3 Properties of the Object Prototype Object > 20.1.3.7 Object.prototype.valueOf ( ) [id: sec-object.prototype.valueof]
+
+<emu-clause id="sec-object.prototype.valueof" type="built-in function">
+        <h1>Object.prototype.valueOf ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Return ? ToObject(*this* value).
+        </emu-alg>
+      </emu-clause>

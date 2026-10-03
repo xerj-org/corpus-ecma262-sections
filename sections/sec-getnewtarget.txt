@@ -1,0 +1,14 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.4 Execution Contexts > 9.4.5 GetNewTarget ( ): an Object or *undefined* [id: sec-getnewtarget]
+
+<emu-clause id="sec-getnewtarget" type="abstract operation">
+      <h1>GetNewTarget ( ): an Object or *undefined*</h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It determines the NewTarget value using the LexicalEnvironment of the running execution context.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _envRecord_ be GetThisEnvironment().
+        1. Assert: _envRecord_ has a [[NewTarget]] field.
+        1. Return _envRecord_.[[NewTarget]].
+      </emu-alg>
+    </emu-clause>

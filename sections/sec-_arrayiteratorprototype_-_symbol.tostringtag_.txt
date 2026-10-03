@@ -1,0 +1,7 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.5 Array Iterator Objects > 23.1.5.2 The %ArrayIteratorPrototype% Object > 23.1.5.2.2 %ArrayIteratorPrototype% [ %Symbol.toStringTag% ] [id: sec-%arrayiteratorprototype%-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-%arrayiteratorprototype%-@@tostringtag" id="sec-%arrayiteratorprototype%-%symbol.tostringtag%">
+          <h1>%ArrayIteratorPrototype% [ %Symbol.toStringTag% ]</h1>
+          <p>The initial value of the %Symbol.toStringTag% property is the String value *"Array Iterator"*.</p>
+          <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+        </emu-clause>

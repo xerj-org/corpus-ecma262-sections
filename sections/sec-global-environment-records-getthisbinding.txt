@@ -1,0 +1,12 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.4 Global Environment Records > 9.1.1.4.9 GetThisBinding ( ): a normal completion containing an Object [id: sec-global-environment-records-getthisbinding]
+
+<emu-clause id="sec-global-environment-records-getthisbinding" type="concrete method">
+          <h1>GetThisBinding ( ): a normal completion containing an Object</h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>a Global Environment Record _envRecord_</dd>
+          </dl>
+          <emu-alg>
+            1. Return _envRecord_.[[GlobalThisValue]].
+          </emu-alg>
+        </emu-clause>

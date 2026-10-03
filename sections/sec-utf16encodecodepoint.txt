@@ -1,0 +1,18 @@
+ECMA-262 > 11 ECMAScript Language: Source Text > 11.1 Source Text > 11.1.1 Static Semantics: UTF16EncodeCodePoint ( _codePoint_: a Unicode code point, ): a String [id: sec-utf16encodecodepoint]
+
+<emu-clause id="sec-utf16encodecodepoint" type="abstract operation" oldids="sec-utf16encoding,sec-codepointtoutf16codeunits">
+      <h1>
+        Static Semantics: UTF16EncodeCodePoint (
+          _codePoint_: a Unicode code point,
+        ): a String
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Assert: 0 ≤ _codePoint_ ≤ 0x10FFFF.
+        1. If _codePoint_ ≤ 0xFFFF, return the String value consisting of the code unit whose numeric value is _codePoint_.
+        1. Let _cu1_ be the code unit whose numeric value is floor((_codePoint_ - 0x10000) / 0x400) + 0xD800.
+        1. Let _cu2_ be the code unit whose numeric value is ((_codePoint_ - 0x10000) modulo 0x400) + 0xDC00.
+        1. Return the string-concatenation of _cu1_ and _cu2_.
+      </emu-alg>
+    </emu-clause>

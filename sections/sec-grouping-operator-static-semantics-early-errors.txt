@@ -1,0 +1,11 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.9 The Grouping Operator > 13.2.9.1 Static Semantics: Early Errors [id: sec-grouping-operator-static-semantics-early-errors]
+
+<emu-clause id="sec-grouping-operator-static-semantics-early-errors">
+        <h1>Static Semantics: Early Errors</h1>
+        <emu-grammar>PrimaryExpression : CoverParenthesizedExpressionAndArrowParameterList</emu-grammar>
+        <ul>
+          <li>
+            |CoverParenthesizedExpressionAndArrowParameterList| must cover a |ParenthesizedExpression|.
+          </li>
+        </ul>
+      </emu-clause>

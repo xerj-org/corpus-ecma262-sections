@@ -1,0 +1,69 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.1 Scripts > 16.1.4 Script Records [id: sec-script-records]
+
+<emu-clause id="sec-script-records">
+      <h1>Script Records</h1>
+
+      <p>A <dfn id="script-record" variants="Script Records">Script Record</dfn> encapsulates information about a script being evaluated. Each script record contains the fields listed in <emu-xref href="#table-script-records"></emu-xref>.</p>
+
+      <emu-table id="table-script-records" caption="Script Record Fields">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value Type
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              [[Realm]]
+            </td>
+            <td>
+              a Realm Record
+            </td>
+            <td>
+              The realm within which this script was created.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[ECMAScriptCode]]
+            </td>
+            <td>
+              a |Script| Parse Node
+            </td>
+            <td>
+              The result of parsing the source text of this script.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[LoadedModules]]
+            </td>
+            <td>
+              a List of LoadedModuleRequest Records
+            </td>
+            <td>
+              A map from the specifier strings imported by this script to the resolved Module Record. The list does not contain two different Records _r1_ and _r2_ such that ModuleRequestsEqual(_r1_, _r2_) is *true*.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[HostDefined]]
+            </td>
+            <td>
+              anything (default value is ~empty~)
+            </td>
+            <td>
+              Field reserved for use by host environments that need to associate additional information with a script.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+    </emu-clause>

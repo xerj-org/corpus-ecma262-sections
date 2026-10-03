@@ -1,0 +1,12 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.9 RegExp String Iterator Objects [id: sec-regexp-string-iterator-objects]
+
+<emu-clause id="sec-regexp-string-iterator-objects">
+      <h1>RegExp String Iterator Objects</h1>
+      <p>A <dfn variants="RegExp String Iterators,RegExp String Iterator object,RegExp String Iterator objects">RegExp String Iterator</dfn> is an object that represents a specific iteration over some specific String instance object, matching against some specific RegExp instance object. There is not a named constructor for RegExp String Iterator objects. Instead, RegExp String Iterator objects are created by calling certain methods of RegExp instance objects.</p>
+
+      
+
+      
+
+      
+    </emu-clause>

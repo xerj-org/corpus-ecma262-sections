@@ -1,0 +1,18 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.2 Iterator Helper Objects > 27.1.2.1 The %IteratorHelperPrototype% Object [id: sec-%iteratorhelperprototype%-object]
+
+<emu-clause id="sec-%iteratorhelperprototype%-object">
+        <h1>The %IteratorHelperPrototype% Object</h1>
+        <p>The <dfn>%IteratorHelperPrototype%</dfn> object:</p>
+        <ul>
+          <li>has properties that are inherited by all Iterator Helper objects.</li>
+          <li>is an ordinary object.</li>
+          <li>has a [[Prototype]] internal slot whose value is %Iterator.prototype%.</li>
+          <li>has the following properties:</li>
+        </ul>
+
+        
+
+        
+
+        
+      </emu-clause>

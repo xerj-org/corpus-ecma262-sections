@@ -1,0 +1,27 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.4 ToNumber ( _arg_: an ECMAScript language value, ): either a normal completion containing a Number or a throw completion [id: sec-tonumber]
+
+<emu-clause id="sec-tonumber" oldids="table-tonumber-conversions" type="abstract operation">
+      <h1>
+        ToNumber (
+          _arg_: an ECMAScript language value,
+        ): either a normal completion containing a Number or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It converts _arg_ to a value of type Number.</dd>
+      </dl>
+      <emu-alg>
+        1. If _arg_ is a Number, return _arg_.
+        1. If _arg_ is either a Symbol or a BigInt, throw a *TypeError* exception.
+        1. If _arg_ is *undefined*, return *NaN*.
+        1. If _arg_ is either *null* or *false*, return *+0*<sub>𝔽</sub>.
+        1. If _arg_ is *true*, return *1*<sub>𝔽</sub>.
+        1. If _arg_ is a String, return StringToNumber(_arg_).
+        1. Assert: _arg_ is an Object.
+        1. Let _primitiveValue_ be ? ToPrimitive(_arg_, ~number~).
+        1. Assert: _primitiveValue_ is not an Object.
+        1. Return ? ToNumber(_primitiveValue_).
+      </emu-alg>
+
+      
+    </emu-clause>

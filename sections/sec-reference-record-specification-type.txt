@@ -1,0 +1,59 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.5 The Reference Record Specification Type [id: sec-reference-record-specification-type]
+
+<emu-clause id="sec-reference-record-specification-type" oldids="sec-reference-specification-type">
+      <h1>The Reference Record Specification Type</h1>
+      <p>The <dfn variants="Reference Records">Reference Record</dfn> type is used to explain the behaviour of such operators as `delete`, `typeof`, the assignment operators, the `super` keyword and other language features. For example, the left-hand operand of an assignment is expected to produce a Reference Record.</p>
+      <p>A Reference Record is a resolved name or (possibly not-yet-resolved) property binding; its fields are defined by <emu-xref href="#table-reference-record-fields"></emu-xref>.</p>
+
+      <emu-table id="table-reference-record-fields" caption="Reference Record Fields">
+        <table>
+          <thead>
+            <tr>
+              <th>Field Name</th>
+              <th>Value</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tr>
+            <td oldids="sec-getbase,ao-getbase">[[Base]]</td>
+            <td>an ECMAScript language value, an Environment Record, or ~unresolvable~</td>
+            <td>The value or Environment Record which holds the binding. A [[Base]] of ~unresolvable~ indicates that the binding could not be resolved.</td>
+          </tr>
+          <tr>
+            <td oldids="sec-getreferencedname,ao-getreferencedname">[[ReferencedName]]</td>
+            <td>an ECMAScript language value or a Private Name</td>
+            <td>The name of the binding. Always a String if [[Base]] value is an Environment Record. Otherwise, may be an ECMAScript language value other than a String or a Symbol until ToPropertyKey is performed.</td>
+          </tr>
+          <tr>
+            <td oldids="sec-isstrictreference,ao-isstrictreference">[[Strict]]</td>
+            <td>a Boolean</td>
+            <td>*true* if the Reference Record originated in strict mode code, *false* otherwise.</td>
+          </tr>
+          <tr>
+            <td>[[ThisValue]]</td>
+            <td>an ECMAScript language value or ~empty~</td>
+            <td>If not ~empty~, the Reference Record represents a property binding that was expressed using the `super` keyword; it is called a <dfn id="super-reference-record" oldids="super-reference" variants="Super Reference Records">Super Reference Record</dfn> and its [[Base]] value will never be an Environment Record. In that case, the [[ThisValue]] field holds the *this* value at the time the Reference Record was created.</td>
+          </tr>
+        </table>
+      </emu-table>
+
+      <p>The following abstract operations are used in this specification to operate upon Reference Records:</p>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

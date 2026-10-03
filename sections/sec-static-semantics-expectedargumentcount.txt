@@ -1,0 +1,53 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.1 Parameter Lists > 15.1.5 Static Semantics: ExpectedArgumentCount ( ): a non-negative integer [id: sec-static-semantics-expectedargumentcount]
+
+<emu-clause id="sec-static-semantics-expectedargumentcount" oldids="sec-function-definitions-static-semantics-expectedargumentcount,sec-arrow-function-definitions-static-semantics-expectedargumentcount,sec-method-definitions-static-semantics-expectedargumentcount,sec-async-arrow-function-definitions-static-semantics-ExpectedArgumentCount" type="sdo">
+      <h1>Static Semantics: ExpectedArgumentCount ( ): a non-negative integer</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>
+        FormalParameters :
+          [empty]
+          FunctionRestParameter
+      </emu-grammar>
+      <emu-alg>
+        1. Return 0.
+      </emu-alg>
+      <emu-grammar>FormalParameters : FormalParameterList `,` FunctionRestParameter</emu-grammar>
+      <emu-alg>
+        1. Return the ExpectedArgumentCount of |FormalParameterList|.
+      </emu-alg>
+      <emu-note>
+        <p>The ExpectedArgumentCount of a |FormalParameterList| is the number of |FormalParameters| to the left of either the rest parameter or the first |FormalParameter| with an Initializer. A |FormalParameter| without an initializer is allowed after the first parameter with an initializer but such parameters are considered to be optional with *undefined* as their default value.</p>
+      </emu-note>
+      <emu-grammar>FormalParameterList : FormalParameter</emu-grammar>
+      <emu-alg>
+        1. If HasInitializer of |FormalParameter| is *true*, return 0.
+        1. Return 1.
+      </emu-alg>
+      <emu-grammar>FormalParameterList : FormalParameterList `,` FormalParameter</emu-grammar>
+      <emu-alg>
+        1. Let _count_ be the ExpectedArgumentCount of |FormalParameterList|.
+        1. If HasInitializer of |FormalParameterList| is *true* or HasInitializer of |FormalParameter| is *true*, return _count_.
+        1. Return _count_ + 1.
+      </emu-alg>
+      <emu-grammar>ArrowParameters : BindingIdentifier</emu-grammar>
+      <emu-alg>
+        1. Return 1.
+      </emu-alg>
+      <emu-grammar>ArrowParameters : CoverParenthesizedExpressionAndArrowParameterList</emu-grammar>
+      <emu-alg>
+        1. Let _formals_ be the |ArrowFormalParameters| that is covered by |CoverParenthesizedExpressionAndArrowParameterList|.
+        1. Return the ExpectedArgumentCount of _formals_.
+      </emu-alg>
+      <emu-grammar>PropertySetParameterList : FormalParameter</emu-grammar>
+      <emu-alg>
+        1. If HasInitializer of |FormalParameter| is *true*, return 0.
+        1. Return 1.
+      </emu-alg>
+      <emu-grammar>
+        AsyncArrowBindingIdentifier : BindingIdentifier
+      </emu-grammar>
+      <emu-alg>
+        1. Return 1.
+      </emu-alg>
+    </emu-clause>

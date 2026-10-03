@@ -1,0 +1,20 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.2 Function Properties of the Math Object > 21.3.2.29 Math.round ( _x_ ) [id: sec-math.round]
+
+<emu-clause id="sec-math.round" type="built-in function">
+        <h1>Math.round ( _x_ )</h1>
+        <p>This function returns the Number value that is closest to _x_ and is integral. If two integral Numbers are equally close to _x_, then the result is the Number value that is closer to +∞. If _x_ is already integral, the result is _x_.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _n_ be ? ToNumber(_x_).
+          1. If _n_ is not a finite Number or _n_ is an integral Number, return _n_.
+          1. If _n_ &lt; *0.5*<sub>𝔽</sub> and _n_ > *+0*<sub>𝔽</sub>, return *+0*<sub>𝔽</sub>.
+          1. If _n_ &lt; *-0*<sub>𝔽</sub> and _n_ ≥ *-0.5*<sub>𝔽</sub>, return *-0*<sub>𝔽</sub>.
+          1. Return the integral Number closest to _n_, preferring the Number closer to +∞ in the case of a tie.
+        </emu-alg>
+        <emu-note>
+          <p>`Math.round(3.5)` returns 4, but `Math.round(-3.5)` returns -3.</p>
+        </emu-note>
+        <emu-note>
+          <p>The value of `Math.round(x)` is not always the same as the value of `Math.floor(x + 0.5)`. When `x` is *-0*<sub>𝔽</sub> or `x` is less than *-0*<sub>𝔽</sub> but greater than or equal to *-0.5*<sub>𝔽</sub>, `Math.round(x)` returns *-0*<sub>𝔽</sub>, but `Math.floor(x + 0.5)` returns *+0*<sub>𝔽</sub>. `Math.round(x)` may also differ from the value of `Math.floor(x + 0.5)`because of internal rounding when computing `x + 0.5`.</p>
+        </emu-note>
+      </emu-clause>

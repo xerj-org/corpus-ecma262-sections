@@ -1,0 +1,31 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.1 Abstract Operations For DataView Objects > 25.3.1.5 GetViewValue ( _view_: an ECMAScript language value, _requestIndex_: an ECMAScript language value, _isLittleEndian_: an ECMAScript language value, _type_: a TypedArray element type, ): either a normal completion containing either a Number or a BigInt, or a throw completion [id: sec-getviewvalue]
+
+<emu-clause id="sec-getviewvalue" type="abstract operation">
+        <h1>
+          GetViewValue (
+            _view_: an ECMAScript language value,
+            _requestIndex_: an ECMAScript language value,
+            _isLittleEndian_: an ECMAScript language value,
+            _type_: a TypedArray element type,
+          ): either a normal completion containing either a Number or a BigInt, or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used by functions on DataView instances to retrieve values from the view's buffer.</dd>
+        </dl>
+        <emu-alg>
+          1. Perform ? RequireInternalSlot(_view_, [[DataView]]).
+          1. Assert: _view_ has a [[ViewedArrayBuffer]] internal slot.
+          1. Let _getIndex_ be ? ToIndex(_requestIndex_).
+          1. Set _isLittleEndian_ to ToBoolean(_isLittleEndian_).
+          1. Let _viewOffset_ be _view_.[[ByteOffset]].
+          1. Let _viewRecord_ be MakeDataViewWithBufferWitnessRecord(_view_, ~unordered~).
+          1. NOTE: Bounds checking is not a synchronizing operation when _view_'s backing buffer is a growable SharedArrayBuffer.
+          1. If IsViewOutOfBounds(_viewRecord_) is *true*, throw a *TypeError* exception.
+          1. Let _viewSize_ be GetViewByteLength(_viewRecord_).
+          1. Let _elementSize_ be the Element Size value specified in <emu-xref href="#table-the-typedarray-constructors"></emu-xref> for Element Type _type_.
+          1. If _getIndex_ + _elementSize_ > _viewSize_, throw a *RangeError* exception.
+          1. Let _bufferIndex_ be _getIndex_ + _viewOffset_.
+          1. Return GetValueFromBuffer(_view_.[[ViewedArrayBuffer]], _bufferIndex_, _type_, *false*, ~unordered~, _isLittleEndian_).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,15 @@
+ECMA-262 > 29 Memory Model > 29.5 Abstract Operations for the Memory Model [id: sec-abstract-operations-for-the-memory-model]
+
+<emu-clause id="sec-abstract-operations-for-the-memory-model" oldids="sec-synchronizeeventset">
+    <h1>Abstract Operations for the Memory Model</h1>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

@@ -1,0 +1,143 @@
+ECMA-262 > 29 Memory Model > 29.1 Memory Model Fundamentals [id: sec-memory-model-fundamentals]
+
+<emu-clause id="sec-memory-model-fundamentals">
+    <h1>Memory Model Fundamentals</h1>
+    <p>Shared memory accesses (reads and writes) are divided into two groups, atomic accesses and data accesses, defined below. Atomic accesses are sequentially consistent, i.e., there is a strict total ordering of events agreed upon by all agents in an agent cluster. Non-atomic accesses do not have a strict total ordering agreed upon by all agents, i.e., unordered.</p>
+    <emu-note>
+      <p>No orderings weaker than sequentially consistent and stronger than unordered, such as release-acquire, are supported.</p>
+    </emu-note>
+    <p>A <dfn variants="Shared Data Block events">Shared Data Block event</dfn> is either a <dfn>ReadSharedMemory</dfn>, <dfn>WriteSharedMemory</dfn>, or <dfn>ReadModifyWriteSharedMemory</dfn> Record. A <dfn variants="read events">read event</dfn> is either a ReadSharedMemory or a ReadModifyWriteSharedMemory. A <dfn variants="write events">write event</dfn> is either a WriteSharedMemory or a ReadModifyWriteSharedMemory.</p>
+
+    <emu-table id="table-readsharedmemory-fields" caption="ReadSharedMemory Event Fields">
+      <table>
+        <thead>
+          <tr>
+            <th>Field Name</th>
+            <th>Value</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tr>
+          <td>[[Order]]</td>
+          <td>~seq-cst~ or ~unordered~</td>
+          <td>The weakest ordering guaranteed by the memory model for the event.</td>
+        </tr>
+        <tr>
+          <td>[[NoTear]]</td>
+          <td>a Boolean</td>
+          <td>Whether this event is allowed to read from multiple write events with equal memory range as this event.</td>
+        </tr>
+        <tr>
+          <td>[[Block]]</td>
+          <td>a Shared Data Block</td>
+          <td>The block the event operates on.</td>
+        </tr>
+        <tr>
+          <td>[[ByteIndex]]</td>
+          <td>a non-negative integer</td>
+          <td>The byte address of the read in [[Block]].</td>
+        </tr>
+        <tr>
+          <td>[[ElementSize]]</td>
+          <td>a non-negative integer</td>
+          <td>The size of the read.</td>
+        </tr>
+      </table>
+    </emu-table>
+
+    <emu-table id="table-writesharedmemory-fields" caption="WriteSharedMemory Event Fields">
+      <table>
+        <thead>
+          <tr>
+            <th>Field Name</th>
+            <th>Value</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tr>
+          <td>[[Order]]</td>
+          <td>~seq-cst~, ~unordered~, or ~init~</td>
+          <td>The weakest ordering guaranteed by the memory model for the event.</td>
+        </tr>
+        <tr>
+          <td>[[NoTear]]</td>
+          <td>a Boolean</td>
+          <td>Whether this event is allowed to be read from multiple read events with equal memory range as this event.</td>
+        </tr>
+        <tr>
+          <td>[[Block]]</td>
+          <td>a Shared Data Block</td>
+          <td>The block the event operates on.</td>
+        </tr>
+        <tr>
+          <td>[[ByteIndex]]</td>
+          <td>a non-negative integer</td>
+          <td>The byte address of the write in [[Block]].</td>
+        </tr>
+        <tr>
+          <td>[[ElementSize]]</td>
+          <td>a non-negative integer</td>
+          <td>The size of the write.</td>
+        </tr>
+        <tr>
+          <td>[[Payload]]</td>
+          <td>a List of byte values</td>
+          <td>The List of byte values to be read by other events.</td>
+        </tr>
+      </table>
+    </emu-table>
+
+    <emu-table id="table-rmwsharedmemory-fields" caption="ReadModifyWriteSharedMemory Event Fields">
+      <table>
+        <thead>
+          <tr>
+            <th>Field Name</th>
+            <th>Value</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tr>
+          <td>[[Order]]</td>
+          <td>~seq-cst~</td>
+          <td>Read-modify-write events are always sequentially consistent.</td>
+        </tr>
+        <tr>
+          <td>[[NoTear]]</td>
+          <td>*true*</td>
+          <td>Read-modify-write events cannot tear.</td>
+        </tr>
+        <tr>
+          <td>[[Block]]</td>
+          <td>a Shared Data Block</td>
+          <td>The block the event operates on.</td>
+        </tr>
+        <tr>
+          <td>[[ByteIndex]]</td>
+          <td>a non-negative integer</td>
+          <td>The byte address of the read-modify-write in [[Block]].</td>
+        </tr>
+        <tr>
+          <td>[[ElementSize]]</td>
+          <td>a non-negative integer</td>
+          <td>The size of the read-modify-write.</td>
+        </tr>
+        <tr>
+          <td>[[Payload]]</td>
+          <td>a List of byte values</td>
+          <td>The List of byte values to be passed to [[ModifyOp]].</td>
+        </tr>
+        <tr>
+          <td>[[ModifyOp]]</td>
+          <td>a read-modify-write modification function</td>
+          <td>An Abstract Closure that returns a modified List of byte values from a read List of byte values and [[Payload]].</td>
+        </tr>
+      </table>
+    </emu-table>
+
+    <p>Shared Data Block events are introduced to candidate execution Agent Events Records by abstract operations or by methods on the Atomics object. Some operations also introduce <dfn variants="Synchronize,Synchronize event">Synchronize events</dfn>, which have no fields and exist purely to directly constrain the permitted orderings of other events. And finally, there are host-specific events. A <dfn variants="Memory events">Memory event</dfn> is either a Shared Data Block event, Synchronize event, or such a host-specific event.</p>
+    <p>Let the <dfn variants="memory ranges">memory range</dfn> of a Shared Data Block event _e_ be the Set of all integers in the interval from _e_.[[ByteIndex]] (inclusive) to _e_.[[ByteIndex]] + _e_.[[ElementSize]] (exclusive). Two events' memory ranges are equal when the events have the same [[Block]], [[ByteIndex]], and [[ElementSize]]. Two events' memory ranges are overlapping when the events have the same [[Block]], the ranges are not equal, and their intersection is non-empty. Two events' memory ranges are disjoint when the events do not have the same [[Block]] or their ranges are neither equal nor overlapping.</p>
+    <emu-note>
+      <p>Examples of host-specific synchronizing events that should be accounted for are: sending a SharedArrayBuffer from one agent to another (e.g., by `postMessage` in a browser), starting and stopping agents, and communicating within the agent cluster via channels other than shared memory. For a particular execution _execution_, those events are provided by the host via the host-synchronizes-with strict partial order. Additionally, hosts can add host-specific synchronizing events to _execution_.[[EventList]] so as to participate in the is-agent-order-before Relation.</p>
+    </emu-note>
+    <p>Events are ordered within candidate executions by the relations defined below.</p>
+  </emu-clause>

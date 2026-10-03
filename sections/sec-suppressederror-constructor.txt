@@ -1,0 +1,14 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.8 SuppressedError Objects > 20.5.8.1 The SuppressedError Constructor [id: sec-suppressederror-constructor]
+
+<emu-clause id="sec-suppressederror-constructor">
+        <h1>The SuppressedError Constructor</h1>
+        <p>The SuppressedError constructor:</p>
+        <ul>
+          <li>is <dfn>%SuppressedError%</dfn>.</li>
+          <li>is the initial value of the *"SuppressedError"* property of the global object.</li>
+          <li>creates and initializes a new SuppressedError object when called as a function rather than as a constructor. Thus the function call `SuppressedError(…)` is equivalent to the object creation expression `new SuppressedError(…)` with the same arguments.</li>
+          <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified SuppressedError behaviour must include a `super` call to the SuppressedError constructor to create and initialize subclass instances with an [[ErrorData]] internal slot.</li>
+        </ul>
+
+        
+      </emu-clause>

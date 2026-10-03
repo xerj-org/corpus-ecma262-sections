@@ -1,0 +1,14 @@
+ECMA-262 > 21 Numbers and Dates > 21.2 BigInt Objects > 21.2.1 The BigInt Constructor [id: sec-bigint-constructor]
+
+<emu-clause id="sec-bigint-constructor">
+      <h1>The BigInt Constructor</h1>
+      <p>The BigInt constructor:</p>
+      <ul>
+        <li>is <dfn>%BigInt%</dfn>.</li>
+        <li>is the initial value of the *"BigInt"* property of the global object.</li>
+        <li>performs a type conversion when called as a function rather than as a constructor.</li>
+        <li>is not intended to be used with the `new` operator or to be subclassed. It may be used as the value of an `extends` clause of a class definition but a `super` call to the BigInt constructor will cause an exception.</li>
+      </ul>
+
+      
+    </emu-clause>

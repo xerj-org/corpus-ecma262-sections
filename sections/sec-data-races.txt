@@ -1,0 +1,14 @@
+ECMA-262 > 29 Memory Model > 29.9 Data Races [id: sec-data-races]
+
+<emu-clause id="sec-data-races">
+    <h1>Data Races</h1>
+    <p>For an execution _execution_ and events _eventA_ and _eventB_ that are contained in SharedDataBlockEventSet(_execution_), _eventA_ and _eventB_ are in a <dfn>data race</dfn> if the following algorithm returns *true*.</p>
+    <emu-alg>
+      1. If _eventA_ and _eventB_ are in a <emu-xref href="#sec-races">race</emu-xref> in _execution_, then
+        1. If _eventA_.[[Order]] is not ~seq-cst~ or _eventB_.[[Order]] is not ~seq-cst~, then
+          1. Return *true*.
+        1. If _eventA_ and _eventB_ have overlapping memory ranges, then
+          1. Return *true*.
+      1. Return *false*.
+    </emu-alg>
+  </emu-clause>

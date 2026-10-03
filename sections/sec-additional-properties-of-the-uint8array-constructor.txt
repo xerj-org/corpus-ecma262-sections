@@ -1,0 +1,9 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.1 Additional Properties of the Uint8Array Constructor [id: sec-additional-properties-of-the-uint8array-constructor]
+
+<emu-clause id="sec-additional-properties-of-the-uint8array-constructor">
+      <h1>Additional Properties of the Uint8Array Constructor</h1>
+
+      
+
+      
+    </emu-clause>

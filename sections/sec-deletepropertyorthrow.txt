@@ -1,0 +1,19 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.9 DeletePropertyOrThrow ( _obj_: an Object, _propertyKey_: a property key, ): either a normal completion containing ~unused~ or a throw completion [id: sec-deletepropertyorthrow]
+
+<emu-clause id="sec-deletepropertyorthrow" type="abstract operation">
+      <h1>
+        DeletePropertyOrThrow (
+          _obj_: an Object,
+          _propertyKey_: a property key,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to remove a specific own property of an object. It throws an exception if the property is not configurable.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _success_ be ? <emu-meta effects="user-code">_obj_.[[Delete]](_propertyKey_)</emu-meta>.
+        1. If _success_ is *false*, throw a *TypeError* exception.
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

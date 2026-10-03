@@ -1,0 +1,6 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.6 GeneratorFunction Objects > 27.6.4 GeneratorFunction Instances > 27.6.4.2 name [id: sec-generatorfunction-instances-name]
+
+<emu-clause id="sec-generatorfunction-instances-name">
+        <h1>name</h1>
+        <p>The specification for the *"name"* property of Function instances given in <emu-xref href="#sec-function-instances-name"></emu-xref> also applies to GeneratorFunction instances.</p>
+      </emu-clause>

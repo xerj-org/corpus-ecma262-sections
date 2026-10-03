@@ -1,0 +1,16 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.8 The Abstract Closure Specification Type [id: sec-abstract-closure]
+
+<emu-clause id="sec-abstract-closure">
+      <h1>The Abstract Closure Specification Type</h1>
+      <p>The <dfn variants="Abstract Closures">Abstract Closure</dfn> specification type is used to refer to algorithm steps together with a collection of values. Abstract Closures are meta-values and are invoked using function application style such as _closure_(_arg1_, _arg2_). Like abstract operations, invocations perform the algorithm steps described by the Abstract Closure.</p>
+      <p>In algorithm steps that create an Abstract Closure, values are captured with the verb “capture” followed by a list of aliases. When an Abstract Closure is created, it captures the value that is associated with each alias at that time. In steps that specify the algorithm to be performed when an Abstract Closure is called, each captured value is referred to by the alias that was used to capture the value.</p>
+      <p>If an Abstract Closure returns a Completion Record, that Completion Record must be either a normal completion or a throw completion.</p>
+      <p>Abstract Closures are created inline as part of other algorithms, shown in the following example.</p>
+      <emu-alg example>
+        1. Let _addend_ be 41.
+        1. Let _closure_ be a new Abstract Closure with parameters (_x_) that captures _addend_ and performs the following steps when called:
+          1. Return _x_ + _addend_.
+        1. Let _value_ be _closure_(1).
+        1. Assert: _value_ is 42.
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,39 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots [id: sec-ordinary-object-internal-methods-and-internal-slots]
+
+<emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots">
+    <h1>Ordinary Object Internal Methods and Internal Slots</h1>
+    <p>All ordinary objects have an internal slot called [[Prototype]]. The value of this internal slot is either *null* or an object and is used for implementing inheritance. Assume a property named _propertyKey_ is missing from an ordinary object _obj_ but exists on its [[Prototype]] object. If _propertyKey_ refers to a data property on the [[Prototype]] object, _obj_ inherits it for get access, making it behave as if _propertyKey_ was a property of _obj_. If _propertyKey_ refers to a writable data property on the [[Prototype]] object, set access of _propertyKey_ on _obj_ creates a new data property named _propertyKey_ on _obj_. If _propertyKey_ refers to a non-writable data property on the [[Prototype]] object, set access of _propertyKey_ on _obj_ fails. If _propertyKey_ refers to an accessor property on the [[Prototype]] object, the accessor is inherited by _obj_ for both get access and set access.</p>
+    <p>Every ordinary object has a Boolean-valued [[Extensible]] internal slot which is used to fulfill the extensibility-related internal method invariants specified in <emu-xref href="#sec-invariants-of-the-essential-internal-methods"></emu-xref>. Namely, once the value of an object's [[Extensible]] internal slot has been set to *false*, it is no longer possible to add properties to the object, to modify the value of the object's [[Prototype]] internal slot, or to subsequently change the value of [[Extensible]] to *true*.</p>
+    <p>In the following algorithm descriptions, assume _obj_ is an ordinary object, _propertyKey_ is a property key value, _value_ is any ECMAScript language value, and _propertyDesc_ is a Property Descriptor record.</p>
+    <p>Each ordinary object internal method delegates to a similarly-named abstract operation. If such an abstract operation depends on another internal method, then the internal method is invoked on _obj_ rather than calling the similarly-named abstract operation directly. These semantics ensure that exotic objects have their overridden internal methods invoked when ordinary object internal methods are applied to them.</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

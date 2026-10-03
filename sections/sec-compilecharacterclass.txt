@@ -1,0 +1,23 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.8 Runtime Semantics: CompileCharacterClass ( _regexpRecord_: a RegExp Record, ): a Record with fields [[CharSet]] (a CharSet) and [[Invert]] (a Boolean) [id: sec-compilecharacterclass]
+
+<emu-clause id="sec-compilecharacterclass" type="sdo" oldids="sec-characterclass">
+        <h1>
+          Runtime Semantics: CompileCharacterClass (
+            _regexpRecord_: a RegExp Record,
+          ): a Record with fields [[CharSet]] (a CharSet) and [[Invert]] (a Boolean)
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>CharacterClass :: `[` ClassContents `]`</emu-grammar>
+        <emu-alg>
+          1. Let _charSet_ be CompileToCharSet of |ClassContents| with argument _regexpRecord_.
+          1. Return the Record { [[CharSet]]: _charSet_, [[Invert]]: *false* }.
+        </emu-alg>
+        <emu-grammar>CharacterClass :: `[^` ClassContents `]`</emu-grammar>
+        <emu-alg>
+          1. Let _charSet_ be CompileToCharSet of |ClassContents| with argument _regexpRecord_.
+          1. If _regexpRecord_.[[UnicodeSets]] is *true*, then
+            1. Return the Record { [[CharSet]]: CharacterComplement(_regexpRecord_, _charSet_), [[Invert]]: *false* }.
+          1. Return the Record { [[CharSet]]: _charSet_, [[Invert]]: *true* }.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,41 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.8 Synthetic Module Records [id: sec-synthetic-module-records]
+
+<emu-clause id="sec-synthetic-module-records">
+        <h1>Synthetic Module Records</h1>
+
+        <p>A <dfn variants="Synthetic Module Records">Synthetic Module Record</dfn> is used to represent information about a module that is defined by specifications. Its exported names are statically defined at creation, while their corresponding values can change over time using SetSyntheticModuleExport. It has no imports or dependencies.</p>
+
+        <emu-note>A Synthetic Module Record could be used for defining a variety of module types: for example, JSON modules or CSS modules.</emu-note>
+
+        <p>In addition to the fields defined in <emu-xref href="#table-module-record-fields"></emu-xref> Synthetic Module Records have the additional fields listed in <emu-xref href="#table-synthetic-module-record-fields"></emu-xref>.</p>
+
+        <emu-table id="table-synthetic-module-record-fields" caption="Additional Fields of Synthetic Module Records">
+          <table>
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Value Type</th>
+                <th>Meaning</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>[[ExportNames]]</td>
+              <td>a List of Strings</td>
+              <td>The names of the exports of the module. This list does not contain duplicates.</td>
+            </tr>
+            <tr>
+              <td>[[EvaluationSteps]]</td>
+              <td>an Abstract Closure</td>
+              <td>The initialization logic to perform upon evaluation of the module, taking the Synthetic Module Record as its sole argument. It must not modify [[ExportNames]]. It may return an abrupt completion.</td>
+            </tr>
+          </table>
+        </emu-table>
+
+        
+
+        
+
+        
+
+        
+      </emu-clause>

@@ -1,0 +1,20 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.7 Class Definitions > 15.7.5 Static Semantics: NonConstructorElements ( ): a List of |ClassElement| Parse Nodes [id: sec-static-semantics-nonconstructorelements]
+
+<emu-clause id="sec-static-semantics-nonconstructorelements" oldids="sec-static-semantics-nonconstructormethoddefinitions" type="sdo">
+      <h1>Static Semantics: NonConstructorElements ( ): a List of |ClassElement| Parse Nodes</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>ClassElementList : ClassElement</emu-grammar>
+      <emu-alg>
+        1. If the ClassElementKind of |ClassElement| is ~non-constructor-method~, then
+          1. Return « |ClassElement| ».
+        1. Return a new empty List.
+      </emu-alg>
+      <emu-grammar>ClassElementList : ClassElementList ClassElement</emu-grammar>
+      <emu-alg>
+        1. Let _list_ be the NonConstructorElements of |ClassElementList|.
+        1. If the ClassElementKind of |ClassElement| is ~non-constructor-method~, then
+          1. Append |ClassElement| to _list_.
+        1. Return _list_.
+      </emu-alg>
+    </emu-clause>

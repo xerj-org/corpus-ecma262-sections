@@ -1,0 +1,6 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.2 Properties of the Number Constructor > 21.1.2.13 Number.parseInt ( _string_, _radix_ ) [id: sec-number.parseint]
+
+<emu-clause id="sec-number.parseint" type="built-in function">
+        <h1>Number.parseInt ( _string_, _radix_ )</h1>
+        <p>The initial value of the *"parseInt"* property is %parseInt%.</p>
+      </emu-clause>

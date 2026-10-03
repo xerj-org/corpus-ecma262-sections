@@ -1,0 +1,43 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.5 Object Initializer > 13.2.5.1 Static Semantics: Early Errors [id: sec-object-initializer-static-semantics-early-errors]
+
+<emu-clause id="sec-object-initializer-static-semantics-early-errors" oldids="sec-__proto__-property-names-in-object-initializers">
+        <h1>Static Semantics: Early Errors</h1>
+        <emu-grammar>ObjectLiteral : `{` PropertyDefinitionList `,`? `}`</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the PropertyNameList of |PropertyDefinitionList| contains any duplicate entries for *"__proto__"* and at least two of those entries were obtained from productions of the form <emu-grammar>PropertyDefinition : PropertyName `:` AssignmentExpression</emu-grammar>. This rule is not applied if this |ObjectLiteral| is contained within a |Script| that is being parsed for ParseJSON (see step <emu-xref href="#step-json-parse-parse"></emu-xref> of ParseJSON).
+          </li>
+        </ul>
+        <emu-note>
+          <p>The List returned by PropertyNameList does not include property names defined using a |ComputedPropertyName|.</p>
+        </emu-note>
+        <emu-grammar>PropertyDefinition : MethodDefinition</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if HasDirectSuper of |MethodDefinition| is *true*.
+          </li>
+          <li>
+            It is a Syntax Error if the PrivateBoundIdentifiers of |MethodDefinition| is not empty.
+          </li>
+        </ul>
+        <emu-grammar>PropertyDefinition : CoverInitializedName</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if any source text is matched by this production.
+          </li>
+        </ul>
+        <emu-note>
+          <p>Elsewhere in this specification, there are early error rules that, under certain circumstances, require that a |LeftHandSideExpression| must cover an |AssignmentPattern|. Consequently, |ObjectLiteral| serves as a cover grammar for |ObjectAssignmentPattern|. The |CoverInitializedName| production is necessary to fully cover |AssignmentProperty|, but is not valid within an actual object initializer.</p>
+          <p>Specifically, in a context where an actual |ObjectLiteral| is expected, the above early error rule prevents the use of |CoverInitializedName|. But in cases where |ObjectLiteral| is used as a cover grammar, the semantics of “must cover” state that the Parse Nodes within the |ObjectLiteral| are not subject to early error rules, and so |CoverInitializedName| is allowed.</p>
+          <p>For example, consider:</p>
+          <pre><code class="javascript">
+            let o = {f = 1};
+          </code></pre>
+          <p>`{f = 1}` is parsed as an |ObjectLiteral| with a |CoverInitializedName|, which results in a Syntax Error via this early error rule.</p>
+          <p>In contrast, consider:</p>
+          <pre><code class="javascript">
+            ({f = 1} = {f: 2});
+          </code></pre>
+          <p>Here, `{f = 1}` is again initially parsed as an |ObjectLiteral| with a |CoverInitializedName|, but since it's the |LeftHandSideExpression| of an |AssignmentExpression|, it must cover an |AssignmentPattern|, so the |ObjectLiteral| and |CoverInitializedName| are not subject to early error rules. Instead, `{f = 1}` is reparsed as an |ObjectAssignmentPattern| with an |AssignmentProperty|, and there is no Syntax Error.</p>
+        </emu-note>
+      </emu-clause>

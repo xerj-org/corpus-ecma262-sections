@@ -1,0 +1,28 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.4 Method Definitions [id: sec-method-definitions]
+
+<emu-clause id="sec-method-definitions">
+    <h1>Method Definitions</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      MethodDefinition[Yield, Await] :
+        ClassElementName[?Yield, ?Await] `(` UniqueFormalParameters[~Yield, ~Await] `)` `{` FunctionBody[~Yield, ~Await] `}`
+        GeneratorMethod[?Yield, ?Await]
+        AsyncMethod[?Yield, ?Await]
+        AsyncGeneratorMethod[?Yield, ?Await]
+        `get` ClassElementName[?Yield, ?Await] `(` `)` `{` FunctionBody[~Yield, ~Await] `}`
+        `set` ClassElementName[?Yield, ?Await] `(` PropertySetParameterList `)` `{` FunctionBody[~Yield, ~Await] `}`
+
+      PropertySetParameterList :
+        FormalParameter[~Yield, ~Await]
+    </emu-grammar>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

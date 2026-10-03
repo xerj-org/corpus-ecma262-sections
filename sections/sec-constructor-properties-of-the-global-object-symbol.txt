@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.35 Symbol ( . . . ) [id: sec-constructor-properties-of-the-global-object-symbol]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-symbol">
+      <h1>Symbol ( . . . )</h1>
+      <p>See <emu-xref href="#sec-symbol-constructor"></emu-xref>.</p>
+    </emu-clause>

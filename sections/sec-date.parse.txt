@@ -1,0 +1,19 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.3 Properties of the Date Constructor > 21.4.3.2 Date.parse ( _string_ ) [id: sec-date.parse]
+
+<emu-clause id="sec-date.parse" type="built-in function">
+        <h1>Date.parse ( _string_ )</h1>
+        <p>This function applies the ToString operator to its argument. If ToString results in an abrupt completion the Completion Record is immediately returned. Otherwise, this function interprets the resulting String as a date and time; it returns a Number, the UTC time value corresponding to the date and time. The String may be interpreted as a local time, a UTC time, or a time in some other time zone, depending on the contents of the String. The function first attempts to parse the String according to the format described in Date Time String Format (<emu-xref href="#sec-date-time-string-format"></emu-xref>), including expanded years. If the String does not conform to that format the function may fall back to any implementation-specific heuristics or implementation-specific date formats. Strings that are unrecognizable or contain out-of-bounds format element values shall cause this function to return *NaN*.</p>
+        <p>If the String conforms to the <emu-xref href="#sec-date-time-string-format">Date Time String Format</emu-xref>, substitute values take the place of absent format elements. When the `MM` or `DD` elements are absent, *"01"* is used. When the `HH`, `mm`, or `ss` elements are absent, *"00"* is used. When the `sss` element is absent, *"000"* is used. When the UTC offset representation is absent, date-only forms are interpreted as a UTC time and date-time forms are interpreted as a local time.</p>
+        <p>If `x` is any Date whose milliseconds amount is zero within a particular implementation of ECMAScript, then all of the following expressions should produce the same numeric value in that implementation, if all the properties referenced have their initial values:</p>
+        <pre><code class="javascript">
+          x.valueOf()
+          Date.parse(x.toString())
+          Date.parse(x.toUTCString())
+          Date.parse(x.toISOString())
+        </code></pre>
+        <p>However, the expression</p>
+        <pre><code class="javascript">
+          Date.parse(x.toLocaleString())
+        </code></pre>
+        <p>is not required to produce the same Number value as the preceding three expressions and, in general, the value produced by this function is implementation-defined when given any String value that does not conform to the Date Time String Format (<emu-xref href="#sec-date-time-string-format"></emu-xref>) and that could not be produced in that implementation by the `toString` or `toUTCString` method.</p>
+      </emu-clause>

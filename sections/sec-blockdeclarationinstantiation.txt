@@ -1,0 +1,44 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.2 Block > 14.2.3 BlockDeclarationInstantiation ( _code_: a Parse Node, _envRecord_: a Declarative Environment Record, ): ~unused~ [id: sec-blockdeclarationinstantiation]
+
+<emu-clause id="sec-blockdeclarationinstantiation" type="abstract operation" oldids="sec-web-compat-blockdeclarationinstantiation">
+      <h1>
+        BlockDeclarationInstantiation (
+          _code_: a Parse Node,
+          _envRecord_: a Declarative Environment Record,
+        ): ~unused~
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>_code_ is the Parse Node corresponding to the body of the block. _envRecord_ is the Environment Record in which bindings are to be created.</dd>
+      </dl>
+      <emu-note>
+        <p>When a |Block| or |CaseBlock| is evaluated a new Declarative Environment Record is created and bindings for each block scoped variable, constant, function, or class declared in the block are instantiated in the Environment Record.</p>
+      </emu-note>
+      <p>It performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _decls_ be the LexicallyScopedDeclarations of _code_.
+        1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+        1. For each element _decl_ of _decls_, do
+          1. For each element _name_ of the BoundNames of _decl_, do
+            1. If IsConstantDeclaration of _decl_ is *true*, then
+              1. Perform ! _envRecord_.CreateImmutableBinding(_name_, *true*).
+            1. Else,
+              1. [id="step-blockdeclarationinstantiation-createmutablebinding", normative-optional] If the host is a web browser or otherwise supports <emu-xref href="#sec-block-level-function-declarations-web-legacy-compatibility-semantics" title></emu-xref>, then
+                1. If ! _envRecord_.HasBinding(_name_) is *false*, then
+                  1. Perform ! _envRecord_.CreateMutableBinding(_name_, *false*).
+              1. Else,
+                1. Perform ! _envRecord_.CreateMutableBinding(_name_, *false*).
+          1. If _decl_ is either a |FunctionDeclaration|, a |GeneratorDeclaration|, an |AsyncFunctionDeclaration|, or an |AsyncGeneratorDeclaration|, then
+            1. Let _funcName_ be the sole element of the BoundNames of _decl_.
+            1. Let _funcObj_ be InstantiateFunctionObject of _decl_ with arguments _envRecord_ and _privateEnv_.
+            1. [id="step-blockdeclarationinstantiation-initializebinding", normative-optional] If the host is a web browser or otherwise supports <emu-xref href="#sec-block-level-function-declarations-web-legacy-compatibility-semantics" title></emu-xref>, then
+              1. If the binding for _funcName_ in _envRecord_ is an uninitialized binding, then
+                1. Perform ! _envRecord_.InitializeBinding(_funcName_, _funcObj_).
+              1. Else,
+                1. Assert: _decl_ is a |FunctionDeclaration|.
+                1. Perform ! _envRecord_.SetMutableBinding(_funcName_, _funcObj_, *false*).
+            1. Else,
+              1. Perform ! _envRecord_.InitializeBinding(_funcName_, _funcObj_).
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

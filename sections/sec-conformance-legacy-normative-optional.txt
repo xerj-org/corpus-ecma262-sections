@@ -1,0 +1,6 @@
+ECMA-262 > 2 Conformance > 2.3 Example Legacy Normative Optional Clause Heading [id: sec-conformance-legacy-normative-optional]
+
+<emu-clause id="sec-conformance-legacy-normative-optional" example legacy normative-optional>
+    <h1>Example Legacy Normative Optional Clause Heading</h1>
+    <p>Example clause contents.</p>
+  </emu-clause>

@@ -1,0 +1,7 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.5 Unary Operators > 13.5.2 The `void` Operator [id: sec-void-operator]
+
+<emu-clause id="sec-void-operator">
+      <h1>The `void` Operator</h1>
+
+      
+    </emu-clause>

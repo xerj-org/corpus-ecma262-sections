@@ -1,0 +1,26 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.3 Abstract Operations for Uint8Array Objects > 23.3.3.5 DecodeFinalBase64Chunk ( _chunk_: a String of length 2 or 3, _throwOnExtraBits_: a Boolean, ): either a normal completion containing a List of byte values, or a throw completion [id: sec-decodefinalbase64chunk]
+
+<emu-clause id="sec-decodefinalbase64chunk" type="abstract operation">
+        <h1>
+          DecodeFinalBase64Chunk (
+            _chunk_: a String of length 2 or 3,
+            _throwOnExtraBits_: a Boolean,
+          ): either a normal completion containing a List of byte values, or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _chunkLength_ be the length of _chunk_.
+          1. If _chunkLength_ = 2, then
+            1. Set _chunk_ to the string-concatenation of _chunk_ and *"AA"*.
+          1. Else,
+            1. Assert: _chunkLength_ is 3.
+            1. Set _chunk_ to the string-concatenation of _chunk_ and *"A"*.
+          1. Let _bytes_ be DecodeFullLengthBase64Chunk(_chunk_).
+          1. If _chunkLength_ = 2, then
+            1. If _throwOnExtraBits_ is *true* and _bytes_[1] ≠ 0, throw a *SyntaxError* exception.
+            1. Return « _bytes_[0] ».
+          1. If _throwOnExtraBits_ is *true* and _bytes_[2] ≠ 0, throw a *SyntaxError* exception.
+          1. Return « _bytes_[0], _bytes_[1] ».
+        </emu-alg>
+      </emu-clause>

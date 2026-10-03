@@ -1,0 +1,23 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.1 Abstract Operations For Set Objects > 24.2.1.4 SetDataIndex ( _setData_: a List of either ECMAScript language values or ~empty~, _value_: an ECMAScript language value, ): a non-negative integer or ~not-found~ [id: sec-setdataindex]
+
+<emu-clause id="sec-setdataindex" type="abstract operation">
+        <h1>
+          SetDataIndex (
+            _setData_: a List of either ECMAScript language values or ~empty~,
+            _value_: an ECMAScript language value,
+          ): a non-negative integer or ~not-found~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Set _value_ to CanonicalizeKeyedCollectionKey(_value_).
+          1. Let _size_ be the number of elements in _setData_.
+          1. Let _index_ be 0.
+          1. Repeat, while _index_ &lt; _size_,
+            1. Let _element_ be _setData_[_index_].
+            1. If _element_ is not ~empty~ and _element_ is _value_, then
+              1. Return _index_.
+            1. Set _index_ to _index_ + 1.
+          1. Return ~not-found~.
+        </emu-alg>
+      </emu-clause>

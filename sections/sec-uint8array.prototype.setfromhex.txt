@@ -1,0 +1,24 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.2 Additional Properties of the Uint8Array Prototype Object > 23.3.2.2 Uint8Array.prototype.setFromHex ( _string_ ) [id: sec-uint8array.prototype.setfromhex]
+
+<emu-clause id="sec-uint8array.prototype.setfromhex" type="built-in function">
+        <h1>Uint8Array.prototype.setFromHex ( _string_ )</h1>
+        <emu-alg>
+          1. Let _into_ be the *this* value.
+          1. Perform ? ValidateUint8Array(_into_).
+          1. If _string_ is not a String, throw a *TypeError* exception.
+          1. Let _taRecord_ be ? ValidateTypedArrayBounds(_into_, ~seq-cst~).
+          1. Let _byteLength_ be TypedArrayLength(_taRecord_).
+          1. Let _result_ be FromHex(_string_, _byteLength_).
+          1. Let _bytes_ be _result_.[[Bytes]].
+          1. Let _written_ be the number of elements in _bytes_.
+          1. NOTE: FromHex does not invoke any user code, so the ArrayBuffer backing _into_ cannot have been detached or shrunk.
+          1. Assert: _written_ ≤ _byteLength_.
+          1. Perform SetUint8ArrayBytes(_into_, _bytes_).
+          1. If _result_.[[Error]] is not ~none~, then
+            1. Throw _result_.[[Error]].
+          1. Let _resultObj_ be OrdinaryObjectCreate(%Object.prototype%).
+          1. Perform ! CreateDataPropertyOrThrow(_resultObj_, *"read"*, 𝔽(_result_.[[Read]])).
+          1. Perform ! CreateDataPropertyOrThrow(_resultObj_, *"written"*, 𝔽(_written_)).
+          1. Return _resultObj_.
+        </emu-alg>
+      </emu-clause>

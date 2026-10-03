@@ -1,0 +1,9 @@
+ECMA-262 > 5 Notational Conventions [id: sec-notational-conventions]
+
+<emu-clause id="sec-notational-conventions">
+  <h1>Notational Conventions</h1>
+
+  
+
+  
+</emu-clause>

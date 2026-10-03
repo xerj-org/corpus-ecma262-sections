@@ -1,0 +1,11 @@
+ECMA-262 > 28 Reflection > 28.1 The Reflect Object > 28.1.4 Reflect.deleteProperty ( _target_, _key_ ) [id: sec-reflect.deleteproperty]
+
+<emu-clause id="sec-reflect.deleteproperty" type="built-in function">
+      <h1>Reflect.deleteProperty ( _target_, _key_ )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. If _target_ is not an Object, throw a *TypeError* exception.
+        1. Let _propertyKey_ be ? ToPropertyKey(_key_).
+        1. Return ? <emu-meta effects="user-code">_target_.[[Delete]](_propertyKey_)</emu-meta>.
+      </emu-alg>
+    </emu-clause>

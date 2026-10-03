@@ -1,0 +1,103 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.4 Properties of the Date Prototype Object [id: sec-properties-of-the-date-prototype-object]
+
+<emu-clause id="sec-properties-of-the-date-prototype-object">
+      <h1>Properties of the Date Prototype Object</h1>
+      <p>The <dfn>Date prototype object</dfn>:</p>
+      <ul>
+        <li>is <dfn>%Date.prototype%</dfn>.</li>
+        <li>is itself an ordinary object.</li>
+        <li>is not a Date instance and does not have a [[DateValue]] internal slot.</li>
+        <li>has a [[Prototype]] internal slot whose value is %Object.prototype%.</li>
+      </ul>
+      <p>Unless explicitly defined otherwise, the methods of the Date prototype object defined below are not generic and the *this* value passed to them must be an object that has a [[DateValue]] internal slot that has been initialized to a time value.</p>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

@@ -1,0 +1,22 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.1 Additional Syntax > B.1.2 Regular Expressions Patterns > B.1.2.4 Static Semantics: CharacterValue [id: sec-patterns-static-semantics-character-value-annexb]
+
+<emu-annex id="sec-patterns-static-semantics-character-value-annexb">
+        <h1>Static Semantics: CharacterValue</h1>
+        <p>The semantics of CharacterValue is extended as follows:</p>
+        <emu-grammar>
+          ClassAtomNoDash :: `\` [lookahead == `c`]
+        </emu-grammar>
+        <emu-alg>
+          1. Return the numeric value of U+005C (REVERSE SOLIDUS).
+        </emu-alg>
+        <emu-grammar>ClassEscape :: `c` ClassControlLetter</emu-grammar>
+        <emu-alg>
+          1. Let _codePoint_ be the code point matched by |ClassControlLetter|.
+          1. Let _i_ be the numeric value of _codePoint_.
+          1. Return the remainder of dividing _i_ by 32.
+        </emu-alg>
+        <emu-grammar>CharacterEscape :: LegacyOctalEscapeSequence</emu-grammar>
+        <emu-alg>
+          1. Return the MV of |LegacyOctalEscapeSequence| (see <emu-xref href="#sec-string-literals-static-semantics-mv"></emu-xref>).
+        </emu-alg>
+      </emu-annex>

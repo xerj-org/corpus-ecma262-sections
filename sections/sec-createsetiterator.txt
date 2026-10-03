@@ -1,0 +1,35 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.6 Set Iterator Objects > 24.2.6.1 CreateSetIterator ( _set_: an ECMAScript language value, _kind_: ~key+value~ or ~value~, ): either a normal completion containing a Generator or a throw completion [id: sec-createsetiterator]
+
+<emu-clause id="sec-createsetiterator" type="abstract operation" oldids="sec-properties-of-set-iterator-instances,table-51,table-internal-slots-of-set-iterator-instances">
+        <h1>
+          CreateSetIterator (
+            _set_: an ECMAScript language value,
+            _kind_: ~key+value~ or ~value~,
+          ): either a normal completion containing a Generator or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to create iterator objects for Set methods that return such iterators.</dd>
+        </dl>
+        <emu-alg>
+          1. Perform ? RequireInternalSlot(_set_, [[SetData]]).
+          1. Let _closure_ be a new Abstract Closure with no parameters that captures _set_ and _kind_ and performs the following steps when called:
+            1. Let _index_ be 0.
+            1. Let _entries_ be _set_.[[SetData]].
+            1. Let _entriesCount_ be the number of elements in _entries_.
+            1. Repeat, while _index_ &lt; _entriesCount_,
+              1. Let _entry_ be _entries_[_index_].
+              1. Set _index_ to _index_ + 1.
+              1. If _entry_ is not ~empty~, then
+                1. If _kind_ is ~key+value~, then
+                  1. Let _result_ be CreateArrayFromList(« _entry_, _entry_ »).
+                  1. Perform ? GeneratorYield(CreateIteratorResultObject(_result_, *false*)).
+                1. Else,
+                  1. Assert: _kind_ is ~value~.
+                  1. Perform ? GeneratorYield(CreateIteratorResultObject(_entry_, *false*)).
+                1. NOTE: The number of elements in _entries_ may have increased while execution of this abstract operation was paused by GeneratorYield.
+                1. Set _entriesCount_ to the number of elements in _entries_.
+            1. Return NormalCompletion(~unused~).
+          1. Return CreateIteratorFromClosure(_closure_, *"%SetIteratorPrototype%"*, %SetIteratorPrototype%).
+        </emu-alg>
+      </emu-clause>

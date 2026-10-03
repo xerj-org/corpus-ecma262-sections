@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.3 Boolean Objects > 20.3.3 Properties of the Boolean Prototype Object > 20.3.3.1 Boolean.prototype.constructor [id: sec-boolean.prototype.constructor]
+
+<emu-clause id="sec-boolean.prototype.constructor">
+        <h1>Boolean.prototype.constructor</h1>
+        <p>The initial value of `Boolean.prototype.constructor` is %Boolean%.</p>
+      </emu-clause>

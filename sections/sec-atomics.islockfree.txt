@@ -1,0 +1,20 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.8 Atomics.isLockFree ( _size_ ) [id: sec-atomics.islockfree]
+
+<emu-clause id="sec-atomics.islockfree" type="built-in function">
+      <h1>Atomics.isLockFree ( _size_ )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _n_ be ? ToIntegerOrInfinity(_size_).
+        1. Let _agentRecord_ be the Agent Record of the surrounding agent.
+        1. If _n_ = 1, return _agentRecord_.[[IsLockFree1]].
+        1. If _n_ = 2, return _agentRecord_.[[IsLockFree2]].
+        1. If _n_ = 4, return *true*.
+        1. If _n_ = 8, return _agentRecord_.[[IsLockFree8]].
+        1. Return *false*.
+      </emu-alg>
+      <emu-note>
+        <p>This function is an optimization primitive. The intuition is that if the atomic step of an atomic primitive (`compareExchange`, `load`, `store`, `add`, `sub`, `and`, `or`, `xor`, or `exchange`) on a datum of size _n_ bytes will be performed without the surrounding agent acquiring a lock outside the _n_ bytes comprising the datum, then `Atomics.isLockFree`(_n_) will return *true*. High-performance algorithms will use this function to determine whether to use locks or atomic operations in critical sections. If an atomic primitive is not lock-free then it is often more efficient for an algorithm to provide its own locking.</p>
+        <p>`Atomics.isLockFree`(4) always returns *true* as that can be supported on all known relevant hardware. Being able to assume this will generally simplify programs.</p>
+        <p>Regardless of the value returned by this function, all atomic operations are guaranteed to be atomic. For example, they will never have a visible operation take place in the middle of the operation (e.g., “tearing”).</p>
+      </emu-note>
+    </emu-clause>

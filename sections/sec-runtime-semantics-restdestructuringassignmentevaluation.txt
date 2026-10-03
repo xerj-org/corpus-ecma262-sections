@@ -1,0 +1,19 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.15 Assignment Operators > 13.15.5 Destructuring Assignment > 13.15.5.4 Runtime Semantics: RestDestructuringAssignmentEvaluation ( _value_: an ECMAScript language value, _excludedNames_: a List of property keys, ): either a normal completion containing ~unused~ or an abrupt completion [id: sec-runtime-semantics-restdestructuringassignmentevaluation]
+
+<emu-clause id="sec-runtime-semantics-restdestructuringassignmentevaluation" type="sdo">
+        <h1>
+          Runtime Semantics: RestDestructuringAssignmentEvaluation (
+            _value_: an ECMAScript language value,
+            _excludedNames_: a List of property keys,
+          ): either a normal completion containing ~unused~ or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>AssignmentRestProperty : `...` DestructuringAssignmentTarget</emu-grammar>
+        <emu-alg>
+          1. Let _leftRef_ be ? Evaluation of |DestructuringAssignmentTarget|.
+          1. Let _restObj_ be OrdinaryObjectCreate(%Object.prototype%).
+          1. Perform ? CopyDataProperties(_restObj_, _value_, _excludedNames_).
+          1. Return ? PutValue(_leftRef_, _restObj_).
+        </emu-alg>
+      </emu-clause>

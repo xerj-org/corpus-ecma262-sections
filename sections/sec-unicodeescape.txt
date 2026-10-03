@@ -1,0 +1,19 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object > 25.5.4 JSON.stringify ( _value_ [ , _replacer_ [ , _space_ ] ] ) > 25.5.4.4 UnicodeEscape ( _codeUnit_: a code unit, ): a String [id: sec-unicodeescape]
+
+<emu-clause id="sec-unicodeescape" type="abstract operation">
+        <h1>
+          UnicodeEscape (
+            _codeUnit_: a code unit,
+          ): a String
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It represents _codeUnit_ as a Unicode escape sequence.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _n_ be the numeric value of _codeUnit_.
+          1. Assert: _n_ ≤ 0xFFFF.
+          1. Let _hex_ be the String representation of _n_, formatted as a lowercase hexadecimal number.
+          1. Return the string-concatenation of the code unit 0x005C (REVERSE SOLIDUS), *"u"*, and StringPad(_hex_, 4, *"0"*, ~start~).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,41 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals > 12.9.3 Numeric Literals > 12.9.3.3 Static Semantics: NumericValue ( ): a Number or a BigInt [id: sec-numericvalue]
+
+<emu-clause id="sec-numericvalue" type="sdo">
+        <h1>Static Semantics: NumericValue ( ): a Number or a BigInt</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>NumericLiteral :: DecimalLiteral</emu-grammar>
+        <emu-alg>
+          1. Return RoundMVResult(MV of |DecimalLiteral|).
+        </emu-alg>
+        <emu-grammar>NumericLiteral :: NonDecimalIntegerLiteral</emu-grammar>
+        <emu-alg>
+          1. Return 𝔽(MV of |NonDecimalIntegerLiteral|).
+        </emu-alg>
+        <emu-grammar>NumericLiteral :: LegacyOctalIntegerLiteral</emu-grammar>
+        <emu-alg>
+          1. Return 𝔽(MV of |LegacyOctalIntegerLiteral|).
+        </emu-alg>
+        <emu-grammar>NumericLiteral :: NonDecimalIntegerLiteral BigIntLiteralSuffix</emu-grammar>
+        <emu-alg>
+          1. Return the BigInt value for the MV of |NonDecimalIntegerLiteral|.
+        </emu-alg>
+        <emu-grammar>DecimalBigIntegerLiteral :: `0` BigIntLiteralSuffix</emu-grammar>
+        <emu-alg>
+          1. Return *0*<sub>ℤ</sub>.
+        </emu-alg>
+        <emu-grammar>DecimalBigIntegerLiteral :: NonZeroDigit BigIntLiteralSuffix</emu-grammar>
+        <emu-alg>
+          1. Return the BigInt value for the MV of |NonZeroDigit|.
+        </emu-alg>
+        <emu-grammar>
+          DecimalBigIntegerLiteral ::
+            NonZeroDigit DecimalDigits BigIntLiteralSuffix
+            NonZeroDigit NumericLiteralSeparator DecimalDigits BigIntLiteralSuffix
+        </emu-grammar>
+        <emu-alg>
+          1. Let _n_ be the number of code points in |DecimalDigits|, excluding all occurrences of |NumericLiteralSeparator|.
+          1. Let _mv_ be (the MV of |NonZeroDigit| × 10<sup>_n_</sup>) plus the MV of |DecimalDigits|.
+          1. Return ℤ(_mv_).
+        </emu-alg>
+      </emu-clause>

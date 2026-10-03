@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.3 Properties of the Error Prototype Object > 20.5.3.2 Error.prototype.message [id: sec-error.prototype.message]
+
+<emu-clause id="sec-error.prototype.message">
+        <h1>Error.prototype.message</h1>
+        <p>The initial value of `Error.prototype.message` is the empty String.</p>
+      </emu-clause>

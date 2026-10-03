@@ -1,0 +1,308 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.1 Patterns [id: sec-patterns]
+
+<emu-clause id="sec-patterns">
+      <h1>Patterns</h1>
+      <p>The RegExp constructor applies the following grammar to the input pattern String. An error occurs if the grammar cannot interpret the String as an expansion of |Pattern|.</p>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        Pattern[UnicodeMode, UnicodeSetsMode, NamedCaptureGroups] ::
+          Disjunction[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]
+
+        Disjunction[UnicodeMode, UnicodeSetsMode, NamedCaptureGroups] ::
+          Alternative[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]
+          Alternative[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] `|` Disjunction[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]
+
+        Alternative[UnicodeMode, UnicodeSetsMode, NamedCaptureGroups] ::
+          [empty]
+          Alternative[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] Term[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]
+
+        Term[UnicodeMode, UnicodeSetsMode, NamedCaptureGroups] ::
+          Assertion[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]
+          Atom[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]
+          Atom[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] Quantifier
+
+        Assertion[UnicodeMode, UnicodeSetsMode, NamedCaptureGroups] ::
+          `^`
+          `$`
+          `\b`
+          `\B`
+          `(?=` Disjunction[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] `)`
+          `(?!` Disjunction[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] `)`
+          `(?&lt;=` Disjunction[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] `)`
+          `(?&lt;!` Disjunction[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] `)`
+
+        Quantifier ::
+          QuantifierPrefix
+          QuantifierPrefix `?`
+
+        QuantifierPrefix ::
+          `*`
+          `+`
+          `?`
+          `{` DecimalDigits[~Sep] `}`
+          `{` DecimalDigits[~Sep] `,}`
+          `{` DecimalDigits[~Sep] `,` DecimalDigits[~Sep] `}`
+
+        Atom[UnicodeMode, UnicodeSetsMode, NamedCaptureGroups] ::
+          PatternCharacter
+          `.`
+          `\` AtomEscape[?UnicodeMode, ?NamedCaptureGroups]
+          CharacterClass[?UnicodeMode, ?UnicodeSetsMode]
+          `(` GroupSpecifier[?UnicodeMode]? Disjunction[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] `)`
+          `(?` RegularExpressionModifiers `:` Disjunction[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] `)`
+          `(?` RegularExpressionModifiers `-` RegularExpressionModifiers `:` Disjunction[?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] `)`
+
+        RegularExpressionModifiers ::
+          [empty]
+          RegularExpressionModifiers RegularExpressionModifier
+
+        RegularExpressionModifier :: one of
+          `i` `m` `s`
+
+        SyntaxCharacter :: one of
+          `^` `$` `\` `.` `*` `+` `?` `(` `)` `[` `]` `{` `}` `|`
+
+        PatternCharacter ::
+          SourceCharacter but not SyntaxCharacter
+
+        AtomEscape[UnicodeMode, NamedCaptureGroups] ::
+          DecimalEscape
+          CharacterClassEscape[?UnicodeMode]
+          CharacterEscape[?UnicodeMode]
+          [+NamedCaptureGroups] `k` GroupName[?UnicodeMode]
+
+        CharacterEscape[UnicodeMode] ::
+          ControlEscape
+          `c` AsciiLetter
+          `0` [lookahead &notin; DecimalDigit]
+          HexEscapeSequence
+          RegExpUnicodeEscapeSequence[?UnicodeMode]
+          IdentityEscape[?UnicodeMode]
+
+        ControlEscape :: one of
+          `f` `n` `r` `t` `v`
+
+        GroupSpecifier[UnicodeMode] ::
+          `?` GroupName[?UnicodeMode]
+
+        GroupName[UnicodeMode] ::
+          `&lt;` RegExpIdentifierName[?UnicodeMode] `&gt;`
+
+        RegExpIdentifierName[UnicodeMode] ::
+          RegExpIdentifierStart[?UnicodeMode]
+          RegExpIdentifierName[?UnicodeMode] RegExpIdentifierPart[?UnicodeMode]
+
+        RegExpIdentifierStart[UnicodeMode] ::
+          IdentifierStartChar
+          `\` RegExpUnicodeEscapeSequence[+UnicodeMode]
+          [~UnicodeMode] UnicodeLeadSurrogate UnicodeTrailSurrogate
+
+        RegExpIdentifierPart[UnicodeMode] ::
+          IdentifierPartChar
+          `\` RegExpUnicodeEscapeSequence[+UnicodeMode]
+          [~UnicodeMode] UnicodeLeadSurrogate UnicodeTrailSurrogate
+
+        RegExpUnicodeEscapeSequence[UnicodeMode] ::
+          [+UnicodeMode] `u` HexLeadSurrogate `\u` HexTrailSurrogate
+          [+UnicodeMode] `u` HexLeadSurrogate
+          [+UnicodeMode] `u` HexTrailSurrogate
+          [+UnicodeMode] `u` HexNonSurrogate
+          [~UnicodeMode] `u` Hex4Digits
+          [+UnicodeMode] `u{` CodePoint `}`
+
+        UnicodeLeadSurrogate ::
+          &gt; any Unicode code point in the inclusive interval from U+D800 to U+DBFF
+
+        UnicodeTrailSurrogate ::
+          &gt; any Unicode code point in the inclusive interval from U+DC00 to U+DFFF
+      </emu-grammar>
+      <p>Each `\\u` |HexTrailSurrogate| for which the choice of associated `u` |HexLeadSurrogate| is ambiguous shall be associated with the nearest possible `u` |HexLeadSurrogate| that would otherwise have no corresponding `\\u` |HexTrailSurrogate|.</p>
+      <emu-grammar type="definition">
+        HexLeadSurrogate ::
+          Hex4Digits [> but only if the MV of |Hex4Digits| is in the inclusive interval from 0xD800 to 0xDBFF]
+
+        HexTrailSurrogate ::
+          Hex4Digits [> but only if the MV of |Hex4Digits| is in the inclusive interval from 0xDC00 to 0xDFFF]
+
+        HexNonSurrogate ::
+          Hex4Digits [> but only if the MV of |Hex4Digits| is not in the inclusive interval from 0xD800 to 0xDFFF]
+
+        IdentityEscape[UnicodeMode] ::
+          [+UnicodeMode] SyntaxCharacter
+          [+UnicodeMode] `/`
+          [~UnicodeMode] SourceCharacter but not UnicodeIDContinue
+
+        DecimalEscape ::
+          NonZeroDigit DecimalDigits[~Sep]? [lookahead &notin; DecimalDigit]
+
+        CharacterClassEscape[UnicodeMode] ::
+          `d`
+          `D`
+          `s`
+          `S`
+          `w`
+          `W`
+          [+UnicodeMode] `p{` UnicodePropertyValueExpression `}`
+          [+UnicodeMode] `P{` UnicodePropertyValueExpression `}`
+
+        UnicodePropertyValueExpression ::
+          UnicodePropertyName `=` UnicodePropertyValue
+          LoneUnicodePropertyNameOrValue
+
+        UnicodePropertyName ::
+          UnicodePropertyNameCharacters
+
+        UnicodePropertyNameCharacters ::
+          UnicodePropertyNameCharacter UnicodePropertyNameCharacters?
+
+        UnicodePropertyValue ::
+          UnicodePropertyValueCharacters
+
+        LoneUnicodePropertyNameOrValue ::
+          UnicodePropertyValueCharacters
+
+        UnicodePropertyValueCharacters ::
+          UnicodePropertyValueCharacter UnicodePropertyValueCharacters?
+
+        UnicodePropertyValueCharacter ::
+          UnicodePropertyNameCharacter
+          DecimalDigit
+
+        UnicodePropertyNameCharacter ::
+          AsciiLetter
+          `_`
+
+        CharacterClass[UnicodeMode, UnicodeSetsMode] ::
+          `[` [lookahead != `^`] ClassContents[?UnicodeMode, ?UnicodeSetsMode] `]`
+          `[^` ClassContents[?UnicodeMode, ?UnicodeSetsMode] `]`
+
+        ClassContents[UnicodeMode, UnicodeSetsMode] ::
+          [empty]
+          [~UnicodeSetsMode] NonemptyClassRanges[?UnicodeMode]
+          [+UnicodeSetsMode] ClassSetExpression
+
+        NonemptyClassRanges[UnicodeMode] ::
+          ClassAtom[?UnicodeMode]
+          ClassAtom[?UnicodeMode] NonemptyClassRangesNoDash[?UnicodeMode]
+          ClassAtom[?UnicodeMode] `-` ClassAtom[?UnicodeMode] ClassContents[?UnicodeMode, ~UnicodeSetsMode]
+
+        NonemptyClassRangesNoDash[UnicodeMode] ::
+          ClassAtom[?UnicodeMode]
+          ClassAtomNoDash[?UnicodeMode] NonemptyClassRangesNoDash[?UnicodeMode]
+          ClassAtomNoDash[?UnicodeMode] `-` ClassAtom[?UnicodeMode] ClassContents[?UnicodeMode, ~UnicodeSetsMode]
+
+        ClassAtom[UnicodeMode] ::
+          `-`
+          ClassAtomNoDash[?UnicodeMode]
+
+        ClassAtomNoDash[UnicodeMode] ::
+          SourceCharacter but not one of `\` or `]` or `-`
+          `\` ClassEscape[?UnicodeMode]
+
+        ClassEscape[UnicodeMode] ::
+          `b`
+          [+UnicodeMode] `-`
+          CharacterClassEscape[?UnicodeMode]
+          CharacterEscape[?UnicodeMode]
+
+        ClassSetExpression ::
+          ClassUnion
+          ClassIntersection
+          ClassSubtraction
+
+        ClassUnion ::
+          ClassSetRange ClassUnion?
+          ClassSetOperand ClassUnion?
+
+        ClassIntersection ::
+          ClassSetOperand `&amp;&amp;` [lookahead != `&amp;`] ClassSetOperand
+          ClassIntersection `&amp;&amp;` [lookahead != `&amp;`] ClassSetOperand
+
+        ClassSubtraction ::
+          ClassSetOperand `--` ClassSetOperand
+          ClassSubtraction `--` ClassSetOperand
+
+        ClassSetRange ::
+          ClassSetCharacter `-` ClassSetCharacter
+
+        ClassSetOperand ::
+          NestedClass
+          ClassStringDisjunction
+          ClassSetCharacter
+
+        NestedClass ::
+          `[` [lookahead != `^`] ClassContents[+UnicodeMode, +UnicodeSetsMode] `]`
+          `[^` ClassContents[+UnicodeMode, +UnicodeSetsMode] `]`
+          `\` CharacterClassEscape[+UnicodeMode]
+      </emu-grammar>
+      <emu-note>
+        <p>The first two lines here are equivalent to CharacterClass.</p>
+      </emu-note>
+      <emu-grammar type="definition">
+        ClassStringDisjunction ::
+          `\q{` ClassStringDisjunctionContents `}`
+
+        ClassStringDisjunctionContents ::
+          ClassString
+          ClassString `|` ClassStringDisjunctionContents
+
+        ClassString ::
+          [empty]
+          NonEmptyClassString
+
+        NonEmptyClassString ::
+          ClassSetCharacter NonEmptyClassString?
+
+        ClassSetCharacter ::
+          [lookahead &notin; ClassSetReservedDoublePunctuator] SourceCharacter but not ClassSetSyntaxCharacter
+          `\` CharacterEscape[+UnicodeMode]
+          `\` ClassSetReservedPunctuator
+          `\b`
+
+        ClassSetReservedDoublePunctuator :: one of
+          `&amp;&amp;` `!!` `##`
+          `$$` `%%` `**`
+          `++` `,,` `..`
+          `::` `;;` `&lt;&lt;`
+          `==` `&gt;&gt;` `??`
+          `@@` `^^` `&grave;&grave;`
+          `~~`
+      </emu-grammar>
+      <emu-grammar type="definition">
+        ClassSetSyntaxCharacter :: one of
+          `(` `)` `[` `]` `{` `}` `/` `-` `\` `|`
+      </emu-grammar>
+      <emu-grammar type="definition">
+        ClassSetReservedPunctuator :: one of
+          `&amp;` `-` `!` `#` `%` `,`
+          `:` `;` `&lt;` `=` `&gt;` `@`
+          `&grave;` `~`
+      </emu-grammar>
+      <emu-note>
+        <p>A number of productions in this section are given alternative definitions in section <emu-xref href="#sec-regular-expressions-patterns"></emu-xref>.</p>
+      </emu-note>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

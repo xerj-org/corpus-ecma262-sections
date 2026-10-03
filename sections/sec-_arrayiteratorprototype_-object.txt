@@ -1,0 +1,16 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.5 Array Iterator Objects > 23.1.5.2 The %ArrayIteratorPrototype% Object [id: sec-%arrayiteratorprototype%-object]
+
+<emu-clause id="sec-%arrayiteratorprototype%-object">
+        <h1>The %ArrayIteratorPrototype% Object</h1>
+        <p>The <dfn>%ArrayIteratorPrototype%</dfn> object:</p>
+        <ul>
+          <li>has properties that are inherited by all Array Iterator objects.</li>
+          <li>is an ordinary object.</li>
+          <li>has a [[Prototype]] internal slot whose value is %Iterator.prototype%.</li>
+          <li>has the following properties:</li>
+        </ul>
+
+        
+
+        
+      </emu-clause>

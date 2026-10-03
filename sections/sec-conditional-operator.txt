@@ -1,0 +1,16 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.14 Conditional Operator ( `? :` ) [id: sec-conditional-operator]
+
+<emu-clause id="sec-conditional-operator">
+    <h1>Conditional Operator ( `? :` )</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      ConditionalExpression[In, Yield, Await] :
+        ShortCircuitExpression[?In, ?Yield, ?Await]
+        ShortCircuitExpression[?In, ?Yield, ?Await] `?` AssignmentExpression[+In, ?Yield, ?Await] `:` AssignmentExpression[?In, ?Yield, ?Await]
+    </emu-grammar>
+    <emu-note>
+      <p>The grammar for a |ConditionalExpression| in ECMAScript is slightly different from that in C and Java, which each allow the second subexpression to be an |Expression| but restrict the third expression to be a |ConditionalExpression|. The motivation for this difference in ECMAScript is to allow an assignment expression to be governed by either arm of a conditional and to eliminate the confusing and fairly useless case of a comma expression as the centre expression.</p>
+    </emu-note>
+
+    
+  </emu-clause>

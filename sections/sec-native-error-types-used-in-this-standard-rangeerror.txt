@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.5 Native Error Types Used in This Standard > 20.5.5.2 RangeError [id: sec-native-error-types-used-in-this-standard-rangeerror]
+
+<emu-clause id="sec-native-error-types-used-in-this-standard-rangeerror">
+        <h1>RangeError</h1>
+        <p>The RangeError constructor is <dfn>%RangeError%</dfn>.</p>
+        <p>Indicates a value that is not in the set or range of allowable values.</p>
+      </emu-clause>

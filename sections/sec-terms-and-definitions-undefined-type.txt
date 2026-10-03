@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.14 Undefined type [id: sec-terms-and-definitions-undefined-type]
+
+<emu-clause id="sec-terms-and-definitions-undefined-type">
+      <h1>Undefined type</h1>
+      <p>type whose sole value is the *undefined* value</p>
+    </emu-clause>

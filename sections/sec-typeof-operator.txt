@@ -1,0 +1,7 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.5 Unary Operators > 13.5.3 The `typeof` Operator [id: sec-typeof-operator]
+
+<emu-clause id="sec-typeof-operator">
+      <h1>The `typeof` Operator</h1>
+
+      
+    </emu-clause>

@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.21 Object.prototype [id: sec-object.prototype]
+
+<emu-clause id="sec-object.prototype">
+        <h1>Object.prototype</h1>
+        <p>The initial value of `Object.prototype` is the Object prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

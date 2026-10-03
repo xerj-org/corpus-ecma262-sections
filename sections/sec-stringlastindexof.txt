@@ -1,0 +1,25 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.4 The String Type > 6.1.4.2 StringLastIndexOf ( _string_: a String, _searchValue_: a String, _fromIndex_: a non-negative integer, ): a non-negative integer or ~not-found~ [id: sec-stringlastindexof]
+
+<emu-clause id="sec-stringlastindexof" type="abstract operation">
+        <h1>
+          StringLastIndexOf (
+            _string_: a String,
+            _searchValue_: a String,
+            _fromIndex_: a non-negative integer,
+          ): a non-negative integer or ~not-found~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _length_ be the length of _string_.
+          1. Let _searchLength_ be the length of _searchValue_.
+          1. Assert: _fromIndex_ + _searchLength_ ≤ _length_.
+          1. For each integer _i_ such that 0 ≤ _i_ ≤ _fromIndex_, in descending order, do
+            1. Let _candidate_ be the substring of _string_ from _i_ to _i_ + _searchLength_.
+            1. If _candidate_ is _searchValue_, return _i_.
+          1. Return ~not-found~.
+        </emu-alg>
+        <emu-note>
+          <p>If _searchValue_ is the empty String, this algorithm returns _fromIndex_. The empty String is effectively found at every position within a string, including after the last code unit.</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,21 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.9 Runtime Semantics: CompileToCharSet ( _regexpRecord_: a RegExp Record, ): a CharSet > 22.2.2.9.1 CharacterRange ( _charSet_: a CharSet, _otherSet_: a CharSet, ): a CharSet [id: sec-runtime-semantics-characterrange-abstract-operation]
+
+<emu-clause id="sec-runtime-semantics-characterrange-abstract-operation" type="abstract operation">
+          <h1>
+            CharacterRange (
+              _charSet_: a CharSet,
+              _otherSet_: a CharSet,
+            ): a CharSet
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Assert: _charSet_ and _otherSet_ each contain exactly one character.
+            1. Let _a_ be the one character in CharSet _charSet_.
+            1. Let _b_ be the one character in CharSet _otherSet_.
+            1. Let _i_ be the character value of character _a_.
+            1. Let _j_ be the character value of character _b_.
+            1. Assert: _i_ ≤ _j_.
+            1. Return the CharSet containing all characters with a character value in the inclusive interval from _i_ to _j_.
+          </emu-alg>
+        </emu-clause>

@@ -1,0 +1,22 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.1 ValidateIntegerTypedArray ( _ta_: an ECMAScript language value, _waitable_: a Boolean, ): either a normal completion containing a TypedArray With Buffer Witness Record, or a throw completion [id: sec-validateintegertypedarray]
+
+<emu-clause id="sec-validateintegertypedarray" type="abstract operation" oldids="sec-validatesharedintegertypedarray">
+        <h1>
+          ValidateIntegerTypedArray (
+            _ta_: an ECMAScript language value,
+            _waitable_: a Boolean,
+          ): either a normal completion containing a TypedArray With Buffer Witness Record, or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to constrain the TypedArrays that can be used with %Atomics% functions, particularly those that can guarantee atomic interactions with shared memory.</dd>
+        </dl>
+        <emu-alg>
+          1. NOTE: Bounds checking is not a synchronizing operation when _ta_'s backing buffer is a growable SharedArrayBuffer.
+          1. Let _taRecord_ be ? ValidateTypedArray(_ta_, ~unordered~).
+          1. Let _elementType_ be TypedArrayElementType(_ta_).
+          1. If IsNoTearConfiguration(_elementType_, ~seq-cst~) is *false*, throw a *TypeError* exception.
+          1. If _waitable_ is *true* and _elementType_ is neither ~int32~ nor ~bigint64~, throw a *TypeError* exception.
+          1. Return _taRecord_.
+        </emu-alg>
+      </emu-clause>

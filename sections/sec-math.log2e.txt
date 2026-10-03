@@ -1,0 +1,10 @@
+ECMA-262 > 21 Numbers and Dates > 21.3 The Math Object > 21.3.1 Value Properties of the Math Object > 21.3.1.5 Math.LOG2E [id: sec-math.log2e]
+
+<emu-clause id="sec-math.log2e">
+        <h1>Math.LOG2E</h1>
+        <p>The Number value for the base-2 logarithm of <i>e</i>, the base of the natural logarithms; this value is approximately 1.4426950408889634.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+        <emu-note>
+          <p>The value of `Math.LOG2E` is approximately the reciprocal of the value of `Math.LN2`.</p>
+        </emu-note>
+      </emu-clause>

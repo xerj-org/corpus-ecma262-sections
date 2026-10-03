@@ -1,0 +1,44 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.6 Miscellaneous > 8.6.1 Runtime Semantics: InstantiateFunctionObject ( _envRecord_: an Environment Record, _privateEnv_: a PrivateEnvironment Record or *null*, ): an ECMAScript function object [id: sec-runtime-semantics-instantiatefunctionobject]
+
+<emu-clause id="sec-runtime-semantics-instantiatefunctionobject" type="sdo">
+      <h1>
+        Runtime Semantics: InstantiateFunctionObject (
+          _envRecord_: an Environment Record,
+          _privateEnv_: a PrivateEnvironment Record or *null*,
+        ): an ECMAScript function object
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>
+        FunctionDeclaration :
+          `function` BindingIdentifier `(` FormalParameters `)` `{` FunctionBody `}`
+          `function` `(` FormalParameters `)` `{` FunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return InstantiateOrdinaryFunctionObject of |FunctionDeclaration| with arguments _envRecord_ and _privateEnv_.
+      </emu-alg>
+      <emu-grammar>
+        GeneratorDeclaration :
+          `function` `*` BindingIdentifier `(` FormalParameters `)` `{` GeneratorBody `}`
+          `function` `*` `(` FormalParameters `)` `{` GeneratorBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return InstantiateGeneratorFunctionObject of |GeneratorDeclaration| with arguments _envRecord_ and _privateEnv_.
+      </emu-alg>
+      <emu-grammar>
+        AsyncGeneratorDeclaration :
+          `async` `function` `*` BindingIdentifier `(` FormalParameters `)` `{` AsyncGeneratorBody `}`
+          `async` `function` `*` `(` FormalParameters `)` `{` AsyncGeneratorBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return InstantiateAsyncGeneratorFunctionObject of |AsyncGeneratorDeclaration| with arguments _envRecord_ and _privateEnv_.
+      </emu-alg>
+      <emu-grammar>
+        AsyncFunctionDeclaration :
+          `async` `function` BindingIdentifier `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+          `async` `function` `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return InstantiateAsyncFunctionObject of |AsyncFunctionDeclaration| with arguments _envRecord_ and _privateEnv_.
+      </emu-alg>
+    </emu-clause>

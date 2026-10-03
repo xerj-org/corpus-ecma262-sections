@@ -1,0 +1,16 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects > 23.3.1 Additional Properties of the Uint8Array Constructor > 23.3.1.2 Uint8Array.fromHex ( _string_ ) [id: sec-uint8array.fromhex]
+
+<emu-clause id="sec-uint8array.fromhex" type="built-in function">
+        <h1>Uint8Array.fromHex ( _string_ )</h1>
+        <emu-alg>
+          1. If _string_ is not a String, throw a *TypeError* exception.
+          1. Let _result_ be FromHex(_string_).
+          1. If _result_.[[Error]] is not ~none~, then
+            1. Throw _result_.[[Error]].
+          1. Let _resultLength_ be the number of elements in _result_.[[Bytes]].
+          1. Let _ta_ be ? <emu-meta suppress-effects="user-code">AllocateTypedArray(*"Uint8Array"*, %Uint8Array%, *"%Uint8Array.prototype%"*, _resultLength_)</emu-meta>.
+          1. Assert: _ta_.[[ViewedArrayBuffer]].[[ArrayBufferByteLength]] is the number of elements in _result_.[[Bytes]].
+          1. Set the value at each index of _ta_.[[ViewedArrayBuffer]].[[ArrayBufferData]] to the value at the corresponding index of _result_.[[Bytes]].
+          1. Return _ta_.
+        </emu-alg>
+      </emu-clause>

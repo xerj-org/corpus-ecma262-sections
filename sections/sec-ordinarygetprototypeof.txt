@@ -1,0 +1,14 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.1 [[GetPrototypeOf]] ( ): a normal completion containing either an Object or *null* > 10.1.1.1 OrdinaryGetPrototypeOf ( _obj_: an Object, ): an Object or *null* [id: sec-ordinarygetprototypeof]
+
+<emu-clause id="sec-ordinarygetprototypeof" type="abstract operation">
+        <h1>
+          OrdinaryGetPrototypeOf (
+            _obj_: an Object,
+          ): an Object or *null*
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Return _obj_.[[Prototype]].
+        </emu-alg>
+      </emu-clause>

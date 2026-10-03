@@ -1,0 +1,12 @@
+ECMA-262 > 19 The Global Object > 19.2 Function Properties of the Global Object > 19.2.2 isFinite ( _value_ ) [id: sec-isfinite-number]
+
+<emu-clause id="sec-isfinite-number" type="built-in function">
+      <h1>isFinite ( _value_ )</h1>
+      <p>This function is the <dfn>%isFinite%</dfn> intrinsic object.</p>
+      <p>It performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _number_ be ? ToNumber(_value_).
+        1. If _number_ is a finite Number, return *true*.
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>

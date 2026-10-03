@@ -1,0 +1,7 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.5 Map Iterator Objects > 24.1.5.2 The %MapIteratorPrototype% Object > 24.1.5.2.2 %MapIteratorPrototype% [ %Symbol.toStringTag% ] [id: sec-%mapiteratorprototype%-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-%mapiteratorprototype%-@@tostringtag" id="sec-%mapiteratorprototype%-%symbol.tostringtag%">
+          <h1>%MapIteratorPrototype% [ %Symbol.toStringTag% ]</h1>
+          <p>The initial value of the %Symbol.toStringTag% property is the String value *"Map Iterator"*.</p>
+          <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+        </emu-clause>

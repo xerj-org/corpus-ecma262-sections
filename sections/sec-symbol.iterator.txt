@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.2 Properties of the Symbol Constructor > 20.4.2.7 Symbol.iterator [id: sec-symbol.iterator]
+
+<emu-clause id="sec-symbol.iterator">
+        <h1>Symbol.iterator</h1>
+        <p>The initial value of `Symbol.iterator` is the well-known symbol %Symbol.iterator% (<emu-xref href="#table-well-known-symbols"></emu-xref>).</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

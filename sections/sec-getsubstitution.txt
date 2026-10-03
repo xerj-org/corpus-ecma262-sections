@@ -1,0 +1,82 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.3 Properties of the String Prototype Object > 22.1.3.19 String.prototype.replace ( _searchValue_, _replaceValue_ ) > 22.1.3.19.1 GetSubstitution ( _matched_: a String, _string_: a String, _position_: a non-negative integer, _captures_: a List of either Strings or *undefined*, _namedCaptures_: an Object or *undefined*, _replacementTemplate_: a String, ): either a normal completion containing a String or a throw completion [id: sec-getsubstitution]
+
+<emu-clause id="sec-getsubstitution" type="abstract operation" oldids="table-replacement-text-symbol-substitutions,table-45">
+          <h1>
+            GetSubstitution (
+              _matched_: a String,
+              _string_: a String,
+              _position_: a non-negative integer,
+              _captures_: a List of either Strings or *undefined*,
+              _namedCaptures_: an Object or *undefined*,
+              _replacementTemplate_: a String,
+            ): either a normal completion containing a String or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>For the purposes of this abstract operation, a <em>decimal digit</em> is a code unit in the inclusive interval from 0x0030 (DIGIT ZERO) to 0x0039 (DIGIT NINE).</dd>
+          </dl>
+          <emu-alg>
+            1. Let _stringLength_ be the length of _string_.
+            1. Assert: _position_ ≤ _stringLength_.
+            1. Let _result_ be the empty String.
+            1. Let _templateRemainder_ be _replacementTemplate_.
+            1. Repeat, while _templateRemainder_ is not the empty String,
+              1. [declared="ref,refReplacement"] NOTE: The following steps isolate _ref_ (a prefix of _templateRemainder_), determine _refReplacement_ (its replacement), and then append that replacement to _result_.
+              1. If _templateRemainder_ starts with *"$$"*, then
+                1. Let _ref_ be *"$$"*.
+                1. Let _refReplacement_ be *"$"*.
+              1. Else if _templateRemainder_ starts with *"$`"*, then
+                1. Let _ref_ be *"$`"*.
+                1. Let _refReplacement_ be the substring of _string_ from 0 to _position_.
+              1. Else if _templateRemainder_ starts with *"$&amp;"*, then
+                1. Let _ref_ be *"$&amp;"*.
+                1. Let _refReplacement_ be _matched_.
+              1. Else if _templateRemainder_ starts with *"$'"* (0x0024 (DOLLAR SIGN) followed by 0x0027 (APOSTROPHE)), then
+                1. Let _ref_ be *"$'"*.
+                1. Let _matchLength_ be the length of _matched_.
+                1. Let _tailPosition_ be _position_ + _matchLength_.
+                1. Let _refReplacement_ be the substring of _string_ from min(_tailPosition_, _stringLength_).
+                1. NOTE: _tailPosition_ can exceed _stringLength_ only if this abstract operation was invoked by a call to the intrinsic %Symbol.replace% method of %RegExp.prototype% on an object whose *"exec"* property is not the intrinsic %RegExp.prototype.exec%.
+              1. Else if _templateRemainder_ starts with *"$"* followed by 1 or more decimal digits, then
+                1. If _templateRemainder_ starts with *"$"* followed by 2 or more decimal digits, let _digitCount_ be 2; else let _digitCount_ be 1.
+                1. Let _digits_ be the substring of _templateRemainder_ from 1 to 1 + _digitCount_.
+                1. Let _index_ be ℝ(StringToNumber(_digits_)).
+                1. Assert: 0 ≤ _index_ ≤ 99.
+                1. Let _captureLength_ be the number of elements in _captures_.
+                1. If _index_ > _captureLength_ and _digitCount_ = 2, then
+                  1. NOTE: When a two-digit replacement pattern specifies an index exceeding the count of capturing groups, it is treated as a one-digit replacement pattern followed by a literal digit.
+                  1. Set _digitCount_ to 1.
+                  1. Set _digits_ to the substring of _digits_ from 0 to 1.
+                  1. Set _index_ to ℝ(StringToNumber(_digits_)).
+                1. Let _ref_ be the substring of _templateRemainder_ from 0 to 1 + _digitCount_.
+                1. If 1 ≤ _index_ ≤ _captureLength_, then
+                  1. Let _capture_ be _captures_[_index_ - 1].
+                  1. If _capture_ is *undefined*, then
+                    1. Let _refReplacement_ be the empty String.
+                  1. Else,
+                    1. Let _refReplacement_ be _capture_.
+                1. Else,
+                  1. Let _refReplacement_ be _ref_.
+              1. Else if _templateRemainder_ starts with *"$&lt;"*, then
+                1. Let _gtPosition_ be StringIndexOf(_templateRemainder_, *">"*, 0).
+                1. If _gtPosition_ is ~not-found~ or _namedCaptures_ is *undefined*, then
+                  1. Let _ref_ be *"$&lt;"*.
+                  1. Let _refReplacement_ be _ref_.
+                1. Else,
+                  1. Let _ref_ be the substring of _templateRemainder_ from 0 to _gtPosition_ + 1.
+                  1. Let _groupName_ be the substring of _templateRemainder_ from 2 to _gtPosition_.
+                  1. Assert: _namedCaptures_ is an Object.
+                  1. Let _capture_ be ? Get(_namedCaptures_, _groupName_).
+                  1. If _capture_ is *undefined*, then
+                    1. Let _refReplacement_ be the empty String.
+                  1. Else,
+                    1. Let _refReplacement_ be ? ToString(_capture_).
+              1. Else,
+                1. Let _ref_ be the substring of _templateRemainder_ from 0 to 1.
+                1. Let _refReplacement_ be _ref_.
+              1. Let _refLength_ be the length of _ref_.
+              1. Set _templateRemainder_ to the substring of _templateRemainder_ from _refLength_.
+              1. Set _result_ to the string-concatenation of _result_ and _refReplacement_.
+            1. Return _result_.
+          </emu-alg>
+        </emu-clause>

@@ -1,0 +1,30 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.12 Meta Properties > 13.3.12.1 Runtime Semantics: Evaluation [id: sec-meta-properties-runtime-semantics-evaluation]
+
+<emu-clause id="sec-meta-properties-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>NewTarget : `new` `.` `target`</emu-grammar>
+        <emu-alg>
+          1. Return GetNewTarget().
+        </emu-alg>
+
+        <emu-grammar>ImportMeta : `import` `.` `meta`</emu-grammar>
+        <emu-alg>
+          1. Let _module_ be GetActiveScriptOrModule().
+          1. Assert: _module_ is a Source Text Module Record.
+          1. Let _importMeta_ be _module_.[[ImportMeta]].
+          1. If _importMeta_ is ~empty~, then
+            1. Set _importMeta_ to OrdinaryObjectCreate(*null*).
+            1. Let _importMetaValues_ be HostGetImportMetaProperties(_module_).
+            1. For each Record { [[Key]], [[Value]] } _entry_ of _importMetaValues_, do
+              1. Perform ! CreateDataPropertyOrThrow(_importMeta_, _entry_.[[Key]], _entry_.[[Value]]).
+            1. Perform HostFinalizeImportMeta(_importMeta_, _module_).
+            1. Set _module_.[[ImportMeta]] to _importMeta_.
+            1. Return _importMeta_.
+          1. Assert: _importMeta_ is an Object.
+          1. Return _importMeta_.
+        </emu-alg>
+
+        
+
+        
+      </emu-clause>

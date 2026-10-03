@@ -1,0 +1,18 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.1 The Number Type > 6.1.6.1.11 Number::unsignedRightShift ( _x_: a Number, _y_: a Number, ): an integral Number [id: sec-numeric-types-number-unsignedRightShift]
+
+<emu-clause id="sec-numeric-types-number-unsignedRightShift" type="numeric method">
+          <h1>
+            Number::unsignedRightShift (
+              _x_: a Number,
+              _y_: a Number,
+            ): an integral Number
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _leftNumber_ be ! ToUint32(_x_).
+            1. Let _rightNumber_ be ! ToUint32(_y_).
+            1. Let _shiftCount_ be ℝ(_rightNumber_) modulo 32.
+            1. Return the result of performing a zero-filling right shift of _leftNumber_ by _shiftCount_ bits. Vacated bits are filled with zero. The mathematical value of the result is exactly representable as a 32-bit unsigned bit string.
+          </emu-alg>
+        </emu-clause>

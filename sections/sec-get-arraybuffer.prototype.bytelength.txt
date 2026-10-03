@@ -1,0 +1,14 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.6 Properties of the ArrayBuffer Prototype Object > 25.1.6.1 get ArrayBuffer.prototype.byteLength [id: sec-get-arraybuffer.prototype.bytelength]
+
+<emu-clause id="sec-get-arraybuffer.prototype.bytelength" type="built-in function">
+        <h1>get ArrayBuffer.prototype.byteLength</h1>
+        <p>`ArrayBuffer.prototype.byteLength` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_obj_, [[ArrayBufferData]]).
+          1. If IsSharedArrayBuffer(_obj_) is *true*, throw a *TypeError* exception.
+          1. If IsDetachedBuffer(_obj_) is *true*, return *+0*<sub>𝔽</sub>.
+          1. Let _length_ be _obj_.[[ArrayBufferByteLength]].
+          1. Return 𝔽(_length_).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,17 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.4 Abstract Operations for TypedArray Objects > 23.2.4.4 ValidateTypedArray ( _obj_: an ECMAScript language value, _order_: ~seq-cst~ or ~unordered~, ): either a normal completion containing a TypedArray With Buffer Witness Record or a throw completion [id: sec-validatetypedarray]
+
+<emu-clause id="sec-validatetypedarray" type="abstract operation">
+        <h1>
+          ValidateTypedArray (
+            _obj_: an ECMAScript language value,
+            _order_: ~seq-cst~ or ~unordered~,
+          ): either a normal completion containing a TypedArray With Buffer Witness Record or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Perform ? RequireInternalSlot(_obj_, [[TypedArrayName]]).
+          1. Assert: _obj_ has a [[ViewedArrayBuffer]] internal slot.
+          1. Return ? ValidateTypedArrayBounds(_obj_, _order_).
+        </emu-alg>
+      </emu-clause>

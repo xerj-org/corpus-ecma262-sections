@@ -1,0 +1,16 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.4 ToNumber ( _arg_: an ECMAScript language value, ): either a normal completion containing a Number or a throw completion > 7.1.4.1 ToNumber Applied to the String Type > 7.1.4.1.1 StringToNumber ( _string_: a String, ): a Number [id: sec-stringtonumber]
+
+<emu-clause id="sec-stringtonumber" type="abstract operation">
+          <h1>
+            StringToNumber (
+              _string_: a String,
+            ): a Number
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _literal_ be ParseText(_string_, |StringNumericLiteral|).
+            1. If _literal_ is a List of errors, return *NaN*.
+            1. Return the StringNumericValue of _literal_.
+          </emu-alg>
+        </emu-clause>

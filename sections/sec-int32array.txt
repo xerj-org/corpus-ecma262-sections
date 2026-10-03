@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.21 Int32Array ( . . . ) [id: sec-int32array]
+
+<emu-clause id="sec-int32array">
+      <h1>Int32Array ( . . . )</h1>
+      <p>See <emu-xref href="#sec-typedarray-constructors"></emu-xref>.</p>
+    </emu-clause>

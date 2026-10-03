@@ -1,0 +1,30 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.7 Runtime Semantics: CompileAtom ( _regexpRecord_: a RegExp Record, _direction_: ~forward~ or ~backward~, ): a Matcher > 22.2.2.7.3 Canonicalize ( _regexpRecord_: a RegExp Record, _char_: a character, ): a character [id: sec-runtime-semantics-canonicalize-ch]
+
+<emu-clause id="sec-runtime-semantics-canonicalize-ch" type="abstract operation">
+          <h1>
+            Canonicalize (
+              _regexpRecord_: a RegExp Record,
+              _char_: a character,
+            ): a character
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If HasEitherUnicodeFlag(_regexpRecord_) is *true* and _regexpRecord_.[[IgnoreCase]] is *true*, then
+              1. If the file <a href="https://unicode.org/Public/UCD/latest/ucd/CaseFolding.txt"><code>CaseFolding.txt</code></a> of the Unicode Character Database provides a simple or common case folding mapping for _char_, return the result of applying that mapping to _char_.
+              1. Return _char_.
+            1. If _regexpRecord_.[[IgnoreCase]] is *false*, return _char_.
+            1. Assert: _char_ is a UTF-16 code unit.
+            1. Let _codePoint_ be the code point whose numeric value is the numeric value of _char_.
+            1. Let _mappedCodePoints_ be toUppercase(« _codePoint_ »), according to the Unicode Default Case Conversion algorithm.
+            1. If the length of CodePointsToString(_mappedCodePoints_) ≠ 1, return _char_.
+            1. Assert: The number of elements in _mappedCodePoints_ is 1.
+            1. Let _mappedCodePoint_ be the single code point element of _mappedCodePoints_.
+            1. If the numeric value of _char_ ≥ 128 and the numeric value of _mappedCodePoint_ &lt; 128, return _char_.
+            1. Return the code unit whose numeric value is the numeric value of _mappedCodePoint_.
+          </emu-alg>
+          <emu-note>
+            <p>In case-insignificant matches when HasEitherUnicodeFlag(_regexpRecord_) is *true*, all characters are implicitly case-folded using the simple mapping provided by the Unicode Standard immediately before they are compared. The simple mapping always maps to a single code point, so it does not map, for example, `ß` (U+00DF LATIN SMALL LETTER SHARP S) to `ss` or `SS`. It may however map code points outside the Basic Latin block to code points within it—for example, `ſ` (U+017F LATIN SMALL LETTER LONG S) case-folds to `s` (U+0073 LATIN SMALL LETTER S) and `K` (U+212A KELVIN SIGN) case-folds to `k` (U+006B LATIN SMALL LETTER K). Strings containing those code points are matched by regular expressions such as `/[a-z]/ui`.</p>
+            <p>In case-insignificant matches when HasEitherUnicodeFlag(_regexpRecord_) is *false*, the mapping is based on Unicode Default Case Conversion algorithm toUppercase rather than toCasefold, which results in some subtle differences. For example, `Ω` (U+2126 OHM SIGN) is mapped by toUppercase to itself but by toCasefold to `ω` (U+03C9 GREEK SMALL LETTER OMEGA) along with `Ω` (U+03A9 GREEK CAPITAL LETTER OMEGA), so *"\u2126"* is matched by `/[ω]/ui` and `/[\u03A9]/ui` but not by `/[ω]/i` or `/[\u03A9]/i`. Also, no code point outside the Basic Latin block is mapped to a code point within it, so strings such as *"\u017F ſ"* and *"\u212A K"* are not matched by `/[a-z]/i`.</p>
+          </emu-note>
+        </emu-clause>

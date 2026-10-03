@@ -1,0 +1,25 @@
+ECMA-262 > 7 Abstract Operations > 7.2 Testing and Comparison Operations > 7.2.8 SameType ( _x_: an ECMAScript language value, _y_: an ECMAScript language value, ): a Boolean [id: sec-sametype]
+
+<emu-clause id="sec-sametype" type="abstract operation">
+      <h1>
+        SameType (
+          _x_: an ECMAScript language value,
+          _y_: an ECMAScript language value,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It determines whether or not the two arguments are the same type.</dd>
+      </dl>
+      <emu-alg>
+        1. If _x_ is *undefined* and _y_ is *undefined*, return *true*.
+        1. If _x_ is *null* and _y_ is *null*, return *true*.
+        1. If _x_ is a Boolean and _y_ is a Boolean, return *true*.
+        1. If _x_ is a Number and _y_ is a Number, return *true*.
+        1. If _x_ is a BigInt and _y_ is a BigInt, return *true*.
+        1. If _x_ is a Symbol and _y_ is a Symbol, return *true*.
+        1. If _x_ is a String and _y_ is a String, return *true*.
+        1. If _x_ is an Object and _y_ is an Object, return *true*.
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>

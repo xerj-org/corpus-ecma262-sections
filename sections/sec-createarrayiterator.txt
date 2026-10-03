@@ -1,0 +1,21 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.5 Array Iterator Objects > 23.1.5.1 CreateArrayIterator ( _array_: an Object, _kind_: ~key+value~, ~key~, or ~value~, ): an Object [id: sec-createarrayiterator]
+
+<emu-clause id="sec-createarrayiterator" type="abstract operation">
+        <h1>
+          CreateArrayIterator (
+            _array_: an Object,
+            _kind_: ~key+value~, ~key~, or ~value~,
+          ): an Object
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to create iterator objects for Array methods that return such iterators.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _iterator_ be OrdinaryObjectCreate(%ArrayIteratorPrototype%, « [[IteratedArrayLike]], [[ArrayLikeNextIndex]], [[ArrayLikeIterationKind]] »).
+          1. Set _iterator_.[[IteratedArrayLike]] to _array_.
+          1. Set _iterator_.[[ArrayLikeNextIndex]] to 0.
+          1. Set _iterator_.[[ArrayLikeIterationKind]] to _kind_.
+          1. Return _iterator_.
+        </emu-alg>
+      </emu-clause>

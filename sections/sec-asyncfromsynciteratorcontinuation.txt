@@ -1,0 +1,39 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.5 Async-from-Sync Iterator Objects > 27.1.5.4 AsyncFromSyncIteratorContinuation ( _result_: an Object, _promiseCapability_: a PromiseCapability Record for an intrinsic %Promise%, _syncIteratorRecord_: an Iterator Record, _closeOnRejection_: a Boolean, ): a Promise [id: sec-asyncfromsynciteratorcontinuation]
+
+<emu-clause id="sec-asyncfromsynciteratorcontinuation" type="abstract operation" oldids="sec-async-from-sync-iterator-value-unwrap-functions">
+        <h1>
+          AsyncFromSyncIteratorContinuation (
+            _result_: an Object,
+            _promiseCapability_: a PromiseCapability Record for an intrinsic %Promise%,
+            _syncIteratorRecord_: an Iterator Record,
+            _closeOnRejection_: a Boolean,
+          ): a Promise
+        </h1>
+        <dl class="header">
+        </dl>
+
+        <emu-alg>
+          1. NOTE: Because _promiseCapability_ is derived from the intrinsic %Promise%, the calls to _promiseCapability_.[[Reject]] entailed by the use IfAbruptRejectPromise below are guaranteed not to throw.
+          1. Let _done_ be Completion(IteratorComplete(_result_)).
+          1. IfAbruptRejectPromise(_done_, _promiseCapability_).
+          1. Let _value_ be Completion(IteratorValue(_result_)).
+          1. IfAbruptRejectPromise(_value_, _promiseCapability_).
+          1. Let _valueWrapper_ be Completion(PromiseResolve(%Promise%, _value_)).
+          1. If _valueWrapper_ is an abrupt completion, _done_ is *false*, and _closeOnRejection_ is *true*, then
+            1. Set _valueWrapper_ to Completion(IteratorClose(_syncIteratorRecord_, _valueWrapper_)).
+          1. IfAbruptRejectPromise(_valueWrapper_, _promiseCapability_).
+          1. Let _unwrap_ be a new Abstract Closure with parameters (_value_) that captures _done_ and performs the following steps when called:
+            1. Return CreateIteratorResultObject(_value_, _done_).
+          1. Let _onFulfilled_ be CreateBuiltinFunction(_unwrap_, 1, *""*, « »).
+          1. NOTE: _onFulfilled_ is used when processing the *"value"* property of an IteratorResult object in order to wait for its value if it is a promise and re-package the result in a new “unwrapped” IteratorResult object.
+          1. If _done_ is *true* or _closeOnRejection_ is *false*, then
+            1. Let _onRejected_ be *undefined*.
+          1. Else,
+            1. Let _closeIterator_ be a new Abstract Closure with parameters (_error_) that captures _syncIteratorRecord_ and performs the following steps when called:
+              1. Return ? IteratorClose(_syncIteratorRecord_, ThrowCompletion(_error_)).
+            1. Let _onRejected_ be CreateBuiltinFunction(_closeIterator_, 1, *""*, « »).
+            1. NOTE: _onRejected_ is used to close the Iterator when the *"value"* property of an IteratorResult object it yields is a rejected promise.
+          1. Perform PerformPromiseThen(_valueWrapper_, _onFulfilled_, _onRejected_, _promiseCapability_).
+          1. Return _promiseCapability_.[[Promise]].
+        </emu-alg>
+      </emu-clause>

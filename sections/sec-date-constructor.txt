@@ -1,0 +1,16 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.2 The Date Constructor [id: sec-date-constructor]
+
+<emu-clause id="sec-date-constructor" oldids="this-time-value,sec-thistimevalue,thistimevalue,this-Date-object">
+      <h1>The Date Constructor</h1>
+      <p>The Date constructor:</p>
+      <ul>
+        <li>is <dfn>%Date%</dfn>.</li>
+        <li>is the initial value of the *"Date"* property of the global object.</li>
+        <li>creates and initializes a new Date when called as a constructor.</li>
+        <li>returns a String representing the current time (UTC) when called as a function rather than as a constructor.</li>
+        <li>is a function whose behaviour differs based upon the number and types of its arguments.</li>
+        <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified Date behaviour must include a `super` call to the Date constructor to create and initialize the subclass instance with a [[DateValue]] internal slot.</li>
+      </ul>
+
+      
+    </emu-clause>

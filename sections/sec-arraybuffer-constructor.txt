@@ -1,0 +1,15 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.4 The ArrayBuffer Constructor [id: sec-arraybuffer-constructor]
+
+<emu-clause id="sec-arraybuffer-constructor">
+      <h1>The ArrayBuffer Constructor</h1>
+      <p>The ArrayBuffer constructor:</p>
+      <ul>
+        <li>is <dfn>%ArrayBuffer%</dfn>.</li>
+        <li>is the initial value of the *"ArrayBuffer"* property of the global object.</li>
+        <li>creates and initializes a new ArrayBuffer when called as a constructor.</li>
+        <li>is not intended to be called as a function and will throw an exception when called in that manner.</li>
+        <li>may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified ArrayBuffer behaviour must include a `super` call to the ArrayBuffer constructor to create and initialize subclass instances with the internal state necessary to support the built-in methods of `ArrayBuffer.prototype`.</li>
+      </ul>
+
+      
+    </emu-clause>

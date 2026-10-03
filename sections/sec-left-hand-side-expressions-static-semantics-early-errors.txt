@@ -1,0 +1,38 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.1 Static Semantics > 13.3.1.1 Static Semantics: Early Errors [id: sec-left-hand-side-expressions-static-semantics-early-errors]
+
+<emu-clause id="sec-left-hand-side-expressions-static-semantics-early-errors">
+        <h1>Static Semantics: Early Errors</h1>
+        <emu-grammar>
+          OptionalChain :
+            `?.` TemplateLiteral
+            OptionalChain TemplateLiteral
+        </emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if any source text is matched by this production.
+          </li>
+        </ul>
+        <emu-note>
+          <p>This production exists in order to prevent automatic semicolon insertion rules (<emu-xref href="#sec-automatic-semicolon-insertion"></emu-xref>) from being applied to the following code:</p>
+          <pre><code class="javascript">
+            a?.b
+            `c`
+          </code></pre>
+          <p>so that it would be interpreted as two valid statements. The purpose is to maintain consistency with similar code without optional chaining:</p>
+          <pre><code class="javascript">
+            a.b
+            `c`
+          </code></pre>
+          <p>which is a valid statement and where automatic semicolon insertion does not apply.</p>
+        </emu-note>
+
+        <emu-grammar>
+          ImportMeta :
+            `import` `.` `meta`
+        </emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the syntactic goal symbol is not |Module|.
+          </li>
+        </ul>
+      </emu-clause>

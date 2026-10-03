@@ -1,0 +1,21 @@
+ECMA-262 > 19 The Global Object > 19.2 Function Properties of the Global Object > 19.2.1 eval ( _source_ ) > 19.2.1.2 HostEnsureCanCompileStrings ( _calleeRealm_: a Realm Record, _paramStrings_: a List of Strings, _bodyString_: a String, _direct_: a Boolean, ): either a normal completion containing ~unused~ or a throw completion [id: sec-hostensurecancompilestrings]
+
+<emu-clause id="sec-hostensurecancompilestrings" type="host-defined abstract operation">
+        <h1>
+          HostEnsureCanCompileStrings (
+            _calleeRealm_: a Realm Record,
+            _paramStrings_: a List of Strings,
+            _bodyString_: a String,
+            _direct_: a Boolean,
+          ): either a normal completion containing ~unused~ or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It allows host environments to block certain ECMAScript functions which allow developers to interpret and evaluate strings as ECMAScript code.</dd>
+        </dl>
+        <p>
+          _paramStrings_ represents the strings that, when using one of the function constructors, will be concatenated together to build the parameters list. _bodyString_ represents the function body or the string passed to an `eval` call.
+          _direct_ signifies whether the evaluation is a direct eval.
+        </p>
+        <p>The default implementation of HostEnsureCanCompileStrings is to return NormalCompletion(~unused~).</p>
+      </emu-clause>

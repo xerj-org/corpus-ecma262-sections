@@ -1,0 +1,10 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.8 Additive Operators > 13.8.1 The Addition Operator ( `+` ) [id: sec-addition-operator-plus]
+
+<emu-clause id="sec-addition-operator-plus">
+      <h1>The Addition Operator ( `+` )</h1>
+      <emu-note>
+        <p>The addition operator either performs string concatenation or numeric addition.</p>
+      </emu-note>
+
+      
+    </emu-clause>

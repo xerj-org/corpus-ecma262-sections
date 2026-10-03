@@ -1,0 +1,28 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.18 GetUTCEpochNanoseconds ( _year_: an integer, _month_: an integer in the inclusive interval from 1 to 12, _day_: an integer in the inclusive interval from 1 to 31, _hour_: an integer in the inclusive interval from 0 to 23, _minute_: an integer in the inclusive interval from 0 to 59, _second_: an integer in the inclusive interval from 0 to 59, _millisecond_: an integer in the inclusive interval from 0 to 999, _microsecond_: an integer in the inclusive interval from 0 to 999, _nanosecond_: an integer in the inclusive interval from 0 to 999, ): an epoch nanoseconds count [id: sec-getutcepochnanoseconds]
+
+<emu-clause id="sec-getutcepochnanoseconds" type="abstract operation">
+        <h1>
+          GetUTCEpochNanoseconds (
+            _year_: an integer,
+            _month_: an integer in the inclusive interval from 1 to 12,
+            _day_: an integer in the inclusive interval from 1 to 31,
+            _hour_: an integer in the inclusive interval from 0 to 23,
+            _minute_: an integer in the inclusive interval from 0 to 59,
+            _second_: an integer in the inclusive interval from 0 to 59,
+            _millisecond_: an integer in the inclusive interval from 0 to 999,
+            _microsecond_: an integer in the inclusive interval from 0 to 999,
+            _nanosecond_: an integer in the inclusive interval from 0 to 999,
+          ): an epoch nanoseconds count
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>The returned value is the epoch nanoseconds count that corresponds to the given ISO 8601 calendar date and wall-clock time in UTC.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _date_ be MakeDay(𝔽(_year_), 𝔽(_month_ - 1), 𝔽(_day_)).
+          1. Let _time_ be MakeTime(𝔽(_hour_), 𝔽(_minute_), 𝔽(_second_), 𝔽(_millisecond_)).
+          1. Let _epochMilliseconds_ be MakeDate(_date_, _time_).
+          1. Assert: _epochMilliseconds_ is an integral Number.
+          1. Return ℝ(_epochMilliseconds_) × NanosecondsPerMillisecond + _microsecond_ × NanosecondsPerMicrosecond + _nanosecond_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,12 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.1 Additional Syntax > B.1.2 Regular Expressions Patterns > B.1.2.3 Static Semantics: IsCharacterClass [id: sec-patterns-static-semantics-is-character-class-annexb]
+
+<emu-annex id="sec-patterns-static-semantics-is-character-class-annexb">
+        <h1>Static Semantics: IsCharacterClass</h1>
+        <p>The semantics of IsCharacterClass is extended as follows:</p>
+        <emu-grammar>
+          ClassAtomNoDash :: `\` [lookahead == `c`]
+        </emu-grammar>
+        <emu-alg>
+          1. Return *false*.
+        </emu-alg>
+      </emu-annex>

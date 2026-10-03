@@ -1,0 +1,36 @@
+ECMA-262 > 5 Notational Conventions > 5.1 Syntactic and Lexical Grammars > 5.1.5 Grammar Notation > 5.1.5.3 Optional Symbols [id: sec-optional-symbols]
+
+<emu-clause id="sec-optional-symbols">
+        <h1>Optional Symbols</h1>
+        <p>The subscripted suffix “<sub>opt</sub>”, which may appear after a terminal or nonterminal, indicates an optional symbol. The alternative containing the optional symbol actually specifies two right-hand sides, one that omits the optional element and one that includes it. This means that:</p>
+        <emu-grammar type="definition" example>
+          VariableDeclaration :
+            BindingIdentifier Initializer?
+        </emu-grammar>
+        <p>is a convenient abbreviation for:</p>
+        <emu-grammar type="definition" example>
+          VariableDeclaration :
+            BindingIdentifier
+            BindingIdentifier Initializer
+        </emu-grammar>
+        <p>and that:</p>
+        <emu-grammar type="definition" example>
+          ForStatement :
+            `for` `(` LexicalDeclaration Expression? `;` Expression? `)` Statement
+        </emu-grammar>
+        <p>is a convenient abbreviation for:</p>
+        <emu-grammar type="definition" example>
+          ForStatement :
+            `for` `(` LexicalDeclaration `;` Expression? `)` Statement
+            `for` `(` LexicalDeclaration Expression `;` Expression? `)` Statement
+        </emu-grammar>
+        <p>which in turn is an abbreviation for:</p>
+        <emu-grammar type="definition" example>
+          ForStatement :
+            `for` `(` LexicalDeclaration `;` `)` Statement
+            `for` `(` LexicalDeclaration `;` Expression `)` Statement
+            `for` `(` LexicalDeclaration Expression `;` `)` Statement
+            `for` `(` LexicalDeclaration Expression `;` Expression `)` Statement
+        </emu-grammar>
+        <p>so, in this example, the nonterminal |ForStatement| actually has four alternative right-hand sides.</p>
+      </emu-clause>

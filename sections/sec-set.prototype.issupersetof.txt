@@ -1,0 +1,21 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.4 Properties of the Set Prototype Object > 24.2.4.12 Set.prototype.isSupersetOf ( _other_ ) [id: sec-set.prototype.issupersetof]
+
+<emu-clause id="sec-set.prototype.issupersetof" type="built-in function">
+        <h1>Set.prototype.isSupersetOf ( _other_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _set_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_set_, [[SetData]]).
+          1. Let _otherRecord_ be ? GetSetRecord(_other_).
+          1. If SetDataSize(_set_.[[SetData]]) &lt; _otherRecord_.[[Size]], return *false*.
+          1. Let _keysIterator_ be ? GetIteratorFromMethod(_otherRecord_.[[SetObject]], _otherRecord_.[[Keys]]).
+          1. Let _next_ be ~not-started~.
+          1. Repeat, while _next_ is not ~done~,
+            1. Set _next_ to ? IteratorStepValue(_keysIterator_).
+            1. If _next_ is not ~done~, then
+              1. If SetDataHas(_set_.[[SetData]], _next_) is *false*, then
+                1. Perform ? IteratorClose(_keysIterator_, NormalCompletion(~unused~)).
+                1. Return *false*.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,8 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.2 Iterator Helper Objects [id: sec-iterator-helper-objects]
+
+<emu-clause id="sec-iterator-helper-objects">
+      <h1>Iterator Helper Objects</h1>
+      <p>An <dfn variants="Iterator Helper objects">Iterator Helper object</dfn> is an ordinary object that represents a lazy transformation of some specific source iterator object. There is not a named constructor for Iterator Helper objects. Instead, Iterator Helper objects are created by calling certain methods of Iterator instance objects.</p>
+
+      
+    </emu-clause>

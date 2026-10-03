@@ -1,0 +1,22 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.4 Properties of the Promise Constructor > 27.5.4.5 Promise.race ( _iterable_ ) > 27.5.4.5.1 PerformPromiseRace ( _iteratorRecord_: an Iterator Record, _ctor_: a constructor, _resultCapability_: a PromiseCapability Record, _promiseResolve_: a function object, ): either a normal completion containing an Object or a throw completion [id: sec-performpromiserace]
+
+<emu-clause id="sec-performpromiserace" type="abstract operation">
+          <h1>
+            PerformPromiseRace (
+              _iteratorRecord_: an Iterator Record,
+              _ctor_: a constructor,
+              _resultCapability_: a PromiseCapability Record,
+              _promiseResolve_: a function object,
+            ): either a normal completion containing an Object or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Repeat,
+              1. Let _next_ be ? IteratorStepValue(_iteratorRecord_).
+              1. If _next_ is ~done~, then
+                1. Return _resultCapability_.[[Promise]].
+              1. Let _nextPromise_ be ? Call(_promiseResolve_, _ctor_, « _next_ »).
+              1. Perform ? Invoke(_nextPromise_, *"then"*, « _resultCapability_.[[Resolve]], _resultCapability_.[[Reject]] »).
+          </emu-alg>
+        </emu-clause>

@@ -1,0 +1,20 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.6 The Property Descriptor Specification Type [id: sec-property-descriptor-specification-type]
+
+<emu-clause id="sec-property-descriptor-specification-type">
+      <h1>The Property Descriptor Specification Type</h1>
+      <p>The <dfn variants="Property Descriptors">Property Descriptor</dfn> type is used to explain the manipulation and reification of Object property attributes. A Property Descriptor is a Record with zero or more fields, where each field's name is an attribute name and its value is a corresponding attribute value as specified in <emu-xref href="#sec-property-attributes"></emu-xref>. The schema name used within this specification to tag literal descriptions of Property Descriptor records is “PropertyDescriptor”.</p>
+      <p>Property Descriptor values may be further classified as data Property Descriptors and accessor Property Descriptors based upon the existence or use of certain fields. A data Property Descriptor is one that includes any fields named either [[Value]] or [[Writable]]. An accessor Property Descriptor is one that includes any fields named either [[Getter]] or [[Setter]]. Any Property Descriptor may have fields named [[Enumerable]] and [[Configurable]]. A Property Descriptor value may not be both a data Property Descriptor and an accessor Property Descriptor; however, it may be neither (in which case it is a generic Property Descriptor). A <dfn>fully populated Property Descriptor</dfn> is one that is either an accessor Property Descriptor or a data Property Descriptor and that has all of the corresponding fields defined in <emu-xref href="#table-object-property-attributes"></emu-xref>.</p>
+      <p>The following abstract operations are used in this specification to operate upon Property Descriptor values:</p>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

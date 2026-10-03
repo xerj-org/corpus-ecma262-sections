@@ -1,0 +1,161 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.5 Proxy Object Internal Methods and Internal Slots [id: sec-proxy-object-internal-methods-and-internal-slots]
+
+<emu-clause id="sec-proxy-object-internal-methods-and-internal-slots">
+    <h1>Proxy Object Internal Methods and Internal Slots</h1>
+    <p>A Proxy object is an exotic object whose essential internal methods are partially implemented using ECMAScript code. Every Proxy object has an internal slot called [[ProxyHandler]]. The value of [[ProxyHandler]] is an object, called the proxy's <em>handler object</em>, or *null*. Methods (see <emu-xref href="#table-proxy-handler-methods"></emu-xref>) of a handler object may be used to augment the implementation for one or more of the Proxy object's internal methods. Every Proxy object also has an internal slot called [[ProxyTarget]] whose value is either an object or *null*. This object is called the proxy's <em>target object</em>.</p>
+
+    <p>An object is a <dfn id="proxy-exotic-object" variants="Proxy exotic objects">Proxy exotic object</dfn> if its essential internal methods (including [[Call]] and [[Construct]], if applicable) use the definitions in this section. These internal methods are installed in ProxyCreate.</p>
+
+    <emu-table id="table-proxy-handler-methods" caption="Proxy Handler Methods" oldids="table-30">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Internal Method
+            </th>
+            <th>
+              Handler Method
+            </th>
+          </tr>
+        </thead>
+        <tr>
+          <td>
+            [[GetPrototypeOf]]
+          </td>
+          <td>
+            `getPrototypeOf`
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[SetPrototypeOf]]
+          </td>
+          <td>
+            `setPrototypeOf`
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[IsExtensible]]
+          </td>
+          <td>
+            `isExtensible`
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[PreventExtensions]]
+          </td>
+          <td>
+            `preventExtensions`
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[GetOwnProperty]]
+          </td>
+          <td>
+            `getOwnPropertyDescriptor`
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[DefineOwnProperty]]
+          </td>
+          <td>
+            `defineProperty`
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[HasProperty]]
+          </td>
+          <td>
+            `has`
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[Get]]
+          </td>
+          <td>
+            `get`
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[Set]]
+          </td>
+          <td>
+            `set`
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[Delete]]
+          </td>
+          <td>
+            `deleteProperty`
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[OwnPropertyKeys]]
+          </td>
+          <td>
+            `ownKeys`
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[Call]]
+          </td>
+          <td>
+            `apply`
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[Construct]]
+          </td>
+          <td>
+            `construct`
+          </td>
+        </tr>
+      </table>
+    </emu-table>
+    <p>When a handler method is called to provide the implementation of a Proxy object internal method, the handler method is passed the proxy's target object as a parameter. A proxy's handler object does not necessarily have a method corresponding to every essential internal method. Invoking an internal method on the proxy results in the invocation of the corresponding internal method on the proxy's target object if the handler object does not have a method corresponding to the internal trap.</p>
+    <p>The [[ProxyHandler]] and [[ProxyTarget]] internal slots of a Proxy object are always initialized when the object is created and typically may not be modified. Some Proxy objects are created in a manner that permits them to be subsequently <em>revoked</em>. When a proxy is revoked, its [[ProxyHandler]] and [[ProxyTarget]] internal slots are set to *null* causing subsequent invocations of internal methods on that Proxy object to throw a *TypeError* exception.</p>
+    <p>Because Proxy objects permit the implementation of internal methods to be provided by arbitrary ECMAScript code, it is possible to define a Proxy object whose handler methods violates the invariants defined in <emu-xref href="#sec-invariants-of-the-essential-internal-methods"></emu-xref>. Some of the internal method invariants defined in <emu-xref href="#sec-invariants-of-the-essential-internal-methods"></emu-xref> are essential integrity invariants. These invariants are explicitly enforced by the Proxy object internal methods specified in this section. An ECMAScript implementation must be robust in the presence of all possible invariant violations.</p>
+    <p>In the following algorithm descriptions, assume _obj_ is an ECMAScript Proxy object, _propertyKey_ is a property key value, _value_ is any ECMAScript language value and _propertyDesc_ is a Property Descriptor record.</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

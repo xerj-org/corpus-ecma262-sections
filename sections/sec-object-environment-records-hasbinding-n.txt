@@ -1,0 +1,27 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.2 Object Environment Records > 9.1.1.2.1 HasBinding ( _name_: a String, ): either a normal completion containing a Boolean or a throw completion [id: sec-object-environment-records-hasbinding-n]
+
+<emu-clause id="sec-object-environment-records-hasbinding-n" type="concrete method">
+          <h1>
+            HasBinding (
+              _name_: a String,
+            ): either a normal completion containing a Boolean or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>an Object Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It determines if its associated binding object has a property whose name is _name_.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _bindingObj_ be _envRecord_.[[BindingObject]].
+            1. Let _foundBinding_ be ? HasProperty(_bindingObj_, _name_).
+            1. If _foundBinding_ is *false*, return *false*.
+            1. If _envRecord_.[[IsWithEnvironment]] is *false*, return *true*.
+            1. Let _unscopables_ be ? Get(_bindingObj_, %Symbol.unscopables%).
+            1. If _unscopables_ is an Object, then
+              1. Let _blocked_ be ToBoolean(? Get(_unscopables_, _name_)).
+              1. If _blocked_ is *true*, return *false*.
+            1. Return *true*.
+          </emu-alg>
+        </emu-clause>

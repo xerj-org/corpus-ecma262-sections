@@ -1,0 +1,22 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.7 Class Definitions > 15.7.6 Static Semantics: PrototypePropertyNameList ( ): a List of property keys [id: sec-static-semantics-prototypepropertynamelist]
+
+<emu-clause id="sec-static-semantics-prototypepropertynamelist" type="sdo">
+      <h1>Static Semantics: PrototypePropertyNameList ( ): a List of property keys</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>ClassElementList : ClassElement</emu-grammar>
+      <emu-alg>
+        1. Let _propertyName_ be the PropName of |ClassElement|.
+        1. If _propertyName_ is ~empty~, return a new empty List.
+        1. If IsStatic of |ClassElement| is *true*, return a new empty List.
+        1. Return « _propertyName_ ».
+      </emu-alg>
+      <emu-grammar>ClassElementList : ClassElementList ClassElement</emu-grammar>
+      <emu-alg>
+        1. Let _list_ be the PrototypePropertyNameList of |ClassElementList|.
+        1. Let _propertyName_ be the PropName of |ClassElement|.
+        1. If _propertyName_ is ~empty~, return _list_.
+        1. If IsStatic of |ClassElement| is *true*, return _list_.
+        1. Return the list-concatenation of _list_ and « _propertyName_ ».
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,15 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.7 AsyncGeneratorFunction Objects > 27.7.1 The AsyncGeneratorFunction Constructor > 27.7.1.1 AsyncGeneratorFunction ( ..._paramArgs_, _bodyArg_ ) [id: sec-asyncgeneratorfunction]
+
+<emu-clause id="sec-asyncgeneratorfunction" type="built-in function">
+        <h1>AsyncGeneratorFunction ( ..._paramArgs_, _bodyArg_ )</h1>
+        <p>The last argument (if any) specifies the body (executable code) of an async generator function; any preceding arguments specify formal parameters.</p>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _activeFunc_ be the active function object.
+          1. If _bodyArg_ is not present, set _bodyArg_ to the empty String.
+          1. Return ? CreateDynamicFunction(_activeFunc_, NewTarget, ~async-generator~, _paramArgs_, _bodyArg_).
+        </emu-alg>
+        <emu-note>
+          <p>See NOTE for <emu-xref href="#sec-function-p1-p2-pn-body"></emu-xref>.</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,20 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.10 [[Delete]] ( _propertyKey_: a property key, ): either a normal completion containing a Boolean or a throw completion > 10.1.10.1 OrdinaryDelete ( _obj_: an Object, _propertyKey_: a property key, ): either a normal completion containing a Boolean or a throw completion [id: sec-ordinarydelete]
+
+<emu-clause id="sec-ordinarydelete" type="abstract operation">
+        <h1>
+          OrdinaryDelete (
+            _obj_: an Object,
+            _propertyKey_: a property key,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _propertyDesc_ be ? <emu-meta effects="user-code">_obj_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+          1. If _propertyDesc_ is *undefined*, return *true*.
+          1. If _propertyDesc_.[[Configurable]] is *true*, then
+            1. Remove the own property with name _propertyKey_ from _obj_.
+            1. Return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

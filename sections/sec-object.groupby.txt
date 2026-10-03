@@ -1,0 +1,19 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.2 Properties of the Object Constructor > 20.1.2.13 Object.groupBy ( _items_, _callback_ ) [id: sec-object.groupby]
+
+<emu-clause id="sec-object.groupby" type="built-in function">
+        <h1>Object.groupBy ( _items_, _callback_ )</h1>
+        <emu-note>
+          <p>_callback_ should be a function that accepts two arguments. `groupBy` calls _callback_ once for each element in _items_, in ascending order, and constructs a new object. Each value returned by _callback_ is coerced to a property key. For each such property key, the result object has a property whose key is that property key and whose value is an array containing all the elements for which the _callback_ return value coerced to that key.</p>
+          <p>_callback_ is called with two arguments: the value of the element and the index of the element.</p>
+          <p>The return value of `groupBy` is an object that does not inherit from %Object.prototype%.</p>
+        </emu-note>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _groups_ be ? GroupBy(_items_, _callback_, ~property~).
+          1. Let _obj_ be OrdinaryObjectCreate(*null*).
+          1. For each Record { [[Key]], [[Elements]] } _group_ of _groups_, do
+            1. Let _elements_ be CreateArrayFromList(_group_.[[Elements]]).
+            1. Perform ! CreateDataPropertyOrThrow(_obj_, _group_.[[Key]], _elements_).
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

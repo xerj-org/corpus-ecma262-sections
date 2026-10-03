@@ -1,0 +1,23 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.14 Construct ( _ctor_: a constructor, optional _argList_: a List of ECMAScript language values, optional _newTarget_: a constructor, ): either a normal completion containing an Object or a throw completion [id: sec-construct]
+
+<emu-clause id="sec-construct" type="abstract operation">
+      <h1>
+        Construct (
+          _ctor_: a constructor,
+          optional _argList_: a List of ECMAScript language values,
+          optional _newTarget_: a constructor,
+        ): either a normal completion containing an Object or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to call the [[Construct]] internal method of a function object. _argList_ and _newTarget_ are the values to be passed as the corresponding arguments of the internal method. If _argList_ is not present, a new empty List is used as its value. If _newTarget_ is not present, _ctor_ is used as its value.</dd>
+      </dl>
+      <emu-alg>
+        1. If _newTarget_ is not present, set _newTarget_ to _ctor_.
+        1. If _argList_ is not present, set _argList_ to a new empty List.
+        1. Return ? <emu-meta effects="user-code">_ctor_.[[Construct]](_argList_, _newTarget_)</emu-meta>.
+      </emu-alg>
+      <emu-note>
+        <p>If _newTarget_ is not present, this operation is equivalent to: `new F(...argumentsList)`</p>
+      </emu-note>
+    </emu-clause>

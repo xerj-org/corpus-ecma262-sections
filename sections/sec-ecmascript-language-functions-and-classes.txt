@@ -1,0 +1,28 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes [id: sec-ecmascript-language-functions-and-classes]
+
+<emu-clause id="sec-ecmascript-language-functions-and-classes">
+  <h1>ECMAScript Language: Functions and Classes</h1>
+  <emu-note>
+    <p>Various ECMAScript language elements cause the creation of ECMAScript function objects (<emu-xref href="#sec-ecmascript-function-objects"></emu-xref>). Evaluation of such functions starts with the execution of their [[Call]] internal method (<emu-xref href="#sec-ecmascript-function-objects-call-thisargument-argumentslist"></emu-xref>).</p>
+  </emu-note>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</emu-clause>

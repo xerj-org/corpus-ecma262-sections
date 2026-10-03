@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.45 WeakSet ( . . . ) [id: sec-constructor-properties-of-the-global-object-weakset]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-weakset">
+      <h1>WeakSet ( . . . )</h1>
+      <p>See <emu-xref href="#sec-weakset-objects"></emu-xref>.</p>
+    </emu-clause>

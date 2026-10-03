@@ -1,0 +1,18 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.7 AsyncGeneratorFunction Objects > 27.7.3 Properties of the AsyncGeneratorFunction Prototype Object [id: sec-properties-of-asyncgeneratorfunction-prototype]
+
+<emu-clause id="sec-properties-of-asyncgeneratorfunction-prototype">
+      <h1>Properties of the AsyncGeneratorFunction Prototype Object</h1>
+      <p>The <dfn>AsyncGeneratorFunction prototype object</dfn>:</p>
+      <ul>
+        <li>is <dfn>%AsyncGeneratorFunction.prototype%</dfn>.</li>
+        <li>is an ordinary object.</li>
+        <li>is not a function object and does not have an [[ECMAScriptCode]] internal slot or any other of the internal slots listed in <emu-xref href="#table-internal-slots-of-ecmascript-function-objects"></emu-xref> or <emu-xref href="#table-internal-slots-of-asyncgenerator-instances"></emu-xref>.</li>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+      </ul>
+
+      
+
+      
+
+      
+    </emu-clause>

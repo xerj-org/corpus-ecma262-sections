@@ -1,0 +1,16 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.9 RegExp String Iterator Objects > 22.2.9.2 The %RegExpStringIteratorPrototype% Object [id: sec-%regexpstringiteratorprototype%-object]
+
+<emu-clause id="sec-%regexpstringiteratorprototype%-object">
+        <h1>The %RegExpStringIteratorPrototype% Object</h1>
+        <p>The <dfn>%RegExpStringIteratorPrototype%</dfn> object:</p>
+        <ul>
+          <li>has properties that are inherited by all RegExp String Iterator objects.</li>
+          <li>is an ordinary object.</li>
+          <li>has a [[Prototype]] internal slot whose value is %Iterator.prototype%.</li>
+          <li>has the following properties:</li>
+        </ul>
+
+        
+
+        
+      </emu-clause>

@@ -1,0 +1,28 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.3 Abstract Operations For ArrayBuffer Objects > 25.1.3.15 GetRawBytesFromSharedBlock ( _block_: a Shared Data Block, _byteIndex_: a non-negative integer, _type_: a TypedArray element type, _isTypedArray_: a Boolean, _order_: ~seq-cst~ or ~unordered~, ): a List of byte values [id: sec-getrawbytesfromsharedblock]
+
+<emu-clause id="sec-getrawbytesfromsharedblock" type="abstract operation">
+        <h1>
+          GetRawBytesFromSharedBlock (
+            _block_: a Shared Data Block,
+            _byteIndex_: a non-negative integer,
+            _type_: a TypedArray element type,
+            _isTypedArray_: a Boolean,
+            _order_: ~seq-cst~ or ~unordered~,
+          ): a List of byte values
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _elementSize_ be the Element Size value specified in <emu-xref href="#table-the-typedarray-constructors"></emu-xref> for Element Type _type_.
+          1. Let _agentRecord_ be the Agent Record of the surrounding agent.
+          1. Let _execution_ be _agentRecord_.[[CandidateExecution]].
+          1. Let _eventsRecord_ be the Agent Events Record of _execution_.[[EventsRecords]] whose [[AgentSignifier]] is AgentSignifier().
+          1. If _isTypedArray_ is *true* and IsNoTearConfiguration(_type_, _order_) is *true*, let _noTear_ be *true*; else let _noTear_ be *false*.
+          1. Let _rawValue_ be a List of length _elementSize_ whose elements are nondeterministically chosen byte values.
+          1. NOTE: In implementations, _rawValue_ is the result of a non-atomic or atomic read instruction on the underlying hardware. The nondeterminism is a semantic prescription of the memory model to describe observable behaviour of hardware with weak consistency.
+          1. Let _readEvent_ be ReadSharedMemory { [[Order]]: _order_, [[NoTear]]: _noTear_, [[Block]]: _block_, [[ByteIndex]]: _byteIndex_, [[ElementSize]]: _elementSize_ }.
+          1. Append _readEvent_ to _eventsRecord_.[[EventList]].
+          1. Append Chosen Value Record { [[Event]]: _readEvent_, [[ChosenValue]]: _rawValue_ } to _execution_.[[ChosenValues]].
+          1. Return _rawValue_.
+        </emu-alg>
+      </emu-clause>

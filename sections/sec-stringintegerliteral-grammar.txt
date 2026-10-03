@@ -1,0 +1,16 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.16 StringToBigInt ( _string_: a String, ): a BigInt or *undefined* > 7.1.16.1 StringIntegerLiteral Grammar [id: sec-stringintegerliteral-grammar]
+
+<emu-clause id="sec-stringintegerliteral-grammar">
+        <h1>StringIntegerLiteral Grammar</h1>
+        <p>StringToBigInt uses the following grammar.</p>
+        <h2>Syntax</h2>
+        <emu-grammar type="definition">
+          StringIntegerLiteral :::
+            StrWhiteSpace?
+            StrWhiteSpace? StrIntegerLiteral StrWhiteSpace?
+
+          StrIntegerLiteral :::
+            SignedInteger[~Sep]
+            NonDecimalIntegerLiteral[~Sep]
+        </emu-grammar>
+      </emu-clause>

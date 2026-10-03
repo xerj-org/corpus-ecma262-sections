@@ -1,0 +1,8 @@
+ECMA-262 > 24 Keyed Collections > 24.2 Set Objects > 24.2.6 Set Iterator Objects > 24.2.6.2 The %SetIteratorPrototype% Object > 24.2.6.2.1 %SetIteratorPrototype%.next ( ) [id: sec-%setiteratorprototype%.next]
+
+<emu-clause id="sec-%setiteratorprototype%.next" type="built-in function">
+          <h1>%SetIteratorPrototype%.next ( )</h1>
+          <emu-alg>
+            1. Return ? <emu-meta suppress-effects="user-code">GeneratorResume(*this* value, ~empty~, *"%SetIteratorPrototype%"*)</emu-meta>.
+          </emu-alg>
+        </emu-clause>

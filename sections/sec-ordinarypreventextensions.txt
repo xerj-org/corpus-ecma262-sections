@@ -1,0 +1,15 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.4 [[PreventExtensions]] ( ): a normal completion containing *true* > 10.1.4.1 OrdinaryPreventExtensions ( _obj_: an Object, ): *true* [id: sec-ordinarypreventextensions]
+
+<emu-clause id="sec-ordinarypreventextensions" type="abstract operation">
+        <h1>
+          OrdinaryPreventExtensions (
+            _obj_: an Object,
+          ): *true*
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Set _obj_.[[Extensible]] to *false*.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

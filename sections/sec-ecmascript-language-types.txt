@@ -1,0 +1,20 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types [id: sec-ecmascript-language-types]
+
+<emu-clause id="sec-ecmascript-language-types">
+    <h1>ECMAScript Language Types</h1>
+    <p>An <dfn variants="ECMAScript language types">ECMAScript language type</dfn> corresponds to values that are directly manipulated by an ECMAScript programmer using the ECMAScript language. The ECMAScript language types are Undefined, Null, Boolean, String, Symbol, Number, BigInt, and Object. An <dfn variants="ECMAScript language values">ECMAScript language value</dfn> is a value that is characterized by an ECMAScript language type.</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

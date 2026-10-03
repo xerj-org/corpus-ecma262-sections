@@ -1,0 +1,9 @@
+ECMA-262 > 22 Text Processing [id: sec-text-processing]
+
+<emu-clause id="sec-text-processing">
+  <h1>Text Processing</h1>
+
+  
+
+  
+</emu-clause>

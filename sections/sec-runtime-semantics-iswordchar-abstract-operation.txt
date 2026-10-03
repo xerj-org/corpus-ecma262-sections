@@ -1,0 +1,20 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.4 Runtime Semantics: CompileAssertion ( _regexpRecord_: a RegExp Record, ): a Matcher > 22.2.2.4.1 IsWordChar ( _regexpRecord_: a RegExp Record, _input_: a List of characters, _e_: an integer, ): a Boolean [id: sec-runtime-semantics-iswordchar-abstract-operation]
+
+<emu-clause id="sec-runtime-semantics-iswordchar-abstract-operation" type="abstract operation">
+          <h1>
+            IsWordChar (
+              _regexpRecord_: a RegExp Record,
+              _input_: a List of characters,
+              _e_: an integer,
+            ): a Boolean
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _inputLength_ be the number of elements in _input_.
+            1. If _e_ = -1 or _e_ = _inputLength_, return *false*.
+            1. Let _char_ be the character _input_[_e_].
+            1. If WordCharacters(_regexpRecord_) contains _char_, return *true*.
+            1. Return *false*.
+          </emu-alg>
+        </emu-clause>

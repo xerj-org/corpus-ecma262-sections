@@ -1,0 +1,15 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.5 Object Initializer > 13.2.5.2 Static Semantics: IsComputedPropertyKey ( ): a Boolean [id: sec-static-semantics-iscomputedpropertykey]
+
+<emu-clause id="sec-static-semantics-iscomputedpropertykey" type="sdo">
+        <h1>Static Semantics: IsComputedPropertyKey ( ): a Boolean</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>PropertyName : LiteralPropertyName</emu-grammar>
+        <emu-alg>
+          1. Return *false*.
+        </emu-alg>
+        <emu-grammar>PropertyName : ComputedPropertyName</emu-grammar>
+        <emu-alg>
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,20 @@
+ECMA-262 > 24 Keyed Collections > 24.3 WeakMap Objects > 24.3.3 Properties of the WeakMap Prototype Object > 24.3.3.2 WeakMap.prototype.delete ( _key_ ) [id: sec-weakmap.prototype.delete]
+
+<emu-clause id="sec-weakmap.prototype.delete" type="built-in function">
+        <h1>WeakMap.prototype.delete ( _key_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _weakMap_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_weakMap_, [[WeakMapData]]).
+          1. If CanBeHeldWeakly(_key_) is *false*, return *false*.
+          1. For each Record { [[Key]], [[Value]] } _entry_ of _weakMap_.[[WeakMapData]], do
+            1. If _entry_.[[Key]] is not ~empty~ and SameValue(_entry_.[[Key]], _key_) is *true*, then
+              1. Set _entry_.[[Key]] to ~empty~.
+              1. Set _entry_.[[Value]] to ~empty~.
+              1. Return *true*.
+          1. Return *false*.
+        </emu-alg>
+        <emu-note>
+          <p>The value ~empty~ is used as a specification device to indicate that an entry has been deleted. Actual implementations may take other actions such as physically removing the entry from internal data structures.</p>
+        </emu-note>
+      </emu-clause>

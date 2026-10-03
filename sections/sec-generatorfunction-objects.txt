@@ -1,0 +1,17 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.6 GeneratorFunction Objects [id: sec-generatorfunction-objects]
+
+<emu-clause id="sec-generatorfunction-objects">
+    <h1>GeneratorFunction Objects</h1>
+    <p>GeneratorFunctions are functions that are usually created by evaluating |GeneratorDeclaration|s, |GeneratorExpression|s, and |GeneratorMethod|s. They may also be created by calling the %GeneratorFunction% intrinsic.</p>
+    <emu-figure id="figure-2" caption="Generator Objects Relationships" informative>
+      <img alt="A staggering variety of boxes and arrows." height="700" src="img/figure-2.svg" width="900">
+    </emu-figure>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

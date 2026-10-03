@@ -1,0 +1,13 @@
+ECMA-262 > 20 Fundamental Objects > 20.3 Boolean Objects [id: sec-boolean-objects]
+
+<emu-clause id="sec-boolean-objects">
+    <h1>Boolean Objects</h1>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

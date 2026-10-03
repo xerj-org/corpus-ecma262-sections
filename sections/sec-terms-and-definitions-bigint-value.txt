@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.28 BigInt value [id: sec-terms-and-definitions-bigint-value]
+
+<emu-clause id="sec-terms-and-definitions-bigint-value">
+      <h1>BigInt value</h1>
+      <p>primitive value corresponding to an arbitrary-precision integer value</p>
+    </emu-clause>

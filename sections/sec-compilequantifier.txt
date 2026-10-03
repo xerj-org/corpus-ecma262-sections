@@ -1,0 +1,17 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.5 Runtime Semantics: CompileQuantifier ( ): a Record with fields [[Min]] (a non-negative integer), [[Max]] (a non-negative integer or +∞), and [[Greedy]] (a Boolean) [id: sec-compilequantifier]
+
+<emu-clause id="sec-compilequantifier" type="sdo" oldids="sec-quantifier">
+        <h1>Runtime Semantics: CompileQuantifier ( ): a Record with fields [[Min]] (a non-negative integer), [[Max]] (a non-negative integer or +&infin;), and [[Greedy]] (a Boolean)</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>Quantifier :: QuantifierPrefix</emu-grammar>
+        <emu-alg>
+          1. Let _qp_ be CompileQuantifierPrefix of |QuantifierPrefix|.
+          1. Return the Record { [[Min]]: _qp_.[[Min]], [[Max]]: _qp_.[[Max]], [[Greedy]]: *true* }.
+        </emu-alg>
+        <emu-grammar>Quantifier :: QuantifierPrefix `?`</emu-grammar>
+        <emu-alg>
+          1. Let _qp_ be CompileQuantifierPrefix of |QuantifierPrefix|.
+          1. Return the Record { [[Min]]: _qp_.[[Min]], [[Max]]: _qp_.[[Max]], [[Greedy]]: *false* }.
+        </emu-alg>
+      </emu-clause>

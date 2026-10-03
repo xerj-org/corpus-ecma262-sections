@@ -1,0 +1,7 @@
+ECMA-262 > 19 The Global Object > 19.1 Value Properties of the Global Object > 19.1.4 undefined [id: sec-undefined]
+
+<emu-clause id="sec-undefined">
+      <h1>undefined</h1>
+      <p>The initial value of the *"undefined"* property of the global object is *undefined* (see <emu-xref href="#sec-ecmascript-language-types-undefined-type"></emu-xref>).</p>
+      <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+    </emu-clause>

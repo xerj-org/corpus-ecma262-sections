@@ -1,0 +1,21 @@
+ECMA-262 > A Grammar Summary [id: sec-grammar-summary]
+
+<emu-annex id="sec-grammar-summary">
+  <h1>Grammar Summary</h1>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</emu-annex>

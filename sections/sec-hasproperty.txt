@@ -1,0 +1,17 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.11 HasProperty ( _obj_: an Object, _propertyKey_: a property key, ): either a normal completion containing a Boolean or a throw completion [id: sec-hasproperty]
+
+<emu-clause id="sec-hasproperty" type="abstract operation">
+      <h1>
+        HasProperty (
+          _obj_: an Object,
+          _propertyKey_: a property key,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to determine whether an object has a property with the specified property key. The property may be either own or inherited.</dd>
+      </dl>
+      <emu-alg>
+        1. Return ? <emu-meta effects="user-code">_obj_.[[HasProperty]](_propertyKey_)</emu-meta>.
+      </emu-alg>
+    </emu-clause>

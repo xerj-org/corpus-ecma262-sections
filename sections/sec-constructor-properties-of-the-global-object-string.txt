@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.33 String ( . . . ) [id: sec-constructor-properties-of-the-global-object-string]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-string">
+      <h1>String ( . . . )</h1>
+      <p>See <emu-xref href="#sec-string-constructor"></emu-xref>.</p>
+    </emu-clause>

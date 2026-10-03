@@ -1,0 +1,33 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.15 SetIntegrityLevel ( _obj_: an Object, _level_: ~sealed~ or ~frozen~, ): either a normal completion containing a Boolean or a throw completion [id: sec-setintegritylevel]
+
+<emu-clause id="sec-setintegritylevel" type="abstract operation">
+      <h1>
+        SetIntegrityLevel (
+          _obj_: an Object,
+          _level_: ~sealed~ or ~frozen~,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to fix the set of own properties of an object.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _status_ be ? _obj_.[[PreventExtensions]]().
+        1. If _status_ is *false*, return *false*.
+        1. Let _keys_ be ? _obj_.[[OwnPropertyKeys]]().
+        1. If _level_ is ~sealed~, then
+          1. For each element _key_ of _keys_, do
+            1. Perform ? DefinePropertyOrThrow(_obj_, _key_, PropertyDescriptor { [[Configurable]]: *false* }).
+        1. Else,
+          1. Assert: _level_ is ~frozen~.
+          1. For each element _key_ of _keys_, do
+            1. Let _currentDesc_ be ? <emu-meta effects="user-code">_obj_.[[GetOwnProperty]](_key_)</emu-meta>.
+            1. If _currentDesc_ is not *undefined*, then
+              1. If IsAccessorDescriptor(_currentDesc_) is *true*, then
+                1. Let _propertyDesc_ be the PropertyDescriptor { [[Configurable]]: *false* }.
+              1. Else,
+                1. Let _propertyDesc_ be the PropertyDescriptor { [[Configurable]]: *false*, [[Writable]]: *false* }.
+              1. Perform ? DefinePropertyOrThrow(_obj_, _key_, _propertyDesc_).
+        1. Return *true*.
+      </emu-alg>
+    </emu-clause>

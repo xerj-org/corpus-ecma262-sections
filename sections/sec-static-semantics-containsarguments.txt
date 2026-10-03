@@ -1,0 +1,75 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.7 Class Definitions > 15.7.9 Static Semantics: ContainsArguments ( ): a Boolean [id: sec-static-semantics-containsarguments]
+
+<emu-clause id="sec-static-semantics-containsarguments" type="sdo">
+      <h1>Static Semantics: ContainsArguments ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+
+      <p>Every grammar production alternative in this specification which is not listed below implicitly has the following default definition of ContainsArguments:</p>
+      <emu-alg>
+        1. For each child node _child_ of this Parse Node, do
+          1. If _child_ is an instance of a nonterminal, then
+            1. If ContainsArguments of _child_ is *true*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+
+      <emu-grammar>
+        IdentifierReference : Identifier
+      </emu-grammar>
+      <emu-alg>
+        1. If the StringValue of |Identifier| is *"arguments"*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+
+      <emu-grammar>
+        FunctionDeclaration :
+          `function` BindingIdentifier `(` FormalParameters `)` `{` FunctionBody `}`
+          `function` `(` FormalParameters `)` `{` FunctionBody `}`
+
+        FunctionExpression :
+          `function` BindingIdentifier? `(` FormalParameters `)` `{` FunctionBody `}`
+
+        GeneratorDeclaration :
+          `function` `*` BindingIdentifier `(` FormalParameters `)` `{` GeneratorBody `}`
+          `function` `*` `(` FormalParameters `)` `{` GeneratorBody `}`
+
+        GeneratorExpression :
+          `function` `*` BindingIdentifier? `(` FormalParameters `)` `{` GeneratorBody `}`
+
+        AsyncGeneratorDeclaration :
+          `async` `function` `*` BindingIdentifier `(` FormalParameters `)` `{` AsyncGeneratorBody `}`
+          `async` `function` `*` `(` FormalParameters `)` `{` AsyncGeneratorBody `}`
+
+        AsyncGeneratorExpression :
+          `async` `function` `*` BindingIdentifier? `(` FormalParameters `)` `{` AsyncGeneratorBody `}`
+
+        AsyncFunctionDeclaration :
+          `async` `function` BindingIdentifier `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+          `async` `function` `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+
+        AsyncFunctionExpression :
+          `async` `function` BindingIdentifier? `(` FormalParameters `)` `{` AsyncFunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+
+      <emu-grammar>
+        MethodDefinition :
+          ClassElementName `(` UniqueFormalParameters `)` `{` FunctionBody `}`
+          `get` ClassElementName `(` `)` `{` FunctionBody `}`
+          `set` ClassElementName `(` PropertySetParameterList `)` `{` FunctionBody `}`
+
+        GeneratorMethod :
+          `*` ClassElementName `(` UniqueFormalParameters `)` `{` GeneratorBody `}`
+
+        AsyncGeneratorMethod :
+          `async` `*` ClassElementName `(` UniqueFormalParameters `)` `{` AsyncGeneratorBody `}`
+
+        AsyncMethod :
+          `async` ClassElementName `(` UniqueFormalParameters `)` `{` AsyncFunctionBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return ContainsArguments of |ClassElementName|.
+      </emu-alg>
+    </emu-clause>

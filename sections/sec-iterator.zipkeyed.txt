@@ -1,0 +1,48 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.3 Iterator Objects > 27.1.3.2 Properties of the Iterator Constructor > 27.1.3.2.5 Iterator.zipKeyed ( _iterables_ [ , _options_ ] ) [id: sec-iterator.zipkeyed]
+
+<emu-clause id="sec-iterator.zipkeyed" type="built-in function">
+          <h1>Iterator.zipKeyed ( _iterables_ [ , _options_ ] )</h1>
+          <p>This function performs the following steps when called:</p>
+          <emu-alg>
+            1. If _iterables_ is not an Object, throw a *TypeError* exception.
+            1. Set _options_ to ? GetOptionsObject(_options_).
+            1. Let _mode_ be ? Get(_options_, *"mode"*).
+            1. If _mode_ is *undefined*, set _mode_ to *"shortest"*.
+            1. If _mode_ is not one of *"shortest"*, *"longest"*, or *"strict"*, throw a *TypeError* exception.
+            1. Let _paddingOption_ be *undefined*.
+            1. If _mode_ is *"longest"*, then
+              1. Set _paddingOption_ to ? Get(_options_, *"padding"*).
+              1. If _paddingOption_ is not *undefined* and _paddingOption_ is not an Object, throw a *TypeError* exception.
+            1. Let _iters_ be a new empty List.
+            1. Let _padding_ be a new empty List.
+            1. Let _allKeys_ be ? _iterables_.[[OwnPropertyKeys]]().
+            1. Let _keys_ be a new empty List.
+            1. For each element _key_ of _allKeys_, do
+              1. Let _propertyDesc_ be Completion(_iterables_.[[GetOwnProperty]](_key_)).
+              1. IfAbruptCloseIterators(_propertyDesc_, _iters_).
+              1. If _propertyDesc_ is not *undefined* and _propertyDesc_.[[Enumerable]] is *true*, then
+                1. Let _value_ be Completion(Get(_iterables_, _key_)).
+                1. IfAbruptCloseIterators(_value_, _iters_).
+                1. If _value_ is not *undefined*, then
+                  1. Append _key_ to _keys_.
+                  1. Let _iter_ be Completion(GetIteratorFlattenable(_value_, ~reject-primitives~)).
+                  1. IfAbruptCloseIterators(_iter_, _iters_).
+                  1. Append _iter_ to _iters_.
+            1. Let _iterCount_ be the number of elements in _iters_.
+            1. If _mode_ is *"longest"*, then
+              1. If _paddingOption_ is *undefined*, then
+                1. Repeat _iterCount_ times:
+                  1. Append *undefined* to _padding_.
+              1. Else,
+                1. For each element _key_ of _keys_, do
+                  1. Let _value_ be Completion(Get(_paddingOption_, _key_)).
+                  1. IfAbruptCloseIterators(_value_, _iters_).
+                  1. Append _value_ to _padding_.
+            1. Let _finishResults_ be a new Abstract Closure with parameters (_results_) that captures _keys_ and _iterCount_ and performs the following steps when called:
+              1. Let _obj_ be OrdinaryObjectCreate(*null*).
+              1. For each integer _i_ such that 0 ≤ _i_ &lt; _iterCount_, in ascending order, do
+                1. Perform ! CreateDataPropertyOrThrow(_obj_, _keys_[_i_], _results_[_i_]).
+              1. Return _obj_.
+            1. Return IteratorZip(_iters_, _mode_, _padding_, _finishResults_).
+          </emu-alg>
+        </emu-clause>

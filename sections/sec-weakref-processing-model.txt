@@ -1,0 +1,13 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.9 Processing Model of WeakRef and FinalizationRegistry Targets [id: sec-weakref-processing-model]
+
+<emu-clause id="sec-weakref-processing-model">
+    <h1>Processing Model of WeakRef and FinalizationRegistry Targets</h1>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

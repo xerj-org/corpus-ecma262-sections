@@ -1,0 +1,16 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.1 The Symbol Constructor [id: sec-symbol-constructor]
+
+<emu-clause id="sec-symbol-constructor">
+      <h1>The Symbol Constructor</h1>
+      <p>The Symbol constructor:</p>
+      <ul>
+        <li>is <dfn>%Symbol%</dfn>.</li>
+        <li>is the initial value of the *"Symbol"* property of the global object.</li>
+        <li>returns a new Symbol value when called as a function.</li>
+        <li>is not intended to be used with the `new` operator.</li>
+        <li>is not intended to be subclassed.</li>
+        <li>may be used as the value of an `extends` clause of a class definition but a `super` call to it will cause an exception.</li>
+      </ul>
+
+      
+    </emu-clause>

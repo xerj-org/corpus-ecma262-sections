@@ -1,0 +1,18 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.13 Labelled Statements > 14.13.2 Static Semantics: IsLabelledFunction ( _stmt_: a |Statement| Parse Node, ): a Boolean [id: sec-islabelledfunction]
+
+<emu-clause id="sec-islabelledfunction" type="abstract operation">
+      <h1>
+        Static Semantics: IsLabelledFunction (
+          _stmt_: a |Statement| Parse Node,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If _stmt_ is not a |LabelledStatement|, return *false*.
+        1. Let _item_ be the |LabelledItem| of _stmt_.
+        1. If _item_ is <emu-grammar>LabelledItem : FunctionDeclaration</emu-grammar>, return *true*.
+        1. Let _subStmt_ be the |Statement| of _item_.
+        1. Return IsLabelledFunction(_subStmt_).
+      </emu-alg>
+    </emu-clause>

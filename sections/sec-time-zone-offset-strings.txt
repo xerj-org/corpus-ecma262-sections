@@ -1,0 +1,63 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.33 Time Zone Offset String Format [id: sec-time-zone-offset-strings]
+
+<emu-clause id="sec-time-zone-offset-strings">
+        <h1>Time Zone Offset String Format</h1>
+
+        <p>
+          ECMAScript defines a string interchange format for UTC offsets, derived from ISO 8601.
+          The format is described by the following grammar.
+        </p>
+
+        <h2>Syntax</h2>
+        <emu-grammar type="definition">
+          UTCOffset :::
+            ASCIISign Hour
+            ASCIISign Hour HourSubcomponents[+Extended]
+            ASCIISign Hour HourSubcomponents[~Extended]
+
+          ASCIISign ::: one of
+            `+` `-`
+
+          Hour :::
+            `0` DecimalDigit
+            `1` DecimalDigit
+            `20`
+            `21`
+            `22`
+            `23`
+
+          HourSubcomponents[Extended] :::
+            TimeSeparator[?Extended] MinuteSecond
+            TimeSeparator[?Extended] MinuteSecond TimeSeparator[?Extended] MinuteSecond TemporalDecimalFraction?
+
+          TimeSeparator[Extended] :::
+            [+Extended] `:`
+            [~Extended] [empty]
+
+          MinuteSecond :::
+            `0` DecimalDigit
+            `1` DecimalDigit
+            `2` DecimalDigit
+            `3` DecimalDigit
+            `4` DecimalDigit
+            `5` DecimalDigit
+
+          TemporalDecimalFraction :::
+            TemporalDecimalSeparator DecimalDigit
+            TemporalDecimalSeparator DecimalDigit DecimalDigit
+            TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit
+            TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit DecimalDigit
+            TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit
+            TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit
+            TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit
+            TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit
+            TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit
+
+          TemporalDecimalSeparator ::: one of
+            `.` `,`
+        </emu-grammar>
+
+        
+
+        
+      </emu-clause>

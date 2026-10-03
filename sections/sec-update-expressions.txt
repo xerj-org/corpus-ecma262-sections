@@ -1,0 +1,24 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.4 Update Expressions [id: sec-update-expressions]
+
+<emu-clause id="sec-update-expressions">
+    <h1>Update Expressions</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      UpdateExpression[Yield, Await] :
+        LeftHandSideExpression[?Yield, ?Await]
+        LeftHandSideExpression[?Yield, ?Await] [no LineTerminator here] `++`
+        LeftHandSideExpression[?Yield, ?Await] [no LineTerminator here] `--`
+        `++` UnaryExpression[?Yield, ?Await]
+        `--` UnaryExpression[?Yield, ?Await]
+    </emu-grammar>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

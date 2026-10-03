@@ -1,0 +1,21 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.1 Bound Function Exotic Objects > 10.4.1.1 [[Call]] ( _thisArg_: an ECMAScript language value, _argList_: a List of ECMAScript language values, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-bound-function-exotic-objects-call-thisargument-argumentslist]
+
+<emu-clause id="sec-bound-function-exotic-objects-call-thisargument-argumentslist" type="internal method">
+        <h1>
+          [[Call]] (
+            _thisArg_: an ECMAScript language value,
+            _argList_: a List of ECMAScript language values,
+          ): either a normal completion containing an ECMAScript language value or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a bound function exotic object _func_</dd>
+        </dl>
+        <emu-alg>
+          1. Let _target_ be _func_.[[BoundTargetFunction]].
+          1. Let _boundThis_ be _func_.[[BoundThis]].
+          1. Let _boundArgs_ be _func_.[[BoundArguments]].
+          1. Let _args_ be the list-concatenation of _boundArgs_ and _argList_.
+          1. Return ? Call(_target_, _boundThis_, _args_).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,22 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.8 [[OwnPropertyKeys]] ( ): a normal completion containing a List of property keys [id: sec-typedarray-ownpropertykeys]
+
+<emu-clause id="sec-typedarray-ownpropertykeys" oldids="sec-integer-indexed-exotic-objects-ownpropertykeys" type="internal method">
+        <h1>[[OwnPropertyKeys]] ( ): a normal completion containing a List of property keys</h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a TypedArray _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. Let _taRecord_ be MakeTypedArrayWithBufferWitnessRecord(_obj_, ~seq-cst~).
+          1. Let _keys_ be a new empty List.
+          1. If IsTypedArrayOutOfBounds(_taRecord_) is *false*, then
+            1. Let _length_ be TypedArrayLength(_taRecord_).
+            1. For each integer _i_ such that 0 ≤ _i_ &lt; _length_, in ascending order, do
+              1. Append ! ToString(𝔽(_i_)) to _keys_.
+          1. For each own property key _propertyKey_ of _obj_ such that _propertyKey_ is a String and _propertyKey_ is not an integer index, in ascending chronological order of property creation, do
+            1. Append _propertyKey_ to _keys_.
+          1. For each own property key _propertyKey_ of _obj_ such that _propertyKey_ is a Symbol, in ascending chronological order of property creation, do
+            1. Append _propertyKey_ to _keys_.
+          1. Return _keys_.
+        </emu-alg>
+      </emu-clause>

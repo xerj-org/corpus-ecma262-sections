@@ -1,0 +1,20 @@
+ECMA-262 > 7 Abstract Operations > 7.2 Testing and Comparison Operations > 7.2.2 IsArray ( _arg_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion [id: sec-isarray]
+
+<emu-clause id="sec-isarray" type="abstract operation">
+      <h1>
+        IsArray (
+          _arg_: an ECMAScript language value,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If _arg_ is not an Object, return *false*.
+        1. If _arg_ is an Array exotic object, return *true*.
+        1. If _arg_ is a Proxy exotic object, then
+          1. Perform ? ValidateNonRevokedProxy(_arg_).
+          1. Let _proxyTarget_ be _arg_.[[ProxyTarget]].
+          1. Return ? IsArray(_proxyTarget_).
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.4 AsyncDisposableStack ( . . . ) [id: sec-constructor-properties-of-the-global-object-asyncdisposablestack]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-asyncdisposablestack">
+      <h1>AsyncDisposableStack ( . . . )</h1>
+      <p>See <emu-xref href="#sec-asyncdisposablestack-constructor"></emu-xref>.</p>
+    </emu-clause>

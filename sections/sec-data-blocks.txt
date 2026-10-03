@@ -1,0 +1,17 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.9 Data Blocks [id: sec-data-blocks]
+
+<emu-clause id="sec-data-blocks">
+      <h1>Data Blocks</h1>
+      <p>The <dfn variants="Data Blocks">Data Block</dfn> specification type is used to describe a distinct and mutable sequence of byte-sized (8 bit) numeric values. A <dfn variants="byte values">byte value</dfn> is an integer in the inclusive interval from 0 to 255. A Data Block value is created with a fixed number of bytes that each have the initial value 0.</p>
+      <p>For notational convenience within this specification, an array-like syntax can be used to access the individual bytes of a Data Block value. This notation presents a Data Block value as a 0-based <emu-not-ref>integer-indexed</emu-not-ref> sequence of bytes. For example, if _dataBlock_ is a 5 byte Data Block value then _dataBlock_[2] can be used to access its 3<sup>rd</sup> byte.</p>
+      <p>A data block that resides in memory that can be referenced from multiple agents concurrently is designated a <dfn variants="Shared Data Blocks">Shared Data Block</dfn>. A Shared Data Block has an identity (for the purposes of equality testing Shared Data Block values) that is <em>address-free</em>: it is tied not to the virtual addresses the block is mapped to in any process, but to the set of locations in memory that the block represents. Two data blocks are equal only if the sets of the locations they contain are equal; otherwise, they are not equal and the intersection of the sets of locations they contain is empty. Finally, Shared Data Blocks can be distinguished from Data Blocks.</p>
+      <p>The semantics of Shared Data Blocks is defined using Shared Data Block events by the memory model. Abstract operations below introduce Shared Data Block events and act as the interface between evaluation semantics and the event semantics of the memory model. The events form a candidate execution, on which the memory model acts as a filter. Please consult the memory model for full semantics.</p>
+      <p>Shared Data Block events are modelled by Records, defined in the memory model.</p>
+      <p>The following abstract operations are used in this specification to operate upon Data Block values:</p>
+
+      
+
+      
+
+      
+    </emu-clause>

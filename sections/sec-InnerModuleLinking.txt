@@ -1,0 +1,49 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.6 Cyclic Module Records > 16.2.1.6.1 Implementation of Module Record Abstract Methods > 16.2.1.6.1.2 Link ( ): either a normal completion containing ~unused~ or a throw completion > 16.2.1.6.1.2.1 InnerModuleLinking ( _module_: a Module Record, _stack_: a List of Cyclic Module Records, _index_: a non-negative integer, ): either a normal completion containing a non-negative integer or a throw completion [id: sec-InnerModuleLinking]
+
+<emu-clause id="sec-InnerModuleLinking" type="abstract operation" oldids="sec-innermoduleinstantiation">
+              <h1>
+                InnerModuleLinking (
+                  _module_: a Module Record,
+                  _stack_: a List of Cyclic Module Records,
+                  _index_: a non-negative integer,
+                ): either a normal completion containing a non-negative integer or a throw completion
+              </h1>
+              <dl class="header">
+                <dt>description</dt>
+                <dd>It is used by Link to perform the actual linking process for _module_, as well as recursively on all other modules in the dependency graph. The _stack_ and _index_ parameters, as well as a module's [[DFSAncestorIndex]] field, keep track of the depth-first search (DFS) traversal. In particular, [[DFSAncestorIndex]] is used to discover strongly connected components (SCCs), such that all modules in an SCC transition to ~linked~ together.</dd>
+              </dl>
+
+              <emu-alg>
+                1. If _module_ is not a Cyclic Module Record, then
+                  1. Perform ? _module_.Link().
+                  1. Return _index_.
+                1. If _module_.[[Status]] is one of ~linking~, ~linked~, ~evaluating-async~, or ~evaluated~, then
+                  1. Return _index_.
+                1. Assert: _module_.[[Status]] is ~unlinked~.
+                1. Set _module_.[[Status]] to ~linking~.
+                1. Let _moduleIndex_ be _index_.
+                1. Set _module_.[[DFSAncestorIndex]] to _index_.
+                1. Set _index_ to _index_ + 1.
+                1. Append _module_ to _stack_.
+                1. For each ModuleRequest Record _request_ of _module_.[[RequestedModules]], do
+                  1. Let _requiredModule_ be GetImportedModule(_module_, _request_).
+                  1. Set _index_ to ? InnerModuleLinking(_requiredModule_, _stack_, _index_).
+                  1. If _requiredModule_ is a Cyclic Module Record, then
+                    1. Assert: _requiredModule_.[[Status]] is one of ~linking~, ~linked~, ~evaluating-async~, or ~evaluated~.
+                    1. Assert: _requiredModule_.[[Status]] is ~linking~ if and only if _stack_ contains _requiredModule_.
+                    1. If _requiredModule_.[[Status]] is ~linking~, then
+                      1. Set _module_.[[DFSAncestorIndex]] to min(_module_.[[DFSAncestorIndex]], _requiredModule_.[[DFSAncestorIndex]]).
+                1. Perform ? _module_.InitializeEnvironment().
+                1. Assert: _module_ occurs exactly once in _stack_.
+                1. Assert: _module_.[[DFSAncestorIndex]] ≤ _moduleIndex_.
+                1. If _module_.[[DFSAncestorIndex]] = _moduleIndex_, then
+                  1. Let _done_ be *false*.
+                  1. Repeat, while _done_ is *false*,
+                    1. Let _requiredModule_ be the last element of _stack_.
+                    1. Remove the last element of _stack_.
+                    1. Assert: _requiredModule_ is a Cyclic Module Record.
+                    1. Set _requiredModule_.[[Status]] to ~linked~.
+                    1. If _requiredModule_ and _module_ are the same Module Record, set _done_ to *true*.
+                1. Return _index_.
+              </emu-alg>
+            </emu-clause>

@@ -1,0 +1,165 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.7 Runtime Semantics: CompileAtom ( _regexpRecord_: a RegExp Record, _direction_: ~forward~ or ~backward~, ): a Matcher [id: sec-compileatom]
+
+<emu-clause id="sec-compileatom" type="sdo" oldids="sec-atom,sec-atomescape,sec-characterescape,sec-decimalescape">
+        <h1>
+          Runtime Semantics: CompileAtom (
+            _regexpRecord_: a RegExp Record,
+            _direction_: ~forward~ or ~backward~,
+          ): a Matcher
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-note>
+          <p>This section is amended in <emu-xref href="#sec-compileatom-annexb"></emu-xref>.</p>
+        </emu-note>
+
+        <!-- Atom -->
+        <emu-grammar>Atom :: PatternCharacter</emu-grammar>
+        <emu-alg>
+          1. Let _char_ be the character matched by |PatternCharacter|.
+          1. Let _charSet_ be a one-element CharSet containing the character _char_.
+          1. Return CharacterSetMatcher(_regexpRecord_, _charSet_, *false*, _direction_).
+        </emu-alg>
+        <emu-grammar>Atom :: `.`</emu-grammar>
+        <emu-alg>
+          1. Let _charSet_ be AllCharacters(_regexpRecord_).
+          1. If _regexpRecord_.[[DotAll]] is not *true*, then
+            1. Remove from _charSet_ all characters corresponding to a code point on the right-hand side of the |LineTerminator| production.
+          1. Return CharacterSetMatcher(_regexpRecord_, _charSet_, *false*, _direction_).
+        </emu-alg>
+        <emu-grammar>Atom :: CharacterClass</emu-grammar>
+        <emu-alg>
+          1. Let _cc_ be CompileCharacterClass of |CharacterClass| with argument _regexpRecord_.
+          1. Let _cs_ be _cc_.[[CharSet]].
+          1. If _regexpRecord_.[[UnicodeSets]] is *false* or every CharSetElement of _cs_ consists of a single character (including if _cs_ is empty), return CharacterSetMatcher(_regexpRecord_, _cs_, _cc_.[[Invert]], _direction_).
+          1. Assert: _cc_.[[Invert]] is *false*.
+          1. Let _listOfMatchers_ be an empty List of Matchers.
+          1. Let _csSequences_ be a new empty List.
+          1. For each CharSetElement _s_ of _cs_, do
+            1. If the length of _s_ > 1, append _s_ to _csSequences_.
+          1. Sort _csSequences_ according to the length of each CharSetElement in descending order.
+          1. For each CharSetElement _s_ of _csSequences_, do
+            1. Assert: _s_ is a sequence of 2 or more code points.
+            1. Let _remaining_ be a List consisting of the code points of _s_.
+            1. Let _cs2_ be a one-element CharSet containing the last element of _remaining_.
+            1. Let _m2_ be CharacterSetMatcher(_regexpRecord_, _cs2_, *false*, _direction_).
+            1. Remove the last element of _remaining_.
+            1. For each code point _c1_ of _remaining_, in reverse List order, do
+              1. Let _cs1_ be a one-element CharSet containing _c1_.
+              1. Let _m1_ be CharacterSetMatcher(_regexpRecord_, _cs1_, *false*, _direction_).
+              1. Set _m2_ to MatchSequence(_m1_, _m2_, _direction_).
+            1. Append _m2_ to _listOfMatchers_.
+          1. Let _singles_ be the CharSet containing every CharSetElement of _cs_ that consists of a single character.
+          1. Append CharacterSetMatcher(_regexpRecord_, _singles_, *false*, _direction_) to _listOfMatchers_.
+          1. If _cs_ contains the empty sequence of characters, append EmptyMatcher() to _listOfMatchers_.
+          1. Let _m2_ be the last Matcher in _listOfMatchers_.
+          1. For each Matcher _m1_ of _listOfMatchers_, iterating backwards from its second-to-last element, do
+            1. Set _m2_ to MatchTwoAlternatives(_m1_, _m2_).
+          1. Return _m2_.
+        </emu-alg>
+        <emu-grammar>Atom :: `(` GroupSpecifier? Disjunction `)`</emu-grammar>
+        <emu-alg>
+          1. Let _m_ be CompileSubpattern of |Disjunction| with arguments _regexpRecord_ and _direction_.
+          1. Let _parenIndex_ be CountLeftCapturingParensBefore(|Atom|).
+          1. Return a new Matcher with parameters (_x_, _c_) that captures _direction_, _m_, and _parenIndex_ and performs the following steps when called:
+            1. Assert: _x_ is a MatchState.
+            1. Assert: _c_ is a MatcherContinuation.
+            1. Let _d_ be a new MatcherContinuation with parameters (_y_) that captures _x_, _c_, _direction_, and _parenIndex_ and performs the following steps when called:
+              1. Assert: _y_ is a MatchState.
+              1. Let _capability_ be a copy of _y_.[[Captures]].
+              1. Let _input_ be _x_.[[Input]].
+              1. Let _xe_ be _x_.[[EndIndex]].
+              1. Let _ye_ be _y_.[[EndIndex]].
+              1. If _direction_ is ~forward~, then
+                1. Assert: _xe_ ≤ _ye_.
+                1. Let _r_ be the CaptureRange { [[StartIndex]]: _xe_, [[EndIndex]]: _ye_ }.
+              1. Else,
+                1. Assert: _direction_ is ~backward~.
+                1. Assert: _ye_ ≤ _xe_.
+                1. Let _r_ be the CaptureRange { [[StartIndex]]: _ye_, [[EndIndex]]: _xe_ }.
+              1. Set _capability_[_parenIndex_ + 1] to _r_.
+              1. Let _z_ be the MatchState { [[Input]]: _input_, [[EndIndex]]: _ye_, [[Captures]]: _capability_ }.
+              1. Return _c_(_z_).
+            1. Return _m_(_x_, _d_).
+        </emu-alg>
+        <emu-note>
+          <p>Parentheses of the form `(` |Disjunction| `)` serve both to group the components of the |Disjunction| pattern together and to save the result of the match. The result can be used either in a backreference (`\\` followed by a non-zero decimal number), referenced in a replace String, or returned as part of an array from the regular expression matching Abstract Closure. To inhibit the capturing behaviour of parentheses, use the form `(?:` |Disjunction| `)` instead.</p>
+        </emu-note>
+        <emu-grammar>Atom :: `(?` RegularExpressionModifiers `:` Disjunction `)`</emu-grammar>
+        <emu-alg>
+          1. Let _addModifiers_ be the source text matched by |RegularExpressionModifiers|.
+          1. Let _removeModifiers_ be the empty String.
+          1. Let _modifiedRer_ be UpdateModifiers(_regexpRecord_, CodePointsToString(_addModifiers_), _removeModifiers_).
+          1. Return CompileSubpattern of |Disjunction| with arguments _modifiedRer_ and _direction_.
+        </emu-alg>
+        <emu-grammar>Atom :: `(?` RegularExpressionModifiers `-` RegularExpressionModifiers `:` Disjunction `)`</emu-grammar>
+        <emu-alg>
+          1. Let _addModifiers_ be the source text matched by the first |RegularExpressionModifiers|.
+          1. Let _removeModifiers_ be the source text matched by the second |RegularExpressionModifiers|.
+          1. Let _modifiedRer_ be UpdateModifiers(_regexpRecord_, CodePointsToString(_addModifiers_), CodePointsToString(_removeModifiers_)).
+          1. Return CompileSubpattern of |Disjunction| with arguments _modifiedRer_ and _direction_.
+        </emu-alg>
+
+        <!-- AtomEscape -->
+        <emu-grammar>AtomEscape :: DecimalEscape</emu-grammar>
+        <emu-alg>
+          1. Let _n_ be the CapturingGroupNumber of |DecimalEscape|.
+          1. Assert: _n_ ≤ _regexpRecord_.[[CapturingGroupsCount]].
+          1. Return BackreferenceMatcher(_regexpRecord_, « _n_ », _direction_).
+        </emu-alg>
+        <emu-note>
+          <p>An escape sequence of the form `\\` followed by a non-zero decimal number _n_ matches the result of the _n_<sup>th</sup> set of capturing parentheses (<emu-xref href="#sec-pattern-notation"></emu-xref>). It is an error if the regular expression has fewer than _n_ capturing parentheses. If the regular expression has _n_ or more capturing parentheses but the _n_<sup>th</sup> one is *undefined* because it has not captured anything, then the backreference always succeeds.</p>
+        </emu-note>
+        <emu-grammar>AtomEscape :: CharacterEscape</emu-grammar>
+        <emu-alg>
+          1. Let _charValue_ be the CharacterValue of |CharacterEscape|.
+          1. Let _char_ be the character whose character value is _charValue_.
+          1. Let _charSet_ be a one-element CharSet containing the character _char_.
+          1. Return CharacterSetMatcher(_regexpRecord_, _charSet_, *false*, _direction_).
+        </emu-alg>
+        <emu-grammar>AtomEscape :: CharacterClassEscape</emu-grammar>
+        <emu-alg>
+          1. Let _cs_ be CompileToCharSet of |CharacterClassEscape| with argument _regexpRecord_.
+          1. If _regexpRecord_.[[UnicodeSets]] is *false* or every CharSetElement of _cs_ consists of a single character (including if _cs_ is empty), return CharacterSetMatcher(_regexpRecord_, _cs_, *false*, _direction_).
+          1. Let _listOfMatchers_ be an empty List of Matchers.
+          1. Let _csSequences_ be a new empty List.
+          1. For each CharSetElement _s_ of _cs_, do
+            1. If the length of _s_ > 1, append _s_ to _csSequences_.
+          1. Sort _csSequences_ according to the length of each CharSetElement in descending order.
+          1. For each CharSetElement _s_ of _csSequences_, do
+            1. Assert: _s_ is a sequence of 2 or more code points.
+            1. Let _remaining_ be a List consisting of the code points of _s_.
+            1. Let _cs2_ be a one-element CharSet containing the last element of _remaining_.
+            1. Let _m2_ be CharacterSetMatcher(_regexpRecord_, _cs2_, *false*, _direction_).
+            1. Remove the last element of _remaining_.
+            1. For each code point _c1_ of _remaining_, in reverse List order, do
+              1. Let _cs1_ be a one-element CharSet containing _c1_.
+              1. Let _m1_ be CharacterSetMatcher(_regexpRecord_, _cs1_, *false*, _direction_).
+              1. Set _m2_ to MatchSequence(_m1_, _m2_, _direction_).
+            1. Append _m2_ to _listOfMatchers_.
+          1. Let _singles_ be the CharSet containing every CharSetElement of _cs_ that consists of a single character.
+          1. Append CharacterSetMatcher(_regexpRecord_, _singles_, *false*, _direction_) to _listOfMatchers_.
+          1. If _cs_ contains the empty sequence of characters, append EmptyMatcher() to _listOfMatchers_.
+          1. Let _m2_ be the last Matcher in _listOfMatchers_.
+          1. For each Matcher _m1_ of _listOfMatchers_, iterating backwards from its second-to-last element, do
+            1. Set _m2_ to MatchTwoAlternatives(_m1_, _m2_).
+          1. Return _m2_.
+        </emu-alg>
+        <emu-grammar>AtomEscape :: `k` GroupName</emu-grammar>
+        <emu-alg>
+          1. Let _matchingGroupSpecifiers_ be GroupSpecifiersThatMatch(|GroupName|).
+          1. Let _parenIndices_ be a new empty List.
+          1. For each |GroupSpecifier| _groupSpecifier_ of _matchingGroupSpecifiers_, do
+            1. Let _parenIndex_ be CountLeftCapturingParensBefore(_groupSpecifier_).
+            1. Append _parenIndex_ to _parenIndices_.
+          1. Return BackreferenceMatcher(_regexpRecord_, _parenIndices_, _direction_).
+        </emu-alg>
+
+        
+
+        
+
+        
+
+        
+      </emu-clause>

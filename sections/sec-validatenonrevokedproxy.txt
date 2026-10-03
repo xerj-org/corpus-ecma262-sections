@@ -1,0 +1,18 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.5 Proxy Object Internal Methods and Internal Slots > 10.5.14 ValidateNonRevokedProxy ( _proxy_: a Proxy exotic object, ): either a normal completion containing ~unused~ or a throw completion [id: sec-validatenonrevokedproxy]
+
+<emu-clause id="sec-validatenonrevokedproxy" type="abstract operation">
+      <h1>
+        ValidateNonRevokedProxy (
+          _proxy_: a Proxy exotic object,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It throws a *TypeError* exception if _proxy_ has been revoked.</dd>
+      </dl>
+      <emu-alg>
+        1. If _proxy_.[[ProxyTarget]] is *null*, throw a *TypeError* exception.
+        1. Assert: _proxy_.[[ProxyHandler]] is not *null*.
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

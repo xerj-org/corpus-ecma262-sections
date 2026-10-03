@@ -1,0 +1,6 @@
+ECMA-262 > 26 Managing Memory > 26.2 FinalizationRegistry Objects > 26.2.3 Properties of the FinalizationRegistry Prototype Object > 26.2.3.1 FinalizationRegistry.prototype.constructor [id: sec-finalization-registry.prototype.constructor]
+
+<emu-clause id="sec-finalization-registry.prototype.constructor">
+        <h1>FinalizationRegistry.prototype.constructor</h1>
+        <p>The initial value of `FinalizationRegistry.prototype.constructor` is %FinalizationRegistry%.</p>
+      </emu-clause>

@@ -1,0 +1,9 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.3 host-defined [id: sec-terms-and-definitions-host-defined]
+
+<emu-clause id="sec-terms-and-definitions-host-defined">
+      <h1>host-defined</h1>
+      <p>same as implementation-defined</p>
+      <emu-note>
+        <p>Editorially, see clause <emu-xref href="#sec-hosts-and-implementations"></emu-xref>.</p>
+      </emu-note>
+    </emu-clause>

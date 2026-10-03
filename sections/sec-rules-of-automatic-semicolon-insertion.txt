@@ -1,0 +1,133 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.10 Automatic Semicolon Insertion > 12.10.1 Rules of Automatic Semicolon Insertion [id: sec-rules-of-automatic-semicolon-insertion]
+
+<emu-clause id="sec-rules-of-automatic-semicolon-insertion" namespace="asi-rules">
+      <h1>Rules of Automatic Semicolon Insertion</h1>
+      <p>In the following rules, “token” means the actual recognized lexical token determined using the current lexical goal symbol as described in clause <emu-xref href="#sec-ecmascript-language-lexical-grammar"></emu-xref>.</p>
+      <p>There are three basic rules of semicolon insertion:</p>
+      <ol>
+        <li>
+          <p>When, as the source text is parsed from left to right, a token (called the <em>offending token</em>) is encountered that is not allowed by any production of the grammar, then a semicolon is automatically inserted before the offending token if one or more of the following conditions is true:</p>
+          <ul>
+            <li>
+              The offending token is separated from the previous token by at least one |LineTerminator|.
+            </li>
+            <li>
+              The offending token is `}`.
+            </li>
+            <li>
+              The previous token is `)` and the inserted semicolon would then be parsed as the terminating semicolon of a do-while statement (<emu-xref href="#sec-do-while-statement"></emu-xref>).
+            </li>
+          </ul>
+        </li>
+        <li>
+          When, as the source text is parsed from left to right, the end of the input stream of tokens is encountered and the parser is unable to parse the input token stream as a single instance of the goal nonterminal, then a semicolon is automatically inserted at the end of the input stream.
+        </li>
+        <li>
+          When, as the source text is parsed from left to right, a token is encountered that is allowed by some production of the grammar, but the production is a <em>restricted production</em> and the token would be the first token for a terminal or nonterminal immediately following the annotation “[no |LineTerminator| here]” within the restricted production (and therefore such a token is called a restricted token), and the restricted token is separated from the previous token by at least one |LineTerminator|, then a semicolon is automatically inserted before the restricted token.
+        </li>
+      </ol>
+      <p>However, there is an additional overriding condition on the preceding rules: a semicolon is never inserted automatically if the semicolon would then be parsed as an empty statement or if that semicolon would become one of the two semicolons in the header of a `for` statement (see <emu-xref href="#sec-for-statement"></emu-xref>).</p>
+      <emu-note>
+        <p>The following are the only restricted productions in the grammar:</p>
+        <emu-grammar>
+          UpdateExpression[Yield, Await] :
+            LeftHandSideExpression[?Yield, ?Await] [no LineTerminator here] `++`
+            LeftHandSideExpression[?Yield, ?Await] [no LineTerminator here] `--`
+
+          UsingDeclaration[In, Yield, Await] :
+            `using` [no LineTerminator here] BindingList[?In, ?Yield, ?Await, ~Pattern] `;`
+
+          ContinueStatement[Yield, Await] :
+            `continue` `;`
+            `continue` [no LineTerminator here] LabelIdentifier[?Yield, ?Await] `;`
+
+          BreakStatement[Yield, Await] :
+            `break` `;`
+            `break` [no LineTerminator here] LabelIdentifier[?Yield, ?Await] `;`
+
+          ReturnStatement[Yield, Await] :
+            `return` `;`
+            `return` [no LineTerminator here] Expression[+In, ?Yield, ?Await] `;`
+
+          ThrowStatement[Yield, Await] :
+            `throw` [no LineTerminator here] Expression[+In, ?Yield, ?Await] `;`
+
+          YieldExpression[In, Await] :
+            `yield`
+            `yield` [no LineTerminator here] AssignmentExpression[?In, +Yield, ?Await]
+            `yield` [no LineTerminator here] `*` AssignmentExpression[?In, +Yield, ?Await]
+
+          ArrowFunction[In, Yield, Await] :
+            ArrowParameters[?Yield, ?Await] [no LineTerminator here] `=>` ConciseBody[?In]
+
+          AsyncFunctionDeclaration[Yield, Await, Default] :
+            `async` [no LineTerminator here] `function` BindingIdentifier[?Yield, ?Await] `(` FormalParameters[~Yield, +Await] `)` `{` AsyncFunctionBody `}`
+            [+Default] `async` [no LineTerminator here] `function` `(` FormalParameters[~Yield, +Await] `)` `{` AsyncFunctionBody `}`
+
+          AsyncFunctionExpression :
+            `async` [no LineTerminator here] `function` BindingIdentifier[~Yield, +Await]? `(` FormalParameters[~Yield, +Await] `)` `{` AsyncFunctionBody `}`
+
+          AsyncMethod[Yield, Await] :
+            `async` [no LineTerminator here] ClassElementName[?Yield, ?Await] `(` UniqueFormalParameters[~Yield, +Await] `)` `{` AsyncFunctionBody `}`
+
+          AsyncGeneratorDeclaration[Yield, Await, Default] :
+            `async` [no LineTerminator here] `function` `*` BindingIdentifier[?Yield, ?Await] `(` FormalParameters[+Yield, +Await] `)` `{` AsyncGeneratorBody `}`
+            [+Default] `async` [no LineTerminator here] `function` `*` `(` FormalParameters[+Yield, +Await] `)` `{` AsyncGeneratorBody `}`
+
+          AsyncGeneratorExpression :
+            `async` [no LineTerminator here] `function` `*` BindingIdentifier[+Yield, +Await]? `(` FormalParameters[+Yield, +Await] `)` `{` AsyncGeneratorBody `}`
+
+          AsyncGeneratorMethod[Yield, Await] :
+            `async` [no LineTerminator here] `*` ClassElementName[?Yield, ?Await] `(` UniqueFormalParameters[+Yield, +Await] `)` `{` AsyncGeneratorBody `}`
+
+          AsyncArrowFunction[In, Yield, Await] :
+            `async` [no LineTerminator here] AsyncArrowBindingIdentifier[?Yield] [no LineTerminator here] `=>` AsyncConciseBody[?In]
+            CoverCallExpressionAndAsyncArrowHead[?Yield, ?Await] [no LineTerminator here] `=>` AsyncConciseBody[?In] #callcover
+
+          AsyncArrowHead :
+            `async` [no LineTerminator here] ArrowFormalParameters[~Yield, +Await]
+        </emu-grammar>
+        <p>The practical effect of these restricted productions is as follows:</p>
+        <ul>
+          <li>
+            When a `++` or `--` token is encountered where the parser would treat it as a postfix operator, and at least one |LineTerminator| occurred between the preceding token and the `++` or `--` token, then a semicolon is automatically inserted before the `++` or `--` token.
+          </li>
+          <li>
+            When a `using` token is encountered and a |LineTerminator| is encountered before an |IdentifierName| token, a semicolon is automatically inserted after the `using` token.
+          </li>
+          <li>
+            When a `continue`, `break`, `return`, `throw`, or `yield` token is encountered and a |LineTerminator| is encountered before the next token, a semicolon is automatically inserted after the `continue`, `break`, `return`, `throw`, or `yield` token.
+          </li>
+          <li>
+            When arrow function parameter(s) are followed by a |LineTerminator| before a `=>` token, a semicolon is automatically inserted and the punctuator causes a syntax error.
+          </li>
+          <li>
+            When an `async` token is followed by a |LineTerminator| before a `function` or |IdentifierName| or `(` token, a semicolon is automatically inserted and the `async` token is not treated as part of the same expression or class element as the following tokens.
+          </li>
+          <li>
+            When an `async` token is followed by a |LineTerminator| before a `*` token, a semicolon is automatically inserted and the punctuator causes a syntax error.
+          </li>
+        </ul>
+        <p>The resulting practical advice to ECMAScript programmers is:</p>
+        <ul>
+          <li>
+            A postfix `++` or `--` operator should be on the same line as its operand.
+          </li>
+          <li>
+            A |BindingList| in a `using` declaration should start on the same line as the `using` token.
+          </li>
+          <li>
+            An |Expression| in a `return` or `throw` statement or an |AssignmentExpression| in a `yield` expression should start on the same line as the `return`, `throw`, or `yield` token.
+          </li>
+          <li>
+            A |LabelIdentifier| in a `break` or `continue` statement should be on the same line as the `break` or `continue` token.
+          </li>
+          <li>
+            The end of an arrow function's parameter(s) and its `=>` should be on the same line.
+          </li>
+          <li>
+            The `async` token preceding an asynchronous function or method should be on the same line as the immediately following token.
+          </li>
+        </ul>
+      </emu-note>
+    </emu-clause>

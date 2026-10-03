@@ -1,0 +1,23 @@
+ECMA-262 > 7 Abstract Operations > 7.2 Testing and Comparison Operations > 7.2.9 SameValue ( _x_: an ECMAScript language value, _y_: an ECMAScript language value, ): a Boolean [id: sec-samevalue]
+
+<emu-clause id="sec-samevalue" type="abstract operation">
+      <h1>
+        SameValue (
+          _x_: an ECMAScript language value,
+          _y_: an ECMAScript language value,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It determines whether or not the two arguments are the same value.</dd>
+      </dl>
+      <emu-alg>
+        1. If SameType(_x_, _y_) is *false*, return *false*.
+        1. If _x_ is a Number, then
+          1. Return Number::sameValue(_x_, _y_).
+        1. Return SameValueNonNumber(_x_, _y_).
+      </emu-alg>
+      <emu-note>
+        <p>This algorithm differs from the IsStrictlyEqual Algorithm by treating all *NaN* values as equivalent and by differentiating *+0*<sub>𝔽</sub> from *-0*<sub>𝔽</sub>.</p>
+      </emu-note>
+    </emu-clause>

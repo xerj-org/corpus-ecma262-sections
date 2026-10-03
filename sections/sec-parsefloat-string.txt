@@ -1,0 +1,20 @@
+ECMA-262 > 19 The Global Object > 19.2 Function Properties of the Global Object > 19.2.4 parseFloat ( _string_ ) [id: sec-parsefloat-string]
+
+<emu-clause id="sec-parsefloat-string" type="built-in function">
+      <h1>parseFloat ( _string_ )</h1>
+      <p>This function produces a Number value dictated by interpretation of the contents of the _string_ argument as a decimal literal.</p>
+      <p>It is the <dfn>%parseFloat%</dfn> intrinsic object.</p>
+      <p>It performs the following steps when called:</p>
+      <emu-alg>
+        1. Let _inputString_ be ? ToString(_string_).
+        1. Let _trimmedString_ be ! TrimString(_inputString_, ~start~).
+        1. Let _trimmed_ be StringToCodePoints(_trimmedString_).
+        1. Let _trimmedPrefix_ be the longest prefix of _trimmed_ that satisfies the syntax of a |StrDecimalLiteral|, which might be _trimmed_ itself. If there is no such prefix, return *NaN*.
+        1. Let _parsedNumber_ be ParseText(_trimmedPrefix_, |StrDecimalLiteral|).
+        1. Assert: _parsedNumber_ is a Parse Node.
+        1. Return the StringNumericValue of _parsedNumber_.
+      </emu-alg>
+      <emu-note>
+        <p>This function may interpret only a leading portion of _string_ as a Number value; it ignores any code units that cannot be interpreted as part of the notation of a decimal literal, and no indication is given that any such code units were ignored.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,508 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.7 Source Text Module Records [id: sec-source-text-module-records]
+
+<emu-clause id="sec-source-text-module-records">
+        <h1>Source Text Module Records</h1>
+
+        <p>A <dfn id="sourctextmodule-record" variants="Source Text Module Records">Source Text Module Record</dfn> is used to represent information about a module that was defined from ECMAScript source text (<emu-xref href="#sec-ecmascript-language-source-code"></emu-xref>) that was parsed using the goal symbol |Module|. Its fields contain digested information about the names that are imported and exported by the module, and its concrete methods use these digests to link and evaluate the module.</p>
+
+        <p>A Source Text Module Record can exist in a module graph with other subclasses of the abstract Module Record type, and can participate in cycles with other subclasses of the Cyclic Module Record type.</p>
+
+        <p>In addition to the fields defined in <emu-xref href="#table-cyclic-module-fields"></emu-xref>, Source Text Module Records have the additional fields listed in <emu-xref href="#table-additional-fields-of-source-text-module-records"></emu-xref>. Each of these fields is initially set in ParseModule.</p>
+        <emu-table id="table-additional-fields-of-source-text-module-records" caption="Additional Fields of Source Text Module Records" oldids="table-38">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Field Name
+                </th>
+                <th>
+                  Value Type
+                </th>
+                <th>
+                  Meaning
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                [[ECMAScriptCode]]
+              </td>
+              <td>
+                a Parse Node
+              </td>
+              <td>
+                The result of parsing the source text of this module using |Module| as the goal symbol.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Context]]
+              </td>
+              <td>
+                an ECMAScript code execution context or ~empty~
+              </td>
+              <td>
+                The execution context associated with this module. It is ~empty~ until the module's environment has been initialized.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[ImportMeta]]
+              </td>
+              <td>
+                an Object or ~empty~
+              </td>
+              <td>
+                An object exposed through the `import.meta` meta property. It is ~empty~ until it is accessed by ECMAScript code.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[ImportEntries]]
+              </td>
+              <td>
+                a List of ImportEntry Records
+              </td>
+              <td>
+                A List of ImportEntry records derived from the code of this module.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[LocalExportEntries]]
+              </td>
+              <td>
+                a List of ExportEntry Records
+              </td>
+              <td>
+                A List of ExportEntry records derived from the code of this module that correspond to declarations that occur within the module.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[IndirectExportEntries]]
+              </td>
+              <td>
+                a List of ExportEntry Records
+              </td>
+              <td>
+                A List of ExportEntry records derived from the code of this module that correspond to reexported imports that occur within the module or exports from `export * as namespace` declarations.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[StarExportEntries]]
+              </td>
+              <td>
+                a List of ExportEntry Records
+              </td>
+              <td>
+                A List of ExportEntry records derived from the code of this module that correspond to `export *` declarations that occur within the module, not including `export * as namespace` declarations.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+        <p>An <dfn id="importentry-record" variants="ImportEntry Records">ImportEntry Record</dfn> is a Record that digests information about a single declarative import. Each ImportEntry Record has the fields defined in <emu-xref href="#table-importentry-record-fields"></emu-xref>:</p>
+        <emu-table id="table-importentry-record-fields" caption="ImportEntry Record Fields" oldids="table-39">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Field Name
+                </th>
+                <th>
+                  Value Type
+                </th>
+                <th>
+                  Meaning
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                [[ModuleRequest]]
+              </td>
+              <td>
+                a ModuleRequest Record
+              </td>
+              <td>
+                ModuleRequest Record representing the |ModuleSpecifier| and import attributes of the |ImportDeclaration|.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[ImportName]]
+              </td>
+              <td>
+                a String or ~namespace~
+              </td>
+              <td>
+                The name under which the desired binding is exported by the module identified by [[ModuleRequest]]. The value ~namespace~ indicates that the import request is for the target module's namespace object.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[LocalName]]
+              </td>
+              <td>
+                a String
+              </td>
+              <td>
+                The name that is used to locally access the imported value from within the importing module.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+        <emu-note>
+          <p><emu-xref href="#table-import-forms-mapping-to-importentry-records"></emu-xref> gives examples of ImportEntry records fields used to represent the syntactic import forms:</p>
+          <emu-table id="table-import-forms-mapping-to-importentry-records" caption="Import Forms Mappings to ImportEntry Records" informative oldids="table-40">
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    Import Statement Form
+                  </th>
+                  <th>
+                    [[ModuleRequest]]
+                  </th>
+                  <th>
+                    [[ImportName]]
+                  </th>
+                  <th>
+                    [[LocalName]]
+                  </th>
+                </tr>
+              </thead>
+              <tr>
+                <td>
+                  `import v from "mod";`
+                </td>
+                <td>
+                  *"mod"*
+                </td>
+                <td>
+                  *"default"*
+                </td>
+                <td>
+                  *"v"*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `import * as ns from "mod";`
+                </td>
+                <td>
+                  *"mod"*
+                </td>
+                <td>
+                  ~namespace~
+                </td>
+                <td>
+                  *"ns"*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `import {x} from "mod";`
+                </td>
+                <td>
+                  *"mod"*
+                </td>
+                <td>
+                  *"x"*
+                </td>
+                <td>
+                  *"x"*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `import {x as v} from "mod";`
+                </td>
+                <td>
+                  *"mod"*
+                </td>
+                <td>
+                  *"x"*
+                </td>
+                <td>
+                  *"v"*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `import "mod";`
+                </td>
+                <td colspan="3">
+                  An ImportEntry Record is not created.
+                </td>
+              </tr>
+            </table>
+          </emu-table>
+        </emu-note>
+        <p>An <dfn id="exportentry-record" variants="ExportEntry Records">ExportEntry Record</dfn> is a Record that digests information about a single declarative export. Each ExportEntry Record has the fields defined in <emu-xref href="#table-exportentry-records"></emu-xref>:</p>
+        <emu-table id="table-exportentry-records" caption="ExportEntry Record Fields" oldids="table-41">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Field Name
+                </th>
+                <th>
+                  Value Type
+                </th>
+                <th>
+                  Meaning
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                [[ExportName]]
+              </td>
+              <td>
+                a String or *null*
+              </td>
+              <td>
+                The name used to export this binding by this module.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[ModuleRequest]]
+              </td>
+              <td>
+                a ModuleRequest Record or *null*
+              </td>
+              <td>
+                The ModuleRequest Record representing the |ModuleSpecifier| and import attributes of the |ExportDeclaration|. *null* if the |ExportDeclaration| does not have a |ModuleSpecifier|.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[ImportName]]
+              </td>
+              <td>
+                a String, *null*, ~namespace~, or ~all-but-default~
+              </td>
+              <td>
+                The name under which the desired binding is exported by the module identified by [[ModuleRequest]]. *null* if the |ExportDeclaration| does not have a |ModuleSpecifier|. ~namespace~ is used for `export * as ns from "mod"` declarations. ~all-but-default~ is used for `export * from "mod"` declarations.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[LocalName]]
+              </td>
+              <td>
+                a String or *null*
+              </td>
+              <td>
+                The name that is used to locally access the exported value from within the importing module. *null* if the exported value is not locally accessible from within the module.
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+        <emu-note>
+          <p><emu-xref href="#table-export-forms-mapping-to-exportentry-records"></emu-xref> gives examples of the ExportEntry record fields used to represent the syntactic export forms:</p>
+          <emu-table id="table-export-forms-mapping-to-exportentry-records" caption="Export Forms Mappings to ExportEntry Records" informative oldids="table-42">
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    Export Statement Form
+                  </th>
+                  <th>
+                    [[ExportName]]
+                  </th>
+                  <th>
+                    [[ModuleRequest]]
+                  </th>
+                  <th>
+                    [[ImportName]]
+                  </th>
+                  <th>
+                    [[LocalName]]
+                  </th>
+                </tr>
+              </thead>
+              <tr>
+                <td>
+                  `export var v;`
+                </td>
+                <td>
+                  *"v"*
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *"v"*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `export default function f() {}`
+                </td>
+                <td>
+                  *"default"*
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *"f"*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `export default function () {}`
+                </td>
+                <td>
+                  *"default"*
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *"\*default\*"*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `export default 42;`
+                </td>
+                <td>
+                  *"default"*
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *"\*default\*"*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `export {x};`
+                </td>
+                <td>
+                  *"x"*
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *"x"*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `export {v as x};`
+                </td>
+                <td>
+                  *"x"*
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *"v"*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `export {x} from "mod";`
+                </td>
+                <td>
+                  *"x"*
+                </td>
+                <td>
+                  *"mod"*
+                </td>
+                <td>
+                  *"x"*
+                </td>
+                <td>
+                  *null*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `export {v as x} from "mod";`
+                </td>
+                <td>
+                  *"x"*
+                </td>
+                <td>
+                  *"mod"*
+                </td>
+                <td>
+                  *"v"*
+                </td>
+                <td>
+                  *null*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `export * from "mod";`
+                </td>
+                <td>
+                  *null*
+                </td>
+                <td>
+                  *"mod"*
+                </td>
+                <td>
+                  ~all-but-default~
+                </td>
+                <td>
+                  *null*
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  `export * as ns from "mod";`
+                </td>
+                <td>
+                  *"ns"*
+                </td>
+                <td>
+                  *"mod"*
+                </td>
+                <td>
+                  ~namespace~
+                </td>
+                <td>
+                  *null*
+                </td>
+              </tr>
+            </table>
+          </emu-table>
+        </emu-note>
+        <p>The following definitions specify the required concrete methods and other abstract operations for Source Text Module Records</p>
+
+        
+
+        
+
+        
+      </emu-clause>

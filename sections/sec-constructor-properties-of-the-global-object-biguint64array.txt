@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.7 BigUint64Array ( . . . ) [id: sec-constructor-properties-of-the-global-object-biguint64array]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-biguint64array">
+      <h1>BigUint64Array ( . . . )</h1>
+      <p>See <emu-xref href="#sec-typedarray-constructors"></emu-xref>.</p>
+    </emu-clause>

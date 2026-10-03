@@ -1,0 +1,33 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.15 The `try` Statement > 14.15.2 Runtime Semantics: CatchClauseEvaluation ( _thrownValue_: an ECMAScript language value, ): either a normal completion containing either an ECMAScript language value or ~empty~, or an abrupt completion [id: sec-runtime-semantics-catchclauseevaluation]
+
+<emu-clause id="sec-runtime-semantics-catchclauseevaluation" type="sdo">
+      <h1>
+        Runtime Semantics: CatchClauseEvaluation (
+          _thrownValue_: an ECMAScript language value,
+        ): either a normal completion containing either an ECMAScript language value or ~empty~, or an abrupt completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>Catch : `catch` `(` CatchParameter `)` Block</emu-grammar>
+      <emu-alg>
+        1. Let _oldEnv_ be the running execution context's LexicalEnvironment.
+        1. Let _catchEnv_ be NewDeclarativeEnvironment(_oldEnv_).
+        1. For each element _argName_ of the BoundNames of |CatchParameter|, do
+          1. Perform ! _catchEnv_.CreateMutableBinding(_argName_, *false*).
+        1. Set the running execution context's LexicalEnvironment to _catchEnv_.
+        1. Let _status_ be Completion(BindingInitialization of |CatchParameter| with arguments _thrownValue_ and _catchEnv_).
+        1. If _status_ is an abrupt completion, then
+          1. Set the running execution context's LexicalEnvironment to _oldEnv_.
+          1. Return ? _status_.
+        1. Let _blockCompletion_ be Completion(Evaluation of |Block|).
+        1. Set the running execution context's LexicalEnvironment to _oldEnv_.
+        1. Return ? _blockCompletion_.
+      </emu-alg>
+      <emu-grammar>Catch : `catch` Block</emu-grammar>
+      <emu-alg>
+        1. Return ? Evaluation of |Block|.
+      </emu-alg>
+      <emu-note>
+        <p>No matter how control leaves the |Block| the LexicalEnvironment is always restored to its former state.</p>
+      </emu-note>
+    </emu-clause>

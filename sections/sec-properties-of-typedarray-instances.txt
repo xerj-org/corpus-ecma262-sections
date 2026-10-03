@@ -1,0 +1,6 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.8 Properties of _TypedArray_ Instances [id: sec-properties-of-typedarray-instances]
+
+<emu-clause id="sec-properties-of-typedarray-instances">
+      <h1>Properties of _TypedArray_ Instances</h1>
+      <p>_TypedArray_ instances are TypedArrays. Each _TypedArray_ instance inherits properties from the corresponding _TypedArray_ prototype object. Each _TypedArray_ instance has the following internal slots: [[ViewedArrayBuffer]], [[TypedArrayName]], [[ContentType]], [[ByteLength]], [[ByteOffset]], and [[ArrayLength]].</p>
+    </emu-clause>

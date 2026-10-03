@@ -1,0 +1,54 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.8 Template Literals > 13.2.8.6 Runtime Semantics: Evaluation [id: sec-template-literals-runtime-semantics-evaluation]
+
+<emu-clause id="sec-template-literals-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>TemplateLiteral : NoSubstitutionTemplate</emu-grammar>
+        <emu-alg>
+          1. Return the TV of |NoSubstitutionTemplate| as defined in <emu-xref href="#sec-template-literal-lexical-components"></emu-xref>.
+        </emu-alg>
+        <emu-grammar>SubstitutionTemplate : TemplateHead Expression TemplateSpans</emu-grammar>
+        <emu-alg>
+          1. Let _head_ be the TV of |TemplateHead| as defined in <emu-xref href="#sec-template-literal-lexical-components"></emu-xref>.
+          1. Let _subRef_ be ? Evaluation of |Expression|.
+          1. Let _sub_ be ? GetValue(_subRef_).
+          1. Let _middle_ be ? ToString(_sub_).
+          1. Let _tail_ be ? Evaluation of |TemplateSpans|.
+          1. Return the string-concatenation of _head_, _middle_, and _tail_.
+        </emu-alg>
+        <emu-note>
+          <p>The string conversion semantics applied to the |Expression| value are like `String.prototype.concat` rather than the `+` operator.</p>
+        </emu-note>
+        <emu-grammar>TemplateSpans : TemplateTail</emu-grammar>
+        <emu-alg>
+          1. Return the TV of |TemplateTail| as defined in <emu-xref href="#sec-template-literal-lexical-components"></emu-xref>.
+        </emu-alg>
+        <emu-grammar>TemplateSpans : TemplateMiddleList TemplateTail</emu-grammar>
+        <emu-alg>
+          1. Let _head_ be ? Evaluation of |TemplateMiddleList|.
+          1. Let _tail_ be the TV of |TemplateTail| as defined in <emu-xref href="#sec-template-literal-lexical-components"></emu-xref>.
+          1. Return the string-concatenation of _head_ and _tail_.
+        </emu-alg>
+        <emu-grammar>TemplateMiddleList : TemplateMiddle Expression</emu-grammar>
+        <emu-alg>
+          1. Let _head_ be the TV of |TemplateMiddle| as defined in <emu-xref href="#sec-template-literal-lexical-components"></emu-xref>.
+          1. Let _subRef_ be ? Evaluation of |Expression|.
+          1. Let _sub_ be ? GetValue(_subRef_).
+          1. Let _middle_ be ? ToString(_sub_).
+          1. Return the string-concatenation of _head_ and _middle_.
+        </emu-alg>
+        <emu-note>
+          <p>The string conversion semantics applied to the |Expression| value are like `String.prototype.concat` rather than the `+` operator.</p>
+        </emu-note>
+        <emu-grammar>TemplateMiddleList : TemplateMiddleList TemplateMiddle Expression</emu-grammar>
+        <emu-alg>
+          1. Let _rest_ be ? Evaluation of |TemplateMiddleList|.
+          1. Let _middle_ be the TV of |TemplateMiddle| as defined in <emu-xref href="#sec-template-literal-lexical-components"></emu-xref>.
+          1. Let _subRef_ be ? Evaluation of |Expression|.
+          1. Let _sub_ be ? GetValue(_subRef_).
+          1. Let _last_ be ? ToString(_sub_).
+          1. Return the string-concatenation of _rest_, _middle_, and _last_.
+        </emu-alg>
+        <emu-note>
+          <p>The string conversion semantics applied to the |Expression| value are like `String.prototype.concat` rather than the `+` operator.</p>
+        </emu-note>
+      </emu-clause>

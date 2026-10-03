@@ -1,0 +1,20 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.6 Miscellaneous > 8.6.2 Runtime Semantics: BindingInitialization ( _value_: an ECMAScript language value, _envRecord_: an Environment Record or *undefined*, ): either a normal completion containing ~unused~ or an abrupt completion > 8.6.2.1 InitializeBoundName ( _name_: a String, _value_: an ECMAScript language value, _envRecord_: an Environment Record or *undefined*, ): either a normal completion containing ~unused~ or an abrupt completion [id: sec-initializeboundname]
+
+<emu-clause id="sec-initializeboundname" type="abstract operation">
+        <h1>
+          InitializeBoundName (
+            _name_: a String,
+            _value_: an ECMAScript language value,
+            _envRecord_: an Environment Record or *undefined*,
+          ): either a normal completion containing ~unused~ or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If _envRecord_ is not *undefined*, then
+            1. Perform ! _envRecord_.InitializeBinding(_name_, _value_).
+            1. Return ~unused~.
+          1. Let _lhs_ be ? ResolveBinding(_name_).
+          1. Return ? PutValue(_lhs_, _value_).
+        </emu-alg>
+      </emu-clause>

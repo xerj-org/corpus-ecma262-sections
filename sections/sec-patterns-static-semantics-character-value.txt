@@ -1,0 +1,208 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.1 Patterns > 22.2.1.7 Static Semantics: CharacterValue ( ): a non-negative integer [id: sec-patterns-static-semantics-character-value]
+
+<emu-clause id="sec-patterns-static-semantics-character-value" type="sdo">
+        <h1>Static Semantics: CharacterValue ( ): a non-negative integer</h1>
+        <dl class="header">
+        </dl>
+        <emu-note>
+          <p>This section is amended in <emu-xref href="#sec-patterns-static-semantics-character-value-annexb"></emu-xref>.</p>
+        </emu-note>
+        <emu-grammar>
+          ClassAtom :: `-`
+        </emu-grammar>
+        <emu-alg>
+          1. Return the numeric value of U+002D (HYPHEN-MINUS).
+        </emu-alg>
+        <emu-grammar>
+          ClassAtomNoDash :: SourceCharacter but not one of `\` or `]` or `-`
+        </emu-grammar>
+        <emu-alg>
+          1. Let _codePoint_ be the code point matched by |SourceCharacter|.
+          1. Return the numeric value of _codePoint_.
+        </emu-alg>
+        <emu-grammar>
+          ClassEscape :: `b`
+        </emu-grammar>
+        <emu-alg>
+          1. Return the numeric value of U+0008 (BACKSPACE).
+        </emu-alg>
+        <emu-grammar>
+          ClassEscape :: `-`
+        </emu-grammar>
+        <emu-alg>
+          1. Return the numeric value of U+002D (HYPHEN-MINUS).
+        </emu-alg>
+        <emu-grammar>CharacterEscape :: ControlEscape</emu-grammar>
+        <emu-alg>
+          1. Return the numeric value according to <emu-xref href="#table-controlescape-code-point-values"></emu-xref>.
+        </emu-alg>
+        <emu-table id="table-controlescape-code-point-values" caption="ControlEscape Code Point Values" oldids="table-47">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  ControlEscape
+                </th>
+                <th>
+                  Numeric Value
+                </th>
+                <th>
+                  Code Point
+                </th>
+                <th>
+                  Unicode Name
+                </th>
+                <th>
+                  Symbol
+                </th>
+              </tr>
+            </thead>
+            <tr>
+              <td>
+                `t`
+              </td>
+              <td>
+                9
+              </td>
+              <td>
+                `U+0009`
+              </td>
+              <td>
+                CHARACTER TABULATION
+              </td>
+              <td>
+                &lt;HT>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                `n`
+              </td>
+              <td>
+                10
+              </td>
+              <td>
+                `U+000A`
+              </td>
+              <td>
+                LINE FEED (LF)
+              </td>
+              <td>
+                &lt;LF>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                `v`
+              </td>
+              <td>
+                11
+              </td>
+              <td>
+                `U+000B`
+              </td>
+              <td>
+                LINE TABULATION
+              </td>
+              <td>
+                &lt;VT>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                `f`
+              </td>
+              <td>
+                12
+              </td>
+              <td>
+                `U+000C`
+              </td>
+              <td>
+                FORM FEED (FF)
+              </td>
+              <td>
+                &lt;FF>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                `r`
+              </td>
+              <td>
+                13
+              </td>
+              <td>
+                `U+000D`
+              </td>
+              <td>
+                CARRIAGE RETURN (CR)
+              </td>
+              <td>
+                &lt;CR>
+              </td>
+            </tr>
+          </table>
+        </emu-table>
+        <emu-grammar>CharacterEscape :: `c` AsciiLetter</emu-grammar>
+        <emu-alg>
+          1. Let _codePoint_ be the code point matched by |AsciiLetter|.
+          1. Let _i_ be the numeric value of _codePoint_.
+          1. Return the remainder of dividing _i_ by 32.
+        </emu-alg>
+        <emu-grammar>CharacterEscape :: `0` [lookahead &notin; DecimalDigit]</emu-grammar>
+        <emu-alg>
+          1. Return the numeric value of U+0000 (NULL).
+        </emu-alg>
+        <emu-note>
+          <p>`\\0` represents the &lt;NUL> character and cannot be followed by a decimal digit.</p>
+        </emu-note>
+        <emu-grammar>CharacterEscape :: HexEscapeSequence</emu-grammar>
+        <emu-alg>
+          1. Return the MV of |HexEscapeSequence|.
+        </emu-alg>
+        <emu-grammar>RegExpUnicodeEscapeSequence :: `u` HexLeadSurrogate `\u` HexTrailSurrogate</emu-grammar>
+        <emu-alg>
+          1. Let _lead_ be the CharacterValue of |HexLeadSurrogate|.
+          1. Let _trail_ be the CharacterValue of |HexTrailSurrogate|.
+          1. Let _codePoint_ be UTF16SurrogatePairToCodePoint(_lead_, _trail_).
+          1. Return the numeric value of _codePoint_.
+        </emu-alg>
+        <emu-grammar>RegExpUnicodeEscapeSequence :: `u` Hex4Digits</emu-grammar>
+        <emu-alg>
+          1. Return the MV of |Hex4Digits|.
+        </emu-alg>
+        <emu-grammar>RegExpUnicodeEscapeSequence :: `u{` CodePoint `}`</emu-grammar>
+        <emu-alg>
+          1. Return the MV of |CodePoint|.
+        </emu-alg>
+        <emu-grammar>
+          HexLeadSurrogate :: Hex4Digits
+
+          HexTrailSurrogate :: Hex4Digits
+
+          HexNonSurrogate :: Hex4Digits
+        </emu-grammar>
+        <emu-alg>
+          1. Return the MV of |Hex4Digits|.
+        </emu-alg>
+        <emu-grammar>CharacterEscape :: IdentityEscape</emu-grammar>
+        <emu-alg>
+          1. Let _codePoint_ be the code point matched by |IdentityEscape|.
+          1. Return the numeric value of _codePoint_.
+        </emu-alg>
+        <emu-grammar>ClassSetCharacter :: SourceCharacter but not ClassSetSyntaxCharacter</emu-grammar>
+        <emu-alg>
+          1. Let _codePoint_ be the code point matched by |SourceCharacter|.
+          1. Return the numeric value of _codePoint_.
+        </emu-alg>
+        <emu-grammar>ClassSetCharacter :: `\` ClassSetReservedPunctuator</emu-grammar>
+        <emu-alg>
+          1. Let _codePoint_ be the code point matched by |ClassSetReservedPunctuator|.
+          1. Return the numeric value of _codePoint_.
+        </emu-alg>
+        <emu-grammar>ClassSetCharacter :: `\b`</emu-grammar>
+        <emu-alg>
+          1. Return the numeric value of U+0008 (BACKSPACE).
+        </emu-alg>
+      </emu-clause>

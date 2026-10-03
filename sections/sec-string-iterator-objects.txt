@@ -1,0 +1,8 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.5 String Iterator Objects [id: sec-string-iterator-objects]
+
+<emu-clause id="sec-string-iterator-objects">
+      <h1>String Iterator Objects</h1>
+      <p>A <dfn variants="String Iterators,String Iterator object,String Iterator objects">String Iterator</dfn> is an object that represents a specific iteration over some specific String instance object. There is not a named constructor for String Iterator objects. Instead, String Iterator objects are created by calling certain methods of String instance objects.</p>
+
+      
+    </emu-clause>

@@ -1,0 +1,14 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.4 Abstract Operations for TypedArray Objects > 23.2.4.7 TypedArrayElementType ( _obj_: a TypedArray, ): a TypedArray element type [id: sec-typedarrayelementtype]
+
+<emu-clause id="sec-typedarrayelementtype" type="abstract operation">
+        <h1>
+          TypedArrayElementType (
+            _obj_: a TypedArray,
+          ): a TypedArray element type
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Return the Element Type value specified in <emu-xref href="#table-the-typedarray-constructors"></emu-xref> for _obj_.[[TypedArrayName]].
+        </emu-alg>
+      </emu-clause>

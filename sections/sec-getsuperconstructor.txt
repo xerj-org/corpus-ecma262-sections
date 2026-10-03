@@ -1,0 +1,15 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.7 The `super` Keyword > 13.3.7.2 GetSuperConstructor ( ): an Object or *null* [id: sec-getsuperconstructor]
+
+<emu-clause id="sec-getsuperconstructor" type="abstract operation">
+        <h1>GetSuperConstructor ( ): an Object or *null*</h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _envRecord_ be GetThisEnvironment().
+          1. Assert: _envRecord_ is a Function Environment Record.
+          1. Let _activeFunc_ be _envRecord_.[[FunctionObject]].
+          1. Assert: _activeFunc_ is an ECMAScript function object.
+          1. Let _superCtor_ be ! _activeFunc_.[[GetPrototypeOf]]().
+          1. Return _superCtor_.
+        </emu-alg>
+      </emu-clause>

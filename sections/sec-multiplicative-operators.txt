@@ -1,0 +1,23 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.7 Multiplicative Operators [id: sec-multiplicative-operators]
+
+<emu-clause id="sec-multiplicative-operators">
+    <h1>Multiplicative Operators</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      MultiplicativeExpression[Yield, Await] :
+        ExponentiationExpression[?Yield, ?Await]
+        MultiplicativeExpression[?Yield, ?Await] MultiplicativeOperator ExponentiationExpression[?Yield, ?Await]
+
+      MultiplicativeOperator : one of
+        `*` `/` `%`
+    </emu-grammar>
+    <emu-note>
+      <ul>
+        <li>The `*` operator performs multiplication, producing the product of its operands.</li>
+        <li>The `/` operator performs division, producing the quotient of its operands.</li>
+        <li>The `%` operator yields the remainder of its operands from an implied division.</li>
+      </ul>
+    </emu-note>
+
+    
+  </emu-clause>

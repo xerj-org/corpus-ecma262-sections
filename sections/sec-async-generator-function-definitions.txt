@@ -1,0 +1,36 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.6 Async Generator Function Definitions [id: sec-async-generator-function-definitions]
+
+<emu-clause id="sec-async-generator-function-definitions">
+    <h1>Async Generator Function Definitions</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      AsyncGeneratorDeclaration[Yield, Await, Default] :
+        `async` [no LineTerminator here] `function` `*` BindingIdentifier[?Yield, ?Await] `(` FormalParameters[+Yield, +Await] `)` `{` AsyncGeneratorBody `}`
+        [+Default] `async` [no LineTerminator here] `function` `*` `(` FormalParameters[+Yield, +Await] `)` `{` AsyncGeneratorBody `}`
+
+      AsyncGeneratorExpression :
+        `async` [no LineTerminator here] `function` `*` BindingIdentifier[+Yield, +Await]? `(` FormalParameters[+Yield, +Await] `)` `{` AsyncGeneratorBody `}`
+
+      AsyncGeneratorMethod[Yield, Await] :
+        `async` [no LineTerminator here] `*` ClassElementName[?Yield, ?Await] `(` UniqueFormalParameters[+Yield, +Await] `)` `{` AsyncGeneratorBody `}`
+
+      AsyncGeneratorBody :
+        FunctionBody[+Yield, +Await]
+    </emu-grammar>
+    <emu-note>
+      <p>|YieldExpression| and |AwaitExpression| cannot be used within the |FormalParameters| of an async generator function because any expressions that are part of |FormalParameters| are evaluated before the resulting AsyncGenerator is in a resumable state.</p>
+    </emu-note>
+    <emu-note>
+      <p>Abstract operations relating to AsyncGenerators are defined in <emu-xref href="#sec-asyncgenerator-abstract-operations"></emu-xref>.</p>
+    </emu-note>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

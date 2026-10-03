@@ -1,0 +1,72 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.3 Properties of the Array Prototype Object > 23.1.3.30 Array.prototype.sort ( _comparator_ ) > 23.1.3.30.1 SortIndexedProperties ( _obj_: an Object, _length_: a non-negative integer, _sortCompare_: an Abstract Closure with two parameters, _holes_: ~skip-holes~ or ~read-through-holes~, ): either a normal completion containing a List of ECMAScript language values or a throw completion [id: sec-sortindexedproperties]
+
+<emu-clause id="sec-sortindexedproperties" type="abstract operation">
+          <h1>
+            SortIndexedProperties (
+              _obj_: an Object,
+              _length_: a non-negative integer,
+              _sortCompare_: an Abstract Closure with two parameters,
+              _holes_: ~skip-holes~ or ~read-through-holes~,
+            ): either a normal completion containing a List of ECMAScript language values or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _items_ be a new empty List.
+            1. Let _k_ be 0.
+            1. Repeat, while _k_ &lt; _length_,
+              1. Let _propertyKey_ be ! ToString(𝔽(_k_)).
+              1. If _holes_ is ~skip-holes~, then
+                1. Let _kRead_ be ? HasProperty(_obj_, _propertyKey_).
+              1. Else,
+                1. Assert: _holes_ is ~read-through-holes~.
+                1. Let _kRead_ be *true*.
+              1. If _kRead_ is *true*, then
+                1. Let _kValue_ be ? Get(_obj_, _propertyKey_).
+                1. Append _kValue_ to _items_.
+              1. Set _k_ to _k_ + 1.
+            1. [id="step-array-sort"] Sort _items_ using an implementation-defined sequence of <emu-meta effects="user-code">calls to _sortCompare_</emu-meta>. If any such call returns an abrupt completion, stop before performing any further calls to _sortCompare_ and return that Completion Record.
+            1. Return _items_.
+          </emu-alg>
+          <p>The <dfn id="sort-order">sort order</dfn> is the ordering of _items_ after completion of step <emu-xref href="#step-array-sort"></emu-xref> of the algorithm above. The sort order is implementation-defined if _sortCompare_ is not a consistent comparator for the elements of _items_. When SortIndexedProperties is invoked by <emu-xref href="#sec-array.prototype.sort">Array.prototype.sort</emu-xref> or <emu-xref href="#sec-array.prototype.tosorted">Array.prototype.toSorted</emu-xref>, the sort order is also implementation-defined if _comparator_ is *undefined*, and all applications of ToString, to any specific value passed as an argument to _sortCompare_, do not produce the same result.</p>
+          <p>Unless the sort order is specified to be implementation-defined, it must satisfy all of the following conditions:</p>
+          <ul>
+            <li>
+              There must be some mathematical permutation π of the non-negative integers less than _itemCount_, such that for every non-negative integer _j_ less than _itemCount_, the element <emu-eqn>old[_j_]</emu-eqn> is exactly the same as <emu-eqn>new[π(_j_)]</emu-eqn>.
+            </li>
+            <li>
+              Then for all non-negative integers _j_ and _k_, each less than _itemCount_, if <emu-eqn>ℝ(_sortCompare_(old[_j_], old[_k_])) &lt; 0</emu-eqn>, then <emu-eqn>π(_j_) &lt; π(_k_)</emu-eqn>.
+            </li>
+            <li>
+              And for all non-negative integers _j_ and _k_ such that _j_ &lt; _k_ &lt; _itemCount_, if <emu-eqn>ℝ(_sortCompare_(old[_j_], old[_k_])) = 0</emu-eqn>, then <emu-eqn>π(_j_) &lt; π(_k_)</emu-eqn>; i.e., the sort is stable.
+            </li>
+          </ul>
+          <p>Here the notation <emu-eqn>old[_j_]</emu-eqn> is used to refer to <emu-eqn>_items_[_j_]</emu-eqn> before step <emu-xref href="#step-array-sort"></emu-xref> is executed, and the notation <emu-eqn>new[_j_]</emu-eqn> to refer to <emu-eqn>_items_[_j_]</emu-eqn> after step <emu-xref href="#step-array-sort"></emu-xref> has been executed.</p>
+          <p>An Abstract Closure or function _comparator_ is a <dfn id="consistent-comparator">consistent comparator</dfn> for a set of values _values_ if all of the requirements below are met for all values _a_, _b_, and _c_ (possibly the same value) in the set _values_: The notation <emu-eqn>_a_ &lt;<sub>C</sub> _b_</emu-eqn> means <emu-eqn>ℝ(_comparator_(_a_, _b_)) &lt; 0</emu-eqn>; <emu-eqn>_a_ =<sub>C</sub> _b_</emu-eqn> means <emu-eqn>ℝ(_comparator_(_a_, _b_)) = 0</emu-eqn>; and <emu-eqn>_a_ ><sub>C</sub> _b_</emu-eqn> means <emu-eqn>ℝ(_comparator_(_a_, _b_)) > 0</emu-eqn>.</p>
+          <ul>
+            <li>
+              Calling _comparator_(_a_, _b_) always returns the same value _v_ when given a specific pair of values _a_ and _b_ as its two arguments. Furthermore, _v_ is a Number, and _v_ is not *NaN*. Note that this implies that exactly one of _a_ &lt;<sub>C</sub> _b_, _a_ =<sub>C</sub> _b_, and _a_ ><sub>C</sub> _b_ will be true for a given pair of _a_ and _b_.
+            </li>
+            <li>
+              Calling _comparator_(_a_, _b_) does not modify _obj_ or any object on _obj_'s prototype chain.
+            </li>
+            <li>
+              _a_ =<sub>C</sub> _a_ (reflexivity)
+            </li>
+            <li>
+              If _a_ =<sub>C</sub> _b_, then _b_ =<sub>C</sub> _a_ (symmetry)
+            </li>
+            <li>
+              If _a_ =<sub>C</sub> _b_ and _b_ =<sub>C</sub> _c_, then _a_ =<sub>C</sub> _c_ (transitivity of =<sub>C</sub>)
+            </li>
+            <li>
+              If _a_ &lt;<sub>C</sub> _b_ and _b_ &lt;<sub>C</sub> _c_, then _a_ &lt;<sub>C</sub> _c_ (transitivity of &lt;<sub>C</sub>)
+            </li>
+            <li>
+              If _a_ ><sub>C</sub> _b_ and _b_ ><sub>C</sub> _c_, then _a_ ><sub>C</sub> _c_ (transitivity of ><sub>C</sub>)
+            </li>
+          </ul>
+          <emu-note>
+            <p>The above conditions are necessary and sufficient to ensure that _comparator_ divides the set _values_ into equivalence classes and that these equivalence classes are totally ordered.</p>
+          </emu-note>
+        </emu-clause>

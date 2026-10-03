@@ -1,0 +1,10 @@
+ECMA-262 > 6 ECMAScript Data Types and Values [id: sec-ecmascript-data-types-and-values]
+
+<emu-clause id="sec-ecmascript-data-types-and-values">
+  <h1>ECMAScript Data Types and Values</h1>
+  <p>Algorithms within this specification manipulate values each of which has an associated type. The possible value types are exactly those defined in this clause. Types are further classified into ECMAScript language types and specification types.</p>
+
+  
+
+  
+</emu-clause>

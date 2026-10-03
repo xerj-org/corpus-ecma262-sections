@@ -1,0 +1,38 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.9 [[Set]] ( _propertyKey_: a property key, _value_: an ECMAScript language value, _receiver_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion > 10.1.9.2 OrdinarySetWithOwnDescriptor ( _obj_: an Object, _propertyKey_: a property key, _value_: an ECMAScript language value, _receiver_: an ECMAScript language value, _ownDesc_: a Property Descriptor or *undefined*, ): either a normal completion containing a Boolean or a throw completion [id: sec-ordinarysetwithowndescriptor]
+
+<emu-clause id="sec-ordinarysetwithowndescriptor" type="abstract operation">
+        <h1>
+          OrdinarySetWithOwnDescriptor (
+            _obj_: an Object,
+            _propertyKey_: a property key,
+            _value_: an ECMAScript language value,
+            _receiver_: an ECMAScript language value,
+            _ownDesc_: a Property Descriptor or *undefined*,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+
+        <emu-alg>
+          1. If _ownDesc_ is *undefined*, then
+            1. Let _parent_ be ? <emu-meta effects="user-code">_obj_.[[GetPrototypeOf]]()</emu-meta>.
+            1. If _parent_ is not *null*, return ? <emu-meta effects="user-code">_parent_.[[Set]](_propertyKey_, _value_, _receiver_)</emu-meta>.
+            1. Set _ownDesc_ to the PropertyDescriptor { [[Value]]: *undefined*, [[Writable]]: *true*, [[Enumerable]]: *true*, [[Configurable]]: *true* }.
+          1. If IsDataDescriptor(_ownDesc_) is *true*, then
+            1. If _ownDesc_.[[Writable]] is *false*, return *false*.
+            1. If _receiver_ is not an Object, return *false*.
+            1. Let _existingDesc_ be ? <emu-meta effects="user-code">_receiver_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+            1. If _existingDesc_ is *undefined*, then
+              1. Assert: _receiver_ does not currently have a property _propertyKey_.
+              1. Return ? CreateDataProperty(_receiver_, _propertyKey_, _value_).
+            1. If IsAccessorDescriptor(_existingDesc_) is *true*, return *false*.
+            1. If _existingDesc_.[[Writable]] is *false*, return *false*.
+            1. Let _valueDesc_ be the PropertyDescriptor { [[Value]]: _value_ }.
+            1. Return ? <emu-meta effects="user-code">_receiver_.[[DefineOwnProperty]](_propertyKey_, _valueDesc_)</emu-meta>.
+          1. Assert: IsAccessorDescriptor(_ownDesc_) is *true*.
+          1. Let _setter_ be _ownDesc_.[[Setter]].
+          1. If _setter_ is *undefined*, return *false*.
+          1. Perform ? Call(_setter_, _receiver_, « _value_ »).
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

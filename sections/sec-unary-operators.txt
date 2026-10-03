@@ -1,0 +1,46 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.5 Unary Operators [id: sec-unary-operators]
+
+<emu-clause id="sec-unary-operators">
+    <h1>Unary Operators</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      UnaryExpression[Yield, Await] :
+        UpdateExpression[?Yield, ?Await]
+        `delete` UnaryExpression[?Yield, ?Await]
+        `void` UnaryExpression[?Yield, ?Await]
+        `typeof` UnaryExpression[?Yield, ?Await]
+        `+` UnaryExpression[?Yield, ?Await]
+        `-` UnaryExpression[?Yield, ?Await]
+        `~` UnaryExpression[?Yield, ?Await]
+        `!` UnaryExpression[?Yield, ?Await]
+        [+Await] CoverAwaitExpressionAndAwaitUsingDeclarationHead[?Yield] #awaitusingcover
+
+      CoverAwaitExpressionAndAwaitUsingDeclarationHead[Yield] :
+        `await` UnaryExpression[?Yield, +Await]
+    </emu-grammar>
+
+    <h2>Supplemental Syntax</h2>
+    <p>
+      When processing an instance of the production<br>
+      <emu-grammar>UnaryExpression : CoverAwaitExpressionAndAwaitUsingDeclarationHead</emu-grammar><br>
+      the interpretation of |CoverAwaitExpressionAndAwaitUsingDeclarationHead| is refined using the following grammar:
+    </p>
+    <emu-grammar>
+      AwaitExpression[Yield] :
+        `await` UnaryExpression[?Yield, +Await]
+    </emu-grammar>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

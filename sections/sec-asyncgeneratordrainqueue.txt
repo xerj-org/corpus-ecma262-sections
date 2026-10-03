@@ -1,0 +1,28 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.9 AsyncGenerator Objects > 27.9.3 AsyncGenerator Abstract Operations > 27.9.3.10 AsyncGeneratorDrainQueue ( _gen_: an AsyncGenerator, ): ~unused~ [id: sec-asyncgeneratordrainqueue]
+
+<emu-clause id="sec-asyncgeneratordrainqueue" type="abstract operation">
+        <h1>
+          AsyncGeneratorDrainQueue (
+            _gen_: an AsyncGenerator,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It drains the generator's AsyncGeneratorQueue until it encounters an AsyncGeneratorRequest which holds a return completion.</dd>
+        </dl>
+        <emu-alg>
+          1. Assert: _gen_.[[AsyncGeneratorState]] is ~draining-queue~.
+          1. Let _queue_ be _gen_.[[AsyncGeneratorQueue]].
+          1. Repeat, while _queue_ is not empty,
+            1. Let _next_ be the first element of _queue_.
+            1. Let _completion_ be Completion(_next_.[[Completion]]).
+            1. If _completion_ is a return completion, then
+              1. Perform AsyncGeneratorAwaitReturn(_gen_).
+              1. Return ~unused~.
+            1. If _completion_ is a normal completion, then
+              1. Set _completion_ to NormalCompletion(*undefined*).
+            1. Perform AsyncGeneratorCompleteStep(_gen_, _completion_, *true*).
+          1. Set _gen_.[[AsyncGeneratorState]] to ~completed~.
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

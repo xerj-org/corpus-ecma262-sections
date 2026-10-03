@@ -1,0 +1,67 @@
+ECMA-262 > A Grammar Summary > A.3 Statements [id: sec-statements]
+
+<emu-annex id="sec-statements">
+    <h1>Statements</h1>
+    <emu-prodref name="Statement"></emu-prodref>
+    <emu-prodref name="Declaration"></emu-prodref>
+    <emu-prodref name="HoistableDeclaration"></emu-prodref>
+    <emu-prodref name="BreakableStatement"></emu-prodref>
+    <emu-prodref name="BlockStatement"></emu-prodref>
+    <emu-prodref name="Block"></emu-prodref>
+    <emu-prodref name="StatementList"></emu-prodref>
+    <emu-prodref name="StatementListItem"></emu-prodref>
+    <emu-prodref name="LexicalDeclaration"></emu-prodref>
+    <emu-prodref name="LetOrConst"></emu-prodref>
+    <emu-prodref name="UsingDeclaration"></emu-prodref>
+    <emu-prodref name="AwaitUsingDeclaration"></emu-prodref>
+    <emu-prodref name="BindingList"></emu-prodref>
+    <emu-prodref name="LexicalBinding"></emu-prodref>
+    <p>
+      When processing an instance of the production<br>
+      <emu-prodref name="AwaitUsingDeclaration"></emu-prodref><br>
+      the interpretation of |CoverAwaitExpressionAndAwaitUsingDeclarationHead| is refined using the following grammar:
+    </p>
+    <emu-prodref name="AwaitUsingDeclarationHead"></emu-prodref>
+    <p>&nbsp;</p>
+    <emu-prodref name="VariableStatement"></emu-prodref>
+    <emu-prodref name="VariableDeclarationList"></emu-prodref>
+    <emu-prodref name="VariableDeclaration"></emu-prodref>
+    <emu-prodref name="BindingPattern"></emu-prodref>
+    <emu-prodref name="ObjectBindingPattern"></emu-prodref>
+    <emu-prodref name="ArrayBindingPattern"></emu-prodref>
+    <emu-prodref name="BindingRestProperty"></emu-prodref>
+    <emu-prodref name="BindingPropertyList"></emu-prodref>
+    <emu-prodref name="BindingElementList"></emu-prodref>
+    <emu-prodref name="BindingElisionElement"></emu-prodref>
+    <emu-prodref name="BindingProperty"></emu-prodref>
+    <emu-prodref name="BindingElement"></emu-prodref>
+    <emu-prodref name="SingleNameBinding"></emu-prodref>
+    <emu-prodref name="BindingRestElement"></emu-prodref>
+    <emu-prodref name="EmptyStatement"></emu-prodref>
+    <emu-prodref name="ExpressionStatement"></emu-prodref>
+    <emu-prodref name="IfStatement"></emu-prodref>
+    <emu-prodref name="IterationStatement"></emu-prodref>
+    <emu-prodref name="DoWhileStatement"></emu-prodref>
+    <emu-prodref name="WhileStatement"></emu-prodref>
+    <emu-prodref name="ForStatement"></emu-prodref>
+    <emu-prodref name="ForInOfStatement"></emu-prodref>
+    <emu-prodref name="ForDeclaration"></emu-prodref>
+    <emu-prodref name="ForBinding"></emu-prodref>
+    <emu-prodref name="ContinueStatement"></emu-prodref>
+    <emu-prodref name="BreakStatement"></emu-prodref>
+    <emu-prodref name="ReturnStatement"></emu-prodref>
+    <emu-prodref name="WithStatement"></emu-prodref>
+    <emu-prodref name="SwitchStatement"></emu-prodref>
+    <emu-prodref name="CaseBlock"></emu-prodref>
+    <emu-prodref name="CaseClauses"></emu-prodref>
+    <emu-prodref name="CaseClause"></emu-prodref>
+    <emu-prodref name="DefaultClause"></emu-prodref>
+    <emu-prodref name="LabelledStatement"></emu-prodref>
+    <emu-prodref name="LabelledItem"></emu-prodref>
+    <emu-prodref name="ThrowStatement"></emu-prodref>
+    <emu-prodref name="TryStatement"></emu-prodref>
+    <emu-prodref name="Catch"></emu-prodref>
+    <emu-prodref name="Finally"></emu-prodref>
+    <emu-prodref name="CatchParameter"></emu-prodref>
+    <emu-prodref name="DebuggerStatement"></emu-prodref>
+  </emu-annex>

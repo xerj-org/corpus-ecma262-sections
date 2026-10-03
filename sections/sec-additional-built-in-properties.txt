@@ -1,0 +1,14 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties [id: sec-additional-built-in-properties]
+
+<emu-annex id="sec-additional-built-in-properties">
+    <h1>Additional Built-in Properties</h1>
+    <p>When the ECMAScript host is a web browser the following additional properties of the standard built-in objects are defined.</p>
+
+    
+
+    
+
+    
+
+    
+  </emu-annex>

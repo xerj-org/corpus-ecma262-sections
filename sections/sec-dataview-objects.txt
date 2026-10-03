@@ -1,0 +1,15 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects [id: sec-dataview-objects]
+
+<emu-clause id="sec-dataview-objects">
+    <h1>DataView Objects</h1>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

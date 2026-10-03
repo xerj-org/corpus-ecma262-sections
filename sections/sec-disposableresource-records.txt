@@ -1,0 +1,55 @@
+ECMA-262 > 7 Abstract Operations > 7.5 Operations on Disposable Objects > 7.5.1 DisposableResource Records [id: sec-disposableresource-records]
+
+<emu-clause id="sec-disposableresource-records">
+      <h1>DisposableResource Records</h1>
+      <p>A <dfn variants="DisposableResource Records">DisposableResource Record</dfn> is a Record value used to encapsulate a disposable object along with the method used to dispose the object. DisposableResource Records are produced by the CreateDisposableResource abstract operation.</p>
+      <p>DisposableResource Records have the fields listed in <emu-xref href="#table-disposableresource-record-fields"></emu-xref>:</p>
+      <emu-table id="table-disposableresource-record-fields" caption="DisposableResource Record Fields">
+        <table>
+          <tr>
+            <th>
+              Field Name
+            </th>
+            <th>
+              Value
+            </th>
+            <th>
+              Meaning
+            </th>
+          </tr>
+          <tr>
+            <td>
+              [[ResourceValue]]
+            </td>
+            <td>
+              an Object or *undefined*
+            </td>
+            <td>
+              The value to be disposed.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[Kind]]
+            </td>
+            <td>
+              ~sync-dispose~ or ~async-dispose~
+            </td>
+            <td>
+              Indicates whether the resource was added by a `using` declaration or DisposableStack object (~sync-dispose~) or by an `await using` declaration or AsyncDisposableStack object (~async-dispose~).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[DisposeMethod]]
+            </td>
+            <td>
+              a function object or *undefined*
+            </td>
+            <td>
+              A function object that will be called with [[ResourceValue]] as its *this* value when the resource is disposed.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+    </emu-clause>

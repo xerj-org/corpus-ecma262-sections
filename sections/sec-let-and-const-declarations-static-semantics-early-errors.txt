@@ -1,0 +1,45 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.3 Declarations and the Variable Statement > 14.3.1 Let, Const, Using, and Await Using Declarations > 14.3.1.1 Static Semantics: Early Errors [id: sec-let-and-const-declarations-static-semantics-early-errors]
+
+<emu-clause id="sec-let-and-const-declarations-static-semantics-early-errors">
+        <h1>Static Semantics: Early Errors</h1>
+        <emu-grammar>LexicalDeclaration : LetOrConst BindingList `;`</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the BoundNames of |BindingList| contains *"let"*.
+          </li>
+          <li>
+            It is a Syntax Error if the BoundNames of |BindingList| contains any duplicate entries.
+          </li>
+        </ul>
+        <emu-grammar>
+          UsingDeclaration :
+            `using` BindingList `;`
+        </emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the BoundNames of |BindingList| contains *"let"*.
+          </li>
+          <li>
+            It is a Syntax Error if the BoundNames of |BindingList| contains any duplicate entries.
+          </li>
+        </ul>
+        <emu-grammar>
+          AwaitUsingDeclaration :
+            CoverAwaitExpressionAndAwaitUsingDeclarationHead BindingList `;`
+        </emu-grammar>
+        <ul>
+          <li>|CoverAwaitExpressionAndAwaitUsingDeclarationHead| must cover an |AwaitUsingDeclarationHead|.</li>
+          <li>
+            It is a Syntax Error if the BoundNames of |BindingList| contains *"let"*.
+          </li>
+          <li>
+            It is a Syntax Error if the BoundNames of |BindingList| contains any duplicate entries.
+          </li>
+        </ul>
+        <emu-grammar>LexicalBinding : BindingIdentifier Initializer?</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if |Initializer| is not present and IsConstantDeclaration of the |LexicalDeclaration| containing this |LexicalBinding| is *true*.
+          </li>
+        </ul>
+      </emu-clause>

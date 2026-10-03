@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.2 Properties of the Symbol Constructor > 20.4.2.12 Symbol.replace [id: sec-symbol.replace]
+
+<emu-clause id="sec-symbol.replace">
+        <h1>Symbol.replace</h1>
+        <p>The initial value of `Symbol.replace` is the well-known symbol %Symbol.replace% (<emu-xref href="#table-well-known-symbols"></emu-xref>).</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

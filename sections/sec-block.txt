@@ -1,0 +1,27 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.2 Block [id: sec-block]
+
+<emu-clause id="sec-block">
+    <h1>Block</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      BlockStatement[Yield, Await, Return] :
+        Block[?Yield, ?Await, ?Return]
+
+      Block[Yield, Await, Return] :
+        `{` StatementList[?Yield, ?Await, ?Return]? `}`
+
+      StatementList[Yield, Await, Return] :
+        StatementListItem[?Yield, ?Await, ?Return]
+        StatementList[?Yield, ?Await, ?Return] StatementListItem[?Yield, ?Await, ?Return]
+
+      StatementListItem[Yield, Await, Return] :
+        Statement[?Yield, ?Await, ?Return]
+        Declaration[?Yield, ?Await]
+    </emu-grammar>
+
+    
+
+    
+
+    
+  </emu-clause>

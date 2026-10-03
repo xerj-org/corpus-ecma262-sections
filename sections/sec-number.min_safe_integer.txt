@@ -1,0 +1,10 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.2 Properties of the Number Constructor > 21.1.2.8 Number.MIN_SAFE_INTEGER [id: sec-number.min_safe_integer]
+
+<emu-clause id="sec-number.min_safe_integer">
+        <h1>Number.MIN_SAFE_INTEGER</h1>
+        <emu-note>
+          <p>Due to rounding behaviour necessitated by precision limitations of IEEE 754-2019, the Number value for every integer less than `Number.MIN_SAFE_INTEGER` is shared with at least one other integer. Such large-magnitude integers are therefore not <emu-xref href="#safe-integer">safe</emu-xref>, and are not guaranteed to be exactly representable as Number values or even to be distinguishable from each other. For example, both `-9007199254740992` and `-9007199254740993` evaluate to the Number value *-9007199254740992*<sub>𝔽</sub>.</p>
+        </emu-note>
+        <p>The value of `Number.MIN_SAFE_INTEGER` is *-9007199254740991*<sub>𝔽</sub> (𝔽(-(2<sup>53</sup> - 1))).</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

@@ -1,0 +1,9 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.5 Unary Operators > 13.5.1 The `delete` Operator [id: sec-delete-operator]
+
+<emu-clause id="sec-delete-operator">
+      <h1>The `delete` Operator</h1>
+
+      
+
+      
+    </emu-clause>

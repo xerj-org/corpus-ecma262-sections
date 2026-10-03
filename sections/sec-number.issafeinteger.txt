@@ -1,0 +1,14 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.2 Properties of the Number Constructor > 21.1.2.5 Number.isSafeInteger ( _number_ ) [id: sec-number.issafeinteger]
+
+<emu-clause id="sec-number.issafeinteger" type="built-in function">
+        <h1>Number.isSafeInteger ( _number_ )</h1>
+        <emu-note>
+          <p>An integer _n_ is a “<dfn id="safe-integer">safe integer</dfn>” if and only if the Number value for _n_ is not the Number value for any other integer.</p>
+        </emu-note>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If _number_ is an integral Number, then
+            1. If abs(ℝ(_number_)) ≤ 2<sup>53</sup> - 1, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.33 Symbol object [id: sec-symbol-object]
+
+<emu-clause id="sec-symbol-object">
+      <h1>Symbol object</h1>
+      <p>member of the Object type that is an instance of the standard built-in Symbol constructor</p>
+    </emu-clause>

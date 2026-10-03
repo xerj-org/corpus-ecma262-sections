@@ -1,0 +1,6 @@
+ECMA-262 > 5 Notational Conventions > 5.2 Algorithm Conventions > 5.2.2 Abstract Operations [id: sec-algorithm-conventions-abstract-operations]
+
+<emu-clause id="sec-algorithm-conventions-abstract-operations">
+      <h1>Abstract Operations</h1>
+      <p>In order to facilitate their use in multiple parts of this specification, some algorithms, called <dfn>abstract operations</dfn>, are named and written in parameterized functional form so that they may be referenced by name from within other algorithms. Abstract operations are typically referenced using a functional application style such as OperationName(_arg1_, _arg2_). Some abstract operations are treated as polymorphically dispatched methods of class-like specification abstractions. Such method-like abstract operations are typically referenced using a method application style such as _someValue_.OperationName(_arg1_, _arg2_).</p>
+    </emu-clause>

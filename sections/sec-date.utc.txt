@@ -1,0 +1,21 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.3 Properties of the Date Constructor > 21.4.3.4 Date.UTC ( _year_ [ , _month_ [ , _day_ [ , _hour_ [ , _minute_ [ , _second_ [ , _millisecond_ ] ] ] ] ] ] ) [id: sec-date.utc]
+
+<emu-clause id="sec-date.utc" type="built-in function">
+        <h1>Date.UTC ( _year_ [ , _month_ [ , _day_ [ , _hour_ [ , _minute_ [ , _second_ [ , _millisecond_ ] ] ] ] ] ] )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _yearNumber_ be ? ToNumber(_year_).
+          1. If _month_ is present, let _monthNumber_ be ? ToNumber(_month_); else let _monthNumber_ be *+0*<sub>𝔽</sub>.
+          1. If _day_ is present, let _dayNumber_ be ? ToNumber(_day_); else let _dayNumber_ be *1*<sub>𝔽</sub>.
+          1. If _hour_ is present, let _hourNumber_ be ? ToNumber(_hour_); else let _hourNumber_ be *+0*<sub>𝔽</sub>.
+          1. If _minute_ is present, let _minuteNumber_ be ? ToNumber(_minute_); else let _minuteNumber_ be *+0*<sub>𝔽</sub>.
+          1. If _second_ is present, let _secondNumber_ be ? ToNumber(_second_); else let _secondNumber_ be *+0*<sub>𝔽</sub>.
+          1. If _millisecond_ is present, let _millisecondNumber_ be ? ToNumber(_millisecond_); else let _millisecondNumber_ be *+0*<sub>𝔽</sub>.
+          1. Set _yearNumber_ to MakeFullYear(_yearNumber_).
+          1. Return TimeClip(MakeDate(MakeDay(_yearNumber_, _monthNumber_, _dayNumber_), MakeTime(_hourNumber_, _minuteNumber_, _secondNumber_, _millisecondNumber_))).
+        </emu-alg>
+        <p>The *"length"* property of this function is *7*<sub>𝔽</sub>.</p>
+        <emu-note>
+          <p>This function differs from the Date constructor in two ways: it returns a time value as a Number, rather than creating a Date, and it interprets the arguments in UTC rather than as local time.</p>
+        </emu-note>
+      </emu-clause>

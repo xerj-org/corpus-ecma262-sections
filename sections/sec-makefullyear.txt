@@ -1,0 +1,19 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.30 MakeFullYear ( _year_: a Number, ): an integral Number or *NaN* [id: sec-makefullyear]
+
+<emu-clause id="sec-makefullyear" type="abstract operation">
+        <h1>
+          MakeFullYear (
+            _year_: a Number,
+          ): an integral Number or *NaN*
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns the full year associated with the integer part of _year_, interpreting any value in the inclusive interval from 0 to 99 as a count of years since the start of 1900. For alignment with the proleptic Gregorian calendar, “full year” is defined as the signed count of complete years since the start of year 0 (1 B.C.).</dd>
+        </dl>
+        <emu-alg>
+          1. If _year_ is one of *NaN*, *+∞*<sub>𝔽</sub>, or *-∞*<sub>𝔽</sub>, return *NaN*.
+          1. Let _truncated_ be ! ToIntegerOrInfinity(_year_).
+          1. If _truncated_ is in the inclusive interval from 0 to 99, return *1900*<sub>𝔽</sub> + 𝔽(_truncated_).
+          1. Return 𝔽(_truncated_).
+        </emu-alg>
+      </emu-clause>

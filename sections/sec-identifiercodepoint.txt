@@ -1,0 +1,23 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.7 Names and Keywords > 12.7.1 Identifier Names > 12.7.1.3 Static Semantics: IdentifierCodePoint ( ): a code point [id: sec-identifiercodepoint]
+
+<emu-clause id="sec-identifiercodepoint" type="sdo">
+        <h1>Static Semantics: IdentifierCodePoint ( ): a code point</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>IdentifierStart :: IdentifierStartChar</emu-grammar>
+        <emu-alg>
+          1. Return the code point matched by |IdentifierStartChar|.
+        </emu-alg>
+        <emu-grammar>IdentifierPart :: IdentifierPartChar</emu-grammar>
+        <emu-alg>
+          1. Return the code point matched by |IdentifierPartChar|.
+        </emu-alg>
+        <emu-grammar>UnicodeEscapeSequence :: `u` Hex4Digits</emu-grammar>
+        <emu-alg>
+          1. Return the code point whose numeric value is the MV of |Hex4Digits|.
+        </emu-alg>
+        <emu-grammar>UnicodeEscapeSequence :: `u{` CodePoint `}`</emu-grammar>
+        <emu-alg>
+          1. Return the code point whose numeric value is the MV of |CodePoint|.
+        </emu-alg>
+      </emu-clause>

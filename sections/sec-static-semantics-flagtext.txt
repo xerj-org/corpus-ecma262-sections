@@ -1,0 +1,11 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.9 Literals > 12.9.5 Regular Expression Literals > 12.9.5.2 Static Semantics: FlagText ( ): source text [id: sec-static-semantics-flagtext]
+
+<emu-clause id="sec-static-semantics-flagtext" type="sdo">
+        <h1>Static Semantics: FlagText ( ): source text</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>RegularExpressionLiteral :: `/` RegularExpressionBody `/` RegularExpressionFlags</emu-grammar>
+        <emu-alg>
+          1. Return the source text that was recognized as |RegularExpressionFlags|.
+        </emu-alg>
+      </emu-clause>

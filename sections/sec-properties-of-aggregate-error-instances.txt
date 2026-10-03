@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.7 AggregateError Objects > 20.5.7.4 Properties of AggregateError Instances [id: sec-properties-of-aggregate-error-instances]
+
+<emu-clause id="sec-properties-of-aggregate-error-instances">
+        <h1>Properties of AggregateError Instances</h1>
+        <p>AggregateError instances are ordinary objects that inherit properties from their AggregateError prototype object and have an [[ErrorData]] internal slot whose value is *undefined*. The only specified use of [[ErrorData]] is by `Object.prototype.toString` (<emu-xref href="#sec-object.prototype.tostring"></emu-xref>) and `Error.isError` (<emu-xref href="#sec-error.iserror"></emu-xref>) to identify Error, AggregateError, SuppressedError, or _NativeError_ instances.</p>
+      </emu-clause>

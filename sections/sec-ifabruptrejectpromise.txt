@@ -1,0 +1,17 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.1 Promise Abstract Operations > 27.5.1.1 PromiseCapability Records > 27.5.1.1.1 IfAbruptRejectPromise ( _value_, _capability_ ) [id: sec-ifabruptrejectpromise]
+
+<emu-clause id="sec-ifabruptrejectpromise" aoid="IfAbruptRejectPromise">
+          <h1>IfAbruptRejectPromise ( _value_, _capability_ )</h1>
+          <p>IfAbruptRejectPromise is a shorthand for a sequence of algorithm steps that use a PromiseCapability Record. An algorithm step of the form:</p>
+          <emu-alg>
+            1. IfAbruptRejectPromise(_value_, _capability_).
+          </emu-alg>
+          <p>means the same thing as:</p>
+          <emu-alg>
+            1. Assert: _value_ is a Completion Record.
+            1. If _value_ is an abrupt completion, then
+              1. Perform ? Call(_capability_.[[Reject]], *undefined*, « _value_.[[Value]] »).
+              1. Return _capability_.[[Promise]].
+            1. Set _value_ to ! _value_.
+          </emu-alg>
+        </emu-clause>

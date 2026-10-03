@@ -1,0 +1,6 @@
+ECMA-262 > 21 Numbers and Dates > 21.2 BigInt Objects > 21.2.3 Properties of the BigInt Prototype Object > 21.2.3.1 BigInt.prototype.constructor [id: sec-bigint.prototype.constructor]
+
+<emu-clause id="sec-bigint.prototype.constructor">
+        <h1>BigInt.prototype.constructor</h1>
+        <p>The initial value of `BigInt.prototype.constructor` is %BigInt%.</p>
+      </emu-clause>

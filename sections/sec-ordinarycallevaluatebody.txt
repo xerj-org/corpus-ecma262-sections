@@ -1,0 +1,15 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.2 ECMAScript Function Objects > 10.2.1 [[Call]] ( _thisArg_: an ECMAScript language value, _argList_: a List of ECMAScript language values, ): either a normal completion containing an ECMAScript language value or a throw completion > 10.2.1.4 OrdinaryCallEvaluateBody ( _func_: an ECMAScript function object, _argList_: a List of ECMAScript language values, ): a return completion or a throw completion [id: sec-ordinarycallevaluatebody]
+
+<emu-clause id="sec-ordinarycallevaluatebody" type="abstract operation">
+        <h1>
+          OrdinaryCallEvaluateBody (
+            _func_: an ECMAScript function object,
+            _argList_: a List of ECMAScript language values,
+          ): a return completion or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Return ? EvaluateBody of _func_.[[ECMAScriptCode]] with arguments _func_ and _argList_.
+        </emu-alg>
+      </emu-clause>

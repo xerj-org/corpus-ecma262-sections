@@ -1,0 +1,38 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.1 Additional Syntax > B.1.2 Regular Expressions Patterns > B.1.2.8 Runtime Semantics: CompileToCharSet [id: sec-compiletocharset-annexb]
+
+<emu-annex id="sec-compiletocharset-annexb">
+        <h1>Runtime Semantics: CompileToCharSet</h1>
+        <p>The semantics of CompileToCharSet with argument _regexpRecord_ is extended as follows:</p>
+        <p>Two rules are replaced:</p>
+        <emu-grammar>NonemptyClassRanges :: ClassAtom `-` ClassAtom ClassContents</emu-grammar>
+        <emu-alg>
+          1. Let _charSet_ be CompileToCharSet of the first |ClassAtom| with argument _regexpRecord_.
+          1. Let _otherSet_ be CompileToCharSet of the second |ClassAtom| with argument _regexpRecord_.
+          1. Let _remainingSet_ be CompileToCharSet of |ClassContents| with argument _regexpRecord_.
+          1. Let _rangeSet_ be CharacterRangeOrUnion(_regexpRecord_, _charSet_, _otherSet_).
+          1. Return the union of _rangeSet_ and _remainingSet_.
+        </emu-alg>
+        <emu-grammar>NonemptyClassRangesNoDash :: ClassAtomNoDash `-` ClassAtom ClassContents</emu-grammar>
+        <emu-alg>
+          1. Let _charSet_ be CompileToCharSet of |ClassAtomNoDash| with argument _regexpRecord_.
+          1. Let _otherSet_ be CompileToCharSet of |ClassAtom| with argument _regexpRecord_.
+          1. Let _remainingSet_ be CompileToCharSet of |ClassContents| with argument _regexpRecord_.
+          1. Let _rangeSet_ be CharacterRangeOrUnion(_regexpRecord_, _charSet_, _otherSet_).
+          1. Return the union of _rangeSet_ and _remainingSet_.
+        </emu-alg>
+        <p>The following rules are also added:</p>
+        <emu-grammar>ClassEscape :: `c` ClassControlLetter</emu-grammar>
+        <emu-alg>
+          1. Let _charValue_ be the CharacterValue of this |ClassEscape|.
+          1. Let _char_ be the character whose character value is _charValue_.
+          1. Return the CharSet containing the single character _char_.
+        </emu-alg>
+        <emu-grammar>ClassAtomNoDash :: `\` [lookahead == `c`]</emu-grammar>
+        <emu-alg>
+          1. Return the CharSet containing the single character `\\` U+005C (REVERSE SOLIDUS).
+        </emu-alg>
+
+        <emu-note>This production can only be reached from the sequence `\c` within a character class where it is not followed by an acceptable control character.</emu-note>
+
+        
+      </emu-annex>

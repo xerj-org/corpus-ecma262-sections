@@ -1,0 +1,19 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.12 HasOwnProperty ( _obj_: an Object, _propertyKey_: a property key, ): either a normal completion containing a Boolean or a throw completion [id: sec-hasownproperty]
+
+<emu-clause id="sec-hasownproperty" type="abstract operation">
+      <h1>
+        HasOwnProperty (
+          _obj_: an Object,
+          _propertyKey_: a property key,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to determine whether an object has an own property with the specified property key.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _propertyDesc_ be ? <emu-meta effects="user-code">_obj_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+        1. If _propertyDesc_ is *undefined*, return *false*.
+        1. Return *true*.
+      </emu-alg>
+    </emu-clause>

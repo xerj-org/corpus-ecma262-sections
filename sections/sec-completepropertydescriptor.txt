@@ -1,0 +1,23 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.6 The Property Descriptor Specification Type > 6.2.6.6 CompletePropertyDescriptor ( _propertyDesc_: a Property Descriptor, ): ~unused~ [id: sec-completepropertydescriptor]
+
+<emu-clause id="sec-completepropertydescriptor" type="abstract operation">
+        <h1>
+          CompletePropertyDescriptor (
+            _propertyDesc_: a Property Descriptor,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _like_ be the Record { [[Value]]: *undefined*, [[Writable]]: *false*, [[Getter]]: *undefined*, [[Setter]]: *undefined*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.
+          1. If IsGenericDescriptor(_propertyDesc_) is *true* or IsDataDescriptor(_propertyDesc_) is *true*, then
+            1. If _propertyDesc_ does not have a [[Value]] field, set _propertyDesc_.[[Value]] to _like_.[[Value]].
+            1. If _propertyDesc_ does not have a [[Writable]] field, set _propertyDesc_.[[Writable]] to _like_.[[Writable]].
+          1. Else,
+            1. If _propertyDesc_ does not have a [[Getter]] field, set _propertyDesc_.[[Getter]] to _like_.[[Getter]].
+            1. If _propertyDesc_ does not have a [[Setter]] field, set _propertyDesc_.[[Setter]] to _like_.[[Setter]].
+          1. If _propertyDesc_ does not have an [[Enumerable]] field, set _propertyDesc_.[[Enumerable]] to _like_.[[Enumerable]].
+          1. If _propertyDesc_ does not have a [[Configurable]] field, set _propertyDesc_.[[Configurable]] to _like_.[[Configurable]].
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

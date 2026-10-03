@@ -1,0 +1,23 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.6 Async Generator Function Definitions > 15.6.2 Runtime Semantics: EvaluateAsyncGeneratorBody ( _funcObj_: an ECMAScript function object, _argList_: a List of ECMAScript language values, ): a throw completion or a return completion [id: sec-runtime-semantics-evaluateasyncgeneratorbody]
+
+<emu-clause id="sec-runtime-semantics-evaluateasyncgeneratorbody" oldids="sec-asyncgenerator-definitions-evaluatebody" type="sdo">
+      <h1>
+        Runtime Semantics: EvaluateAsyncGeneratorBody (
+          _funcObj_: an ECMAScript function object,
+          _argList_: a List of ECMAScript language values,
+        ): a throw completion or a return completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>
+        AsyncGeneratorBody : FunctionBody
+      </emu-grammar>
+      <emu-alg>
+        1. Perform ? FunctionDeclarationInstantiation(_funcObj_, _argList_).
+        1. Let _gen_ be ? OrdinaryCreateFromConstructor(_funcObj_, *"%AsyncGeneratorPrototype%"*, « [[AsyncGeneratorState]], [[AsyncGeneratorContext]], [[AsyncGeneratorQueue]], [[GeneratorBrand]] »).
+        1. Set _gen_.[[GeneratorBrand]] to ~empty~.
+        1. Set _gen_.[[AsyncGeneratorState]] to ~suspended-start~.
+        1. Perform AsyncGeneratorStart(_gen_, |FunctionBody|).
+        1. Return ReturnCompletion(_gen_).
+      </emu-alg>
+    </emu-clause>

@@ -1,0 +1,47 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.3 Left-Hand-Side Expressions > 13.3.2 Property Accessors > 13.3.2.1 Runtime Semantics: Evaluation [id: sec-property-accessors-runtime-semantics-evaluation]
+
+<emu-clause id="sec-property-accessors-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>MemberExpression : MemberExpression `[` Expression `]`</emu-grammar>
+        <emu-alg>
+          1. Let _baseRef_ be ? Evaluation of |MemberExpression|.
+          1. Let _baseValue_ be ? GetValue(_baseRef_).
+          1. Let _strict_ be IsStrict(this |MemberExpression|).
+          1. Return ? EvaluatePropertyAccessWithExpressionKey(_baseValue_, |Expression|, _strict_).
+        </emu-alg>
+        <emu-grammar>MemberExpression : MemberExpression `.` IdentifierName</emu-grammar>
+        <emu-alg>
+          1. Let _baseRef_ be ? Evaluation of |MemberExpression|.
+          1. Let _baseValue_ be ? GetValue(_baseRef_).
+          1. Let _strict_ be IsStrict(this |MemberExpression|).
+          1. Return EvaluatePropertyAccessWithIdentifierKey(_baseValue_, |IdentifierName|, _strict_).
+        </emu-alg>
+        <emu-grammar>MemberExpression : MemberExpression `.` PrivateIdentifier</emu-grammar>
+        <emu-alg>
+          1. Let _baseRef_ be ? Evaluation of |MemberExpression|.
+          1. Let _baseValue_ be ? GetValue(_baseRef_).
+          1. Let _fieldNameString_ be the StringValue of |PrivateIdentifier|.
+          1. Return MakePrivateReference(_baseValue_, _fieldNameString_).
+        </emu-alg>
+        <emu-grammar>CallExpression : CallExpression `[` Expression `]`</emu-grammar>
+        <emu-alg>
+          1. Let _baseRef_ be ? Evaluation of |CallExpression|.
+          1. Let _baseValue_ be ? GetValue(_baseRef_).
+          1. Let _strict_ be IsStrict(this |CallExpression|).
+          1. Return ? EvaluatePropertyAccessWithExpressionKey(_baseValue_, |Expression|, _strict_).
+        </emu-alg>
+        <emu-grammar>CallExpression : CallExpression `.` IdentifierName</emu-grammar>
+        <emu-alg>
+          1. Let _baseRef_ be ? Evaluation of |CallExpression|.
+          1. Let _baseValue_ be ? GetValue(_baseRef_).
+          1. Let _strict_ be IsStrict(this |CallExpression|).
+          1. Return EvaluatePropertyAccessWithIdentifierKey(_baseValue_, |IdentifierName|, _strict_).
+        </emu-alg>
+        <emu-grammar>CallExpression : CallExpression `.` PrivateIdentifier</emu-grammar>
+        <emu-alg>
+          1. Let _baseRef_ be ? Evaluation of |CallExpression|.
+          1. Let _baseValue_ be ? GetValue(_baseRef_).
+          1. Let _fieldNameString_ be the StringValue of |PrivateIdentifier|.
+          1. Return MakePrivateReference(_baseValue_, _fieldNameString_).
+        </emu-alg>
+      </emu-clause>

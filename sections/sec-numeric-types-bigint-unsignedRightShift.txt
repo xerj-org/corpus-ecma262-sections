@@ -1,0 +1,15 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.2 The BigInt Type > 6.1.6.2.11 BigInt::unsignedRightShift ( _x_: a BigInt, _y_: a BigInt, ): a throw completion [id: sec-numeric-types-bigint-unsignedRightShift]
+
+<emu-clause id="sec-numeric-types-bigint-unsignedRightShift" type="numeric method">
+          <h1>
+            BigInt::unsignedRightShift (
+              _x_: a BigInt,
+              _y_: a BigInt,
+            ): a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Throw a *TypeError* exception.
+          </emu-alg>
+        </emu-clause>

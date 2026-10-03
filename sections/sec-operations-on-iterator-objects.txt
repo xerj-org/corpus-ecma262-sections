@@ -1,0 +1,44 @@
+ECMA-262 > 7 Abstract Operations > 7.4 Operations on Iterator Objects [id: sec-operations-on-iterator-objects]
+
+<emu-clause id="sec-operations-on-iterator-objects">
+    <h1>Operations on Iterator Objects</h1>
+    <p>See Common Iteration Interfaces (<emu-xref href="#sec-iteration"></emu-xref>).</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

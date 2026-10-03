@@ -1,0 +1,8 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.2 Iterator Helper Objects > 27.1.2.1 The %IteratorHelperPrototype% Object > 27.1.2.1.1 %IteratorHelperPrototype%.next ( ) [id: sec-%iteratorhelperprototype%.next]
+
+<emu-clause id="sec-%iteratorhelperprototype%.next" type="built-in function">
+          <h1>%IteratorHelperPrototype%.next ( )</h1>
+          <emu-alg>
+            1. Return ? GeneratorResume(*this* value, *undefined*, *"Iterator Helper"*).
+          </emu-alg>
+        </emu-clause>

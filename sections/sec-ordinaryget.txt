@@ -1,0 +1,26 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.8 [[Get]] ( _propertyKey_: a property key, _receiver_: an ECMAScript language value, ): either a normal completion containing an ECMAScript language value or a throw completion > 10.1.8.1 OrdinaryGet ( _obj_: an Object, _propertyKey_: a property key, _receiver_: an ECMAScript language value, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-ordinaryget]
+
+<emu-clause id="sec-ordinaryget" type="abstract operation">
+        <h1>
+          OrdinaryGet (
+            _obj_: an Object,
+            _propertyKey_: a property key,
+            _receiver_: an ECMAScript language value,
+          ): either a normal completion containing an ECMAScript language value or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+
+        <emu-alg>
+          1. Let _propertyDesc_ be ? <emu-meta effects="user-code">_obj_.[[GetOwnProperty]](_propertyKey_)</emu-meta>.
+          1. If _propertyDesc_ is *undefined*, then
+            1. Let _parent_ be ? <emu-meta effects="user-code">_obj_.[[GetPrototypeOf]]()</emu-meta>.
+            1. If _parent_ is *null*, return *undefined*.
+            1. Return ? <emu-meta effects="user-code">_parent_.[[Get]](_propertyKey_, _receiver_)</emu-meta>.
+          1. If IsDataDescriptor(_propertyDesc_) is *true*, return _propertyDesc_.[[Value]].
+          1. Assert: IsAccessorDescriptor(_propertyDesc_) is *true*.
+          1. Let _getter_ be _propertyDesc_.[[Getter]].
+          1. If _getter_ is *undefined*, return *undefined*.
+          1. Return ? Call(_getter_, _receiver_).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,16 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.8 Additive Operators [id: sec-additive-operators]
+
+<emu-clause id="sec-additive-operators">
+    <h1>Additive Operators</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      AdditiveExpression[Yield, Await] :
+        MultiplicativeExpression[?Yield, ?Await]
+        AdditiveExpression[?Yield, ?Await] `+` MultiplicativeExpression[?Yield, ?Await]
+        AdditiveExpression[?Yield, ?Await] `-` MultiplicativeExpression[?Yield, ?Await]
+    </emu-grammar>
+
+    
+
+    
+  </emu-clause>

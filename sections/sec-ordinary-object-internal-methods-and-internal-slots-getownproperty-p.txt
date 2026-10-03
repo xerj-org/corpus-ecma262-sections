@@ -1,0 +1,18 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.5 [[GetOwnProperty]] ( _propertyKey_: a property key, ): a normal completion containing either a Property Descriptor or *undefined* [id: sec-ordinary-object-internal-methods-and-internal-slots-getownproperty-p]
+
+<emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-getownproperty-p" type="internal method">
+      <h1>
+        [[GetOwnProperty]] (
+          _propertyKey_: a property key,
+        ): a normal completion containing either a Property Descriptor or *undefined*
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>an ordinary object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Return OrdinaryGetOwnProperty(_obj_, _propertyKey_).
+      </emu-alg>
+
+      
+    </emu-clause>

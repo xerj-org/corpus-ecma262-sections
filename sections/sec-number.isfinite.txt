@@ -1,0 +1,10 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.2 Properties of the Number Constructor > 21.1.2.2 Number.isFinite ( _number_ ) [id: sec-number.isfinite]
+
+<emu-clause id="sec-number.isfinite" type="built-in function">
+        <h1>Number.isFinite ( _number_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If _number_ is a finite Number, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

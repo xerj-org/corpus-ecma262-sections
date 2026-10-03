@@ -1,0 +1,16 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.6 _NativeError_ Object Structure > 20.5.6.1 The _NativeError_ Constructors > 20.5.6.1.1 _NativeError_ ( _message_ [ , _options_ ] ) [id: sec-nativeerror]
+
+<emu-clause id="sec-nativeerror" type="built-in function">
+          <h1>_NativeError_ ( _message_ [ , _options_ ] )</h1>
+          <p>Each _NativeError_ function performs the following steps when called:</p>
+          <emu-alg>
+            1. If NewTarget is *undefined*, let _newTarget_ be the active function object; else let _newTarget_ be NewTarget.
+            1. [id="step-nativeerror-ordinarycreatefromconstructor"] Let _obj_ be ? OrdinaryCreateFromConstructor(_newTarget_, *"%<var>NativeError</var>.prototype%"*, « [[ErrorData]] »).
+            1. If _message_ is not *undefined*, then
+              1. Let _messageString_ be ? ToString(_message_).
+              1. Perform CreateNonEnumerableDataPropertyOrThrow(_obj_, *"message"*, _messageString_).
+            1. Perform ? InstallErrorCause(_obj_, _options_).
+            1. Return _obj_.
+          </emu-alg>
+          <p>The actual value of the string passed in step <emu-xref href="#step-nativeerror-ordinarycreatefromconstructor"></emu-xref> is either *"%EvalError.prototype%"*, *"%RangeError.prototype%"*, *"%ReferenceError.prototype%"*, *"%SyntaxError.prototype%"*, *"%TypeError.prototype%"*, or *"%URIError.prototype%"* corresponding to which _NativeError_ constructor is being defined.</p>
+        </emu-clause>

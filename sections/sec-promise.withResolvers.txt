@@ -1,0 +1,15 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.4 Properties of the Promise Constructor > 27.5.4.9 Promise.withResolvers ( ) [id: sec-promise.withResolvers]
+
+<emu-clause id="sec-promise.withResolvers" type="built-in function">
+        <h1>Promise.withResolvers ( )</h1>
+        <p>This function returns an object with three properties: a new promise together with the `resolve` and `reject` functions associated with it.</p>
+        <emu-alg>
+          1. Let _ctor_ be the *this* value.
+          1. Let _promiseCapability_ be ? NewPromiseCapability(_ctor_).
+          1. Let _obj_ be OrdinaryObjectCreate(%Object.prototype%).
+          1. Perform ! CreateDataPropertyOrThrow(_obj_, *"promise"*, _promiseCapability_.[[Promise]]).
+          1. Perform ! CreateDataPropertyOrThrow(_obj_, *"resolve"*, _promiseCapability_.[[Resolve]]).
+          1. Perform ! CreateDataPropertyOrThrow(_obj_, *"reject"*, _promiseCapability_.[[Reject]]).
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

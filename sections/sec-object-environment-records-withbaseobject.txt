@@ -1,0 +1,13 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.2 Object Environment Records > 9.1.1.2.11 WithBaseObject ( ): an Object or *undefined* [id: sec-object-environment-records-withbaseobject]
+
+<emu-clause id="sec-object-environment-records-withbaseobject" type="concrete method">
+          <h1>WithBaseObject ( ): an Object or *undefined*</h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>an Object Environment Record _envRecord_</dd>
+          </dl>
+          <emu-alg>
+            1. If _envRecord_.[[IsWithEnvironment]] is *true*, return _envRecord_.[[BindingObject]].
+            1. Return *undefined*.
+          </emu-alg>
+        </emu-clause>

@@ -1,0 +1,12 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.3 Properties of the Symbol Prototype Object > 20.4.3.3 Symbol.prototype.toString ( ) [id: sec-symbol.prototype.tostring]
+
+<emu-clause id="sec-symbol.prototype.tostring" type="built-in function">
+        <h1>Symbol.prototype.toString ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _symbol_ be ? ThisSymbolValue(*this* value).
+          1. Return SymbolDescriptiveString(_symbol_).
+        </emu-alg>
+
+        
+      </emu-clause>

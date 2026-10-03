@@ -1,0 +1,32 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.12 The `switch` Statement [id: sec-switch-statement]
+
+<emu-clause id="sec-switch-statement">
+    <h1>The `switch` Statement</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      SwitchStatement[Yield, Await, Return] :
+        `switch` `(` Expression[+In, ?Yield, ?Await] `)` CaseBlock[?Yield, ?Await, ?Return]
+
+      CaseBlock[Yield, Await, Return] :
+        `{` CaseClauses[?Yield, ?Await, ?Return]? `}`
+        `{` CaseClauses[?Yield, ?Await, ?Return]? DefaultClause[?Yield, ?Await, ?Return] CaseClauses[?Yield, ?Await, ?Return]? `}`
+
+      CaseClauses[Yield, Await, Return] :
+        CaseClause[?Yield, ?Await, ?Return]
+        CaseClauses[?Yield, ?Await, ?Return] CaseClause[?Yield, ?Await, ?Return]
+
+      CaseClause[Yield, Await, Return] :
+        `case` Expression[+In, ?Yield, ?Await] `:` StatementList[?Yield, ?Await, ?Return]?
+
+      DefaultClause[Yield, Await, Return] :
+        `default` `:` StatementList[?Yield, ?Await, ?Return]?
+    </emu-grammar>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

@@ -1,0 +1,20 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.29 HostEnsureCanAddPrivateElement ( _obj_: an Object, ): either a normal completion containing ~unused~ or a throw completion [id: sec-hostensurecanaddprivateelement]
+
+<emu-clause id="sec-hostensurecanaddprivateelement" type="host-defined abstract operation">
+      <h1>
+        HostEnsureCanAddPrivateElement (
+          _obj_: an Object,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It allows host environments to prevent the addition of private elements to particular host-defined exotic objects.</dd>
+      </dl>
+      <p>An implementation of HostEnsureCanAddPrivateElement must conform to the following requirements:</p>
+      <ul>
+        <li>If _obj_ is not a host-defined exotic object, this abstract operation must return NormalCompletion(~unused~) and perform no other steps.</li>
+        <li>Any two calls of this abstract operation with the same argument must return the same kind of Completion Record.</li>
+      </ul>
+      <p>The default implementation of HostEnsureCanAddPrivateElement is to return NormalCompletion(~unused~).</p>
+      <p>This abstract operation is only invoked by ECMAScript hosts that are web browsers.</p>
+    </emu-clause>

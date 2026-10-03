@@ -1,0 +1,140 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.1 Patterns > 22.2.1.1 Static Semantics: Early Errors [id: sec-patterns-static-semantics-early-errors]
+
+<emu-clause id="sec-patterns-static-semantics-early-errors">
+        <h1>Static Semantics: Early Errors</h1>
+        <emu-note>
+          <p>This section is amended in <emu-xref href="#sec-patterns-static-semantics-early-errors-annexb"></emu-xref>.</p>
+        </emu-note>
+        <emu-grammar>Pattern :: Disjunction</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if CountLeftCapturingParensWithin(|Pattern|) ≥ 2<sup>32</sup> - 1.
+          </li>
+          <li>
+            It is a Syntax Error if |Pattern| contains two distinct |GroupSpecifier|s _x_ and _y_ such that the CapturingGroupName of _x_ is the CapturingGroupName of _y_ and such that MightBothParticipate(_x_, _y_) is *true*.
+          </li>
+        </ul>
+        <emu-grammar>QuantifierPrefix :: `{` DecimalDigits `,` DecimalDigits `}`</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the MV of the first |DecimalDigits| is strictly greater than the MV of the second |DecimalDigits|.
+          </li>
+        </ul>
+        <emu-grammar>Atom :: `(?` RegularExpressionModifiers `:` Disjunction `)`</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the source text matched by |RegularExpressionModifiers| contains the same code point more than once.
+          </li>
+        </ul>
+        <emu-grammar>Atom :: `(?` RegularExpressionModifiers `-` RegularExpressionModifiers `:` Disjunction `)`</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the source text matched by the first |RegularExpressionModifiers| and the source text matched by the second |RegularExpressionModifiers| are both empty.
+          </li>
+          <li>
+            It is a Syntax Error if the source text matched by the first |RegularExpressionModifiers| contains the same code point more than once.
+          </li>
+          <li>
+            It is a Syntax Error if the source text matched by the second |RegularExpressionModifiers| contains the same code point more than once.
+          </li>
+          <li>
+            It is a Syntax Error if any code point in the source text matched by the first |RegularExpressionModifiers| is also contained in the source text matched by the second |RegularExpressionModifiers|.
+          </li>
+        </ul>
+        <emu-grammar>AtomEscape :: `k` GroupName</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if GroupSpecifiersThatMatch(|GroupName|) is empty.
+          </li>
+        </ul>
+        <emu-grammar>AtomEscape :: DecimalEscape</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the CapturingGroupNumber of |DecimalEscape| is strictly greater than CountLeftCapturingParensWithin(the |Pattern| containing |AtomEscape|).
+          </li>
+        </ul>
+        <emu-grammar>NonemptyClassRanges :: ClassAtom `-` ClassAtom ClassContents</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if IsCharacterClass of the first |ClassAtom| is *true* or IsCharacterClass of the second |ClassAtom| is *true*.
+          </li>
+          <li>
+            It is a Syntax Error if IsCharacterClass of the first |ClassAtom| is *false*, IsCharacterClass of the second |ClassAtom| is *false*, and the CharacterValue of the first |ClassAtom| is strictly greater than the CharacterValue of the second |ClassAtom|.
+          </li>
+        </ul>
+        <emu-grammar>NonemptyClassRangesNoDash :: ClassAtomNoDash `-` ClassAtom ClassContents</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if IsCharacterClass of |ClassAtomNoDash| is *true* or IsCharacterClass of |ClassAtom| is *true*.
+          </li>
+          <li>
+            It is a Syntax Error if IsCharacterClass of |ClassAtomNoDash| is *false*, IsCharacterClass of |ClassAtom| is *false*, and the CharacterValue of |ClassAtomNoDash| is strictly greater than the CharacterValue of |ClassAtom|.
+          </li>
+        </ul>
+        <emu-grammar>RegExpIdentifierStart :: `\` RegExpUnicodeEscapeSequence</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the CharacterValue of |RegExpUnicodeEscapeSequence| is not the numeric value of some code point matched by the |IdentifierStartChar| lexical grammar production.
+          </li>
+        </ul>
+        <emu-grammar>RegExpIdentifierStart :: UnicodeLeadSurrogate UnicodeTrailSurrogate</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the RegExpIdentifierCodePoint of |RegExpIdentifierStart| is not matched by the |UnicodeIDStart| lexical grammar production.
+          </li>
+        </ul>
+        <emu-grammar>RegExpIdentifierPart :: `\` RegExpUnicodeEscapeSequence</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the CharacterValue of |RegExpUnicodeEscapeSequence| is not the numeric value of some code point matched by the |IdentifierPartChar| lexical grammar production.
+          </li>
+        </ul>
+        <emu-grammar>RegExpIdentifierPart :: UnicodeLeadSurrogate UnicodeTrailSurrogate</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the RegExpIdentifierCodePoint of |RegExpIdentifierPart| is not matched by the |UnicodeIDContinue| lexical grammar production.
+          </li>
+        </ul>
+        <emu-grammar>UnicodePropertyValueExpression :: UnicodePropertyName `=` UnicodePropertyValue</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the source text matched by |UnicodePropertyName| is not a <emu-not-ref>Unicode property name</emu-not-ref> or property alias listed in the “<emu-not-ref>Property name and aliases</emu-not-ref>” column of <emu-xref href="#table-nonbinary-unicode-properties"></emu-xref>.
+          </li>
+          <li>
+            It is a Syntax Error if the source text matched by |UnicodePropertyValue| is not a property value or property value alias for the Unicode property or property alias given by the source text matched by |UnicodePropertyName| listed in <a href="https://unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt"><code>PropertyValueAliases.txt</code></a>.
+          </li>
+        </ul>
+        <emu-grammar>UnicodePropertyValueExpression :: LoneUnicodePropertyNameOrValue</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the source text matched by |LoneUnicodePropertyNameOrValue| is not a Unicode property value or property value alias for the General_Category (gc) property listed in <a href="https://unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt"><code>PropertyValueAliases.txt</code></a>, nor a binary property or binary property alias listed in the “<emu-not-ref>Property name and aliases</emu-not-ref>” column of <emu-xref href="#table-binary-unicode-properties"></emu-xref>, nor a binary property of strings listed in the “<emu-not-ref>Property name</emu-not-ref>” column of <emu-xref href="#table-binary-unicode-properties-of-strings"></emu-xref>.
+          </li>
+          <li>
+            It is a Syntax Error if the enclosing |Pattern| does not have a <sub>[UnicodeSetsMode]</sub> parameter and the source text matched by |LoneUnicodePropertyNameOrValue| is a binary property of strings listed in the “<emu-not-ref>Property name</emu-not-ref>” column of <emu-xref href="#table-binary-unicode-properties-of-strings"></emu-xref>.
+          </li>
+        </ul>
+        <emu-grammar>CharacterClassEscape :: `P{` UnicodePropertyValueExpression `}`</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if MayContainStrings of the |UnicodePropertyValueExpression| is *true*.
+          </li>
+        </ul>
+        <emu-grammar>CharacterClass :: `[^` ClassContents `]`</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if MayContainStrings of the |ClassContents| is *true*.
+          </li>
+        </ul>
+        <emu-grammar>NestedClass :: `[^` ClassContents `]`</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if MayContainStrings of the |ClassContents| is *true*.
+          </li>
+        </ul>
+        <emu-grammar>ClassSetRange :: ClassSetCharacter `-` ClassSetCharacter</emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the CharacterValue of the first |ClassSetCharacter| is strictly greater than the CharacterValue of the second |ClassSetCharacter|.
+          </li>
+        </ul>
+      </emu-clause>

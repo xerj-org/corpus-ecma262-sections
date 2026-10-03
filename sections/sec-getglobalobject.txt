@@ -1,0 +1,13 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.4 Execution Contexts > 9.4.6 GetGlobalObject ( ): an Object [id: sec-getglobalobject]
+
+<emu-clause id="sec-getglobalobject" type="abstract operation">
+      <h1>GetGlobalObject ( ): an Object</h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It returns the global object used by the currently running execution context.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _currentRealm_ be the current Realm Record.
+        1. Return _currentRealm_.[[GlobalObject]].
+      </emu-alg>
+    </emu-clause>

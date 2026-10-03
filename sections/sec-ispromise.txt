@@ -1,0 +1,18 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.1 Promise Abstract Operations > 27.5.1.6 IsPromise ( _arg_: an ECMAScript language value, ): a Boolean [id: sec-ispromise]
+
+<emu-clause id="sec-ispromise" type="abstract operation">
+        <h1>
+          IsPromise (
+            _arg_: an ECMAScript language value,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It checks for the promise brand on an object.</dd>
+        </dl>
+        <emu-alg>
+          1. If _arg_ is not an Object, return *false*.
+          1. If _arg_ does not have a [[PromiseState]] internal slot, return *false*.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

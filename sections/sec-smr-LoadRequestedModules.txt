@@ -1,0 +1,22 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.8 Synthetic Module Records > 16.2.1.8.4 Implementation of Module Record Abstract Methods > 16.2.1.8.4.1 LoadRequestedModules ( optional _hostDefined_: anything, ): a Promise [id: sec-smr-LoadRequestedModules]
+
+<emu-clause id="sec-smr-LoadRequestedModules" type="concrete method">
+            <h1>
+              LoadRequestedModules (
+                optional _hostDefined_: anything,
+              ): a Promise
+            </h1>
+            <dl class="header">
+              <dt>for</dt>
+              <dd>a Synthetic Module Record _module_</dd>
+            </dl>
+
+            <emu-alg>
+              1. NOTE: This implementation of LoadRequestedModules does not use _hostDefined_.
+              1. Return ! PromiseResolve(%Promise%, *undefined*).
+            </emu-alg>
+
+            <emu-note>
+              Synthetic Module Records have no dependencies.
+            </emu-note>
+          </emu-clause>

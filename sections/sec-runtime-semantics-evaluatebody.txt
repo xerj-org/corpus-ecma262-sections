@@ -1,0 +1,66 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.2 ECMAScript Function Objects > 10.2.1 [[Call]] ( _thisArg_: an ECMAScript language value, _argList_: a List of ECMAScript language values, ): either a normal completion containing an ECMAScript language value or a throw completion > 10.2.1.3 Runtime Semantics: EvaluateBody ( _func_: an ECMAScript function object, _argList_: a List of ECMAScript language values, ): a return completion or a throw completion [id: sec-runtime-semantics-evaluatebody]
+
+<emu-clause id="sec-runtime-semantics-evaluatebody" type="sdo">
+        <h1>
+          Runtime Semantics: EvaluateBody (
+            _func_: an ECMAScript function object,
+            _argList_: a List of ECMAScript language values,
+          ): a return completion or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>FunctionBody : FunctionStatementList</emu-grammar>
+        <emu-alg>
+          1. Return ? EvaluateFunctionBody of |FunctionBody| with arguments _func_ and _argList_.
+        </emu-alg>
+        <emu-grammar>ConciseBody : ExpressionBody</emu-grammar>
+        <emu-alg>
+          1. Return ? EvaluateConciseBody of |ConciseBody| with arguments _func_ and _argList_.
+        </emu-alg>
+        <emu-grammar>GeneratorBody : FunctionBody</emu-grammar>
+        <emu-alg>
+          1. Return ? EvaluateGeneratorBody of |GeneratorBody| with arguments _func_ and _argList_.
+        </emu-alg>
+        <emu-grammar>
+          AsyncGeneratorBody : FunctionBody
+        </emu-grammar>
+        <emu-alg>
+          1. Return ? EvaluateAsyncGeneratorBody of |AsyncGeneratorBody| with arguments _func_ and _argList_.
+        </emu-alg>
+        <emu-grammar>
+          AsyncFunctionBody : FunctionBody
+        </emu-grammar>
+        <emu-alg>
+          1. Return ? EvaluateAsyncFunctionBody of |AsyncFunctionBody| with arguments _func_ and _argList_.
+        </emu-alg>
+        <emu-grammar>
+          AsyncConciseBody : ExpressionBody
+        </emu-grammar>
+        <emu-alg>
+          1. Return ? EvaluateAsyncConciseBody of |AsyncConciseBody| with arguments _func_ and _argList_.
+        </emu-alg>
+        <emu-grammar>
+          Initializer :
+            `=` AssignmentExpression
+        </emu-grammar>
+        <emu-alg>
+          1. Assert: _argList_ is empty.
+          1. Assert: _func_.[[ClassFieldInitializerName]] is not ~empty~.
+          1. If IsAnonymousFunctionDefinition(|AssignmentExpression|) is *true*, then
+            1. Let _value_ be ? NamedEvaluation of |Initializer| with argument _func_.[[ClassFieldInitializerName]].
+          1. Else,
+            1. Let _rhs_ be ? Evaluation of |AssignmentExpression|.
+            1. Let _value_ be ? GetValue(_rhs_).
+          1. Return ReturnCompletion(_value_).
+        </emu-alg>
+        <emu-note>
+          <p>Even though field initializers constitute a function boundary, calling FunctionDeclarationInstantiation does not have any observable effect and so is omitted.</p>
+        </emu-note>
+        <emu-grammar>
+          ClassStaticBlockBody : ClassStaticBlockStatementList
+        </emu-grammar>
+        <emu-alg>
+          1. Assert: _argList_ is empty.
+          1. Return ? EvaluateClassStaticBlockBody of |ClassStaticBlockBody| with argument _func_.
+        </emu-alg>
+      </emu-clause>

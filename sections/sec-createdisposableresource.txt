@@ -1,0 +1,23 @@
+ECMA-262 > 7 Abstract Operations > 7.5 Operations on Disposable Objects > 7.5.3 CreateDisposableResource ( _value_: an ECMAScript language value, _kind_: ~sync-dispose~ or ~async-dispose~, optional _method_: a function object, ): either a normal completion containing a DisposableResource Record or a throw completion [id: sec-createdisposableresource]
+
+<emu-clause id="sec-createdisposableresource" type="abstract operation">
+      <h1>
+        CreateDisposableResource (
+          _value_: an ECMAScript language value,
+          _kind_: ~sync-dispose~ or ~async-dispose~,
+          optional _method_: a function object,
+        ): either a normal completion containing a DisposableResource Record or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If _method_ is not present, then
+          1. If _value_ is either *null* or *undefined*, then
+            1. Set _value_ to *undefined*.
+            1. Set _method_ to *undefined*.
+          1. Else,
+            1. Set _method_ to ? GetDisposeMethod(_value_, _kind_).
+            1. If _method_ is *undefined*, throw a *TypeError* exception.
+        1. Return the DisposableResource Record { [[ResourceValue]]: _value_, [[Kind]]: _kind_, [[DisposeMethod]]: _method_ }.
+      </emu-alg>
+    </emu-clause>

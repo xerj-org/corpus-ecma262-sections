@@ -1,0 +1,9 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.39 built-in method [id: sec-built-in-method]
+
+<emu-clause id="sec-built-in-method">
+      <h1>built-in method</h1>
+      <p>method that is a built-in function</p>
+      <emu-note>
+        <p>Standard built-in methods are defined in this specification. A host or implementation may provide additional built-in methods that are not described in this specification.</p>
+      </emu-note>
+    </emu-clause>

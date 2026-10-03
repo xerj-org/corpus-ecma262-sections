@@ -1,0 +1,26 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.7 Abstract Operations for RegExp Matching > 22.2.7.4 GetStringIndex ( _string_: a String, _codePointIndex_: a non-negative integer, ): a non-negative integer [id: sec-getstringindex]
+
+<emu-clause id="sec-getstringindex" type="abstract operation">
+        <h1>
+          GetStringIndex (
+            _string_: a String,
+            _codePointIndex_: a non-negative integer,
+          ): a non-negative integer
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It interprets _string_ as a sequence of UTF-16 encoded code points, as described in <emu-xref href="#sec-ecmascript-language-types-string-type"></emu-xref>, and returns the code unit index corresponding to code point index _codePointIndex_ when such an index exists. Otherwise, it returns the length of _string_.</dd>
+        </dl>
+        <emu-alg>
+          1. If _string_ is the empty String, return 0.
+          1. Let _length_ be the length of _string_.
+          1. Let _codeUnitCount_ be 0.
+          1. Let _codePointCount_ be 0.
+          1. Repeat, while _codeUnitCount_ &lt; _length_,
+            1. If _codePointCount_ = _codePointIndex_, return _codeUnitCount_.
+            1. Let _codePoint_ be CodePointAt(_string_, _codeUnitCount_).
+            1. Set _codeUnitCount_ to _codeUnitCount_ + _codePoint_.[[CodeUnitCount]].
+            1. Set _codePointCount_ to _codePointCount_ + 1.
+          1. Return _length_.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,10 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.3 Other Additional Features > B.3.9 Runtime Errors for Function Call Assignment Targets [id: sec-runtime-errors-for-function-call-assignment-targets]
+
+<emu-annex id="sec-runtime-errors-for-function-call-assignment-targets">
+      <h1>Runtime Errors for Function Call Assignment Targets</h1>
+      <p>When a function call (<emu-xref href="#sec-function-calls"></emu-xref>) is used as an assignment target in non-strict code, instead of producing an early error, a *ReferenceError* exception is thrown during evaluation of the assignment.</p>
+      <emu-note>
+        <p>When the assignment target is the |LeftHandSideExpression| of an |AssignmentExpression|, the assignment operator must be `=` or an |AssignmentOperator|; in particular, the allowance here does not apply to the logical assignment operators (`??=`, `&&=`, `||=`).</p>
+      </emu-note>
+      <p>See step <emu-xref href="#step-assignmenttargettype-web-compat"></emu-xref> of AssignmentTargetType for <emu-grammar>CallExpression : CoverCallExpressionAndAsyncArrowHead</emu-grammar> and <emu-grammar>CallExpression : CallExpression Arguments</emu-grammar>.</p>
+    </emu-annex>

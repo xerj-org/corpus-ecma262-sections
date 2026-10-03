@@ -1,0 +1,24 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.6 Cyclic Module Records > 16.2.1.6.1 Implementation of Module Record Abstract Methods > 16.2.1.6.1.1 LoadRequestedModules ( optional _hostDefined_: anything, ): a Promise > 16.2.1.6.1.1.2 ContinueModuleLoading ( _state_: a GraphLoadingState Record, _moduleCompletion_: either a normal completion containing a Module Record or a throw completion, ): ~unused~ [id: sec-ContinueModuleLoading]
+
+<emu-clause id="sec-ContinueModuleLoading" type="abstract operation">
+              <h1>
+                ContinueModuleLoading (
+                  _state_: a GraphLoadingState Record,
+                  _moduleCompletion_: either a normal completion containing a Module Record or a throw completion,
+                ): ~unused~
+              </h1>
+              <dl class="header">
+                <dt>description</dt>
+                <dd>It is used to re-enter the loading process after a call to HostLoadImportedModule.</dd>
+              </dl>
+
+              <emu-alg>
+                1. If _state_.[[IsLoading]] is *false*, return ~unused~.
+                1. If _moduleCompletion_ is a normal completion, then
+                  1. Perform InnerModuleLoading(_state_, _moduleCompletion_.[[Value]]).
+                1. Else,
+                  1. Set _state_.[[IsLoading]] to *false*.
+                  1. Perform ! Call(_state_.[[PromiseCapability]].[[Reject]], *undefined*, « _moduleCompletion_.[[Value]] »).
+                1. Return ~unused~.
+              </emu-alg>
+            </emu-clause>

@@ -1,0 +1,27 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.12 NotifyWaiter ( _waiterList_: a WaiterList Record, _waiterRecord_: a Waiter Record, ): ~unused~ [id: sec-notifywaiter]
+
+<emu-clause id="sec-notifywaiter" type="abstract operation">
+        <h1>
+          NotifyWaiter (
+            _waiterList_: a WaiterList Record,
+            _waiterRecord_: a Waiter Record,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: The surrounding agent is in the critical section for _waiterList_.
+          1. If _waiterRecord_.[[PromiseCapability]] is ~blocking~, then
+            1. Wake the agent whose signifier is _waiterRecord_.[[AgentSignifier]] from suspension.
+            1. NOTE: This causes the agent to resume execution in SuspendThisAgent.
+          1. Else if AgentSignifier() is _waiterRecord_.[[AgentSignifier]], then
+            1. Let _promiseCapability_ be _waiterRecord_.[[PromiseCapability]].
+            1. Perform ! Call(_promiseCapability_.[[Resolve]], *undefined*, « _waiterRecord_.[[Result]] »).
+          1. Else,
+            1. Perform EnqueueResolveInAgentJob(_waiterRecord_.[[AgentSignifier]], _waiterRecord_.[[PromiseCapability]], _waiterRecord_.[[Result]]).
+          1. Return ~unused~.
+        </emu-alg>
+        <emu-note>
+          <p>An agent must not access another agent's promise capability in any capacity beyond passing it to the host.</p>
+        </emu-note>
+      </emu-clause>

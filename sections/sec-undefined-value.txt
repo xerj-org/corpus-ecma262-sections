@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.13 undefined value [id: sec-undefined-value]
+
+<emu-clause id="sec-undefined-value">
+      <h1>undefined value</h1>
+      <p>primitive value used when a variable has not been assigned a value</p>
+    </emu-clause>

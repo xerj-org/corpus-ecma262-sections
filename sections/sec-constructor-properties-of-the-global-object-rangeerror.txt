@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.28 RangeError ( . . . ) [id: sec-constructor-properties-of-the-global-object-rangeerror]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-rangeerror">
+      <h1>RangeError ( . . . )</h1>
+      <p>See <emu-xref href="#sec-native-error-types-used-in-this-standard-rangeerror"></emu-xref>.</p>
+    </emu-clause>

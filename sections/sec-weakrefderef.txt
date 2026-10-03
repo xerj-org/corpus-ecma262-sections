@@ -1,0 +1,21 @@
+ECMA-262 > 26 Managing Memory > 26.1 WeakRef Objects > 26.1.4 WeakRef Abstract Operations > 26.1.4.1 WeakRefDeref ( _weakRef_: a WeakRef, ): an ECMAScript language value [id: sec-weakrefderef]
+
+<emu-clause id="sec-weakrefderef" type="abstract operation">
+        <h1>
+          WeakRefDeref (
+            _weakRef_: a WeakRef,
+          ): an ECMAScript language value
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _target_ be _weakRef_.[[WeakRefTarget]].
+          1. If _target_ is not ~empty~, then
+            1. Perform AddToKeptObjects(_target_).
+            1. Return _target_.
+          1. Return *undefined*.
+        </emu-alg>
+        <emu-note>
+          <p>This abstract operation is defined separately from WeakRef.prototype.deref strictly to make it possible to succinctly define liveness.</p>
+        </emu-note>
+      </emu-clause>

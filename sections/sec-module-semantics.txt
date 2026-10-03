@@ -1,0 +1,33 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics [id: sec-module-semantics]
+
+<emu-clause id="sec-module-semantics">
+      <h1>Module Semantics</h1>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

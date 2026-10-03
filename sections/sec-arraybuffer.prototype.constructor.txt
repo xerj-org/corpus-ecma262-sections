@@ -1,0 +1,6 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.6 Properties of the ArrayBuffer Prototype Object > 25.1.6.2 ArrayBuffer.prototype.constructor [id: sec-arraybuffer.prototype.constructor]
+
+<emu-clause id="sec-arraybuffer.prototype.constructor">
+        <h1>ArrayBuffer.prototype.constructor</h1>
+        <p>The initial value of `ArrayBuffer.prototype.constructor` is %ArrayBuffer%.</p>
+      </emu-clause>

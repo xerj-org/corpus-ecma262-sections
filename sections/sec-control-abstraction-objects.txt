@@ -1,0 +1,25 @@
+ECMA-262 > 27 Control Abstraction Objects [id: sec-control-abstraction-objects]
+
+<emu-clause id="sec-control-abstraction-objects">
+  <h1>Control Abstraction Objects</h1>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</emu-clause>

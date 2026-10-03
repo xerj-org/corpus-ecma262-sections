@@ -1,0 +1,13 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects [id: sec-object-objects]
+
+<emu-clause id="sec-object-objects">
+    <h1>Object Objects</h1>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

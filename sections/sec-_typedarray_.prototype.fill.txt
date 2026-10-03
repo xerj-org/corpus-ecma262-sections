@@ -1,0 +1,24 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.9 %TypedArray%.prototype.fill ( _value_ [ , _start_ [ , _end_ ] ] ) [id: sec-%typedarray%.prototype.fill]
+
+<emu-clause id="sec-%typedarray%.prototype.fill" type="built-in function">
+        <h1>%TypedArray%.prototype.fill ( _value_ [ , _start_ [ , _end_ ] ] )</h1>
+        <p>The interpretation and use of the arguments of this method are the same as for `Array.prototype.fill` as defined in <emu-xref href="#sec-array.prototype.fill"></emu-xref>.</p>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _obj_ be the *this* value.
+          1. Let _taRecord_ be ? ValidateTypedArray(_obj_, ~seq-cst~).
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. If _obj_.[[ContentType]] is ~bigint~, set _value_ to ? ToBigInt(_value_).
+          1. Else, set _value_ to ? ToNumber(_value_).
+          1. Let _startIndex_ be ? ToClampedIndex(_start_, _length_).
+          1. If _end_ is *undefined*, let _endIndex_ be _length_; else let _endIndex_ be ? ToClampedIndex(_end_, _length_).
+          1. Set _taRecord_ to ? ValidateTypedArrayBounds(_obj_, ~seq-cst~).
+          1. Set _length_ to TypedArrayLength(_taRecord_).
+          1. Set _endIndex_ to min(_endIndex_, _length_).
+          1. Let _k_ be _startIndex_.
+          1. Repeat, while _k_ &lt; _endIndex_,
+            1. Perform ! TypedArraySetElement(_obj_, 𝔽(_k_), _value_).
+            1. Set _k_ to _k_ + 1.
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>

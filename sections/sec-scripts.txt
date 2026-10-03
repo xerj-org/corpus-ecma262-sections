@@ -1,0 +1,27 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.1 Scripts [id: sec-scripts]
+
+<emu-clause id="sec-scripts">
+    <h1>Scripts</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      Script :
+        ScriptBody?
+
+      ScriptBody :
+        StatementList[~Yield, ~Await, ~Return]
+    </emu-grammar>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

@@ -1,0 +1,87 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.1 Patterns > 22.2.1.8 Static Semantics: MayContainStrings ( ): a Boolean [id: sec-static-semantics-maycontainstrings]
+
+<emu-clause id="sec-static-semantics-maycontainstrings" type="sdo">
+        <h1>Static Semantics: MayContainStrings ( ): a Boolean</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>
+          CharacterClassEscape ::
+            `d`
+            `D`
+            `s`
+            `S`
+            `w`
+            `W`
+            `P{` UnicodePropertyValueExpression `}`
+
+          UnicodePropertyValueExpression ::
+            UnicodePropertyName `=` UnicodePropertyValue
+
+          NestedClass ::
+            `[^` ClassContents `]`
+
+          ClassContents ::
+            [empty]
+            NonemptyClassRanges
+
+          ClassSetOperand ::
+            ClassSetCharacter
+        </emu-grammar>
+        <emu-alg>
+          1. Return *false*.
+        </emu-alg>
+        <emu-grammar>UnicodePropertyValueExpression :: LoneUnicodePropertyNameOrValue</emu-grammar>
+        <emu-alg>
+          1. If the source text matched by |LoneUnicodePropertyNameOrValue| is a binary property of strings listed in the “<emu-not-ref>Property name</emu-not-ref>” column of <emu-xref href="#table-binary-unicode-properties-of-strings"></emu-xref>, return *true*.
+          1. Return *false*.
+        </emu-alg>
+        <emu-grammar>ClassUnion :: ClassSetRange ClassUnion?</emu-grammar>
+        <emu-alg>
+          1. If the |ClassUnion| is present, return MayContainStrings of the |ClassUnion|.
+          1. Return *false*.
+        </emu-alg>
+        <emu-grammar>ClassUnion :: ClassSetOperand ClassUnion?</emu-grammar>
+        <emu-alg>
+          1. If MayContainStrings of the |ClassSetOperand| is *true*, return *true*.
+          1. If |ClassUnion| is present, return MayContainStrings of the |ClassUnion|.
+          1. Return *false*.
+        </emu-alg>
+        <emu-grammar>ClassIntersection :: ClassSetOperand `&amp;&amp;` ClassSetOperand</emu-grammar>
+        <emu-alg>
+          1. If MayContainStrings of the first |ClassSetOperand| is *false*, return *false*.
+          1. If MayContainStrings of the second |ClassSetOperand| is *false*, return *false*.
+          1. Return *true*.
+        </emu-alg>
+        <emu-grammar>ClassIntersection :: ClassIntersection `&amp;&amp;` ClassSetOperand</emu-grammar>
+        <emu-alg>
+          1. If MayContainStrings of the |ClassIntersection| is *false*, return *false*.
+          1. If MayContainStrings of the |ClassSetOperand| is *false*, return *false*.
+          1. Return *true*.
+        </emu-alg>
+        <emu-grammar>ClassSubtraction :: ClassSetOperand `--` ClassSetOperand</emu-grammar>
+        <emu-alg>
+          1. Return MayContainStrings of the first |ClassSetOperand|.
+        </emu-alg>
+        <emu-grammar>ClassSubtraction :: ClassSubtraction `--` ClassSetOperand</emu-grammar>
+        <emu-alg>
+          1. Return MayContainStrings of the |ClassSubtraction|.
+        </emu-alg>
+        <emu-grammar>ClassStringDisjunctionContents :: ClassString `|` ClassStringDisjunctionContents</emu-grammar>
+        <emu-alg>
+          1. If MayContainStrings of the |ClassString| is *true*, return *true*.
+          1. Return MayContainStrings of the |ClassStringDisjunctionContents|.
+        </emu-alg>
+        <emu-grammar>ClassString :: [empty]</emu-grammar>
+        <emu-alg>
+          1. Return *true*.
+        </emu-alg>
+        <emu-grammar>ClassString :: NonEmptyClassString</emu-grammar>
+        <emu-alg>
+          1. Return MayContainStrings of the |NonEmptyClassString|.
+        </emu-alg>
+        <emu-grammar>NonEmptyClassString :: ClassSetCharacter NonEmptyClassString?</emu-grammar>
+        <emu-alg>
+          1. If |NonEmptyClassString| is present, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

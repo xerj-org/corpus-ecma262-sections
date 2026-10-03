@@ -1,0 +1,33 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.6 Cyclic Module Records > 16.2.1.6.1 Implementation of Module Record Abstract Methods > 16.2.1.6.1.1 LoadRequestedModules ( optional _hostDefined_: anything, ): a Promise [id: sec-LoadRequestedModules]
+
+<emu-clause id="sec-LoadRequestedModules" type="concrete method">
+            <h1>
+              LoadRequestedModules (
+                optional _hostDefined_: anything,
+              ): a Promise
+            </h1>
+            <dl class="header">
+              <dt>for</dt>
+              <dd>a Cyclic Module Record _module_</dd>
+
+              <dt>description</dt>
+              <dd>It populates the [[LoadedModules]] of all the Module Records in the dependency graph of _module_ (most of the work is done by the auxiliary function InnerModuleLoading). It takes an optional _hostDefined_ parameter that is passed to the HostLoadImportedModule hook.</dd>
+            </dl>
+
+            <emu-alg>
+              1. If _hostDefined_ is not present, set _hostDefined_ to ~empty~.
+              1. Let _promiseCapability_ be ! NewPromiseCapability(%Promise%).
+              1. Let _state_ be the GraphLoadingState Record { [[IsLoading]]: *true*, [[PendingModulesCount]]: 1, [[Visited]]: « », [[PromiseCapability]]: _promiseCapability_, [[HostDefined]]: _hostDefined_ }.
+              1. Perform InnerModuleLoading(_state_, _module_).
+              1. Return _promiseCapability_.[[Promise]].
+            </emu-alg>
+
+            <emu-note>
+              The _hostDefined_ parameter can be used to pass additional information necessary to fetch the imported modules. It is used, for example, by HTML to set the correct fetch destination for <code>&lt;link rel="preload" as="..."&gt;</code> tags.
+              <code>import()</code> expressions never set the _hostDefined_ parameter.
+            </emu-note>
+
+            
+
+            
+          </emu-clause>

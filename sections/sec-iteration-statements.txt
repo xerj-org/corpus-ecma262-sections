@@ -1,0 +1,23 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements [id: sec-iteration-statements]
+
+<emu-clause id="sec-iteration-statements">
+    <h1>Iteration Statements</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      IterationStatement[Yield, Await, Return] :
+        DoWhileStatement[?Yield, ?Await, ?Return]
+        WhileStatement[?Yield, ?Await, ?Return]
+        ForStatement[?Yield, ?Await, ?Return]
+        ForInOfStatement[?Yield, ?Await, ?Return]
+    </emu-grammar>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

@@ -1,0 +1,9 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.17 Epoch Nanoseconds and Range [id: sec-epoch-nanoseconds]
+
+<emu-clause id="sec-epoch-nanoseconds">
+        <h1>Epoch Nanoseconds and Range</h1>
+
+        <p>An <dfn variants="epoch nanoseconds counts">epoch nanoseconds count</dfn> is an integer that represents an instant in time to nanosecond precision. It supports the same range as a time value but expressed in nanoseconds, from MinEpochNanoseconds to MaxEpochNanoseconds. There is no nanosecond equivalent of the time value *NaN*; there is no representation for no specific instant.</p>
+
+        <p>The exact moment of midnight at the beginning of 1 January 1970 UTC is represented by the value 0. The maximum value is MaxEpochNanoseconds, and the minimum value is MinEpochNanoseconds.</p>
+      </emu-clause>

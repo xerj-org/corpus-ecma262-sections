@@ -1,0 +1,21 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.4 Arguments Exotic Objects > 10.4.4.3 [[Get]] ( _propertyKey_: a property key, _receiver_: an ECMAScript language value, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-arguments-exotic-objects-get-p-receiver]
+
+<emu-clause id="sec-arguments-exotic-objects-get-p-receiver" type="internal method">
+        <h1>
+          [[Get]] (
+            _propertyKey_: a property key,
+            _receiver_: an ECMAScript language value,
+          ): either a normal completion containing an ECMAScript language value or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>an arguments exotic object _args_</dd>
+        </dl>
+        <emu-alg>
+          1. Let _map_ be _args_.[[ParameterMap]].
+          1. Let _isMapped_ be ! HasOwnProperty(_map_, _propertyKey_).
+          1. If _isMapped_ is *false*, return ? OrdinaryGet(_args_, _propertyKey_, _receiver_).
+          1. Assert: _map_ contains a formal parameter mapping for _propertyKey_.
+          1. Return ! Get(_map_, _propertyKey_).
+        </emu-alg>
+      </emu-clause>

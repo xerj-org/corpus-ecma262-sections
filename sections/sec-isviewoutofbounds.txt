@@ -1,0 +1,27 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.1 Abstract Operations For DataView Objects > 25.3.1.4 IsViewOutOfBounds ( _viewRecord_: a DataView With Buffer Witness Record, ): a Boolean [id: sec-isviewoutofbounds]
+
+<emu-clause id="sec-isviewoutofbounds" type="abstract operation">
+        <h1>
+          IsViewOutOfBounds (
+            _viewRecord_: a DataView With Buffer Witness Record,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _view_ be _viewRecord_.[[Object]].
+          1. Let _bufferByteLength_ be _viewRecord_.[[CachedBufferByteLength]].
+          1. If IsDetachedBuffer(_view_.[[ViewedArrayBuffer]]) is *true*, then
+            1. Assert: _bufferByteLength_ is ~detached~.
+            1. Return *true*.
+          1. Assert: _bufferByteLength_ is a non-negative integer.
+          1. Let _byteOffsetStart_ be _view_.[[ByteOffset]].
+          1. If _view_.[[ByteLength]] is ~auto~, then
+            1. Let _byteOffsetEnd_ be _bufferByteLength_.
+          1. Else,
+            1. Let _byteOffsetEnd_ be _byteOffsetStart_ + _view_.[[ByteLength]].
+          1. NOTE: A 0-length DataView whose [[ByteOffset]] is _bufferByteLength_ is not considered out-of-bounds.
+          1. If _byteOffsetStart_ > _bufferByteLength_ or _byteOffsetEnd_ > _bufferByteLength_, return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>

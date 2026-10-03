@@ -1,0 +1,16 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.4 TimeWithinDay ( _tv_: a finite time value, ): an integer in the interval from 0 (inclusive) to MillisecondsPerDay (exclusive) [id: sec-timewithinday]
+
+<emu-clause id="sec-timewithinday" type="abstract operation" oldids="eqn-TimeWithinDay">
+        <h1>
+          TimeWithinDay (
+            _tv_: a finite time value,
+          ): an integer in the interval from 0 (inclusive) to MillisecondsPerDay (exclusive)
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It returns the number of milliseconds since the start of the day in which _tv_ falls.</dd>
+        </dl>
+        <emu-alg>
+          1. Return ℝ(_tv_) modulo MillisecondsPerDay.
+        </emu-alg>
+      </emu-clause>

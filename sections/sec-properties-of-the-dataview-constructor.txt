@@ -1,0 +1,12 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.3 Properties of the DataView Constructor [id: sec-properties-of-the-dataview-constructor]
+
+<emu-clause id="sec-properties-of-the-dataview-constructor">
+      <h1>Properties of the DataView Constructor</h1>
+      <p>The DataView constructor:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+    </emu-clause>

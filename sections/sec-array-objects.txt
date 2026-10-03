@@ -1,0 +1,16 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects [id: sec-array-objects]
+
+<emu-clause id="sec-array-objects">
+    <h1>Array Objects</h1>
+    <p>Arrays are exotic objects that give special treatment to a certain class of property names. See <emu-xref href="#sec-array-exotic-objects"></emu-xref> for a definition of this special treatment.</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

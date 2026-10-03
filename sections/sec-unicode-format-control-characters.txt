@@ -1,0 +1,8 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.1 Unicode Format-Control Characters [id: sec-unicode-format-control-characters]
+
+<emu-clause id="sec-unicode-format-control-characters">
+    <h1>Unicode Format-Control Characters</h1>
+    <p>The Unicode format-control characters (i.e., the characters in category “Cf” in the Unicode Character Database such as LEFT-TO-RIGHT MARK or RIGHT-TO-LEFT MARK) are control codes used to control the formatting of a range of text in the absence of higher-level protocols for this (such as mark-up languages).</p>
+    <p>It is useful to allow format-control characters in source text to facilitate editing and display. All format control characters may be used within comments, and within string literals, template literals, and regular expression literals.</p>
+    <p>U+FEFF (ZERO WIDTH NO-BREAK SPACE) is a format-control character used primarily at the start of a text to mark it as Unicode and to allow detection of the text's encoding and byte order. &lt;ZWNBSP> characters intended for this purpose can sometimes also appear after the start of a text, for example as a result of concatenating files. In ECMAScript source text &lt;ZWNBSP> code points are treated as white space characters (see <emu-xref href="#sec-white-space"></emu-xref>) outside of comments, string literals, template literals, and regular expression literals.</p>
+  </emu-clause>

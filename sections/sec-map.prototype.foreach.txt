@@ -1,0 +1,28 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.3 Properties of the Map Prototype Object > 24.1.3.5 Map.prototype.forEach ( _callback_ [ , _thisArg_ ] ) [id: sec-map.prototype.foreach]
+
+<emu-clause id="sec-map.prototype.foreach" type="built-in function">
+        <h1>Map.prototype.forEach ( _callback_ [ , _thisArg_ ] )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _map_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_map_, [[MapData]]).
+          1. If IsCallable(_callback_) is *false*, throw a *TypeError* exception.
+          1. Let _entries_ be _map_.[[MapData]].
+          1. Let _entriesCount_ be the number of elements in _entries_.
+          1. Let _index_ be 0.
+          1. Repeat, while _index_ &lt; _entriesCount_,
+            1. Let _entry_ be _entries_[_index_].
+            1. Set _index_ to _index_ + 1.
+            1. If _entry_.[[Key]] is not ~empty~, then
+              1. Perform ? Call(_callback_, _thisArg_, « _entry_.[[Value]], _entry_.[[Key]], _map_ »).
+              1. NOTE: The number of elements in _entries_ may have increased during execution of _callback_.
+              1. Set _entriesCount_ to the number of elements in _entries_.
+          1. Return *undefined*.
+        </emu-alg>
+        <emu-note>
+          <p>_callback_ should be a function that accepts three arguments. `forEach` calls _callback_ once for each key/value pair present in the Map, in key insertion order. _callback_ is called only for keys of the Map which actually exist; it is not called for keys that have been deleted from the Map.</p>
+          <p>If a _thisArg_ parameter is provided, it will be used as the *this* value for each invocation of _callback_. If it is not provided, *undefined* is used instead.</p>
+          <p>_callback_ is called with three arguments: the value of the item, the key of the item, and the Map being traversed.</p>
+          <p>`forEach` does not directly mutate the object on which it is called but the object may be mutated by the calls to _callback_. Each entry of a map's [[MapData]] is only visited once. New keys added after the call to `forEach` begins are visited. A key will be revisited if it is deleted after it has been visited and then re-added before the `forEach` call completes. Keys that are deleted after the call to `forEach` begins and before being visited are not visited unless the key is added again before the `forEach` call completes.</p>
+        </emu-note>
+      </emu-clause>

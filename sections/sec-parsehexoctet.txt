@@ -1,0 +1,24 @@
+ECMA-262 > 19 The Global Object > 19.2 Function Properties of the Global Object > 19.2.6 URI Handling Functions > 19.2.6.7 ParseHexOctet ( _string_: a String, _position_: a non-negative integer, ): either a non-negative integer or a non-empty List of *SyntaxError* objects [id: sec-parsehexoctet]
+
+<emu-clause id="sec-parsehexoctet" type="abstract operation">
+        <h1>
+          ParseHexOctet (
+            _string_: a String,
+            _position_: a non-negative integer,
+          ): either a non-negative integer or a non-empty List of *SyntaxError* objects
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It parses a sequence of two hexadecimal characters at the specified _position_ in _string_ into an unsigned 8-bit integer.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _length_ be the length of _string_.
+          1. Assert: _position_ + 2 ≤ _length_.
+          1. Let _hexDigits_ be the substring of _string_ from _position_ to _position_ + 2.
+          1. Let _parseResult_ be ParseText(_hexDigits_, |HexDigits[~Sep]|).
+          1. If _parseResult_ is not a Parse Node, return _parseResult_.
+          1. Let _n_ be the MV of _parseResult_.
+          1. Assert: _n_ is in the inclusive interval from 0 to 255.
+          1. Return _n_.
+        </emu-alg>
+      </emu-clause>

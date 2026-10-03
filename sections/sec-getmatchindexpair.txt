@@ -1,0 +1,16 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.7 Abstract Operations for RegExp Matching > 22.2.7.7 GetMatchIndexPair ( _string_: a String, _match_: a Match Record, ): an Array [id: sec-getmatchindexpair]
+
+<emu-clause id="sec-getmatchindexpair" type="abstract operation">
+        <h1>
+          GetMatchIndexPair (
+            _string_: a String,
+            _match_: a Match Record,
+          ): an Array
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: _match_.[[StartIndex]] ≤ _match_.[[EndIndex]] ≤ the length of _string_.
+          1. Return CreateArrayFromList(« 𝔽(_match_.[[StartIndex]]), 𝔽(_match_.[[EndIndex]]) »).
+        </emu-alg>
+      </emu-clause>

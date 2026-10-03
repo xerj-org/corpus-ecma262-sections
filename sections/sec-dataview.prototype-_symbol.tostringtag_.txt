@@ -1,0 +1,7 @@
+ECMA-262 > 25 Structured Data > 25.3 DataView Objects > 25.3.4 Properties of the DataView Prototype Object > 25.3.4.27 DataView.prototype [ %Symbol.toStringTag% ] [id: sec-dataview.prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-dataview.prototype-@@tostringtag" id="sec-dataview.prototype-%symbol.tostringtag%">
+        <h1>DataView.prototype [ %Symbol.toStringTag% ]</h1>
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"DataView"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

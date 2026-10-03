@@ -1,0 +1,21 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.7 Growable SharedArrayBuffer Guidelines [id: sec-growable-sharedarraybuffer-guidelines]
+
+<emu-clause id="sec-growable-sharedarraybuffer-guidelines">
+      <h1>Growable SharedArrayBuffer Guidelines</h1>
+      <emu-note>
+        <p>The following are guidelines for ECMAScript programmers working with growable SharedArrayBuffer.</p>
+        <p>We recommend that programs be tested in their deployment environments where possible. The amount of available physical memory differ greatly between hardware devices. Similarly, virtual memory subsystems also differ greatly between hardware devices as well as operating systems. An application that runs without out-of-memory errors on a 64-bit desktop web browser could run out of memory on a 32-bit mobile web browser.</p>
+        <p>When choosing a value for the *"maxByteLength"* option for growable SharedArrayBuffer, we recommend that the smallest possible size for the application be chosen. We recommend that *"maxByteLength"* does not exceed 1073741824, or 1GiB.</p>
+        <p>Please note that successfully constructing a growable SharedArrayBuffer for a particular maximum size does not guarantee that future grows will succeed.</p>
+        <p>Not all loads of a growable SharedArrayBuffer's length are synchronizing ~seq-cst~ loads. Loads of the length that are for bounds-checking of an integer-indexed property access, e.g. `u8[idx]`, are not synchronizing. In general, in the absence of explicit synchronization, one property access being in-bound does not imply a subsequent property access in the same agent is also in-bound. In contrast, explicit loads of the length via the `length` and `byteLength` getters on SharedArrayBuffer, %TypedArray%.prototype, and DataView.prototype are synchronizing. Loads of the length that are performed by built-in methods to check if a TypedArray is entirely out-of-bounds are also synchronizing.</p>
+      </emu-note>
+
+      <emu-note>
+        <p>The following are guidelines for ECMAScript implementers implementing growable SharedArrayBuffer.</p>
+        <p>We recommend growable SharedArrayBuffer be implemented as in-place growth via reserving virtual memory up front.</p>
+        <p>Because grow operations can happen in parallel with memory accesses on a growable SharedArrayBuffer, the constraints of the memory model require that even unordered accesses do not “tear” (bits of their values will not be mixed). In practice, this means the underlying data block of a growable SharedArrayBuffer cannot be grown by being copied without stopping the world. We do not recommend stopping the world as an implementation strategy because it introduces a serialization point and is slow.</p>
+        <p>Grown memory must appear zeroed from the moment of its creation, including to any racy accesses in parallel. This can be accomplished via zero-filled-on-demand virtual memory pages, or careful synchronization if manually zeroing memory.</p>
+        <p>Integer-indexed property access on TypedArray views of growable SharedArrayBuffers is intended to be optimizable similarly to access on TypedArray views of non-growable SharedArrayBuffers, because integer-indexed property loads on are not synchronizing on the underlying buffer's length (see programmer guidelines above). For example, bounds checks for property accesses may still be hoisted out of loops.</p>
+        <p>In practice it is difficult to implement growable SharedArrayBuffer by copying on hosts that do not have virtual memory, such as those running on embedded devices without an MMU. Memory usage behaviour of growable SharedArrayBuffers on such hosts may significantly differ from that of hosts with virtual memory. Such hosts should clearly communicate memory usage expectations to users.</p>
+      </emu-note>
+    </emu-clause>

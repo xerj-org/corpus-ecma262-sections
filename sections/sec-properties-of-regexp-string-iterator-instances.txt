@@ -1,0 +1,40 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.9 RegExp String Iterator Objects > 22.2.9.3 Properties of RegExp String Iterator Instances [id: sec-properties-of-regexp-string-iterator-instances]
+
+<emu-clause id="sec-properties-of-regexp-string-iterator-instances">
+        <h1>Properties of RegExp String Iterator Instances</h1>
+        <p>RegExp String Iterator instances are ordinary objects that inherit properties from the %RegExpStringIteratorPrototype% intrinsic object. RegExp String Iterator instances are initially created with the internal slots listed in <emu-xref href="#table-regexp-string-iterator-instance-slots"></emu-xref>.</p>
+        <emu-table id="table-regexp-string-iterator-instance-slots" caption="Internal Slots of RegExp String Iterator Instances">
+          <table>
+            <tr>
+              <th>Internal Slot</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>[[IteratingRegExp]]</td>
+              <td>an Object</td>
+              <td>The regular expression used for iteration. IsRegExp([[IteratingRegExp]]) is initially *true*.</td>
+            </tr>
+            <tr>
+              <td>[[IteratedString]]</td>
+              <td>a String</td>
+              <td>The String value being iterated upon.</td>
+            </tr>
+            <tr>
+              <td>[[Global]]</td>
+              <td>a Boolean</td>
+              <td>Indicates whether the [[IteratingRegExp]] is global or not.</td>
+            </tr>
+            <tr>
+              <td>[[Unicode]]</td>
+              <td>a Boolean</td>
+              <td>Indicates whether the [[IteratingRegExp]] is in Unicode mode or not.</td>
+            </tr>
+            <tr>
+              <td>[[Done]]</td>
+              <td>a Boolean</td>
+              <td>Indicates whether the iteration is complete or not.</td>
+            </tr>
+          </table>
+        </emu-table>
+      </emu-clause>

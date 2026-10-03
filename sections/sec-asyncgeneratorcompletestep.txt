@@ -1,0 +1,34 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.9 AsyncGenerator Objects > 27.9.3 AsyncGenerator Abstract Operations > 27.9.3.5 AsyncGeneratorCompleteStep ( _gen_: an AsyncGenerator, _completion_: a Completion Record, _done_: a Boolean, optional _realm_: a Realm Record, ): ~unused~ [id: sec-asyncgeneratorcompletestep]
+
+<emu-clause id="sec-asyncgeneratorcompletestep" type="abstract operation">
+        <h1>
+          AsyncGeneratorCompleteStep (
+            _gen_: an AsyncGenerator,
+            _completion_: a Completion Record,
+            _done_: a Boolean,
+            optional _realm_: a Realm Record,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: _gen_.[[AsyncGeneratorQueue]] is not empty.
+          1. Let _next_ be the first element of _gen_.[[AsyncGeneratorQueue]].
+          1. Remove the first element from _gen_.[[AsyncGeneratorQueue]].
+          1. Let _promiseCapability_ be _next_.[[Capability]].
+          1. Let _value_ be _completion_.[[Value]].
+          1. If _completion_ is a throw completion, then
+            1. Perform ! Call(_promiseCapability_.[[Reject]], *undefined*, « _value_ »).
+          1. Else,
+            1. Assert: _completion_ is a normal completion.
+            1. If _realm_ is present, then
+              1. Let _oldRealm_ be the running execution context's Realm.
+              1. Set the running execution context's Realm to _realm_.
+              1. Let _iteratorResult_ be CreateIteratorResultObject(_value_, _done_).
+              1. Set the running execution context's Realm to _oldRealm_.
+            1. Else,
+              1. Let _iteratorResult_ be CreateIteratorResultObject(_value_, _done_).
+            1. Perform ! <emu-meta effects="user-code">Call(_promiseCapability_.[[Resolve]], *undefined*, « _iteratorResult_ »)</emu-meta>.
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

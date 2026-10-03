@@ -1,0 +1,6 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.5 Properties of the Promise Prototype Object > 27.5.5.2 Promise.prototype.constructor [id: sec-promise.prototype.constructor]
+
+<emu-clause id="sec-promise.prototype.constructor">
+        <h1>Promise.prototype.constructor</h1>
+        <p>The initial value of `Promise.prototype.constructor` is %Promise%.</p>
+      </emu-clause>

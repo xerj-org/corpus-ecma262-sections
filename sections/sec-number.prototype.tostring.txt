@@ -1,0 +1,17 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.3 Properties of the Number Prototype Object > 21.1.3.6 Number.prototype.toString ( [ _radix_ ] ) [id: sec-number.prototype.tostring]
+
+<emu-clause id="sec-number.prototype.tostring" type="built-in function">
+        <h1>Number.prototype.toString ( [ _radix_ ] )</h1>
+        <emu-note>
+          <p>The optional _radix_ should be an integral Number value in the inclusive interval from *2*<sub>𝔽</sub> to *36*<sub>𝔽</sub>. If _radix_ is *undefined* then *10*<sub>𝔽</sub> is used as the value of _radix_.</p>
+        </emu-note>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _x_ be ? ThisNumberValue(*this* value).
+          1. If _radix_ is *undefined*, let _radixMV_ be 10.
+          1. Else, let _radixMV_ be ? SnapToInteger(_radix_, ~truncate~, 2, 36).
+          1. Return Number::toString(_x_, _radixMV_).
+        </emu-alg>
+        <p>This method is not generic; it throws a *TypeError* exception if its *this* value is not a Number or a Number object. Therefore, it cannot be transferred to other kinds of objects for use as a method.</p>
+        <p>The *"length"* property of this method is *1*<sub>𝔽</sub>.</p>
+      </emu-clause>

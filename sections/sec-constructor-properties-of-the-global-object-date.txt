@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.10 Date ( . . . ) [id: sec-constructor-properties-of-the-global-object-date]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-date">
+      <h1>Date ( . . . )</h1>
+      <p>See <emu-xref href="#sec-date-constructor"></emu-xref>.</p>
+    </emu-clause>

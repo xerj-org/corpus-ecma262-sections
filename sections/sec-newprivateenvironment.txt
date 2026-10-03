@@ -1,0 +1,15 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.2 PrivateEnvironment Records > 9.2.1 PrivateEnvironment Record Operations > 9.2.1.1 NewPrivateEnvironment ( _outerPrivateEnv_: a PrivateEnvironment Record or *null*, ): a PrivateEnvironment Record [id: sec-newprivateenvironment]
+
+<emu-clause id="sec-newprivateenvironment" type="abstract operation">
+        <h1>
+          NewPrivateEnvironment (
+            _outerPrivateEnv_: a PrivateEnvironment Record or *null*,
+          ): a PrivateEnvironment Record
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _names_ be a new empty List.
+          1. Return the PrivateEnvironment Record { [[OuterPrivateEnvironment]]: _outerPrivateEnv_, [[Names]]: _names_ }.
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,16 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.6 [[DefineOwnProperty]] ( _propertyKey_: a property key, _propertyDesc_: a Property Descriptor, ): either a normal completion containing a Boolean or a throw completion > 10.1.6.2 IsCompatiblePropertyDescriptor ( _extensible_: a Boolean, _propertyDesc_: a Property Descriptor, _current_: a Property Descriptor or *undefined*, ): a Boolean [id: sec-iscompatiblepropertydescriptor]
+
+<emu-clause id="sec-iscompatiblepropertydescriptor" type="abstract operation">
+        <h1>
+          IsCompatiblePropertyDescriptor (
+            _extensible_: a Boolean,
+            _propertyDesc_: a Property Descriptor,
+            _current_: a Property Descriptor or *undefined*,
+          ): a Boolean
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Return ValidateAndApplyPropertyDescriptor(*undefined*, *""*, _extensible_, _propertyDesc_, _current_).
+        </emu-alg>
+      </emu-clause>

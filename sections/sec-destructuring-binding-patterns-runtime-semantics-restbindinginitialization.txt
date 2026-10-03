@@ -1,0 +1,21 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.3 Declarations and the Variable Statement > 14.3.3 Destructuring Binding Patterns > 14.3.3.2 Runtime Semantics: RestBindingInitialization ( _value_: an ECMAScript language value, _envRecord_: an Environment Record or *undefined*, _excludedNames_: a List of property keys, ): either a normal completion containing ~unused~ or an abrupt completion [id: sec-destructuring-binding-patterns-runtime-semantics-restbindinginitialization]
+
+<emu-clause id="sec-destructuring-binding-patterns-runtime-semantics-restbindinginitialization" type="sdo">
+        <h1>
+          Runtime Semantics: RestBindingInitialization (
+            _value_: an ECMAScript language value,
+            _envRecord_: an Environment Record or *undefined*,
+            _excludedNames_: a List of property keys,
+          ): either a normal completion containing ~unused~ or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>BindingRestProperty : `...` BindingIdentifier</emu-grammar>
+        <emu-alg>
+          1. Let _lhs_ be ? ResolveBinding(StringValue of |BindingIdentifier|, _envRecord_).
+          1. Let _restObj_ be OrdinaryObjectCreate(%Object.prototype%).
+          1. Perform ? CopyDataProperties(_restObj_, _value_, _excludedNames_).
+          1. If _envRecord_ is *undefined*, return ? PutValue(_lhs_, _restObj_).
+          1. Return ? InitializeReferencedBinding(_lhs_, _restObj_).
+        </emu-alg>
+      </emu-clause>

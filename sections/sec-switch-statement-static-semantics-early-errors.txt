@@ -1,0 +1,30 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.12 The `switch` Statement > 14.12.1 Static Semantics: Early Errors [id: sec-switch-statement-static-semantics-early-errors]
+
+<emu-clause id="sec-switch-statement-static-semantics-early-errors" oldids="sec-switch-duplicates-allowed-static-semantics">
+      <h1>Static Semantics: Early Errors</h1>
+      <emu-grammar>SwitchStatement : `switch` `(` Expression `)` CaseBlock</emu-grammar>
+      <ul>
+        <li>
+          <p>It is a Syntax Error if the LexicallyDeclaredNames of |CaseBlock| contains any duplicate entries<span normative-optional>, unless the host is a web browser or otherwise supports <emu-xref href="#sec-block-level-function-declarations-web-legacy-compatibility-semantics" title></emu-xref>, and both of the following conditions are true:</span></p>
+          <ul normative-optional>
+            <li>IsStrict(this production) is *false*.</li>
+            <li>The duplicate entries are only bound by FunctionDeclarations.</li>
+          </ul>
+        </li>
+        <li>
+          It is a Syntax Error if any element of the LexicallyDeclaredNames of |CaseBlock| also occurs in the VarDeclaredNames of |CaseBlock|.
+        </li>
+      </ul>
+      <emu-grammar>CaseClause : `case` Expression `:` StatementList</emu-grammar>
+      <ul>
+        <li>
+          It is a Syntax Error if ContainsUsing of |StatementList| is *true*.
+        </li>
+      </ul>
+      <emu-grammar>DefaultClause : `default` `:` StatementList</emu-grammar>
+      <ul>
+        <li>
+          It is a Syntax Error if ContainsUsing of |StatementList| is *true*.
+        </li>
+      </ul>
+    </emu-clause>

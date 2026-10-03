@@ -1,0 +1,20 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.17 TypedArrayGetElement ( _obj_: a TypedArray, _index_: a Number, ): a Number, a BigInt, or *undefined* [id: sec-typedarraygetelement]
+
+<emu-clause id="sec-typedarraygetelement" oldids="sec-integerindexedelementget" type="abstract operation">
+        <h1>
+          TypedArrayGetElement (
+            _obj_: a TypedArray,
+            _index_: a Number,
+          ): a Number, a BigInt, or *undefined*
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. If IsValidIntegerIndex(_obj_, _index_) is *false*, return *undefined*.
+          1. Let _offset_ be _obj_.[[ByteOffset]].
+          1. Let _elementSize_ be TypedArrayElementSize(_obj_).
+          1. Let _byteIndexInBuffer_ be (ℝ(_index_) × _elementSize_) + _offset_.
+          1. Let _elementType_ be TypedArrayElementType(_obj_).
+          1. Return GetValueFromBuffer(_obj_.[[ViewedArrayBuffer]], _byteIndexInBuffer_, _elementType_, *true*, ~unordered~).
+        </emu-alg>
+      </emu-clause>

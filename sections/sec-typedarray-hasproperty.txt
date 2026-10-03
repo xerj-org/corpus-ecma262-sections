@@ -1,0 +1,19 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.3 [[HasProperty]] ( _propertyKey_: a property key, ): either a normal completion containing a Boolean or a throw completion [id: sec-typedarray-hasproperty]
+
+<emu-clause id="sec-typedarray-hasproperty" oldids="sec-integer-indexed-exotic-objects-hasproperty-p" type="internal method">
+        <h1>
+          [[HasProperty]] (
+            _propertyKey_: a property key,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a TypedArray _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. If _propertyKey_ is a String, then
+            1. Let _numericIndex_ be CanonicalNumericIndexString(_propertyKey_).
+            1. If _numericIndex_ is not *undefined*, return IsValidIntegerIndex(_obj_, _numericIndex_).
+          1. Return ? OrdinaryHasProperty(_obj_, _propertyKey_).
+        </emu-alg>
+      </emu-clause>

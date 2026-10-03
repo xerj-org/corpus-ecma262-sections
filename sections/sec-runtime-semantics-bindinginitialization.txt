@@ -1,0 +1,61 @@
+ECMA-262 > 8 Syntax-Directed Operations > 8.6 Miscellaneous > 8.6.2 Runtime Semantics: BindingInitialization ( _value_: an ECMAScript language value, _envRecord_: an Environment Record or *undefined*, ): either a normal completion containing ~unused~ or an abrupt completion [id: sec-runtime-semantics-bindinginitialization]
+
+<emu-clause id="sec-runtime-semantics-bindinginitialization" oldids="sec-identifiers-runtime-semantics-bindinginitialization,sec-destructuring-binding-patterns-runtime-semantics-bindinginitialization" type="sdo">
+      <h1>
+        Runtime Semantics: BindingInitialization (
+          _value_: an ECMAScript language value,
+          _envRecord_: an Environment Record or *undefined*,
+        ): either a normal completion containing ~unused~ or an abrupt completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-note>
+        <p>*undefined* is passed for _envRecord_ to indicate that a PutValue operation should be used to assign the initialization value. This is the case for `var` statements and formal parameter lists of some non-strict functions (See <emu-xref href="#sec-functiondeclarationinstantiation"></emu-xref>). In those cases a lexical binding is hoisted and preinitialized prior to evaluation of its initializer.</p>
+      </emu-note>
+      <emu-grammar>BindingIdentifier : Identifier</emu-grammar>
+      <emu-alg>
+        1. Let _name_ be the StringValue of |Identifier|.
+        1. Return ? InitializeBoundName(_name_, _value_, _envRecord_).
+      </emu-alg>
+      <emu-grammar>BindingIdentifier : `yield`</emu-grammar>
+      <emu-alg>
+        1. Return ? InitializeBoundName(*"yield"*, _value_, _envRecord_).
+      </emu-alg>
+      <emu-grammar>BindingIdentifier : `await`</emu-grammar>
+      <emu-alg>
+        1. Return ? InitializeBoundName(*"await"*, _value_, _envRecord_).
+      </emu-alg>
+      <emu-grammar>BindingPattern : ObjectBindingPattern</emu-grammar>
+      <emu-alg>
+        1. Perform ? RequireObjectCoercible(_value_).
+        1. Return ? BindingInitialization of |ObjectBindingPattern| with arguments _value_ and _envRecord_.
+      </emu-alg>
+      <emu-grammar>BindingPattern : ArrayBindingPattern</emu-grammar>
+      <emu-alg>
+        1. Let _iteratorRecord_ be ? GetIterator(_value_, ~sync~).
+        1. Let _result_ be Completion(IteratorBindingInitialization of |ArrayBindingPattern| with arguments _iteratorRecord_ and _envRecord_).
+        1. If _iteratorRecord_.[[Done]] is *false*, return ? IteratorClose(_iteratorRecord_, _result_).
+        1. Return ? _result_.
+      </emu-alg>
+      <emu-grammar>ObjectBindingPattern : `{` `}`</emu-grammar>
+      <emu-alg>
+        1. Return ~unused~.
+      </emu-alg>
+      <emu-grammar>ObjectBindingPattern : `{` BindingPropertyList `,`? `}`</emu-grammar>
+      <emu-alg>
+        1. Perform ? PropertyBindingInitialization of |BindingPropertyList| with arguments _value_ and _envRecord_.
+        1. Return ~unused~.
+      </emu-alg>
+      <emu-grammar>ObjectBindingPattern : `{` BindingRestProperty `}`</emu-grammar>
+      <emu-alg>
+        1. Let _excludedNames_ be a new empty List.
+        1. Return ? RestBindingInitialization of |BindingRestProperty| with arguments _value_, _envRecord_, and _excludedNames_.
+      </emu-alg>
+      <emu-grammar>ObjectBindingPattern : `{` BindingPropertyList `,` BindingRestProperty `}`</emu-grammar>
+      <emu-alg>
+        1. Let _excludedNames_ be ? PropertyBindingInitialization of |BindingPropertyList| with arguments _value_ and _envRecord_.
+        1. Return ? RestBindingInitialization of |BindingRestProperty| with arguments _value_, _envRecord_, and _excludedNames_.
+      </emu-alg>
+
+      
+    </emu-clause>

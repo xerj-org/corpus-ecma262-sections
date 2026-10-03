@@ -1,0 +1,18 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.33 Time Zone Offset String Format > 21.4.1.33.1 IsTimeZoneOffsetString ( _offsetString_: a String, ): a Boolean [id: sec-istimezoneoffsetstring]
+
+<emu-clause id="sec-istimezoneoffsetstring" type="abstract operation">
+          <h1>
+            IsTimeZoneOffsetString (
+              _offsetString_: a String,
+            ): a Boolean
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>The return value indicates whether _offsetString_ conforms to the grammar given by |UTCOffset|.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _parseResult_ be ParseText(_offsetString_, |UTCOffset|).
+            1. If _parseResult_ is a List of errors, return *false*.
+            1. Return *true*.
+          </emu-alg>
+        </emu-clause>

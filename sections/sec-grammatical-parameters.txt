@@ -1,0 +1,124 @@
+ECMA-262 > 5 Notational Conventions > 5.1 Syntactic and Lexical Grammars > 5.1.5 Grammar Notation > 5.1.5.4 Grammatical Parameters [id: sec-grammatical-parameters]
+
+<emu-clause id="sec-grammatical-parameters">
+        <h1>Grammatical Parameters</h1>
+        <p>A production may be parameterized by a subscripted annotation of the form “<sub>[parameters]</sub>”, which may appear as a suffix to the nonterminal symbol defined by the production. “<sub>parameters</sub>” may be either a single name or a comma separated list of names. A parameterized production is shorthand for a set of productions defining all combinations of the parameter names, preceded by an underscore, appended to the parameterized nonterminal symbol. This means that:</p>
+        <emu-grammar type="definition" example>
+          StatementList[Return] :
+            ReturnStatement
+            ExpressionStatement
+        </emu-grammar>
+        <p>is a convenient abbreviation for:</p>
+        <emu-grammar type="definition" example>
+          StatementList :
+            ReturnStatement
+            ExpressionStatement
+
+          StatementList_Return :
+            ReturnStatement
+            ExpressionStatement
+        </emu-grammar>
+        <p>and that:</p>
+        <emu-grammar type="definition" example>
+          StatementList[Return, In] :
+            ReturnStatement
+            ExpressionStatement
+        </emu-grammar>
+        <p>is an abbreviation for:</p>
+        <emu-grammar type="definition" example>
+          StatementList :
+            ReturnStatement
+            ExpressionStatement
+
+          StatementList_Return :
+            ReturnStatement
+            ExpressionStatement
+
+          StatementList_In :
+            ReturnStatement
+            ExpressionStatement
+
+          StatementList_Return_In :
+            ReturnStatement
+            ExpressionStatement
+        </emu-grammar>
+        <p>Multiple parameters produce a combinatoric number of productions, not all of which are necessarily referenced in a complete grammar.</p>
+        <p>References to nonterminals on the right-hand side of a production can also be parameterized. For example:</p>
+        <emu-grammar type="definition" example>
+          StatementList :
+            ReturnStatement
+            ExpressionStatement[+In]
+        </emu-grammar>
+        <p>is equivalent to saying:</p>
+        <emu-grammar type="definition" example>
+          StatementList :
+            ReturnStatement
+            ExpressionStatement_In
+        </emu-grammar>
+        <p>and:</p>
+        <emu-grammar type="definition" example>
+          StatementList :
+            ReturnStatement
+            ExpressionStatement[~In]
+        </emu-grammar>
+        <p>is equivalent to:</p>
+        <emu-grammar type="definition" example>
+          StatementList :
+            ReturnStatement
+            ExpressionStatement
+        </emu-grammar>
+        <p>A nonterminal reference may have both a parameter list and an “<sub>opt</sub>” suffix. For example:</p>
+        <emu-grammar type="definition" example>
+          VariableDeclaration :
+            BindingIdentifier Initializer[+In]?
+        </emu-grammar>
+        <p>is an abbreviation for:</p>
+        <emu-grammar type="definition" example>
+          VariableDeclaration :
+            BindingIdentifier
+            BindingIdentifier Initializer_In
+        </emu-grammar>
+        <p>Prefixing a parameter name with “<sub>?</sub>” on a right-hand side nonterminal reference makes that parameter value dependent upon the occurrence of the parameter name on the reference to the current production's left-hand side symbol. For example:</p>
+        <emu-grammar type="definition" example>
+          VariableDeclaration[In] :
+            BindingIdentifier Initializer[?In]
+        </emu-grammar>
+        <p>is an abbreviation for:</p>
+        <emu-grammar type="definition" example>
+          VariableDeclaration :
+            BindingIdentifier Initializer
+
+          VariableDeclaration_In :
+            BindingIdentifier Initializer_In
+        </emu-grammar>
+        <p>If a right-hand side alternative is prefixed with “[+parameter]” that alternative is only available if the named parameter was used in referencing the production's nonterminal symbol. If a right-hand side alternative is prefixed with “[\~parameter]” that alternative is only available if the named parameter was <em>not</em> used in referencing the production's nonterminal symbol. This means that:</p>
+        <emu-grammar type="definition" example>
+          StatementList[Return] :
+            [+Return] ReturnStatement
+            ExpressionStatement
+        </emu-grammar>
+        <p>is an abbreviation for:</p>
+        <emu-grammar type="definition" example>
+          StatementList :
+            ExpressionStatement
+
+          StatementList_Return :
+            ReturnStatement
+            ExpressionStatement
+        </emu-grammar>
+        <p>and that:</p>
+        <emu-grammar type="definition" example>
+          StatementList[Return] :
+            [~Return] ReturnStatement
+            ExpressionStatement
+        </emu-grammar>
+        <p>is an abbreviation for:</p>
+        <emu-grammar type="definition" example>
+          StatementList :
+            ReturnStatement
+            ExpressionStatement
+
+          StatementList_Return :
+            ExpressionStatement
+        </emu-grammar>
+      </emu-clause>

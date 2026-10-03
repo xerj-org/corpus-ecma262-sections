@@ -1,0 +1,8 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.1 The %GeneratorPrototype% Object > 27.8.1.2 %GeneratorPrototype%.next ( _value_ ) [id: sec-generator.prototype.next]
+
+<emu-clause id="sec-generator.prototype.next" type="built-in function">
+        <h1>%GeneratorPrototype%.next ( _value_ )</h1>
+        <emu-alg>
+          1. Return ? GeneratorResume(*this* value, _value_, ~empty~).
+        </emu-alg>
+      </emu-clause>

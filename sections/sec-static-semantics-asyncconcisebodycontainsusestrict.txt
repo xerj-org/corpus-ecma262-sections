@@ -1,0 +1,15 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.9 Async Arrow Function Definitions > 15.9.2 Static Semantics: AsyncConciseBodyContainsUseStrict ( ): a Boolean [id: sec-static-semantics-asyncconcisebodycontainsusestrict]
+
+<emu-clause id="sec-static-semantics-asyncconcisebodycontainsusestrict" oldids="sec-async-arrow-function-definitions-static-semantics-containsusestrict" type="sdo">
+      <h1>Static Semantics: AsyncConciseBodyContainsUseStrict ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>AsyncConciseBody : ExpressionBody</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>AsyncConciseBody : `{` AsyncFunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return FunctionBodyContainsUseStrict of |AsyncFunctionBody|.
+      </emu-alg>
+    </emu-clause>

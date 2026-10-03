@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.3 Boolean Objects > 20.3.2 Properties of the Boolean Constructor > 20.3.2.1 Boolean.prototype [id: sec-boolean.prototype]
+
+<emu-clause id="sec-boolean.prototype">
+        <h1>Boolean.prototype</h1>
+        <p>The initial value of `Boolean.prototype` is the Boolean prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

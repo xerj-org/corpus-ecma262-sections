@@ -1,0 +1,30 @@
+ECMA-262 > 20 Fundamental Objects > 20.1 Object Objects > 20.1.3 Properties of the Object Prototype Object [id: sec-properties-of-the-object-prototype-object]
+
+<emu-clause id="sec-properties-of-the-object-prototype-object" oldids="sec-additional-properties-of-the-object.prototype-object">
+      <h1>Properties of the Object Prototype Object</h1>
+      <p>The <dfn>Object prototype object</dfn>:</p>
+      <ul>
+        <li>is <dfn>%Object.prototype%</dfn>.</li>
+        <li>has an [[Extensible]] internal slot whose value is *true*.</li>
+        <li>has the internal methods defined for ordinary objects, except for the [[SetPrototypeOf]] method, which is as defined in <emu-xref href="#sec-immutable-prototype-exotic-objects-setprototypeof-v"></emu-xref>. (Thus, it is an immutable prototype exotic object.)</li>
+        <li>has a [[Prototype]] internal slot whose value is *null*.</li>
+      </ul>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

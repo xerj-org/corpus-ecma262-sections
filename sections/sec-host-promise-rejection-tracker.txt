@@ -1,0 +1,30 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.1 Promise Abstract Operations > 27.5.1.9 HostPromiseRejectionTracker ( _promise_: a Promise, _operation_: *"reject"* or *"handle"*, ): ~unused~ [id: sec-host-promise-rejection-tracker]
+
+<emu-clause id="sec-host-promise-rejection-tracker" type="host-defined abstract operation">
+        <h1>
+          HostPromiseRejectionTracker (
+            _promise_: a Promise,
+            _operation_: *"reject"* or *"handle"*,
+          ): ~unused~
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It allows host environments to track promise rejections.</dd>
+        </dl>
+        <p>The default implementation of HostPromiseRejectionTracker is to return ~unused~.</p>
+
+        <emu-note>
+          <p>HostPromiseRejectionTracker is called in two scenarios:</p>
+
+          <ul>
+            <li>When a promise is rejected without any handlers, it is called with its _operation_ argument set to *"reject"*.</li>
+            <li>When a handler is added to a rejected promise for the first time, it is called with its _operation_ argument set to *"handle"*.</li>
+          </ul>
+
+          <p>A typical implementation of HostPromiseRejectionTracker might try to notify developers of unhandled rejections, while also being careful to notify them if such previous notifications are later invalidated by new handlers being attached.</p>
+        </emu-note>
+
+        <emu-note>
+          <p>If _operation_ is *"handle"*, an implementation should not hold a reference to _promise_ in a way that would interfere with garbage collection. An implementation may hold a reference to _promise_ if _operation_ is *"reject"*, since it is expected that rejections will be rare and not on hot code paths.</p>
+        </emu-note>
+      </emu-clause>

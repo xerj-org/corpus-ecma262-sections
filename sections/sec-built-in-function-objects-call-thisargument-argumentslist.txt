@@ -1,0 +1,17 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.3 Built-in Function Objects > 10.3.1 [[Call]] ( _thisArg_: an ECMAScript language value, _argList_: a List of ECMAScript language values, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-built-in-function-objects-call-thisargument-argumentslist]
+
+<emu-clause id="sec-built-in-function-objects-call-thisargument-argumentslist" type="internal method">
+      <h1>
+        [[Call]] (
+          _thisArg_: an ECMAScript language value,
+          _argList_: a List of ECMAScript language values,
+        ): either a normal completion containing an ECMAScript language value or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>a built-in function object _func_</dd>
+      </dl>
+      <emu-alg>
+        1. Return ? BuiltinCallOrConstruct(_func_, _thisArg_, _argList_, *undefined*).
+      </emu-alg>
+    </emu-clause>

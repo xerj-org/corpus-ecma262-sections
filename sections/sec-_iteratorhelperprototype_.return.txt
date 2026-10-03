@@ -1,0 +1,17 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.1 Iteration > 27.1.2 Iterator Helper Objects > 27.1.2.1 The %IteratorHelperPrototype% Object > 27.1.2.1.2 %IteratorHelperPrototype%.return ( ) [id: sec-%iteratorhelperprototype%.return]
+
+<emu-clause id="sec-%iteratorhelperprototype%.return" type="built-in function">
+          <h1>%IteratorHelperPrototype%.return ( )</h1>
+          <emu-alg>
+            1. Let _obj_ be *this* value.
+            1. Perform ? RequireInternalSlot(_obj_, [[UnderlyingIterators]]).
+            1. Assert: _obj_ has a [[GeneratorState]] internal slot.
+            1. If _obj_.[[GeneratorState]] is ~suspended-start~, then
+              1. Set _obj_.[[GeneratorState]] to ~completed~.
+              1. NOTE: Once a generator enters the completed state it never leaves it and its associated execution context is never resumed. Any execution state associated with _obj_ can be discarded at this point.
+              1. Perform ? IteratorCloseAll(_obj_.[[UnderlyingIterators]], NormalCompletion(~unused~)).
+              1. Return CreateIteratorResultObject(*undefined*, *true*).
+            1. Let _completion_ be ReturnCompletion(*undefined*).
+            1. Return ? GeneratorResumeAbrupt(_obj_, _completion_, *"Iterator Helper"*).
+          </emu-alg>
+        </emu-clause>

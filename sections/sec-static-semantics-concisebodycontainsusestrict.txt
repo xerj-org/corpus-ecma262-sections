@@ -1,0 +1,15 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.3 Arrow Function Definitions > 15.3.2 Static Semantics: ConciseBodyContainsUseStrict ( ): a Boolean [id: sec-static-semantics-concisebodycontainsusestrict]
+
+<emu-clause id="sec-static-semantics-concisebodycontainsusestrict" oldids="sec-arrow-function-definitions-static-semantics-containsusestrict" type="sdo">
+      <h1>Static Semantics: ConciseBodyContainsUseStrict ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>ConciseBody : ExpressionBody</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>ConciseBody : `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return FunctionBodyContainsUseStrict of |FunctionBody|.
+      </emu-alg>
+    </emu-clause>

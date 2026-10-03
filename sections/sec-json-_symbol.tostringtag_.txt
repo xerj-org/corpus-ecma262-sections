@@ -1,0 +1,7 @@
+ECMA-262 > 25 Structured Data > 25.5 The JSON Object > 25.5.5 JSON [ %Symbol.toStringTag% ] [id: sec-json-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-json-@@tostringtag" id="sec-json-%symbol.tostringtag%">
+      <h1>JSON [ %Symbol.toStringTag% ]</h1>
+      <p>The initial value of the %Symbol.toStringTag% property is the String value *"JSON"*.</p>
+      <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+    </emu-clause>

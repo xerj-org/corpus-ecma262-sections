@@ -1,0 +1,11 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.7 Regular Expression Literals > 13.2.7.3 Runtime Semantics: Evaluation [id: sec-regular-expression-literals-runtime-semantics-evaluation]
+
+<emu-clause id="sec-regular-expression-literals-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>PrimaryExpression : RegularExpressionLiteral</emu-grammar>
+        <emu-alg>
+          1. Let _pattern_ be CodePointsToString(BodyText of |RegularExpressionLiteral|).
+          1. Let _flags_ be CodePointsToString(FlagText of |RegularExpressionLiteral|).
+          1. Return ! RegExpCreate(_pattern_, _flags_).
+        </emu-alg>
+      </emu-clause>

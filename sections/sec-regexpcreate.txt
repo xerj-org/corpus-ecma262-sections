@@ -1,0 +1,16 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.3 Abstract Operations for RegExp Creation > 22.2.3.1 RegExpCreate ( _pattern_: an ECMAScript language value, _flags_: a String or *undefined*, ): either a normal completion containing an Object or a throw completion [id: sec-regexpcreate]
+
+<emu-clause id="sec-regexpcreate" type="abstract operation">
+        <h1>
+          RegExpCreate (
+            _pattern_: an ECMAScript language value,
+            _flags_: a String or *undefined*,
+          ): either a normal completion containing an Object or a throw completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _obj_ be ! RegExpAlloc(%RegExp%).
+          1. Return ? RegExpInitialize(_obj_, _pattern_, _flags_).
+        </emu-alg>
+      </emu-clause>

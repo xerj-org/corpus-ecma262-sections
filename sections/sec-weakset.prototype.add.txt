@@ -1,0 +1,16 @@
+ECMA-262 > 24 Keyed Collections > 24.4 WeakSet Objects > 24.4.3 Properties of the WeakSet Prototype Object > 24.4.3.1 WeakSet.prototype.add ( _value_ ) [id: sec-weakset.prototype.add]
+
+<emu-clause id="sec-weakset.prototype.add" type="built-in function">
+        <h1>WeakSet.prototype.add ( _value_ )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _weakSet_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_weakSet_, [[WeakSetData]]).
+          1. If CanBeHeldWeakly(_value_) is *false*, throw a *TypeError* exception.
+          1. For each element _entry_ of _weakSet_.[[WeakSetData]], do
+            1. If _entry_ is not ~empty~ and SameValue(_entry_, _value_) is *true*, then
+              1. Return _weakSet_.
+          1. Append _value_ to _weakSet_.[[WeakSetData]].
+          1. Return _weakSet_.
+        </emu-alg>
+      </emu-clause>

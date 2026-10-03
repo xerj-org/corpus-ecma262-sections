@@ -1,0 +1,38 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.6 Async Generator Function Definitions > 15.6.3 Runtime Semantics: InstantiateAsyncGeneratorFunctionObject ( _envRecord_: an Environment Record, _privateEnv_: a PrivateEnvironment Record or *null*, ): an ECMAScript function object [id: sec-runtime-semantics-instantiateasyncgeneratorfunctionobject]
+
+<emu-clause id="sec-runtime-semantics-instantiateasyncgeneratorfunctionobject" oldids="sec-asyncgenerator-definitions-instantiatefunctionobject" type="sdo">
+      <h1>
+        Runtime Semantics: InstantiateAsyncGeneratorFunctionObject (
+          _envRecord_: an Environment Record,
+          _privateEnv_: a PrivateEnvironment Record or *null*,
+        ): an ECMAScript function object
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>
+        AsyncGeneratorDeclaration : `async` `function` `*` BindingIdentifier `(` FormalParameters `)` `{` AsyncGeneratorBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Let _name_ be the StringValue of |BindingIdentifier|.
+        1. Let _sourceText_ be the source text matched by |AsyncGeneratorDeclaration|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%AsyncGeneratorFunction.prototype%, _sourceText_, |FormalParameters|, |AsyncGeneratorBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform SetFunctionName(_closure_, _name_).
+        1. Let _proto_ be OrdinaryObjectCreate(%AsyncGeneratorPrototype%).
+        1. Perform ! DefinePropertyOrThrow(_closure_, *"prototype"*, PropertyDescriptor { [[Value]]: _proto_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+        1. Return _closure_.
+      </emu-alg>
+      <emu-grammar>
+        AsyncGeneratorDeclaration : `async` `function` `*` `(` FormalParameters `)` `{` AsyncGeneratorBody `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Let _sourceText_ be the source text matched by |AsyncGeneratorDeclaration|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%AsyncGeneratorFunction.prototype%, _sourceText_, |FormalParameters|, |AsyncGeneratorBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform SetFunctionName(_closure_, *"default"*).
+        1. Let _proto_ be OrdinaryObjectCreate(%AsyncGeneratorPrototype%).
+        1. Perform ! DefinePropertyOrThrow(_closure_, *"prototype"*, PropertyDescriptor { [[Value]]: _proto_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+        1. Return _closure_.
+      </emu-alg>
+      <emu-note>
+        <p>An anonymous |AsyncGeneratorDeclaration| can only occur as part of an `export default` declaration.</p>
+      </emu-note>
+    </emu-clause>

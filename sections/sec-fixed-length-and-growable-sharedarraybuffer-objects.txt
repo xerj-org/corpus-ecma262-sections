@@ -1,0 +1,8 @@
+ECMA-262 > 25 Structured Data > 25.2 SharedArrayBuffer Objects > 25.2.1 Fixed-length and Growable SharedArrayBuffer Objects [id: sec-fixed-length-and-growable-sharedarraybuffer-objects]
+
+<emu-clause id="sec-fixed-length-and-growable-sharedarraybuffer-objects">
+      <h1>Fixed-length and Growable SharedArrayBuffer Objects</h1>
+      <p>A <dfn>fixed-length SharedArrayBuffer</dfn> is a SharedArrayBuffer whose byte length cannot change after creation.</p>
+      <p>A <dfn>growable SharedArrayBuffer</dfn> is a SharedArrayBuffer whose byte length may increase after creation via calls to <emu-xref href="#sec-sharedarraybuffer.prototype.grow" title></emu-xref>.</p>
+      <p>The kind of SharedArrayBuffer object that is created depends on the arguments passed to <emu-xref href="#sec-sharedarraybuffer-length" title></emu-xref>.</p>
+    </emu-clause>

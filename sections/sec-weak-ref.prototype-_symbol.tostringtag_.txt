@@ -1,0 +1,7 @@
+ECMA-262 > 26 Managing Memory > 26.1 WeakRef Objects > 26.1.3 Properties of the WeakRef Prototype Object > 26.1.3.3 WeakRef.prototype [ %Symbol.toStringTag% ] [id: sec-weak-ref.prototype-%symbol.tostringtag%]
+
+<emu-clause oldids="sec-weak-ref.prototype-@@tostringtag" id="sec-weak-ref.prototype-%symbol.tostringtag%">
+        <h1>WeakRef.prototype [ %Symbol.toStringTag% ]</h1>
+        <p>The initial value of the %Symbol.toStringTag% property is the String value *"WeakRef"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

@@ -1,0 +1,147 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.4 Runtime Semantics: CompileAssertion ( _regexpRecord_: a RegExp Record, ): a Matcher [id: sec-compileassertion]
+
+<emu-clause id="sec-compileassertion" type="sdo" oldids="sec-assertion">
+        <h1>
+          Runtime Semantics: CompileAssertion (
+            _regexpRecord_: a RegExp Record,
+          ): a Matcher
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-note>
+          <p>This section is amended in <emu-xref href="#sec-compileassertion-annexb"></emu-xref>.</p>
+        </emu-note>
+        <emu-grammar>Assertion :: `^`</emu-grammar>
+        <emu-alg>
+          1. Return a new Matcher with parameters (_matchState_, _continue_) that captures _regexpRecord_ and performs the following steps when called:
+            1. Assert: _matchState_ is a MatchState.
+            1. Assert: _continue_ is a MatcherContinuation.
+            1. Let _input_ be _matchState_.[[Input]].
+            1. Let _e_ be _matchState_.[[EndIndex]].
+            1. If _e_ = 0, or if _regexpRecord_.[[Multiline]] is *true* and the character _input_[_e_ - 1] is matched by |LineTerminator|, then
+              1. Return _continue_(_matchState_).
+            1. Return ~failure~.
+        </emu-alg>
+        <emu-note>
+          <p>Even when the `y` flag is used with a pattern, `^` always matches only at the beginning of _input_, or (if _regexpRecord_.[[Multiline]] is *true*) at the beginning of a line.</p>
+        </emu-note>
+        <emu-grammar>Assertion :: `$`</emu-grammar>
+        <emu-alg>
+          1. Return a new Matcher with parameters (_matchState_, _continue_) that captures _regexpRecord_ and performs the following steps when called:
+            1. Assert: _matchState_ is a MatchState.
+            1. Assert: _continue_ is a MatcherContinuation.
+            1. Let _input_ be _matchState_.[[Input]].
+            1. Let _e_ be _matchState_.[[EndIndex]].
+            1. Let _inputLength_ be the number of elements in _input_.
+            1. If _e_ = _inputLength_, or if _regexpRecord_.[[Multiline]] is *true* and the character _input_[_e_] is matched by |LineTerminator|, then
+              1. Return _continue_(_matchState_).
+            1. Return ~failure~.
+        </emu-alg>
+        <emu-grammar>Assertion :: `\b`</emu-grammar>
+        <emu-alg>
+          1. Return a new Matcher with parameters (_matchState_, _continue_) that captures _regexpRecord_ and performs the following steps when called:
+            1. Assert: _matchState_ is a MatchState.
+            1. Assert: _continue_ is a MatcherContinuation.
+            1. Let _input_ be _matchState_.[[Input]].
+            1. Let _e_ be _matchState_.[[EndIndex]].
+            1. Let _a_ be IsWordChar(_regexpRecord_, _input_, _e_ - 1).
+            1. Let _b_ be IsWordChar(_regexpRecord_, _input_, _e_).
+            1. If _a_ is *true* and _b_ is *false*, or if _a_ is *false* and _b_ is *true*, return _continue_(_matchState_).
+            1. Return ~failure~.
+        </emu-alg>
+        <emu-grammar>Assertion :: `\B`</emu-grammar>
+        <emu-alg>
+          1. Return a new Matcher with parameters (_matchState_, _continue_) that captures _regexpRecord_ and performs the following steps when called:
+            1. Assert: _matchState_ is a MatchState.
+            1. Assert: _continue_ is a MatcherContinuation.
+            1. Let _input_ be _matchState_.[[Input]].
+            1. Let _e_ be _matchState_.[[EndIndex]].
+            1. Let _a_ be IsWordChar(_regexpRecord_, _input_, _e_ - 1).
+            1. Let _b_ be IsWordChar(_regexpRecord_, _input_, _e_).
+            1. If _a_ is *true* and _b_ is *true*, or if _a_ is *false* and _b_ is *false*, return _continue_(_matchState_).
+            1. Return ~failure~.
+        </emu-alg>
+        <emu-grammar>Assertion :: `(?=` Disjunction `)`</emu-grammar>
+        <emu-alg>
+          1. Let _m_ be CompileSubpattern of |Disjunction| with arguments _regexpRecord_ and ~forward~.
+          1. Return a new Matcher with parameters (_matchState_, _continue_) that captures _m_ and performs the following steps when called:
+            1. Assert: _matchState_ is a MatchState.
+            1. Assert: _continue_ is a MatcherContinuation.
+            1. Let _d_ be a new MatcherContinuation with parameters (_y_) that captures nothing and performs the following steps when called:
+              1. Assert: _y_ is a MatchState.
+              1. Return _y_.
+            1. Let _result_ be _m_(_matchState_, _d_).
+            1. If _result_ is ~failure~, return ~failure~.
+            1. Assert: _result_ is a MatchState.
+            1. Let _capability_ be _result_.[[Captures]].
+            1. Let _input_ be _matchState_.[[Input]].
+            1. Let _xe_ be _matchState_.[[EndIndex]].
+            1. Let _z_ be the MatchState { [[Input]]: _input_, [[EndIndex]]: _xe_, [[Captures]]: _capability_ }.
+            1. Return _continue_(_z_).
+        </emu-alg>
+        <emu-note>
+          <p>The form `(?=` |Disjunction| `)` specifies a zero-width positive lookahead. In order for it to succeed, the pattern inside |Disjunction| must match at the current position, but the current position is not advanced before matching the sequel. If |Disjunction| can match at the current position in several ways, only the first one is tried. Unlike other regular expression operators, there is no backtracking into a `(?=` form (this unusual behaviour is inherited from Perl). This only matters when the |Disjunction| contains capturing parentheses and the sequel of the pattern contains backreferences to those captures.</p>
+          <p>For example,</p>
+          <pre><code class="javascript">/(?=(a+))/.exec("baaabac")</code></pre>
+          <p>matches the empty String immediately after the first `b` and therefore returns the array:</p>
+          <pre><code class="javascript">["", "aaa"]</code></pre>
+          <p>To illustrate the lack of backtracking into the lookahead, consider:</p>
+          <pre><code class="javascript">/(?=(a+))a*b\1/.exec("baaabac")</code></pre>
+          <p>This expression returns</p>
+          <pre><code class="javascript">["aba", "a"]</code></pre>
+          <p>and not:</p>
+          <pre><code class="javascript">["aaaba", "a"]</code></pre>
+        </emu-note>
+        <emu-grammar>Assertion :: `(?!` Disjunction `)`</emu-grammar>
+        <emu-alg>
+          1. Let _m_ be CompileSubpattern of |Disjunction| with arguments _regexpRecord_ and ~forward~.
+          1. Return a new Matcher with parameters (_matchState_, _continue_) that captures _m_ and performs the following steps when called:
+            1. Assert: _matchState_ is a MatchState.
+            1. Assert: _continue_ is a MatcherContinuation.
+            1. Let _d_ be a new MatcherContinuation with parameters (_y_) that captures nothing and performs the following steps when called:
+              1. Assert: _y_ is a MatchState.
+              1. Return _y_.
+            1. Let _result_ be _m_(_matchState_, _d_).
+            1. If _result_ is not ~failure~, return ~failure~.
+            1. Return _continue_(_matchState_).
+        </emu-alg>
+        <emu-note>
+          <p>The form `(?!` |Disjunction| `)` specifies a zero-width negative lookahead. In order for it to succeed, the pattern inside |Disjunction| must fail to match at the current position. The current position is not advanced before matching the sequel. |Disjunction| can contain capturing parentheses, but backreferences to them only make sense from within |Disjunction| itself. Backreferences to these capturing parentheses from elsewhere in the pattern always return *undefined* because the negative lookahead must fail for the pattern to succeed. For example,</p>
+          <pre><code class="javascript">/(.*?)a(?!(a+)b\2c)\2(.*)/.exec("baaabaac")</code></pre>
+          <p>looks for an `a` not immediately followed by some positive number n of `a`'s, a `b`, another n `a`'s (specified by the first `\\2`) and a `c`. The second `\\2` is outside the negative lookahead, so it matches against *undefined* and therefore always succeeds. The whole expression returns the array:</p>
+          <pre><code class="javascript">["baaabaac", "ba", undefined, "abaac"]</code></pre>
+        </emu-note>
+        <emu-grammar>Assertion :: `(?&lt;=` Disjunction `)`</emu-grammar>
+        <emu-alg>
+          1. Let _m_ be CompileSubpattern of |Disjunction| with arguments _regexpRecord_ and ~backward~.
+          1. Return a new Matcher with parameters (_matchState_, _continue_) that captures _m_ and performs the following steps when called:
+            1. Assert: _matchState_ is a MatchState.
+            1. Assert: _continue_ is a MatcherContinuation.
+            1. Let _d_ be a new MatcherContinuation with parameters (_y_) that captures nothing and performs the following steps when called:
+              1. Assert: _y_ is a MatchState.
+              1. Return _y_.
+            1. Let _result_ be _m_(_matchState_, _d_).
+            1. If _result_ is ~failure~, return ~failure~.
+            1. Assert: _result_ is a MatchState.
+            1. Let _capability_ be _result_.[[Captures]].
+            1. Let _input_ be _matchState_.[[Input]].
+            1. Let _xe_ be _matchState_.[[EndIndex]].
+            1. Let _z_ be the MatchState { [[Input]]: _input_, [[EndIndex]]: _xe_, [[Captures]]: _capability_ }.
+            1. Return _continue_(_z_).
+        </emu-alg>
+        <emu-grammar>Assertion :: `(?&lt;!` Disjunction `)`</emu-grammar>
+        <emu-alg>
+          1. Let _m_ be CompileSubpattern of |Disjunction| with arguments _regexpRecord_ and ~backward~.
+          1. Return a new Matcher with parameters (_matchState_, _continue_) that captures _m_ and performs the following steps when called:
+            1. Assert: _matchState_ is a MatchState.
+            1. Assert: _continue_ is a MatcherContinuation.
+            1. Let _d_ be a new MatcherContinuation with parameters (_y_) that captures nothing and performs the following steps when called:
+              1. Assert: _y_ is a MatchState.
+              1. Return _y_.
+            1. Let _result_ be _m_(_matchState_, _d_).
+            1. If _result_ is not ~failure~, return ~failure~.
+            1. Return _continue_(_matchState_).
+        </emu-alg>
+
+        
+      </emu-clause>

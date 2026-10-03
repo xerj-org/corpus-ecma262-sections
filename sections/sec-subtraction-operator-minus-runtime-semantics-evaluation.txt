@@ -1,0 +1,9 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.8 Additive Operators > 13.8.2 The Subtraction Operator ( `-` ) > 13.8.2.1 Runtime Semantics: Evaluation [id: sec-subtraction-operator-minus-runtime-semantics-evaluation]
+
+<emu-clause id="sec-subtraction-operator-minus-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>AdditiveExpression : AdditiveExpression `-` MultiplicativeExpression</emu-grammar>
+        <emu-alg>
+          1. Return ? EvaluateStringOrNumericBinaryExpression(|AdditiveExpression|, `-`, |MultiplicativeExpression|).
+        </emu-alg>
+      </emu-clause>

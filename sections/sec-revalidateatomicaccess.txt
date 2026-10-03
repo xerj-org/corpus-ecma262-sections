@@ -1,0 +1,21 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.4 RevalidateAtomicAccess ( _ta_: a TypedArray, _byteIndexInBuffer_: a non-negative integer, ): either a normal completion containing ~unused~ or a throw completion [id: sec-revalidateatomicaccess]
+
+<emu-clause id="sec-revalidateatomicaccess" type="abstract operation">
+        <h1>
+          RevalidateAtomicAccess (
+            _ta_: a TypedArray,
+            _byteIndexInBuffer_: a non-negative integer,
+          ): either a normal completion containing ~unused~ or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>This operation revalidates the index within the backing buffer for atomic operations after all argument coercions are performed in Atomics methods, as argument coercions can have arbitrary side effects, which could cause the buffer to become out of bounds. This operation does not throw when _ta_'s backing buffer is a SharedArrayBuffer.</dd>
+        </dl>
+        <emu-alg>
+          1. NOTE: Bounds checking is not a synchronizing operation when _ta_'s backing buffer is a growable SharedArrayBuffer.
+          1. Let _taRecord_ be ? ValidateTypedArrayBounds(_ta_, ~unordered~).
+          1. Assert: _byteIndexInBuffer_ ≥ _ta_.[[ByteOffset]].
+          1. If _byteIndexInBuffer_ ≥ _taRecord_.[[CachedBufferByteLength]], throw a *RangeError* exception.
+          1. Return ~unused~.
+        </emu-alg>
+      </emu-clause>

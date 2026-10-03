@@ -1,0 +1,20 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.8 [[Get]] ( _propertyKey_: a property key, _receiver_: an ECMAScript language value, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver]
+
+<emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver" type="internal method">
+      <h1>
+        [[Get]] (
+          _propertyKey_: a property key,
+          _receiver_: an ECMAScript language value,
+        ): either a normal completion containing an ECMAScript language value or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>an ordinary object _obj_</dd>
+      </dl>
+
+      <emu-alg>
+        1. Return ? OrdinaryGet(_obj_, _propertyKey_, _receiver_).
+      </emu-alg>
+
+      
+    </emu-clause>

@@ -1,0 +1,7 @@
+ECMA-262 > 21 Numbers and Dates > 21.1 Number Objects > 21.1.2 Properties of the Number Constructor > 21.1.2.11 Number.NEGATIVE_INFINITY [id: sec-number.negative_infinity]
+
+<emu-clause id="sec-number.negative_infinity">
+        <h1>Number.NEGATIVE_INFINITY</h1>
+        <p>The value of `Number.NEGATIVE_INFINITY` is *-∞*<sub>𝔽</sub>.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

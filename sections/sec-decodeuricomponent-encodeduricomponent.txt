@@ -1,0 +1,13 @@
+ECMA-262 > 19 The Global Object > 19.2 Function Properties of the Global Object > 19.2.6 URI Handling Functions > 19.2.6.2 decodeURIComponent ( _encodedURIComponent_ ) [id: sec-decodeuricomponent-encodeduricomponent]
+
+<emu-clause id="sec-decodeuricomponent-encodeduricomponent" type="built-in function">
+        <h1>decodeURIComponent ( _encodedURIComponent_ )</h1>
+        <p>This function computes a new version of a URI in which each escape sequence and UTF-8 encoding of the sort that might be introduced by the `encodeURIComponent` function is replaced with the UTF-16 encoding of the code point that it represents.</p>
+        <p>It is the <dfn>%decodeURIComponent%</dfn> intrinsic object.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _componentString_ be ? ToString(_encodedURIComponent_).
+          1. Let _preserveEscapeSet_ be the empty String.
+          1. Return ? Decode(_componentString_, _preserveEscapeSet_).
+        </emu-alg>
+      </emu-clause>

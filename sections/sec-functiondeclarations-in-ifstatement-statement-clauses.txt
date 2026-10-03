@@ -1,0 +1,14 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.3 Other Additional Features > B.3.3 FunctionDeclarations in IfStatement Statement Clauses [id: sec-functiondeclarations-in-ifstatement-statement-clauses]
+
+<emu-annex id="sec-functiondeclarations-in-ifstatement-statement-clauses">
+      <h1>FunctionDeclarations in IfStatement Statement Clauses</h1>
+      <p>The following augments the |IfStatement| production in <emu-xref href="#sec-if-statement"></emu-xref>:</p>
+      <emu-grammar type="definition">
+        IfStatement[Yield, Await, Return] :
+          `if` `(` Expression[+In, ?Yield, ?Await] `)` FunctionDeclaration[?Yield, ?Await, ~Default] `else` Statement[?Yield, ?Await, ?Return]
+          `if` `(` Expression[+In, ?Yield, ?Await] `)` Statement[?Yield, ?Await, ?Return] `else` FunctionDeclaration[?Yield, ?Await, ~Default]
+          `if` `(` Expression[+In, ?Yield, ?Await] `)` FunctionDeclaration[?Yield, ?Await, ~Default] `else` FunctionDeclaration[?Yield, ?Await, ~Default]
+          `if` `(` Expression[+In, ?Yield, ?Await] `)` FunctionDeclaration[?Yield, ?Await, ~Default] [lookahead != `else`]
+      </emu-grammar>
+      <p>This production only applies when parsing non-strict code. Source text matched by this production is processed as if each matching occurrence of |FunctionDeclaration[?Yield, ?Await, ~Default]| was the sole |StatementListItem| of a |BlockStatement| occupying that position in the source text. The semantics of such a synthetic |BlockStatement| includes the web legacy compatibility semantics specified in <emu-xref href="#sec-block-level-function-declarations-web-legacy-compatibility-semantics"></emu-xref>.</p>
+    </emu-annex>

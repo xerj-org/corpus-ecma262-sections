@@ -1,0 +1,29 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.1 Declarative Environment Records [id: sec-declarative-environment-records]
+
+<emu-clause id="sec-declarative-environment-records">
+        <h1>Declarative Environment Records</h1>
+        <p>Each <dfn variants="Declarative Environment Records">Declarative Environment Record</dfn> is associated with an ECMAScript program scope containing variable, constant, let, class, module, import, and/or function declarations. A Declarative Environment Record binds the set of identifiers defined by the declarations contained within its scope.</p>
+        <p>Every Declarative Environment Record also has a [[DisposableResourceStack]] field, which contains a List of DisposableResource Records. The elements of this list are tracked by the `using` declarations and `await using` declarations that must be disposed when the Evaluation step that constructed the Environment Record has completed.</p>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+      </emu-clause>

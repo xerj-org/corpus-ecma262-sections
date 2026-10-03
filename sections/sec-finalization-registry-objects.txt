@@ -1,0 +1,14 @@
+ECMA-262 > 26 Managing Memory > 26.2 FinalizationRegistry Objects [id: sec-finalization-registry-objects]
+
+<emu-clause id="sec-finalization-registry-objects">
+    <h1>FinalizationRegistry Objects</h1>
+    <p>A FinalizationRegistry is an object that manages registration and unregistration of cleanup operations that are performed when target objects and symbols are garbage collected.</p>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

@@ -1,0 +1,13 @@
+ECMA-262 > 21 Numbers and Dates > 21.2 BigInt Objects [id: sec-bigint-objects]
+
+<emu-clause id="sec-bigint-objects">
+    <h1>BigInt Objects</h1>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

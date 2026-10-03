@@ -1,0 +1,32 @@
+ECMA-262 > 25 Structured Data > 25.4 The Atomics Object > 25.4.3 Abstract Operations for Atomics > 25.4.3.16 AtomicCompareExchangeInSharedBlock ( _block_: a Shared Data Block, _byteIndexInBuffer_: an integer, _elementSize_: a non-negative integer, _expectedBytes_: a List of byte values, _replacementBytes_: a List of byte values, ): a List of byte values [id: sec-atomiccompareexchangeinsharedblock]
+
+<emu-clause id="sec-atomiccompareexchangeinsharedblock" type="abstract operation">
+        <h1>
+          AtomicCompareExchangeInSharedBlock (
+            _block_: a Shared Data Block,
+            _byteIndexInBuffer_: an integer,
+            _elementSize_: a non-negative integer,
+            _expectedBytes_: a List of byte values,
+            _replacementBytes_: a List of byte values,
+          ): a List of byte values
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _agentRecord_ be the Agent Record of the surrounding agent.
+          1. Let _execution_ be _agentRecord_.[[CandidateExecution]].
+          1. Let _eventsRecord_ be the Agent Events Record of _execution_.[[EventsRecords]] whose [[AgentSignifier]] is AgentSignifier().
+          1. Let _rawBytesRead_ be a List of length _elementSize_ whose elements are nondeterministically chosen byte values.
+          1. NOTE: In implementations, _rawBytesRead_ is the result of a load-link, of a load-exclusive, or of an operand of a read-modify-write instruction on the underlying hardware. The nondeterminism is a semantic prescription of the memory model to describe observable behaviour of hardware with weak consistency.
+          1. NOTE: The comparison of the expected value and the read value is performed outside of the read-modify-write modification function to avoid needlessly strong synchronization when the expected value is not equal to the read value.
+          1. If ByteListEqual(_rawBytesRead_, _expectedBytes_) is *true*, then
+            1. Let _second_ be a new read-modify-write modification function with parameters (_oldBytes_, _newBytes_) that captures nothing and performs the following steps atomically when called:
+              1. Return _newBytes_.
+            1. Let _event_ be ReadModifyWriteSharedMemory { [[Order]]: ~seq-cst~, [[NoTear]]: *true*, [[Block]]: _block_, [[ByteIndex]]: _byteIndexInBuffer_, [[ElementSize]]: _elementSize_, [[Payload]]: _replacementBytes_, [[ModifyOp]]: _second_ }.
+          1. Else,
+            1. Let _event_ be ReadSharedMemory { [[Order]]: ~seq-cst~, [[NoTear]]: *true*, [[Block]]: _block_, [[ByteIndex]]: _byteIndexInBuffer_, [[ElementSize]]: _elementSize_ }.
+          1. Append _event_ to _eventsRecord_.[[EventList]].
+          1. Append Chosen Value Record { [[Event]]: _event_, [[ChosenValue]]: _rawBytesRead_ } to _execution_.[[ChosenValues]].
+          1. Return _rawBytesRead_.
+        </emu-alg>
+      </emu-clause>

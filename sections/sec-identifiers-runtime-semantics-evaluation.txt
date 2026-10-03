@@ -1,0 +1,23 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.1 Identifiers > 13.1.3 Runtime Semantics: Evaluation [id: sec-identifiers-runtime-semantics-evaluation]
+
+<emu-clause id="sec-identifiers-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>IdentifierReference : Identifier</emu-grammar>
+      <emu-alg>
+        1. Return ? ResolveBinding(StringValue of |Identifier|).
+      </emu-alg>
+      <emu-grammar>IdentifierReference : `yield`</emu-grammar>
+      <emu-alg>
+        1. Return ? ResolveBinding(*"yield"*).
+      </emu-alg>
+      <emu-grammar>IdentifierReference : `await`</emu-grammar>
+      <emu-alg>
+        1. Return ? ResolveBinding(*"await"*).
+      </emu-alg>
+      <emu-note>
+        <p>The result of evaluating an |IdentifierReference| is always a value of type Reference.</p>
+      </emu-note>
+      <emu-note>
+        <p>In non-strict code, the keyword `yield` may be used as an identifier. Evaluating the |IdentifierReference| resolves the binding of `yield` as if it was an |Identifier|. Early Error restriction ensures that such an evaluation only can occur for non-strict code.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,7 @@
+ECMA-262 > 24 Keyed Collections > 24.4 WeakSet Objects > 24.4.2 Properties of the WeakSet Constructor > 24.4.2.1 WeakSet.prototype [id: sec-weakset.prototype]
+
+<emu-clause id="sec-weakset.prototype">
+        <h1>WeakSet.prototype</h1>
+        <p>The initial value of `WeakSet.prototype` is the WeakSet prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

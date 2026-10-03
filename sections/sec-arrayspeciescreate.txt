@@ -1,0 +1,33 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.2 Array Exotic Objects > 10.4.2.3 ArraySpeciesCreate ( _originalArray_: an Object, _length_: a non-negative integer, ): either a normal completion containing an Object or a throw completion [id: sec-arrayspeciescreate]
+
+<emu-clause id="sec-arrayspeciescreate" type="abstract operation">
+        <h1>
+          ArraySpeciesCreate (
+            _originalArray_: an Object,
+            _length_: a non-negative integer,
+          ): either a normal completion containing an Object or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It is used to specify the creation of a new Array or similar object using a constructor function that is derived from _originalArray_. It does not enforce that the constructor function returns an Array.</dd>
+        </dl>
+        <emu-alg>
+          1. Let _isArray_ be ? IsArray(_originalArray_).
+          1. If _isArray_ is *false*, return ? ArrayCreate(_length_).
+          1. Let _ctor_ be ? Get(_originalArray_, *"constructor"*).
+          1. If IsConstructor(_ctor_) is *true*, then
+            1. Let _thisRealm_ be the current Realm Record.
+            1. Let _ctorRealm_ be ? GetFunctionRealm(_ctor_).
+            1. If _thisRealm_ and _ctorRealm_ are not the same Realm Record, then
+              1. If SameValue(_ctor_, _ctorRealm_.[[Intrinsics]].[[%Array%]]) is *true*, set _ctor_ to *undefined*.
+          1. If _ctor_ is an Object, then
+            1. Set _ctor_ to ? Get(_ctor_, %Symbol.species%).
+            1. If _ctor_ is *null*, set _ctor_ to *undefined*.
+          1. If _ctor_ is *undefined*, return ? ArrayCreate(_length_).
+          1. If IsConstructor(_ctor_) is *false*, throw a *TypeError* exception.
+          1. Return ? Construct(_ctor_, « 𝔽(_length_) »).
+        </emu-alg>
+        <emu-note>
+          <p>If _originalArray_ was created using the standard built-in Array constructor for a realm that is not the realm of the running execution context, then a new Array is created using the realm of the running execution context. This maintains compatibility with Web browsers that have historically had that behaviour for the `Array.prototype` methods that now are defined using ArraySpeciesCreate.</p>
+        </emu-note>
+      </emu-clause>

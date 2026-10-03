@@ -1,0 +1,18 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.4 Update Expressions > 13.4.5 Prefix Decrement Operator > 13.4.5.1 Runtime Semantics: Evaluation [id: sec-prefix-decrement-operator-runtime-semantics-evaluation]
+
+<emu-clause id="sec-prefix-decrement-operator-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>UpdateExpression : `--` UnaryExpression</emu-grammar>
+        <emu-alg>
+          1. Let _expr_ be ? Evaluation of |UnaryExpression|.
+          1. If the AssignmentTargetType of |UnaryExpression| is ~web-compat~, throw a *ReferenceError* exception.
+          1. Let _oldValue_ be ? ToNumeric(? GetValue(_expr_)).
+          1. If _oldValue_ is a Number, then
+            1. Let _newValue_ be Number::subtract(_oldValue_, *1*<sub>𝔽</sub>).
+          1. Else,
+            1. Assert: _oldValue_ is a BigInt.
+            1. Let _newValue_ be BigInt::subtract(_oldValue_, *1*<sub>ℤ</sub>).
+          1. Perform ? PutValue(_expr_, _newValue_).
+          1. Return _newValue_.
+        </emu-alg>
+      </emu-clause>

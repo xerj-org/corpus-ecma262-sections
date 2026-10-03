@@ -1,0 +1,15 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.2 The BigInt Type > 6.1.6.2.1 BigInt::unaryMinus ( _bigint_: a BigInt, ): a BigInt [id: sec-numeric-types-bigint-unaryMinus]
+
+<emu-clause id="sec-numeric-types-bigint-unaryMinus" type="numeric method">
+          <h1>
+            BigInt::unaryMinus (
+              _bigint_: a BigInt,
+            ): a BigInt
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. If _bigint_ = *0*<sub>ℤ</sub>, return *0*<sub>ℤ</sub>.
+            1. Return -_bigint_.
+          </emu-alg>
+        </emu-clause>

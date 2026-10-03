@@ -1,0 +1,23 @@
+ECMA-262 > 11 ECMAScript Language: Source Text > 11.1 Source Text > 11.1.5 Static Semantics: StringToCodePoints ( _string_: a String, ): a List of code points [id: sec-stringtocodepoints]
+
+<emu-clause id="sec-stringtocodepoints" type="abstract operation" oldids="sec-utf16decodestring">
+      <h1>
+        Static Semantics: StringToCodePoints (
+          _string_: a String,
+        ): a List of code points
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It returns the sequence of Unicode code points that results from interpreting _string_ as UTF-16 encoded Unicode text as described in <emu-xref href="#sec-ecmascript-language-types-string-type"></emu-xref>.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _codePoints_ be a new empty List.
+        1. Let _size_ be the length of _string_.
+        1. Let _position_ be 0.
+        1. Repeat, while _position_ &lt; _size_,
+          1. Let _codePoint_ be CodePointAt(_string_, _position_).
+          1. Append _codePoint_.[[CodePoint]] to _codePoints_.
+          1. Set _position_ to _position_ + _codePoint_.[[CodeUnitCount]].
+        1. Return _codePoints_.
+      </emu-alg>
+    </emu-clause>

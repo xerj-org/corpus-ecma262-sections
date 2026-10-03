@@ -1,0 +1,26 @@
+ECMA-262 > 23 Indexed Collections > 23.2 TypedArray Objects > 23.2.3 Properties of the %TypedArray% Prototype Object > 23.2.3.29 %TypedArray%.prototype.sort ( _comparator_ ) [id: sec-%typedarray%.prototype.sort]
+
+<emu-clause id="sec-%typedarray%.prototype.sort" oldids="sec-typedarraysortcompare" type="built-in function">
+        <h1>%TypedArray%.prototype.sort ( _comparator_ )</h1>
+        <p>This is a distinct method that, except as described below, implements the same requirements as those of `Array.prototype.sort` as defined in <emu-xref href="#sec-array.prototype.sort"></emu-xref>. The implementation of this method may be optimized with the knowledge that the *this* value is an object that has a fixed length and whose integer-indexed properties are not sparse.</p>
+        <p>This method is not generic. The *this* value must be an object with a [[TypedArrayName]] internal slot.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. If _comparator_ is not *undefined* and IsCallable(_comparator_) is *false*, throw a *TypeError* exception.
+          1. Let _obj_ be the *this* value.
+          1. Let _taRecord_ be ? ValidateTypedArray(_obj_, ~seq-cst~).
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. NOTE: The following closure performs a numeric comparison rather than the string comparison used in <emu-xref href="#sec-array.prototype.sort"></emu-xref>.
+          1. Let _sortCompare_ be a new Abstract Closure with parameters (_x_, _y_) that captures _comparator_ and performs the following steps when called:
+            1. Return ? CompareTypedArrayElements(_x_, _y_, _comparator_).
+          1. Let _sortedList_ be ? SortIndexedProperties(_obj_, _length_, _sortCompare_, ~read-through-holes~).
+          1. Let _j_ be 0.
+          1. Repeat, while _j_ &lt; _length_,
+            1. Perform ! TypedArraySetElement(_obj_, 𝔽(_j_), _sortedList_[_j_]).
+            1. Set _j_ to _j_ + 1.
+          1. Return _obj_.
+        </emu-alg>
+        <emu-note>
+          <p>Because *NaN* always compares greater than any other value (see CompareTypedArrayElements), *NaN* property values always sort to the end of the result when _comparator_ is not provided.</p>
+        </emu-note>
+      </emu-clause>

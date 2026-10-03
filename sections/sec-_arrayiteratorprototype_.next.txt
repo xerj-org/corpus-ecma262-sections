@@ -1,0 +1,35 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.5 Array Iterator Objects > 23.1.5.2 The %ArrayIteratorPrototype% Object > 23.1.5.2.1 %ArrayIteratorPrototype%.next ( ) [id: sec-%arrayiteratorprototype%.next]
+
+<emu-clause id="sec-%arrayiteratorprototype%.next" type="built-in function">
+          <h1>%ArrayIteratorPrototype%.next ( )</h1>
+          <emu-alg>
+            1. Let _iteratorObj_ be the *this* value.
+            1. If _iteratorObj_ is not an Object, throw a *TypeError* exception.
+            1. If _iteratorObj_ does not have all of the internal slots of an Array Iterator Instance (<emu-xref href="#sec-properties-of-array-iterator-instances"></emu-xref>), throw a *TypeError* exception.
+            1. Let _array_ be _iteratorObj_.[[IteratedArrayLike]].
+            1. If _array_ is *undefined*, return CreateIteratorResultObject(*undefined*, *true*).
+            1. Let _index_ be _iteratorObj_.[[ArrayLikeNextIndex]].
+            1. Let _kind_ be _iteratorObj_.[[ArrayLikeIterationKind]].
+            1. If _array_ has a [[TypedArrayName]] internal slot, then
+              1. Let _taRecord_ be ? ValidateTypedArrayBounds(_array_, ~seq-cst~).
+              1. Let _length_ be TypedArrayLength(_taRecord_).
+            1. Else,
+              1. Let _length_ be ? LengthOfArrayLike(_array_).
+            1. If _index_ ≥ _length_, then
+              1. Set _iteratorObj_.[[IteratedArrayLike]] to *undefined*.
+              1. Return CreateIteratorResultObject(*undefined*, *true*).
+            1. Set _iteratorObj_.[[ArrayLikeNextIndex]] to _index_ + 1.
+            1. Let _indexNumber_ be 𝔽(_index_).
+            1. If _kind_ is ~key~, then
+              1. Let _result_ be _indexNumber_.
+            1. Else,
+              1. Let _elementKey_ be ! ToString(_indexNumber_).
+              1. Let _elementValue_ be ? Get(_array_, _elementKey_).
+              1. If _kind_ is ~value~, then
+                1. Let _result_ be _elementValue_.
+              1. Else,
+                1. Assert: _kind_ is ~key+value~.
+                1. Let _result_ be CreateArrayFromList(« _indexNumber_, _elementValue_ »).
+            1. Return CreateIteratorResultObject(_result_, *false*).
+          </emu-alg>
+        </emu-clause>

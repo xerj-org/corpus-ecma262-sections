@@ -1,0 +1,32 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.2 Function Definitions > 15.2.4 Runtime Semantics: InstantiateOrdinaryFunctionObject ( _envRecord_: an Environment Record, _privateEnv_: a PrivateEnvironment Record or *null*, ): an ECMAScript function object [id: sec-runtime-semantics-instantiateordinaryfunctionobject]
+
+<emu-clause id="sec-runtime-semantics-instantiateordinaryfunctionobject" oldids="sec-function-definitions-runtime-semantics-instantiatefunctionobject" type="sdo">
+      <h1>
+        Runtime Semantics: InstantiateOrdinaryFunctionObject (
+          _envRecord_: an Environment Record,
+          _privateEnv_: a PrivateEnvironment Record or *null*,
+        ): an ECMAScript function object
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>FunctionDeclaration : `function` BindingIdentifier `(` FormalParameters `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Let _name_ be the StringValue of |BindingIdentifier|.
+        1. Let _sourceText_ be the source text matched by |FunctionDeclaration|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%Function.prototype%, _sourceText_, |FormalParameters|, |FunctionBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform SetFunctionName(_closure_, _name_).
+        1. Perform MakeConstructor(_closure_).
+        1. Return _closure_.
+      </emu-alg>
+      <emu-grammar>FunctionDeclaration : `function` `(` FormalParameters `)` `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Let _sourceText_ be the source text matched by |FunctionDeclaration|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%Function.prototype%, _sourceText_, |FormalParameters|, |FunctionBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform SetFunctionName(_closure_, *"default"*).
+        1. Perform MakeConstructor(_closure_).
+        1. Return _closure_.
+      </emu-alg>
+      <emu-note>
+        <p>An anonymous |FunctionDeclaration| can only occur as part of an `export default` declaration, and its function code is therefore always strict mode code.</p>
+      </emu-note>
+    </emu-clause>

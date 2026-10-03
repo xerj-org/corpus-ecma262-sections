@@ -1,0 +1,21 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.27 PrivateFieldAdd ( _obj_: an Object, _privateName_: a Private Name, _value_: an ECMAScript language value, ): either a normal completion containing ~unused~ or a throw completion [id: sec-privatefieldadd]
+
+<emu-clause id="sec-privatefieldadd" type="abstract operation">
+      <h1>
+        PrivateFieldAdd (
+          _obj_: an Object,
+          _privateName_: a Private Name,
+          _value_: an ECMAScript language value,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If the host is a web browser, then
+          1. Perform ? HostEnsureCanAddPrivateElement(_obj_).
+        1. Let _entry_ be PrivateElementFind(_obj_, _privateName_).
+        1. If _entry_ is not ~empty~, throw a *TypeError* exception.
+        1. Append PrivateElement { [[Key]]: _privateName_, [[Kind]]: ~field~, [[Value]]: _value_ } to _obj_.[[PrivateElements]].
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

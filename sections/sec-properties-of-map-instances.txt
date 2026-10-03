@@ -1,0 +1,6 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.4 Properties of Map Instances [id: sec-properties-of-map-instances]
+
+<emu-clause id="sec-properties-of-map-instances">
+      <h1>Properties of Map Instances</h1>
+      <p>Map instances are ordinary objects that inherit properties from the Map prototype object. Map instances also have a [[MapData]] internal slot.</p>
+    </emu-clause>

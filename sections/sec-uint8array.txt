@@ -1,0 +1,12 @@
+ECMA-262 > 23 Indexed Collections > 23.3 Uint8Array Objects [id: sec-uint8array]
+
+<emu-clause id="sec-uint8array">
+    <h1>Uint8Array Objects</h1>
+    <p>A Uint8Array is a particular kind of _TypedArray_ as described above. In addition, there are additional methods on the Uint8Array constructor (<emu-xref href="#sec-additional-properties-of-the-uint8array-constructor"></emu-xref>) and on the Uint8Array prototype object (<emu-xref href="#sec-additional-properties-of-the-uint8array-prototype-object"></emu-xref>).</p>
+
+    
+
+    
+
+    
+  </emu-clause>

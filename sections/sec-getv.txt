@@ -1,0 +1,18 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.3 GetV ( _value_: an ECMAScript language value, _propertyKey_: a property key, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-getv]
+
+<emu-clause id="sec-getv" type="abstract operation">
+      <h1>
+        GetV (
+          _value_: an ECMAScript language value,
+          _propertyKey_: a property key,
+        ): either a normal completion containing an ECMAScript language value or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It is used to retrieve the value of a specific property of an ECMAScript language value. If the value is not an object, the property lookup is performed using a wrapper object appropriate for the type of the value.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _obj_ be ? ToObject(_value_).
+        1. Return ? <emu-meta effects="user-code">_obj_.[[Get]](_propertyKey_, _value_)</emu-meta>.
+      </emu-alg>
+    </emu-clause>

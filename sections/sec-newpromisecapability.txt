@@ -1,0 +1,32 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.1 Promise Abstract Operations > 27.5.1.5 NewPromiseCapability ( _ctor_: an ECMAScript language value, ): either a normal completion containing a PromiseCapability Record or a throw completion [id: sec-newpromisecapability]
+
+<emu-clause id="sec-newpromisecapability" type="abstract operation" oldids="sec-getcapabilitiesexecutor-functions">
+        <h1>
+          NewPromiseCapability (
+            _ctor_: an ECMAScript language value,
+          ): either a normal completion containing a PromiseCapability Record or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It attempts to use _ctor_ as a constructor in the fashion of the built-in Promise constructor to create a promise and extract its `resolve` and `reject` functions. The promise plus the `resolve` and `reject` functions are used to initialize a new PromiseCapability Record.</dd>
+        </dl>
+        <emu-alg>
+          1. If IsConstructor(_ctor_) is *false*, throw a *TypeError* exception.
+          1. NOTE: _ctor_ is assumed to be a constructor function that supports the parameter conventions of the Promise constructor (see <emu-xref href="#sec-promise-executor"></emu-xref>).
+          1. Let _resolvingFuncs_ be the Record { [[Resolve]]: *undefined*, [[Reject]]: *undefined* }.
+          1. Let _executorClosure_ be a new Abstract Closure with parameters (_resolve_, _reject_) that captures _resolvingFuncs_ and performs the following steps when called:
+            1. If _resolvingFuncs_.[[Resolve]] is not *undefined*, throw a *TypeError* exception.
+            1. If _resolvingFuncs_.[[Reject]] is not *undefined*, throw a *TypeError* exception.
+            1. Set _resolvingFuncs_.[[Resolve]] to _resolve_.
+            1. Set _resolvingFuncs_.[[Reject]] to _reject_.
+            1. Return NormalCompletion(*undefined*).
+          1. Let _executor_ be CreateBuiltinFunction(_executorClosure_, 2, *""*, « »).
+          1. Let _promise_ be ? Construct(_ctor_, « _executor_ »).
+          1. If IsCallable(_resolvingFuncs_.[[Resolve]]) is *false*, throw a *TypeError* exception.
+          1. If IsCallable(_resolvingFuncs_.[[Reject]]) is *false*, throw a *TypeError* exception.
+          1. Return the PromiseCapability Record { [[Promise]]: _promise_, [[Resolve]]: _resolvingFuncs_.[[Resolve]], [[Reject]]: _resolvingFuncs_.[[Reject]] }.
+        </emu-alg>
+        <emu-note>
+          <p>This abstract operation supports Promise subclassing, as it is generic on any constructor that calls a passed executor function argument in the same way as the Promise constructor. It is used to generalize static methods of the Promise constructor to any subclass.</p>
+        </emu-note>
+      </emu-clause>

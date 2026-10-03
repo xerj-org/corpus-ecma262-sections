@@ -1,0 +1,18 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.5 Native Error Types Used in This Standard [id: sec-native-error-types-used-in-this-standard]
+
+<emu-clause id="sec-native-error-types-used-in-this-standard">
+      <h1>Native Error Types Used in This Standard</h1>
+      <p>A new instance of one of the _NativeError_ objects below or of either the AggregateError object or SuppressedError object is thrown when a runtime error is detected. All _NativeError_ objects share the same structure, as described in <emu-xref href="#sec-nativeerror-object-structure"></emu-xref>.</p>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

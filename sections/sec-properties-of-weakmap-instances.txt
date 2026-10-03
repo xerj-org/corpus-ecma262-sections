@@ -1,0 +1,6 @@
+ECMA-262 > 24 Keyed Collections > 24.3 WeakMap Objects > 24.3.4 Properties of WeakMap Instances [id: sec-properties-of-weakmap-instances]
+
+<emu-clause id="sec-properties-of-weakmap-instances">
+      <h1>Properties of WeakMap Instances</h1>
+      <p>WeakMap instances are ordinary objects that inherit properties from the WeakMap prototype object. WeakMap instances also have a [[WeakMapData]] internal slot.</p>
+    </emu-clause>

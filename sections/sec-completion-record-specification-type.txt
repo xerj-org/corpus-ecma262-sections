@@ -1,0 +1,77 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.2 ECMAScript Specification Types > 6.2.4 The Completion Record Specification Type [id: sec-completion-record-specification-type]
+
+<emu-clause id="sec-completion-record-specification-type">
+      <h1>The Completion Record Specification Type</h1>
+      <p>The <dfn variants="Completion Records">Completion Record</dfn> specification type is used to explain the runtime propagation of values and control flow such as the behaviour of statements (`break`, `continue`, `return` and `throw`) that perform nonlocal transfers of control.</p>
+      <p>Completion Records have the fields defined in <emu-xref href="#table-completion-record-fields"></emu-xref>.</p>
+      <emu-table id="table-completion-record-fields" caption="Completion Record Fields" oldids="table-8">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              [[Type]]
+            </td>
+            <td>
+              ~normal~, ~break~, ~continue~, ~return~, or ~throw~
+            </td>
+            <td>
+              The type of completion that occurred.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[Value]]
+            </td>
+            <td>
+              any value except a Completion Record
+            </td>
+            <td>
+              The value that was produced.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[Target]]
+            </td>
+            <td>
+              a String or ~empty~
+            </td>
+            <td>
+              The target label for directed control transfers.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+      <p>The following shorthand terms are sometimes used to refer to Completion Records.</p>
+      <ul>
+        <li><dfn variants="normal completions">normal completion</dfn> refers to any Completion Record with a [[Type]] value of ~normal~.</li>
+        <li><dfn variants="break completions">break completion</dfn> refers to any Completion Record with a [[Type]] value of ~break~.</li>
+        <li><dfn variants="continue completions">continue completion</dfn> refers to any Completion Record with a [[Type]] value of ~continue~.</li>
+        <li><dfn variants="return completions">return completion</dfn> refers to any Completion Record with a [[Type]] value of ~return~.</li>
+        <li><dfn variants="throw completions">throw completion</dfn> refers to any Completion Record with a [[Type]] value of ~throw~.</li>
+        <li><dfn variants="abrupt completions">abrupt completion</dfn> refers to any Completion Record with a [[Type]] value other than ~normal~.</li>
+        <li>a <dfn variants="normal completions containing">normal completion containing</dfn> some type of value refers to a normal completion that has a value of that type in its [[Value]] field.</li>
+      </ul>
+      <p>Callable objects that are defined in this specification only return a normal completion or a throw completion. Returning any other kind of Completion Record is considered an editorial error.</p>
+      <p>Implementation-defined callable objects must return either a normal completion or a throw completion.</p>
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

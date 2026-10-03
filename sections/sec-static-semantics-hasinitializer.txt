@@ -1,0 +1,28 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.1 Parameter Lists > 15.1.4 Static Semantics: HasInitializer ( ): a Boolean [id: sec-static-semantics-hasinitializer]
+
+<emu-clause id="sec-static-semantics-hasinitializer" oldids="sec-destructuring-binding-patterns-static-semantics-hasinitializer,sec-function-definitions-static-semantics-hasinitializer" type="sdo">
+      <h1>Static Semantics: HasInitializer ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>BindingElement : BindingPattern</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>BindingElement : BindingPattern Initializer</emu-grammar>
+      <emu-alg>
+        1. Return *true*.
+      </emu-alg>
+      <emu-grammar>SingleNameBinding : BindingIdentifier</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>SingleNameBinding : BindingIdentifier Initializer</emu-grammar>
+      <emu-alg>
+        1. Return *true*.
+      </emu-alg>
+      <emu-grammar>FormalParameterList : FormalParameterList `,` FormalParameter</emu-grammar>
+      <emu-alg>
+        1. If HasInitializer of |FormalParameterList| is *true*, return *true*.
+        1. Return HasInitializer of |FormalParameter|.
+      </emu-alg>
+    </emu-clause>

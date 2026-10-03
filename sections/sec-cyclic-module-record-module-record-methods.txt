@@ -1,0 +1,13 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.6 Cyclic Module Records > 16.2.1.6.1 Implementation of Module Record Abstract Methods [id: sec-cyclic-module-record-module-record-methods]
+
+<emu-clause id="sec-cyclic-module-record-module-record-methods">
+          <h1>Implementation of Module Record Abstract Methods</h1>
+
+          <p>The following are the concrete methods for Cyclic Module Record that implement the corresponding Module Record abstract methods defined in <emu-xref href="#table-abstract-methods-of-module-records"></emu-xref>.</p>
+
+          
+
+          
+
+          
+        </emu-clause>

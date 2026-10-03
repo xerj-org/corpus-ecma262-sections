@@ -1,0 +1,32 @@
+ECMA-262 > 6 ECMAScript Data Types and Values > 6.1 ECMAScript Language Types > 6.1.6 Numeric Types > 6.1.6.1 The Number Type > 6.1.6.1.6 Number::remainder ( _numerator_: a Number, _denominator_: a Number, ): a Number [id: sec-numeric-types-number-remainder]
+
+<emu-clause id="sec-numeric-types-number-remainder" type="numeric method" oldids="sec-applying-the-mod-operator">
+          <h1>
+            Number::remainder (
+              _numerator_: a Number,
+              _denominator_: a Number,
+            ): a Number
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It yields the remainder from an implied division of its operands where _numerator_ is the dividend and _denominator_ is the divisor.</dd>
+          </dl>
+          <emu-alg>
+            1. If _numerator_ is *NaN* or _denominator_ is *NaN*, return *NaN*.
+            1. If _numerator_ is either *+∞*<sub>𝔽</sub> or *-∞*<sub>𝔽</sub>, return *NaN*.
+            1. If _denominator_ is either *+∞*<sub>𝔽</sub> or *-∞*<sub>𝔽</sub>, return _numerator_.
+            1. If _denominator_ is either *+0*<sub>𝔽</sub> or *-0*<sub>𝔽</sub>, return *NaN*.
+            1. If _numerator_ is either *+0*<sub>𝔽</sub> or *-0*<sub>𝔽</sub>, return _numerator_.
+            1. Assert: _numerator_ is a finite Number and is neither *+0*<sub>𝔽</sub> nor *-0*<sub>𝔽</sub>.
+            1. Assert: _denominator_ is a finite Number and is neither *+0*<sub>𝔽</sub> nor *-0*<sub>𝔽</sub>.
+            1. Let _quotient_ be ℝ(_numerator_) / ℝ(_denominator_).
+            1. Let _truncatedQuotient_ be truncate(_quotient_).
+            1. Let _remainder_ be ℝ(_numerator_) - (ℝ(_denominator_) × _truncatedQuotient_).
+            1. If _remainder_ = 0 and _numerator_ &lt; *-0*<sub>𝔽</sub>, return *-0*<sub>𝔽</sub>.
+            1. Return 𝔽(_remainder_).
+          </emu-alg>
+          <emu-note>
+            <p>In C and C++, the remainder operator accepts only integral operands; in ECMAScript, it also accepts floating-point operands.</p>
+          </emu-note>
+          <emu-note>The result of a floating-point remainder operation as computed by the `%` operator is not the same as the “remainder” operation defined by IEEE 754-2019. The IEEE 754-2019 “remainder” operation computes the remainder from a rounding division, not a truncating division, and so its behaviour is not analogous to that of the usual <emu-not-ref>integer</emu-not-ref> remainder operator. Instead the ECMAScript language defines `%` on floating-point operations to behave in a manner analogous to that of the Java <emu-not-ref>integer</emu-not-ref> remainder operator; this may be compared with the C library function fmod.</emu-note>
+        </emu-clause>

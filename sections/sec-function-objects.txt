@@ -1,0 +1,15 @@
+ECMA-262 > 20 Fundamental Objects > 20.2 Function Objects [id: sec-function-objects]
+
+<emu-clause id="sec-function-objects">
+    <h1>Function Objects</h1>
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

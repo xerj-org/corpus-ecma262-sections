@@ -1,0 +1,13 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.4 Execution Contexts > 9.4.4 ResolveThisBinding ( ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-resolvethisbinding]
+
+<emu-clause id="sec-resolvethisbinding" type="abstract operation">
+      <h1>ResolveThisBinding ( ): either a normal completion containing an ECMAScript language value or a throw completion</h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It determines the binding of the keyword `this` using the LexicalEnvironment of the running execution context.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _envRecord_ be GetThisEnvironment().
+        1. Return ? _envRecord_.GetThisBinding().
+      </emu-alg>
+    </emu-clause>

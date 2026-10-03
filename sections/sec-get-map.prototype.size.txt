@@ -1,0 +1,14 @@
+ECMA-262 > 24 Keyed Collections > 24.1 Map Objects > 24.1.3 Properties of the Map Prototype Object > 24.1.3.12 get Map.prototype.size [id: sec-get-map.prototype.size]
+
+<emu-clause id="sec-get-map.prototype.size" type="built-in function">
+        <h1>get Map.prototype.size</h1>
+        <p>`Map.prototype.size` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _map_ be the *this* value.
+          1. Perform ? RequireInternalSlot(_map_, [[MapData]]).
+          1. Let _count_ be 0.
+          1. For each Record { [[Key]], [[Value]] } _entry_ of _map_.[[MapData]], do
+            1. If _entry_.[[Key]] is not ~empty~, set _count_ to _count_ + 1.
+          1. Return 𝔽(_count_).
+        </emu-alg>
+      </emu-clause>

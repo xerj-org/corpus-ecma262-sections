@@ -1,0 +1,34 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.2 Primary Expression > 13.2.8 Template Literals [id: sec-template-literals]
+
+<emu-clause id="sec-template-literals">
+      <h1>Template Literals</h1>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        TemplateLiteral[Yield, Await, Tagged] :
+          NoSubstitutionTemplate
+          SubstitutionTemplate[?Yield, ?Await]
+
+        SubstitutionTemplate[Yield, Await] :
+          TemplateHead Expression[+In, ?Yield, ?Await] TemplateSpans[?Yield, ?Await]
+
+        TemplateSpans[Yield, Await] :
+          TemplateTail
+          TemplateMiddleList[?Yield, ?Await] TemplateTail
+
+        TemplateMiddleList[Yield, Await] :
+          TemplateMiddle Expression[+In, ?Yield, ?Await]
+          TemplateMiddleList[?Yield, ?Await] TemplateMiddle Expression[+In, ?Yield, ?Await]
+      </emu-grammar>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

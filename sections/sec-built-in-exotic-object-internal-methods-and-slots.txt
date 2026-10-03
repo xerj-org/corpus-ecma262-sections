@@ -1,0 +1,20 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots [id: sec-built-in-exotic-object-internal-methods-and-slots]
+
+<emu-clause id="sec-built-in-exotic-object-internal-methods-and-slots">
+    <h1>Built-in Exotic Object Internal Methods and Slots</h1>
+    <p>This specification defines several kinds of built-in exotic objects. These objects generally behave similar to ordinary objects except for a few specific situations. The following exotic objects use the ordinary object internal methods except where it is explicitly specified otherwise below:</p>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

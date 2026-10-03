@@ -1,0 +1,19 @@
+ECMA-262 > 7 Abstract Operations > 7.1 Type Conversion > 7.1.21 ToPropertyKey ( _arg_: an ECMAScript language value, ): either a normal completion containing a property key or a throw completion [id: sec-topropertykey]
+
+<emu-clause id="sec-topropertykey" type="abstract operation">
+      <h1>
+        ToPropertyKey (
+          _arg_: an ECMAScript language value,
+        ): either a normal completion containing a property key or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It converts _arg_ to a value that can be used as a property key.</dd>
+      </dl>
+      <emu-alg>
+        1. Let _key_ be ? ToPrimitive(_arg_, ~string~).
+        1. If _key_ is a Symbol, then
+          1. Return _key_.
+        1. Return ! ToString(_key_).
+      </emu-alg>
+    </emu-clause>

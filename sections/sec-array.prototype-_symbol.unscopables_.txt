@@ -1,0 +1,31 @@
+ECMA-262 > 23 Indexed Collections > 23.1 Array Objects > 23.1.3 Properties of the Array Prototype Object > 23.1.3.41 Array.prototype [ %Symbol.unscopables% ] [id: sec-array.prototype-%symbol.unscopables%]
+
+<emu-clause oldids="sec-array.prototype-@@unscopables" id="sec-array.prototype-%symbol.unscopables%">
+        <h1>Array.prototype [ %Symbol.unscopables% ]</h1>
+        <p>The initial value of the %Symbol.unscopables% data property is an object created by the following steps:</p>
+        <emu-alg>
+          1. Let _unscopableList_ be OrdinaryObjectCreate(*null*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"at"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"copyWithin"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"entries"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"fill"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"find"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"findIndex"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"findLast"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"findLastIndex"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"flat"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"flatMap"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"includes"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"keys"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"toReversed"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"toSorted"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"toSpliced"*, *true*).
+          1. Perform ! CreateDataPropertyOrThrow(_unscopableList_, *"values"*, *true*).
+          1. Return _unscopableList_.
+        </emu-alg>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+        <emu-note>
+          <p>The own property names of this object are property names that were not included as standard properties of `Array.prototype` prior to the ECMAScript 2015 specification. These names are ignored for `with` statement binding purposes in order to preserve the behaviour of existing code that might use one of these names as a binding in an outer scope that is shadowed by a `with` statement whose binding object is an Array.</p>
+          <p>The reason that *"with"* is not included in the _unscopableList_ is because it is already a <emu-xref href="#sec-keywords-and-reserved-words">reserved word</emu-xref>.</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,35 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.4 Arguments Exotic Objects > 10.4.4.2 [[DefineOwnProperty]] ( _propertyKey_: a property key, _propertyDesc_: a Property Descriptor, ): a normal completion containing a Boolean [id: sec-arguments-exotic-objects-defineownproperty-p-desc]
+
+<emu-clause id="sec-arguments-exotic-objects-defineownproperty-p-desc" type="internal method">
+        <h1>
+          [[DefineOwnProperty]] (
+            _propertyKey_: a property key,
+            _propertyDesc_: a Property Descriptor,
+          ): a normal completion containing a Boolean
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>an arguments exotic object _args_</dd>
+        </dl>
+        <emu-alg>
+          1. Let _map_ be _args_.[[ParameterMap]].
+          1. Let _isMapped_ be ! HasOwnProperty(_map_, _propertyKey_).
+          1. Let _newArgDesc_ be _propertyDesc_.
+          1. If _isMapped_ is *true* and IsDataDescriptor(_propertyDesc_) is *true*, then
+            1. If _propertyDesc_ does not have a [[Value]] field, _propertyDesc_ has a [[Writable]] field, and _propertyDesc_.[[Writable]] is *false*, then
+              1. Set _newArgDesc_ to a copy of _propertyDesc_.
+              1. Set _newArgDesc_.[[Value]] to ! Get(_map_, _propertyKey_).
+          1. Let _allowed_ be ! OrdinaryDefineOwnProperty(_args_, _propertyKey_, _newArgDesc_).
+          1. If _allowed_ is *false*, return *false*.
+          1. If _isMapped_ is *true*, then
+            1. If IsAccessorDescriptor(_propertyDesc_) is *true*, then
+              1. Perform ! _map_.[[Delete]](_propertyKey_).
+            1. Else,
+              1. If _propertyDesc_ has a [[Value]] field, then
+                1. Assert: The following Set will succeed, since formal parameters mapped by arguments objects are always writable.
+                1. Perform ! Set(_map_, _propertyKey_, _propertyDesc_.[[Value]], *false*).
+              1. If _propertyDesc_ has a [[Writable]] field and _propertyDesc_.[[Writable]] is *false*, then
+                1. Perform ! _map_.[[Delete]](_propertyKey_).
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>

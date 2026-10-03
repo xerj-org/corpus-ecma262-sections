@@ -1,0 +1,15 @@
+ECMA-262 > 22 Text Processing > 22.1 String Objects > 22.1.1 The String Constructor > 22.1.1.1 String ( _value_ ) [id: sec-string-constructor-string-value]
+
+<emu-clause id="sec-string-constructor-string-value" type="built-in function">
+        <h1>String ( _value_ )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If _value_ is not present, then
+            1. Let _string_ be the empty String.
+          1. Else,
+            1. If NewTarget is *undefined* and _value_ is a Symbol, return SymbolDescriptiveString(_value_).
+            1. Let _string_ be ? ToString(_value_).
+          1. If NewTarget is *undefined*, return _string_.
+          1. Return StringCreate(_string_, ? GetPrototypeFromConstructor(NewTarget, *"%String.prototype%"*)).
+        </emu-alg>
+      </emu-clause>

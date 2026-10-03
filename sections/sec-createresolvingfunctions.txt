@@ -1,0 +1,46 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.1 Promise Abstract Operations > 27.5.1.3 CreateResolvingFunctions ( _toResolve_: a Promise, ): a Record with fields [[Resolve]] (a function object) and [[Reject]] (a function object) [id: sec-createresolvingfunctions]
+
+<emu-clause id="sec-createresolvingfunctions" oldids="sec-promise-reject-functions,sec-promise-resolve-functions" type="abstract operation">
+        <h1>
+          CreateResolvingFunctions (
+            _toResolve_: a Promise,
+          ): a Record with fields [[Resolve]] (a function object) and [[Reject]] (a function object)
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _promiseOrEmpty_ be the Record { [[Value]]: _toResolve_ }.
+          1. Let _resolveSteps_ be a new Abstract Closure with parameters (_resolution_) that captures _promiseOrEmpty_ and performs the following steps when called:
+            1. If _promiseOrEmpty_.[[Value]] is ~empty~, return *undefined*.
+            1. Let _promise_ be _promiseOrEmpty_.[[Value]].
+            1. Set _promiseOrEmpty_.[[Value]] to ~empty~.
+            1. If SameValue(_resolution_, _promise_) is *true*, then
+              1. Let _selfResolutionError_ be a newly created *TypeError* object.
+              1. Perform RejectPromise(_promise_, _selfResolutionError_).
+              1. Return *undefined*.
+            1. If _resolution_ is not an Object, then
+              1. Perform FulfillPromise(_promise_, _resolution_).
+              1. Return *undefined*.
+            1. Let _then_ be Completion(Get(_resolution_, *"then"*)).
+            1. If _then_ is an abrupt completion, then
+              1. Perform RejectPromise(_promise_, _then_.[[Value]]).
+              1. Return *undefined*.
+            1. Let _thenAction_ be _then_.[[Value]].
+            1. If IsCallable(_thenAction_) is *false*, then
+              1. Perform FulfillPromise(_promise_, _resolution_).
+              1. Return *undefined*.
+            1. Let _thenJobCallback_ be HostMakeJobCallback(_thenAction_).
+            1. Let _job_ be NewPromiseResolveThenableJob(_promise_, _resolution_, _thenJobCallback_).
+            1. Perform HostEnqueuePromiseJob(_job_.[[Job]], _job_.[[Realm]]).
+            1. Return *undefined*.
+          1. Let _resolve_ be CreateBuiltinFunction(_resolveSteps_, 1, *""*, « »).
+          1. Let _rejectSteps_ be a new Abstract Closure with parameters (_reason_) that captures _promiseOrEmpty_ and performs the following steps when called:
+            1. If _promiseOrEmpty_.[[Value]] is ~empty~, return *undefined*.
+            1. Let _promise_ be _promiseOrEmpty_.[[Value]].
+            1. Set _promiseOrEmpty_.[[Value]] to ~empty~.
+            1. Perform RejectPromise(_promise_, _reason_).
+            1. Return *undefined*.
+          1. Let _reject_ be CreateBuiltinFunction(_rejectSteps_, 1, *""*, « »).
+          1. Return the Record { [[Resolve]]: _resolve_, [[Reject]]: _reject_ }.
+        </emu-alg>
+      </emu-clause>

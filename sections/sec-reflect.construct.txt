@@ -1,0 +1,13 @@
+ECMA-262 > 28 Reflection > 28.1 The Reflect Object > 28.1.2 Reflect.construct ( _target_, _args_ [ , _newTarget_ ] ) [id: sec-reflect.construct]
+
+<emu-clause id="sec-reflect.construct" type="built-in function">
+      <h1>Reflect.construct ( _target_, _args_ [ , _newTarget_ ] )</h1>
+      <p>This function performs the following steps when called:</p>
+      <emu-alg>
+        1. If IsConstructor(_target_) is *false*, throw a *TypeError* exception.
+        1. If _newTarget_ is not present, set _newTarget_ to _target_.
+        1. Else if IsConstructor(_newTarget_) is *false*, throw a *TypeError* exception.
+        1. Let _argList_ be ? CreateListFromArrayLike(_args_).
+        1. Return ? Construct(_target_, _argList_, _newTarget_).
+      </emu-alg>
+    </emu-clause>

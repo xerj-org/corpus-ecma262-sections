@@ -1,0 +1,21 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.33 InitializeInstanceElements ( _obj_: an Object, _ctor_: an ECMAScript function object or a built-in function object, ): either a normal completion containing ~unused~ or a throw completion [id: sec-initializeinstanceelements]
+
+<emu-clause id="sec-initializeinstanceelements" type="abstract operation">
+      <h1>
+        InitializeInstanceElements (
+          _obj_: an Object,
+          _ctor_: an ECMAScript function object or a built-in function object,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. Let _methods_ be _ctor_.[[PrivateMethods]].
+        1. For each PrivateElement _method_ of _methods_, do
+          1. Perform ? PrivateMethodOrAccessorAdd(_obj_, _method_).
+        1. Let _fields_ be _ctor_.[[Fields]].
+        1. For each element _fieldRecord_ of _fields_, do
+          1. Perform ? DefineField(_obj_, _fieldRecord_).
+        1. Return ~unused~.
+      </emu-alg>
+    </emu-clause>

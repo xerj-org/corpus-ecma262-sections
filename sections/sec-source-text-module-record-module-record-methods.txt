@@ -1,0 +1,11 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.7 Source Text Module Records > 16.2.1.7.2 Implementation of Module Record Abstract Methods [id: sec-source-text-module-record-module-record-methods]
+
+<emu-clause id="sec-source-text-module-record-module-record-methods">
+          <h1>Implementation of Module Record Abstract Methods</h1>
+
+          <p>The following are the concrete methods for Source Text Module Record that implement the corresponding Module Record abstract methods defined in <emu-xref href="#table-abstract-methods-of-module-records"></emu-xref>.</p>
+
+          
+
+          
+        </emu-clause>

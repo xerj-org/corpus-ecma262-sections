@@ -1,0 +1,56 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.2 Properties of Generator Instances [id: sec-properties-of-generator-instances]
+
+<emu-clause id="sec-properties-of-generator-instances">
+      <h1>Properties of Generator Instances</h1>
+      <p>Generator instances are initially created with the internal slots described in <emu-xref href="#table-internal-slots-of-generator-instances"></emu-xref>.</p>
+      <emu-table id="table-internal-slots-of-generator-instances" caption="Internal Slots of Generator Instances" oldids="table-56">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Internal Slot
+              </th>
+              <th>
+                Type
+              </th>
+              <th>
+                Description
+              </th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              [[GeneratorState]]
+            </td>
+            <td>
+              ~suspended-start~, ~suspended-yield~, ~executing~, or ~completed~
+            </td>
+            <td>
+              The current execution state of the generator.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[GeneratorContext]]
+            </td>
+            <td>
+              an execution context
+            </td>
+            <td>
+              The execution context that is used when executing the code of this generator.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[GeneratorBrand]]
+            </td>
+            <td>
+              a String or ~empty~
+            </td>
+            <td>
+              A brand used to distinguish different kinds of generators. The [[GeneratorBrand]] of generators declared by ECMAScript source text is always ~empty~.
+            </td>
+          </tr>
+        </table>
+      </emu-table>
+    </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.26 Infinity [id: sec-terms-and-definitions-infinity]
+
+<emu-clause id="sec-terms-and-definitions-infinity">
+      <h1>Infinity</h1>
+      <p>Number value that is the positive infinite Number value</p>
+    </emu-clause>

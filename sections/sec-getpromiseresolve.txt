@@ -1,0 +1,16 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.5 Promise Objects > 27.5.4 Properties of the Promise Constructor > 27.5.4.1 Promise.all ( _iterable_ ) > 27.5.4.1.1 GetPromiseResolve ( _promiseCtor_: a constructor, ): either a normal completion containing a function object or a throw completion [id: sec-getpromiseresolve]
+
+<emu-clause id="sec-getpromiseresolve" type="abstract operation">
+          <h1>
+            GetPromiseResolve (
+              _promiseCtor_: a constructor,
+            ): either a normal completion containing a function object or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _promiseResolve_ be ? Get(_promiseCtor_, *"resolve"*).
+            1. If IsCallable(_promiseResolve_) is *false*, throw a *TypeError* exception.
+            1. Return _promiseResolve_.
+          </emu-alg>
+        </emu-clause>

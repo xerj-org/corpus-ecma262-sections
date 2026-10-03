@@ -1,0 +1,9 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.1 Scripts > 16.1.3 Runtime Semantics: Evaluation [id: sec-script-semantics-runtime-semantics-evaluation]
+
+<emu-clause id="sec-script-semantics-runtime-semantics-evaluation" type="sdo">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>Script : [empty]</emu-grammar>
+      <emu-alg>
+        1. Return *undefined*.
+      </emu-alg>
+    </emu-clause>

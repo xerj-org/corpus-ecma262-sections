@@ -1,0 +1,21 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.3 Generator Abstract Operations [id: sec-generator-abstract-operations]
+
+<emu-clause id="sec-generator-abstract-operations">
+      <h1>Generator Abstract Operations</h1>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </emu-clause>

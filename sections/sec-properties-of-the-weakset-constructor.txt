@@ -1,0 +1,12 @@
+ECMA-262 > 24 Keyed Collections > 24.4 WeakSet Objects > 24.4.2 Properties of the WeakSet Constructor [id: sec-properties-of-the-weakset-constructor]
+
+<emu-clause id="sec-properties-of-the-weakset-constructor">
+      <h1>Properties of the WeakSet Constructor</h1>
+      <p>The WeakSet constructor:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is %Function.prototype%.</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+    </emu-clause>

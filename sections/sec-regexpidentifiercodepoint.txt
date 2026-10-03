@@ -1,0 +1,33 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.1 Patterns > 22.2.1.12 Static Semantics: RegExpIdentifierCodePoint ( ): a code point [id: sec-regexpidentifiercodepoint]
+
+<emu-clause id="sec-regexpidentifiercodepoint" type="sdo">
+        <h1>Static Semantics: RegExpIdentifierCodePoint ( ): a code point</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>RegExpIdentifierStart :: IdentifierStartChar</emu-grammar>
+        <emu-alg>
+          1. Return the code point matched by |IdentifierStartChar|.
+        </emu-alg>
+        <emu-grammar>RegExpIdentifierPart :: IdentifierPartChar</emu-grammar>
+        <emu-alg>
+          1. Return the code point matched by |IdentifierPartChar|.
+        </emu-alg>
+        <emu-grammar>
+          RegExpIdentifierStart :: `\` RegExpUnicodeEscapeSequence
+
+          RegExpIdentifierPart :: `\` RegExpUnicodeEscapeSequence
+        </emu-grammar>
+        <emu-alg>
+          1. Return the code point whose numeric value is the CharacterValue of |RegExpUnicodeEscapeSequence|.
+        </emu-alg>
+        <emu-grammar>
+          RegExpIdentifierStart :: UnicodeLeadSurrogate UnicodeTrailSurrogate
+
+          RegExpIdentifierPart :: UnicodeLeadSurrogate UnicodeTrailSurrogate
+        </emu-grammar>
+        <emu-alg>
+          1. Let _lead_ be the code unit whose numeric value is the numeric value of the code point matched by |UnicodeLeadSurrogate|.
+          1. Let _trail_ be the code unit whose numeric value is the numeric value of the code point matched by |UnicodeTrailSurrogate|.
+          1. Return UTF16SurrogatePairToCodePoint(_lead_, _trail_).
+        </emu-alg>
+      </emu-clause>

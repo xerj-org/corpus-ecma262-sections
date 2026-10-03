@@ -1,0 +1,22 @@
+ECMA-262 > 29 Memory Model > 29.6 Relations of Candidate Executions > 29.6.6 happens-before [id: sec-happens-before]
+
+<emu-clause id="sec-happens-before">
+      <h1>happens-before</h1>
+      <p>For a candidate execution _execution_, its <dfn>happens-before</dfn> Relation is the least Relation on Memory events that satisfies the following.</p>
+
+      <ul>
+        <li>
+          <p>For events _eventA_ and _eventB_, _eventA_ happens-before _eventB_ in _execution_ if any of the following conditions are true.</p>
+          <ul>
+            <li>_eventA_ is-agent-order-before _eventB_ in _execution_.</li>
+            <li>_eventA_ synchronizes-with _eventB_ in _execution_.</li>
+            <li>SharedDataBlockEventSet(_execution_) contains both _eventA_ and _eventB_, _eventA_.[[Order]] is ~init~, and _eventA_ and _eventB_ have overlapping memory ranges.</li>
+            <li>There is an event _eventC_ such that _eventA_ happens-before _eventC_ and _eventC_ happens-before _eventB_ in _execution_.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <emu-note>
+        <p>Because happens-before is a superset of agent-order, a candidate execution is consistent with the single-thread evaluation semantics of ECMAScript.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.3 Properties of the Error Prototype Object > 20.5.3.3 Error.prototype.name [id: sec-error.prototype.name]
+
+<emu-clause id="sec-error.prototype.name">
+        <h1>Error.prototype.name</h1>
+        <p>The initial value of `Error.prototype.name` is *"Error"*.</p>
+      </emu-clause>

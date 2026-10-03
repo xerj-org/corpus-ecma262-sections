@@ -1,0 +1,13 @@
+ECMA-262 > 12 ECMAScript Language: Lexical Grammar > 12.10 Automatic Semicolon Insertion > 12.10.3 Interesting Cases of Automatic Semicolon Insertion > 12.10.3.1 Interesting Cases of Automatic Semicolon Insertion in Statement Lists [id: sec-asi-interesting-cases-in-statement-lists]
+
+<emu-clause id="sec-asi-interesting-cases-in-statement-lists">
+        <h1>Interesting Cases of Automatic Semicolon Insertion in Statement Lists</h1>
+        <p>In a |StatementList|, many |StatementListItem|s end in semicolons, which may be omitted using automatic semicolon insertion. As a consequence of the rules above, at the end of a line ending an expression, a semicolon is required if the following line begins with any of the following:</p>
+        <ul>
+          <li><strong>An opening parenthesis (<code>(</code>)</strong>. Without a semicolon, the two lines together are treated as a |CallExpression|.</li>
+          <li><strong>An opening square bracket (<code>[</code>)</strong>. Without a semicolon, the two lines together are treated as property access, rather than an |ArrayLiteral| or |ArrayAssignmentPattern|.</li>
+          <li><strong>A template literal (<code>`</code>)</strong>. Without a semicolon, the two lines together are interpreted as a tagged Template (<emu-xref href="#sec-tagged-templates"></emu-xref>), with the previous expression as the |MemberExpression|.</li>
+          <li><strong>Unary <code>+</code> or <code>-</code></strong>. Without a semicolon, the two lines together are interpreted as a usage of the corresponding binary operator.</li>
+          <li><strong>A RegExp literal</strong>. Without a semicolon, the two lines together may be parsed instead as the `/` |MultiplicativeOperator|, for example if the RegExp has flags.</li>
+        </ul>
+      </emu-clause>

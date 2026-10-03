@@ -1,0 +1,27 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.27 MakeTime ( _hour_: a Number, _minute_: a Number, _second_: a Number, _millisecond_: a Number, ): a Number [id: sec-maketime]
+
+<emu-clause id="sec-maketime" type="abstract operation">
+        <h1>
+          MakeTime (
+            _hour_: a Number,
+            _minute_: a Number,
+            _second_: a Number,
+            _millisecond_: a Number,
+          ): a Number
+        </h1>
+        <dl class="header">
+          <dt>description</dt>
+          <dd>It calculates a number of milliseconds.</dd>
+        </dl>
+        <emu-alg>
+          1. If _hour_ is not a finite Number, _minute_ is not a finite Number, _second_ is not a finite Number, or _millisecond_ is not a finite Number, return *NaN*.
+          1. Let _hourMV_ be ! ToIntegerOrInfinity(_hour_).
+          1. Let _minuteMV_ be ! ToIntegerOrInfinity(_minute_).
+          1. Let _secondMV_ be ! ToIntegerOrInfinity(_second_).
+          1. Let _millisecondMV_ be ! ToIntegerOrInfinity(_millisecond_).
+          1. Return ((𝔽(_hourMV_) × 𝔽(MillisecondsPerHour) + 𝔽(_minuteMV_) × 𝔽(MillisecondsPerMinute)) + 𝔽(_secondMV_) × 𝔽(MillisecondsPerSecond)) + 𝔽(_millisecondMV_).
+        </emu-alg>
+        <emu-note>
+          <p>The arithmetic in MakeTime is floating-point arithmetic, which is not associative, so the operations must be performed in the correct order.</p>
+        </emu-note>
+      </emu-clause>

@@ -1,0 +1,25 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.5 Jobs and Host Operations to Enqueue Jobs > 9.5.5 HostEnqueuePromiseJob ( _job_: a Job Abstract Closure, _realm_: a Realm Record or *null*, ): ~unused~ [id: sec-hostenqueuepromisejob]
+
+<emu-clause id="sec-hostenqueuepromisejob" type="host-defined abstract operation">
+      <h1>
+        HostEnqueuePromiseJob (
+          _job_: a Job Abstract Closure,
+          _realm_: a Realm Record or *null*,
+        ): ~unused~
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It schedules _job_ to be performed at some future time. The Abstract Closures used with this algorithm are intended to be related to the handling of Promises, or otherwise, to be scheduled with equal priority to Promise handling operations.</dd>
+      </dl>
+
+      <p>An implementation of HostEnqueuePromiseJob must conform to the requirements in <emu-xref href="#sec-jobs"></emu-xref> as well as the following:</p>
+      <ul>
+        <li>If _realm_ is not *null*, each time _job_ is invoked the implementation must perform implementation-defined steps such that execution is prepared to evaluate ECMAScript code at the time of _job_'s invocation.</li>
+        <li>Let _scriptOrModule_ be GetActiveScriptOrModule() at the time HostEnqueuePromiseJob is invoked. If _realm_ is not *null*, each time _job_ is invoked the implementation must perform implementation-defined steps such that _scriptOrModule_ is the active script or module at the time of _job_'s invocation.</li>
+        <li>Jobs must run in the same order as the HostEnqueuePromiseJob invocations that scheduled them.</li>
+      </ul>
+
+      <emu-note>
+        <p>The _realm_ for Jobs returned by NewPromiseResolveThenableJob is usually the result of calling GetFunctionRealm on the _then_ function object. The _realm_ for Jobs returned by NewPromiseReactionJob is usually the result of calling GetFunctionRealm on the handler if the handler is not *undefined*. If the handler is *undefined*, _realm_ is *null*. For both kinds of Jobs, when GetFunctionRealm completes abnormally (i.e. called on a revoked Proxy), _realm_ is the current Realm Record at the time of the GetFunctionRealm call. When the _realm_ is *null*, no user ECMAScript code will be evaluated and no new ECMAScript objects (e.g. Error objects) will be created. The WHATWG HTML specification (<a href="https://html.spec.whatwg.org/">https://html.spec.whatwg.org/</a>), for example, uses _realm_ to check for the ability to run script and for the <a href="https://html.spec.whatwg.org/#entry">entry</a> concept.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 20 Fundamental Objects > 20.5 Error Objects > 20.5.8 SuppressedError Objects > 20.5.8.3 Properties of the SuppressedError Prototype Object > 20.5.8.3.1 SuppressedError.prototype.constructor [id: sec-suppressederror.prototype.constructor]
+
+<emu-clause id="sec-suppressederror.prototype.constructor">
+          <h1>SuppressedError.prototype.constructor</h1>
+          <p>The initial value of `SuppressedError.prototype.constructor` is %SuppressedError%.</p>
+        </emu-clause>

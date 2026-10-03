@@ -1,0 +1,6 @@
+ECMA-262 > 4 Overview > 4.4 Terms and Definitions > 4.4.15 null value [id: sec-null-value]
+
+<emu-clause id="sec-null-value">
+      <h1>null value</h1>
+      <p>primitive value that represents the intentional absence of any object value</p>
+    </emu-clause>

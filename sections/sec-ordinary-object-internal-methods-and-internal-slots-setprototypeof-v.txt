@@ -1,0 +1,18 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.2 [[SetPrototypeOf]] ( _proto_: an Object or *null*, ): a normal completion containing a Boolean [id: sec-ordinary-object-internal-methods-and-internal-slots-setprototypeof-v]
+
+<emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-setprototypeof-v" type="internal method">
+      <h1>
+        [[SetPrototypeOf]] (
+          _proto_: an Object or *null*,
+        ): a normal completion containing a Boolean
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>an ordinary object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Return OrdinarySetPrototypeOf(_obj_, _proto_).
+      </emu-alg>
+
+      
+    </emu-clause>

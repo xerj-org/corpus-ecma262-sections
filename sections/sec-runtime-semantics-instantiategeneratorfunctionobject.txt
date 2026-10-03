@@ -1,0 +1,34 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.5 Generator Function Definitions > 15.5.3 Runtime Semantics: InstantiateGeneratorFunctionObject ( _envRecord_: an Environment Record, _privateEnv_: a PrivateEnvironment Record or *null*, ): an ECMAScript function object [id: sec-runtime-semantics-instantiategeneratorfunctionobject]
+
+<emu-clause id="sec-runtime-semantics-instantiategeneratorfunctionobject" oldids="sec-generator-function-definitions-runtime-semantics-instantiatefunctionobject" type="sdo">
+      <h1>
+        Runtime Semantics: InstantiateGeneratorFunctionObject (
+          _envRecord_: an Environment Record,
+          _privateEnv_: a PrivateEnvironment Record or *null*,
+        ): an ECMAScript function object
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>GeneratorDeclaration : `function` `*` BindingIdentifier `(` FormalParameters `)` `{` GeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. Let _name_ be the StringValue of |BindingIdentifier|.
+        1. Let _sourceText_ be the source text matched by |GeneratorDeclaration|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%GeneratorFunction.prototype%, _sourceText_, |FormalParameters|, |GeneratorBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform SetFunctionName(_closure_, _name_).
+        1. Let _proto_ be OrdinaryObjectCreate(%GeneratorPrototype%).
+        1. Perform ! DefinePropertyOrThrow(_closure_, *"prototype"*, PropertyDescriptor { [[Value]]: _proto_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+        1. Return _closure_.
+      </emu-alg>
+      <emu-grammar>GeneratorDeclaration : `function` `*` `(` FormalParameters `)` `{` GeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. Let _sourceText_ be the source text matched by |GeneratorDeclaration|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%GeneratorFunction.prototype%, _sourceText_, |FormalParameters|, |GeneratorBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform SetFunctionName(_closure_, *"default"*).
+        1. Let _proto_ be OrdinaryObjectCreate(%GeneratorPrototype%).
+        1. Perform ! DefinePropertyOrThrow(_closure_, *"prototype"*, PropertyDescriptor { [[Value]]: _proto_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+        1. Return _closure_.
+      </emu-alg>
+      <emu-note>
+        <p>An anonymous |GeneratorDeclaration| can only occur as part of an `export default` declaration, and its function code is therefore always strict mode code.</p>
+      </emu-note>
+    </emu-clause>

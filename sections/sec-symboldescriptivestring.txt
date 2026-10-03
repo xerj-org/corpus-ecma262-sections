@@ -1,0 +1,17 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.3 Properties of the Symbol Prototype Object > 20.4.3.3 Symbol.prototype.toString ( ) > 20.4.3.3.1 SymbolDescriptiveString ( _symbol_: a Symbol, ): a String [id: sec-symboldescriptivestring]
+
+<emu-clause id="sec-symboldescriptivestring" type="abstract operation">
+          <h1>
+            SymbolDescriptiveString (
+              _symbol_: a Symbol,
+            ): a String
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _description_ be _symbol_.[[Description]].
+            1. If _description_ is *undefined*, set _description_ to the empty String.
+            1. Assert: _description_ is a String.
+            1. Return the string-concatenation of *"Symbol("*, _description_, and *")"*.
+          </emu-alg>
+        </emu-clause>

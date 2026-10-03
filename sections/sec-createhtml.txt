@@ -1,0 +1,34 @@
+ECMA-262 > B Additional ECMAScript Features for Web Browsers > B.2 Additional Built-in Properties > B.2.2 Additional Properties of the String.prototype Object > B.2.2.2 String.prototype.anchor ( _name_ ) > B.2.2.2.1 CreateHTML ( _contents_: an ECMAScript language value, _tag_: a String, _attr_: a String, _attrValue_: an ECMAScript language value, ): either a normal completion containing a String or a throw completion [id: sec-createhtml]
+
+<emu-annex id="sec-createhtml" type="abstract operation">
+          <h1>
+            CreateHTML (
+              _contents_: an ECMAScript language value,
+              _tag_: a String,
+              _attr_: a String,
+              _attrValue_: an ECMAScript language value,
+            ): either a normal completion containing a String or a throw completion
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Perform ? RequireObjectCoercible(_contents_).
+            1. Let _contentsString_ be ? ToString(_contents_).
+            1. Let _part1_ be the string-concatenation of *"&lt;"* and _tag_.
+            1. If _attr_ is not the empty String, then
+              1. Let _attrValueString_ be ? ToString(_attrValue_).
+              1. Let _escapedAttrValue_ be the String value that is the same as _attrValueString_ except that each occurrence of the code unit 0x0022 (QUOTATION MARK) in _attrValueString_ has been replaced with the six code unit sequence *"&amp;quot;"*.
+              1. Set _part1_ to the string-concatenation of:
+                * _part1_
+                * the code unit 0x0020 (SPACE)
+                * _attr_
+                * the code unit 0x003D (EQUALS SIGN)
+                * the code unit 0x0022 (QUOTATION MARK)
+                * _escapedAttrValue_
+                * the code unit 0x0022 (QUOTATION MARK)
+            1. Let _part2_ be the string-concatenation of _part1_ and *">"*.
+            1. Let _part3_ be the string-concatenation of _part2_ and _contentsString_.
+            1. Let _part4_ be the string-concatenation of _part3_, *"&lt;/"*, _tag_, and *">"*.
+            1. Return _part4_.
+          </emu-alg>
+        </emu-annex>

@@ -1,0 +1,12 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.10 AsyncFunction Objects > 27.10.4 AsyncFunction Instances [id: sec-async-function-instances]
+
+<emu-clause id="sec-async-function-instances">
+      <h1>AsyncFunction Instances</h1>
+
+      <p>Every AsyncFunction instance is an ECMAScript function object and has the internal slots listed in <emu-xref href="#table-internal-slots-of-ecmascript-function-objects"></emu-xref>. The value of the [[IsClassConstructor]] internal slot for all such instances is *false*. AsyncFunction instances are not constructors and do not have a [[Construct]] internal method. AsyncFunction instances do not have a prototype property as they are not constructable.</p>
+      <p>Each AsyncFunction instance has the following own properties:</p>
+
+      
+
+      
+    </emu-clause>

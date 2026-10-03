@@ -1,0 +1,23 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.1 Environment Records > 9.1.1 The Environment Record Type Hierarchy > 9.1.1.1 Declarative Environment Records > 9.1.1.1.4 InitializeBinding ( _name_: a String, _value_: an ECMAScript language value, ): a normal completion containing ~unused~ [id: sec-declarative-environment-records-initializebinding-n-v]
+
+<emu-clause id="sec-declarative-environment-records-initializebinding-n-v" type="concrete method">
+          <h1>
+            InitializeBinding (
+              _name_: a String,
+              _value_: an ECMAScript language value,
+            ): a normal completion containing ~unused~
+          </h1>
+          <dl class="header">
+            <dt>for</dt>
+            <dd>a Declarative Environment Record _envRecord_</dd>
+
+            <dt>description</dt>
+            <dd>It is used to set the bound value of the current binding of the identifier whose name is _name_ to the value _value_. An uninitialized binding for _name_ must already exist.</dd>
+          </dl>
+          <emu-alg>
+            1. Assert: _envRecord_ must have an uninitialized binding for _name_.
+            1. Set the bound value for _name_ in _envRecord_ to _value_.
+            1. <emu-not-ref>Record</emu-not-ref> that the binding for _name_ in _envRecord_ has been initialized.
+            1. Return ~unused~.
+          </emu-alg>
+        </emu-clause>

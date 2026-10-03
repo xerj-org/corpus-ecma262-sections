@@ -1,0 +1,14 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.2 ECMAScript Function Objects > 10.2.4 AddRestrictedFunctionProperties ( _func_: a function object, _realm_: a Realm Record, ): ~unused~ > 10.2.4.1 %ThrowTypeError% ( ) [id: sec-%throwtypeerror%]
+
+<emu-clause id="sec-%throwtypeerror%" type="built-in function">
+        <h1>%ThrowTypeError% ( )</h1>
+        <p>This function is the <dfn>%ThrowTypeError%</dfn> intrinsic object.</p>
+        <p>It is an anonymous built-in function object that is defined once for each realm.</p>
+        <p>It performs the following steps when called:</p>
+        <emu-alg>
+          1. Throw a *TypeError* exception.
+        </emu-alg>
+        <p>The value of the [[Extensible]] internal slot of this function is *false*.</p>
+        <p>The *"length"* property of this function has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+        <p>The *"name"* property of this function has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

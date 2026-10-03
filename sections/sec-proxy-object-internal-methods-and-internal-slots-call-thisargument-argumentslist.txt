@@ -1,0 +1,28 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.5 Proxy Object Internal Methods and Internal Slots > 10.5.12 [[Call]] ( _thisArg_: an ECMAScript language value, _argList_: a List of ECMAScript language values, ): either a normal completion containing an ECMAScript language value or a throw completion [id: sec-proxy-object-internal-methods-and-internal-slots-call-thisargument-argumentslist]
+
+<emu-clause id="sec-proxy-object-internal-methods-and-internal-slots-call-thisargument-argumentslist" type="internal method">
+      <h1>
+        [[Call]] (
+          _thisArg_: an ECMAScript language value,
+          _argList_: a List of ECMAScript language values,
+        ): either a normal completion containing an ECMAScript language value or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>a Proxy exotic object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Perform ? ValidateNonRevokedProxy(_obj_).
+        1. Let _target_ be _obj_.[[ProxyTarget]].
+        1. Let _handler_ be _obj_.[[ProxyHandler]].
+        1. Assert: _handler_ is an Object.
+        1. Let _trap_ be ? GetMethod(_handler_, *"apply"*).
+        1. If _trap_ is *undefined*, then
+          1. Return ? Call(_target_, _thisArg_, _argList_).
+        1. Let _argArray_ be CreateArrayFromList(_argList_).
+        1. Return ? Call(_trap_, _handler_, « _target_, _thisArg_, _argArray_ »).
+      </emu-alg>
+      <emu-note>
+        <p>A Proxy exotic object only has a [[Call]] internal method if the initial value of its [[ProxyTarget]] internal slot is an object that has a [[Call]] internal method.</p>
+      </emu-note>
+    </emu-clause>

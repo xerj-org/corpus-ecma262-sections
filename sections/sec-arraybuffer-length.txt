@@ -1,0 +1,12 @@
+ECMA-262 > 25 Structured Data > 25.1 ArrayBuffer Objects > 25.1.4 The ArrayBuffer Constructor > 25.1.4.1 ArrayBuffer ( _length_ [ , _options_ ] ) [id: sec-arraybuffer-length]
+
+<emu-clause id="sec-arraybuffer-length" type="built-in function">
+        <h1>ArrayBuffer ( _length_ [ , _options_ ] )</h1>
+        <p>This function performs the following steps when called:</p>
+        <emu-alg>
+          1. If NewTarget is *undefined*, throw a *TypeError* exception.
+          1. Let _byteLength_ be ? ToIndex(_length_).
+          1. Let _requestedMaxByteLength_ be ? GetArrayBufferMaxByteLengthOption(_options_).
+          1. Return ? AllocateArrayBuffer(NewTarget, _byteLength_, _requestedMaxByteLength_).
+        </emu-alg>
+      </emu-clause>

@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.42 URIError ( . . . ) [id: sec-constructor-properties-of-the-global-object-urierror]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-urierror">
+      <h1>URIError ( . . . )</h1>
+      <p>See <emu-xref href="#sec-native-error-types-used-in-this-standard-urierror"></emu-xref>.</p>
+    </emu-clause>

@@ -1,0 +1,20 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.12 TypedArrayByteLength ( _taRecord_: a TypedArray With Buffer Witness Record, ): a non-negative integer [id: sec-typedarraybytelength]
+
+<emu-clause id="sec-typedarraybytelength" oldids="sec-integerindexedobjectbytelength" type="abstract operation">
+        <h1>
+          TypedArrayByteLength (
+            _taRecord_: a TypedArray With Buffer Witness Record,
+          ): a non-negative integer
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Assert: IsTypedArrayOutOfBounds(_taRecord_) is *false*.
+          1. Let _obj_ be _taRecord_.[[Object]].
+          1. If _obj_.[[ByteLength]] is not ~auto~, return _obj_.[[ByteLength]].
+          1. Let _length_ be TypedArrayLength(_taRecord_).
+          1. Let _elementSize_ be TypedArrayElementSize(_obj_).
+          1. NOTE: The returned byte length is always an integer multiple of _elementSize_, even when the underlying buffer has been resized to a non-integer multiple.
+          1. Return _length_ × _elementSize_.
+        </emu-alg>
+      </emu-clause>

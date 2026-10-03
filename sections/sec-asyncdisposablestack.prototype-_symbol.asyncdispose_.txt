@@ -1,0 +1,6 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.4 AsyncDisposableStack Objects > 27.4.3 Properties of the AsyncDisposableStack Prototype Object > 27.4.3.8 AsyncDisposableStack.prototype [ %Symbol.asyncDispose% ] ( ) [id: sec-asyncdisposablestack.prototype-%symbol.asyncdispose%]
+
+<emu-clause id="sec-asyncdisposablestack.prototype-%symbol.asyncdispose%">
+        <h1>AsyncDisposableStack.prototype [ %Symbol.asyncDispose% ] ( )</h1>
+        <p>The initial value of the `%Symbol.asyncDispose%` property is %AsyncDisposableStack.prototype.disposeAsync%, defined in <emu-xref href="#sec-asyncdisposablestack.prototype.disposeAsync"></emu-xref>.</p>
+      </emu-clause>

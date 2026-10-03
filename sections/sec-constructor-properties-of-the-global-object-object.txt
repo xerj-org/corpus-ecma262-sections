@@ -1,0 +1,6 @@
+ECMA-262 > 19 The Global Object > 19.3 Constructor Properties of the Global Object > 19.3.25 Object ( . . . ) [id: sec-constructor-properties-of-the-global-object-object]
+
+<emu-clause id="sec-constructor-properties-of-the-global-object-object">
+      <h1>Object ( . . . )</h1>
+      <p>See <emu-xref href="#sec-object-constructor"></emu-xref>.</p>
+    </emu-clause>

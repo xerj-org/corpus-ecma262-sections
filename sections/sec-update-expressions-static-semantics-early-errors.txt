@@ -1,0 +1,26 @@
+ECMA-262 > 13 ECMAScript Language: Expressions > 13.4 Update Expressions > 13.4.1 Static Semantics: Early Errors [id: sec-update-expressions-static-semantics-early-errors]
+
+<emu-clause id="sec-update-expressions-static-semantics-early-errors">
+      <h1>Static Semantics: Early Errors</h1>
+      <emu-grammar>
+        UpdateExpression :
+          LeftHandSideExpression `++`
+          LeftHandSideExpression `--`
+      </emu-grammar>
+      <ul>
+        <li>
+          It is an early Syntax Error if the AssignmentTargetType of |LeftHandSideExpression| is ~invalid~.
+        </li>
+      </ul>
+
+      <emu-grammar>
+        UpdateExpression :
+          `++` UnaryExpression
+          `--` UnaryExpression
+      </emu-grammar>
+      <ul>
+        <li>
+          It is an early Syntax Error if the AssignmentTargetType of |UnaryExpression| is ~invalid~.
+        </li>
+      </ul>
+    </emu-clause>

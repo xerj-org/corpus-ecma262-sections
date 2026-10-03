@@ -1,0 +1,14 @@
+ECMA-262 > 26 Managing Memory > 26.1 WeakRef Objects > 26.1.2 Properties of the WeakRef Constructor [id: sec-properties-of-the-weak-ref-constructor]
+
+<emu-clause id="sec-properties-of-the-weak-ref-constructor">
+      <h1>Properties of the WeakRef Constructor</h1>
+      <p>The WeakRef constructor:</p>
+      <ul>
+        <li>
+          has a [[Prototype]] internal slot whose value is %Function.prototype%.
+        </li>
+        <li>has the following properties:</li>
+      </ul>
+
+      
+    </emu-clause>

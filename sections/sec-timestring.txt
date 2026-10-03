@@ -1,0 +1,17 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.4 Properties of the Date Prototype Object > 21.4.4.41 Date.prototype.toString ( ) > 21.4.4.41.1 TimeString ( _tv_: a Number, but not *NaN*, ): a String [id: sec-timestring]
+
+<emu-clause id="sec-timestring" type="abstract operation">
+          <h1>
+            TimeString (
+              _tv_: a Number, but not *NaN*,
+            ): a String
+          </h1>
+          <dl class="header">
+          </dl>
+          <emu-alg>
+            1. Let _hour_ be ToZeroPaddedDecimalString(HourFromTime(_tv_), 2).
+            1. Let _minute_ be ToZeroPaddedDecimalString(MinuteFromTime(_tv_), 2).
+            1. Let _second_ be ToZeroPaddedDecimalString(SecondFromTime(_tv_), 2).
+            1. Return the string-concatenation of _hour_, *":"*, _minute_, *":"*, _second_, the code unit 0x0020 (SPACE), and *"GMT"*.
+          </emu-alg>
+        </emu-clause>

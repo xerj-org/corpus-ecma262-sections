@@ -1,0 +1,21 @@
+ECMA-262 > 24 Keyed Collections > 24.3 WeakMap Objects [id: sec-weakmap-objects]
+
+<emu-clause id="sec-weakmap-objects">
+    <h1>WeakMap Objects</h1>
+    <p>WeakMaps are collections of key/value pairs where the keys are objects and/or symbols and values may be arbitrary ECMAScript language values. A WeakMap may be queried to see if it contains a key/value pair with a specific key, but no mechanism is provided for enumerating the values it holds as keys. In certain conditions, values which are not live are removed as WeakMap keys, as described in <emu-xref href="#sec-weakref-execution"></emu-xref>.</p>
+    <p>An implementation may impose an arbitrarily determined latency between the time a key/value pair of a WeakMap becomes inaccessible and the time when the key/value pair is removed from the WeakMap. If this latency was observable to ECMAScript program, it would be a source of indeterminacy that could impact program execution. For that reason, an ECMAScript implementation must not provide any means to observe a key of a WeakMap that does not require the observer to present the observed key.</p>
+    <p>WeakMaps must be implemented using either hash tables or other mechanisms that, on average, provide access times that are sublinear on the number of key/value pairs in the collection. The data structure used in this specification is only intended to describe the required observable semantics of WeakMaps. It is not intended to be a viable implementation model.</p>
+    <emu-note>
+      <p>WeakMap and WeakSet are intended to provide mechanisms for dynamically associating state with an object or symbol in a manner that does not “leak” memory resources if, in the absence of the WeakMap or WeakSet instance, the object or symbol otherwise became inaccessible and subject to resource reclamation by the implementation's garbage collection mechanisms. This characteristic can be achieved by using an inverted per-object/symbol mapping of WeakMap or WeakSet instances to keys. Alternatively, each WeakMap or WeakSet instance may internally store its key and value data, but this approach requires coordination between the WeakMap or WeakSet implementation and the garbage collector. The following references describe mechanism that may be useful to implementations of WeakMap and WeakSet:</p>
+      <p>Barry Hayes. 1997. Ephemerons: a new finalization mechanism. In <i>Proceedings of the 12th ACM SIGPLAN conference on Object-oriented programming, systems, languages, and applications (OOPSLA '97)</i>, A. Michael Berman (Ed.). ACM, New York, NY, USA, 176-183, <a href="http://doi.acm.org/10.1145/263698.263733">http://doi.acm.org/10.1145/263698.263733</a>.</p>
+      <p>Alexandra Barros, Roberto Ierusalimschy, Eliminating Cycles in Weak Tables. Journal of Universal Computer Science - J.UCS, vol. 14, no. 21, pp. 3481-3497, 2008, <a href="http://www.jucs.org/jucs_14_21/eliminating_cycles_in_weak">http://www.jucs.org/jucs_14_21/eliminating_cycles_in_weak</a></p>
+    </emu-note>
+
+    
+
+    
+
+    
+
+    
+  </emu-clause>

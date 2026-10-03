@@ -1,0 +1,15 @@
+ECMA-262 > 9 Executable Code and Execution Contexts > 9.5 Jobs and Host Operations to Enqueue Jobs > 9.5.4 HostEnqueueGenericJob ( _job_: a Job Abstract Closure, _realm_: a Realm Record, ): ~unused~ [id: sec-hostenqueuegenericjob]
+
+<emu-clause id="sec-hostenqueuegenericjob" type="host-defined abstract operation">
+      <h1>
+        HostEnqueueGenericJob (
+          _job_: a Job Abstract Closure,
+          _realm_: a Realm Record,
+        ): ~unused~
+      </h1>
+      <dl class="header">
+        <dt>description</dt>
+        <dd>It schedules _job_ in the realm _realm_ in the agent signified by _realm_.[[AgentSignifier]] to be performed at some future time. The Abstract Closures used with this algorithm are intended to be scheduled without additional constraints, such as priority and ordering.</dd>
+      </dl>
+      <p>An implementation of HostEnqueueGenericJob must conform to the requirements in <emu-xref href="#sec-jobs"></emu-xref>.</p>
+    </emu-clause>

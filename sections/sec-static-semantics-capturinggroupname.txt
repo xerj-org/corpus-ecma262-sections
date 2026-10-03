@@ -1,0 +1,14 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.1 Patterns > 22.2.1.10 Static Semantics: CapturingGroupName ( ): a String [id: sec-static-semantics-capturinggroupname]
+
+<emu-clause id="sec-static-semantics-capturinggroupname" oldids="sec-regexp-identifier-names-static-semantics-stringvalue" type="sdo">
+        <h1>Static Semantics: CapturingGroupName ( ): a String</h1>
+        <dl class="header">
+        </dl>
+        <emu-grammar>
+          GroupName :: `&lt;` RegExpIdentifierName `&gt;`
+        </emu-grammar>
+        <emu-alg>
+          1. Let _nameUnescaped_ be the RegExpIdentifierCodePoints of |RegExpIdentifierName|.
+          1. Return CodePointsToString(_nameUnescaped_).
+        </emu-alg>
+      </emu-clause>

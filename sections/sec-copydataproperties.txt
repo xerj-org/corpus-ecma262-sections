@@ -1,0 +1,32 @@
+ECMA-262 > 7 Abstract Operations > 7.3 Operations on Objects > 7.3.25 CopyDataProperties ( _target_: an Object, _source_: an ECMAScript language value, _excludedItems_: a List of property keys, ): either a normal completion containing ~unused~ or a throw completion [id: sec-copydataproperties]
+
+<emu-clause id="sec-copydataproperties" type="abstract operation">
+      <h1>
+        CopyDataProperties (
+          _target_: an Object,
+          _source_: an ECMAScript language value,
+          _excludedItems_: a List of property keys,
+        ): either a normal completion containing ~unused~ or a throw completion
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If _source_ is either *undefined* or *null*, return ~unused~.
+        1. Let _from_ be ! ToObject(_source_).
+        1. Let _keys_ be ? <emu-meta effects="user-code">_from_.[[OwnPropertyKeys]]()</emu-meta>.
+        1. For each element _nextKey_ of _keys_, do
+          1. Let _excluded_ be *false*.
+          1. For each element _element_ of _excludedItems_, do
+            1. If SameValue(_element_, _nextKey_) is *true*, then
+              1. Set _excluded_ to *true*.
+          1. If _excluded_ is *false*, then
+            1. Let _propertyDesc_ be ? <emu-meta effects="user-code">_from_.[[GetOwnProperty]](_nextKey_)</emu-meta>.
+            1. If _propertyDesc_ is not *undefined* and _propertyDesc_.[[Enumerable]] is *true*, then
+              1. Let _propertyValue_ be ? Get(_from_, _nextKey_).
+              1. Perform ! CreateDataPropertyOrThrow(_target_, _nextKey_, _propertyValue_).
+        1. Return ~unused~.
+      </emu-alg>
+      <emu-note>
+        <p>The target passed in here is always a newly created object which is not directly accessible in case of an error being thrown.</p>
+      </emu-note>
+    </emu-clause>

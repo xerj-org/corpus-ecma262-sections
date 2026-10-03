@@ -1,0 +1,19 @@
+ECMA-262 > 22 Text Processing > 22.2 RegExp (Regular Expression) Objects > 22.2.2 Pattern Semantics > 22.2.2.9 Runtime Semantics: CompileToCharSet ( _regexpRecord_: a RegExp Record, ): a CharSet > 22.2.2.9.3 WordCharacters ( _regexpRecord_: a RegExp Record, ): a CharSet [id: sec-wordcharacters]
+
+<emu-clause id="sec-wordcharacters" type="abstract operation" oldids="sec-runtime-semantics-wordcharacters-abstract-operation">
+          <h1>
+            WordCharacters (
+              _regexpRecord_: a RegExp Record,
+            ): a CharSet
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>Returns a CharSet containing the characters considered “word characters” for the purposes of `\\b`, `\\B`, `\\w`, and `\\W`.</dd>
+          </dl>
+          <emu-alg>
+            1. Let _basicWordChars_ be the CharSet containing every character in the ASCII word characters.
+            1. Let _extraWordChars_ be the CharSet containing all characters _c_ such that _c_ is not in _basicWordChars_ but Canonicalize(_regexpRecord_, _c_) is in _basicWordChars_.
+            1. Assert: _extraWordChars_ is empty unless HasEitherUnicodeFlag(_regexpRecord_) is *true* and _regexpRecord_.[[IgnoreCase]] is *true*.
+            1. Return the union of _basicWordChars_ and _extraWordChars_.
+          </emu-alg>
+        </emu-clause>

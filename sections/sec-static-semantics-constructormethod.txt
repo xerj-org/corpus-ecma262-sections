@@ -1,0 +1,22 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.7 Class Definitions > 15.7.3 Static Semantics: ConstructorMethod ( ): a |ClassElement| Parse Node or ~empty~ [id: sec-static-semantics-constructormethod]
+
+<emu-clause id="sec-static-semantics-constructormethod" type="sdo">
+      <h1>Static Semantics: ConstructorMethod ( ): a |ClassElement| Parse Node or ~empty~</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>ClassElementList : ClassElement</emu-grammar>
+      <emu-alg>
+        1. If the ClassElementKind of |ClassElement| is ~constructor-method~, return |ClassElement|.
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-grammar>ClassElementList : ClassElementList ClassElement</emu-grammar>
+      <emu-alg>
+        1. Let _head_ be the ConstructorMethod of |ClassElementList|.
+        1. If _head_ is not ~empty~, return _head_.
+        1. If the ClassElementKind of |ClassElement| is ~constructor-method~, return |ClassElement|.
+        1. Return ~empty~.
+      </emu-alg>
+      <emu-note>
+        <p>Early Error rules ensure that there is only one method definition named *"constructor"* and that it is not an accessor property or generator definition.</p>
+      </emu-note>
+    </emu-clause>

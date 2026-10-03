@@ -1,0 +1,9 @@
+ECMA-262 > 14 ECMAScript Language: Statements and Declarations > 14.7 Iteration Statements > 14.7.1 Semantics [id: sec-iteration-statements-semantics]
+
+<emu-clause id="sec-iteration-statements-semantics">
+      <h1>Semantics</h1>
+
+      
+
+      
+    </emu-clause>

@@ -1,0 +1,25 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.4 Built-in Exotic Object Internal Methods and Slots > 10.4.5 TypedArray Exotic Objects > 10.4.5.6 [[Set]] ( _propertyKey_: a property key, _value_: an ECMAScript language value, _receiver_: an ECMAScript language value, ): either a normal completion containing a Boolean or a throw completion [id: sec-typedarray-set]
+
+<emu-clause id="sec-typedarray-set" oldids="sec-integer-indexed-exotic-objects-set-p-v-receiver" type="internal method">
+        <h1>
+          [[Set]] (
+            _propertyKey_: a property key,
+            _value_: an ECMAScript language value,
+            _receiver_: an ECMAScript language value,
+          ): either a normal completion containing a Boolean or a throw completion
+        </h1>
+        <dl class="header">
+          <dt>for</dt>
+          <dd>a TypedArray _obj_</dd>
+        </dl>
+        <emu-alg>
+          1. If _propertyKey_ is a String, then
+            1. Let _numericIndex_ be CanonicalNumericIndexString(_propertyKey_).
+            1. If _numericIndex_ is not *undefined*, then
+              1. If SameValue(_obj_, _receiver_) is *true*, then
+                1. Perform ? TypedArraySetElement(_obj_, _numericIndex_, _value_).
+                1. Return *true*.
+              1. If IsValidIntegerIndex(_obj_, _numericIndex_) is *false*, return *true*.
+          1. Return ? OrdinarySet(_obj_, _propertyKey_, _value_, _receiver_).
+        </emu-alg>
+      </emu-clause>

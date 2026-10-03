@@ -1,0 +1,24 @@
+ECMA-262 > 16 ECMAScript Language: Scripts and Modules > 16.2 Modules > 16.2.1 Module Semantics > 16.2.1.5 Abstract Module Records > 16.2.1.5.1 EvaluateModuleSync ( _module_: a Module Record, ): either a normal completion containing ~unused~ or a throw completion [id: sec-EvaluateModuleSync]
+
+<emu-clause id="sec-EvaluateModuleSync" type="abstract operation">
+          <h1>
+            EvaluateModuleSync (
+              _module_: a Module Record,
+            ): either a normal completion containing ~unused~ or a throw completion
+          </h1>
+          <dl class="header">
+            <dt>description</dt>
+            <dd>It synchronously evaluates _module_, provided that the caller guarantees that _module_'s evaluation will return an already settled promise.</dd>
+          </dl>
+
+          <emu-alg>
+            1. Assert: _module_ is not a Cyclic Module Record.
+            1. Let _promise_ be _module_.Evaluate().
+            1. Assert: _promise_.[[PromiseState]] is either ~fulfilled~ or ~rejected~.
+            1. If _promise_.[[PromiseState]] is ~rejected~, then
+              1. If _promise_.[[PromiseIsHandled]] is *false*, perform HostPromiseRejectionTracker(_promise_, *"handle"*).
+              1. Set _promise_.[[PromiseIsHandled]] to *true*.
+              1. Throw _promise_.[[PromiseResult]].
+            1. Return ~unused~.
+          </emu-alg>
+        </emu-clause>

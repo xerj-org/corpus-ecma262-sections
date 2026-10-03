@@ -1,0 +1,24 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.10 Tail Position Calls > 15.10.1 Static Semantics: IsInTailPosition ( _call_: a |CallExpression| Parse Node, a |MemberExpression| Parse Node, or an |OptionalChain| Parse Node, ): a Boolean [id: sec-isintailposition]
+
+<emu-clause id="sec-isintailposition" type="abstract operation">
+      <h1>
+        Static Semantics: IsInTailPosition (
+          _call_: a |CallExpression| Parse Node, a |MemberExpression| Parse Node, or an |OptionalChain| Parse Node,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-alg>
+        1. If IsStrict(_call_) is *false*, return *false*.
+        1. If _call_ is not contained within a |FunctionBody|, a |ConciseBody|, or an |AsyncConciseBody|, return *false*.
+        1. Let _body_ be the |FunctionBody|, |ConciseBody|, or |AsyncConciseBody| that most closely contains _call_.
+        1. If _body_ is the |FunctionBody| of a |GeneratorBody|, return *false*.
+        1. If _body_ is the |FunctionBody| of an |AsyncFunctionBody|, return *false*.
+        1. If _body_ is the |FunctionBody| of an |AsyncGeneratorBody|, return *false*.
+        1. If _body_ is an |AsyncConciseBody|, return *false*.
+        1. Return the result of HasCallInTailPosition of _body_ with argument _call_.
+      </emu-alg>
+      <emu-note>
+        <p>Tail Position calls are only defined in strict mode code because of a common non-standard language extension (see <emu-xref href="#sec-addrestrictedfunctionproperties"></emu-xref>) that enables observation of the chain of caller contexts.</p>
+      </emu-note>
+    </emu-clause>

@@ -1,0 +1,11 @@
+ECMA-262 > 20 Fundamental Objects > 20.3 Boolean Objects > 20.3.3 Properties of the Boolean Prototype Object > 20.3.3.3 Boolean.prototype.valueOf ( ) [id: sec-boolean.prototype.valueof]
+
+<emu-clause id="sec-boolean.prototype.valueof" type="built-in function">
+        <h1>Boolean.prototype.valueOf ( )</h1>
+        <p>This method performs the following steps when called:</p>
+        <emu-alg>
+          1. Return ? ThisBooleanValue(*this* value).
+        </emu-alg>
+
+        
+      </emu-clause>

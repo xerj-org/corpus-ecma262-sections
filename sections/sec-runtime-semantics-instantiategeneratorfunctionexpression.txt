@@ -1,0 +1,42 @@
+ECMA-262 > 15 ECMAScript Language: Functions and Classes > 15.5 Generator Function Definitions > 15.5.4 Runtime Semantics: InstantiateGeneratorFunctionExpression ( optional _name_: a property key or a Private Name, ): an ECMAScript function object [id: sec-runtime-semantics-instantiategeneratorfunctionexpression]
+
+<emu-clause id="sec-runtime-semantics-instantiategeneratorfunctionexpression" type="sdo">
+      <h1>
+        Runtime Semantics: InstantiateGeneratorFunctionExpression (
+          optional _name_: a property key or a Private Name,
+        ): an ECMAScript function object
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>GeneratorExpression : `function` `*` `(` FormalParameters `)` `{` GeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. If _name_ is not present, set _name_ to the empty String.
+        1. Let _envRecord_ be the LexicalEnvironment of the running execution context.
+        1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+        1. Let _sourceText_ be the source text matched by |GeneratorExpression|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%GeneratorFunction.prototype%, _sourceText_, |FormalParameters|, |GeneratorBody|, ~non-lexical-this~, _envRecord_, _privateEnv_).
+        1. Perform SetFunctionName(_closure_, _name_).
+        1. Let _proto_ be OrdinaryObjectCreate(%GeneratorPrototype%).
+        1. Perform ! DefinePropertyOrThrow(_closure_, *"prototype"*, PropertyDescriptor { [[Value]]: _proto_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+        1. Return _closure_.
+      </emu-alg>
+      <emu-grammar>GeneratorExpression : `function` `*` BindingIdentifier `(` FormalParameters `)` `{` GeneratorBody `}`</emu-grammar>
+      <emu-alg>
+        1. Assert: _name_ is not present.
+        1. Set _name_ to the StringValue of |BindingIdentifier|.
+        1. Let _outerEnv_ be the running execution context's LexicalEnvironment.
+        1. Let _funcEnv_ be NewDeclarativeEnvironment(_outerEnv_).
+        1. Perform ! _funcEnv_.CreateImmutableBinding(_name_, *false*).
+        1. Let _privateEnv_ be the running execution context's PrivateEnvironment.
+        1. Let _sourceText_ be the source text matched by |GeneratorExpression|.
+        1. Let _closure_ be OrdinaryFunctionCreate(%GeneratorFunction.prototype%, _sourceText_, |FormalParameters|, |GeneratorBody|, ~non-lexical-this~, _funcEnv_, _privateEnv_).
+        1. Perform SetFunctionName(_closure_, _name_).
+        1. Let _proto_ be OrdinaryObjectCreate(%GeneratorPrototype%).
+        1. Perform ! DefinePropertyOrThrow(_closure_, *"prototype"*, PropertyDescriptor { [[Value]]: _proto_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *false* }).
+        1. Perform ! _funcEnv_.InitializeBinding(_name_, _closure_).
+        1. Return _closure_.
+      </emu-alg>
+      <emu-note>
+        <p>The |BindingIdentifier| in a |GeneratorExpression| can be referenced from inside the |GeneratorExpression|'s |FunctionBody| to allow the generator code to call itself recursively. However, unlike in a |GeneratorDeclaration|, the |BindingIdentifier| in a |GeneratorExpression| cannot be referenced from and does not affect the scope enclosing the |GeneratorExpression|.</p>
+      </emu-note>
+    </emu-clause>

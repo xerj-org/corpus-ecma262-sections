@@ -1,0 +1,23 @@
+ECMA-262 > 10 Ordinary and Exotic Objects Behaviours > 10.1 Ordinary Object Internal Methods and Internal Slots > 10.1.6 [[DefineOwnProperty]] ( _propertyKey_: a property key, _propertyDesc_: a Property Descriptor, ): either a normal completion containing a Boolean or a throw completion [id: sec-ordinary-object-internal-methods-and-internal-slots-defineownproperty-p-desc]
+
+<emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-defineownproperty-p-desc" type="internal method">
+      <h1>
+        [[DefineOwnProperty]] (
+          _propertyKey_: a property key,
+          _propertyDesc_: a Property Descriptor,
+        ): either a normal completion containing a Boolean or a throw completion
+      </h1>
+      <dl class="header">
+        <dt>for</dt>
+        <dd>an ordinary object _obj_</dd>
+      </dl>
+      <emu-alg>
+        1. Return ? OrdinaryDefineOwnProperty(_obj_, _propertyKey_, _propertyDesc_).
+      </emu-alg>
+
+      
+
+      
+
+      
+    </emu-clause>

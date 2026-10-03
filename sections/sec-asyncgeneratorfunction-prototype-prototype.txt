@@ -1,0 +1,7 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.7 AsyncGeneratorFunction Objects > 27.7.3 Properties of the AsyncGeneratorFunction Prototype Object > 27.7.3.2 AsyncGeneratorFunction.prototype.prototype [id: sec-asyncgeneratorfunction-prototype-prototype]
+
+<emu-clause id="sec-asyncgeneratorfunction-prototype-prototype">
+        <h1>AsyncGeneratorFunction.prototype.prototype</h1>
+        <p>The initial value of `AsyncGeneratorFunction.prototype.prototype` is %AsyncGeneratorPrototype%.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>

@@ -1,0 +1,19 @@
+ECMA-262 > 27 Control Abstraction Objects > 27.8 Generator Objects > 27.8.3 Generator Abstract Operations > 27.8.3.6 GeneratorYield ( _iteratorResult_: an Object that conforms to the IteratorResult interface, ): either a normal completion containing an ECMAScript language value or an abrupt completion [id: sec-generatoryield]
+
+<emu-clause id="sec-generatoryield" type="abstract operation">
+        <h1>
+          GeneratorYield (
+            _iteratorResult_: an Object that conforms to the IteratorResult interface,
+          ): either a normal completion containing an ECMAScript language value or an abrupt completion
+        </h1>
+        <dl class="header">
+        </dl>
+        <emu-alg>
+          1. Let _genContext_ be the running execution context.
+          1. Assert: _genContext_ is the execution context of a generator.
+          1. Let _gen_ be the value of the Generator component of _genContext_.
+          1. Assert: GetGeneratorKind() is ~sync~.
+          1. Set _gen_.[[GeneratorState]] to ~suspended-yield~.
+          1. Return ? RunCallerContext(_iteratorResult_).
+        </emu-alg>
+      </emu-clause>

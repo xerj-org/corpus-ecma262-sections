@@ -1,0 +1,7 @@
+ECMA-262 > 20 Fundamental Objects > 20.4 Symbol Objects > 20.4.2 Properties of the Symbol Constructor > 20.4.2.5 Symbol.hasInstance [id: sec-symbol.hasinstance]
+
+<emu-clause id="sec-symbol.hasinstance">
+        <h1>Symbol.hasInstance</h1>
+        <p>The initial value of `Symbol.hasInstance` is the well-known symbol %Symbol.hasInstance% (<emu-xref href="#table-well-known-symbols"></emu-xref>).</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>

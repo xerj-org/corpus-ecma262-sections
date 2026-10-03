@@ -1,0 +1,41 @@
+ECMA-262 > 21 Numbers and Dates > 21.4 Date Objects > 21.4.1 Overview of Date Objects and Definitions of Abstract Operations > 21.4.1.32 Date Time String Format > 21.4.1.32.1 Expanded Years [id: sec-expanded-years]
+
+<emu-clause id="sec-expanded-years" oldids="sec-extended-years">
+          <h1>Expanded Years</h1>
+          <p>Covering the full time value range of approximately 273,790 years forward or backward from 1 January 1970 (<emu-xref href="#sec-time-values-and-time-range"></emu-xref>) requires representing years before 0 or after 9999. ISO 8601 permits expansion of the year representation, but only by mutual agreement of the partners in information interchange. In the simplified ECMAScript format, such an <dfn variants="expanded years">expanded year</dfn> representation shall have 6 digits and is always prefixed with a + or - sign. The year 0 is considered positive and must be prefixed with a + sign. The representation of the year 0 as -000000 is invalid. Strings matching the <emu-xref href="#sec-date-time-string-format">Date Time String Format</emu-xref> with expanded years representing instants in time outside the range of a time value are treated as unrecognizable by <emu-xref href="#sec-date.parse">`Date.parse`</emu-xref> and cause that function to return *NaN* without falling back to implementation-specific behaviour or heuristics.</p>
+          <emu-note>
+            <p>Examples of date-<emu-not-ref>time values</emu-not-ref> with expanded years:</p>
+            <figure>
+              <table class="lightweight-table">
+                <tr>
+                  <td>-271821-04-20T00:00:00Z</td>
+                  <td>271822 B.C.</td>
+                </tr>
+                <tr>
+                  <td>-000001-01-01T00:00:00Z</td>
+                  <td>2 B.C.</td>
+                </tr>
+                <tr>
+                  <td>+000000-01-01T00:00:00Z</td>
+                  <td>1 B.C.</td>
+                </tr>
+                <tr>
+                  <td>+000001-01-01T00:00:00Z</td>
+                  <td>1 A.D.</td>
+                </tr>
+                <tr>
+                  <td>+001970-01-01T00:00:00Z</td>
+                  <td>1970 A.D.</td>
+                </tr>
+                <tr>
+                  <td>+002009-12-15T00:00:00Z</td>
+                  <td>2009 A.D.</td>
+                </tr>
+                <tr>
+                  <td>+275760-09-13T00:00:00Z</td>
+                  <td>275760 A.D.</td>
+                </tr>
+              </table>
+            </figure>
+          </emu-note>
+        </emu-clause>
